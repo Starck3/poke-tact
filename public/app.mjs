@@ -14,6 +14,25 @@ const sprite = (id) => `${SPRITES}versions/generation-${roman(data.game.generati
 const img = (id) => `<img src="${sprite(id)}" alt="" onerror="this.onerror=null;this.src='${SPRITES}${id}.png'">`;
 const typeBadge = (t) => `<span class="type" style="background:${COLORS[t]}">${t}</span>`;
 const fmtMult = (m) => (m === 0 ? '0×' : m === 0.5 ? '½×' : `${m}×`);
+const lozenge = (kind, text, title = '') => `<span class="lozenge ${kind}"${title ? ` title="${title.replace(/"/g, '&quot;')}"` : ''}>${text}</span>`;
+// selo de qualidade dos dados (um só, no lugar dos avisos longos): verificado no decomp / parcial / só PokéAPI
+const QUALITY = {
+  ok: ['ok', '✓ Verificado no código do jogo', 'Espécies, golpes, treinadores, onde obter e progresso conferidos com o decomp do jogo.'],
+  partial: ['warn', '◐ Parcialmente verificado', 'Parte dos dados foi conferida com o decomp; o resto vem da PokéAPI. Detalhes em "Sobre os dados".'],
+  pokeapi: ['neutral', 'Dados da PokéAPI', 'Dados da PokéAPI com as regras da geração, sem conferência com o código do jogo.'],
+};
+const qualityOf = (g) => (g.validation === 'pokeapi' ? 'pokeapi' : g.partial || (g.validation === 'decomp-core' && !g.hasWalkthrough) ? 'partial' : 'ok');
+const qualityBadge = (g) => { const [k, t, tip] = QUALITY[qualityOf(g)]; return lozenge(k, t, tip); };
+// contexto da partida (versão, inicial, progresso, nível) guardado por jogo no navegador — a URL tem prioridade
+const CTX_FIELDS = ['version', 'starter', 'stage', 'level'];
+const saveCtx = () => { try { localStorage.setItem(`poketact:${currentGame}`, JSON.stringify(Object.fromEntries(CTX_FIELDS.map((f) => [f, $(f).value])))); } catch {} };
+const restoreCtx = () => {
+  let c = null;
+  try { c = JSON.parse(localStorage.getItem(`poketact:${currentGame}`) ?? 'null'); } catch {}
+  if (!c) return;
+  for (const f of CTX_FIELDS) { const el = $(f); if (c[f] == null) continue; if (el.tagName === 'SELECT' ? [...el.options].some((o) => o.value === c[f]) : true) el.value = c[f]; }
+};
+const skeleton = (n = 3) => '<div class="picks">' + Array.from({ length: n }, () => '<div class="card"><div class="skel" style="width:60%"></div><div class="skel"></div><div class="skel" style="width:80%"></div><div class="skel tall"></div></div>').join('') + '</div>';
 
 let data;
 let catalog = null;
@@ -31,10 +50,12 @@ async function load(gameId) {
   known = null; teamMode = null;
   for (const id of ['opp', 'oppLevel']) $(id).value = '';
   $('team').innerHTML = '';
-  $('results').innerHTML = '';
+  $('results').innerHTML = skeleton();
   $('oppInfo').innerHTML = '';
   $('gameTitle').textContent = 'Pokémon ' + g.label;
+  $('qualityBadge').innerHTML = qualityBadge(g);
   $('tabWalk').hidden = !g.hasWalkthrough;
+  document.querySelector('.tabs').hidden = !g.hasWalkthrough; // uma aba só não precisa de barra de abas
   $('validationNote').hidden = g.validation !== 'pokeapi' && g.validation !== 'decomp-core';
   $('onlyObtainable').disabled = false;
   $('validationNote').textContent = g.validation === 'pokeapi' ? 'Atenção: este jogo usa dados da PokéAPI com as regras da geração, ainda SEM conferência com o código do jogo (decomp). Treinadores, onde obter e progresso ainda não estão disponíveis.'
@@ -69,10 +90,8 @@ async function load(gameId) {
   fillTrainers();
   fillStages();
   $('trainerBox').hidden = !trainers.length;
-  // style.display (o CSS .checks label { display:flex } anula o atributo hidden)
   // inicial só faz sentido com 2+ opções (Yellow: só Pikachu); progresso só com linha do tempo
   const choosable = (data.starters?.species?.length ?? 0) > 1;
-  $('starter').closest('label').style.display = !choosable && !acq?.progress ? 'none' : '';
   $('starterWrap').style.display = choosable ? '' : 'none';
   $('stageWrap').style.display = acq?.progress ? '' : 'none';
   $('tradeEvos').closest('label').style.display = acq ? '' : 'none';
@@ -96,6 +115,9 @@ async function load(gameId) {
     `Ao escolher um treinador do jogo, usamos o nível e os golpes reais do time dele (dados do próprio ${g.label})` +
     (data.game.generation >= 3 ? '; a habilidade do Pokémon dele não é determinada, então só imunidades de habilidade única entram na conta. ' : '. ') +
     'Sem treinador: com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
+  restoreCtx();
+  fillTrainers();
+  renderStarters();
   update();
 }
 
@@ -108,13 +130,17 @@ function routeHtml(w) {
 function renderStarters() {
   const box = $('starters');
   const st = data.starters;
-  if (!st?.species?.length) { box.hidden = true; return; }
+  // escolher o inicial é o 1º passo do fluxo: os cartões são botões; depois de escolhido o cartão some (fica na barra do topo)
+  if (!st?.species?.length || $('starter').value) { box.hidden = true; return; }
   box.hidden = false;
-  box.innerHTML = '<div class="filter-label">Iniciais deste jogo — ' + st.where + (st.level ? ' (nv ' + st.level + ')' : '') + '</div><div class="starters">' +
+  const pickable = st.species.length > 1;
+  box.innerHTML = '<div class="label">' + (pickable ? 'Qual foi o seu inicial? ' : 'Inicial deste jogo — ') + '<span class="meta">' + st.where + (st.level ? ' (nv ' + st.level + ')' : '') + '</span></div><div class="starters">' +
     st.species.map((n) => {
       const p = data.pokemon.find((x) => x.name === n);
-      return '<div class="starter">' + img(p.id) + '<div><strong>' + humanize(n) + '</strong></div><div>' + p.types.map(typeBadge).join('') + '</div></div>';
-    }).join('') + '</div>';
+      const inner = img(p.id) + '<div><strong>' + humanize(n) + '</strong></div><div>' + p.types.map(typeBadge).join('') + '</div>';
+      return pickable ? '<button type="button" class="starter" data-starter="' + n + '" style="font:inherit;color:inherit;cursor:pointer">' + inner + '</button>' : '<div class="starter">' + inner + '</div>';
+    }).join('') + '</div>' + (pickable ? '<p class="note" style="margin-bottom:0">Com o inicial, o rival e os Pokémon que só vêm por troca ficam certos.</p>' : '');
+  for (const b of box.querySelectorAll('[data-starter]')) b.addEventListener('click', () => { $('starter').value = b.dataset.starter; $('starter').dispatchEvent(new Event('input')); });
 }
 
 function renderWhere(mon, reach, stageNeeded) {
@@ -134,8 +160,8 @@ function renderWhere(mon, reach, stageNeeded) {
 
 // ---------------------------------------------------------------- aba Detonado (gerado a partir dos dados do jogo)
 function showTab(which) {
-  $('tabRec').setAttribute('aria-pressed', String(which === 'rec'));
-  $('tabWalk').setAttribute('aria-pressed', String(which === 'walk'));
+  $('tabRec').setAttribute('aria-selected', String(which === 'rec'));
+  $('tabWalk').setAttribute('aria-selected', String(which === 'walk'));
   $('recView').hidden = which !== 'rec';
   $('walk').hidden = which !== 'walk';
   if (which === 'walk') renderWalk();
@@ -144,7 +170,7 @@ function showTab(which) {
 async function renderWalk() {
   const box = $('walk');
   if (!walk) {
-    box.innerHTML = '<div class="card">Carregando detonado…</div>';
+    box.innerHTML = '<div class="card" aria-busy="true"><div class="skel" style="width:40%"></div><div class="skel"></div></div>' + '<div class="skel tall"></div>'.repeat(3);
     try { walk = await (await fetch(`data/${currentGame}-walkthrough.json`)).json(); } catch { box.innerHTML = '<div class="card">Este jogo ainda não tem detonado.</div>'; return; }
   }
   const v = walk.versions[$('version').value] ?? Object.values(walk.versions)[0];
@@ -269,7 +295,8 @@ function update() {
   const out = $('results');
   if (!opp) {
     $('oppInfo').innerHTML = '';
-    out.innerHTML = '';
+    // estado vazio com o próximo passo (em vez de tela em branco)
+    out.innerHTML = data ? `<div class="card empty"><strong>Quem você vai enfrentar?</strong><br>${trainers.length ? 'Escolha um treinador do jogo acima (usa o time real) ou digite' : 'Digite'} o nome do Pokémon — atalho <kbd>/</kbd>.</div>` : '';
     return;
   }
   const oppLevel = Number($('oppLevel').value) || 0;
@@ -298,37 +325,65 @@ function update() {
       ? `Ameaça estimada pelos golpes ofensivos prováveis: ${threats.map(typeBadge).join('')}`
       : `Ameaça estimada pelos tipos do oponente (STAB): ${threats.map(typeBadge).join('')}`;
 
-  out.innerHTML = `<p class="note">${threatLine}</p>` + (picks.length ? picks.map((s, i) => {
+  out.innerHTML = `<p class="note threat">${threatLine}</p>` + (picks.length ? '<div class="picks">' + picks.map((s, i) => {
     const m = s.move;
     const src = m.via.source;
     const via = m.via.method === 'level-up' ? `aprende no nv ${m.via.level}`
       : m.via.method === 'machine' ? 'TM/HM' + (src ? ` (${src.type === 'gym' ? 'prêmio do ginásio de ' + src.leader : src.type === 'mart' ? 'loja: ' + src.where : src.where}${src.level != null ? `, estimativa nv ${src.level}+` : ''})` : '') /* loja sem selvagens por perto (Goldenrod Dept Store 5F): sem estimativa */
       : 'tutor' + (src ? ` (${src.where}${src.by ? ', ' + src.by : ''})` : '');
-    const mvLine = `${humanize(m.name)} ${typeBadge(m.type)} · ${m.category === 'physical' ? 'físico' : 'especial'} · poder ${m.power} · prec. ${m.accuracy ?? '—'} · ${via}`;
     const inc = s.incoming.map((x) => `${typeBadge(x.type)}<span class="${x.mult < 1 ? 'good' : x.mult > 1 ? 'bad' : ''}">${fmtMult(x.mult)}</span>`).join(' ');
-    return `<div class="card pick">${img(s.mon.id)}
-      <div><h3>${i + 1}. ${humanize(s.mon.name)} <span class="meta">#${s.mon.id}</span></h3>
-      <div>${s.mon.types.map(typeBadge).join('')}${data.game.generation >= 3 ? '<span class="meta">Hab.: ' + (s.mon.abilities.map(humanize).join(' / ') || '—') + '</span>' : ''}</div>
-      <ul class="why">
-        <li>Melhor golpe: ${mvLine} → <strong class="${m.eff > 1 ? 'good' : ''}">${fmtMult(m.eff)}</strong>${m.stab > 1 ? ' (STAB)' : ''}</li>
+    return `<div class="card pick">
+      <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
+      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>
+      <div class="kv"><b>Golpe</b>${humanize(m.name)} ${typeBadge(m.type)} <strong class="${m.eff > 1 ? 'good' : ''}">${fmtMult(m.eff)}</strong>${m.stab > 1 ? ' <span class="meta">STAB</span>' : ''}<br><span class="meta">${via}</span></div>
+      ${howToGet(s)}
+      <details class="more"><summary>Detalhes</summary><ul class="why">
+        <li>${m.category === 'physical' ? 'Físico' : 'Especial'} · poder ${m.power} · precisão ${m.accuracy ?? '—'}</li>
         <li>Troca de golpes: ${duelLine(s.duel)}</li>
         <li>Dano que recebe: ${inc}</li>
         ${renderWhere(s.mon, s.reach, s.stageNeeded)}
         ${unreliableLine(s)}
-        <li class="meta">Stats base: HP ${s.mon.stats.hp} · Atq ${s.mon.stats.attack} · Def ${s.mon.stats.defense} · AtqE ${s.mon.stats['special-attack']} · DefE ${s.mon.stats['special-defense']} · Vel ${s.mon.stats.speed}${s.fasterBase ? ' (mais rápido que o oponente)' : ''}</li>
-      </ul></div></div>`;
-  }).join('') : '<div class="card">Nenhuma sugestão com esses filtros.</div>');
+        ${data.game.generation >= 3 ? '<li class="meta">Habilidades: ' + (s.mon.abilities.map(humanize).join(' / ') || '—') + '</li>' : ''}
+        <li class="meta">Stats base: HP ${s.mon.stats.hp} · Atq ${s.mon.stats.attack} · Def ${s.mon.stats.defense} · AtqE ${s.mon.stats['special-attack']} · DefE ${s.mon.stats['special-defense']} · Vel ${s.mon.stats.speed}</li>
+      </ul></details></div>`;
+  }).join('') + '</div>' : '<div class="card empty">Nenhuma sugestão com esses filtros — tente desmarcar algum em <strong>Filtros</strong> ou subir o nível do seu time.</div>');
+}
+
+// veredito em selos: vence/perde, quantos golpes, quem age primeiro, aviso de origem aleatória
+function verdictChips(d, m, unreliable) {
+  if (!d) return lozenge('bad', 'sem golpe útil');
+  const n = (x) => (Number.isFinite(x) ? `${x} golpe${x > 1 ? 's' : ''}` : '—');
+  return [d.win ? lozenge('ok', '✓ Vence a troca') : lozenge('bad', '✗ Perde a troca'),
+    lozenge('neutral', `nocauteia em ${n(d.myTurns)}`),
+    d.faster === 1 ? lozenge('info', 'age primeiro') : lozenge('neutral', d.faster === 0.5 ? 'velocidade igual' : 'age depois'),
+    unreliable ? lozenge('warn', '⚠ origem aleatória', unreliable) : ''].join('');
+}
+
+// uma linha de "como conseguir" (a 1ª fonte, já ordenada por estágio) + quando fica disponível
+function howToGet(s) {
+  if (!acq) return '';
+  const w = whereToGet(data, acq, s.mon, $('version').value);
+  if (!w.direct.length) return '';
+  // a fonte que libera mais cedo (estágio/nível), não a 1ª selvagem: o Machop no HGSS saía "Mt. Mortar" (estágio 6) com a
+  // troca da Goldenrod (estágio 2) disponível
+  const at = (x) => (s.stageNeeded != null ? Math.max(x.stage ?? 9, x.gate?.stage ?? 0) : Math.max(x.min ?? x.level ?? 1, x.gate?.level ?? 1));
+  const best = [...w.direct].sort((a, b) => at(a) - at(b) || (b.pct ?? 0) - (a.pct ?? 0))[0];
+  const first = formatSources([best], 1)[0] ?? '';
+  const when = s.stageNeeded != null ? stageLabel(s.stageNeeded, acq.progress?.leaderOrder) : Number.isFinite(s.reach) && s.reach > 1 ? `a partir do nv ${s.reach}` : '';
+  return `<div class="kv"><b>Como conseguir${when ? ` · ${when}` : ''}</b>${w.from ? `evolua de ${humanize(w.from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
 }
 
 // modo "contra o time inteiro": as 3 que vencem mais Pokémon do time, com a troca contra cada um
 function renderTeamResults(t, opts, out) {
   const { picks } = recommendTeam(data, t.party, opts);
   out.innerHTML = `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` +
-    (picks.length ? picks.map((s, i) => `<div class="card pick">${img(s.mon.id)}
-      <div><h3>${i + 1}. ${humanize(s.mon.name)} <span class="meta">— vence ${s.wins} de ${s.total}</span></h3>
-      <div>${s.mon.types.map(typeBadge).join('')}</div>
-      <ul class="why">${s.vs.map((x) => `<li><strong>${humanize(x.opp)} nv ${x.level}</strong>: ${duelLine(x.duel)}</li>`).join('')}
-        ${renderWhere(s.mon, s.reach, s.stageNeeded)}${unreliableLine(s)}</ul></div></div>`).join('') : '<div class="card">Nenhuma sugestão com esses filtros.</div>');
+    (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
+      <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
+      <div class="verdict">${lozenge(s.wins === s.total ? 'ok' : s.wins ? 'warn' : 'bad', `vence ${s.wins} de ${s.total}`)}${s.unreliable ? lozenge('warn', '⚠ origem aleatória', s.unreliable) : ''}</div>
+      <div class="kv"><b>Contra cada um</b>${s.vs.map((x) => `${x.duel?.win ? '<span class="good">✓</span>' : '<span class="bad">✗</span>'} ${humanize(x.opp)} nv ${x.level}`).join('<br>')}</div>
+      ${howToGet(s)}
+      <details class="more"><summary>Detalhes</summary><ul class="why">${s.vs.map((x) => `<li><strong>${humanize(x.opp)} nv ${x.level}</strong>: ${duelLine(x.duel)}</li>`).join('')}
+        ${renderWhere(s.mon, s.reach, s.stageNeeded)}${unreliableLine(s)}</ul></details></div>`).join('') + '</div>' : '<div class="card empty">Nenhuma sugestão com esses filtros.</div>');
 }
 
 // E2: aviso quando, até aqui, a espécie só sai por origem aleatória/condicionada (surto, Poké Radar, sorteio diário…)
@@ -337,6 +392,14 @@ function unreliableLine(s) {
 }
 
 for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'stage']) $(id).addEventListener('input', update);
+for (const id of CTX_FIELDS) $(id).addEventListener('input', saveCtx);
+// atalho "/" (como no Linear/GitHub): vai para a busca do oponente, fora de campos de texto
+document.addEventListener('keydown', (e) => {
+  if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName ?? '') || $('tool').hidden) return;
+  e.preventDefault();
+  if ($('recView').hidden) showTab('rec');
+  $('opp').focus(); $('opp').select();
+});
 // Digitar manualmente o Pokémon ou o nível do oponente sai do modo "treinador" (os golpes deixam de ser os do jogo)
 for (const id of ['opp', 'oppLevel']) $(id).addEventListener('input', () => { known = null; teamMode = null; $('trainer').value = ''; $('team').innerHTML = ''; update(); });
 $('trainer').addEventListener('change', () => {
@@ -367,15 +430,14 @@ function renderHome() {
   $('gameList').innerHTML = groupByGeneration(list).map(([gen, gs]) =>
     '<h2 class="gen-head">Geração ' + roman(gen) + '</h2><div class="games">' + gs.map((g) => {
       const on = g.status === 'supported';
+      // um selo de qualidade por cartão (legenda explica uma vez, no topo) + "detonado no app" só quando existe de fato
       const body = '<strong>' + g.label + '</strong><span class="meta">' + g.platforms.join(' + ') + ' · ' + g.year + '</span>' +
-        (g.note ? '<br><span class="meta">' + g.note + '</span>' : '') +
-        (g.walkthrough ? '<br><span class="meta">📖 detonado disponível</span>' : '') +
-        '<br><span class="badge' + (on ? ' on' : '') + '">' + (on ? 'Disponível' : 'Em breve') + '</span>' +
-        (on && g.validation === 'pokeapi' ? ' <span class="badge">dados da PokéAPI, sem validação de decomp</span>' : '') +
-        (on && g.validation === 'decomp-core' && !g.hasWalkthrough ? ' <span class="badge">núcleo conferido no decomp (parcial)</span>' : '');
+        (g.note ? '<span class="meta">' + g.note + '</span>' : '') +
+        '<span class="row">' + (on ? qualityBadge(g) : lozenge('neutral', 'Em breve')) + (on && g.hasWalkthrough ? lozenge('info', '📖 detonado no app') : '') + '</span>';
       return on ? '<a class="game" href="#/jogo/' + g.id + '">' + body + '</a>' : '<div class="game off">' + body + '</div>';
     }).join('') + '</div>').join('') || '<div class="card">Nenhum jogo com esses filtros.</div>';
   $('catalogSources').textContent = 'Fontes do catálogo: ' + catalog.sources.join(' · ');
+  $('qualityLegend').innerHTML = Object.entries(QUALITY).map(([, [k, t, tip]]) => `<span>${lozenge(k, t)} <span class="meta">${tip}</span></span>`).join('');
 }
 
 async function route() {
@@ -399,7 +461,7 @@ async function route() {
 function applyGameParams(p) {
   if (p.versao && [...$('version').options].some((o) => o.value === p.versao)) $('version').value = p.versao;
   if (p.meu) $('level').value = p.meu;
-  if (p.inicial && [...$('starter').options].some((o) => o.value === p.inicial)) { $('starter').value = p.inicial; fillTrainers(); }
+  if (p.inicial && [...$('starter').options].some((o) => o.value === p.inicial)) { $('starter').value = p.inicial; fillTrainers(); renderStarters(); }
   if (p.aba === 'detonado') showTab('walk');
   if (p.insignias != null && [...$('stage').options].some((o) => o.value === p.insignias)) $('stage').value = p.insignias;
   const t = p.treinador && trainers.find((x) => x.key === p.treinador);
@@ -410,7 +472,7 @@ function applyGameParams(p) {
 window.addEventListener('hashchange', route);
 route();
 
-$('starter').addEventListener('input', () => { const t = $('trainer').value; fillTrainers(); $('trainer').value = [...$('trainer').options].some((o) => o.value === t) ? t : ''; update(); });
+$('starter').addEventListener('input', () => { const t = $('trainer').value; fillTrainers(); $('trainer').value = [...$('trainer').options].some((o) => o.value === t) ? t : ''; renderStarters(); update(); });
 
 $('tabRec').addEventListener('click', () => showTab('rec'));
 $('tabWalk').addEventListener('click', () => showTab('walk'));

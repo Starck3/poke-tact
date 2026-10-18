@@ -2,6 +2,28 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.2.0] — 2026-10-18
+
+Interface redesenhada (referências: Linear, Vercel, Stripe, Mobbin, SaaSUI, Atlassian Design System). Motor e dados iguais.
+
+### Adicionado
+- Barra de contexto fixa no topo (jogo · versão · inicial · progresso), guardada por jogo no navegador; a URL tem prioridade.
+- Selo de qualidade dos dados (Verificado no código do jogo / Parcialmente verificado / Dados da PokéAPI) no jogo e no
+  catálogo, com legenda; os textos técnicos foram para "Sobre os dados deste jogo".
+- Cartões de resultado com o veredito primeiro (vence/perde, golpes para nocautear, quem age primeiro, origem aleatória),
+  golpe e "como conseguir" em uma linha cada (a fonte que libera mais cedo) e o resto em "Detalhes"; 3 colunas no
+  computador, empilhados no celular.
+- Escolha do inicial por cartões clicáveis (somem depois de escolhido); atalho `/` para buscar o oponente.
+- Estados de carregamento (esqueletos), estado vazio com o próximo passo e mensagens de "nenhuma sugestão" acionáveis.
+- Tokens de design (cores, espaço, raio, tipografia) em claro e escuro, foco visível, abas com `role="tab"`.
+- `scripts/screenshot.mjs`: largura configurável (celular), altura da página inteira, aviso de rolagem horizontal e
+  `TEMA=light|dark`.
+
+### Alterado
+- Filtros (só obtíveis, evolução final, lendários, TM/HM, troca) recolhidos em "Filtros".
+- Barra de abas some quando o jogo não tem detonado.
+- Troca com NPC no HGSS: texto para o usuário ("o Pokémon que o NPC pede não está nos dados").
+
 ## [0.1.0] — 2026-10-17
 
 Primeira versão no repositório.

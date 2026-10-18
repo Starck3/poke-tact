@@ -208,7 +208,7 @@ for (const v of VERSIONS) {
     }
     for (const m of s.matchAll(v, /^LoadNPCTrade (\d+)/)) {
       const sp = tradeSpecies(Number(m[1]));
-      if (sp) push(v, sp, /NPCTradeExec/.test(raw) ? { type: 'trade', where: label(h), mapId: h, detail: 'troca com NPC (espécie pedida: dados binários no decomp)' } : { type: 'gift', where: label(h), mapId: h, detail: 'presente de NPC' });
+      if (sp) push(v, sp, /NPCTradeExec/.test(raw) ? { type: 'trade', where: label(h), mapId: h, detail: 'o Pokémon que o NPC pede não está nos dados' /* a/1/1/2 é binário no decomp */ } : { type: 'gift', where: label(h), mapId: h, detail: 'presente de NPC' });
     }
     if (/GiveMon VAR_UNK_407F/.test(raw)) for (const f of FOSSIL) push(v, f.sp, { type: 'gift', where: label(h), mapId: h, level: Number(raw.match(/GiveMon VAR_UNK_407F, (\d+)/)[1]), detail: `reviver ${itemName(f.item).replace(/_/g, ' ').toLowerCase()}`, needItem: f.item });
   }
