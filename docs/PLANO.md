@@ -190,6 +190,14 @@ Ordem: E1 → E2 → E3 → E4 → E5 → E6 (E6 também roda ao fim de cada eta
 - Próximo passo possível: 2ª fonte de treinadores e encontros por jogo (os detonados têm os times dos líderes), validada com
   cuidado — regra: não inventar dados.
 
+## Fechamento — ✅ feito em 2026-10-17/18
+- Versionamento: repositório git (github.com/Starck3/poke-tact, privado), `.gitignore` (sem data-sources/ e .cache/),
+  `.gitattributes`, README, CHANGELOG, SemVer em package.json, CI (`npm test`), tags v0.1.0 e v0.2.0.
+- Interface (v0.2.0): barra de contexto salva, selo de qualidade dos dados, cartões com veredito primeiro, filtros
+  recolhidos, escolha do inicial por cartões, atalho `/`, esqueletos/estado vazio, tokens claro/escuro, conferida em
+  1280 px e 375 px (sem rolagem horizontal) com `scripts/screenshot.mjs`.
+- Ainda aberto daqui: decisão sobre publicar (hospedagem e direitos de uso das fontes) e o peso de `public/data` (42 MB).
+
 ## Qualidade da recomendação (opcional)
 - O modelo de batalha ignora a maioria das habilidades, itens segurados, clima e golpes de status (sono, paralisia, buffs) —
   afeta sobretudo as Gens 4+.

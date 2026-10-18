@@ -105,6 +105,8 @@ for (const c of CATALOG) {
     // decomp = conferido com o código do jogo; decomp-core = só o núcleo (espécies, golpes, tabela) conferido (Gen 1/2 em assembly)
     validation: GAMES[c.group] ? (GAMES[c.group].decomp ? 'decomp' : GAMES[c.group].asmDecomp ? 'decomp-core' : 'pokeapi') : null,
     hasWalkthrough: existsSync(new URL(`../public/data/${c.group}-walkthrough.json`, import.meta.url)),
+    // decomp parcial (HGSS: learnset/golpes em binário; DP: só núcleo + chefes) → selo "Parcialmente verificado" no catálogo
+    partial: !!(GAMES[c.group]?.asmDecomp?.partial || GAMES[c.group]?.asmDecomp?.steps === 'dp'),
   });
 }
 if (problems.length) { console.error('PROBLEMAS:\n' + problems.join('\n')); process.exitCode = 1; }
