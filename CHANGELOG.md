@@ -2,6 +2,27 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.3.0] — 2026-10-18
+
+Tela inicial nova, a partir das páginas de Linear, Vercel, Mobbin, SaaS UI e Atlassian Design (capturadas e analisadas; a
+do Stripe não carregou no tempo limite).
+
+### Adicionado
+- Herói com título e sprites dentro da frase (inicial × ás de um líder, girando a cada 3 s).
+- Busca central que acha jogos e chefes, com siglas (hg, frlg, oras, bdsp…): "whitney hg" + Enter abre a luta contra a
+  Whitney no HeartGold/SoulSilver. Teclado: ↑ ↓ Enter Esc e atalho `/`; o campo "digita" exemplos enquanto está parado.
+- Atalhos "Experimente" para lutas famosas que existem nos dados.
+- Cartão "Continuar de onde parou" com o último jogo e o contexto salvo (inicial, insígnias, nível).
+- Faixa de números calculados dos dados: jogos, jogos conferidos, treinadores com time real e % de vitórias do banco de lutas.
+- "Como funciona" em 3 passos.
+- Cartões de jogo com os iniciais (sobem ao passar o mouse) ou uma Poké Ball quando os iniciais não estão confirmados.
+- Catálogo (`games.json`): iniciais, chefes (com o ás de cada um), nº de treinadores e números do banco de lutas.
+- `scripts/screenshot.mjs`: `ACAO` (JS antes da captura, com `await`) para testar estados interativos.
+
+### Alterado
+- Celular: jogos em 2 colunas, filtros numa linha com rolagem lateral, selos quebram a linha.
+- Sem movimento para quem pede `prefers-reduced-motion`.
+
 ## [0.2.0] — 2026-10-18
 
 Interface redesenhada (referências: Linear, Vercel, Stripe, Mobbin, SaaSUI, Atlassian Design System). Motor e dados iguais.
