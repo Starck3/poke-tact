@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel } from './engine.mjs';
+import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel } from './engine.mjs';
 import { filterGames, groupByGeneration, platformsOf, generationsOf, roman, parseRoute, homeHash } from './catalog.mjs';
 
 const COLORS = {
@@ -13,7 +13,7 @@ const sprite = (id) => `${SPRITES}versions/generation-${roman(data.game.generati
 // <img> com substituto: se a pasta da versão não existir (ex.: Gen 9), usa o sprite padrão
 const img = (id) => `<img src="${sprite(id)}" alt="" onerror="this.onerror=null;this.src='${SPRITES}${id}.png'">`;
 const typeBadge = (t) => `<span class="type" style="background:${COLORS[t]}">${t}</span>`;
-const fmtMult = (m) => (m === 0 ? '0×' : m === 0.5 ? '½×' : `${m}×`);
+const fmtMult = (m) => (m === 0 ? '0×' : m === 0.5 ? '½×' : m === 0.25 ? '¼×' : `${m}×`);
 const lozenge = (kind, text, title = '') => `<span class="lozenge ${kind}"${title ? ` title="${title.replace(/"/g, '&quot;')}"` : ''}>${text}</span>`;
 // selo de qualidade dos dados (um só, no lugar dos avisos longos): verificado no decomp / parcial / só PokéAPI
 const QUALITY = {
@@ -242,6 +242,79 @@ function fillTrainers() {
     }
     sel.append(og);
   }
+  renderTrainerPicker();
+}
+
+// ---------------------------------------------------------------- oponente por categoria (abas) — no lugar do dropdown único
+// ordem das abas; grupos que só alguns jogos têm (Equipe Aqua / Magma, Frontier Brains) entram antes dos comuns
+const CAT_ORDER = ['Líderes de ginásio', 'Líderes de Kanto', 'Elite dos Quatro', 'Campeão', 'Rival'];
+const CAT_LABEL = { 'Líderes de ginásio': 'Líderes', 'Treinadores comuns': 'Outros treinadores' };
+let trainerCat = null;
+const topLevel = (t) => Math.max(...t.party.map((p) => p.level));
+function trainerCategories() {
+  const mine = $('starter').value;
+  const visible = trainers.filter((t) => !(mine && t.forStarter && !t.forStarter.includes(mine)));
+  const groups = [...new Set(visible.map((t) => t.group))];
+  const order = (g) => (CAT_ORDER.includes(g) ? CAT_ORDER.indexOf(g) : g === 'Treinadores comuns' ? 99 : 50);
+  return groups.sort((a, b) => order(a) - order(b)).map((g) => ({ g, list: visible.filter((t) => t.group === g) }));
+}
+// dentro da categoria: ordem da história (líderes pela linha do tempo; demais pelo nível) e revanches no fim — inclusive as
+// que o dado não marca (Emerald: 5 "Leader Roxanne" com níveis crescentes → a 1ª é a luta, as outras são revanches)
+function orderTrainers(g, list) {
+  const lead = (acq?.progress?.leaderOrder ?? []).map((n) => fold(n).replace(/[^a-z]/g, ''));
+  const leadIdx = (t) => { const i = lead.indexOf(fold(t.name ?? '').replace(/[^a-z]/g, '')); return i < 0 ? 99 : i; };
+  const sorted = [...list].sort((a, b) => (/Líderes/.test(g) ? leadIdx(a) - leadIdx(b) : 0) || topLevel(a) - topLevel(b));
+  const seen = new Map();
+  return sorted.map((t) => { const k = t.label + '|' + (t.forStarter ?? []).join() + (g === 'Rival' ? '|' + (t.map?.[0] ?? '') : ''); const n = (seen.get(k) ?? 0) + 1; seen.set(k, n); return { t, rematch: !!t.rematch || n > 1 }; })
+    .sort((a, b) => Number(a.rematch) - Number(b.rematch));
+}
+function renderTrainerPicker() {
+  const cats = trainerCategories();
+  $('trainerBox').hidden = !cats.length;
+  if (!cats.length) return;
+  const current = trainers.find((x) => x.key === $('trainer').value);
+  if (current && cats.some((c) => c.g === current.group)) trainerCat = current.group;
+  if (!cats.some((c) => c.g === trainerCat)) trainerCat = cats[0].g;
+  $('trainerCats').innerHTML = cats.map((c) => `<button type="button" role="tab" data-cat="${c.g}" aria-selected="${c.g === trainerCat}">${CAT_LABEL[c.g] ?? c.g}<span class="count">${c.list.length}</span></button>`).join('');
+  for (const b of $('trainerCats').querySelectorAll('button')) b.addEventListener('click', () => { trainerCat = b.dataset.cat; renderTrainerPicker(); });
+  const cat = cats.find((c) => c.g === trainerCat);
+  const box = $('trainerPick');
+  if (cat.g === 'Treinadores comuns' || cat.list.length > 60) {
+    // muitos: seletor agrupado por classe, com o lugar (vários "Youngster Joey" em mapas diferentes)
+    const byClass = Object.groupBy(cat.list, (t) => t.class ?? 'Outros');
+    box.innerHTML = `<select id="trainerCommon" aria-label="${CAT_LABEL[cat.g] ?? cat.g}"><option value="">— escolher um treinador (${cat.list.length}) —</option>` +
+      Object.keys(byClass).sort((a, b) => a.localeCompare(b)).map((cl) => `<optgroup label="${cl}">` + byClass[cl].map((t) => `<option value="${t.key}"${t.key === current?.key ? ' selected' : ''}>${t.label}${t.map?.[0] ? ' — ' + t.map[0] : ''} · nv ${topLevel(t)}${t.rematch ? ' · revanche' : ''}</option>`).join('') + '</optgroup>').join('') + '</select>';
+    $('trainerCommon').addEventListener('change', (e) => selectTrainer(e.target.value));
+    return;
+  }
+  // poucos: botões com o ás do time, nome e nível; revanches separadas
+  const items = orderTrainers(cat.g, cat.list);
+  // com "Progresso" informado, o líder seguinte ganha o selo "próximo" (N insígnias → o (N+1)-º da linha do tempo)
+  const stage = $('stage').value === '' ? null : Number($('stage').value);
+  const nextLeader = /Líderes/.test(cat.g) && stage != null && acq?.progress?.leaderOrder?.[stage] ? fold(acq.progress.leaderOrder[stage]).replace(/[^a-z]/g, '') : null;
+  const chip = ({ t, rematch }) => {
+    const ace = data.pokemon.find((p) => p.name === t.party.at(-1)?.species);
+    // lugar: mapa do decomp ou, na Gen 3, o que sobra do rótulo ("Brendan Route 103 Mudkip" → "Route 103"; "Vr" = Victory Road)
+    const starterWords = new RegExp(`\\b(${(data.starters?.species ?? []).join('|') || '_'})\\b`, 'ig');
+    const place = t.map?.[0] ?? (t.label.toLowerCase().startsWith(String(t.name).toLowerCase()) ? t.label.slice(String(t.name).length).replace(starterWords, '').replace(/\bVr\b/, 'Victory Road').trim() : '');
+    const sub = [cat.g === 'Rival' && place, `nv ${topLevel(t)}`, `${t.party.length} Pokémon`, t.double && 'dupla'].filter(Boolean).join(' · ');
+    const cap = (s) => (s && s === s.toUpperCase() ? s.toLowerCase().replace(/(^|[\s.])(\S)/g, (m, a, b) => a + b.toUpperCase()) : s); // Gen 3: "BRENDAN" → "Brendan"
+    const name = cap(cat.g === 'Rival' ? (t.carries ? `${t.name} (com ${humanize(t.carries)})` : t.name) : t.label.replace(/^(Leader|Elite Four|Champion|Gym Leader|Líder)\s+/i, ''));
+    const isNext = !rematch && nextLeader && fold(t.name ?? '').replace(/[^a-z]/g, '') === nextLeader;
+    return `<button type="button" class="tchip" data-key="${t.key}" aria-pressed="${t.key === current?.key}">${ace ? img(ace.id) : ''}<span><span class="t-name">${name}${isNext ? ' ' + lozenge('info', 'próximo') : ''}</span><span class="t-sub">${sub}</span></span></button>`;
+  };
+  const main = items.filter((x) => !x.rematch), again = items.filter((x) => x.rematch);
+  const openAgain = again.some((x) => x.t.key === current?.key);
+  box.innerHTML = `<div class="tgrid">${main.map(chip).join('')}</div>` +
+    (again.length ? `<details class="filters"${openAgain ? ' open' : ''}><summary>Revanches (${again.length})</summary><div class="tgrid" style="margin-top:6px">${again.map(chip).join('')}</div></details>` : '');
+  for (const b of box.querySelectorAll('.tchip')) b.addEventListener('click', () => selectTrainer(b.dataset.key));
+}
+function selectTrainer(key) {
+  $('trainer').value = key;
+  const t = trainers.find((x) => x.key === key);
+  if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; renderTrainerPicker(); update(); return; }
+  pickTrainerMon(t, 0);
+  renderTrainerPicker();
 }
 
 function pickTrainerMon(t, i) {
@@ -301,9 +374,16 @@ function update() {
     return;
   }
   const oppLevel = Number($('oppLevel').value) || 0;
+  // o que interessa para vencer: tipos de golpe que ele SOFRE mais (tabela de tipos do jogo + imunidade de habilidade única)
+  const eff = data.types.map((t) => ({ t, m: effectiveness(data, t, opp) }));
+  const row = (label, list, cls) => (list.length ? `<div class="weak-row"><span class="weak-label ${cls}">${label}</span>${list.map((x) => `<span class="weak-item">${typeBadge(x.t)}<span class="${cls}">${fmtMult(x.m)}</span></span>`).join('')}</div>` : '');
+  const weakHtml = '<div class="weak">' +
+    row('Fraco contra', eff.filter((x) => x.m > 1).sort((a, b) => b.m - a.m), 'good') +
+    row('Resiste', eff.filter((x) => x.m > 0 && x.m < 1).sort((a, b) => a.m - b.m), 'bad') +
+    row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
   $('oppInfo').innerHTML = `<div class="opp">${img(opp.id)}
     <div><strong>#${opp.id} ${humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
-    <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : '(definidos pelo jogo)'}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>`;
+    <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : '(definidos pelo jogo)'}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
   const baseOpts = {
     level: Number($('level').value) || 1,
@@ -320,11 +400,12 @@ function update() {
   if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
   const { picks, threats, threatSource } = recommend(data, opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
 
+  // a ameaça é o que ELE usa contra você (não as fraquezas dele, que ficam no quadro do oponente)
   const threatLine = threatSource.kind === 'known'
-    ? `Ameaça pelos golpes ofensivos reais do oponente: ${threats.map(typeBadge).join('')}`
+    ? `Ele ataca com (golpes reais do time): ${threats.map(typeBadge).join('')}`
     : threatSource.kind === 'moveset'
-      ? `Ameaça estimada pelos golpes ofensivos prováveis: ${threats.map(typeBadge).join('')}`
-      : `Ameaça estimada pelos tipos do oponente (STAB): ${threats.map(typeBadge).join('')}`;
+      ? `Ele deve atacar com (golpes prováveis no nível): ${threats.map(typeBadge).join('')}`
+      : `Ele deve atacar com golpes dos próprios tipos (sem nível informado): ${threats.map(typeBadge).join('')}`;
 
   out.innerHTML = `<p class="note threat">${threatLine}</p>` + (picks.length ? '<div class="picks">' + picks.map((s, i) => {
     const m = s.move;
@@ -393,6 +474,7 @@ function unreliableLine(s) {
 }
 
 for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'stage']) $(id).addEventListener('input', update);
+$('stage').addEventListener('input', () => renderTrainerPicker()); // selo "próximo" acompanha o progresso
 for (const id of CTX_FIELDS) $(id).addEventListener('input', saveCtx);
 // atalho "/" (como no Linear/GitHub): vai para a busca do oponente, fora de campos de texto
 document.addEventListener('keydown', (e) => {
@@ -402,7 +484,7 @@ document.addEventListener('keydown', (e) => {
   $('opp').focus(); $('opp').select();
 });
 // Digitar manualmente o Pokémon ou o nível do oponente sai do modo "treinador" (os golpes deixam de ser os do jogo)
-for (const id of ['opp', 'oppLevel']) $(id).addEventListener('input', () => { known = null; teamMode = null; $('trainer').value = ''; $('team').innerHTML = ''; update(); });
+for (const id of ['opp', 'oppLevel']) $(id).addEventListener('input', () => { known = null; teamMode = null; $('trainer').value = ''; $('team').innerHTML = ''; renderTrainerPicker(); update(); });
 $('trainer').addEventListener('change', () => {
   const t = trainers.find((x) => x.key === $('trainer').value);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; update(); return; }
@@ -562,7 +644,7 @@ function applyGameParams(p) {
   if (p.aba === 'detonado') showTab('walk');
   if (p.insignias != null && [...$('stage').options].some((o) => o.value === p.insignias)) $('stage').value = p.insignias;
   const t = p.treinador && trainers.find((x) => x.key === p.treinador);
-  if (t) { $('trainer').value = t.key; pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1)); return; }
+  if (t) { $('trainer').value = t.key; pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1)); renderTrainerPicker(); return; }
   if (p.pokemon) { known = null; $('opp').value = p.pokemon; $('oppLevel').value = p.nivel ?? ''; }
   update();
 }
