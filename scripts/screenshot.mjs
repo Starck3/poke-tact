@@ -27,7 +27,10 @@ await send('Page.navigate', { url });
 let ok = false;
 for (let i = 0; i < 60 && !ok; i++) { await sleep(500); const r = await send('Runtime.evaluate', { expression: `!!document.querySelector(${JSON.stringify(sel)})`, returnByValue: true }); ok = r?.result?.value === true; }
 await sleep(800);
-const h = (await send('Runtime.evaluate', { expression: 'document.documentElement.scrollHeight', returnByValue: true }))?.result?.value ?? 1200;
+// ACAO="js" roda na página antes da captura (ex.: digitar na busca) para conferir estados interativos
+// replMode: permite "await" no nível de cima do ACAO; erro do ACAO aparece no relatório
+if (process.env.ACAO) { const r = await send('Runtime.evaluate', { expression: process.env.ACAO, awaitPromise: true, replMode: true, returnByValue: true }); if (r?.exceptionDetails) errors.push('ACAO: ' + (r.exceptionDetails.exception?.description ?? r.exceptionDetails.text)); else if (r?.result?.value !== undefined) console.log('ACAO →', JSON.stringify(r.result.value)); await sleep(600); }
+const h =(await send('Runtime.evaluate', { expression: 'document.documentElement.scrollHeight', returnByValue: true }))?.result?.value ?? 1200;
 await send('Emulation.setDeviceMetricsOverride', { width, height: Math.min(Math.max(h, 600), 6000), deviceScaleFactor: 1, mobile });
 await sleep(300);
 const overflow = (await send('Runtime.evaluate', { expression: 'document.documentElement.scrollWidth > innerWidth + 1', returnByValue: true }))?.result?.value;

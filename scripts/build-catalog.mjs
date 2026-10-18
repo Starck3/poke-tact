@@ -5,7 +5,7 @@
 //   • GitHub org pret → quais jogos têm decomp (fonte de dados verificável)
 // Uso: node scripts/build-catalog.mjs [--refresh]   (baixa 3 recursos e guarda em .cache/catalog/)
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { GAMES } from './games.mjs';
 import { parseDetonadoIndex, matchDetonados } from './lib/pokemythology.mjs';
 
@@ -91,7 +91,15 @@ for (const c of CATALOG) {
   const platforms = [...new Set(entries.filter((e) => e.year === first).map((e) => e.platform))];
   const repo = PRET[c.group];
   if (repo && !pretRepos.has(repo)) problems.push(`${c.group}: repositório pret/${repo} não existe`);
+  // tela inicial: sprites dos iniciais do jogo e os chefes (busca "Whitney" → luta direta), lidos dos dados já gerados
+  const readJson = (f) => { try { return JSON.parse(readFileSync(new URL(`../public/data/${f}`, import.meta.url), 'utf8')); } catch { return null; } };
+  const gd = readJson(`${c.group}.json`), td = readJson(`${c.group}-trainers.json`);
+  const starters = (gd?.starters?.species ?? []).map((n) => gd.pokemon.find((p) => p.name === n)?.id).filter(Boolean);
+  const seen = new Set();
+  const bosses = (td?.trainers ?? []).filter((t) => ['Líderes de ginásio', 'Elite dos Quatro', 'Campeão', 'Líderes de Kanto'].includes(t.group) && !t.rematch && !seen.has(t.label) && seen.add(t.label))
+    .map((t) => ({ key: t.key, label: t.label, ace: gd?.pokemon.find((p) => p.name === t.party.at(-1)?.species)?.id ?? null }));
   games.push({
+    starters, bosses, trainerCount: td?.trainers?.length ?? 0,
     id: c.group,
     label: Object.values(c.versions).join(' / '),
     versions: Object.entries(c.versions).map(([id, label]) => ({ id, label })),
@@ -114,6 +122,8 @@ else {
   await writeFile(new URL('../public/data/games.json', import.meta.url), JSON.stringify({
     sources: ['PokeAPI (geração/versões)', 'Wikipedia List of Pokémon video games (plataforma/ano)', 'github.com/pret (decomps)', 'PokeMythology (detonados)'],
     builtAt: new Date().toISOString(), games,
+    // números reais do banco de lutas (reports/benchmark/_total.json) para a faixa da tela inicial — nada fixo no código
+    benchmark: (() => { try { const t = JSON.parse(readFileSync(new URL('../reports/benchmark/_total.json', import.meta.url), 'utf8')).depois; return { picks: t.picks, winPct: Math.round((100 * t.wins) / t.picks), comfyPct: Math.round((100 * t.comfy) / t.picks) }; } catch { return null; } })(),
   }));
   console.log(`${games.length} jogos`);
   for (const g of games) console.log(`  G${g.generation} ${String(g.year)} ${g.platforms.join('+').padEnd(26)} ${g.label.padEnd(36)} ${g.decomp ?? ''} ${g.status === 'supported' ? '[suportado]' : ''}`);

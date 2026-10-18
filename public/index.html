@@ -59,6 +59,56 @@
   .game .row { display:flex; gap:6px; flex-wrap:wrap; margin-top:var(--s2); }
   .legend { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s4); align-items:center; font-size:var(--fs-sm); color:var(--muted); }
 
+  /* ---- tela inicial: herói com busca (Mobbin), números (Vercel), 3 passos (Linear), cartões com sprites */
+  .hero { position:relative; text-align:center; padding:var(--s6) var(--s4) var(--s5); margin:0 calc(-1 * var(--s4)) var(--s5); border-radius:0 0 var(--r3) var(--r3);
+    background:radial-gradient(1200px 380px at 50% -40px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); }
+  .brand { display:inline-block; font-weight:700; font-size:var(--fs-sm); letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s3); }
+  .hero-title { font-size:clamp(1.9rem, 4.6vw, 3.2rem); line-height:1.12; letter-spacing:-.025em; margin:0 auto var(--s3); max-width:880px; }
+  .ink { display:inline-flex; vertical-align:middle; width:1.25em; height:1.25em; border-radius:.32em; background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); align-items:center; justify-content:center; transform:translateY(-.06em); }
+  .ink img { width:115%; height:115%; image-rendering:pixelated; transition:opacity .3s; }
+  .hero-sub { color:var(--muted); max-width:640px; margin:0 auto var(--s5); font-size:1.05rem; }
+  .search { position:relative; max-width:640px; margin:0 auto; }
+  .search input { padding:14px 48px 14px 46px; font-size:1.05rem; border-radius:var(--pill); border:1px solid var(--line-strong); background:var(--surface); box-shadow:0 2px 14px rgba(0,0,0,.08); }
+  .search input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); }
+  .search-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1.25rem; pointer-events:none; }
+  .search-kbd { position:absolute; right:16px; top:50%; transform:translateY(-50%); }
+  #homeResults { position:absolute; z-index:10; left:0; right:0; top:calc(100% + 6px); list-style:none; margin:0; padding:6px; text-align:left; background:var(--surface); border:1px solid var(--line-strong); border-radius:var(--r3); box-shadow:0 12px 32px rgba(0,0,0,.18); max-height:min(420px, 60vh); overflow:auto; }
+  #homeResults li { display:flex; align-items:center; gap:var(--s3); padding:8px 10px; border-radius:var(--r2); cursor:pointer; }
+  #homeResults li[aria-selected=true], #homeResults li:hover { background:var(--surface-2); }
+  #homeResults li img { width:40px; height:40px; image-rendering:pixelated; flex:none; }
+  #homeResults .r-kind { margin-left:auto; }
+  .quick { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-top:var(--s3); }
+  .quick a { text-decoration:none; color:var(--fg); font-size:var(--fs-sm); border:1px solid var(--line); background:var(--surface); border-radius:var(--pill); padding:4px 12px 4px 4px; display:inline-flex; align-items:center; gap:6px; transition:border-color .15s, transform .15s; }
+  .quick a:hover { border-color:var(--accent); transform:translateY(-1px); }
+  .quick img { width:26px; height:26px; image-rendering:pixelated; }
+  .resume { display:flex; align-items:center; gap:var(--s3); text-decoration:none; color:inherit; border-left:4px solid var(--accent); }
+  .resume:hover { border-color:var(--accent); }
+  .resume img { width:56px; height:56px; image-rendering:pixelated; }
+  .stats { display:grid; grid-template-columns:repeat(4, 1fr); gap:var(--s3); margin:0 0 var(--s5); }
+  .stat { text-align:center; padding:var(--s3) var(--s2); }
+  .stat b { display:block; font-size:clamp(1.5rem, 3.4vw, 2.2rem); letter-spacing:-.02em; line-height:1.1; }
+  .steps { display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--s3); margin:0 0 var(--s6); }
+  .step { display:flex; flex-direction:column; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:var(--s4); }
+  .step-n { width:28px; height:28px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:var(--fs-sm); background:var(--accent); color:var(--accent-fg); margin-bottom:4px; }
+  .catalog-head { display:flex; align-items:baseline; gap:var(--s3); margin-bottom:var(--s2); }
+  .filters-bar { display:flex; flex-direction:column; gap:0; }
+  .game-art { display:flex; justify-content:center; gap:2px; height:72px; margin:-4px -8px 6px; border-radius:var(--r2); background:linear-gradient(160deg, var(--surface-2), transparent); align-items:flex-end; }
+  .game-art img { width:64px; height:64px; image-rendering:pixelated; transition:transform .25s ease; }
+  a.game:hover .game-art img { transform:translateY(-6px); }
+  a.game:hover .game-art img:nth-child(2) { transition-delay:.05s; } a.game:hover .game-art img:nth-child(3) { transition-delay:.1s; }
+  a.game { transition:border-color .15s, transform .15s, box-shadow .15s; }
+  a.game:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,.12); }
+  .pokeball { width:40px; height:40px; margin-bottom:12px; border-radius:50%; border:3px solid var(--line-strong); background:linear-gradient(var(--accent) 0 46%, var(--line-strong) 46% 54%, var(--surface) 54%); position:relative; }
+  .pokeball::after { content:""; position:absolute; inset:0; margin:auto; width:12px; height:12px; border-radius:50%; background:var(--surface); border:3px solid var(--line-strong); }
+  @media (prefers-reduced-motion: reduce) { .game-art img, a.game, .quick a, .ink img { transition:none !important; } a.game:hover, a.game:hover .game-art img { transform:none; } }
+  @media (max-width:520px) {
+    .games { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--s2); }
+    .game { padding:var(--s2) var(--s3); } .game .lozenge { white-space:normal; } .game-art { height:52px; } .game-art img { width:44px; height:44px; }
+    .filters-bar .chips { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin-right:calc(-1 * var(--s3)); padding-right:var(--s3); }
+    .filters-bar .chips button { flex:none; }
+  }
+  @media (max-width:720px) { .stats { grid-template-columns:repeat(2, 1fr); } .steps { grid-template-columns:1fr; } .hero { padding:var(--s5) var(--s3) var(--s4); margin:0 calc(-1 * var(--s3)) var(--s4); } .search-kbd { display:none; } }
+
   /* ---- barra de contexto (jogo · versão · inicial · progresso), fixa no topo */
   .context { position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(8px); margin:0 calc(-1 * var(--s4)) var(--s4); padding:var(--s2) var(--s4); border-bottom:1px solid var(--line); }
   .context-row { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s3); align-items:center; }
@@ -124,17 +174,38 @@
 <body>
 <main>
  <section id="home" hidden>
-  <h1>Poke Tact</h1>
-  <p class="sub">Escolha o jogo que você está jogando. As sugestões usam só os Pokémon, golpes e regras daquele jogo.</p>
-  <div class="card">
-    <div class="label">Plataforma</div>
-    <div class="chips" id="platformChips"></div>
-    <div class="label">Geração</div>
-    <div class="chips" id="genChips"></div>
-    <div class="legend" id="qualityLegend"></div>
+  <header class="hero">
+    <div class="brand">Poke Tact</div>
+    <h1 class="hero-title">Qual Pokémon <span class="ink" id="heroA"></span> vence a sua próxima luta <span class="ink" id="heroB"></span>?</h1>
+    <p class="hero-sub">Escolha o jogo e o oponente. Você recebe 3 sugestões com o veredito da troca de golpes — usando só os Pokémon, golpes e regras daquele jogo, e o que você já consegue ter.</p>
+    <div class="search" role="combobox" aria-expanded="false" aria-owns="homeResults" aria-haspopup="listbox" id="searchBox">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input type="search" id="homeSearch" aria-label="Buscar jogo ou líder" aria-autocomplete="list" aria-controls="homeResults" autocomplete="off" spellcheck="false" placeholder="Busque um jogo ou um líder…">
+      <kbd class="search-kbd">/</kbd>
+      <ul id="homeResults" role="listbox" hidden></ul>
+    </div>
+    <div class="quick" id="quickPicks"></div>
+  </header>
+
+  <div id="resume"></div>
+  <div class="stats" id="stats"></div>
+
+  <div class="steps">
+    <div class="step"><span class="step-n">1</span><strong>Escolha o jogo</strong><span class="meta">Cada jogo usa só a própria geração: tipos, golpes, habilidades e o que dá para obter na versão.</span></div>
+    <div class="step"><span class="step-n">2</span><strong>Escolha o oponente</strong><span class="meta">Um líder, rival ou treinador do jogo (com o time real) — ou digite o Pokémon.</span></div>
+    <div class="step"><span class="step-n">3</span><strong>Receba 3 sugestões</strong><span class="meta">Com o veredito da troca de golpes, o melhor golpe e onde conseguir no seu ponto da história.</span></div>
   </div>
-  <p class="note" id="gameCount"></p>
+
+  <div class="catalog-head">
+    <h2 style="margin:0">Jogos</h2>
+    <span class="note" id="gameCount"></span>
+  </div>
+  <div class="filters-bar">
+    <div class="chips" id="genChips" aria-label="Geração"></div>
+    <div class="chips" id="platformChips" aria-label="Plataforma"></div>
+  </div>
   <div id="gameList"></div>
+  <div class="legend card" id="qualityLegend"></div>
   <p class="note" id="catalogSources"></p>
  </section>
 

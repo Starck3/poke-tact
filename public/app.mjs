@@ -47,6 +47,7 @@ let teamMode = null; // treinador quando o modo "contra o time inteiro" está at
 async function load(gameId) {
   const g = catalog.games.find((x) => x.id === gameId);
   currentGame = gameId;
+  try { localStorage.setItem('poketact:last', gameId); } catch {} // "Continuar de onde parou" na tela inicial
   known = null; teamMode = null;
   for (const id of ['opp', 'oppLevel']) $(id).value = '';
   $('team').innerHTML = '';
@@ -430,14 +431,110 @@ function renderHome() {
   $('gameList').innerHTML = groupByGeneration(list).map(([gen, gs]) =>
     '<h2 class="gen-head">Geração ' + roman(gen) + '</h2><div class="games">' + gs.map((g) => {
       const on = g.status === 'supported';
-      // um selo de qualidade por cartão (legenda explica uma vez, no topo) + "detonado no app" só quando existe de fato
-      const body = '<strong>' + g.label + '</strong><span class="meta">' + g.platforms.join(' + ') + ' · ' + g.year + '</span>' +
+      // arte do cartão: os iniciais do jogo (sobem ao passar o mouse); sem iniciais confirmados, uma Poké Ball
+      const art = '<div class="game-art">' + (g.starters?.length ? g.starters.map((id) => `<img src="${SPRITES}${id}.png" alt="" loading="lazy">`).join('') : '<span class="pokeball"></span>') + '</div>';
+      // um selo de qualidade por cartão (legenda explica uma vez) + "detonado no app" só quando existe de fato
+      const body = art + '<strong>' + g.label + '</strong><span class="meta">' + g.platforms.join(' + ') + ' · ' + g.year + '</span>' +
         (g.note ? '<span class="meta">' + g.note + '</span>' : '') +
         '<span class="row">' + (on ? qualityBadge(g) : lozenge('neutral', 'Em breve')) + (on && g.hasWalkthrough ? lozenge('info', '📖 detonado no app') : '') + '</span>';
       return on ? '<a class="game" href="#/jogo/' + g.id + '">' + body + '</a>' : '<div class="game off">' + body + '</div>';
     }).join('') + '</div>').join('') || '<div class="card">Nenhum jogo com esses filtros.</div>';
   $('catalogSources').textContent = 'Fontes do catálogo: ' + catalog.sources.join(' · ');
   $('qualityLegend').innerHTML = Object.entries(QUALITY).map(([, [k, t, tip]]) => `<span>${lozenge(k, t)} <span class="meta">${tip}</span></span>`).join('');
+  renderHero();
+}
+
+// ---------------------------------------------------------------- tela inicial: herói, busca, continuar, números
+const fold = (s) => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const pic = (id) => (id ? `<img src="${SPRITES}${id}.png" alt="" loading="lazy">` : '<span class="pokeball" style="width:32px;height:32px;margin:4px"></span>');
+let searchIndex = null, heroTimer = null, typeTimer = null;
+function buildSearchIndex() {
+  const on = catalog.games.filter((g) => g.status === 'supported');
+  // siglas que os jogadores usam, tiradas das maiúsculas de cada versão: HeartGold → hg, FireRed + LeafGreen → frlg, Black 2 → b2
+  const abbr = (g) => { const a = g.versions.map((v) => (v.label.match(/[A-Z0-9]/g) ?? []).join('')); return [...a, a.join('')].join(' '); };
+  return [
+    ...on.map((g) => ({ kind: 'jogo', href: `#/jogo/${g.id}`, title: 'Pokémon ' + g.label, sub: `Geração ${roman(g.generation)} · ${g.platforms.join(' + ')} · ${g.year}`, img: g.starters?.[0], hay: fold([g.label, abbr(g), ...g.versions.map((v) => v.label), ...g.platforms, g.year, 'geracao ' + g.generation, 'gen ' + g.generation].join(' ')) })),
+    ...on.flatMap((g) => (g.bosses ?? []).map((b) => ({ kind: 'luta', href: `#/jogo/${g.id}?treinador=${b.key}`, title: b.label, sub: g.label, img: b.ace, hay: fold(b.label + ' ' + g.label + ' ' + abbr(g)) }))),
+  ];
+}
+function searchResults(q) {
+  const t = fold(q.trim());
+  if (!t) return [];
+  const words = t.split(/\s+/);
+  return searchIndex.map((it) => {
+    if (!words.every((w) => it.hay.includes(w))) return null;
+    const title = fold(it.title);
+    return { it, score: (title.startsWith(t) ? 0 : title.split(/\s+/).some((w) => w.startsWith(words[0])) ? 1 : 2) + (it.kind === 'jogo' ? 0 : 0.5) };
+  }).filter(Boolean).sort((a, b) => a.score - b.score).slice(0, 8).map((x) => x.it);
+}
+function renderHero() {
+  searchIndex ??= buildSearchIndex();
+  const on = catalog.games.filter((g) => g.status === 'supported');
+  // "Qual Pokémon [inicial] vence a sua próxima luta [ás do líder]?" — os pares giram (sem movimento se o usuário pedir)
+  const pairs = on.flatMap((g) => (g.bosses ?? []).filter((b) => b.ace && /Leader|Champion|Elite/.test(b.label)).map((b) => [g.starters?.[0], b.ace])).filter(([a]) => a);
+  let k = Math.floor(Math.random() * pairs.length);
+  const showPair = () => { const [a, b] = pairs[k++ % pairs.length] ?? []; $('heroA').innerHTML = pic(a); $('heroB').innerHTML = pic(b); };
+  showPair();
+  clearInterval(heroTimer);
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) heroTimer = setInterval(showPair, 3200);
+  // atalhos: lutas famosas que existem nos dados
+  const want = [['heartgold-soulsilver', 'Whitney'], ['red-blue', 'Brock'], ['platinum', 'Cynthia'], ['emerald', 'Wallace'], ['crystal', 'Clair']];
+  $('quickPicks').innerHTML = '<span class="meta" style="align-self:center">Experimente:</span>' + want.map(([gid, n]) => {
+    const g = on.find((x) => x.id === gid); const b = g?.bosses?.find((x) => x.label.includes(n));
+    return b ? `<a href="#/jogo/${gid}?treinador=${b.key}">${pic(b.ace)}${n} · ${g.label}</a>` : '';
+  }).join('');
+  // continuar de onde parou (última partida salva no navegador)
+  let last = null, ctx = null;
+  try { last = localStorage.getItem('poketact:last'); ctx = JSON.parse(localStorage.getItem(`poketact:${last}`) ?? 'null'); } catch {}
+  const lg = last && on.find((g) => g.id === last);
+  $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.starter && 'inicial: ' + humanize(ctx.starter), ctx?.stage !== '' && ctx?.stage != null && (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)'), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` : '';
+  // números (Vercel): tudo calculado dos dados
+  const verified = on.filter((g) => qualityOf(g) === 'ok').length, trainersN = on.reduce((a, g) => a + (g.trainerCount ?? 0), 0), b = catalog.benchmark;
+  $('stats').innerHTML = [[on.length, 'jogos no app'], [verified, 'conferidos no código do jogo'], [trainersN.toLocaleString('pt-BR'), 'treinadores com o time real'], b && [b.winPct + '%', `das sugestões vencem a troca (${b.picks.toLocaleString('pt-BR')} testadas)`]]
+    .filter(Boolean).map(([n, t]) => `<div class="stat card"><b>${n}</b><span class="meta">${t}</span></div>`).join('');
+  startTypingPlaceholder();
+}
+// placeholder que "digita" exemplos (Mobbin); para ao focar ou com movimento reduzido
+function startTypingPlaceholder() {
+  const el = $('homeSearch');
+  clearTimeout(typeTimer);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ex = ['Whitney', 'HeartGold', 'Cynthia', 'Game Boy Advance', 'Misty', 'Geração 3', 'Lance'];
+  let i = 0, j = 0, back = false;
+  const tick = () => {
+    if (document.activeElement === el || el.value || $('home').hidden) { el.placeholder = 'Busque um jogo ou um líder…'; typeTimer = setTimeout(tick, 1200); return; }
+    const w = ex[i % ex.length];
+    j += back ? -1 : 1;
+    el.placeholder = 'Busque: ' + w.slice(0, j) + (j % 2 ? '▏' : '');
+    if (!back && j >= w.length) { back = true; typeTimer = setTimeout(tick, 1400); return; }
+    if (back && j <= 0) { back = false; i++; }
+    typeTimer = setTimeout(tick, back ? 45 : 95);
+  };
+  tick();
+}
+// busca com teclado: ↑ ↓ escolhem, Enter abre, Esc limpa
+{
+  const input = $('homeSearch'), box = $('homeResults');
+  let items = [], sel = 0;
+  const paint = () => {
+    box.hidden = !input.value.trim();
+    $('searchBox').setAttribute('aria-expanded', String(!box.hidden));
+    box.innerHTML = items.length ? items.map((it, i) => `<li role="option" id="hr${i}" aria-selected="${i === sel}" data-href="${it.href}">${pic(it.img)}<div><strong>${it.title}</strong><div class="meta">${it.sub}</div></div><span class="r-kind lozenge ${it.kind === 'jogo' ? 'neutral' : 'info'}">${it.kind === 'jogo' ? 'jogo' : 'ir para a luta'}</span></li>`).join('')
+      : '<li class="meta" style="cursor:default">Nada encontrado — tente o nome de um jogo (ex.: Emerald) ou de um líder (ex.: Brock).</li>';
+    input.setAttribute('aria-activedescendant', items.length ? 'hr' + sel : '');
+  };
+  input.addEventListener('input', () => { items = searchResults(input.value); sel = 0; paint(); });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (items.length) { sel = (sel + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length; paint(); } }
+    else if (e.key === 'Enter' && items[sel]) { location.hash = items[sel].href; input.value = ''; paint(); }
+    else if (e.key === 'Escape') { input.value = ''; items = []; paint(); }
+  });
+  box.addEventListener('mousedown', (e) => { const li = e.target.closest('li[data-href]'); if (li) { e.preventDefault(); location.hash = li.dataset.href; input.value = ''; paint(); } });
+  input.addEventListener('blur', () => setTimeout(() => { box.hidden = true; }, 120));
+  input.addEventListener('focus', () => { if (input.value.trim()) paint(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !$('home').hidden && document.activeElement !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName ?? '')) { e.preventDefault(); input.focus(); }
+  });
 }
 
 async function route() {
