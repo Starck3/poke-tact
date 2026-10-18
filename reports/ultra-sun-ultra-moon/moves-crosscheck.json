@@ -1,0 +1,71 @@
+{
+ "source": "Pokémon Showdown @7244fe8 (Gen 7) + decomp do Platinum como 2ª evidência",
+ "compared": 664,
+ "corrected": [
+  {
+   "move": "luster-purge",
+   "field": "power",
+   "pokeapi": 95,
+   "showdown": 70,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (70)"
+  },
+  {
+   "move": "milk-drink",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "recover",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "rest",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "roost",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "slack-off",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "soft-boiled",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "teleport",
+   "field": "priority",
+   "pokeapi": -6,
+   "showdown": 0,
+   "evidence": "Showdown Gen 7 = Gen 4 = decomp do Platinum (0)"
+  }
+ ],
+ "flagged": [
+  {
+   "move": "shore-up",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "why": "golpe sem valor no Platinum (posterior à Gen 4)"
+  }
+ ]
+}

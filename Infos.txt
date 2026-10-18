@@ -1,0 +1,193 @@
+Para o PokéTact, eu procuraria fontes que permitam **comparar os dados da PokéAPI com bases independentes**, principalmente para validar *learnsets*, níveis de aprendizado, métodos de obtenção de golpes e diferenças entre jogos.
+
+Minha recomendação é combinar fontes estruturadas, que podem ser consultadas pelo código, com enciclopédias especializadas que sirvam como referência para resolver divergências.
+
+## 1. Melhores fontes para cruzar os dados
+
+### 1. Pokémon Showdown — minha primeira escolha
+
+**Tipo:** base de dados estruturada e código-fonte aberto.
+**Melhor uso:** validação de learnsets, golpes, tipos e mecânicas de batalha.
+
+* [Repositório do Pokémon Showdown](https://github.com/smogon/pokemon-showdown?utm_source=chatgpt.com)
+* [Dados de learnsets em formato JSON](https://play.pokemonshowdown.com/data/learnsets.json?utm_source=chatgpt.com)
+* [Dados da Pokédex em JSON](https://play.pokemonshowdown.com/data/pokedex.json?utm_source=chatgpt.com)
+* [Dados dos golpes em JSON](https://play.pokemonshowdown.com/data/moves.json?utm_source=chatgpt.com)
+
+O Pokémon Showdown disponibiliza dados estruturados de Pokémon, golpes e aprendizado. Seu código também contém arquivos específicos para diferentes gerações e jogos. ([Pokemon Showdown][1])
+
+**Por que é interessante para o PokéTact?**
+
+Você pode implementar um processo que:
+
+1. Consulta o learnset de um Pokémon na PokéAPI.
+2. Consulta os dados correspondentes no Pokémon Showdown.
+3. Compara os golpes e os métodos de aprendizado.
+4. Identifica diferenças nos níveis ou na disponibilidade.
+5. Registra as divergências para análise.
+
+Por exemplo, você poderia verificar se `Heat Wave` aparece como golpe de nível 1 para Charizard em FireRed/LeafGreen nas duas fontes.
+
+**Atenção:** o Pokémon Showdown é uma base comunitária voltada principalmente à simulação de batalhas. Não considere automaticamente seus dados uma reprodução perfeita de todos os jogos originais. É importante verificar o formato e a abrangência dos dados para cada geração.
+
+---
+
+### 2. Bulbapedia — referência detalhada por jogo
+
+**Tipo:** enciclopédia especializada.
+**Melhor uso:** validar manualmente informações específicas de um jogo.
+
+* [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page?utm_source=chatgpt.com)
+* [Learnset do Charizard na terceira geração](https://bulbapedia.bulbagarden.net/wiki/Charizard_%28Pok%C3%A9mon%29/Generation_III_learnset?utm_source=chatgpt.com)
+
+A Bulbapedia é particularmente útil porque apresenta tabelas de aprendizado de golpes separadas por geração e, em muitos casos, por grupo de jogos.
+
+Você pode utilizá-la para conferir:
+
+* Golpes aprendidos por nível.
+* Golpes obtidos por TM ou HM.
+* Golpes obtidos por reprodução.
+* Golpes de tutores.
+* Diferenças entre jogos da mesma geração.
+
+**Minha avaliação:** é uma excelente fonte para investigar divergências, mas não a trataria como uma API REST pronta. Para automatizar consultas, seria necessário avaliar as opções disponíveis, a estrutura das páginas e as condições de uso.
+
+---
+
+### 3. Pokémon Database — consulta complementar
+
+**Tipo:** enciclopédia de dados Pokémon.
+**Melhor uso:** conferência visual de Pokémon, estatísticas, tipos e golpes.
+
+* [Pokémon Database](https://pokemondb.net/?utm_source=chatgpt.com)
+* [Pokémon Database — lista de golpes](https://pokemondb.net/move/all?utm_source=chatgpt.com)
+
+O site organiza informações sobre Pokémon, movimentos, habilidades, estatísticas e jogos.
+
+É útil para fazer uma segunda ou terceira conferência quando você suspeita que algum dado esteja incorreto.
+
+Porém, assim como a Bulbapedia, **não o trataria como uma API pública garantida**. A existência de páginas consultáveis não significa que exista um endpoint oficial, estável e autorizado para todas as informações.
+
+---
+
+### 4. Veekun Pokédex — alternativa com dados estruturados
+
+**Tipo:** projeto de dados Pokémon de código aberto.
+**Melhor uso:** comparação de informações armazenadas em bases de dados.
+
+* [Veekun Pokédex](https://veekun.com/dex?utm_source=chatgpt.com)
+* [Repositório do Veekun](https://github.com/veekun/pokedex?utm_source=chatgpt.com)
+
+O projeto mantém uma base de dados relacional com informações sobre Pokémon, movimentos, habilidades, versões e outros elementos dos jogos.
+
+É interessante porque você pode estudar como as informações são organizadas em tabelas e utilizar os dados disponíveis como referência adicional.
+
+Entretanto, é importante verificar a cobertura dos jogos e a atualização dos dados antes de adotá-lo como fonte de validação.
+
+Eu o consideraria uma alternativa para auditoria local, especialmente se você quiser comparar dados em SQL, em vez de depender exclusivamente de requisições HTTP.
+
+---
+
+## 2. Comparativo das fontes
+
+| Fonte                | API pública pronta                                 | Dados estruturados        | Learnsets por jogo                         | Melhor aplicação          |
+| -------------------- | -------------------------------------------------- | ------------------------- | ------------------------------------------ | ------------------------- |
+| **PokéAPI**          | Sim                                                | Sim                       | Sim, com informações por grupo de versões  | Fonte primária            |
+| **Pokémon Showdown** | Não como API REST genérica                         | Sim                       | Dados por geração e regras específicas     | Validação automatizada    |
+| **Bulbapedia**       | Não presumir que exista uma API pública apropriada | Tabelas em páginas        | Sim, em páginas específicas                | Conferência detalhada     |
+| **Pokémon Database** | Não presumir que exista uma API pública apropriada | Informações em páginas    | Informações por jogo em várias páginas     | Conferência complementar  |
+| **Veekun**           | Não é sua principal característica                 | Banco de dados relacional | Depende da cobertura dos dados disponíveis | Comparação em banco local |
+
+A disponibilidade de dados estruturados não significa necessariamente que todas as fontes tenham a mesma cobertura, atualização ou interpretação das regras dos jogos.
+
+---
+
+## 3. Como eu implementaria o cruzamento no PokéTact
+
+Em vez de consultar todas as fontes a cada pesquisa do usuário, criaria uma rotina de auditoria executada durante o desenvolvimento ou periodicamente.
+
+### Exemplo: validação de learnsets
+
+Imagine este registro:
+
+```json
+{
+  "pokemon": "charizard",
+  "game": "firered-leafgreen",
+  "move": "heat-wave",
+  "method": "level-up",
+  "level": 1
+}
+```
+
+A rotina consultaria os dados disponíveis nas fontes selecionadas e produziria um resultado semelhante a este:
+
+| Pokémon   | Jogo              | Golpe      | PokéAPI | Showdown | Bulbapedia |
+| --------- | ----------------- | ---------- | ------- | -------- | ---------- |
+| Charizard | FireRed/LeafGreen | Heat Wave  | Nível 1 | Conferir | Nível 1    |
+| Charizard | FireRed/LeafGreen | Metal Claw | Nível 1 | Conferir | Nível 1    |
+
+O exemplo mostra como organizar a comparação. Os valores da coluna Showdown precisam ser obtidos e validados diretamente na base correspondente antes de serem considerados confirmados.
+
+### Estrutura de um registro de auditoria
+
+Eu armazenaria:
+
+* `pokemon_id`
+* `game_version`
+* `move_id`
+* `learning_method`
+* `level_learned`
+* `primary_source`
+* `secondary_source`
+* `validation_status`
+* `checked_at`
+
+O campo `validation_status` poderia assumir valores como:
+
+* `MATCH`: as fontes concordam.
+* `MISMATCH`: as fontes divergem.
+* `UNVERIFIED`: ainda não foi possível confirmar.
+* `NOT_COMPARABLE`: as fontes utilizam critérios ou coberturas diferentes.
+
+Assim, você não precisaria alterar automaticamente os dados da PokéAPI quando encontrasse uma divergência.
+
+---
+
+## 4. Um cuidado essencial: divergência não significa erro
+
+Considere três fontes apresentando informações diferentes sobre um golpe.
+
+Isso pode ocorrer por diversos motivos:
+
+1. O golpe está disponível em um jogo, mas não em outro.
+2. Uma fonte registra um golpe de nível 1 como golpe inicial, enquanto outra utiliza uma representação diferente.
+3. Uma fonte considera uma versão específica do jogo, enquanto outra agrupa várias versões.
+4. Os dados estão desatualizados.
+5. Existe um erro real em uma das bases.
+
+Por isso, o cruzamento deve comparar não apenas o nome do golpe, mas também o **jogo, o método de aprendizado e a interpretação do nível registrado**.
+
+Esse cuidado é especialmente importante para o PokéTact, porque uma recomendação de golpe só será útil se o jogador realmente puder utilizá-lo no jogo selecionado.
+
+---
+
+## 5. Minha recomendação final
+
+Para começar, eu usaria esta combinação:
+
+| Finalidade                               | Fonte            |
+| ---------------------------------------- | ---------------- |
+| Alimentar a aplicação                    | PokéAPI          |
+| Cruzar dados automaticamente             | Pokémon Showdown |
+| Investigar divergências                  | Bulbapedia       |
+| Fazer uma terceira conferência           | Pokémon Database |
+| Explorar uma base relacional alternativa | Veekun           |
+
+**Se você quiser investir em apenas uma segunda fonte para a validação automatizada, comece pelo Pokémon Showdown.** Ele oferece dados estruturados que facilitam o desenvolvimento de scripts de comparação.
+
+Depois, use a Bulbapedia para investigar os casos em que as duas bases divergem.
+
+Isso cria um processo de validação eficiente: o código identifica os problemas, e a consulta especializada ajuda a determinar qual informação está correta para cada jogo.
+
+[1]: https://play.pokemonshowdown.com/data/?utm_source=chatgpt.com "/data/ - Showdown!"

@@ -1,0 +1,5577 @@
+{
+ "game": "yellow",
+ "summary": {
+  "fights": 28,
+  "oppMons": 120,
+  "noPicks": 0,
+  "noSuperEffective": 24,
+  "missedSuperEffective": 2,
+  "allTakeSuperEffective": 0,
+  "picksNeutralOrWorse": 106,
+  "picks": 360
+ },
+ "fights": [
+  {
+   "version": "yellow",
+   "key": "BROCK#1",
+   "label": "Brock (Pewter Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 0,
+   "starter": null,
+   "level": 12,
+   "mons": [
+    {
+     "opp": "geodude",
+     "level": 10,
+     "moves": [
+      "tackle"
+     ],
+     "superEffectiveAvailable": 3,
+     "candidates": 9,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "butterfree",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "nidoran-m",
+       "move": "double-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "onix",
+     "level": 12,
+     "moves": [
+      "tackle",
+      "screech",
+      "bind",
+      "bide"
+     ],
+     "superEffectiveAvailable": 3,
+     "candidates": 9,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "butterfree",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "nidoran-m",
+       "move": "double-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL1#2",
+   "label": "Rival — com Eevee (time 2) (Route 22)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 9,
+   "mons": [
+    {
+     "opp": "spearow",
+     "level": 9,
+     "moves": [
+      "peck",
+      "growl",
+      "leer"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 7,
+     "picks": [
+      {
+       "mon": "pikachu",
+       "move": "thunder-shock",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "nidoran-m",
+       "move": "horn-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "eevee",
+     "level": 8,
+     "moves": [
+      "tackle",
+      "tail-whip",
+      "sand-attack"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 8,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "nidoran-m",
+       "move": "horn-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "quick-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#8",
+   "label": "Rival — com Jolteon (time 8) (Route 22)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 53,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 47,
+     "moves": [
+      "slash",
+      "poison-sting",
+      "swift",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "exeggcute",
+     "level": 45,
+     "moves": [
+      "leech-seed",
+      "stun-spore",
+      "poison-powder",
+      "solar-beam"
+     ],
+     "superEffectiveAvailable": 4,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "pidgeot",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "ninetales",
+     "level": 45,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "cloyster",
+     "level": 47,
+     "moves": [
+      "withdraw",
+      "supersonic",
+      "clamp",
+      "aurora-beam"
+     ],
+     "superEffectiveAvailable": 3,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 50,
+     "moves": [
+      "psybeam",
+      "recover",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "jolteon",
+     "level": 53,
+     "moves": [
+      "pin-missile",
+      "thunder-wave",
+      "agility",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "butterfree",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 2,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#9",
+   "label": "Rival — com Flareon (time 9) (Route 22)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 53,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 47,
+     "moves": [
+      "slash",
+      "poison-sting",
+      "swift",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "exeggcute",
+     "level": 45,
+     "moves": [
+      "leech-seed",
+      "stun-spore",
+      "poison-powder",
+      "solar-beam"
+     ],
+     "superEffectiveAvailable": 4,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "pidgeot",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "cloyster",
+     "level": 45,
+     "moves": [
+      "withdraw",
+      "supersonic",
+      "clamp",
+      "aurora-beam"
+     ],
+     "superEffectiveAvailable": 3,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 47,
+     "moves": [
+      "thunder-shock",
+      "supersonic",
+      "thunder-wave",
+      "swift"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "pidgeot",
+       "move": "gust",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 50,
+     "moves": [
+      "psybeam",
+      "recover",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "flareon",
+     "level": 53,
+     "moves": [
+      "fire-spin",
+      "smog",
+      "leer",
+      "flamethrower"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#10",
+   "label": "Rival — com Vaporeon (time 10) (Route 22)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 53,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 47,
+     "moves": [
+      "slash",
+      "poison-sting",
+      "swift",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "exeggcute",
+     "level": 45,
+     "moves": [
+      "leech-seed",
+      "stun-spore",
+      "poison-powder",
+      "solar-beam"
+     ],
+     "superEffectiveAvailable": 4,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "pidgeot",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 45,
+     "moves": [
+      "sonic-boom",
+      "thunder-shock",
+      "supersonic",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 0.5,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "ninetales",
+     "level": 47,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 50,
+     "moves": [
+      "psybeam",
+      "recover",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "vaporeon",
+     "level": 53,
+     "moves": [
+      "haze",
+      "mist",
+      "acid-armor",
+      "hydro-pump"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 11,
+     "picks": [
+      {
+       "mon": "pikachu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "mankey",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL1#1",
+   "label": "Rival — com Eevee (time 1) (Oak's Lab)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 5,
+   "mons": [
+    {
+     "opp": "eevee",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "tail-whip"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 8,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "peck",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunder-shock",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "MISTY#1",
+   "label": "Misty (Cerulean Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 1,
+   "starter": null,
+   "level": 21,
+   "mons": [
+    {
+     "opp": "staryu",
+     "level": 18,
+     "moves": [
+      "tackle",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 5,
+     "candidates": 29,
+     "picks": [
+      {
+       "mon": "raticate",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "ivysaur",
+       "move": "vine-whip",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "mr-mime",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "starmie",
+     "level": 21,
+     "moves": [
+      "tackle",
+      "water-gun",
+      "harden",
+      "bubble-beam"
+     ],
+     "superEffectiveAvailable": 5,
+     "candidates": 29,
+     "picks": [
+      {
+       "mon": "raticate",
+       "move": "hyper-fang",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "ivysaur",
+       "move": "vine-whip",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "clefable",
+       "move": "mega-punch",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL1#3",
+   "label": "Rival — com Eevee (time 3) (Cerulean City)",
+   "group": "Rival",
+   "stage": 1,
+   "starter": null,
+   "level": 18,
+   "mons": [
+    {
+     "opp": "spearow",
+     "level": 18,
+     "moves": [
+      "peck",
+      "growl",
+      "leer",
+      "fury-attack"
+     ],
+     "superEffectiveAvailable": 2,
+     "candidates": 26,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoking",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "body-slam",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "sandshrew",
+     "level": 15,
+     "moves": [
+      "scratch",
+      "sand-attack"
+     ],
+     "superEffectiveAvailable": 6,
+     "candidates": 26,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoking",
+       "move": "thrash",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "ivysaur",
+       "move": "vine-whip",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "rattata",
+     "level": 15,
+     "moves": [
+      "tackle",
+      "tail-whip",
+      "quick-attack",
+      "hyper-fang"
+     ],
+     "superEffectiveAvailable": 3,
+     "candidates": 26,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "eevee",
+     "level": 17,
+     "moves": [
+      "tackle",
+      "tail-whip",
+      "sand-attack",
+      "growl"
+     ],
+     "superEffectiveAvailable": 3,
+     "candidates": 27,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "mankey",
+       "move": "low-kick",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "LT_SURGE#1",
+   "label": "Lt.Surge (Vermilion Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 2,
+   "starter": null,
+   "level": 28,
+   "mons": [
+    {
+     "opp": "raichu",
+     "level": 28,
+     "moves": [
+      "thunderbolt",
+      "mega-punch",
+      "mega-kick",
+      "growl"
+     ],
+     "superEffectiveAvailable": 8,
+     "candidates": 31,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "raticate",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#1",
+   "label": "Rival — com Eevee (time 1) (SS Anne 2F)",
+   "group": "Rival",
+   "stage": 2,
+   "starter": null,
+   "level": 20,
+   "mons": [
+    {
+     "opp": "spearow",
+     "level": 19,
+     "moves": [
+      "peck",
+      "growl",
+      "leer",
+      "fury-attack"
+     ],
+     "superEffectiveAvailable": 2,
+     "candidates": 30,
+     "picks": [
+      {
+       "mon": "raticate",
+       "move": "body-slam",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "clefable",
+       "move": "body-slam",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "rattata",
+     "level": 16,
+     "moves": [
+      "tackle",
+      "tail-whip",
+      "quick-attack",
+      "hyper-fang"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 30,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "raticate",
+       "move": "body-slam",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "sandshrew",
+     "level": 18,
+     "moves": [
+      "scratch",
+      "sand-attack",
+      "slash"
+     ],
+     "superEffectiveAvailable": 10,
+     "candidates": 30,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "clefable",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "eevee",
+     "level": 20,
+     "moves": [
+      "tackle",
+      "tail-whip",
+      "sand-attack",
+      "growl"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 31,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "raticate",
+       "move": "body-slam",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "ERIKA#1",
+   "label": "Erika (Celadon Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 3,
+   "starter": null,
+   "level": 32,
+   "mons": [
+    {
+     "opp": "tangela",
+     "level": 30,
+     "moves": [
+      "constrict",
+      "bind",
+      "mega-drain",
+      "vine-whip"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 50,
+     "picks": [
+      {
+       "mon": "doduo",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "fearow",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "clefable",
+       "move": "ice-beam",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "weepinbell",
+     "level": 32,
+     "moves": [
+      "razor-leaf",
+      "sleep-powder",
+      "stun-spore",
+      "acid"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 49,
+     "picks": [
+      {
+       "mon": "drowzee",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "doduo",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "fearow",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "gloom",
+     "level": 32,
+     "moves": [
+      "petal-dance",
+      "stun-spore",
+      "sleep-powder",
+      "acid"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 49,
+     "picks": [
+      {
+       "mon": "drowzee",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "doduo",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "fearow",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "SABRINA#1",
+   "label": "Sabrina (Saffron Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 4,
+   "starter": null,
+   "level": 50,
+   "mons": [
+    {
+     "opp": "abra",
+     "level": 50,
+     "moves": [
+      "flash"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 50,
+     "moves": [
+      "kinesis",
+      "recover",
+      "psychic",
+      "psywave"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "alakazam",
+     "level": 50,
+     "moves": [
+      "psywave",
+      "recover",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#2",
+   "label": "Rival — com Eevee (time 2) (Pokémon Tower 2F)",
+   "group": "Rival",
+   "stage": 4,
+   "starter": null,
+   "level": 25,
+   "mons": [
+    {
+     "opp": "fearow",
+     "level": 25,
+     "moves": [
+      "growl",
+      "leer",
+      "fury-attack",
+      "mirror-move"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "shellder",
+     "level": 23,
+     "moves": [
+      "tackle",
+      "withdraw",
+      "supersonic",
+      "clamp"
+     ],
+     "superEffectiveAvailable": 24,
+     "candidates": 63,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "vileplume",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "vulpix",
+     "level": 22,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 22,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "sandshrew",
+     "level": 20,
+     "moves": [
+      "scratch",
+      "sand-attack",
+      "slash"
+     ],
+     "superEffectiveAvailable": 20,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "vaporeon",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "vileplume",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "eevee",
+     "level": 25,
+     "moves": [
+      "tail-whip",
+      "sand-attack",
+      "growl",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 9,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "hitmonlee",
+       "move": "submission",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "hitmonchan",
+       "move": "submission",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#3",
+   "label": "Rival — com Eevee (time 3) (Pokémon Tower 2F)",
+   "group": "Rival",
+   "stage": 4,
+   "starter": null,
+   "level": 25,
+   "mons": [
+    {
+     "opp": "fearow",
+     "level": 25,
+     "moves": [
+      "growl",
+      "leer",
+      "fury-attack",
+      "mirror-move"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 23,
+     "moves": [
+      "tackle",
+      "sonic-boom"
+     ],
+     "superEffectiveAvailable": 18,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "shellder",
+     "level": 22,
+     "moves": [
+      "tackle",
+      "withdraw",
+      "supersonic"
+     ],
+     "superEffectiveAvailable": 24,
+     "candidates": 63,
+     "picks": [
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "sandshrew",
+     "level": 20,
+     "moves": [
+      "scratch",
+      "sand-attack",
+      "slash"
+     ],
+     "superEffectiveAvailable": 20,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "vaporeon",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "vileplume",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "eevee",
+     "level": 25,
+     "moves": [
+      "tail-whip",
+      "sand-attack",
+      "growl",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 9,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "hitmonlee",
+       "move": "submission",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "hitmonchan",
+       "move": "submission",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#4",
+   "label": "Rival — com Eevee (time 4) (Pokémon Tower 2F)",
+   "group": "Rival",
+   "stage": 4,
+   "starter": null,
+   "level": 25,
+   "mons": [
+    {
+     "opp": "fearow",
+     "level": 25,
+     "moves": [
+      "growl",
+      "leer",
+      "fury-attack",
+      "mirror-move"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "vulpix",
+     "level": 23,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 22,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 22,
+     "moves": [
+      "tackle",
+      "sonic-boom"
+     ],
+     "superEffectiveAvailable": 18,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "sandshrew",
+     "level": 20,
+     "moves": [
+      "scratch",
+      "sand-attack",
+      "slash"
+     ],
+     "superEffectiveAvailable": 20,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "vaporeon",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "vileplume",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "eevee",
+     "level": 25,
+     "moves": [
+      "tail-whip",
+      "sand-attack",
+      "growl",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 9,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "hitmonlee",
+       "move": "submission",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "hitmonchan",
+       "move": "submission",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#5",
+   "label": "Rival — com Jolteon (time 5) (Silph Co. 7F)",
+   "group": "Rival",
+   "stage": 4,
+   "starter": null,
+   "level": 40,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 38,
+     "moves": [
+      "sand-attack",
+      "slash",
+      "poison-sting",
+      "swift"
+     ],
+     "superEffectiveAvailable": 22,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vileplume",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "ninetales",
+     "level": 35,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "cloyster",
+     "level": 37,
+     "moves": [
+      "withdraw",
+      "supersonic",
+      "clamp",
+      "aurora-beam"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 35,
+     "moves": [
+      "confusion",
+      "disable",
+      "psybeam",
+      "recover"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "jolteon",
+     "level": 40,
+     "moves": [
+      "thunder-shock",
+      "sand-attack",
+      "double-kick",
+      "pin-missile"
+     ],
+     "superEffectiveAvailable": 21,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "dugtrio",
+       "move": "dig",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "machoke",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#6",
+   "label": "Rival — com Flareon (time 6) (Silph Co. 7F)",
+   "group": "Rival",
+   "stage": 4,
+   "starter": null,
+   "level": 40,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 38,
+     "moves": [
+      "sand-attack",
+      "slash",
+      "poison-sting",
+      "swift"
+     ],
+     "superEffectiveAvailable": 22,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vileplume",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "cloyster",
+     "level": 35,
+     "moves": [
+      "withdraw",
+      "supersonic",
+      "clamp",
+      "aurora-beam"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 37,
+     "moves": [
+      "tackle",
+      "sonic-boom",
+      "thunder-shock",
+      "supersonic"
+     ],
+     "superEffectiveAvailable": 21,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 35,
+     "moves": [
+      "confusion",
+      "disable",
+      "psybeam",
+      "recover"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "flareon",
+     "level": 40,
+     "moves": [
+      "ember",
+      "sand-attack",
+      "bite",
+      "fire-spin"
+     ],
+     "superEffectiveAvailable": 27,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL2#7",
+   "label": "Rival — com Vaporeon (time 7) (Silph Co. 7F)",
+   "group": "Rival",
+   "stage": 4,
+   "starter": null,
+   "level": 40,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 38,
+     "moves": [
+      "sand-attack",
+      "slash",
+      "poison-sting",
+      "swift"
+     ],
+     "superEffectiveAvailable": 22,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "bubble-beam",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vileplume",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 35,
+     "moves": [
+      "tackle",
+      "sonic-boom",
+      "thunder-shock",
+      "supersonic"
+     ],
+     "superEffectiveAvailable": 21,
+     "candidates": 70,
+     "picks": [
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "ninetales",
+     "level": 37,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "nidoqueen",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 35,
+     "moves": [
+      "confusion",
+      "disable",
+      "psybeam",
+      "recover"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "vaporeon",
+     "level": 40,
+     "moves": [
+      "water-gun",
+      "sand-attack",
+      "bite",
+      "aurora-beam"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 69,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "haunter",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "KOGA#1",
+   "label": "Koga (Fuchsia Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 5,
+   "starter": null,
+   "level": 50,
+   "mons": [
+    {
+     "opp": "venonat",
+     "level": 44,
+     "moves": [
+      "toxic",
+      "tackle",
+      "sleep-powder",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 38,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "venonat",
+     "level": 46,
+     "moves": [
+      "toxic",
+      "psybeam",
+      "supersonic",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 38,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "venonat",
+     "level": 48,
+     "moves": [
+      "toxic",
+      "double-edge",
+      "sleep-powder",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 38,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "venomoth",
+     "level": 50,
+     "moves": [
+      "leech-life",
+      "double-team",
+      "psychic",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 38,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "charizard",
+       "move": "flamethrower",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "fearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "BLAINE#1",
+   "label": "Blaine (Cinnabar Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 6,
+   "starter": null,
+   "level": 54,
+   "mons": [
+    {
+     "opp": "ninetales",
+     "level": 48,
+     "moves": [
+      "flamethrower",
+      "tail-whip",
+      "quick-attack",
+      "confuse-ray"
+     ],
+     "superEffectiveAvailable": 63,
+     "candidates": 121,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "rapidash",
+     "level": 50,
+     "moves": [
+      "stomp",
+      "growl",
+      "fire-spin",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 64,
+     "candidates": 121,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "arcanine",
+     "level": 54,
+     "moves": [
+      "flamethrower",
+      "fire-blast",
+      "reflect",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 63,
+     "candidates": 121,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "GIOVANNI#3",
+   "label": "Giovanni (Viridian Gym)",
+   "group": "Líderes de ginásio",
+   "stage": 7,
+   "starter": null,
+   "level": 55,
+   "mons": [
+    {
+     "opp": "dugtrio",
+     "level": 50,
+     "moves": [
+      "dig",
+      "sand-attack",
+      "fissure",
+      "earthquake"
+     ],
+     "superEffectiveAvailable": 57,
+     "candidates": 122,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "dragonite",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "persian",
+     "level": 53,
+     "moves": [
+      "screech",
+      "double-team",
+      "fury-swipes",
+      "slash"
+     ],
+     "superEffectiveAvailable": 9,
+     "candidates": 123,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "nidoqueen",
+     "level": 53,
+     "moves": [
+      "earthquake",
+      "tail-whip",
+      "thunder",
+      "double-kick"
+     ],
+     "superEffectiveAvailable": 79,
+     "candidates": 122,
+     "picks": [
+      {
+       "mon": "exeggutor",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "nidoking",
+     "level": 55,
+     "moves": [
+      "earthquake",
+      "leer",
+      "thunder",
+      "double-kick"
+     ],
+     "superEffectiveAvailable": 79,
+     "candidates": 122,
+     "picks": [
+      {
+       "mon": "exeggutor",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "rhydon",
+     "level": 55,
+     "moves": [
+      "rock-slide",
+      "fury-attack",
+      "horn-drill",
+      "earthquake"
+     ],
+     "superEffectiveAvailable": 96,
+     "candidates": 122,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "seadra",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 5,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "BRUNO#1",
+   "label": "Bruno (Bruno's Room)",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": null,
+   "level": 58,
+   "mons": [
+    {
+     "opp": "onix",
+     "level": 53,
+     "moves": [
+      "rock-slide",
+      "screech",
+      "slam",
+      "dig"
+     ],
+     "superEffectiveAvailable": 98,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "seadra",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 5,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "hitmonchan",
+     "level": 55,
+     "moves": [
+      "ice-punch",
+      "thunder-punch",
+      "fire-punch",
+      "double-team"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "mr-mime",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "hitmonlee",
+     "level": 55,
+     "moves": [
+      "double-kick",
+      "mega-kick",
+      "high-jump-kick",
+      "double-team"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "haunter",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "onix",
+     "level": 56,
+     "moves": [
+      "rock-slide",
+      "screech",
+      "slam",
+      "earthquake"
+     ],
+     "superEffectiveAvailable": 98,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "seadra",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 5,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "machamp",
+     "level": 58,
+     "moves": [
+      "leer",
+      "karate-chop",
+      "strength",
+      "submission"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "haunter",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL3#1",
+   "label": "Rival — com Jolteon (time 1) (Champion's Room)",
+   "group": "Campeão",
+   "stage": 8,
+   "starter": null,
+   "level": 65,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 61,
+     "moves": [
+      "slash",
+      "poison-sting",
+      "swift",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 57,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "alakazam",
+     "level": 59,
+     "moves": [
+      "psybeam",
+      "recover",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "exeggutor",
+     "level": 61,
+     "moves": [
+      "barrage",
+      "hypnosis",
+      "stomp"
+     ],
+     "superEffectiveAvailable": 81,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "cloyster",
+     "level": 61,
+     "moves": [
+      "supersonic",
+      "clamp",
+      "aurora-beam",
+      "spike-cannon"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "ninetales",
+     "level": 63,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 66,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "jolteon",
+     "level": 65,
+     "moves": [
+      "pin-missile",
+      "thunder-wave",
+      "agility",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "marowak",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL3#2",
+   "label": "Rival — com Flareon (time 2) (Champion's Room)",
+   "group": "Campeão",
+   "stage": 8,
+   "starter": null,
+   "level": 65,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 61,
+     "moves": [
+      "slash",
+      "poison-sting",
+      "swift",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 57,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "alakazam",
+     "level": 59,
+     "moves": [
+      "psybeam",
+      "recover",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "exeggutor",
+     "level": 61,
+     "moves": [
+      "barrage",
+      "hypnosis",
+      "stomp"
+     ],
+     "superEffectiveAvailable": 81,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 61,
+     "moves": [
+      "supersonic",
+      "thunder-wave",
+      "swift",
+      "screech"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "cloyster",
+     "level": 63,
+     "moves": [
+      "supersonic",
+      "clamp",
+      "aurora-beam",
+      "spike-cannon"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "flareon",
+     "level": 65,
+     "moves": [
+      "fire-spin",
+      "smog",
+      "leer",
+      "flamethrower"
+     ],
+     "superEffectiveAvailable": 67,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "RIVAL3#3",
+   "label": "Rival — com Vaporeon (time 3) (Champion's Room)",
+   "group": "Campeão",
+   "stage": 8,
+   "starter": null,
+   "level": 65,
+   "mons": [
+    {
+     "opp": "sandslash",
+     "level": 61,
+     "moves": [
+      "slash",
+      "poison-sting",
+      "swift",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 57,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "alakazam",
+     "level": 59,
+     "moves": [
+      "psybeam",
+      "recover",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "exeggutor",
+     "level": 61,
+     "moves": [
+      "barrage",
+      "hypnosis",
+      "stomp"
+     ],
+     "superEffectiveAvailable": 81,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "ninetales",
+     "level": 61,
+     "moves": [
+      "ember",
+      "tail-whip",
+      "quick-attack",
+      "roar"
+     ],
+     "superEffectiveAvailable": 66,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 63,
+     "moves": [
+      "supersonic",
+      "thunder-wave",
+      "swift",
+      "screech"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "nidoking",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "vaporeon",
+     "level": 65,
+     "moves": [
+      "haze",
+      "mist",
+      "acid-armor",
+      "hydro-pump"
+     ],
+     "superEffectiveAvailable": 41,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "gyarados",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "LORELEI#1",
+   "label": "Lorelei (Lorelei's Room)",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": null,
+   "level": 56,
+   "mons": [
+    {
+     "opp": "dewgong",
+     "level": 54,
+     "moves": [
+      "bubble-beam",
+      "aurora-beam",
+      "rest",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "cloyster",
+     "level": 53,
+     "moves": [
+      "supersonic",
+      "clamp",
+      "ice-beam",
+      "spike-cannon"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "slowbro",
+     "level": 54,
+     "moves": [
+      "psychic",
+      "surf",
+      "withdraw",
+      "amnesia"
+     ],
+     "superEffectiveAvailable": 44,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "jynx",
+     "level": 56,
+     "moves": [
+      "double-slap",
+      "ice-punch",
+      "lovely-kiss",
+      "thrash"
+     ],
+     "superEffectiveAvailable": 34,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "ninetales",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rapidash",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 5,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "lapras",
+     "level": 56,
+     "moves": [
+      "body-slam",
+      "confuse-ray",
+      "blizzard",
+      "hydro-pump"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "AGATHA#1",
+   "label": "Agatha (Agatha's Room)",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": null,
+   "level": 60,
+   "mons": [
+    {
+     "opp": "gengar",
+     "level": 56,
+     "moves": [
+      "confuse-ray",
+      "substitute",
+      "lick",
+      "mega-drain"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 120,
+     "picks": [
+      {
+       "mon": "exeggutor",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "golbat",
+     "level": 56,
+     "moves": [
+      "supersonic",
+      "toxic",
+      "wing-attack",
+      "leech-life"
+     ],
+     "superEffectiveAvailable": 78,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "lapras",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 55,
+     "moves": [
+      "confuse-ray",
+      "lick",
+      "hypnosis",
+      "dream-eater"
+     ],
+     "superEffectiveAvailable": 58,
+     "candidates": 119,
+     "picks": [
+      {
+       "mon": "exeggutor",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "kadabra",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "arbok",
+     "level": 58,
+     "moves": [
+      "wrap",
+      "glare",
+      "screech",
+      "acid"
+     ],
+     "superEffectiveAvailable": 57,
+     "candidates": 125,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "haunter",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0.25,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 60,
+     "moves": [
+      "confuse-ray",
+      "psychic",
+      "hypnosis",
+      "dream-eater"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 120,
+     "picks": [
+      {
+       "mon": "exeggutor",
+       "move": "psychic",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "yellow",
+   "key": "LANCE#1",
+   "label": "Lance (Lance's Room)",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": null,
+   "level": 62,
+   "mons": [
+    {
+     "opp": "gyarados",
+     "level": 58,
+     "moves": [
+      "dragon-rage",
+      "leer",
+      "hydro-pump",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 47,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "electrode",
+       "move": "thunderbolt",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 56,
+     "moves": [
+      "thunder-wave",
+      "slam",
+      "thunderbolt",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 44,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "dragonite",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "chansey",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 56,
+     "moves": [
+      "bubble-beam",
+      "wrap",
+      "ice-beam",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 44,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "aerodactyl",
+     "level": 60,
+     "moves": [
+      "wing-attack",
+      "swift",
+      "fly",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 76,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "rhydon",
+       "move": "rock-slide",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "tentacruel",
+       "move": "hydro-pump",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 62,
+     "moves": [
+      "blizzard",
+      "fire-blast",
+      "thunder",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 65,
+     "candidates": 124,
+     "picks": [
+      {
+       "mon": "chansey",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "lapras",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": false
+      },
+      {
+       "mon": "dewgong",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

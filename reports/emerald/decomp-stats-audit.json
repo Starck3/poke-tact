@@ -1,0 +1,55 @@
+{
+ "commit": "731ad5bfd6e6f265508d0efcca0ba42f9dcf5881",
+ "moves": [
+  {
+   "move": "STRUGGLE",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "NIGHTMARE",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "curse",
+   "field": "type",
+   "pokeapi": "unknown",
+   "decomp": "mystery"
+  },
+  {
+   "move": "vital-throw",
+   "field": "accuracy",
+   "pokeapi": 0,
+   "decomp": 100
+  },
+  {
+   "move": "hidden-power",
+   "field": "power",
+   "pokeapi": 1,
+   "decomp": 0
+  },
+  {
+   "move": "spit-up",
+   "field": "power",
+   "pokeapi": 0,
+   "decomp": 100
+  },
+  {
+   "move": "BLAST_BURN",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "HYDRO_CANNON",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "FRENZY_PLANT",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "PSYCHO_BOOST",
+   "issue": "não existe no dataset"
+  }
+ ],
+ "species": [],
+ "types": []
+}

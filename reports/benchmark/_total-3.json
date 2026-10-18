@@ -1,0 +1,20 @@
+{
+ "antes": {
+  "wins": 7450,
+  "picks": 8325,
+  "covered": 2651,
+  "mons": 2775,
+  "comfy": 5630,
+  "turnsSum": 15591,
+  "turnsN": 8319
+ },
+ "depois": {
+  "wins": 7703,
+  "picks": 8325,
+  "covered": 2668,
+  "mons": 2775,
+  "comfy": 6910,
+  "turnsSum": 16358,
+  "turnsN": 8325
+ }
+}

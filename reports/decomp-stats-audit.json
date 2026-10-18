@@ -1,0 +1,43 @@
+{
+ "commit": "037335f4c725d7c9aecdac87066f2002b4bd7e14",
+ "moves": [
+  {
+   "move": "STRUGGLE",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "curse",
+   "field": "type",
+   "pokeapi": "unknown",
+   "decomp": "mystery"
+  },
+  {
+   "move": "vital-throw",
+   "field": "accuracy",
+   "pokeapi": 0,
+   "decomp": 100
+  },
+  {
+   "move": "hidden-power",
+   "field": "power",
+   "pokeapi": 1,
+   "decomp": 0
+  },
+  {
+   "move": "spit-up",
+   "field": "power",
+   "pokeapi": 0,
+   "decomp": 100
+  },
+  {
+   "move": "VOLT_TACKLE",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "PSYCHO_BOOST",
+   "issue": "não existe no dataset"
+  }
+ ],
+ "species": [],
+ "types": []
+}

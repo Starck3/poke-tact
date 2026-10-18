@@ -1,0 +1,35 @@
+// Pipeline completo de um ou mais jogos: dados (PokeAPI) → correções do decomp → onde obter → treinadores → auditorias.
+// Uso: node scripts/build-game.mjs [jogo ...]   (sem argumentos: todos os jogos de scripts/games.mjs)
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { GAMES } from './games.mjs';
+
+const ids = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(GAMES);
+const cwd = fileURLToPath(new URL('..', import.meta.url));
+const STEPS = ['build-data', 'apply-decomp-overlay', 'build-trainers', 'build-acquisition', 'build-walkthrough', 'validate-vs-decomp', 'validate-stats-vs-decomp', 'validate-vs-pokemythology', 'validate-tms-vs-pokemythology'];
+// Gen 1/2 (decomp em assembly, game.asmDecomp): a auditoria roda DEPOIS da correção e deve dar 0; o detonado (build-walkthrough-gen1) serve às duas
+const ASM_STEPS = {
+  1: ['build-data', 'apply-gen1-overlay', 'validate-gen1-vs-decomp', 'build-trainers-gen1', 'build-acquisition-gen1', 'build-walkthrough-gen1'],
+  2: ['build-data', 'apply-gen2-overlay', 'validate-gen2-vs-decomp', 'build-trainers-gen2', 'build-acquisition-gen2', 'build-walkthrough-gen1'],
+  hgss: ['build-data', 'apply-hgss-overlay', 'validate-hgss-vs-decomp', 'build-trainers-hgss', 'build-acquisition-hgss', 'build-walkthrough-gen1'], // E1: HeartGold/SoulSilver parcial
+  dp: ['build-data', 'apply-dp-overlay', 'validate-dp-vs-decomp', 'build-starters-pokeapi', 'build-trainers-dp'], // E5: Diamond/Pearl (núcleo + chefes)
+  4: ['build-data', 'apply-gen4-overlay', 'validate-gen4-vs-decomp', 'build-trainers-gen4', 'build-acquisition-gen4', 'build-walkthrough-gen1'], // Platinum (decomp em JSON)
+};
+// camada PokéAPI (sem decomp): dados + conferência dos golpes com o Showdown (E3; o script ignora gerações fora de 5–8)
+// + iniciais pelo detonado e pela PokéAPI (E4; sem as duas fontes o campo fica escondido)
+const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-pokeapi'];
+for (const id of ids) {
+  if (!GAMES[id]) throw new Error(`Jogo desconhecido: ${id}`);
+  console.log(`\n===== ${id} =====`);
+  const plain = !GAMES[id].decomp && !GAMES[id].asmDecomp;
+  for (const step of GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : plain ? PLAIN_STEPS : STEPS) {
+    console.log(`--- ${step}`);
+    try {
+      execFileSync(process.execPath, [`scripts/${step}.mjs`, id], { cwd, stdio: 'inherit' });
+    } catch (e) {
+      // build-data sai com 3 quando a PokéAPI não tem o jogo (Legends: Z-A): pula o jogo e segue com os outros
+      if (step === 'build-data' && e.status === 3) { console.log(`(${id} sem dados — pulado)`); break; }
+      throw e;
+    }
+  }
+}

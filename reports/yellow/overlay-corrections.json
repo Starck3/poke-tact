@@ -1,0 +1,14 @@
+[
+ {
+  "move": "rest",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "soft-boiled",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ }
+]

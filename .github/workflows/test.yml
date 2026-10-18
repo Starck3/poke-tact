@@ -1,0 +1,15 @@
+# Testes em cada push/PR. Sem data-sources/ e .cache/ (fora do git), os testes que precisam do decomp local são pulados;
+# os demais conferem os dados gerados em public/data/ e as auditorias em reports/.
+name: testes
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test

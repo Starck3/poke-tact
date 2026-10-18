@@ -1,0 +1,158 @@
+Entendi. Você já tem acesso à PokéAPI, Pokémon Showdown, Bulbapedia, Serebii, Pokémon Database, Veekun e PokéPC Dataset. Então, vou trazer **outras fontes, principalmente repositórios que extraem dados dos próprios jogos e projetos de engenharia reversa**, que podem ajudar a conferir informações com mais precisão.
+
+## 1. Repositórios de engenharia reversa dos jogos
+
+Estes são particularmente interessantes para o seu objetivo, pois trabalham com o código e os dados internos de jogos específicos.
+
+### 1.1. pret — Pokémon Red/Blue
+
+[Repositório pret/pokered](https://github.com/pret/pokered?utm_source=chatgpt.com)
+
+Projeto de engenharia reversa de Pokémon Red e Blue, da primeira geração.
+
+**Pode ajudar a conferir:**
+
+* Golpes e seus efeitos.
+* Estatísticas dos Pokémon.
+* Tabelas de aprendizado.
+* Tipos e efetividade.
+* Dados internos dos jogos.
+
+É especialmente útil quando você precisa verificar uma mecânica específica da primeira geração, em vez de confiar apenas em uma Pokédex genérica.
+
+### 1.2. pret — Pokémon Crystal
+
+[Repositório pret/pokecrystal](https://github.com/pret/pokecrystal?utm_source=chatgpt.com)
+
+Projeto dedicado à engenharia reversa de Pokémon Crystal, da segunda geração.
+
+Você pode investigar:
+
+* Golpes aprendidos por nível.
+* Dados dos Pokémon.
+* Estatísticas e tipos.
+* Tabelas de movimentos.
+* Mecânicas específicas da segunda geração.
+
+**Minha recomendação:** se o PokéTact pretende suportar jogos clássicos, esses repositórios são boas referências para conferir dados da primeira e segunda gerações.
+
+### 1.3. pret — Pokémon Emerald
+
+[Repositório pret/pokeemerald](https://github.com/pret/pokeemerald?utm_source=chatgpt.com)
+
+Projeto de engenharia reversa de Pokémon Emerald, da terceira geração.
+
+É uma fonte particularmente interessante para analisar:
+
+* Dados internos dos Pokémon.
+* Aprendizado de golpes.
+* Tabelas de movimentos.
+* Habilidades.
+* Estatísticas e tipos.
+* Mecânicas de batalha.
+
+Uma vantagem é poder investigar como os dados são representados no próprio jogo, em vez de depender exclusivamente de uma API que já os interpretou.
+
+**Importante:** Emerald não é FireRed/LeafGreen. Para validar especificamente os dados de FRLG, você precisará de uma fonte que trabalhe com esses jogos ou de uma conferência independente dos registros correspondentes.
+
+### 1.4. pret — Pokémon FireRed/LeafGreen
+
+[Organização pret no GitHub](https://github.com/pret?utm_source=chatgpt.com)
+
+A organização pret mantém projetos de engenharia reversa de jogos Pokémon. Consulte o catálogo para identificar projetos e ferramentas aplicáveis às versões que você quer validar.
+
+Para o seu caso, procure especificamente recursos de engenharia reversa de FireRed/LeafGreen, porque você está verificando learnsets dessa versão.
+
+Não recomendo presumir que os dados de Emerald sejam equivalentes aos de FireRed/LeafGreen, mesmo pertencendo à mesma geração.
+
+---
+
+## 2. Ferramentas para extrair dados das ROMs
+
+Se você pretende fazer uma auditoria mais profunda, estas ferramentas podem ser úteis.
+
+### 2.1. PKM — extração de dados de Pokémon
+
+[Repositório Anaminus/pkm](https://github.com/Anaminus/pkm?utm_source=chatgpt.com)
+
+Essa biblioteca em Go foi criada para extrair dados de ROMs de jogos Pokémon. O projeto documenta suporte direcionado à terceira geração.
+
+É interessante para investigar a extração de:
+
+* Dados dos Pokémon.
+* Golpes.
+* Estatísticas.
+* Informações internas dos jogos.
+
+O suporte é limitado: o repositório destaca a terceira geração, portanto não deve ser tratado como um extrator universal para todas as gerações.
+
+### 2.2. Project Pokémon — RawDB
+
+[Repositório Project Pokémon/RawDB](https://github.com/projectpokemon/rawdb?utm_source=chatgpt.com)
+
+O RawDB é um conjunto de ferramentas para leitura e interpretação de dados binários de jogos, com foco especial em jogos de Nintendo DS e 3DS.
+
+Pode ser útil para investigar dados internos de jogos como:
+
+* Pokémon Diamond/Pearl.
+* Pokémon Platinum.
+* Pokémon HeartGold/SoulSilver.
+* Outros títulos compatíveis com as ferramentas utilizadas.
+
+A compatibilidade precisa ser verificada por jogo e formato. Não é uma API REST pronta para consultar qualquer Pokémon.
+
+---
+
+## 3. Outras bases e projetos que vale investigar
+
+### 3.1. iPokedex-DB
+
+[Repositório UberGames/iPokedex-DB](https://github.com/UberGames/iPokedex-DB?utm_source=chatgpt.com)
+
+Esse projeto disponibiliza dados de uma base SQLite antiga de uma aplicação Pokédex, exportados em arquivos que podem ser analisados e importados.
+
+Pode servir como referência complementar para estudar:
+
+* Organização de dados Pokémon.
+* Estrutura de banco relacional.
+* Informações sobre golpes e espécies.
+
+Entretanto, é um projeto histórico, não uma fonte que eu consideraria automaticamente atualizada ou independente das demais bases.
+
+### 3.2. Pokémon Wiki
+
+[Pokémon Wiki](https://www.pokemon-wiki.org/?utm_source=chatgpt.com)
+
+É uma enciclopédia comunitária com informações sobre espécies, golpes, habilidades, estatísticas e jogos.
+
+Pode ser utilizada como referência adicional para conferir dados. Antes de adotá-la como fonte independente, vale verificar a origem das informações: uma base que reutiliza dados da PokéAPI não constitui uma confirmação totalmente independente dessa mesma base.
+
+---
+
+## 4. Qual dessas fontes eu usaria no seu projeto?
+
+| Fonte                 | Melhor aplicação                        | Limitação principal                  |
+| --------------------- | --------------------------------------- | ------------------------------------ |
+| pret/pokered          | Auditar Pokémon Red/Blue                | Primeira geração                     |
+| pret/pokecrystal      | Auditar Pokémon Crystal                 | Segunda geração                      |
+| pret/pokeemerald      | Auditar Pokémon Emerald                 | Não representa automaticamente FRLG  |
+| Anaminus/pkm          | Investigar extração de dados de ROMs    | Foco documentado na terceira geração |
+| Project Pokémon RawDB | Investigar dados binários de jogos      | Requer análise de compatibilidade    |
+| iPokedex-DB           | Comparar estruturas de dados históricas | Base antiga                          |
+| Pokémon Wiki          | Consulta complementar                   | Verificar a independência dos dados  |
+
+## 5. Minha sugestão para validar os learnsets
+
+Como você já identificou o caso do **Heat Wave no Charizard em FireRed/LeafGreen**, eu faria o seguinte:
+
+1. Consultaria o registro do Charizard na PokéAPI.
+2. Filtraria o aprendizado pelo grupo de versões `firered-leafgreen`.
+3. Procuraria uma implementação ou ferramenta que permita verificar os dados internos de FRLG.
+4. Compararia o resultado com a tabela correspondente na Bulbapedia.
+5. Registraria o resultado como confirmado, divergente ou inconclusivo.
+
+A principal vantagem de investigar os repositórios pret e as ferramentas de extração é que você pode chegar mais perto dos dados internos do jogo, reduzindo a dependência de bases derivadas.
+
+**Uma ressalva importante:** um repositório de engenharia reversa não é necessariamente uma segunda base de dados independente e pronta. Às vezes, será necessário interpretar o código ou extrair os dados antes de compará-los com a PokéAPI.
+
+Para o PokéTact, eu priorizaria **uma ferramenta específica para extrair ou consultar os dados de FireRed/LeafGreen**. Isso será mais útil para resolver divergências de learnsets do que adicionar várias enciclopédias que podem compartilhar a mesma origem de dados.

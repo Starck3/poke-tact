@@ -1,0 +1,10 @@
+{
+ "commit": "731ad5bfd6e6f265508d0efcca0ba42f9dcf5881",
+ "compared": 385,
+ "missingInDecomp": [],
+ "identical": 385,
+ "divergences": [],
+ "skippedMethods": {
+  "light-ball-egg": 1
+ }
+}

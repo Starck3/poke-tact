@@ -1,0 +1,102 @@
+{
+ "learnset": [],
+ "machine": [],
+ "tutor": [],
+ "stats": [],
+ "types": [],
+ "abilities": [],
+ "moves": [
+  {
+   "move": "detect",
+   "field": "priority",
+   "pokeapi": 4,
+   "decomp": 3
+  },
+  {
+   "move": "endure",
+   "field": "priority",
+   "pokeapi": 4,
+   "decomp": 3
+  },
+  {
+   "move": "extreme-speed",
+   "field": "priority",
+   "pokeapi": 2,
+   "decomp": 1
+  },
+  {
+   "move": "fake-out",
+   "field": "priority",
+   "pokeapi": 3,
+   "decomp": 1
+  },
+  {
+   "move": "follow-me",
+   "field": "priority",
+   "pokeapi": 2,
+   "decomp": 3
+  },
+  {
+   "move": "luster-purge",
+   "field": "power",
+   "pokeapi": 95,
+   "decomp": 70
+  },
+  {
+   "move": "milk-drink",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "mind-reader",
+   "field": "pp",
+   "pokeapi": 40,
+   "decomp": 5
+  },
+  {
+   "move": "protect",
+   "field": "priority",
+   "pokeapi": 4,
+   "decomp": 3
+  },
+  {
+   "move": "recover",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "rest",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "roost",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "slack-off",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "soft-boiled",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "teleport",
+   "field": "priority",
+   "pokeapi": -6,
+   "decomp": 0
+  }
+ ],
+ "chart": [],
+ "missing": []
+}

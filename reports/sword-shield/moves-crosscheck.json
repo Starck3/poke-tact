@@ -1,0 +1,78 @@
+{
+ "source": "Pokémon Showdown @7244fe8 (Gen 8) + decomp do Platinum como 2ª evidência",
+ "compared": 623,
+ "corrected": [
+  {
+   "move": "luster-purge",
+   "field": "power",
+   "pokeapi": 95,
+   "showdown": 70,
+   "evidence": "Showdown Gen 8 = Gen 4 = decomp do Platinum (70)"
+  },
+  {
+   "move": "milk-drink",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 8 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "recover",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 8 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "rest",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 8 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "roost",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 8 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "slack-off",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 8 = Gen 4 = decomp do Platinum (10)"
+  },
+  {
+   "move": "soft-boiled",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "evidence": "Showdown Gen 8 = Gen 4 = decomp do Platinum (10)"
+  }
+ ],
+ "flagged": [
+  {
+   "move": "grassy-glide",
+   "field": "power",
+   "pokeapi": 55,
+   "showdown": 70,
+   "why": "golpe sem valor no Platinum (posterior à Gen 4)"
+  },
+  {
+   "move": "shore-up",
+   "field": "pp",
+   "pokeapi": 5,
+   "showdown": 10,
+   "why": "golpe sem valor no Platinum (posterior à Gen 4)"
+  },
+  {
+   "move": "wicked-blow",
+   "field": "power",
+   "pokeapi": 75,
+   "showdown": 80,
+   "why": "golpe sem valor no Platinum (posterior à Gen 4)"
+  }
+ ]
+}

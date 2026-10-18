@@ -1,0 +1,12 @@
+# Fontes brutas (decomps do pret, detonados do PokeMythology, Showdown, Bulbapedia): uso local para validação,
+# não redistribuídas. Recrie com scripts/fetch-*.mjs (ver README).
+data-sources/
+# Cache de requisições da PokéAPI (centenas de MB; recriado por scripts/build-game.mjs)
+.cache/
+node_modules/
+
+# Arquivos temporários
+.~lock.*#
+*.log
+.DS_Store
+Thumbs.db

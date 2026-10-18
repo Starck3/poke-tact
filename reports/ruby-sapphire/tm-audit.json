@@ -1,0 +1,185 @@
+[
+ {
+  "tm": "HM01",
+  "move": "CUT",
+  "section": "RUSTBORO CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Rustboro City Cutters House"
+  ]
+ },
+ {
+  "tm": "HM04",
+  "move": "STRENGTH",
+  "section": "VERDANTURF CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Rusturf Tunnel"
+  ]
+ },
+ {
+  "tm": "TM28",
+  "move": "DIG",
+  "section": "FALLARBOR TOWN E METEOR FALLS",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Route 114 Fossil Maniacs House"
+  ]
+ },
+ {
+  "tm": "HM04",
+  "move": "STRENGTH",
+  "section": "LAVARIDGE TOWN",
+  "status": "CITADO_SEM_OBTER",
+  "decomp": [
+   "Rusturf Tunnel"
+  ]
+ },
+ {
+  "tm": "HM03",
+  "move": "SURF",
+  "section": "EXPLORANDO COM SURF",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Petalburg City Wallys House"
+  ]
+ },
+ {
+  "tm": "HM02",
+  "move": "FLY",
+  "section": "NO CAMINHO DO WEATHER INSTITUTE",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Route 119"
+  ]
+ },
+ {
+  "tm": "HM08",
+  "move": "DIVE",
+  "section": "MOSSDEEP CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Mossdeep City Stevens House"
+  ]
+ },
+ {
+  "tm": "HM07",
+  "move": "WATERFALL",
+  "section": "SOOTOPOLIS CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Cave Of Origin B 3F"
+  ]
+ },
+ {
+  "tm": "HM08",
+  "move": "DIVE",
+  "section": "LIGA POKÉMON HOENN: O ÚLTIMO DESAFIO",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Mossdeep City Stevens House"
+  ]
+ },
+ {
+  "tm": "HM08",
+  "move": "DIVE",
+  "section": "APÓS AS ELITES",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Mossdeep City Stevens House"
+  ]
+ },
+ {
+  "tm": "HM06",
+  "move": "ROCK_SMASH",
+  "section": "TRICK HOUSE",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Mauville City House 1"
+  ]
+ },
+ {
+  "tm": "HM04",
+  "move": "STRENGTH",
+  "section": "TRICK HOUSE",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Rusturf Tunnel"
+  ]
+ },
+ {
+  "tm": "TM12",
+  "move": "TAUNT",
+  "section": "TRICK HOUSE",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Route 110 Trick House End",
+   "Route 110 Trick House Entrance"
+  ]
+ },
+ {
+  "tm": "HM03",
+  "move": "SURF",
+  "section": "NEW MAUVILLE",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Petalburg City Wallys House"
+  ]
+ },
+ {
+  "tm": "TM24",
+  "move": "THUNDERBOLT",
+  "section": "NEW MAUVILLE",
+  "status": "CITADO_SEM_OBTER",
+  "decomp": [
+   "Mauville City",
+   "Mauville City Game Corner"
+  ]
+ },
+ {
+  "tm": "HM03",
+  "move": "SURF",
+  "section": "ABANDONED SHIP",
+  "status": "CITADO_SEM_OBTER",
+  "decomp": [
+   "Petalburg City Wallys House"
+  ]
+ },
+ {
+  "tm": "HM08",
+  "move": "DIVE",
+  "section": "ABANDONED SHIP",
+  "status": "CITADO_SEM_OBTER",
+  "decomp": [
+   "Mossdeep City Stevens House"
+  ]
+ },
+ {
+  "tm": "TM13",
+  "move": "ICE_BEAM",
+  "section": "ABANDONED SHIP",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Mauville City Game Corner",
+   "Abandoned Ship Room B 1F"
+  ]
+ },
+ {
+  "tm": "TM18",
+  "move": "RAIN_DANCE",
+  "section": "ABANDONED SHIP",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Abandoned Ship Hidden Floor Rooms"
+  ]
+ },
+ {
+  "tm": "HM08",
+  "move": "DIVE",
+  "section": "O TRIO LENDÁRIO",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Mossdeep City Stevens House"
+  ]
+ }
+]

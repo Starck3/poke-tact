@@ -1,0 +1,202 @@
+[
+ {
+  "tm": "TM39",
+  "move": "ROCK_TOMB",
+  "section": "PEWTER CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Pewter City Gym"
+  ]
+ },
+ {
+  "tm": "TM03",
+  "move": "WATER_PULSE",
+  "section": "CERULEAN CITY",
+  "status": "CITADO_SEM_OBTER",
+  "decomp": [
+   "Cerulean City Gym"
+  ]
+ },
+ {
+  "tm": "TM28",
+  "move": "DIG",
+  "section": "CERULEAN CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Cerulean City",
+   "Celadon City Department Store 2F"
+  ]
+ },
+ {
+  "tm": "HM01",
+  "move": "CUT",
+  "section": "VERMILION CITY",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "SSAnne Captains Office"
+  ]
+ },
+ {
+  "tm": "TM34",
+  "move": "SHOCK_WAVE",
+  "section": "VERMILION CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Vermilion City Gym"
+  ]
+ },
+ {
+  "tm": "HM05",
+  "move": "FLASH",
+  "section": "VERMILION CITY",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Route 2 East Building"
+  ]
+ },
+ {
+  "tm": "HM05",
+  "move": "FLASH",
+  "section": "DIGLETT’S CAVE",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Route 2 East Building"
+  ]
+ },
+ {
+  "tm": "HM05",
+  "move": "FLASH",
+  "section": "ROCK TUNNEL",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Route 2 East Building"
+  ]
+ },
+ {
+  "tm": "HM06",
+  "move": "ROCK_SMASH",
+  "section": "ROCK TUNNEL",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "One Island Kindle Road Ember Spa"
+  ]
+ },
+ {
+  "tm": "TM19",
+  "move": "GIGA_DRAIN",
+  "section": "CELADON CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Celadon City Gym"
+  ]
+ },
+ {
+  "tm": "HM02",
+  "move": "FLY",
+  "section": "CELADON CITY",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Route 16 House"
+  ]
+ },
+ {
+  "tm": "TM04",
+  "move": "CALM_MIND",
+  "section": "SAFFRON CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Saffron City Gym"
+  ]
+ },
+ {
+  "tm": "HM03",
+  "move": "SURF",
+  "section": "FUSCHIA CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Safari Zone Secret House"
+  ]
+ },
+ {
+  "tm": "HM04",
+  "move": "STRENGTH",
+  "section": "FUSCHIA CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Fuchsia City Wardens House"
+  ]
+ },
+ {
+  "tm": "TM06",
+  "move": "TOXIC",
+  "section": "FUSCHIA CITY",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Fuchsia City Gym"
+  ]
+ },
+ {
+  "tm": "HM03",
+  "move": "SURF",
+  "section": "AGORA VOCÊ TEM SURF!",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Safari Zone Secret House"
+  ]
+ },
+ {
+  "tm": "TM38",
+  "move": "FIRE_BLAST",
+  "section": "CINNABAR ISLAND",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Cinnabar Island Gym"
+  ]
+ },
+ {
+  "tm": "HM06",
+  "move": "ROCK_SMASH",
+  "section": "ONE ISLAND – A KNOT ISLAND",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "One Island Kindle Road Ember Spa"
+  ]
+ },
+ {
+  "tm": "TM26",
+  "move": "EARTHQUAKE",
+  "section": "O ÚLTIMO GINÁSIO!",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Viridian City Gym"
+  ]
+ },
+ {
+  "tm": "HM07",
+  "move": "WATERFALL",
+  "section": "FOUR ISLAND – A FLOE ISLAND",
+  "status": "LOCAL_CONFERE",
+  "decomp": [
+   "Four Island Icefall Cave 1F"
+  ]
+ },
+ {
+  "tm": "TM42",
+  "move": "FACADE",
+  "section": "FIVE ISLAND – A CHRONO ISLAND",
+  "status": "CITADO_SEM_OBTER",
+  "decomp": [
+   "Five Island Memorial Pillar",
+   "Five Island Memorial Pillar"
+  ]
+ },
+ {
+  "tm": "HM03",
+  "move": "SURF",
+  "section": "SEAFOAM ISLANDS",
+  "status": "LOCAL_DIFERENTE",
+  "decomp": [
+   "Safari Zone Secret House"
+  ]
+ }
+]

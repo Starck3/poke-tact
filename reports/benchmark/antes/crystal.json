@@ -1,0 +1,8331 @@
+{
+ "game": "crystal",
+ "summary": {
+  "fights": 46,
+  "oppMons": 178,
+  "noPicks": 0,
+  "noSuperEffective": 10,
+  "missedSuperEffective": 4,
+  "allTakeSuperEffective": 0,
+  "picksNeutralOrWorse": 71,
+  "picks": 534
+ },
+ "fights": [
+  {
+   "version": "crystal",
+   "key": "FALKNER#FALKNER1",
+   "label": "Leader Falkner",
+   "group": "Líderes de ginásio",
+   "stage": 0,
+   "starter": "chikorita",
+   "level": 9,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 7,
+     "moves": [
+      "tackle",
+      "mud-slap"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 15,
+     "picks": [
+      {
+       "mon": "teddiursa",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "quick-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dunsparce",
+       "move": "rage",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "pidgeotto",
+     "level": 9,
+     "moves": [
+      "tackle",
+      "mud-slap",
+      "gust"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 16,
+     "picks": [
+      {
+       "mon": "teddiursa",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "quick-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "pidgey",
+       "move": "gust",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "FALKNER#FALKNER1",
+   "label": "Leader Falkner",
+   "group": "Líderes de ginásio",
+   "stage": 0,
+   "starter": "cyndaquil",
+   "level": 9,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 7,
+     "moves": [
+      "tackle",
+      "mud-slap"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 15,
+     "picks": [
+      {
+       "mon": "teddiursa",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "quick-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dunsparce",
+       "move": "rage",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "pidgeotto",
+     "level": 9,
+     "moves": [
+      "tackle",
+      "mud-slap",
+      "gust"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 16,
+     "picks": [
+      {
+       "mon": "teddiursa",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "quick-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "pidgey",
+       "move": "gust",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "FALKNER#FALKNER1",
+   "label": "Leader Falkner",
+   "group": "Líderes de ginásio",
+   "stage": 0,
+   "starter": "totodile",
+   "level": 9,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 7,
+     "moves": [
+      "tackle",
+      "mud-slap"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 15,
+     "picks": [
+      {
+       "mon": "teddiursa",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "quick-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "totodile",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "pidgeotto",
+     "level": 9,
+     "moves": [
+      "tackle",
+      "mud-slap",
+      "gust"
+     ],
+     "superEffectiveAvailable": 0,
+     "candidates": 16,
+     "picks": [
+      {
+       "mon": "teddiursa",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "quick-attack",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "totodile",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "RIVAL1#RIVAL1_1_CHIKORITA",
+   "label": "Rival",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "totodile",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "chikorita",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "growl"
+     ],
+     "superEffectiveAvailable": 3,
+     "candidates": 17,
+     "picks": [
+      {
+       "mon": "teddiursa",
+       "move": "scratch",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "tackle",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "rattata",
+       "move": "tackle",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "BUGSY#BUGSY1",
+   "label": "Leader Bugsy",
+   "group": "Líderes de ginásio",
+   "stage": 1,
+   "starter": "chikorita",
+   "level": 16,
+   "mons": [
+    {
+     "opp": "metapod",
+     "level": 14,
+     "moves": [
+      "tackle",
+      "string-shot",
+      "harden"
+     ],
+     "superEffectiveAvailable": 6,
+     "candidates": 30,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "peck",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "kakuna",
+     "level": 14,
+     "moves": [
+      "poison-sting",
+      "string-shot",
+      "harden"
+     ],
+     "superEffectiveAvailable": 6,
+     "candidates": 30,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "peck",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "scyther",
+     "level": 16,
+     "moves": [
+      "quick-attack",
+      "leer",
+      "fury-cutter"
+     ],
+     "superEffectiveAvailable": 6,
+     "candidates": 28,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "spearow",
+       "move": "peck",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "BUGSY#BUGSY1",
+   "label": "Leader Bugsy",
+   "group": "Líderes de ginásio",
+   "stage": 1,
+   "starter": "cyndaquil",
+   "level": 16,
+   "mons": [
+    {
+     "opp": "metapod",
+     "level": 14,
+     "moves": [
+      "tackle",
+      "string-shot",
+      "harden"
+     ],
+     "superEffectiveAvailable": 8,
+     "candidates": 30,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "quilava",
+       "move": "ember",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "kakuna",
+     "level": 14,
+     "moves": [
+      "poison-sting",
+      "string-shot",
+      "harden"
+     ],
+     "superEffectiveAvailable": 8,
+     "candidates": 30,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      },
+      {
+       "mon": "quilava",
+       "move": "ember",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "scyther",
+     "level": 16,
+     "moves": [
+      "quick-attack",
+      "leer",
+      "fury-cutter"
+     ],
+     "superEffectiveAvailable": 8,
+     "candidates": 28,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "quilava",
+       "move": "ember",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "BUGSY#BUGSY1",
+   "label": "Leader Bugsy",
+   "group": "Líderes de ginásio",
+   "stage": 1,
+   "starter": "totodile",
+   "level": 16,
+   "mons": [
+    {
+     "opp": "metapod",
+     "level": 14,
+     "moves": [
+      "tackle",
+      "string-shot",
+      "harden"
+     ],
+     "superEffectiveAvailable": 6,
+     "candidates": 29,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "peck",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "kakuna",
+     "level": 14,
+     "moves": [
+      "poison-sting",
+      "string-shot",
+      "harden"
+     ],
+     "superEffectiveAvailable": 6,
+     "candidates": 29,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      },
+      {
+       "mon": "spearow",
+       "move": "peck",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "scyther",
+     "level": 16,
+     "moves": [
+      "quick-attack",
+      "leer",
+      "fury-cutter"
+     ],
+     "superEffectiveAvailable": 6,
+     "candidates": 27,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "via": "level-up",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "spearow",
+       "move": "peck",
+       "via": "level-up",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "WHITNEY#WHITNEY1",
+   "label": "Leader Whitney",
+   "group": "Líderes de ginásio",
+   "stage": 2,
+   "starter": "chikorita",
+   "level": 20,
+   "mons": [
+    {
+     "opp": "clefairy",
+     "level": 18,
+     "moves": [
+      "double-slap",
+      "mimic",
+      "encore",
+      "metronome"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 57,
+     "picks": [
+      {
+       "mon": "gastly",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "machop",
+       "move": "karate-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "magby",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "miltank",
+     "level": 20,
+     "moves": [
+      "rollout",
+      "attract",
+      "stomp",
+      "milk-drink"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 57,
+     "picks": [
+      {
+       "mon": "machop",
+       "move": "karate-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "WHITNEY#WHITNEY1",
+   "label": "Leader Whitney",
+   "group": "Líderes de ginásio",
+   "stage": 2,
+   "starter": "cyndaquil",
+   "level": 20,
+   "mons": [
+    {
+     "opp": "clefairy",
+     "level": 18,
+     "moves": [
+      "double-slap",
+      "mimic",
+      "encore",
+      "metronome"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 57,
+     "picks": [
+      {
+       "mon": "gastly",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "quilava",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "machop",
+       "move": "karate-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "miltank",
+     "level": 20,
+     "moves": [
+      "rollout",
+      "attract",
+      "stomp",
+      "milk-drink"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 57,
+     "picks": [
+      {
+       "mon": "machop",
+       "move": "karate-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "WHITNEY#WHITNEY1",
+   "label": "Leader Whitney",
+   "group": "Líderes de ginásio",
+   "stage": 2,
+   "starter": "totodile",
+   "level": 20,
+   "mons": [
+    {
+     "opp": "clefairy",
+     "level": 18,
+     "moves": [
+      "double-slap",
+      "mimic",
+      "encore",
+      "metronome"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 57,
+     "picks": [
+      {
+       "mon": "gastly",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "machop",
+       "move": "karate-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "magby",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "miltank",
+     "level": 20,
+     "moves": [
+      "rollout",
+      "attract",
+      "stomp",
+      "milk-drink"
+     ],
+     "superEffectiveAvailable": 1,
+     "candidates": 57,
+     "picks": [
+      {
+       "mon": "machop",
+       "move": "karate-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "RIVAL1#RIVAL1_2_CHIKORITA",
+   "label": "Rival",
+   "group": "Rival",
+   "stage": 2,
+   "starter": "totodile",
+   "level": 16,
+   "mons": [
+    {
+     "opp": "gastly",
+     "level": 12,
+     "moves": [
+      "hypnosis",
+      "lick",
+      "spite"
+     ],
+     "superEffectiveAvailable": 14,
+     "candidates": 48,
+     "picks": [
+      {
+       "mon": "togetic",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 1,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "zubat",
+     "level": 14,
+     "moves": [
+      "leech-life",
+      "supersonic",
+      "bite"
+     ],
+     "superEffectiveAvailable": 23,
+     "candidates": 54,
+     "picks": [
+      {
+       "mon": "elekid",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      },
+      {
+       "mon": "smoochum",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "bayleef",
+     "level": 16,
+     "moves": [
+      "growl",
+      "razor-leaf",
+      "reflect",
+      "poison-powder"
+     ],
+     "superEffectiveAvailable": 28,
+     "candidates": 55,
+     "picks": [
+      {
+       "mon": "magby",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "togetic",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "smoochum",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "MORTY#MORTY1",
+   "label": "Leader Morty",
+   "group": "Líderes de ginásio",
+   "stage": 3,
+   "starter": "chikorita",
+   "level": 25,
+   "mons": [
+    {
+     "opp": "gastly",
+     "level": 21,
+     "moves": [
+      "lick",
+      "spite",
+      "mean-look",
+      "curse"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 72,
+     "picks": [
+      {
+       "mon": "raticate",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "teddiursa",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 21,
+     "moves": [
+      "hypnosis",
+      "mimic",
+      "curse",
+      "night-shade"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 25,
+     "moves": [
+      "hypnosis",
+      "shadow-ball",
+      "mean-look",
+      "dream-eater"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 23,
+     "moves": [
+      "spite",
+      "mean-look",
+      "mimic",
+      "night-shade"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "MORTY#MORTY1",
+   "label": "Leader Morty",
+   "group": "Líderes de ginásio",
+   "stage": 3,
+   "starter": "cyndaquil",
+   "level": 25,
+   "mons": [
+    {
+     "opp": "gastly",
+     "level": 21,
+     "moves": [
+      "lick",
+      "spite",
+      "mean-look",
+      "curse"
+     ],
+     "superEffectiveAvailable": 35,
+     "candidates": 72,
+     "picks": [
+      {
+       "mon": "raticate",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "teddiursa",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 21,
+     "moves": [
+      "hypnosis",
+      "mimic",
+      "curse",
+      "night-shade"
+     ],
+     "superEffectiveAvailable": 35,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 25,
+     "moves": [
+      "hypnosis",
+      "shadow-ball",
+      "mean-look",
+      "dream-eater"
+     ],
+     "superEffectiveAvailable": 35,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 23,
+     "moves": [
+      "spite",
+      "mean-look",
+      "mimic",
+      "night-shade"
+     ],
+     "superEffectiveAvailable": 35,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "MORTY#MORTY1",
+   "label": "Leader Morty",
+   "group": "Líderes de ginásio",
+   "stage": 3,
+   "starter": "totodile",
+   "level": 25,
+   "mons": [
+    {
+     "opp": "gastly",
+     "level": 21,
+     "moves": [
+      "lick",
+      "spite",
+      "mean-look",
+      "curse"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 72,
+     "picks": [
+      {
+       "mon": "raticate",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "teddiursa",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 21,
+     "moves": [
+      "hypnosis",
+      "mimic",
+      "curse",
+      "night-shade"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 25,
+     "moves": [
+      "hypnosis",
+      "shadow-ball",
+      "mean-look",
+      "dream-eater"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 23,
+     "moves": [
+      "spite",
+      "mean-look",
+      "mimic",
+      "night-shade"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": null,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "RIVAL1#RIVAL1_3_CHIKORITA",
+   "label": "Rival",
+   "group": "Rival",
+   "stage": 3,
+   "starter": "totodile",
+   "level": 22,
+   "mons": [
+    {
+     "opp": "haunter",
+     "level": 20,
+     "moves": [
+      "lick",
+      "spite",
+      "mean-look",
+      "curse"
+     ],
+     "superEffectiveAvailable": 37,
+     "candidates": 73,
+     "picks": [
+      {
+       "mon": "raticate",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "teddiursa",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "dunsparce",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 18,
+     "moves": [
+      "tackle",
+      "thunder-shock",
+      "supersonic",
+      "sonic-boom"
+     ],
+     "superEffectiveAvailable": 55,
+     "candidates": 76,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "zubat",
+     "level": 20,
+     "moves": [
+      "leech-life",
+      "supersonic",
+      "bite",
+      "confuse-ray"
+     ],
+     "superEffectiveAvailable": 32,
+     "candidates": 76,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "elekid",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "bayleef",
+     "level": 22,
+     "moves": [
+      "growl",
+      "reflect",
+      "razor-leaf",
+      "poison-powder"
+     ],
+     "superEffectiveAvailable": 41,
+     "candidates": 77,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "magby",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CHUCK#CHUCK1",
+   "label": "Leader Chuck",
+   "group": "Líderes de ginásio",
+   "stage": 4,
+   "starter": "chikorita",
+   "level": 30,
+   "mons": [
+    {
+     "opp": "primeape",
+     "level": 27,
+     "moves": [
+      "leer",
+      "rage",
+      "karate-chop",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 17,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "crobat",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "poliwrath",
+     "level": 30,
+     "moves": [
+      "hypnosis",
+      "mind-reader",
+      "surf",
+      "dynamic-punch"
+     ],
+     "superEffectiveAvailable": 44,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CHUCK#CHUCK1",
+   "label": "Leader Chuck",
+   "group": "Líderes de ginásio",
+   "stage": 4,
+   "starter": "cyndaquil",
+   "level": 30,
+   "mons": [
+    {
+     "opp": "primeape",
+     "level": 27,
+     "moves": [
+      "leer",
+      "rage",
+      "karate-chop",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 17,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "crobat",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "poliwrath",
+     "level": 30,
+     "moves": [
+      "hypnosis",
+      "mind-reader",
+      "surf",
+      "dynamic-punch"
+     ],
+     "superEffectiveAvailable": 42,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CHUCK#CHUCK1",
+   "label": "Leader Chuck",
+   "group": "Líderes de ginásio",
+   "stage": 4,
+   "starter": "totodile",
+   "level": 30,
+   "mons": [
+    {
+     "opp": "primeape",
+     "level": 27,
+     "moves": [
+      "leer",
+      "rage",
+      "karate-chop",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 17,
+     "candidates": 89,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "crobat",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "poliwrath",
+     "level": 30,
+     "moves": [
+      "hypnosis",
+      "mind-reader",
+      "surf",
+      "dynamic-punch"
+     ],
+     "superEffectiveAvailable": 42,
+     "candidates": 89,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "JASMINE#JASMINE1",
+   "label": "Leader Jasmine",
+   "group": "Líderes de ginásio",
+   "stage": 5,
+   "starter": "chikorita",
+   "level": 35,
+   "mons": [
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 96,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 96,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "steelix",
+     "level": 35,
+     "moves": [
+      "screech",
+      "sunny-day",
+      "rock-throw",
+      "iron-tail"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 97,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "JASMINE#JASMINE1",
+   "label": "Leader Jasmine",
+   "group": "Líderes de ginásio",
+   "stage": 5,
+   "starter": "cyndaquil",
+   "level": 35,
+   "mons": [
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 95,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 95,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "steelix",
+     "level": 35,
+     "moves": [
+      "screech",
+      "sunny-day",
+      "rock-throw",
+      "iron-tail"
+     ],
+     "superEffectiveAvailable": 61,
+     "candidates": 96,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "JASMINE#JASMINE1",
+   "label": "Leader Jasmine",
+   "group": "Líderes de ginásio",
+   "stage": 5,
+   "starter": "totodile",
+   "level": 35,
+   "mons": [
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 96,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 96,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "steelix",
+     "level": 35,
+     "moves": [
+      "screech",
+      "sunny-day",
+      "rock-throw",
+      "iron-tail"
+     ],
+     "superEffectiveAvailable": 62,
+     "candidates": 97,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "PRYCE#PRYCE1",
+   "label": "Leader Pryce",
+   "group": "Líderes de ginásio",
+   "stage": 6,
+   "starter": "chikorita",
+   "level": 31,
+   "mons": [
+    {
+     "opp": "seel",
+     "level": 27,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 27,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dewgong",
+     "level": 29,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 35,
+     "candidates": 106,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "piloswine",
+     "level": 31,
+     "moves": [
+      "icy-wind",
+      "fury-attack",
+      "mist",
+      "blizzard"
+     ],
+     "superEffectiveAvailable": 64,
+     "candidates": 106,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "PRYCE#PRYCE1",
+   "label": "Leader Pryce",
+   "group": "Líderes de ginásio",
+   "stage": 6,
+   "starter": "cyndaquil",
+   "level": 31,
+   "mons": [
+    {
+     "opp": "seel",
+     "level": 27,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dewgong",
+     "level": 29,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 33,
+     "candidates": 106,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "piloswine",
+     "level": 31,
+     "moves": [
+      "icy-wind",
+      "fury-attack",
+      "mist",
+      "blizzard"
+     ],
+     "superEffectiveAvailable": 64,
+     "candidates": 106,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "PRYCE#PRYCE1",
+   "label": "Leader Pryce",
+   "group": "Líderes de ginásio",
+   "stage": 6,
+   "starter": "totodile",
+   "level": 31,
+   "mons": [
+    {
+     "opp": "seel",
+     "level": 27,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 25,
+     "candidates": 106,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dewgong",
+     "level": 29,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 36,
+     "candidates": 107,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "piloswine",
+     "level": 31,
+     "moves": [
+      "icy-wind",
+      "fury-attack",
+      "mist",
+      "blizzard"
+     ],
+     "superEffectiveAvailable": 65,
+     "candidates": 107,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CLAIR#CLAIR1",
+   "label": "Leader Clair",
+   "group": "Líderes de ginásio",
+   "stage": 7,
+   "starter": "chikorita",
+   "level": 40,
+   "mons": [
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "surf",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "thunderbolt",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "piloswine",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "abra",
+       "move": "ice-punch",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "ice-beam",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "kingdra",
+     "level": 40,
+     "moves": [
+      "smokescreen",
+      "surf",
+      "hyper-beam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 4,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "victreebel",
+       "move": "sludge-bomb",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CLAIR#CLAIR1",
+   "label": "Leader Clair",
+   "group": "Líderes de ginásio",
+   "stage": 7,
+   "starter": "cyndaquil",
+   "level": 40,
+   "mons": [
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "surf",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "thunderbolt",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "piloswine",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "abra",
+       "move": "ice-punch",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "ice-beam",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "kingdra",
+     "level": 40,
+     "moves": [
+      "smokescreen",
+      "surf",
+      "hyper-beam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 4,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "victreebel",
+       "move": "sludge-bomb",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CLAIR#CLAIR1",
+   "label": "Leader Clair",
+   "group": "Líderes de ginásio",
+   "stage": 7,
+   "starter": "totodile",
+   "level": 40,
+   "mons": [
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "surf",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 46,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "thunderbolt",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 46,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "piloswine",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "abra",
+       "move": "ice-punch",
+       "via": "machine",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dragonair",
+     "level": 37,
+     "moves": [
+      "thunder-wave",
+      "ice-beam",
+      "slam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 46,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "kingdra",
+     "level": 40,
+     "moves": [
+      "smokescreen",
+      "surf",
+      "hyper-beam",
+      "dragon-breath"
+     ],
+     "superEffectiveAvailable": 4,
+     "candidates": 129,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "victreebel",
+       "move": "sludge-bomb",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "RIVAL1#RIVAL1_4_CHIKORITA",
+   "label": "Rival",
+   "group": "Rival",
+   "stage": 7,
+   "starter": "totodile",
+   "level": 32,
+   "mons": [
+    {
+     "opp": "golbat",
+     "level": 30,
+     "moves": [
+      "leech-life",
+      "bite",
+      "confuse-ray",
+      "wing-attack"
+     ],
+     "superEffectiveAvailable": 63,
+     "candidates": 121,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "electrode",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 28,
+     "moves": [
+      "tackle",
+      "thunder-shock",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 73,
+     "candidates": 120,
+     "picks": [
+      {
+       "mon": "graveler",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 30,
+     "moves": [
+      "lick",
+      "mean-look",
+      "curse",
+      "shadow-ball"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 120,
+     "picks": [
+      {
+       "mon": "miltank",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "raticate",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "furret",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "sneasel",
+     "level": 32,
+     "moves": [
+      "leer",
+      "quick-attack",
+      "screech",
+      "feint-attack"
+     ],
+     "superEffectiveAvailable": 57,
+     "candidates": 121,
+     "picks": [
+      {
+       "mon": "poliwrath",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "machop",
+       "move": "vital-throw",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "meganium",
+     "level": 32,
+     "moves": [
+      "reflect",
+      "razor-leaf",
+      "poison-powder",
+      "body-slam"
+     ],
+     "superEffectiveAvailable": 85,
+     "candidates": 122,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "WILL#WILL1",
+   "label": "Elite Four Will",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "chikorita",
+   "level": 42,
+   "mons": [
+    {
+     "opp": "xatu",
+     "level": 40,
+     "moves": [
+      "quick-attack",
+      "future-sight",
+      "confuse-ray",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 74,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "jynx",
+     "level": 41,
+     "moves": [
+      "double-slap",
+      "lovely-kiss",
+      "ice-punch",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "slowbro",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "exeggutor",
+     "level": 41,
+     "moves": [
+      "reflect",
+      "leech-seed",
+      "egg-bomb",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 105,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "slowbro",
+     "level": 41,
+     "moves": [
+      "curse",
+      "amnesia",
+      "body-slam",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "sunflora",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "xatu",
+     "level": 42,
+     "moves": [
+      "quick-attack",
+      "future-sight",
+      "confuse-ray",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 74,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "WILL#WILL1",
+   "label": "Elite Four Will",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "cyndaquil",
+   "level": 42,
+   "mons": [
+    {
+     "opp": "xatu",
+     "level": 40,
+     "moves": [
+      "quick-attack",
+      "future-sight",
+      "confuse-ray",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 74,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "jynx",
+     "level": 41,
+     "moves": [
+      "double-slap",
+      "lovely-kiss",
+      "ice-punch",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "exeggutor",
+     "level": 41,
+     "moves": [
+      "reflect",
+      "leech-seed",
+      "egg-bomb",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 108,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "slowbro",
+     "level": 41,
+     "moves": [
+      "curse",
+      "amnesia",
+      "body-slam",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 58,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "sunflora",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "xatu",
+     "level": 42,
+     "moves": [
+      "quick-attack",
+      "future-sight",
+      "confuse-ray",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 74,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "WILL#WILL1",
+   "label": "Elite Four Will",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "totodile",
+   "level": 42,
+   "mons": [
+    {
+     "opp": "xatu",
+     "level": 40,
+     "moves": [
+      "quick-attack",
+      "future-sight",
+      "confuse-ray",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 77,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "jynx",
+     "level": 41,
+     "moves": [
+      "double-slap",
+      "lovely-kiss",
+      "ice-punch",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "slowbro",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "exeggutor",
+     "level": 41,
+     "moves": [
+      "reflect",
+      "leech-seed",
+      "egg-bomb",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 108,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "slowbro",
+     "level": 41,
+     "moves": [
+      "curse",
+      "amnesia",
+      "body-slam",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 60,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "sunflora",
+       "move": "petal-dance",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "xatu",
+     "level": 42,
+     "moves": [
+      "quick-attack",
+      "future-sight",
+      "confuse-ray",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 77,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "BRUNO#BRUNO1",
+   "label": "Elite Four Bruno",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "chikorita",
+   "level": 46,
+   "mons": [
+    {
+     "opp": "hitmontop",
+     "level": 42,
+     "moves": [
+      "pursuit",
+      "quick-attack",
+      "dig",
+      "detect"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "fearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "skarmory",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "hitmonlee",
+     "level": 42,
+     "moves": [
+      "swagger",
+      "double-kick",
+      "high-jump-kick",
+      "foresight"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      },
+      {
+       "mon": "crobat",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "hitmonchan",
+     "level": 42,
+     "moves": [
+      "thunder-punch",
+      "ice-punch",
+      "fire-punch",
+      "mach-punch"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "onix",
+     "level": 43,
+     "moves": [
+      "bind",
+      "earthquake",
+      "sandstorm",
+      "rock-slide"
+     ],
+     "superEffectiveAvailable": 98,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "machamp",
+     "level": 46,
+     "moves": [
+      "rock-slide",
+      "foresight",
+      "vital-throw",
+      "cross-chop"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "BRUNO#BRUNO1",
+   "label": "Elite Four Bruno",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "cyndaquil",
+   "level": 46,
+   "mons": [
+    {
+     "opp": "hitmontop",
+     "level": 42,
+     "moves": [
+      "pursuit",
+      "quick-attack",
+      "dig",
+      "detect"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "fearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "skarmory",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "hitmonlee",
+     "level": 42,
+     "moves": [
+      "swagger",
+      "double-kick",
+      "high-jump-kick",
+      "foresight"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      },
+      {
+       "mon": "crobat",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "hitmonchan",
+     "level": 42,
+     "moves": [
+      "thunder-punch",
+      "ice-punch",
+      "fire-punch",
+      "mach-punch"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "onix",
+     "level": 43,
+     "moves": [
+      "bind",
+      "earthquake",
+      "sandstorm",
+      "rock-slide"
+     ],
+     "superEffectiveAvailable": 98,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "machamp",
+     "level": 46,
+     "moves": [
+      "rock-slide",
+      "foresight",
+      "vital-throw",
+      "cross-chop"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "BRUNO#BRUNO1",
+   "label": "Elite Four Bruno",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "totodile",
+   "level": 46,
+   "mons": [
+    {
+     "opp": "hitmontop",
+     "level": 42,
+     "moves": [
+      "pursuit",
+      "quick-attack",
+      "dig",
+      "detect"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "fearow",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "skarmory",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "hitmonlee",
+     "level": 42,
+     "moves": [
+      "swagger",
+      "double-kick",
+      "high-jump-kick",
+      "foresight"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      },
+      {
+       "mon": "crobat",
+       "move": "fly",
+       "via": "machine",
+       "stageNeeded": 1,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "hitmonchan",
+     "level": 42,
+     "moves": [
+      "thunder-punch",
+      "ice-punch",
+      "fire-punch",
+      "mach-punch"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "onix",
+     "level": 43,
+     "moves": [
+      "bind",
+      "earthquake",
+      "sandstorm",
+      "rock-slide"
+     ],
+     "superEffectiveAvailable": 98,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "starmie",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "machamp",
+     "level": 46,
+     "moves": [
+      "rock-slide",
+      "foresight",
+      "vital-throw",
+      "cross-chop"
+     ],
+     "superEffectiveAvailable": 26,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "exeggutor",
+       "move": "confusion",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "KAREN#KAREN1",
+   "label": "Elite Four Karen",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "chikorita",
+   "level": 47,
+   "mons": [
+    {
+     "opp": "umbreon",
+     "level": 42,
+     "moves": [
+      "sand-attack",
+      "confuse-ray",
+      "feint-attack",
+      "mean-look"
+     ],
+     "superEffectiveAvailable": 8,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "poliwrath",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "machop",
+       "move": "cross-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "pinsir",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "vileplume",
+     "level": 42,
+     "moves": [
+      "stun-spore",
+      "acid",
+      "moonlight",
+      "petal-dance"
+     ],
+     "superEffectiveAvailable": 75,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 45,
+     "moves": [
+      "lick",
+      "spite",
+      "curse",
+      "destiny-bond"
+     ],
+     "superEffectiveAvailable": 61,
+     "candidates": 133,
+     "picks": [
+      {
+       "mon": "ursaring",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "miltank",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "murkrow",
+     "level": 44,
+     "moves": [
+      "quick-attack",
+      "whirlwind",
+      "pursuit",
+      "feint-attack"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "electrode",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "houndoom",
+     "level": 47,
+     "moves": [
+      "roar",
+      "pursuit",
+      "flamethrower",
+      "crunch"
+     ],
+     "superEffectiveAvailable": 48,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "poliwrath",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "KAREN#KAREN1",
+   "label": "Elite Four Karen",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "cyndaquil",
+   "level": 47,
+   "mons": [
+    {
+     "opp": "umbreon",
+     "level": 42,
+     "moves": [
+      "sand-attack",
+      "confuse-ray",
+      "feint-attack",
+      "mean-look"
+     ],
+     "superEffectiveAvailable": 8,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "poliwrath",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "machop",
+       "move": "cross-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "vileplume",
+     "level": 42,
+     "moves": [
+      "stun-spore",
+      "acid",
+      "moonlight",
+      "petal-dance"
+     ],
+     "superEffectiveAvailable": 78,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 45,
+     "moves": [
+      "lick",
+      "spite",
+      "curse",
+      "destiny-bond"
+     ],
+     "superEffectiveAvailable": 61,
+     "candidates": 133,
+     "picks": [
+      {
+       "mon": "ursaring",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "miltank",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "murkrow",
+     "level": 44,
+     "moves": [
+      "quick-attack",
+      "whirlwind",
+      "pursuit",
+      "feint-attack"
+     ],
+     "superEffectiveAvailable": 59,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "electrode",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "houndoom",
+     "level": 47,
+     "moves": [
+      "roar",
+      "pursuit",
+      "flamethrower",
+      "crunch"
+     ],
+     "superEffectiveAvailable": 51,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "poliwrath",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "KAREN#KAREN1",
+   "label": "Elite Four Karen",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "totodile",
+   "level": 47,
+   "mons": [
+    {
+     "opp": "umbreon",
+     "level": 42,
+     "moves": [
+      "sand-attack",
+      "confuse-ray",
+      "feint-attack",
+      "mean-look"
+     ],
+     "superEffectiveAvailable": 9,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "poliwrath",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "machop",
+       "move": "cross-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "pinsir",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "vileplume",
+     "level": 42,
+     "moves": [
+      "stun-spore",
+      "acid",
+      "moonlight",
+      "petal-dance"
+     ],
+     "superEffectiveAvailable": 78,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "espeon",
+       "move": "psychic",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 45,
+     "moves": [
+      "lick",
+      "spite",
+      "curse",
+      "destiny-bond"
+     ],
+     "superEffectiveAvailable": 64,
+     "candidates": 133,
+     "picks": [
+      {
+       "mon": "ursaring",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "miltank",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "murkrow",
+     "level": 44,
+     "moves": [
+      "quick-attack",
+      "whirlwind",
+      "pursuit",
+      "feint-attack"
+     ],
+     "superEffectiveAvailable": 62,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "electrode",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "houndoom",
+     "level": 47,
+     "moves": [
+      "roar",
+      "pursuit",
+      "flamethrower",
+      "crunch"
+     ],
+     "superEffectiveAvailable": 51,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "poliwrath",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "KOGA#KOGA1",
+   "label": "Elite Four Koga",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "chikorita",
+   "level": 44,
+   "mons": [
+    {
+     "opp": "ariados",
+     "level": 40,
+     "moves": [
+      "double-team",
+      "spider-web",
+      "baton-pass",
+      "giga-drain"
+     ],
+     "superEffectiveAvailable": 52,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "venomoth",
+     "level": 41,
+     "moves": [
+      "supersonic",
+      "gust",
+      "psychic",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 51,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "forretress",
+     "level": 43,
+     "moves": [
+      "protect",
+      "swift",
+      "explosion",
+      "spikes"
+     ],
+     "superEffectiveAvailable": 33,
+     "candidates": 133,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "slowbro",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "muk",
+     "level": 42,
+     "moves": [
+      "minimize",
+      "acid-armor",
+      "sludge-bomb",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 32,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": false
+      },
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "crobat",
+     "level": 44,
+     "moves": [
+      "double-team",
+      "quick-attack",
+      "wing-attack",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 69,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "KOGA#KOGA1",
+   "label": "Elite Four Koga",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "cyndaquil",
+   "level": 44,
+   "mons": [
+    {
+     "opp": "ariados",
+     "level": 40,
+     "moves": [
+      "double-team",
+      "spider-web",
+      "baton-pass",
+      "giga-drain"
+     ],
+     "superEffectiveAvailable": 55,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "venomoth",
+     "level": 41,
+     "moves": [
+      "supersonic",
+      "gust",
+      "psychic",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 54,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "forretress",
+     "level": 43,
+     "moves": [
+      "protect",
+      "swift",
+      "explosion",
+      "spikes"
+     ],
+     "superEffectiveAvailable": 36,
+     "candidates": 133,
+     "picks": [
+      {
+       "mon": "typhlosion",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 0,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "muk",
+     "level": 42,
+     "moves": [
+      "minimize",
+      "acid-armor",
+      "sludge-bomb",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 32,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": false
+      },
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "crobat",
+     "level": 44,
+     "moves": [
+      "double-team",
+      "quick-attack",
+      "wing-attack",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 69,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "KOGA#KOGA1",
+   "label": "Elite Four Koga",
+   "group": "Elite dos Quatro",
+   "stage": 8,
+   "starter": "totodile",
+   "level": 44,
+   "mons": [
+    {
+     "opp": "ariados",
+     "level": 40,
+     "moves": [
+      "double-team",
+      "spider-web",
+      "baton-pass",
+      "giga-drain"
+     ],
+     "superEffectiveAvailable": 52,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "venomoth",
+     "level": 41,
+     "moves": [
+      "supersonic",
+      "gust",
+      "psychic",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 51,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dodrio",
+       "move": "drill-peck",
+       "via": "level-up",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "forretress",
+     "level": 43,
+     "moves": [
+      "protect",
+      "swift",
+      "explosion",
+      "spikes"
+     ],
+     "superEffectiveAvailable": 33,
+     "candidates": 133,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "slowbro",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "muk",
+     "level": 42,
+     "moves": [
+      "minimize",
+      "acid-armor",
+      "sludge-bomb",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 35,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.25,
+       "faster": false
+      },
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "espeon",
+       "move": "psybeam",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "crobat",
+     "level": 44,
+     "moves": [
+      "double-team",
+      "quick-attack",
+      "wing-attack",
+      "toxic"
+     ],
+     "superEffectiveAvailable": 72,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "RIVAL2#RIVAL2_2_CHIKORITA",
+   "label": "Rival",
+   "group": "Rival",
+   "stage": 8,
+   "starter": "totodile",
+   "level": 50,
+   "mons": [
+    {
+     "opp": "sneasel",
+     "level": 45,
+     "moves": [
+      "quick-attack",
+      "screech",
+      "feint-attack",
+      "fury-cutter"
+     ],
+     "superEffectiveAvailable": 67,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "machop",
+       "move": "cross-chop",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "poliwrath",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "pinsir",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "crobat",
+     "level": 48,
+     "moves": [
+      "toxic",
+      "bite",
+      "confuse-ray",
+      "wing-attack"
+     ],
+     "superEffectiveAvailable": 72,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "electrode",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 45,
+     "moves": [
+      "thunder",
+      "sonic-boom",
+      "thunder-wave",
+      "swift"
+     ],
+     "superEffectiveAvailable": 84,
+     "candidates": 134,
+     "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 46,
+     "moves": [
+      "mean-look",
+      "curse",
+      "shadow-ball",
+      "confuse-ray"
+     ],
+     "superEffectiveAvailable": 64,
+     "candidates": 133,
+     "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "ursaring",
+       "move": "dig",
+       "via": "machine",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "alakazam",
+     "level": 46,
+     "moves": [
+      "recover",
+      "future-sight",
+      "psychic",
+      "reflect"
+     ],
+     "superEffectiveAvailable": 28,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "sneasel",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "umbreon",
+       "move": "feint-attack",
+       "via": "level-up",
+       "stageNeeded": 2,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 1,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "meganium",
+     "level": 50,
+     "moves": [
+      "giga-drain",
+      "body-slam",
+      "light-screen",
+      "safeguard"
+     ],
+     "superEffectiveAvailable": 97,
+     "candidates": 135,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "flareon",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "RIVAL2#RIVAL2_1_CHIKORITA",
+   "label": "Rival",
+   "group": "Rival",
+   "stage": 9,
+   "starter": "totodile",
+   "level": 45,
+   "mons": [
+    {
+     "opp": "sneasel",
+     "level": 41,
+     "moves": [
+      "quick-attack",
+      "screech",
+      "feint-attack",
+      "fury-cutter"
+     ],
+     "superEffectiveAvailable": 119,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "machoke",
+       "move": "cross-chop",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "poliwrath",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "golbat",
+     "level": 42,
+     "moves": [
+      "leech-life",
+      "bite",
+      "confuse-ray",
+      "wing-attack"
+     ],
+     "superEffectiveAvailable": 115,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "raichu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 41,
+     "moves": [
+      "thunder-shock",
+      "sonic-boom",
+      "thunder-wave",
+      "swift"
+     ],
+     "superEffectiveAvailable": 129,
+     "candidates": 192,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "level-up",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "gengar",
+     "level": 43,
+     "moves": [
+      "mean-look",
+      "curse",
+      "shadow-ball",
+      "confuse-ray"
+     ],
+     "superEffectiveAvailable": 119,
+     "candidates": 191,
+     "picks": [
+      {
+       "mon": "ursaring",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "snorlax",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "alakazam",
+     "level": 43,
+     "moves": [
+      "disable",
+      "recover",
+      "future-sight",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "houndoom",
+       "move": "bite",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sneasel",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "murkrow",
+       "move": "feint-attack",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "meganium",
+     "level": 45,
+     "moves": [
+      "razor-leaf",
+      "poison-powder",
+      "body-slam",
+      "light-screen"
+     ],
+     "superEffectiveAvailable": 130,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "houndoom",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "RIVAL1#RIVAL1_5_CHIKORITA",
+   "label": "Rival",
+   "group": "Rival",
+   "stage": 9,
+   "starter": "totodile",
+   "level": 38,
+   "mons": [
+    {
+     "opp": "sneasel",
+     "level": 34,
+     "moves": [
+      "quick-attack",
+      "screech",
+      "feint-attack",
+      "fury-cutter"
+     ],
+     "superEffectiveAvailable": 116,
+     "candidates": 191,
+     "picks": [
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "machoke",
+       "move": "vital-throw",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "poliwrath",
+       "move": "submission",
+       "via": "level-up",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "golbat",
+     "level": 36,
+     "moves": [
+      "leech-life",
+      "bite",
+      "confuse-ray",
+      "wing-attack"
+     ],
+     "superEffectiveAvailable": 114,
+     "candidates": 191,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "raichu",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "magneton",
+     "level": 35,
+     "moves": [
+      "thunder-shock",
+      "sonic-boom",
+      "thunder-wave",
+      "swift"
+     ],
+     "superEffectiveAvailable": 127,
+     "candidates": 190,
+     "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "rhyhorn",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "haunter",
+     "level": 35,
+     "moves": [
+      "mean-look",
+      "curse",
+      "shadow-ball",
+      "confuse-ray"
+     ],
+     "superEffectiveAvailable": 117,
+     "candidates": 188,
+     "picks": [
+      {
+       "mon": "ursaring",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 8,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "snorlax",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "tauros",
+       "move": "earthquake",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "kadabra",
+     "level": 35,
+     "moves": [
+      "disable",
+      "psybeam",
+      "recover",
+      "future-sight"
+     ],
+     "superEffectiveAvailable": 43,
+     "candidates": 191,
+     "picks": [
+      {
+       "mon": "houndoom",
+       "move": "bite",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      },
+      {
+       "mon": "sneasel",
+       "move": "shadow-ball",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 2,
+       "stab": false,
+       "incomingWorst": 0,
+       "faster": true
+      },
+      {
+       "mon": "murkrow",
+       "move": "feint-attack",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "meganium",
+     "level": 38,
+     "moves": [
+      "reflect",
+      "razor-leaf",
+      "poison-powder",
+      "body-slam"
+     ],
+     "superEffectiveAvailable": 130,
+     "candidates": 192,
+     "picks": [
+      {
+       "mon": "houndoom",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "arcanine",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 3,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CHAMPION#LANCE",
+   "label": "Champion Lance",
+   "group": "Campeão",
+   "stage": 9,
+   "starter": "chikorita",
+   "level": 50,
+   "mons": [
+    {
+     "opp": "gyarados",
+     "level": 44,
+     "moves": [
+      "flail",
+      "rain-dance",
+      "surf",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 88,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 47,
+     "moves": [
+      "thunder-wave",
+      "twister",
+      "thunder",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 99,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "kadabra",
+       "move": "ice-punch",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 47,
+     "moves": [
+      "thunder-wave",
+      "twister",
+      "blizzard",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 99,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "aerodactyl",
+     "level": 46,
+     "moves": [
+      "wing-attack",
+      "ancient-power",
+      "rock-slide",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 146,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "charizard",
+     "level": 46,
+     "moves": [
+      "flamethrower",
+      "wing-attack",
+      "slash",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 98,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "pupitar",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 50,
+     "moves": [
+      "fire-blast",
+      "safeguard",
+      "outrage",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 99,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dewgong",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CHAMPION#LANCE",
+   "label": "Champion Lance",
+   "group": "Campeão",
+   "stage": 9,
+   "starter": "cyndaquil",
+   "level": 50,
+   "mons": [
+    {
+     "opp": "gyarados",
+     "level": 44,
+     "moves": [
+      "flail",
+      "rain-dance",
+      "surf",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 89,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 47,
+     "moves": [
+      "thunder-wave",
+      "twister",
+      "thunder",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 99,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "kadabra",
+       "move": "ice-punch",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 47,
+     "moves": [
+      "thunder-wave",
+      "twister",
+      "blizzard",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 99,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "aerodactyl",
+     "level": 46,
+     "moves": [
+      "wing-attack",
+      "ancient-power",
+      "rock-slide",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 146,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "charizard",
+     "level": 46,
+     "moves": [
+      "flamethrower",
+      "wing-attack",
+      "slash",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 101,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "pupitar",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 50,
+     "moves": [
+      "fire-blast",
+      "safeguard",
+      "outrage",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 99,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dewgong",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "crystal",
+   "key": "CHAMPION#LANCE",
+   "label": "Champion Lance",
+   "group": "Campeão",
+   "stage": 9,
+   "starter": "totodile",
+   "level": 50,
+   "mons": [
+    {
+     "opp": "gyarados",
+     "level": 44,
+     "moves": [
+      "flail",
+      "rain-dance",
+      "surf",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 88,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 47,
+     "moves": [
+      "thunder-wave",
+      "twister",
+      "thunder",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 102,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "kadabra",
+       "move": "ice-punch",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": false,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 2,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 47,
+     "moves": [
+      "thunder-wave",
+      "twister",
+      "blizzard",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 102,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 7,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": true
+      },
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "aerodactyl",
+     "level": 46,
+     "moves": [
+      "wing-attack",
+      "ancient-power",
+      "rock-slide",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 146,
+     "candidates": 193,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "via": "machine",
+       "stageNeeded": 9,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "vaporeon",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "via": "machine",
+       "stageNeeded": 4,
+       "eff": 2,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "charizard",
+     "level": 46,
+     "moves": [
+      "flamethrower",
+      "wing-attack",
+      "slash",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 101,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": true
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 3,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      },
+      {
+       "mon": "pupitar",
+       "move": "rock-slide",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 0.5,
+       "faster": false
+      }
+     ]
+    },
+    {
+     "opp": "dragonite",
+     "level": 50,
+     "moves": [
+      "fire-blast",
+      "safeguard",
+      "outrage",
+      "hyper-beam"
+     ],
+     "superEffectiveAvailable": 102,
+     "candidates": 194,
+     "picks": [
+      {
+       "mon": "lapras",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 9,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "cloyster",
+       "move": "blizzard",
+       "via": "machine",
+       "stageNeeded": 6,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      },
+      {
+       "mon": "dewgong",
+       "move": "ice-beam",
+       "via": "level-up",
+       "stageNeeded": 4,
+       "eff": 4,
+       "stab": true,
+       "incomingWorst": 1,
+       "faster": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

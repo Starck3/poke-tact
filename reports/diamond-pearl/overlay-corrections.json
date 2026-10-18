@@ -1,0 +1,92 @@
+[
+ {
+  "move": "detect",
+  "field": "priority",
+  "from": 4,
+  "to": 3
+ },
+ {
+  "move": "endure",
+  "field": "priority",
+  "from": 4,
+  "to": 3
+ },
+ {
+  "move": "extreme-speed",
+  "field": "priority",
+  "from": 2,
+  "to": 1
+ },
+ {
+  "move": "fake-out",
+  "field": "priority",
+  "from": 3,
+  "to": 1
+ },
+ {
+  "move": "follow-me",
+  "field": "priority",
+  "from": 2,
+  "to": 3
+ },
+ {
+  "move": "luster-purge",
+  "field": "power",
+  "from": 95,
+  "to": 70
+ },
+ {
+  "move": "milk-drink",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "mind-reader",
+  "field": "pp",
+  "from": 40,
+  "to": 5
+ },
+ {
+  "move": "protect",
+  "field": "priority",
+  "from": 4,
+  "to": 3
+ },
+ {
+  "move": "recover",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "rest",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "roost",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "slack-off",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "soft-boiled",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "teleport",
+  "field": "priority",
+  "from": -6,
+  "to": 0
+ }
+]

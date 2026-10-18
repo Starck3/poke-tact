@@ -1,0 +1,183 @@
+{
+ "typos": [
+  "Ludiculo → ludicolo"
+ ],
+ "unmatched": [],
+ "results": [
+  {
+   "title": "Roxanne usa:",
+   "detonado": [
+    "Geodude 12",
+    "Geodude 12",
+    "Nosepass 15"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ROXANNE_1"
+  },
+  {
+   "title": "Brawly usa:",
+   "detonado": [
+    "Machop 16",
+    "Meditite 16",
+    "Makuhita 19"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_BRAWLY_1"
+  },
+  {
+   "title": "Wattson usa:",
+   "detonado": [
+    "Voltorb 20",
+    "Electrike 20",
+    "Magneton 22",
+    "Manectric 24"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_WATTSON_1"
+  },
+  {
+   "title": "Flannery usa:",
+   "detonado": [
+    "Numel 24",
+    "Slugma 24",
+    "Camerupt 26",
+    "Torkoal 29"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_FLANNERY_1"
+  },
+  {
+   "title": "Norman usa:",
+   "detonado": [
+    "Spinda 27",
+    "Vigoroth 27",
+    "Linoone 29",
+    "Slaking 31"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_NORMAN_1"
+  },
+  {
+   "title": "Winona usa:",
+   "detonado": [
+    "Swablu 29",
+    "Tropius 29",
+    "Pelipper 30",
+    "Skarmory 31",
+    "Altaria 33"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_WINONA_1"
+  },
+  {
+   "title": "Tate e Liza usam:",
+   "detonado": [
+    "Claydol 41",
+    "Xatu 41",
+    "Lunatone 42",
+    "Solrock 42"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_TATE_AND_LIZA_1"
+  },
+  {
+   "title": "Juan usa:",
+   "detonado": [
+    "Luvdisc 41",
+    "Whiscash 41",
+    "Sealeo 43",
+    "Crawdaunt 43",
+    "Kingdra 46"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_JUAN_1"
+  },
+  {
+   "title": "Wally usa:",
+   "detonado": [
+    "Altaria 44",
+    "Delcatty 43",
+    "Magneton 41",
+    "Roselia 44",
+    "Gardevoir 45"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_WALLY_VR_1"
+  },
+  {
+   "title": "O Sidney usa:",
+   "detonado": [
+    "Mightyena 46",
+    "Absol 49",
+    "Shiftry 48",
+    "Cacturne 46",
+    "Crawdaunt 48"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_SIDNEY"
+  },
+  {
+   "title": "A Phoebe usa:",
+   "detonado": [
+    "Dusclops 48",
+    "Banette 49",
+    "Sableye 50",
+    "Banette 49",
+    "Dusclops 51"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_PHOEBE"
+  },
+  {
+   "title": "A Glacia usa:",
+   "detonado": [
+    "Glalie 50",
+    "Sealeo 50",
+    "Sealeo 52",
+    "Glalie 52",
+    "Walrein 53"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_GLACIA"
+  },
+  {
+   "title": "O Drake usa:",
+   "detonado": [
+    "Shelgon 52",
+    "Flygon 53",
+    "Altaria 54",
+    "Salamence 55",
+    "Kingdra 53"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_DRAKE"
+  },
+  {
+   "title": "E te desejo boa sorte contra Milotic!",
+   "detonado": [
+    "Wailord 57",
+    "Ludiculo 56",
+    "Tentacruel 55",
+    "Whiscash 56",
+    "Gyarados 56",
+    "Milotic 58"
+   ],
+   "status": "MATCH",
+   "matchedBy": "time",
+   "decomp": "TRAINER_WALLACE"
+  }
+ ]
+}

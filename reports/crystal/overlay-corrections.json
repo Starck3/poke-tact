@@ -1,0 +1,26 @@
+[
+ {
+  "move": "milk-drink",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "mind-reader",
+  "field": "pp",
+  "from": 40,
+  "to": 5
+ },
+ {
+  "move": "rest",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "soft-boiled",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ }
+]

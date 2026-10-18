@@ -1,0 +1,21 @@
+{
+  "name": "poke-tact",
+  "version": "0.1.0",
+  "description": "Sugestões de Pokémon para vencer cada luta, com os dados e as regras do jogo que você está jogando.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Starck3/poke-tact.git"
+  },
+  "scripts": {
+    "build:data": "node scripts/build-game.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node --test \"test/*.test.mjs\"",
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "fetch:decomp": "node scripts/fetch-decomp.mjs"
+  }
+}

@@ -1,0 +1,226 @@
+{
+ "typos": [
+  "Victreebell → victreebel"
+ ],
+ "unmatched": [],
+ "results": [
+  {
+   "title": "Líder Brock – Tipo Pedra",
+   "detonado": [
+    "Geodude 12",
+    "Onix 14"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_BROCK"
+  },
+  {
+   "title": "Líder Misty – Tipo Água",
+   "detonado": [
+    "Staryu 18",
+    "Starmie 21"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_MISTY"
+  },
+  {
+   "title": "Líder Lt. Surge – Tipo Elétrico",
+   "detonado": [
+    "Voltorb 21",
+    "Pikachu 18",
+    "Raichu 24"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_LT_SURGE"
+  },
+  {
+   "title": "Líder Érika – Tipo Planta",
+   "detonado": [
+    "Victreebell 29",
+    "Vileplume 29",
+    "Tangela 24"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_ERIKA"
+  },
+  {
+   "title": "Líder da Equipe Rocket Giovanni",
+   "detonado": [
+    "Onix 25",
+    "Rhyhorn 24",
+    "Kangaskhan 29"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_BOSS_GIOVANNI"
+  },
+  {
+   "title": "Líder da Equipe Rocket Giovanni",
+   "detonado": [
+    "Nidorino 37",
+    "Rhyhorn 37",
+    "Kangaskhan 35",
+    "Nidoqueen 41"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_BOSS_GIOVANNI_2"
+  },
+  {
+   "title": "Líder Sabrina – Tipo Psíquico",
+   "detonado": [
+    "Kadabra 38",
+    "Mr. Mime 37",
+    "Venomoth 38",
+    "Alakazam 43"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_SABRINA"
+  },
+  {
+   "title": "Líder Koga – Tipo Veneno",
+   "detonado": [
+    "Koffing 37",
+    "Muk 39",
+    "Koffing 37",
+    "Weezing 43"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_KOGA"
+  },
+  {
+   "title": "Líder Blaine – Tipo Fogo",
+   "detonado": [
+    "Growlithe 42",
+    "Ponyta 40",
+    "Rapidash 42",
+    "Arcanine 47"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_BLAINE"
+  },
+  {
+   "title": "Líder Giovanni – Tipo Terra",
+   "detonado": [
+    "Rhyhorn 45",
+    "Dugtrio 42",
+    "Nidoking 45",
+    "Nidoqueen 44",
+    "Rhyhorn 50"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_LEADER_GIOVANNI"
+  },
+  {
+   "title": "Elite 4 Lorelei – Tipo Água/Gelo",
+   "detonado": [
+    "Dewgong 52",
+    "Cloyster 51",
+    "Slowbro 52",
+    "Jynx 54",
+    "Lapras 54"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_LORELEI"
+  },
+  {
+   "title": "Elite 4 Bruno – Tipo Lutador/Pedra",
+   "detonado": [
+    "Onix 51",
+    "Hitmonchan 53",
+    "Hitmonlee 53",
+    "Onix 54",
+    "Machamp 56"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_BRUNO"
+  },
+  {
+   "title": "Elite 4 Agatha – Tipo Fantasma/Veneno",
+   "detonado": [
+    "Gengar 54",
+    "Golbat 54",
+    "Haunter 53",
+    "Arbok 56",
+    "Gengar 58"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_AGATHA"
+  },
+  {
+   "title": "Elite 4 Lance – Tipo Dragão/Voador",
+   "detonado": [
+    "Gyarados 56",
+    "Dragonair 54",
+    "Dragonair 54",
+    "Aerodactyl 58",
+    "Dragonite 60"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_LANCE"
+  },
+  {
+   "title": "Elite 4 Lorelei – Tipo Água/Gelo",
+   "detonado": [
+    "Dewgong 64",
+    "Cloyster 63",
+    "Piloswine 63",
+    "Jynx 66",
+    "Lapras 66"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_LORELEI_2"
+  },
+  {
+   "title": "Elite 4 Bruno – Tipo Lutador/Terra",
+   "detonado": [
+    "Steelix 65",
+    "Hitmonchan 65",
+    "Hitmonlee 65",
+    "Steelix 66",
+    "Machamp 68"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_BRUNO_2"
+  },
+  {
+   "title": "Elite 4 Agatha – Tipo Fantasma/Veneno",
+   "detonado": [
+    "Gengar 66",
+    "Crobat 66",
+    "Gengar 70",
+    "Misdreavus 65",
+    "Arbok 68"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_AGATHA_2"
+  },
+  {
+   "title": "Elite 4 Lance – Tipo Dragão/Voador",
+   "detonado": [
+    "Gyarados 68",
+    "Kingdra 66",
+    "Dragonite 66",
+    "Aerodactyl 70",
+    "Dragonite 72"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ELITE_FOUR_LANCE_2"
+  }
+ ]
+}

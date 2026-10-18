@@ -1,0 +1,212 @@
+{
+ "typos": [],
+ "unmatched": [],
+ "results": [
+  {
+   "title": "Roxanne usa:",
+   "detonado": [
+    "Geodude 14",
+    "Nosepass 15"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ROXANNE"
+  },
+  {
+   "title": "Brawly usa:",
+   "detonado": [
+    "Machop 17",
+    "Makuhita 18"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_BRAWLY"
+  },
+  {
+   "title": "Wattson usa:",
+   "detonado": [
+    "Magnemite 22",
+    "Voltorb 22",
+    "Magneton 23"
+   ],
+   "status": "DIVERGENCIA_CONHECIDA",
+   "matchedBy": "nome",
+   "why": "detonado: Voltorb nv 22; jogo (src/data/trainer_parties.h): Voltorb nv 20",
+   "decomp": [
+    {
+     "key": "TRAINER_WATTSON",
+     "party": [
+      "magnemite 22",
+      "voltorb 20",
+      "magneton 23"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "O líder (Archie/Maxie) usará:",
+   "detonado": [
+    "Mightyena 24",
+    "Golbat 24"
+   ],
+   "status": "MATCH_PARCIAL",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ARCHIE_3"
+  },
+  {
+   "title": "Flannery usa:",
+   "detonado": [
+    "Slugma 26",
+    "Slugma 26",
+    "Torkoal 28"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_FLANNERY"
+  },
+  {
+   "title": "Norman usa:",
+   "detonado": [
+    "Slaking 28",
+    "Vigoroth 30",
+    "Slaking 31"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_NORMAN"
+  },
+  {
+   "title": "Winona usa:",
+   "detonado": [
+    "Swellow 31",
+    "Pelipper 30",
+    "Skarmory 32",
+    "Altaria 33"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_WINONA"
+  },
+  {
+   "title": "Tate e Liza usam:",
+   "detonado": [
+    "Lunatone 40",
+    "Solrock 40"
+   ],
+   "status": "DIVERGENCIA_CONHECIDA",
+   "matchedBy": "nome",
+   "why": "detonado: Lunatone/Solrock nv 40; jogo: nv 42",
+   "decomp": [
+    {
+     "key": "TRAINER_TATE_AND_LIZA",
+     "party": [
+      "lunatone 42",
+      "solrock 42"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "O líder (Archie/Maxie) usará:",
+   "detonado": [
+    "Mightyena 41",
+    "Crobat 41"
+   ],
+   "status": "MATCH_PARCIAL",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_ARCHIE_2"
+  },
+  {
+   "title": "Wallace usa:",
+   "detonado": [
+    "Luvdisc 40",
+    "Whiscash 42",
+    "Sealeo 40",
+    "Seaking 42",
+    "Milotic 43"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_WALLACE"
+  },
+  {
+   "title": "Wally usa:",
+   "detonado": [
+    "Altaria 44",
+    "Delcatty 43",
+    "Magneton 41",
+    "Roselia 44",
+    "Gardevoir 45"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_WALLY_1"
+  },
+  {
+   "title": "O Sidney usa:",
+   "detonado": [
+    "Mightyena 46",
+    "Cacturne 46",
+    "Shiftry 48",
+    "Sharpedo 48",
+    "Absol 49"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_SIDNEY"
+  },
+  {
+   "title": "A Phoebe usa:",
+   "detonado": [
+    "Dusclops 48",
+    "Banette 49",
+    "Banette 49",
+    "Sableye 50",
+    "Dusclops 51"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_PHOEBE"
+  },
+  {
+   "title": "A Glacia usa:",
+   "detonado": [
+    "Glalie 50",
+    "Sealeo 50",
+    "Sealeo 52",
+    "Glalie 52",
+    "Walrein 53"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_GLACIA"
+  },
+  {
+   "title": "O Drake usa:",
+   "detonado": [
+    "Shelgon 52",
+    "Flygon 53",
+    "Flygon 53",
+    "Altaria 54",
+    "Salamence 55"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_DRAKE"
+  },
+  {
+   "title": "Ele é o Steven, e ele usa:",
+   "detonado": [
+    "Skarmory 57",
+    "Aggron 56",
+    "Claydol 55",
+    "Cradily 56",
+    "Armaldo 56",
+    "Metagross 58"
+   ],
+   "status": "MATCH",
+   "matchedBy": "nome",
+   "decomp": "TRAINER_STEVEN"
+  }
+ ]
+}

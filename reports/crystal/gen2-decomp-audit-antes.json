@@ -1,0 +1,53 @@
+{
+ "learnset": [],
+ "machine": [],
+ "tutor": [],
+ "stats": [],
+ "types": [],
+ "moves": [
+  {
+   "move": "curse",
+   "field": "type",
+   "pokeapi": "unknown",
+   "decomp": "CURSE_TYPE"
+  },
+  {
+   "move": "dragon-rage",
+   "field": "power",
+   "pokeapi": null,
+   "decomp": 40
+  },
+  {
+   "move": "milk-drink",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "mind-reader",
+   "field": "pp",
+   "pokeapi": 40,
+   "decomp": 5
+  },
+  {
+   "move": "rest",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "soft-boiled",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "sonic-boom",
+   "field": "power",
+   "pokeapi": null,
+   "decomp": 20
+  }
+ ],
+ "chart": [],
+ "missing": []
+}

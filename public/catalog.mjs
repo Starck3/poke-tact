@@ -1,0 +1,48 @@
+// Lógica do catálogo de jogos (sem DOM): filtros por plataforma/geração e agrupamento. Usada pela tela inicial e pelos testes.
+
+/** Plataformas na ordem em que aparecem no catálogo (ordem cronológica dos jogos). */
+export function platformsOf(games) {
+  return [...new Set(games.flatMap((g) => g.platforms))];
+}
+
+export function generationsOf(games) {
+  return [...new Set(games.map((g) => g.generation))].sort((a, b) => a - b);
+}
+
+/** filtros: { platform?: string|null, generation?: number|null } — os dois combinam (E lógico). */
+export function filterGames(games, { platform = null, generation = null } = {}) {
+  return games.filter((g) => (!platform || g.platforms.includes(platform)) && (!generation || g.generation === generation));
+}
+
+/** [[geração, jogos[]], ...] em ordem crescente de geração e, dentro dela, por ano. */
+export function groupByGeneration(games) {
+  const groups = new Map();
+  for (const g of [...games].sort((a, b) => a.generation - b.generation || a.year - b.year)) {
+    if (!groups.has(g.generation)) groups.set(g.generation, []);
+    groups.get(g.generation).push(g);
+  }
+  return [...groups];
+}
+
+const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+export const roman = (n) => ROMAN[n] ?? String(n);
+
+/**
+ * Rotas da página (hash):  #/?plataforma=Game%20Boy%20Advance&geracao=3   → tela inicial filtrada
+ *                          #/jogo/emerald?treinador=TRAINER_WALLACE&i=5   → jogo, com treinador e Pokémon do time
+ *                          #/jogo/firered-leafgreen?versao=leafgreen&pokemon=gyarados&nivel=40
+ */
+export function parseRoute(hash) {
+  const [path, query = ''] = String(hash || '').replace(/^#/, '').split('?');
+  const params = Object.fromEntries(new URLSearchParams(query));
+  const m = path.match(/^\/jogo\/([a-z0-9-]+)$/);
+  return m ? { view: 'game', gameId: m[1], params } : { view: 'home', params };
+}
+
+export function homeHash({ platform = null, generation = null } = {}) {
+  const q = new URLSearchParams();
+  if (platform) q.set('plataforma', platform);
+  if (generation) q.set('geracao', String(generation));
+  const s = q.toString();
+  return '#/' + (s ? '?' + s : '');
+}

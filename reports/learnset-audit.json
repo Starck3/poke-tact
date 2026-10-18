@@ -1,0 +1,3316 @@
+{
+ "source": "https://raw.githubusercontent.com/smogon/pokemon-showdown/master/data/mods/gen3frlg/learnsets.ts",
+ "checked": 214,
+ "identical": 42,
+ "missingInShowdown": [
+  "mew",
+  "chikorita",
+  "bayleef",
+  "meganium",
+  "cyndaquil",
+  "quilava",
+  "typhlosion",
+  "totodile",
+  "croconaw",
+  "feraligatr",
+  "hoothoot",
+  "noctowl",
+  "chinchou",
+  "lanturn",
+  "mareep",
+  "flaaffy",
+  "ampharos",
+  "sudowoodo",
+  "aipom",
+  "sunkern",
+  "sunflora",
+  "espeon",
+  "umbreon",
+  "girafarig",
+  "pineco",
+  "forretress",
+  "gligar",
+  "snubbull",
+  "granbull",
+  "shuckle",
+  "teddiursa",
+  "ursaring",
+  "corsola",
+  "houndour",
+  "houndoom",
+  "stantler",
+  "smeargle",
+  "miltank",
+  "celebi",
+  "treecko",
+  "grovyle",
+  "sceptile",
+  "torchic",
+  "combusken",
+  "blaziken",
+  "mudkip",
+  "marshtomp",
+  "swampert",
+  "poochyena",
+  "mightyena",
+  "zigzagoon",
+  "linoone",
+  "wurmple",
+  "silcoon",
+  "beautifly",
+  "cascoon",
+  "dustox",
+  "lotad",
+  "lombre",
+  "ludicolo",
+  "seedot",
+  "nuzleaf",
+  "shiftry",
+  "taillow",
+  "swellow",
+  "wingull",
+  "pelipper",
+  "ralts",
+  "kirlia",
+  "gardevoir",
+  "surskit",
+  "masquerain",
+  "shroomish",
+  "breloom",
+  "slakoth",
+  "vigoroth",
+  "slaking",
+  "nincada",
+  "ninjask",
+  "shedinja",
+  "whismur",
+  "loudred",
+  "exploud",
+  "makuhita",
+  "hariyama",
+  "nosepass",
+  "skitty",
+  "delcatty",
+  "sableye",
+  "mawile",
+  "aron",
+  "lairon",
+  "aggron",
+  "meditite",
+  "medicham",
+  "electrike",
+  "manectric",
+  "plusle",
+  "minun",
+  "volbeat",
+  "illumise",
+  "roselia",
+  "gulpin",
+  "swalot",
+  "carvanha",
+  "sharpedo",
+  "wailmer",
+  "wailord",
+  "numel",
+  "camerupt",
+  "torkoal",
+  "spoink",
+  "grumpig",
+  "spinda",
+  "trapinch",
+  "vibrava",
+  "flygon",
+  "cacnea",
+  "cacturne",
+  "swablu",
+  "altaria",
+  "zangoose",
+  "seviper",
+  "lunatone",
+  "solrock",
+  "barboach",
+  "whiscash",
+  "corphish",
+  "crawdaunt",
+  "baltoy",
+  "claydol",
+  "lileep",
+  "cradily",
+  "anorith",
+  "armaldo",
+  "feebas",
+  "milotic",
+  "castform",
+  "kecleon",
+  "shuppet",
+  "banette",
+  "duskull",
+  "dusclops",
+  "tropius",
+  "chimecho",
+  "absol",
+  "snorunt",
+  "glalie",
+  "spheal",
+  "sealeo",
+  "walrein",
+  "clamperl",
+  "huntail",
+  "gorebyss",
+  "relicanth",
+  "luvdisc",
+  "bagon",
+  "shelgon",
+  "salamence",
+  "beldum",
+  "metang",
+  "metagross",
+  "regirock",
+  "regice",
+  "registeel",
+  "latias",
+  "latios",
+  "kyogre",
+  "groudon",
+  "rayquaza",
+  "jirachi"
+ ],
+ "divergences": [
+  {
+   "pokemon": "bulbasaur",
+   "id": 1,
+   "method": "egg",
+   "value": "charm",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "bulbasaur",
+   "id": 1,
+   "method": "egg",
+   "value": "grasswhistle",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "ivysaur",
+   "id": 2,
+   "method": "level-up",
+   "value": "growl@4",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "ivysaur",
+   "id": 2,
+   "method": "level-up",
+   "value": "leechseed@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "venusaur",
+   "id": 3,
+   "method": "level-up",
+   "value": "vinewhip@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "venusaur",
+   "id": 3,
+   "method": "level-up",
+   "value": "growl@4",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "venusaur",
+   "id": 3,
+   "method": "level-up",
+   "value": "leechseed@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charmander",
+   "id": 4,
+   "method": "level-up",
+   "value": "smokescreen@19",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charmander",
+   "id": 4,
+   "method": "level-up",
+   "value": "smokescreen@13",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "charmander",
+   "id": 4,
+   "method": "egg",
+   "value": "ancientpower",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charmeleon",
+   "id": 5,
+   "method": "level-up",
+   "value": "ember@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charmeleon",
+   "id": 5,
+   "method": "level-up",
+   "value": "smokescreen@20",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charmeleon",
+   "id": 5,
+   "method": "level-up",
+   "value": "smokescreen@13",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "charizard",
+   "id": 6,
+   "method": "level-up",
+   "value": "ember@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charizard",
+   "id": 6,
+   "method": "level-up",
+   "value": "smokescreen@20",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charizard",
+   "id": 6,
+   "method": "level-up",
+   "value": "metalclaw@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "charizard",
+   "id": 6,
+   "method": "level-up",
+   "value": "smokescreen@1",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "squirtle",
+   "id": 7,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "squirtle",
+   "id": 7,
+   "method": "egg",
+   "value": "mirrorcoat",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "squirtle",
+   "id": 7,
+   "method": "egg",
+   "value": "mudsport",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "wartortle",
+   "id": 8,
+   "method": "level-up",
+   "value": "tailwhip@4",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "wartortle",
+   "id": 8,
+   "method": "level-up",
+   "value": "bubble@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "blastoise",
+   "id": 9,
+   "method": "level-up",
+   "value": "tailwhip@4",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "blastoise",
+   "id": 9,
+   "method": "level-up",
+   "value": "withdraw@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "blastoise",
+   "id": 9,
+   "method": "level-up",
+   "value": "bubble@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "metapod",
+   "id": 11,
+   "method": "level-up",
+   "value": "harden@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "butterfree",
+   "id": 12,
+   "method": "level-up",
+   "value": "confusion@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kakuna",
+   "id": 14,
+   "method": "level-up",
+   "value": "harden@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "beedrill",
+   "id": 15,
+   "method": "level-up",
+   "value": "furyattack@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pidgey",
+   "id": 16,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pidgeotto",
+   "id": 17,
+   "method": "level-up",
+   "value": "gust@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pidgeotto",
+   "id": 17,
+   "method": "level-up",
+   "value": "sandattack@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pidgeot",
+   "id": 18,
+   "method": "level-up",
+   "value": "gust@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pidgeot",
+   "id": 18,
+   "method": "level-up",
+   "value": "sandattack@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pidgeot",
+   "id": 18,
+   "method": "level-up",
+   "value": "quickattack@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "rattata",
+   "id": 19,
+   "method": "egg",
+   "value": "reversal",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "rattata",
+   "id": 19,
+   "method": "egg",
+   "value": "uproar",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "raticate",
+   "id": 20,
+   "method": "level-up",
+   "value": "quickattack@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "spearow",
+   "id": 21,
+   "method": "egg",
+   "value": "skyattack",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "fearow",
+   "id": 22,
+   "method": "level-up",
+   "value": "furyattack@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "fearow",
+   "id": 22,
+   "method": "level-up",
+   "value": "leer@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "ekans",
+   "id": 23,
+   "method": "egg",
+   "value": "poisonfang",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "arbok",
+   "id": 24,
+   "method": "level-up",
+   "value": "poisonsting@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "arbok",
+   "id": 24,
+   "method": "level-up",
+   "value": "bite@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sandshrew",
+   "id": 27,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "sandshrew",
+   "id": 27,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "sandshrew",
+   "id": 27,
+   "method": "egg",
+   "value": "crushclaw",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sandslash",
+   "id": 28,
+   "method": "level-up",
+   "value": "sandattack@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sandslash",
+   "id": 28,
+   "method": "level-up",
+   "value": "defensecurl@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sandslash",
+   "id": 28,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "sandslash",
+   "id": 28,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "clefairy",
+   "id": 35,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "vulpix",
+   "id": 37,
+   "method": "egg",
+   "value": "heatwave",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "vulpix",
+   "id": 37,
+   "method": "egg",
+   "value": "howl",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "jigglypuff",
+   "id": 39,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "jigglypuff",
+   "id": 39,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "wigglytuff",
+   "id": 40,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "zubat",
+   "id": 41,
+   "method": "level-up",
+   "value": "supersonic@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "zubat",
+   "id": 41,
+   "method": "level-up",
+   "value": "supersonic@6",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "golbat",
+   "id": 42,
+   "method": "level-up",
+   "value": "supersonic@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "golbat",
+   "id": 42,
+   "method": "level-up",
+   "value": "astonish@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "oddish",
+   "id": 43,
+   "method": "egg",
+   "value": "flail",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "oddish",
+   "id": 43,
+   "method": "egg",
+   "value": "charm",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "gloom",
+   "id": 44,
+   "method": "level-up",
+   "value": "poisonpowder@14",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "gloom",
+   "id": 44,
+   "method": "level-up",
+   "value": "sweetscent@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "paras",
+   "id": 46,
+   "method": "egg",
+   "value": "flail",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "parasect",
+   "id": 47,
+   "method": "level-up",
+   "value": "poisonpowder@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "parasect",
+   "id": 47,
+   "method": "level-up",
+   "value": "stunspore@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "venonat",
+   "id": 48,
+   "method": "egg",
+   "value": "signalbeam",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "venomoth",
+   "id": 49,
+   "method": "level-up",
+   "value": "supersonic@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "diglett",
+   "id": 50,
+   "method": "tutor",
+   "value": "mudslap",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "diglett",
+   "id": 50,
+   "method": "egg",
+   "value": "uproar",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dugtrio",
+   "id": 51,
+   "method": "level-up",
+   "value": "growl@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dugtrio",
+   "id": 51,
+   "method": "tutor",
+   "value": "mudslap",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "meowth",
+   "id": 52,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "meowth",
+   "id": 52,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "meowth",
+   "id": 52,
+   "method": "egg",
+   "value": "assist",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "persian",
+   "id": 53,
+   "method": "level-up",
+   "value": "bite@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "persian",
+   "id": 53,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "psyduck",
+   "id": 54,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "psyduck",
+   "id": 54,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "psyduck",
+   "id": 54,
+   "method": "egg",
+   "value": "futuresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "golduck",
+   "id": 55,
+   "method": "level-up",
+   "value": "tailwhip@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "golduck",
+   "id": 55,
+   "method": "level-up",
+   "value": "disable@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "golduck",
+   "id": 55,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mankey",
+   "id": 56,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mankey",
+   "id": 56,
+   "method": "egg",
+   "value": "meditate",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mankey",
+   "id": 56,
+   "method": "egg",
+   "value": "reversal",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mankey",
+   "id": 56,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mankey",
+   "id": 56,
+   "method": "egg",
+   "value": "smellingsalts",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mankey",
+   "id": 56,
+   "method": "egg",
+   "value": "revenge",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "primeape",
+   "id": 57,
+   "method": "level-up",
+   "value": "lowkick@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "primeape",
+   "id": 57,
+   "method": "level-up",
+   "value": "rage@28",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "primeape",
+   "id": 57,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "growlithe",
+   "id": 58,
+   "method": "egg",
+   "value": "heatwave",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "growlithe",
+   "id": 58,
+   "method": "egg",
+   "value": "howl",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "poliwag",
+   "id": 60,
+   "method": "egg",
+   "value": "iceball",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "poliwhirl",
+   "id": 61,
+   "method": "level-up",
+   "value": "watergun@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "poliwhirl",
+   "id": 61,
+   "method": "level-up",
+   "value": "hypnosis@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "poliwrath",
+   "id": 62,
+   "method": "level-up",
+   "value": "submission@35",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "abra",
+   "id": 63,
+   "method": "egg",
+   "value": "knockoff",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kadabra",
+   "id": 64,
+   "method": "level-up",
+   "value": "confusion@16",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "alakazam",
+   "id": 65,
+   "method": "level-up",
+   "value": "confusion@16",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "machop",
+   "id": 66,
+   "method": "tutor",
+   "value": "dynamicpunch",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "machop",
+   "id": 66,
+   "method": "egg",
+   "value": "smellingsalts",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "machoke",
+   "id": 67,
+   "method": "level-up",
+   "value": "focusenergy@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "machoke",
+   "id": 67,
+   "method": "tutor",
+   "value": "dynamicpunch",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "machamp",
+   "id": 68,
+   "method": "level-up",
+   "value": "focusenergy@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "machamp",
+   "id": 68,
+   "method": "tutor",
+   "value": "dynamicpunch",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "weepinbell",
+   "id": 70,
+   "method": "level-up",
+   "value": "wrap@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "weepinbell",
+   "id": 70,
+   "method": "level-up",
+   "value": "growth@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tentacool",
+   "id": 72,
+   "method": "egg",
+   "value": "safeguard",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tentacool",
+   "id": 72,
+   "method": "egg",
+   "value": "mirrorcoat",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tentacruel",
+   "id": 73,
+   "method": "level-up",
+   "value": "supersonic@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tentacruel",
+   "id": 73,
+   "method": "level-up",
+   "value": "constrict@12",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "geodude",
+   "id": 74,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "geodude",
+   "id": 74,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "geodude",
+   "id": 74,
+   "method": "tutor",
+   "value": "selfdestruct",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "geodude",
+   "id": 74,
+   "method": "egg",
+   "value": "block",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "graveler",
+   "id": 75,
+   "method": "level-up",
+   "value": "rockthrow@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "graveler",
+   "id": 75,
+   "method": "level-up",
+   "value": "mudsport@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "graveler",
+   "id": 75,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "graveler",
+   "id": 75,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "graveler",
+   "id": 75,
+   "method": "tutor",
+   "value": "selfdestruct",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "golem",
+   "id": 76,
+   "method": "level-up",
+   "value": "rockthrow@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "golem",
+   "id": 76,
+   "method": "level-up",
+   "value": "mudsport@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "golem",
+   "id": 76,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "golem",
+   "id": 76,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "golem",
+   "id": 76,
+   "method": "tutor",
+   "value": "selfdestruct",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "rapidash",
+   "id": 78,
+   "method": "level-up",
+   "value": "tailwhip@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "rapidash",
+   "id": 78,
+   "method": "level-up",
+   "value": "growl@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "rapidash",
+   "id": 78,
+   "method": "level-up",
+   "value": "ember@14",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "slowpoke",
+   "id": 79,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "slowpoke",
+   "id": 79,
+   "method": "tutor",
+   "value": "sleeptalk",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "slowpoke",
+   "id": 79,
+   "method": "tutor",
+   "value": "snore",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "slowpoke",
+   "id": 79,
+   "method": "egg",
+   "value": "futuresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "slowpoke",
+   "id": 79,
+   "method": "egg",
+   "value": "mudsport",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "slowbro",
+   "id": 80,
+   "method": "level-up",
+   "value": "growl@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "slowbro",
+   "id": 80,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "magnemite",
+   "id": 81,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "magneton",
+   "id": 82,
+   "method": "level-up",
+   "value": "supersonic@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "magneton",
+   "id": 82,
+   "method": "level-up",
+   "value": "thundershock@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "farfetchd",
+   "id": 83,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "doduo",
+   "id": 84,
+   "method": "egg",
+   "value": "endeavor",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dodrio",
+   "id": 85,
+   "method": "level-up",
+   "value": "furyattack@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dodrio",
+   "id": 85,
+   "method": "level-up",
+   "value": "pursuit@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "seel",
+   "id": 86,
+   "method": "tutor",
+   "value": "icywind",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "seel",
+   "id": 86,
+   "method": "egg",
+   "value": "lick",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "seel",
+   "id": 86,
+   "method": "egg",
+   "value": "iciclespear",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dewgong",
+   "id": 87,
+   "method": "level-up",
+   "value": "growl@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dewgong",
+   "id": 87,
+   "method": "level-up",
+   "value": "aurorabeam@21",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dewgong",
+   "id": 87,
+   "method": "level-up",
+   "value": "icywind@17",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dewgong",
+   "id": 87,
+   "method": "tutor",
+   "value": "icywind",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "grimer",
+   "id": 88,
+   "method": "egg",
+   "value": "imprison",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "muk",
+   "id": 89,
+   "method": "level-up",
+   "value": "harden@4",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "leer@36",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "supersonic@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "icebeam@50",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "aurorabeam@22",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "clamp@43",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "protect@29",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "aurorabeam@17",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "clamp@41",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "icebeam@49",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "leer@33",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "protect@25",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "level-up",
+   "value": "supersonic@9",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "egg",
+   "value": "takedown",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "shellder",
+   "id": 90,
+   "method": "egg",
+   "value": "iciclespear",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "cloyster",
+   "id": 91,
+   "method": "level-up",
+   "value": "spikecannon@43",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "cloyster",
+   "id": 91,
+   "method": "level-up",
+   "value": "spikes@36",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "cloyster",
+   "id": 91,
+   "method": "level-up",
+   "value": "spikecannon@41",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "cloyster",
+   "id": 91,
+   "method": "level-up",
+   "value": "spikes@33",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "gastly",
+   "id": 92,
+   "method": "level-up",
+   "value": "meanlook@48",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "gastly",
+   "id": 92,
+   "method": "level-up",
+   "value": "meanlook@13",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "gastly",
+   "id": 92,
+   "method": "tutor",
+   "value": "nightmare",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "gastly",
+   "id": 92,
+   "method": "egg",
+   "value": "willowisp",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "haunter",
+   "id": 93,
+   "method": "level-up",
+   "value": "spite@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "haunter",
+   "id": 93,
+   "method": "level-up",
+   "value": "meanlook@64",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "haunter",
+   "id": 93,
+   "method": "level-up",
+   "value": "meanlook@13",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "haunter",
+   "id": 93,
+   "method": "tutor",
+   "value": "nightmare",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "gengar",
+   "id": 94,
+   "method": "level-up",
+   "value": "spite@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "gengar",
+   "id": 94,
+   "method": "level-up",
+   "value": "meanlook@64",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "gengar",
+   "id": 94,
+   "method": "level-up",
+   "value": "meanlook@13",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "gengar",
+   "id": 94,
+   "method": "tutor",
+   "value": "nightmare",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "level-up",
+   "value": "slam@41",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "level-up",
+   "value": "sandstorm@34",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "level-up",
+   "value": "sandtomb@52",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "level-up",
+   "value": "sandstorm@33",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "level-up",
+   "value": "sandtomb@49",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "level-up",
+   "value": "slam@37",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "egg",
+   "value": "flail",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "onix",
+   "id": 95,
+   "method": "egg",
+   "value": "block",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "drowzee",
+   "id": 96,
+   "method": "level-up",
+   "value": "futuresight@47",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "drowzee",
+   "id": 96,
+   "method": "level-up",
+   "value": "futuresight@45",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "drowzee",
+   "id": 96,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "drowzee",
+   "id": 96,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "drowzee",
+   "id": 96,
+   "method": "egg",
+   "value": "assist",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "hypno",
+   "id": 97,
+   "method": "level-up",
+   "value": "disable@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "hypno",
+   "id": 97,
+   "method": "level-up",
+   "value": "confusion@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "hypno",
+   "id": 97,
+   "method": "tutor",
+   "value": "nightmare",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "hypno",
+   "id": 97,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "hypno",
+   "id": 97,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "krabby",
+   "id": 98,
+   "method": "level-up",
+   "value": "vicegrip@12",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "krabby",
+   "id": 98,
+   "method": "level-up",
+   "value": "visegrip@12",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "krabby",
+   "id": 98,
+   "method": "egg",
+   "value": "amnesia",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingler",
+   "id": 99,
+   "method": "level-up",
+   "value": "vicegrip@1",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingler",
+   "id": 99,
+   "method": "level-up",
+   "value": "vicegrip@12",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingler",
+   "id": 99,
+   "method": "level-up",
+   "value": "leer@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingler",
+   "id": 99,
+   "method": "level-up",
+   "value": "harden@16",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingler",
+   "id": 99,
+   "method": "level-up",
+   "value": "visegrip@1",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "voltorb",
+   "id": 100,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "voltorb",
+   "id": 100,
+   "method": "tutor",
+   "value": "selfdestruct",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "voltorb",
+   "id": 100,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "electrode",
+   "id": 101,
+   "method": "level-up",
+   "value": "sonicboom@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "electrode",
+   "id": 101,
+   "method": "level-up",
+   "value": "screech@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "electrode",
+   "id": 101,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "electrode",
+   "id": 101,
+   "method": "tutor",
+   "value": "selfdestruct",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "electrode",
+   "id": 101,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "exeggcute",
+   "id": 102,
+   "method": "egg",
+   "value": "psychup",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "exeggcute",
+   "id": 102,
+   "method": "egg",
+   "value": "ancientpower",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "cubone",
+   "id": 104,
+   "method": "egg",
+   "value": "ancientpower",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "marowak",
+   "id": 105,
+   "method": "level-up",
+   "value": "headbutt@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "marowak",
+   "id": 105,
+   "method": "level-up",
+   "value": "tailwhip@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "marowak",
+   "id": 105,
+   "method": "level-up",
+   "value": "boneclub@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "hitmonlee",
+   "id": 106,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "lickitung",
+   "id": 108,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "lickitung",
+   "id": 108,
+   "method": "tutor",
+   "value": "snore",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "lickitung",
+   "id": 108,
+   "method": "egg",
+   "value": "smellingsalts",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "koffing",
+   "id": 109,
+   "method": "tutor",
+   "value": "selfdestruct",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "koffing",
+   "id": 109,
+   "method": "egg",
+   "value": "willowisp",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "weezing",
+   "id": 110,
+   "method": "level-up",
+   "value": "selfdestruct@17",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "weezing",
+   "id": 110,
+   "method": "level-up",
+   "value": "smog@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "weezing",
+   "id": 110,
+   "method": "tutor",
+   "value": "selfdestruct",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "rhyhorn",
+   "id": 111,
+   "method": "egg",
+   "value": "reversal",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "rhyhorn",
+   "id": 111,
+   "method": "egg",
+   "value": "crushclaw",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "rhydon",
+   "id": 112,
+   "method": "level-up",
+   "value": "stomp@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "rhydon",
+   "id": 112,
+   "method": "level-up",
+   "value": "furyattack@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "chansey",
+   "id": 113,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "chansey",
+   "id": 113,
+   "method": "egg",
+   "value": "healbell",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "chansey",
+   "id": 113,
+   "method": "egg",
+   "value": "aromatherapy",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tangela",
+   "id": 114,
+   "method": "egg",
+   "value": "flail",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tangela",
+   "id": 114,
+   "method": "egg",
+   "value": "naturepower",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kangaskhan",
+   "id": 115,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "kangaskhan",
+   "id": 115,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kangaskhan",
+   "id": 115,
+   "method": "egg",
+   "value": "crushclaw",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "horsea",
+   "id": 116,
+   "method": "egg",
+   "value": "dragonbreath",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "seadra",
+   "id": 117,
+   "method": "level-up",
+   "value": "leer@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "seadra",
+   "id": 117,
+   "method": "level-up",
+   "value": "watergun@22",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "seadra",
+   "id": 117,
+   "method": "level-up",
+   "value": "smokescreen@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "goldeen",
+   "id": 118,
+   "method": "egg",
+   "value": "sleeptalk",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "goldeen",
+   "id": 118,
+   "method": "egg",
+   "value": "mudsport",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "seaking",
+   "id": 119,
+   "method": "level-up",
+   "value": "supersonic@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "staryu",
+   "id": 120,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "starmie",
+   "id": 121,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mr-mime",
+   "id": 122,
+   "method": "level-up",
+   "value": "encore@26",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mr-mime",
+   "id": 122,
+   "method": "level-up",
+   "value": "encore@25",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mr-mime",
+   "id": 122,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mr-mime",
+   "id": 122,
+   "method": "egg",
+   "value": "fakeout",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "scyther",
+   "id": 123,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "scyther",
+   "id": 123,
+   "method": "tutor",
+   "value": "furycutter",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "scyther",
+   "id": 123,
+   "method": "egg",
+   "value": "razorwind",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "jynx",
+   "id": 124,
+   "method": "level-up",
+   "value": "lovelykiss@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "jynx",
+   "id": 124,
+   "method": "level-up",
+   "value": "powdersnow@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "electabuzz",
+   "id": 125,
+   "method": "level-up",
+   "value": "thunderpunch@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "electabuzz",
+   "id": 125,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "magmar",
+   "id": 126,
+   "method": "level-up",
+   "value": "firepunch@19",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "magmar",
+   "id": 126,
+   "method": "level-up",
+   "value": "leer@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "magmar",
+   "id": 126,
+   "method": "level-up",
+   "value": "smog@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pinsir",
+   "id": 127,
+   "method": "level-up",
+   "value": "vicegrip@1",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pinsir",
+   "id": 127,
+   "method": "level-up",
+   "value": "visegrip@1",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "pinsir",
+   "id": 127,
+   "method": "egg",
+   "value": "flail",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pinsir",
+   "id": 127,
+   "method": "egg",
+   "value": "feintattack",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tauros",
+   "id": 128,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "lapras",
+   "id": 131,
+   "method": "tutor",
+   "value": "sleeptalk",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "lapras",
+   "id": 131,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "eevee",
+   "id": 133,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "eevee",
+   "id": 133,
+   "method": "egg",
+   "value": "tickle",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "omastar",
+   "id": 139,
+   "method": "level-up",
+   "value": "bite@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "omastar",
+   "id": 139,
+   "method": "level-up",
+   "value": "watergun@19",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kabuto",
+   "id": 140,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "kabutops",
+   "id": 141,
+   "method": "level-up",
+   "value": "leer@19",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kabutops",
+   "id": 141,
+   "method": "level-up",
+   "value": "absorb@13",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kabutops",
+   "id": 141,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "kabutops",
+   "id": 141,
+   "method": "tutor",
+   "value": "furycutter",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "aerodactyl",
+   "id": 142,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "aerodactyl",
+   "id": 142,
+   "method": "egg",
+   "value": "dragonbreath",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "hyperbeam@53",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "snore@29",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "rollout@49",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "block@41",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "covet@45",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "block@37",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "covet@42",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "hyperbeam@51",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "rollout@46",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "level-up",
+   "value": "snore@28",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "tutor",
+   "value": "sleeptalk",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "tutor",
+   "value": "snore",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "egg",
+   "value": "fissure",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "snorlax",
+   "id": 143,
+   "method": "egg",
+   "value": "charm",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "moltres",
+   "id": 146,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "moltres",
+   "id": 146,
+   "method": "tutor",
+   "value": "skyattack",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dratini",
+   "id": 147,
+   "method": "egg",
+   "value": "dragonbreath",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dragonair",
+   "id": 148,
+   "method": "level-up",
+   "value": "thunderwave@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dragonair",
+   "id": 148,
+   "method": "level-up",
+   "value": "twister@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dragonite",
+   "id": 149,
+   "method": "level-up",
+   "value": "thunderwave@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dragonite",
+   "id": 149,
+   "method": "level-up",
+   "value": "twister@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "swift@33",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "amnesia@99",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "psychup@77",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "futuresight@88",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "amnesia@77",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "futuresight@44",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "psychup@33",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "level-up",
+   "value": "swift@22",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "mewtwo",
+   "id": 150,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "sentret",
+   "id": 161,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "sentret",
+   "id": 161,
+   "method": "egg",
+   "value": "reversal",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sentret",
+   "id": 161,
+   "method": "egg",
+   "value": "trick",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sentret",
+   "id": 161,
+   "method": "egg",
+   "value": "assist",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "furret",
+   "id": 162,
+   "method": "level-up",
+   "value": "quickattack@7",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "furret",
+   "id": 162,
+   "method": "level-up",
+   "value": "defensecurl@4",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "furret",
+   "id": 162,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "ledyba",
+   "id": 165,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "ledyba",
+   "id": 165,
+   "method": "egg",
+   "value": "bide",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "ledian",
+   "id": 166,
+   "method": "level-up",
+   "value": "supersonic@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "ledian",
+   "id": 166,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "spinarak",
+   "id": 167,
+   "method": "egg",
+   "value": "signalbeam",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "ariados",
+   "id": 168,
+   "method": "level-up",
+   "value": "constrict@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "ariados",
+   "id": 168,
+   "method": "level-up",
+   "value": "scaryface@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "crobat",
+   "id": 169,
+   "method": "level-up",
+   "value": "supersonic@11",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "crobat",
+   "id": 169,
+   "method": "level-up",
+   "value": "astonish@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pichu",
+   "id": 172,
+   "method": "egg",
+   "value": "bide",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pichu",
+   "id": 172,
+   "method": "egg",
+   "value": "reversal",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pichu",
+   "id": 172,
+   "method": "egg",
+   "value": "charge",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "igglybuff",
+   "id": 174,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "igglybuff",
+   "id": 174,
+   "method": "egg",
+   "value": "feintattack",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "igglybuff",
+   "id": 174,
+   "method": "egg",
+   "value": "faketears",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "togepi",
+   "id": 175,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "togepi",
+   "id": 175,
+   "method": "egg",
+   "value": "psychup",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "togetic",
+   "id": 176,
+   "method": "level-up",
+   "value": "metronome@4",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "togetic",
+   "id": 176,
+   "method": "level-up",
+   "value": "sweetkiss@9",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "natu",
+   "id": 177,
+   "method": "egg",
+   "value": "psychup",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "natu",
+   "id": 177,
+   "method": "egg",
+   "value": "refresh",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "marill",
+   "id": 183,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "marill",
+   "id": 183,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "marill",
+   "id": 183,
+   "method": "egg",
+   "value": "futuresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "azumarill",
+   "id": 184,
+   "method": "level-up",
+   "value": "tailwhip@6",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "azumarill",
+   "id": 184,
+   "method": "level-up",
+   "value": "watergun@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "azumarill",
+   "id": 184,
+   "method": "level-up",
+   "value": "defensecurl@3",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "azumarill",
+   "id": 184,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "azumarill",
+   "id": 184,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "politoed",
+   "id": 186,
+   "method": "level-up",
+   "value": "perishsong@35",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "politoed",
+   "id": 186,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "hoppip",
+   "id": 187,
+   "method": "egg",
+   "value": "psychup",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "hoppip",
+   "id": 187,
+   "method": "egg",
+   "value": "helpinghand",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "skiploom",
+   "id": 188,
+   "method": "level-up",
+   "value": "tackle@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "skiploom",
+   "id": 188,
+   "method": "level-up",
+   "value": "tailwhip@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "skiploom",
+   "id": 188,
+   "method": "level-up",
+   "value": "synthesis@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "jumpluff",
+   "id": 189,
+   "method": "level-up",
+   "value": "tackle@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "jumpluff",
+   "id": 189,
+   "method": "level-up",
+   "value": "tailwhip@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "jumpluff",
+   "id": 189,
+   "method": "level-up",
+   "value": "synthesis@5",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "yanma",
+   "id": 193,
+   "method": "level-up",
+   "value": "supersonic@45",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "yanma",
+   "id": 193,
+   "method": "level-up",
+   "value": "screech@50",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "yanma",
+   "id": 193,
+   "method": "level-up",
+   "value": "detect@28",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "yanma",
+   "id": 193,
+   "method": "level-up",
+   "value": "detect@25",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "yanma",
+   "id": 193,
+   "method": "level-up",
+   "value": "screech@49",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "yanma",
+   "id": 193,
+   "method": "level-up",
+   "value": "supersonic@31",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "yanma",
+   "id": 193,
+   "method": "egg",
+   "value": "signalbeam",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "wooper",
+   "id": 194,
+   "method": "egg",
+   "value": "mudsport",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "murkrow",
+   "id": 198,
+   "method": "egg",
+   "value": "skyattack",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "murkrow",
+   "id": 198,
+   "method": "egg",
+   "value": "perishsong",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "slowking",
+   "id": 199,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "slowking",
+   "id": 199,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "misdreavus",
+   "id": 200,
+   "method": "egg",
+   "value": "psychup",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "misdreavus",
+   "id": 200,
+   "method": "egg",
+   "value": "imprison",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "takedown@41",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "screech@34",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "spite@24",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "pursuit@31",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "endeavor@51",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "endeavor@41",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "pursuit@24",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "screech@31",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "spite@21",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "level-up",
+   "value": "takedown@34",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "egg",
+   "value": "bide",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "dunsparce",
+   "id": 206,
+   "method": "egg",
+   "value": "astonish",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "steelix",
+   "id": 208,
+   "method": "level-up",
+   "value": "slam@41",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "steelix",
+   "id": 208,
+   "method": "level-up",
+   "value": "sandstorm@34",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "steelix",
+   "id": 208,
+   "method": "level-up",
+   "value": "crunch@52",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "steelix",
+   "id": 208,
+   "method": "level-up",
+   "value": "crunch@49",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "steelix",
+   "id": 208,
+   "method": "level-up",
+   "value": "sandstorm@33",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "steelix",
+   "id": 208,
+   "method": "level-up",
+   "value": "slam@37",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "qwilfish",
+   "id": 211,
+   "method": "egg",
+   "value": "astonish",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "scizor",
+   "id": 212,
+   "method": "level-up",
+   "value": "doubleteam@41",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "scizor",
+   "id": 212,
+   "method": "tutor",
+   "value": "furycutter",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "heracross",
+   "id": 214,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "heracross",
+   "id": 214,
+   "method": "egg",
+   "value": "bide",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "heracross",
+   "id": 214,
+   "method": "egg",
+   "value": "flail",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sneasel",
+   "id": 215,
+   "method": "tutor",
+   "value": "icywind",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "sneasel",
+   "id": 215,
+   "method": "egg",
+   "value": "foresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "sneasel",
+   "id": 215,
+   "method": "egg",
+   "value": "crushclaw",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "slugma",
+   "id": 218,
+   "method": "egg",
+   "value": "heatwave",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "magcargo",
+   "id": 219,
+   "method": "level-up",
+   "value": "ember@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "magcargo",
+   "id": 219,
+   "method": "level-up",
+   "value": "rockthrow@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "swinub",
+   "id": 220,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "swinub",
+   "id": 220,
+   "method": "egg",
+   "value": "iciclespear",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "piloswine",
+   "id": 221,
+   "method": "level-up",
+   "value": "powdersnow@10",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "piloswine",
+   "id": 221,
+   "method": "level-up",
+   "value": "endure@19",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "piloswine",
+   "id": 221,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "remoraid",
+   "id": 223,
+   "method": "egg",
+   "value": "rockblast",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "delibird",
+   "id": 225,
+   "method": "egg",
+   "value": "futuresight",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "delibird",
+   "id": 225,
+   "method": "egg",
+   "value": "iceball",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "mantine",
+   "id": 226,
+   "method": "egg",
+   "value": "mudsport",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "skarmory",
+   "id": 227,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "skarmory",
+   "id": 227,
+   "method": "egg",
+   "value": "skyattack",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingdra",
+   "id": 230,
+   "method": "level-up",
+   "value": "leer@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingdra",
+   "id": 230,
+   "method": "level-up",
+   "value": "watergun@22",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "kingdra",
+   "id": 230,
+   "method": "level-up",
+   "value": "smokescreen@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "phanpy",
+   "id": 231,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "phanpy",
+   "id": 231,
+   "method": "tutor",
+   "value": "endure",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "phanpy",
+   "id": 231,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "phanpy",
+   "id": 231,
+   "method": "egg",
+   "value": "snore",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "donphan",
+   "id": 232,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "donphan",
+   "id": 232,
+   "method": "tutor",
+   "value": "rollout",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "porygon2",
+   "id": 233,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "tyrogue",
+   "id": 236,
+   "method": "egg",
+   "value": "helpinghand",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "smoochum",
+   "id": 238,
+   "method": "tutor",
+   "value": "psychup",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "smoochum",
+   "id": 238,
+   "method": "egg",
+   "value": "fakeout",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "smoochum",
+   "id": 238,
+   "method": "egg",
+   "value": "wish",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "elekid",
+   "id": 239,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "blissey",
+   "id": 242,
+   "method": "tutor",
+   "value": "defensecurl",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "entei",
+   "id": 244,
+   "method": "tutor",
+   "value": "swagger",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "larvitar",
+   "id": 246,
+   "method": "egg",
+   "value": "pursuit",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "larvitar",
+   "id": 246,
+   "method": "egg",
+   "value": "ancientpower",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pupitar",
+   "id": 247,
+   "method": "level-up",
+   "value": "screech@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "pupitar",
+   "id": 247,
+   "method": "level-up",
+   "value": "sandstorm@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tyranitar",
+   "id": 248,
+   "method": "level-up",
+   "value": "screech@15",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "tyranitar",
+   "id": 248,
+   "method": "level-up",
+   "value": "sandstorm@8",
+   "only": "pokeapi"
+  },
+  {
+   "pokemon": "lugia",
+   "id": 249,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  },
+  {
+   "pokemon": "ho-oh",
+   "id": 250,
+   "method": "tutor",
+   "value": "swift",
+   "only": "showdown"
+  }
+ ]
+}

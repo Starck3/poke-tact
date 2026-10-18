@@ -1,0 +1,127 @@
+{
+ "commit": "037335f4c725d7c9aecdac87066f2002b4bd7e14",
+ "moves": [
+  {
+   "move": "teleport",
+   "field": "priority",
+   "pokeapi": -6,
+   "decomp": 0
+  },
+  {
+   "move": "bide",
+   "field": "priority",
+   "pokeapi": 1,
+   "decomp": 0
+  },
+  {
+   "move": "soft-boiled",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "rest",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "STRUGGLE",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "mind-reader",
+   "field": "pp",
+   "pokeapi": 40,
+   "decomp": 5
+  },
+  {
+   "move": "curse",
+   "field": "type",
+   "pokeapi": "unknown",
+   "decomp": "mystery"
+  },
+  {
+   "move": "protect",
+   "field": "priority",
+   "pokeapi": 4,
+   "decomp": 3
+  },
+  {
+   "move": "detect",
+   "field": "priority",
+   "pokeapi": 4,
+   "decomp": 3
+  },
+  {
+   "move": "endure",
+   "field": "priority",
+   "pokeapi": 4,
+   "decomp": 3
+  },
+  {
+   "move": "milk-drink",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "vital-throw",
+   "field": "accuracy",
+   "pokeapi": 0,
+   "decomp": 100
+  },
+  {
+   "move": "hidden-power",
+   "field": "power",
+   "pokeapi": 1,
+   "decomp": 0
+  },
+  {
+   "move": "extreme-speed",
+   "field": "priority",
+   "pokeapi": 2,
+   "decomp": 1
+  },
+  {
+   "move": "fake-out",
+   "field": "priority",
+   "pokeapi": 3,
+   "decomp": 1
+  },
+  {
+   "move": "spit-up",
+   "field": "power",
+   "pokeapi": 0,
+   "decomp": 100
+  },
+  {
+   "move": "follow-me",
+   "field": "priority",
+   "pokeapi": 2,
+   "decomp": 3
+  },
+  {
+   "move": "luster-purge",
+   "field": "power",
+   "pokeapi": 95,
+   "decomp": 70
+  },
+  {
+   "move": "slack-off",
+   "field": "pp",
+   "pokeapi": 5,
+   "decomp": 10
+  },
+  {
+   "move": "VOLT_TACKLE",
+   "issue": "não existe no dataset"
+  },
+  {
+   "move": "PSYCHO_BOOST",
+   "issue": "não existe no dataset"
+  }
+ ],
+ "species": [],
+ "types": []
+}

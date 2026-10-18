@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poke Tact</title>
+<style>
+  :root { --bg:#f5f5f7; --card:#fff; --fg:#1b1b1f; --muted:#6b6b76; --line:#e2e2e8; --accent:#d33; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#17171b; --card:#212127; --fg:#f0f0f3; --muted:#9a9aa6; --line:#33333b; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.45 system-ui,sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:16px; }
+  h1 { font-size:1.4rem; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 16px; font-size:.9rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px; }
+  label { display:block; font-size:.85rem; color:var(--muted); margin-bottom:4px; }
+  input[type=text], input[type=number], select { width:100%; padding:10px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--fg); font:inherit; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+  .checks { display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:12px; font-size:.9rem; }
+  .checks label { display:flex; gap:6px; align-items:center; margin:0; color:var(--fg); }
+  .opp { display:flex; gap:12px; align-items:center; margin-top:12px; }
+  .opp img, .pick img { width:64px; height:64px; image-rendering:pixelated; }
+  .type { display:inline-block; padding:1px 8px; border-radius:10px; font-size:.75rem; color:#fff; margin-right:4px; text-transform:capitalize; }
+  .pick { display:flex; gap:12px; align-items:flex-start; }
+  .pick h3 { margin:0; font-size:1.05rem; }
+  .meta { color:var(--muted); font-size:.85rem; }
+  ul.why { margin:6px 0 0; padding-left:18px; font-size:.9rem; }
+  .note { font-size:.8rem; color:var(--muted); }
+  .filter-label { font-size:.85rem; color:var(--muted); margin:4px 0 6px; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .chips button { border:1px solid var(--line); background:var(--bg); color:var(--fg); border-radius:999px; padding:5px 12px; font:inherit; font-size:.85rem; cursor:pointer; }
+  .chips button[aria-pressed=true] { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .gen-head { margin:18px 0 8px; font-size:1rem; }
+  .games { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:10px; }
+  .game { display:block; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px; color:inherit; text-decoration:none; }
+  a.game:hover { border-color:var(--accent); }
+  .game.off { opacity:.6; }
+  .game strong { display:block; margin-bottom:2px; }
+  .badge { display:inline-block; font-size:.7rem; padding:1px 8px; border-radius:10px; margin-top:6px; border:1px solid var(--line); color:var(--muted); }
+  .badge.on { background:#2a8a3e; border-color:#2a8a3e; color:#fff; }
+  .starters { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:8px; }
+  .starter { text-align:center; border:1px solid var(--line); border-radius:10px; padding:8px 4px; background:var(--bg); }
+  .starter img { width:64px; height:64px; image-rendering:pixelated; }
+  a { color:#3b6fd8; }
+  @media (prefers-color-scheme: dark) { a { color:#8fb3ff; } }
+  .tabs { display:flex; gap:6px; margin:0 0 12px; }
+  .tabs button { border:1px solid var(--line); background:var(--card); color:var(--fg); border-radius:8px; padding:8px 14px; font:inherit; cursor:pointer; }
+  .tabs button[aria-pressed=true] { border-color:var(--accent); font-weight:600; }
+  details.stage { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 14px; margin-bottom:10px; }
+  details.stage > summary { cursor:pointer; font-weight:600; }
+  details.stage.current { border-color:var(--accent); }
+  details.loc { border-top:1px solid var(--line); padding:6px 0; }
+  details.loc > summary { cursor:pointer; }
+  .walk-list { margin:4px 0 6px; padding-left:18px; font-size:.9rem; }
+  .walk-h { font-size:.8rem; color:var(--muted); margin-top:6px; }
+  .back { display:inline-block; margin-bottom:8px; color:var(--muted); text-decoration:none; font-size:.9rem; }
+  .team { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .team button { border:1px solid var(--line); background:var(--bg); color:var(--fg); border-radius:8px; padding:6px 10px; font:inherit; font-size:.85rem; cursor:pointer; }
+  .team button[aria-pressed=true] { border-color:var(--accent); font-weight:600; }
+  .good { color:#2a8a3e; } .bad { color:#c0392b; }
+  @media (max-width:520px) { .row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main>
+ <section id="home" hidden>
+  <h1>Poke Tact</h1>
+  <p class="sub">Escolha o jogo que você está jogando. Cada jogo usa só os Pokémon, golpes e regras da geração dele.</p>
+  <div class="card">
+    <div class="filter-label">Plataforma</div>
+    <div class="chips" id="platformChips"></div>
+    <div class="filter-label">Geração</div>
+    <div class="chips" id="genChips"></div>
+  </div>
+  <p class="note" id="gameCount"></p>
+  <div id="gameList"></div>
+  <p class="note" id="catalogSources"></p>
+ </section>
+
+ <section id="tool" hidden>
+  <a href="#/" class="back">← Jogos</a>
+  <h1 id="gameTitle">Poke Tact</h1>
+  <p class="sub" id="gameInfo">Carregando dados…</p>
+  <p class="note" id="walkthrough"></p>
+  <p class="note" id="validationNote" hidden style="color:#d9a400"></p>
+  <div class="card" id="starters" hidden></div>
+  <div class="tabs" role="tablist"><button type="button" id="tabRec" aria-pressed="true">Recomendação</button><button type="button" id="tabWalk" aria-pressed="false">Detonado</button></div>
+  <div id="walk" hidden></div>
+  <div id="recView">
+
+  <div class="card">
+    <div>
+      <label for="version">Versão</label>
+      <select id="version"></select>
+    </div>
+    <div style="margin-top:12px" id="trainerBox">
+      <label for="trainer">Treinador do jogo (opcional — usa o time e os golpes reais)</label>
+      <select id="trainer"><option value="">— escolher o Pokémon manualmente —</option></select>
+    </div>
+    <div id="team" class="team"></div>
+    <div style="margin-top:12px">
+      <label for="opp">Pokémon que você está enfrentando</label>
+      <input type="text" id="opp" list="mons" placeholder="ex.: gyarados" autocomplete="off">
+      <datalist id="mons"></datalist>
+    </div>
+    <div id="oppInfo"></div>
+
+    <div class="row">
+      <div><label for="level">Nível do seu time</label><input type="number" id="level" min="1" max="100" value="30"></div>
+      <div><label for="oppLevel">Nível do oponente (opcional)</label><input type="number" id="oppLevel" min="1" max="100" placeholder="usa tipos do oponente"></div>
+    </div>
+    <div class="checks">
+      <label style="flex-basis:100%"><span id="starterWrap">Seu inicial: <select id="starter" style="width:auto;margin-left:6px"></select></span>
+        <span id="stageWrap">&nbsp; Seu progresso: <select id="stage" style="width:auto;margin-left:6px"></select></span></label>
+      <label><input type="checkbox" id="onlyObtainable" checked> Só o que dá para obter na versão</label>
+      <label><input type="checkbox" id="fullEvo"> Só evolução final</label>
+      <label><input type="checkbox" id="legend"> Incluir lendários</label>
+      <label><input type="checkbox" id="machines" checked> Usar golpes de TM/HM e tutor</label>
+      <label><input type="checkbox" id="tradeEvos"> Incluir evoluções por troca (precisa de outro jogo)</label>
+    </div>
+  </div>
+
+  <div id="results"></div>
+  <p class="note" id="disclaimer"></p>
+  </div>
+ </section>
+</main>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>

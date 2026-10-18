@@ -1,0 +1,7 @@
+# Texto com LF no repositório (scripts rodam igual em Windows e Linux)
+* text=auto eol=lf
+# Binários
+*.png binary
+*.jpg binary
+*.docx binary
+*.narc binary

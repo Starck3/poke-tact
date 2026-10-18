@@ -1,0 +1,1357 @@
+// Testes de regressão: cada teste fixa um erro JÁ ENCONTRADO (meu ou de uma fonte) para que ele não volte.
+// O comentário de cada teste diz qual era o erro e como foi confirmado o valor correto.
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+import { effectiveness, availableMoves, likelyMoveset, recommend, whereToGet } from '../public/engine.mjs';
+import { filterGames, groupByGeneration } from '../public/catalog.mjs';
+
+const load = (f) => JSON.parse(readFileSync(new URL(`../public/data/${f}`, import.meta.url), 'utf8'));
+const FR = load('firered-leafgreen.json');
+const EM = load('emerald.json');
+const FR_ACQ = load('firered-leafgreen-acquisition.json');
+const EM_ACQ = load('emerald-acquisition.json');
+const mon = (data, n) => data.pokemon.find((p) => p.name === n);
+const haveDecomp = existsSync(new URL('../data-sources/pokefirered/', import.meta.url)) && existsSync(new URL('../data-sources/pokeemerald/', import.meta.url));
+const OPTS = { onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false };
+
+// ---------------------------------------------------------------- golpes (valores da Gen 3)
+
+test('regressão: past_values da PokéAPI aplicados campo a campo (vine-whip saía com 45 em vez de 35)', () => {
+  // Erro: eu lia só a entrada histórica mais antiga e perdia campos que mudaram em entradas posteriores.
+  // Correto confirmado em src/data/battle_moves.h do pokefirered.
+  for (const data of [FR, EM]) {
+    assert.equal(data.moves['vine-whip'].power, 35);
+    assert.equal(data.moves['giga-drain'].power, 60);
+    assert.equal(data.moves.growth.pp, 40);
+    assert.equal(data.moves['jump-kick'].pp, 25);
+  }
+});
+
+test('regressão: prioridade e PP sem histórico na PokéAPI vêm do jogo (Protect saía com prioridade 4)', () => {
+  // A PokéAPI não guarda histórico de prioridade; o overlay do decomp corrige.
+  for (const data of [FR, EM]) {
+    assert.equal(data.moves.protect.priority, 3);
+    assert.equal(data.moves.detect.priority, 3);
+    assert.equal(data.moves['fake-out'].priority, 1);
+    assert.equal(data.moves['extreme-speed'].priority, 1);
+    assert.equal(data.moves.rest.pp, 10);
+    assert.equal(data.moves['mind-reader'].pp, 5);
+    assert.equal(data.moves['luster-purge'].power, 70);
+  }
+});
+
+test('regressão: categoria física/especial pelo TIPO na Gen 3 (IS_TYPE_PHYSICAL = type < TYPE_MYSTERY)', () => {
+  for (const data of [FR, EM]) {
+    assert.equal(data.moves.bite.category, 'special'); // Dark
+    assert.equal(data.moves['shadow-ball'].category, 'physical'); // Ghost
+    assert.equal(data.moves['sludge-bomb'].category, 'physical'); // Poison
+  }
+});
+
+test('regressão: tabela de tipos da Gen 3 (sem Fada; Aço resiste Ghost/Dark)', () => {
+  assert.equal(FR.types.includes('fairy'), false);
+  assert.equal(effectiveness(FR, 'ghost', mon(FR, 'magnemite')), 0.5);
+  assert.equal(effectiveness(FR, 'dark', mon(FR, 'steelix')), 0.5);
+  assert.equal(effectiveness(FR, 'ghost', mon(FR, 'alakazam')), 2); // na Gen 1 era 0×
+  assert.equal(effectiveness(FR, 'ice', mon(FR, 'gyarados')), 1); // meu teste antigo errava: ½ × 2 = 1
+});
+
+// ---------------------------------------------------------------- moveset padrão
+
+test('regressão: golpe repetido no learnset é ignorado, não vai para o fim (GiveMoveToBoxMon)', () => {
+  // Erro: eu reordenava duplicatas. No jogo, MON_ALREADY_KNOWS_MOVE só pula.
+  assert.deepEqual(likelyMoveset(mon(FR, 'venusaur'), 15), ['leech-seed', 'vine-whip', 'poison-powder', 'sleep-powder']);
+});
+
+test('regressão: ordem do learnset é a do arquivo do jogo, não a da PokéAPI (empates no nível 1)', () => {
+  // Venusaur nv 1: Tackle, Growl, Leech Seed, Vine Whip — a PokéAPI listava Vine Whip primeiro.
+  const lvl1 = mon(FR, 'venusaur').learnset.filter((l) => l.method === 'level-up' && l.level === 1).map((l) => l.move);
+  assert.deepEqual(lvl1, ['tackle', 'growl', 'leech-seed', 'vine-whip']);
+});
+
+test('regressão: golpes de ovo (inclusive Volt Tackle por Light Ball) não contam como disponíveis', () => {
+  const pichu = mon(EM, 'pichu');
+  assert.ok(pichu.learnset.some((l) => l.method === 'light-ball-egg'));
+  assert.equal(availableMoves(EM, pichu, 100).includes('volt-tackle'), false);
+});
+
+// ---------------------------------------------------------------- evolução e nível
+
+test('regressão: não recomenda quem ainda não evoluiu no nível do time (Tyranitar só a partir do nv 55)', () => {
+  assert.equal(mon(FR, 'tyranitar').minLevel, 55);
+  assert.equal(mon(FR, 'golem').minLevel, 25); // por troca, mas Graveler exige nv 25
+  const r = recommend(FR, mon(FR, 'arcanine'), { ...OPTS, level: 42, version: 'firered' });
+  assert.ok(r.picks.every((p) => p.mon.minLevel <= 42));
+  assert.ok(!r.picks.some((p) => p.mon.name === 'tyranitar'));
+});
+
+test('regressão: evolução por horário só em jogo com relógio (FRLG removeu; Emerald tem)', () => {
+  // pokefirered/src/pokemon.c: "FR/LG removed the time of day evolutions due to having no RTC."
+  assert.equal(mon(FR, 'espeon').evo.possible, false);
+  assert.equal(mon(FR, 'espeon').obtainable.firered, false);
+  assert.equal(mon(EM, 'espeon').evo.possible, true);
+});
+
+// ---------------------------------------------------------------- disponibilidade e onde obter
+
+test('regressão: lendários só de evento não contam como obtíveis (PokéAPI marcava como obtíveis)', () => {
+  for (const n of ['lugia', 'ho-oh', 'celebi']) for (const v of ['firered', 'leafgreen']) assert.equal(mon(FR, n).obtainable[v], false, `${n} ${v}`);
+  for (const n of ['mew', 'lugia', 'ho-oh', 'celebi']) assert.equal(mon(EM, n).obtainable.emerald, false, n);
+  assert.match(whereToGet(FR, FR_ACQ, mon(FR, 'lugia'), 'firered').events[0].detail, /Mystic Ticket/);
+});
+
+test('regressão: exclusivos de versão do FRLG (inclusive prêmios do Game Corner)', () => {
+  assert.equal(mon(FR, 'arcanine').obtainable.leafgreen, false);
+  assert.equal(mon(FR, 'sandslash').obtainable.firered, false);
+  const prize = (n, v) => (FR_ACQ.versions[v][n] ?? []).find((s) => s.type === 'prize')?.detail;
+  assert.equal(prize('scyther', 'firered'), '5500 fichas');
+  assert.equal(prize('scyther', 'leafgreen'), undefined);
+  assert.equal(prize('pinsir', 'leafgreen'), '2500 fichas');
+  assert.equal(prize('abra', 'firered'), '180 fichas');
+  assert.equal(prize('abra', 'leafgreen'), '120 fichas');
+});
+
+test('regressão: Marowak fantasma da Pokémon Tower não é fonte de captura', () => {
+  assert.ok(!(FR_ACQ.versions.firered.marowak ?? []).some((s) => s.type === 'static'));
+});
+
+test('regressão: só um lendário vagante por jogo, conforme o inicial (roamer.c)', () => {
+  assert.match(FR_ACQ.versions.firered.entei.find((s) => s.type === 'roamer').detail, /Bulbasaur/);
+  assert.match(FR_ACQ.versions.firered.suicune.find((s) => s.type === 'roamer').detail, /Charmander/);
+  assert.match(FR_ACQ.versions.firered.raikou.find((s) => s.type === 'roamer').detail, /Squirtle/);
+});
+
+test('regressão: Feebas do Emerald vem de código (wild_encounter.c), não da tabela — saía como inobtível', () => {
+  assert.equal(mon(EM, 'feebas').obtainable.emerald, true);
+  assert.equal(mon(EM, 'milotic').obtainable.emerald, true);
+  const f = whereToGet(EM, EM_ACQ, mon(EM, 'feebas'), 'emerald').direct[0];
+  assert.deepEqual([f.where, f.min, f.max], ['Route 119', 20, 25]);
+});
+
+test('regressão: iniciais de Johto no Emerald são obtíveis no jogo (eu tinha dito que eram só de evento)', () => {
+  // LittlerootTown_ProfessorBirchsLab: givemon após VAR_DEX_UPGRADE_JOHTO_STARTER_STATE — não é Mystery Gift.
+  for (const n of ['chikorita', 'cyndaquil', 'totodile']) {
+    assert.equal(mon(EM, n).obtainable.emerald, true, n);
+    assert.ok(EM_ACQ.versions.emerald[n].some((s) => s.type === 'gift'), n);
+  }
+});
+
+test('regressão: ovo de Pichu do Emerald é Mystery Gift, não fonte normal', () => {
+  assert.ok(!(EM_ACQ.versions.emerald.pichu ?? []).some((s) => s.type === 'egg'));
+});
+
+// ---------------------------------------------------------------- treinadores
+
+test('regressão: times reais de treinadores (conferidos com o jogo)', () => {
+  const tr = (file, key) => load(file).trainers.find((t) => t.key === key);
+  assert.deepEqual(tr('firered-leafgreen-trainers.json', 'TRAINER_LEADER_BROCK').party[1].moves, ['tackle', 'bind', 'rock-tomb']);
+  assert.deepEqual(tr('emerald-trainers.json', 'TRAINER_WALLACE').party.map((p) => [p.species, p.level]),
+    [['wailord', 57], ['tentacruel', 55], ['ludicolo', 56], ['whiscash', 56], ['gyarados', 56], ['milotic', 58]]);
+  assert.equal(tr('emerald-trainers.json', 'TRAINER_ROXANNE_1').party.length, 3);
+});
+
+test('regressão: classes de treinador do Emerald nos grupos certos (rivais e Aqua/Magma caíam em "comuns")', () => {
+  const t = load('emerald-trainers.json').trainers;
+  assert.ok(t.some((x) => x.group === 'Rival' && /Brendan|May/.test(x.label)));
+  assert.ok(t.some((x) => x.group === 'Equipe Aqua / Magma' && /Maxie|Archie/.test(x.label)));
+  // FRLG não deve herdar classes de Hoenn que sobraram no código
+  assert.ok(!load('firered-leafgreen-trainers.json').trainers.some((x) => x.group === 'Equipe Aqua / Magma'));
+});
+
+// ---------------------------------------------------------------- parsers do decomp
+
+test('regressão: parsers do decomp (tutor cortava em ";" e ia tudo para o Bulbasaur; TM do Emerald tem outro formato)', { skip: !haveDecomp }, async () => {
+  const { loadDecomp } = await import('../scripts/lib/decomp.mjs');
+  for (const g of ['firered-leafgreen', 'emerald']) {
+    const d = loadDecomp(g);
+    const bulba = d.species.BULBASAUR;
+    // o bug atribuía TODOS os tutores ao 1º Pokémon e nenhum aos demais
+    assert.ok(bulba.tutor.has(d.moveId.SWORDS_DANCE) && !bulba.tutor.has(d.moveId.METRONOME), `${g}: tutores do Bulbasaur errados`);
+    assert.ok(Object.values(d.species).filter((s) => s.tutor.size > 0).length > 300, `${g}: poucas espécies com tutor`);
+    assert.ok(bulba.machine.has(d.moveId.TOXIC), `${g}: Bulbasaur deveria aprender TM Toxic`);
+    assert.ok(d.species.BULBASAUR.egg.has(d.moveId.CHARM), `${g}: #define egg_moves engolia o 1º Pokémon`);
+    assert.equal(d.species.MAGIKARP.machine.size, 0);
+  }
+});
+
+// ---------------------------------------------------------------- catálogo
+
+test('regressão: catálogo — GBA mostra os 3 jogos de GBA; Geração III mostra os mesmos', () => {
+  const { games } = load('games.json');
+  assert.equal(games.length, 22);
+  const gba = filterGames(games, { platform: 'Game Boy Advance' }).map((g) => g.id);
+  assert.deepEqual(gba.sort(), ['emerald', 'firered-leafgreen', 'ruby-sapphire']);
+  assert.deepEqual(filterGames(games, { generation: 3 }).map((g) => g.id).sort(), gba);
+  assert.deepEqual(filterGames(games, { platform: 'Nintendo DS', generation: 5 }).map((g) => g.id), ['black-white', 'black-2-white-2']);
+  assert.deepEqual(groupByGeneration(games).map(([gen]) => gen), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  assert.deepEqual(games.filter((g) => g.validation === 'decomp').map((g) => g.id).sort(), ['emerald', 'firered-leafgreen', 'ruby-sapphire']); // conferidos com o código do jogo
+  assert.equal(games.filter((g) => g.status === 'supported').length, 21); // + 18 pela PokéAPI (Legends: Z-A sem dados)
+});
+
+test('rotas: filtros da tela inicial e estado do jogo ficam na URL (ida e volta)', async () => {
+  const { parseRoute, homeHash } = await import('../public/catalog.mjs');
+  const h = homeHash({ platform: 'Game Boy Advance', generation: 3 });
+  const r = parseRoute(h);
+  assert.equal(r.view, 'home');
+  assert.deepEqual([r.params.plataforma, Number(r.params.geracao)], ['Game Boy Advance', 3]);
+  assert.equal(homeHash({}), '#/');
+  assert.deepEqual(parseRoute('#/jogo/emerald?treinador=TRAINER_WALLACE&i=5'), { view: 'game', gameId: 'emerald', params: { treinador: 'TRAINER_WALLACE', i: '5' } });
+  assert.equal(parseRoute('').view, 'home');
+  assert.equal(parseRoute('#/jogo/../../x').view, 'home'); // id inválido não vira rota de jogo
+});
+
+test('regressão: servidor não cai ao pedir arquivo inexistente (enviava 200 antes de ler e travava no 404)', async () => {
+  const { createAppServer } = await import('../scripts/serve.mjs');
+  const server = createAppServer();
+  await new Promise((r) => server.listen(0, r));
+  const base = `http://localhost:${server.address().port}`;
+  try {
+    assert.equal((await fetch(`${base}/favicon.ico`)).status, 404);
+    assert.equal((await fetch(`${base}/pasta-que-nao-existe/`)).status, 404);
+    assert.equal((await fetch(`${base}/`)).status, 200); // continua de pé depois dos 404
+    assert.equal((await fetch(`${base}/data/games.json`)).status, 200);
+    for (const p of ['/..%2f..%2fpackage.json', '/..%5c..%5cpackage.json', '/%2e%2e/package.json']) assert.notEqual((await fetch(base + p)).status, 200, p); // nada fora de public/
+  } finally {
+    server.close();
+  }
+});
+
+// ---------------------------------------------------------------- achados nas telas renderizadas (2026-10-17)
+
+test('regressão: Altering Cave do Emerald — tabelas 2–9 são de Mystery Gift, não selvagens (aparecia "Mareep 100%")', () => {
+  // data/scripts/gift_altering_cave.inc é o único script que muda VAR_ALTERING_CAVE_WILD_SET.
+  const mareep = EM_ACQ.versions.emerald.mareep;
+  assert.ok(!mareep.some((s) => s.type === 'wild' && s.where === 'Altering Cave'));
+  assert.ok(mareep.some((s) => s.type === 'event' && s.where === 'Altering Cave'));
+  assert.ok(EM_ACQ.versions.emerald.zubat.some((s) => s.type === 'wild' && s.where === 'Altering Cave')); // tabela 1 é normal
+  assert.equal(mon(EM, 'mareep').obtainable.emerald, true); // continua obtível pela Safari Zone
+});
+
+test('regressão: progresso — não sugere Pokémon obtido acima do nível do time (Vaporeon contra o Onix do Brock)', () => {
+  // Eevee é dado no nv 25 em Celadon (givemon SPECIES_EEVEE, 25); com time nv 14 ainda não dá.
+  const opts = { ...OPTS, version: 'firered', acq: FR_ACQ, oppMoves: ['tackle', 'bind', 'rock-tomb'] };
+  const cedo = recommend(FR, mon(FR, 'onix'), { ...opts, level: 14 });
+  assert.ok(!cedo.picks.some((p) => ['vaporeon', 'exeggutor'].includes(p.mon.name)), cedo.picks.map((p) => p.mon.name).join());
+  assert.ok(cedo.picks.every((p) => p.reach <= 14));
+  const tarde = recommend(FR, mon(FR, 'onix'), { ...opts, level: 30 });
+  assert.ok(tarde.picks.length === 3);
+});
+
+test('regressão: opção de desligar TM/HM/tutor (Surf aparecia no nv 14)', async () => {
+  const { bestMoveVs } = await import('../public/engine.mjs');
+  const com = bestMoveVs(FR, mon(FR, 'squirtle'), mon(FR, 'onix'), 14);
+  const sem = bestMoveVs(FR, mon(FR, 'squirtle'), mon(FR, 'onix'), 14, { machines: false });
+  assert.equal(sem.via.method, 'level-up');
+  assert.ok(sem.via.level <= 14);
+  assert.ok(com.score >= sem.score);
+});
+
+test('regressão: habilidades que mudam dano — Truant pesa contra (Slaking saía em 2º); Pure Power dobra o Ataque', async () => {
+  const { abilityFactor, bestMoveVs } = await import('../public/engine.mjs');
+  assert.equal(abilityFactor(mon(EM, 'slaking')), 0.5);
+  assert.equal(abilityFactor(mon(EM, 'vigoroth')), 1);
+  const medi = bestMoveVs(EM, mon(EM, 'medicham'), mon(EM, 'snorlax'), 50, { machines: false });
+  const sem = { ...mon(EM, 'medicham'), abilities: ['static'] };
+  assert.ok(medi.category !== 'physical' || medi.score >= 1.9 * bestMoveVs(EM, sem, mon(EM, 'snorlax'), 50, { machines: false }).score);
+  // Azumarill tem Thick Fat OU Huge Power: não dá para assumir o bônus
+  assert.deepEqual([...mon(EM, 'azumarill').abilities].sort(), ['huge-power', 'thick-fat']);
+});
+
+test('regressão: espécie rara na natureza mostra também a rota pela pré-evolução (Magneton 1% → Magnemite)', async () => {
+  const { preEvolutionRoute } = await import('../public/engine.mjs');
+  const r = preEvolutionRoute(EM, EM_ACQ, mon(EM, 'magneton'), 'emerald');
+  assert.equal(r.from, 'magnemite');
+  assert.deepEqual(r.steps.map((s) => [s.to, s.evo.param]), [['magneton', 30]]);
+  assert.equal(preEvolutionRoute(EM, EM_ACQ, mon(EM, 'magnemite'), 'emerald'), null); // forma base não tem
+});
+
+test('regressão: presente/fóssil tardio com nível baixo (Omanyte nv 5 em Cinnabar) usa a área próxima como estimativa', () => {
+  const om = FR_ACQ.versions.firered.omanyte.find((s) => s.type === 'gift');
+  assert.equal(om.level, 5);
+  assert.ok(om.area.level >= 15, `área estimada ${om.area.level}`);
+  assert.match(om.area.near, /Route 21/);
+  const r = recommend(FR, mon(FR, 'onix'), { ...OPTS, version: 'firered', acq: FR_ACQ, level: 14, oppMoves: ['tackle', 'bind', 'rock-tomb'] });
+  assert.ok(!r.picks.some((p) => p.mon.name === 'omanyte'), r.picks.map((p) => p.mon.name).join());
+});
+
+test('regressão: evolução por troca exige outro jogo e fica fora por padrão (Steelix contra o Brock)', async () => {
+  const { needsTradeEvolution } = await import('../public/engine.mjs');
+  assert.equal(needsTradeEvolution(FR, FR_ACQ, mon(FR, 'steelix'), 'firered'), true);
+  assert.equal(needsTradeEvolution(FR, FR_ACQ, mon(FR, 'alakazam'), 'firered'), true);
+  assert.equal(needsTradeEvolution(FR, FR_ACQ, mon(FR, 'onix'), 'firered'), false);
+  const base = { ...OPTS, version: 'firered', acq: FR_ACQ, level: 50 };
+  const sem = recommend(FR, mon(FR, 'arcanine'), base);
+  assert.ok(sem.picks.every((p) => !needsTradeEvolution(FR, FR_ACQ, p.mon, 'firered')));
+  const com = recommend(FR, mon(FR, 'arcanine'), { ...base, tradeEvolutions: true });
+  assert.equal(com.picks.length, 3);
+});
+
+test('regressão: troca dentro do jogo herda o alcance do Pokémon pedido (Tangela ficava sem nível)', async () => {
+  const { reachLevel } = await import('../public/engine.mjs');
+  const t = FR_ACQ.versions.firered.tangela.find((s) => s.type === 'trade');
+  assert.equal(t.want, 'venonat');
+  const venonat = reachLevel(FR, FR_ACQ, mon(FR, 'venonat'), 'firered');
+  const viaTroca = Math.max(t.area?.level ?? 1, venonat);
+  assert.ok(Number.isFinite(venonat) && viaTroca >= venonat);
+});
+
+test('regressão: locais selvagens exibidos do mais cedo para o mais tarde (Victory Road aparecia antes do Rock Tunnel)', () => {
+  const onix = FR_ACQ.versions.firered.onix.filter((s) => s.type === 'wild');
+  for (let i = 1; i < onix.length; i++) assert.ok(onix[i - 1].min <= onix[i].min, `${onix[i - 1].where} (${onix[i - 1].min}) antes de ${onix[i].where} (${onix[i].min})`);
+});
+
+test('regressão: Surf/varas/Rock Smash exigem item e insígnia (Psyduck por Surf e Horsea por Good Rod saíam "a partir do nv 5")', () => {
+  const g = (acq, v, n, method) => acq.versions[v][n].find((s) => s.type === 'wild' && s.method === method)?.gate;
+  // FRLG: HM03 na Safari Zone + insígnia 5 (Koga); Good Rod em Fuchsia
+  const surf = g(FR_ACQ, 'firered', 'psyduck', 'Surf');
+  assert.equal(surf.badge, 5);
+  assert.equal(surf.leader, 'KOGA');
+  assert.match(surf.item, /Safari Zone/);
+  assert.match(g(FR_ACQ, 'firered', 'horsea', 'Good Rod').item, /Fuchsia/);
+  // Emerald: Surf com a insígnia 5 (Norman), Rock Smash com a 3 (Wattson); Feebas usa a porta da Old Rod
+  assert.equal(g(EM_ACQ, 'emerald', 'tentacool', 'Surf').leader, 'NORMAN');
+  assert.equal(EM_ACQ.versions.emerald.geodude.find((s) => s.method === 'Rock Smash').gate.badge, 3);
+  assert.match(EM_ACQ.versions.emerald.feebas[0].gate.item, /Dewford/);
+  // efeito no alcance: Psyduck só por Surf/vara não é alcançável no nv 14
+  const r = recommend(FR, mon(FR, 'onix'), { ...OPTS, version: 'firered', acq: FR_ACQ, level: 14, oppMoves: ['tackle', 'bind', 'rock-tomb'] });
+  assert.ok(r.picks.every((p) => p.reach <= 14), r.picks.map((p) => `${p.mon.name}:${p.reach}`).join());
+  assert.ok(!r.picks.some((p) => ['psyduck', 'horsea', 'vaporeon', 'omanyte', 'steelix'].includes(p.mon.name)), r.picks.map((p) => p.mon.name).join());
+});
+
+test('iniciais de cada jogo vêm do código e aparecem no dataset (FRLG: Oak; Emerald: bolsa do Birch)', () => {
+  assert.deepEqual(load('firered-leafgreen.json').starters.species, ['bulbasaur', 'charmander', 'squirtle']);
+  assert.equal(load('firered-leafgreen.json').starters.level, 5);
+  assert.deepEqual(load('emerald.json').starters.species, ['treecko', 'torchic', 'mudkip']);
+  assert.equal(load('emerald.json').starters.level, 5); // battle_setup.c: ScriptGiveMon(starterMon, 5, ...)
+});
+
+test('regressão: índice de detonados usa links relativos e absolutos (eu só lia absolutos e achei 8 de 22)', async () => {
+  const { parseDetonadoIndex, matchDetonados } = await import('../scripts/lib/pokemythology.mjs');
+  const html = '<a href="/detonados/detonado-red-blue">x</a><a href="https://pokemythology.net/detonados/detonado-emerald">x</a>' +
+    '<a href="/detonados/detonado-firered-leafgreen/">x</a><a href="/conteudo/detonados/detonado_usum.htm">x</a>' +
+    '<a href="/conteudo/detonados/detonado_sm_demo.htm">demo</a><a href="/detonados/detonado-omegaruby-alphasapphire/">x</a>';
+  const list = parseDetonadoIndex(html);
+  assert.equal(list.length, 5); // demo fica de fora
+  const m = matchDetonados(list, ['red-blue', 'emerald', 'firered-leafgreen', 'ultra-sun-ultra-moon', 'omega-ruby-alpha-sapphire']);
+  assert.equal(m['red-blue'], 'https://www.pokemythology.net/detonados/detonado-red-blue/');
+  assert.equal(m.emerald, 'https://www.pokemythology.net/detonados/detonado-emerald/');
+  assert.equal(m['ultra-sun-ultra-moon'], 'https://www.pokemythology.net/conteudo/detonados/detonado_usum.htm');
+  assert.ok(m['omega-ruby-alpha-sapphire']);
+  // catálogo publicado: todo jogo da série principal tem detonado
+  assert.ok(load('games.json').games.every((g) => g.walkthrough), 'jogo sem detonado no catálogo');
+});
+
+test('regressão: times de líderes/Elite 4 batem com o detonado do PokeMythology (3ª fonte)', { skip: !existsSync(new URL('../data-sources/pokemythology/detonado-emerald.html', import.meta.url)) }, async () => {
+  // Erros já corrigidos no comparador: título "X usa:" do Emerald; parágrafo antes do nome; "Lt." não é fim de frase;
+  // acento (Érika); "Tate e Liza" = TATE&LIZA; nomes repetidos (Giovanni da Rocket); grafia "Victreebell" no detonado.
+  const { execFileSync } = await import('node:child_process');
+  for (const [g, min] of [['firered-leafgreen', 18], ['emerald', 14]]) {
+    execFileSync(process.execPath, ['scripts/validate-vs-pokemythology.mjs', g], { cwd: new URL('..', import.meta.url) });
+    const r = JSON.parse(readFileSync(new URL(`../reports/${g}/pokemythology-audit.json`, import.meta.url), 'utf8'));
+    assert.ok(r.results.length >= min, `${g}: só ${r.results.length} times comparados`);
+    assert.deepEqual(r.results.filter((x) => x.status !== 'MATCH').map((x) => x.title), [], g);
+  }
+});
+
+// ---------------------------------------------------------------- TMs/HMs: origem e posição exata no decomp
+
+test('regressão: toda origem de TM/HM está ligada a um evento real do mapa (posição x,y ou cena automática)', () => {
+  // Antes: o mapa de item no chão era deduzido do PREFIXO do rótulo; agora vem do objeto do map.json que chama o script.
+  for (const acq of [FR_ACQ, EM_ACQ]) {
+    const all = Object.values(acq.machines).flat();
+    assert.ok(all.length > 60);
+    assert.deepEqual(all.filter((s) => !s.resolved).map((s) => s.where), []);
+  }
+  const at = (acq, move, map) => acq.machines[move].find((s) => s.map === map);
+  assert.deepEqual([at(FR_ACQ, 'rock-tomb', 'PewterCity_Gym').x, at(FR_ACQ, 'rock-tomb', 'PewterCity_Gym').y, at(FR_ACQ, 'rock-tomb', 'PewterCity_Gym').by], [6, 5, 'Brock']);
+  // TM09 na Gen 3 é Bullet Seed (na Gen 1 o TM do Mt. Moon era outro — não confundir gerações)
+  const tm09 = at(FR_ACQ, 'bullet-seed', 'MtMoon_1F');
+  assert.deepEqual([tm09.x, tm09.y, tm09.type], [11, 35, 'ground']);
+  assert.equal(at(EM_ACQ, 'surf', 'PetalburgCity_WallysHouse').by, 'cena automática ao entrar no mapa');
+});
+
+test('regressão: scripts COMPARTILHADOS também entregam itens (TM43 do garoto da Route 111 no Emerald; o detonado apontou)', () => {
+  const sp = EM_ACQ.machines['secret-power'];
+  const boy = sp.find((s) => s.map === 'Route111');
+  assert.ok(boy && boy.sharedScript, 'TM43 da Route 111 (data/scripts/secret_power_tm.inc)');
+  assert.deepEqual([boy.x, boy.y], [13, 20]);
+  assert.ok(sp.some((s) => s.type === 'mart' && s.map === 'SlateportCity'));
+});
+
+test('regressão: Pokémon de script compartilhado só conta se um mapa chama (Kecleon sim; ovo de Pichu do Mystery Gift não)', () => {
+  assert.ok(EM_ACQ.versions.emerald.kecleon.some((s) => s.where === 'Route 119' && s.sharedScript));
+  assert.ok(!(EM_ACQ.versions.emerald.pichu ?? []).length);
+});
+
+test('regressão: numeração de TM/HM vem do código de cada jogo e é a mesma na Gen 3 (FRLG × Emerald)', { skip: !haveDecomp }, async () => {
+  const { decompPaths } = await import('../scripts/lib/decomp.mjs');
+  const { tmNumbering } = await import('../scripts/validate-tms-vs-pokemythology.mjs').catch(() => ({}));
+  const fr = {}; for (const m of decompPaths('firered-leafgreen').read('src/data/pokemon/tmhm_learnsets.h').matchAll(/TMHM\((TM|HM)(\d+)_(\w+)\)/g)) fr[m[1] + m[2]] = m[3];
+  const em = {};
+  const tms = decompPaths('emerald').read('include/constants/tms_hms.h');
+  [...tms.match(/#define FOREACH_TM\(F\)([\s\S]*?)\n\n/)[1].matchAll(/F\((\w+)\)/g)].forEach((m, i) => (em[`TM${String(i + 1).padStart(2, '0')}`] = m[1]));
+  for (const k of Object.keys(em)) assert.equal(fr[k], em[k], k);
+  assert.equal(fr.TM39, 'ROCK_TOMB');
+  void tmNumbering;
+});
+
+test('regressão: TM sem origem no jogo não é oferecido (FRLG: TM10 Hidden Power e HM08 Dive — código e detonado concordam)', async () => {
+  const { availableMoves } = await import('../public/engine.mjs');
+  assert.equal(FR_ACQ.machines['hidden-power'], undefined);
+  assert.equal(FR_ACQ.machines.dive, undefined);
+  assert.ok(!availableMoves(FR, mon(FR, 'squirtle'), 100, { machineSources: FR_ACQ.machines }).includes('hidden-power'));
+});
+
+test('regressão: golpe de TM só depois de o TM estar ao alcance (Earthquake/Surf apareciam no nv 14)', () => {
+  const r = recommend(FR, mon(FR, 'onix'), { ...OPTS, version: 'firered', acq: FR_ACQ, level: 14, oppMoves: ['tackle', 'bind', 'rock-tomb'] });
+  for (const p of r.picks) if (p.move.via.method === 'machine') assert.ok(p.move.via.source && p.move.via.source.level <= 14, `${p.mon.name}: ${p.move.name}`);
+  assert.ok(!r.picks.some((p) => ['earthquake', 'surf'].includes(p.move.name)));
+});
+
+test('regressão: evolução por pedra exige a pedra (Raichu no nv 14; Thunder Stone só em Celadon/Power Plant)', async () => {
+  const { reachLevel } = await import('../public/engine.mjs');
+  assert.ok(FR_ACQ.items.THUNDER_STONE.some((s) => s.where.includes('Celadon')));
+  assert.ok(reachLevel(FR, FR_ACQ, mon(FR, 'raichu'), 'firered') > 14);
+  assert.ok(reachLevel(FR, FR_ACQ, mon(FR, 'pikachu'), 'firered') <= 5);
+});
+
+test('regressão: TMs citados nos detonados têm origem no decomp (PokeMythology como 2ª fonte)', { skip: !existsSync(new URL('../data-sources/pokemythology/detonado-emerald.html', import.meta.url)) }, async () => {
+  const { execFileSync } = await import('node:child_process');
+  for (const g of ['firered-leafgreen', 'emerald']) {
+    execFileSync(process.execPath, ['scripts/validate-tms-vs-pokemythology.mjs', g], { cwd: new URL('..', import.meta.url) });
+    const r = JSON.parse(readFileSync(new URL(`../reports/${g}/tm-audit.json`, import.meta.url), 'utf8'));
+    assert.deepEqual(r.filter((x) => x.status === 'SEM_ORIGEM_NO_DECOMP' || x.status === 'SEM_NUMERO').map((x) => x.tm), [], g);
+  }
+});
+
+// ---------------------------------------------------------------- progresso por insígnia (detonado + decomp)
+
+test('regressão: líderes reconhecidos pelo TIME, não pelo nome (Giovanni da Rocket era contado como 5º líder)', () => {
+  assert.deepEqual(FR_ACQ.progress.leaderOrder, ['BROCK', 'MISTY', 'LT. SURGE', 'ERIKA', 'SABRINA', 'KOGA', 'BLAINE', 'GIOVANNI']);
+  assert.deepEqual(EM_ACQ.progress.leaderOrder, ['ROXANNE', 'BRAWLY', 'WATTSON', 'FLANNERY', 'NORMAN', 'WINONA', 'TATE&LIZA', 'JUAN']);
+  for (const a of [FR_ACQ, EM_ACQ]) assert.deepEqual([a.progress.leadersFound, a.progress.eliteFound], [8, 4]);
+});
+
+test('regressão: estágios de lugares conhecidos (detonado + vizinhança do decomp)', () => {
+  const st = (acq, v, sp, where) => acq.versions[v][sp].find((s) => s.where.includes(where)).stage;
+  // FRLG
+  assert.equal(st(FR_ACQ, 'firered', 'caterpie', 'Viridian Forest'), 0);
+  assert.equal(st(FR_ACQ, 'firered', 'spearow', 'Route 3'), 1); // citada antes do Brock no texto: vizinhança corrige
+  assert.equal(st(FR_ACQ, 'firered', 'zubat', 'Mt Moon 1F'), 1);
+  assert.equal(st(FR_ACQ, 'firered', 'machop', 'Rock Tunnel'), 3);
+  assert.equal(st(FR_ACQ, 'firered', 'mewtwo', 'Cerulean Cave'), 9);
+  // Emerald — portas puxavam rotas para o pós-jogo (Trick House na Route 110)
+  assert.equal(st(EM_ACQ, 'emerald', 'wurmple', 'Petalburg Woods'), 0);
+  assert.equal(st(EM_ACQ, 'emerald', 'electrike', 'Route 110'), 2);
+  assert.ok(st(EM_ACQ, 'emerald', 'sandshrew', 'Route 111') <= 3);
+  assert.equal(st(EM_ACQ, 'emerald', 'tropius', 'Route 119'), 5);
+});
+
+test('regressão: presentes que só aparecem no pós-jogo (Beldum; iniciais de Johto após EnableNationalPokedex)', () => {
+  const gift = (n) => EM_ACQ.versions.emerald[n].find((s) => s.type === 'gift');
+  assert.equal(gift('beldum').stage, 9);
+  for (const n of ['chikorita', 'cyndaquil', 'totodile']) assert.equal(gift(n).stage, 9, n);
+  assert.equal(gift('castform').stage, 5); // não confundir: Weather Institute tem FLAG_SYS_GAME_CLEAR no arquivo, mas o Castform é do meio do jogo
+});
+
+test('regressão: prêmio de ginásio e HM usam a POSIÇÃO do líder na ordem real (Earthquake saía no estágio 0)', () => {
+  assert.equal(FR_ACQ.machines.earthquake[0].stage, 8);
+  assert.equal(FR_ACQ.machines['rock-tomb'][0].stage, 1);
+  assert.equal(FR_ACQ.versions.firered.psyduck.find((s) => s.method === 'Surf').gate.stage, 6); // Koga é o 6º no detonado
+});
+
+test('regressão: tutores têm local e momento (Double-Edge do FRLG é na Victory Road; Frontier do Emerald é pós-jogo)', () => {
+  const de = FR_ACQ.tutors['double-edge'][0];
+  assert.deepEqual([de.map, de.x, de.y, de.stage], ['VictoryRoad_2F', 40, 9, 8]);
+  assert.ok(FR_ACQ.tutors['blast-burn'][0].codeDefined.includes('CapeBrinkGetMoveToTeachLeadPokemon'));
+  assert.equal(EM_ACQ.tutors['swords-dance'][0].stage, 9);
+  for (const [data, acq] of [[FR, FR_ACQ], [EM, EM_ACQ]]) {
+    const tutorMoves = [...new Set(data.pokemon.flatMap((p) => p.learnset.filter((l) => l.method === 'tutor').map((l) => l.move)))];
+    assert.deepEqual(tutorMoves.filter((m) => !acq.tutors[m]), []);
+  }
+});
+
+test('regressão: com "Seu progresso" informado, só entra o que existe naquele ponto da história', () => {
+  const base = { ...OPTS, version: 'firered', acq: FR_ACQ };
+  const brock = recommend(FR, mon(FR, 'onix'), { ...base, level: 14, stage: 0, oppMoves: ['tackle', 'bind', 'rock-tomb'] });
+  assert.ok(brock.picks.every((p) => p.stageNeeded === 0), brock.picks.map((p) => `${p.mon.name}:${p.stageNeeded}`).join());
+  for (const p of brock.picks) assert.notEqual(p.move.via.method, 'machine', `${p.mon.name} usando TM no estágio 0`);
+  const sabrina = recommend(FR, mon(FR, 'alakazam'), { ...base, level: 43, stage: 5, oppMoves: ['psychic', 'recover', 'future-sight', 'calm-mind'] });
+  for (const p of sabrina.picks) {
+    assert.ok(p.stageNeeded <= 5);
+    if (p.move.via.source) assert.ok((p.move.via.source.stage ?? 9) <= 5, `${p.move.name} @ ${p.move.via.source.where}`);
+  }
+});
+
+// ---------------------------------------------------------------- S1: inicial do jogador
+
+test('S1: rival ligado ao inicial do JOGADOR pelo script — os nomes das variantes têm convenções opostas entre jogos', () => {
+  const fr = load('firered-leafgreen-trainers.json').trainers, em = load('emerald-trainers.json').trainers;
+  const t = (list, key) => list.find((x) => x.key === key);
+  // FRLG: sufixo = inicial DO RIVAL (escolheu Charmander → rival com Squirtle)
+  assert.deepEqual(t(fr, 'TRAINER_RIVAL_OAKS_LAB_SQUIRTLE').forStarter, ['charmander']);
+  assert.deepEqual(t(fr, 'TRAINER_RIVAL_OAKS_LAB_CHARMANDER').forStarter, ['bulbasaur']);
+  // Emerald: sufixo = inicial DO JOGADOR (switch VAR_STARTER_MON, case 0 = Treecko)
+  assert.deepEqual(t(em, 'TRAINER_MAY_ROUTE_103_TREECKO').forStarter, ['treecko']);
+  // nenhuma luta de rival ligada a mais de um inicial (a "queda" de rótulo contaminava os ramos)
+  for (const list of [fr, em]) assert.ok(list.filter((x) => x.forStarter).every((x) => x.forStarter.length === 1));
+  assert.equal(fr.filter((x) => x.forStarter).length, 27);
+  assert.equal(em.filter((x) => x.forStarter).length, 30);
+});
+
+test('S1: vagante do FRLG conforme o inicial (lido do switch de roamer.c)', () => {
+  const r = (n) => FR_ACQ.versions.firered[n].find((s) => s.type === 'roamer').forStarter;
+  assert.deepEqual([r('raikou'), r('entei'), r('suicune')], [['squirtle'], ['bulbasaur'], ['charmander']]);
+  assert.ok(!EM_ACQ.versions.emerald.latios.find((s) => s.type === 'roamer').forStarter); // Emerald: não depende do inicial
+});
+
+test('S1: com o inicial informado, os outros dois (e evoluções) e o vagante errado saem das sugestões', () => {
+  const opts = { ...OPTS, version: 'firered', acq: FR_ACQ, level: 60, includeLegendary: true, starter: 'charmander' };
+  for (const opp of ['golem', 'gyarados', 'arcanine', 'alakazam', 'nidoking']) {
+    const r = recommend(FR, mon(FR, opp), opts);
+    for (const p of r.picks) assert.ok(!['bulbasaur', 'ivysaur', 'venusaur', 'squirtle', 'wartortle', 'blastoise', 'raikou', 'entei'].includes(p.mon.name), `${opp}: ${p.mon.name}`);
+  }
+  // sem inicial informado, os três continuam possíveis
+  const livre = recommend(FR, mon(FR, 'onix'), { ...OPTS, version: 'firered', acq: FR_ACQ, level: 14, stage: 0, oppMoves: ['tackle', 'bind', 'rock-tomb'] });
+  assert.ok(livre.picks.some((p) => ['bulbasaur', 'squirtle'].includes(p.mon.name)));
+});
+
+// ---------------------------------------------------------------- S2: detonado gerado a partir dos dados
+
+for (const [gameId, ver] of [['firered-leafgreen', 'firered'], ['emerald', 'emerald']]) {
+  test(`S2 [${gameId}]: detonado tem os 10 estágios, cada líder no seu, e nenhum local sem estágio`, () => {
+    const w = load(`${gameId}-walkthrough.json`);
+    const v = w.versions[ver];
+    assert.equal(v.stages.length, 10);
+    assert.deepEqual(v.undetermined.map((l) => l.name), []);
+    v.stages.slice(0, 8).forEach((s, i) => { assert.equal(s.leader.name, w.leaders[i]); assert.ok(s.leader.party.length > 0, s.leader.name); });
+    assert.match(w.credit, /PokeMythology/); // crédito da ordem; conteúdo é nosso (sem texto/imagem de terceiros)
+  });
+}
+
+test('S2: locais nos estágios certos (conferidos com a ordem do jogo)', () => {
+  const v = load('firered-leafgreen-walkthrough.json').versions.firered;
+  const stageOf = (name) => v.stages.find((s) => s.locations.some((l) => l.name === name))?.stage;
+  assert.equal(stageOf('Viridian Forest'), 0);
+  assert.equal(stageOf('Route 22'), 0); // herdar o MAIOR vizinho a punha no 8 (Route 23)
+  assert.equal(stageOf('Mt Moon'), 1);
+  assert.equal(stageOf('Fuchsia City'), 5); // detonado escreve "FUSCHIA" — grafia registrada em walkthroughTypos
+  assert.equal(stageOf('Digletts Cave'), 3); // "Diglett’s": apóstrofo virava espaço
+  assert.equal(stageOf('Cerulean Cave'), 9);
+  const e = load('emerald-walkthrough.json').versions.emerald;
+  const eStage = (name) => e.stages.find((s) => s.locations.some((l) => l.name === name))?.stage;
+  assert.equal(eStage('Dewford Town'), 1);
+  assert.equal(eStage('Fortree City'), 5);
+  assert.equal(eStage('Sootopolis City'), 7);
+});
+
+test('S2: conteúdo do local vem dos dados (Mt. Moon: TM09 no chão, Moon Stone, 12 treinadores) e prêmio do líder', () => {
+  const v = load('firered-leafgreen-walkthrough.json').versions.firered;
+  const mm = v.stages[1].locations.find((l) => l.name === 'Mt Moon');
+  assert.ok(mm.items.some((i) => i.move === 'bullet-seed' && i.x === 11 && i.y === 35));
+  assert.ok(mm.items.some((i) => i.item === 'MOON_STONE'));
+  assert.ok(mm.trainers.length >= 12);
+  assert.deepEqual(v.stages[0].leader.prize, ['rock-tomb']);
+  // encontro que exige HM/vara vem marcado
+  const r24 = v.stages[1].locations.find((l) => l.name === 'Route 24');
+  assert.ok(r24.wild.filter((w) => w.method === 'Surf').every((w) => w.gate));
+});
+
+test('S2: treinadores de scripts compartilhados entram no detonado; revanches (VS Seeker) ficam fora de propósito', () => {
+  for (const [g, ver, min] of [['firered-leafgreen', 'firered', 460], ['emerald', 'emerald', 530]]) {
+    const v = load(`${g}-walkthrough.json`).versions[ver];
+    const { trainers } = load(`${g}-trainers.json`);
+    const keys = new Set(v.stages.flatMap((s) => s.locations.flatMap((l) => l.trainers.map((t) => t.key))));
+    assert.ok(keys.size >= min, `${g}: só ${keys.size} lutas no detonado`);
+    // contabilidade fechada: todo treinador está no detonado, é revanche, ou está na lista explícita "sem mapa"
+    assert.equal(keys.size + v.rematches + v.unplacedTrainers.length, trainers.length, g);
+    assert.ok(keys.has('TRAINER_TEAM_ROCKET_GRUNT_2') || g !== 'firered-leafgreen'); // _2 que NÃO é revanche
+  }
+});
+
+// ---------------------------------------------------------------- S3: Ruby/Sapphire (pokeruby, o decomp mais antigo)
+
+const RS = load('ruby-sapphire.json');
+const RS_ACQ = load('ruby-sapphire-acquisition.json');
+
+test('S3: formatos do pokeruby (ponteiros posicionais, .level, gTrainerParty_, hexadecimal, @endereço nos rótulos)', { skip: !existsSync(new URL('../data-sources/pokeruby/', import.meta.url)) }, async () => {
+  const { loadDecomp } = await import('../scripts/lib/decomp.mjs');
+  const d = loadDecomp('ruby-sapphire');
+  assert.ok(Object.keys(d.levelUpOrdered).length >= 386); // ponteiros posicionais (sem [SPECIES_X] =)
+  assert.ok(d.species.BULBASAUR.machine.has(d.moveId.SOLAR_BEAM)); // TM22_SOLARBEAM × MOVE_SOLAR_BEAM
+  const { parseBlocks } = await import('../scripts/lib/script-graph.mjs');
+  assert.ok(parseBlocks('X_EventScript_1:: @ 8153065\n\tend\n').has('X_EventScript_1')); // rótulo com "@ endereço"
+  const t = load('ruby-sapphire-trainers.json').trainers;
+  assert.deepEqual(t.find((x) => x.key === 'TRAINER_ARCHIE_3').party.map((p) => p.level), [24, 24, 25]); // .level repetido: vale o último
+});
+
+test('S3: exclusivos de versão do Ruby/Sapphire', () => {
+  const ob = (n, v) => RS.pokemon.find((p) => p.name === n).obtainable[v];
+  for (const n of ['zangoose', 'solrock', 'seedot', 'mawile', 'groudon']) { assert.equal(ob(n, 'ruby'), true, n); assert.equal(ob(n, 'sapphire'), false, n); }
+  for (const n of ['seviper', 'lunatone', 'lotad', 'sableye', 'kyogre']) { assert.equal(ob(n, 'sapphire'), true, n); assert.equal(ob(n, 'ruby'), false, n); }
+});
+
+test('S3: nomes que mudam por versão (constants/version.inc / #ifdef SAPPHIRE)', () => {
+  const types = (v, n) => (RS_ACQ.versions[v][n] ?? []).map((s) => s.type);
+  assert.deepEqual(types('ruby', 'groudon'), ['static']); // SPECIES_GROUDON_OR_KYOGRE
+  assert.deepEqual(types('sapphire', 'kyogre'), ['static']);
+  assert.ok(types('ruby', 'latios').includes('roamer') && types('sapphire', 'latias').includes('roamer')); // ROAMER_SPECIES
+  assert.ok(types('ruby', 'latias').every((t) => t === 'event')); // Southern Island exige Eon Ticket (setwildbattle, não seteventmon)
+  // treinadores vilões: Magma no Ruby, Aqua no Sapphire
+  const w = load('ruby-sapphire-walkthrough.json');
+  const woods = (v) => w.versions[v].stages.flatMap((s) => s.locations).find((l) => l.name === 'Petalburg Woods').trainers.map((x) => x.key);
+  assert.ok(woods('ruby').includes('TRAINER_GRUNT_36') && !woods('ruby').includes('TRAINER_GRUNT_9'));
+  assert.ok(woods('sapphire').includes('TRAINER_GRUNT_9'));
+});
+
+test('S3: regras do Ruby/Sapphire conferidas no código', () => {
+  const mon = (n) => RS.pokemon.find((p) => p.name === n);
+  assert.equal(mon('espeon').evo.possible, true); // pokemon_3.c: EVO_FRIENDSHIP_DAY ativo (RTC)
+  assert.equal(RS.moves['low-kick'].power, null); // dano por peso: PokéAPI dava 50
+  assert.equal(RS_ACQ.versions.ruby.feebas[0].where, 'Route 119'); // gWildFeebasRoute119Data
+  assert.equal(RS_ACQ.versions.ruby.psyduck.find((s) => s.method === 'Surf')?.gate?.badge ?? 5, 5); // Surf: FLAG_BADGE05 (field_control_avatar.c)
+  assert.deepEqual(RS.starters.species, ['treecko', 'torchic', 'mudkip']); // sStarterMons
+  assert.deepEqual(RS_ACQ.progress.leaderOrder.slice(0, 2), ['ROXANNE', 'BRAWLY']);
+  assert.equal(Object.keys(RS_ACQ.tutors ?? {}).length, 0); // RS não tem tutores
+});
+
+test('S3: times do detonado batem com o jogo (divergências do detonado registradas com justificativa)', { skip: !existsSync(new URL('../data-sources/pokemythology/detonado-ruby-sapphire.html', import.meta.url)) }, async () => {
+  const { execFileSync } = await import('node:child_process');
+  execFileSync(process.execPath, ['scripts/validate-vs-pokemythology.mjs', 'ruby-sapphire'], { cwd: new URL('..', import.meta.url) });
+  const r = JSON.parse(readFileSync(new URL('../reports/ruby-sapphire/pokemythology-audit.json', import.meta.url), 'utf8'));
+  assert.deepEqual(r.results.filter((x) => x.status === 'MISMATCH').map((x) => x.title), []);
+  assert.ok(r.results.filter((x) => x.status === 'MATCH').length >= 12);
+});
+
+test('S3: ordem dos líderes do Ruby/Sapphire — detonado com nível errado (Wattson, Tate & Liza) não pode tirar o líder da linha do tempo', () => {
+  assert.deepEqual(RS_ACQ.progress.leaderOrder, ['ROXANNE', 'BRAWLY', 'WATTSON', 'FLANNERY', 'NORMAN', 'WINONA', 'TATE&LIZA', 'WALLACE']);
+  const v = load('ruby-sapphire-walkthrough.json').versions.ruby;
+  assert.equal(v.stages.find((s) => s.locations.some((l) => l.name === 'Sootopolis City')).stage, 7); // Wallace é o 8º líder no RS
+});
+
+// ---------------------------------------------------------------- S0/S4–S7: camada PokéAPI com regras da geração
+
+test('S0: Gen 1 com as regras DA Gen 1 (inclusive o bug Ghost × Psychic, que é o valor certo do jogo)', () => {
+  const g1 = load('red-blue.json');
+  const m = (n) => g1.pokemon.find((p) => p.name === n);
+  assert.equal(g1.types.length, 15);
+  assert.equal(g1.chart.ghost.psychic, 0); // Gen 1: 0×; Gen 2+: 2×
+  assert.equal(g1.chart.bug.poison, 2);
+  assert.equal(g1.chart.ice.fire, 1);
+  assert.deepEqual([m('abra').stats['special-attack'], m('abra').stats['special-defense']], [105, 105]); // Special único
+  assert.equal(g1.moves.bite.type, 'normal');
+  assert.deepEqual(m('magnemite').types, ['electric']);
+  assert.ok(g1.pokemon.every((p) => p.abilities.length === 0));
+});
+
+test('S0: a partir da Gen 4 a categoria é do GOLPE (Shadow Ball especial, Crunch físico)', () => {
+  const dp = load('diamond-pearl.json');
+  assert.equal(dp.moves['shadow-ball'].category, 'special'); // Gen 3: físico (pelo tipo Ghost)
+  assert.equal(dp.moves.crunch.category, 'physical'); // Gen 3: especial (pelo tipo Dark)
+  assert.equal(load('firered-leafgreen.json').moves['shadow-ball'].category, 'physical');
+});
+
+test('S7: tipo Stellar (Terastalização) não entra na tabela; Fada só a partir da Gen 6', () => {
+  assert.equal(load('scarlet-violet.json').types.includes('stellar'), false);
+  assert.equal(load('scarlet-violet.json').types.length, 18);
+  assert.equal(load('black-white.json').types.includes('fairy'), false);
+  assert.equal(load('x-y.json').types.includes('fairy'), true);
+});
+
+test('S7: jogo sem dados na PokéAPI não é publicado vazio (Legends: Z-A) e sem encontros o filtro de obtíveis não esvazia tudo', () => {
+  const { games } = load('games.json');
+  assert.equal(games.find((g) => g.id === 'legends-za').status, 'planned');
+  const sv = load('scarlet-violet.json');
+  const r = recommend(sv, sv.pokemon.find((p) => p.name === 'gyarados'), { level: 50, version: 'scarlet', onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false });
+  assert.equal(r.picks.length, 3);
+  assert.ok(games.filter((g) => ['pokeapi', 'decomp-core'].includes(g.validation) && g.status === 'supported').length >= 17);
+  // Gen 1 com núcleo conferido no decomp em assembly (S4) não pode ser anunciada como "sem validação"
+  for (const id of ['red-blue', 'yellow']) assert.equal(games.find((g) => g.id === id).validation, 'decomp-core');
+});
+
+// ---------------------------------------------------------------- Gen 1 (decomp em assembly pret/pokered e pret/pokeyellow)
+
+test('S4: past_stats aplicado stat a stat (Beedrill tinha Ataque 90 na Gen 1; o certo é 80)', () => {
+  // Erro: eu usava só a entrada de past_stats mais antiga (gen-i, que traz só "special") e perdia o
+  // Ataque 80 que vem na entrada gen-v. Confirmado em data/pokemon/base_stats/beedrill.asm (pokered).
+  for (const f of ['red-blue.json', 'yellow.json']) {
+    const b = mon(load(f), 'beedrill');
+    assert.equal(b.stats.attack, 80);
+    assert.equal(b.stats['special-attack'], 45);
+    assert.equal(b.stats['special-defense'], 45); // Special único na Gen 1
+  }
+  assert.equal(mon(load('gold-silver.json'), 'beedrill').stats.attack, 80); // Gen 2–5 também
+  assert.equal(mon(load('black-white.json'), 'beedrill').stats.attack, 80);
+  assert.equal(mon(load('x-y.json'), 'beedrill').stats.attack, 90); // mudou na Gen 6
+});
+
+test('S4: Rest e Soft-Boiled têm PP 10 na Gen 1 (PokéAPI dá 5); Swift continua "nunca erra" (precisão null)', () => {
+  // Confirmado em data/moves/moves.asm do pokered/pokeyellow. O decomp guarda 100 de precisão para Swift,
+  // mas o efeito SWIFT_EFFECT ignora a precisão — o overlay NÃO pode trocar null por 100.
+  for (const f of ['red-blue.json', 'yellow.json']) {
+    const d = load(f);
+    assert.equal(d.moves.rest.pp, 10);
+    assert.equal(d.moves['soft-boiled'].pp, 10);
+    assert.equal(d.moves.swift.accuracy, null);
+    assert.ok(d.corrections.list.some((c) => c.move === 'rest' && c.field === 'pp'));
+  }
+});
+
+test('S4: learnset da Gen 1 na ordem do decomp e evoluções com nível mínimo', () => {
+  const rb = load('red-blue.json');
+  const lv = (n) => mon(rb, n).learnset.filter((l) => l.method === 'level-up').map((l) => `${l.level}:${l.move}`);
+  assert.deepEqual(lv('bulbasaur').slice(0, 3), ['1:tackle', '1:growl', '7:leech-seed']); // evos_moves.asm
+  assert.equal(mon(rb, 'venusaur').minLevel, 32);
+  assert.equal(mon(rb, 'alakazam').evo.kind, 'TRADE'); // "\Z" no regex cortava ALAKAZAM em "ALAKA"
+  assert.equal(mon(rb, 'nidoqueen').evo.kind, 'ITEM');
+  assert.equal(mon(rb, 'nidoqueen').minLevel, 16);
+});
+
+const haveAsm = existsSync(new URL('../data-sources/pokered-asm/constants/', import.meta.url)) && existsSync(new URL('../data-sources/pokeyellow-asm/constants/', import.meta.url));
+test('S4: Red/Blue e Yellow têm 0 divergências contra o decomp (learnset, TM/HM, stats, tipos, golpes, tabela)', { skip: !haveAsm && 'sem decomp local' }, () => {
+  for (const g of ['red-blue', 'yellow']) {
+    const r = JSON.parse(readFileSync(new URL(`../reports/${g}/gen1-decomp-audit.json`, import.meta.url), 'utf8'));
+    for (const k of ['learnset', 'machine', 'stats', 'types', 'moves', 'chart', 'missing']) assert.equal(r[k].length, 0, `${g} ${k}: ${JSON.stringify(r[k].slice(0, 3))}`);
+  }
+});
+
+test('S4: moveset padrão da Gen 1 == WriteMonMoves (engine/pokemon/evos_moves.asm), todas as espécies, níveis 1–100', { skip: !haveAsm && 'sem decomp local' }, async () => {
+  // WriteMonMoves: parte dos golpes de nível 1 (base_stats), percorre o learnset em ordem, para no 1º nível maior,
+  // ignora golpe já conhecido e, com 4, desloca (sai o mais antigo) — igual à Gen 3.
+  const { loadGen1 } = await import('../scripts/lib/gen1-asm.mjs');
+  for (const [g, dir] of [['red-blue', 'pokered-asm'], ['yellow', 'pokeyellow-asm']]) {
+    const d = loadGen1(new URL(`../data-sources/${dir}/`, import.meta.url));
+    const data = load(`${g}.json`);
+    const idCache = new Map();
+    const moveIdOf = (n) => idCache.get(n) ?? (idCache.set(n, JSON.parse(readFileSync(new URL(`../.cache/move_${n}.json`, import.meta.url), 'utf8')).id), idCache.get(n));
+    const diffs = [];
+    let checked = 0;
+    for (const m of data.pokemon) {
+      const ordered = d.species[m.id].levelOrdered;
+      for (let level = 1; level <= 100; level++) {
+        const ref = [];
+        for (const [lvl, mv] of ordered) {
+          if (lvl > level) break;
+          if (ref.includes(d.moveId[mv])) continue;
+          if (ref.length === 4) ref.shift();
+          ref.push(d.moveId[mv]);
+        }
+        const got = likelyMoveset(m, level).map(moveIdOf);
+        checked++;
+        if ([...ref].sort().join() !== [...got].sort().join()) diffs.push(`${m.name}@${level}`);
+      }
+    }
+    assert.equal(checked, 15100);
+    assert.equal(diffs.length, 0, `${g}: ${diffs.length} diferenças, ex.: ${diffs.slice(0, 5).join(' | ')}`);
+  }
+});
+
+test('S4: Yellow — learnset fora de ordem do Primeape (Thrash 46 antes de Screech 45): selvagem nv. 45 sem Screech, mas aprende subindo de nível', () => {
+  // WriteMonMoves para no 1º golpe de nível maior ("assumption: learnset is sorted by level"); LearnMoveFromLevelUp
+  // varre a lista toda pelo nível exato. Eu ordenava por nível e dava Screech ao Primeape nv. 45 selvagem.
+  const y = load('yellow.json');
+  const p = mon(y, 'primeape');
+  assert.equal(likelyMoveset(p, 45).includes('screech'), false);
+  assert.equal(likelyMoveset(p, 46).includes('screech'), true);
+  assert.ok(availableMoves(y, p, 45).includes('screech'));
+});
+
+test('S4: iniciais da Gen 1 lidos do decomp (DEF STARTER*, nível do OaksLab.asm); RIVAL_STARTER_* não são espécies', () => {
+  assert.deepEqual(load('red-blue.json').starters, { where: 'Pallet Town — Laboratório do Prof. Oak', level: 5, species: ['bulbasaur', 'charmander', 'squirtle'] });
+  assert.deepEqual(load('yellow.json').starters.species, ['pikachu']); // RIVAL_STARTER_JOLTEON etc. = índices 1..3
+  const rb = load('red-blue.json');
+  const r = recommend(rb, mon(rb, 'onix'), { level: 30, version: 'red', starter: 'charmander', ...OPTS });
+  assert.equal(r.picks.length, 3);
+  assert.ok(r.picks.every((p) => !['bulbasaur', 'ivysaur', 'venusaur', 'squirtle', 'wartortle', 'blastoise'].includes(p.mon.name)));
+});
+
+test('S4: treinadores da Gen 1 — golpes especiais do jogo (LoneMoves/TeamMoves/Campeão no Red/Blue; SpecialTrainerMoves no Yellow)', () => {
+  // read_trainer_party.asm: golpes especiais SÓ em times "$FF". wGymLeaderNo (script do ginásio) = wLoneAttackNo (mesmo byte na RAM);
+  // LoneMoves "db N, GOLPE" vai no (N+1)º Pokémon, 3º slot. Erros que já tive: classe "const" da definição da macro deslocava
+  // todas as classes; OPP_BROCK fica no arquivo de OBJETOS, não no script do ginásio (Onix ficava sem Bide).
+  const rb = load('red-blue-trainers.json').trainers;
+  const team = (list, key) => list.find((t) => t.key === key).party;
+  const has = (list, key, i, mv) => assert.ok(team(list, key)[i].moves.includes(mv), `${key}[${i}] sem ${mv}: ${team(list, key)[i].moves}`);
+  has(rb, 'BROCK#1', 1, 'bide'); has(rb, 'MISTY#1', 1, 'bubble-beam'); has(rb, 'LT_SURGE#1', 2, 'thunderbolt'); has(rb, 'ERIKA#1', 2, 'mega-drain');
+  has(rb, 'KOGA#1', 3, 'toxic'); has(rb, 'SABRINA#1', 3, 'psywave'); has(rb, 'BLAINE#1', 3, 'fire-blast'); has(rb, 'GIOVANNI#3', 4, 'fissure');
+  assert.equal(team(rb, 'GIOVANNI#1').some((p) => p.moves.includes('fissure')), false); // Giovanni fora do ginásio: sem LoneMove
+  has(rb, 'BRUNO#1', 4, 'fissure'); has(rb, 'AGATHA#1', 4, 'toxic'); has(rb, 'LANCE#1', 4, 'barrier');
+  has(rb, 'RIVAL3#1', 0, 'sky-attack'); has(rb, 'RIVAL3#1', 5, 'blizzard'); has(rb, 'RIVAL3#2', 5, 'mega-drain'); has(rb, 'RIVAL3#3', 5, 'fire-blast');
+  const y = load('yellow-trainers.json').trainers;
+  assert.deepEqual(team(y, 'BROCK#1').map((p) => `${p.species}${p.level}`), ['geodude10', 'onix12']);
+  assert.deepEqual(team(y, 'BROCK#1')[1].moves, ['tackle', 'screech', 'bind', 'bide']);
+  assert.deepEqual(team(y, 'LT_SURGE#1')[0].moves, ['thunderbolt', 'mega-punch', 'mega-kick', 'growl']);
+});
+
+test('S4: rivais da Gen 1 — nº do time pelo script (cadeia cp/ld, tabela local repetida na Route 22, "add" no Yellow) e ligação com o inicial', () => {
+  // OaksLab.asm: jogador Charmander → rival Squirtle; Squirtle → Bulbasaur; Bulbasaur → Charmander.
+  // Route 22 tem DUAS tabelas ".StarterTable" (lutas 1 e 2): pegar a primeira DEPOIS do bloco. Objeto do rival no mapa não é a luta.
+  const rb = load('red-blue-trainers.json').trainers;
+  const rivals = rb.filter((t) => t.key.startsWith('RIVAL'));
+  assert.equal(rivals.length, 24); // 9 + 12 + 3 (Campeão)
+  assert.ok(rivals.every((t) => t.forStarter?.length === 1));
+  assert.deepEqual(rb.find((t) => t.key === 'RIVAL1#1').forStarter, ['charmander']); // rival com Squirtle
+  assert.deepEqual(rb.find((t) => t.key === 'RIVAL1#1').map, ["Oak's Lab"]);
+  assert.deepEqual(rb.find((t) => t.key === 'RIVAL2#10').map, ['Route 22']);
+  assert.deepEqual(rb.find((t) => t.key === 'RIVAL1#4').map, ['Route 22']);
+  const y = load('yellow-trainers.json').trainers.filter((t) => t.key.startsWith('RIVAL'));
+  assert.equal(y.length, 16); // 3 + 10 + 3; no Yellow o time varia pela evolução do Eevee, não pelo inicial do jogador
+  assert.ok(y.every((t) => !t.forStarter));
+});
+
+// ---------------------------------------------------------------- Gen 1: onde obter e progresso (build-acquisition-gen1)
+
+test('S4: selvagens da Gen 1 — ponteiro do mapa pela POSIÇÃO (o comentário "; ROUTE_1" falta) e exclusivos por versão (IF DEF)', () => {
+  // Erro: lendo o mapa pelo comentário de grass_water.asm, Mt. Moon etc. ficavam sem selvagens (Zubat "não obtível").
+  const a = load('red-blue-acquisition.json');
+  assert.ok(a.versions.red.zubat.some((s) => s.mapId === 'MT_MOON_1F' && s.method === 'Grama/caverna'));
+  assert.ok(a.versions.red.ekans?.some((s) => s.type === 'wild'));
+  assert.equal(a.versions.blue.ekans, undefined); // Ekans só no Red
+  assert.ok(a.versions.blue.sandshrew?.some((s) => s.type === 'wild'));
+  const rb = load('red-blue.json');
+  for (const v of ['red', 'blue']) assert.equal(rb.pokemon.filter((p) => p.obtainable[v]).length, 139); // 151 − Mew − 11 exclusivos
+  // Old Rod: Magikarp nv 5 em qualquer água (engine/items/item_effects.asm), liberada pela casa de Vermilion
+  const old = a.versions.red.magikarp.find((s) => s.method === 'Old Rod');
+  assert.equal(old.where, 'qualquer água');
+  assert.equal(old.min, 5);
+  assert.equal(old.gate.item, 'Vermilion Old Rod House');
+});
+
+test('S4: Yellow — Pikachu inicial recusa pedra (Raichu só por troca), scripts "_2.asm", Super Rod 40/30/20/10%', () => {
+  // ItemUseEvoStone → IsThisPartyMonStarterPikachu → RefusingText; não há outro Pikachu no Yellow. A PokéAPI diz "obtível".
+  const y = load('yellow.json');
+  assert.equal(mon(y, 'raichu').obtainable.yellow, false);
+  assert.equal(mon(y, 'pikachu').obtainable.yellow, true);
+  assert.equal(y.pokemon.filter((p) => p.obtainable.yellow).length, 137);
+  const a = load('yellow-acquisition.json').versions.yellow;
+  assert.ok(a.squirtle.some((s) => s.type === 'gift' && s.mapId === 'VERMILION_CITY' && s.level === 10)); // VermilionCity_2.asm
+  assert.ok(a.bulbasaur.some((s) => s.type === 'gift' && s.mapId === 'CERULEAN_MELANIES_HOUSE'));
+  const dratini = a.dratini.find((s) => s.mapId === 'SAFARI_ZONE_CENTER' && s.method === 'Super Rod');
+  assert.equal(dratini.pct, 20); // 3º slot (engine/items/super_rod.asm: 40/30/20/10)
+});
+
+test('S4: estágios da Gen 1 — fatos do código vencem a propagação (início do jogo, portões que checam insígnia)', () => {
+  // Erros que já tive: Pallet 6 e Route 1 6 ("maior vizinho" pela Route 21, só com Surf); Route 22 8 (pela Route 23);
+  // Route 23 0 e Indigo Plateau 0 (teto pelo vizinho); Diglett's Cave 0 (teto em interior); Cerulean Cave 1 ("Cerulean").
+  for (const g of ['red-blue', 'yellow']) {
+    const m = load(`${g}-acquisition.json`).progress.maps;
+    const s = (k) => m[k].stage;
+    assert.equal(s('PALLET_TOWN'), 0); assert.equal(s('ROUTE_1'), 0); assert.equal(s('ROUTE_22'), 0);
+    assert.equal(s('ROUTE_23'), 8); assert.equal(s('INDIGO_PLATEAU'), 8); assert.equal(s('VICTORY_ROAD_1F'), 8);
+    assert.equal(s('CERULEAN_CAVE_1F'), 9);
+    assert.ok(s('DIGLETTS_CAVE') >= 2);
+    assert.ok(s('ROUTE_12_SUPER_ROD_HOUSE') >= s('ROUTE_12'));
+    assert.ok(s('PEWTER_CITY') <= s('CERULEAN_CITY') && s('CERULEAN_CITY') <= s('VERMILION_CITY') && s('VERMILION_CITY') <= s('CELADON_CITY') && s('CELADON_CITY') <= s('FUCHSIA_CITY') && s('FUCHSIA_CITY') <= s('CINNABAR_ISLAND'));
+    const p = load(`${g}-acquisition.json`).progress;
+    assert.equal(p.leadersFound, 8);
+    assert.equal(p.eliteFound, 4);
+  }
+});
+
+test('S4: TMs/HMs da Gen 1 — 55/55 com origem; HM fora da batalha pela insígnia do código', () => {
+  // start_sub_menus.asm: .surf → BIT_SOULBADGE (5ª, Koga). Gyms entregam TM ("lb bc, TM_X, 1" no script do ginásio).
+  for (const g of ['red-blue', 'yellow']) {
+    const a = load(`${g}-acquisition.json`);
+    assert.equal(Object.keys(a.machines).length, 55);
+    const tb = a.machines.thunderbolt.find((s) => s.leader);
+    assert.equal(tb.leader, 'Lt.Surge');
+    const surf = Object.values(a.versions)[0].tentacool.find((s) => s.method === 'Surf');
+    assert.equal(surf.gate.badge, 5);
+    assert.equal(surf.gate.leader, 'Koga');
+  }
+});
+
+test('S4: parseTrainerRuns — times em texto corrido do detonado da Gen 1 sem misturar com o time seguinte', async () => {
+  const { parseTrainerRuns } = await import('../scripts/lib/pokemythology.mjs');
+  const html = '<p>Ela tem um <img src="a.png">Staryu lv.18 e um <img src="b.png">Starmie lv.21. Se você tiver pego o Bulbassaur, será fácil. Ao entrar na ponte, você lutará com Gary, ele tem: <img>Pidgeotto lv.18, <img>Abra lv.15</p><p>LORELEI: Dewgong lv.54 Cloyster lv.53</p>';
+  const runs = parseTrainerRuns(html).map((r) => r.party.map((p) => `${p.species}${p.level}`).join(','));
+  assert.deepEqual(runs, ['Staryu18,Starmie21', 'Pidgeotto18,Abra15', 'Dewgong54,Cloyster53']);
+  // mesmo time quebrado em parágrafos sem texto no meio (Bruno no detonado do Red/Blue) continua um time só
+  assert.deepEqual(parseTrainerRuns('<p>Os Pokémons usados são: <img>Onix lv.53</p><p><img>Hitmonchan lv.55<br><img>Machamp lv.58</p>').map((r) => r.party.length), [3]);
+});
+
+test('S4: detonado da Gen 1 no app — locais pelos grupos do mapa da cidade, nomes do jogo decodificados, todo treinador colocado', () => {
+  // Locais: ExternalMapEntries (externos) + grupos "end_indoor_group" (internos) com o nome de names.asm.
+  // Tokens do Game Boy: "#MON" = POKéMON ("#MON TOWER" virava "#mon Tower"), "<PKMN>" = POKéMON.
+  for (const g of ['red-blue', 'yellow']) {
+    const w = load(`${g}-walkthrough.json`);
+    for (const v of Object.values(w.versions)) {
+      assert.equal(v.stages.length, 10);
+      assert.equal(v.unplacedTrainers.length, 0);
+      const names = v.stages.flatMap((s) => s.locations.map((l) => l.name));
+      for (const n of ['Pokémon Tower', 'Pokémon Mansion', 'Mt. Moon', 'Cerulean Cave', 'Viridian Forest']) assert.ok(names.includes(n), `${g}: falta ${n}`);
+      assert.ok(names.every((n) => !/[#<>]/.test(n)), names.filter((n) => /[#<>]/.test(n)).join());
+      assert.equal(v.stages[0].leader.name, 'Brock');
+      assert.ok(v.stages[9].locations.some((l) => l.name === 'Cerulean Cave'));
+    }
+  }
+  const rb = load('red-blue-walkthrough.json').versions.red.stages;
+  assert.deepEqual(rb[1].leader.prize, ['bubble-beam']); // CeruleanGym.asm: lb bc, TM_BUBBLEBEAM
+  assert.ok(rb[1].leader.party[1].moves.includes('bubble-beam')); // LoneMoves
+});
+
+// ---------------------------------------------------------------- Gen 2 (decomp em assembly pret/pokegold e pret/pokecrystal)
+
+test('S5: past_values dos golpes é EXCLUSIVO (a versão da entrada é onde o valor mudou) — Gold/Silver recebia valores da Gen 1', () => {
+  // PokéAPI: Dig {gold-silver: 100, diamond-pearl: 60}. Com ">=" o Gold/Silver ficava com Dig 100, Bite Normal, Blizzard 90%.
+  // Confirmado em data/moves/moves.asm (pokegold): DIG 60, BITE DARK, BLIZZARD 70.
+  const gs = load('gold-silver.json');
+  assert.equal(gs.moves.dig.power, 60);
+  assert.equal(gs.moves.bite.type, 'dark');
+  assert.equal(gs.moves.blizzard.accuracy, 70);
+  assert.equal(gs.moves['double-edge'].power, 120);
+  const rb = load('red-blue.json'); // na Gen 1 os valores antigos continuam
+  assert.equal(rb.moves.dig.power, 100);
+  assert.equal(rb.moves.bite.type, 'normal');
+  assert.equal(rb.moves.blizzard.accuracy, 90);
+});
+
+test('S5: Gen 2 — PP errados na PokéAPI corrigidos pelo decomp; dano fixo continua sem "poder"; Curse é "???"', () => {
+  for (const f of ['gold-silver.json', 'crystal.json']) {
+    const d = load(f);
+    assert.equal(d.moves['milk-drink'].pp, 10);
+    assert.equal(d.moves['mind-reader'].pp, 5);
+    assert.equal(d.moves.rest.pp, 10);
+    assert.equal(d.moves['soft-boiled'].pp, 10);
+    assert.equal(d.moves['dragon-rage'].power, null); // EFFECT_STATIC_DAMAGE: o 40 do decomp é o dano, não poder base
+    assert.equal(d.moves.curse.type, 'unknown'); // CURSE_TYPE
+  }
+});
+
+test('S5: Gen 2 — tutores do Crystal separados das máquinas (add_mt) e evoluções no vocabulário do motor', () => {
+  const c = load('crystal.json'), gs = load('gold-silver.json');
+  assert.ok(mon(c, 'pikachu').learnset.some((l) => l.method === 'tutor' && l.move === 'thunderbolt'));
+  assert.equal(mon(gs, 'pikachu').learnset.some((l) => l.method === 'tutor'), false); // tutor só existe no Crystal
+  assert.deepEqual(mon(c, 'hitmonlee').evo, { kind: 'LEVEL_ATK_GT_DEF', param: 20, possible: true });
+  assert.equal(mon(c, 'espeon').evo.kind, 'FRIENDSHIP_DAY'); // Gen 2 tem relógio: evolução por horário é possível
+  assert.equal(mon(c, 'umbreon').evo.kind, 'FRIENDSHIP_NIGHT');
+  assert.equal(mon(c, 'steelix').evo.kind, 'TRADE_ITEM');
+  assert.equal(mon(c, 'tyranitar').minLevel, 55);
+});
+
+const haveAsm2 = existsSync(new URL('../data-sources/pokecrystal-asm/constants/', import.meta.url)) && existsSync(new URL('../data-sources/pokegold-asm/constants/', import.meta.url));
+test('S5: Gold/Silver e Crystal com 0 divergências contra o decomp e moveset padrão == FillMoves (engine/pokemon/evolve.asm)', { skip: !haveAsm2 && 'sem decomp local' }, async () => {
+  const { loadGen2 } = await import('../scripts/lib/gen2-asm.mjs');
+  for (const [g, dir] of [['gold-silver', 'pokegold-asm'], ['crystal', 'pokecrystal-asm']]) {
+    const r = JSON.parse(readFileSync(new URL(`../reports/${g}/gen2-decomp-audit.json`, import.meta.url), 'utf8'));
+    for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${g} ${k}: ${JSON.stringify(v.slice(0, 3))}`);
+    // FillMoves: learnset em ordem, para no 1º nível maior, ignora repetido, com 4 desloca (igual à Gen 1)
+    const d = loadGen2(new URL(`../data-sources/${dir}/`, import.meta.url));
+    const data = load(`${g}.json`);
+    const idCache = new Map();
+    const idOf = (n) => idCache.get(n) ?? (idCache.set(n, JSON.parse(readFileSync(new URL(`../.cache/move_${n}.json`, import.meta.url), 'utf8')).id), idCache.get(n));
+    const diffs = [];
+    for (const m of data.pokemon) for (let level = 1; level <= 100; level++) {
+      const ref = [];
+      for (const [lvl, mv] of d.species[m.id].levelOrdered) {
+        if (lvl > level) break;
+        if (ref.includes(d.moveId[mv])) continue;
+        if (ref.length === 4) ref.shift();
+        ref.push(d.moveId[mv]);
+      }
+      if ([...ref].sort().join() !== likelyMoveset(m, level).map(idOf).sort().join()) diffs.push(`${m.name}@${level}`);
+    }
+    assert.equal(diffs.length, 0, `${g}: ${diffs.slice(0, 5).join(' | ')}`);
+  }
+});
+
+test('S5: treinadores da Gen 2 — times/golpes do decomp, rival ligado ao inicial pelo script (rótulo local com ou sem ":")', () => {
+  // CherrygroveCity.asm: sem desvio = jogador com Cyndaquil → RIVAL1_1_TOTODILE; ".Totodile" → CHIKORITA; ".Chikorita" → CYNDAQUIL.
+  // Erro que tive: BurnedTower1F usa ".totodile" sem ":" e os 3 times saíam como "jogador com Cyndaquil".
+  for (const g of ['gold-silver', 'crystal']) {
+    const t = load(`${g}-trainers.json`).trainers;
+    const rivals = t.filter((x) => x.group === 'Rival');
+    assert.equal(rivals.length, 21);
+    const beats = { chikorita: 'totodile', cyndaquil: 'chikorita', totodile: 'cyndaquil' }; // rival leva o que vence o do jogador
+    for (const r of rivals) {
+      const rivalStarter = r.key.match(/_(CHIKORITA|CYNDAQUIL|TOTODILE)$/)[1].toLowerCase();
+      assert.deepEqual(r.forStarter, [beats[rivalStarter]], `${g} ${r.key}`);
+      assert.equal(r.label, 'Rival'); // nome do rival é escolhido pelo jogador ("?" no decomp)
+    }
+    const falkner = t.find((x) => x.key === 'FALKNER#FALKNER1');
+    assert.deepEqual(falkner.party.map((p) => `${p.species}${p.level}:${p.moves.join('/')}`), ['pidgey7:tackle/mud-slap', 'pidgeotto9:tackle/mud-slap/gust']);
+    assert.equal(t.filter((x) => x.group === 'Líderes de ginásio').length, 8);
+    assert.equal(t.filter((x) => x.group === 'Líderes de Kanto').length, 8);
+    assert.equal(t.find((x) => x.key === 'CHAMPION#LANCE').party.at(-1).species, 'dragonite');
+    assert.ok(t.every((x) => !/[#<>]/.test(x.label)), 'tokens do Game Boy decodificados');
+  }
+  // revanches por telefone (JOEY2…) ficam marcadas, não contam como luta nova
+  const c = load('crystal-trainers.json').trainers;
+  assert.equal(c.find((x) => x.key === 'YOUNGSTER#JOEY1').rematch, undefined);
+  assert.equal(c.find((x) => x.key === 'YOUNGSTER#JOEY2').rematch, true);
+});
+
+test('S5: aquisição da Gen 2 — horário do dia, ELIF do pokegold, Bug Contest, Odd Egg, vagantes, evolução por horário', () => {
+  // Erros que já tive: pokegold usa "ELIF DEF(_SILVER)" (o pré-processador só tinha IF/ELSE e o Gold perdia Pikachu, Clefairy…);
+  // a camada PokéAPI bloqueava evolução por horário em todas as gerações (regra da Gen 3) → Espeon/Umbreon "não obtíveis".
+  const c = load('crystal.json'), gs = load('gold-silver.json');
+  assert.equal(mon(c, 'espeon').obtainable.crystal, true);
+  assert.equal(mon(c, 'umbreon').obtainable.crystal, true);
+  for (const v of ['gold', 'silver']) assert.ok(mon(gs, 'pikachu').obtainable[v] && mon(gs, 'clefairy').obtainable[v]);
+  const a = load('crystal-acquisition.json').versions.crystal;
+  const hoot = a.hoothoot.find((s) => s.mapId === 'ROUTE_29');
+  assert.deepEqual(hoot.times, ['noite']); // Hoothoot só à noite na Route 29 (johto_grass.asm: bloco "; nite")
+  assert.ok(a.scyther.some((s) => s.method === 'Bug Contest')); // a PokéAPI não tem o concurso
+  assert.ok(a.pichu.some((s) => s.type === 'egg' && /Odd Egg/.test(s.detail))); // data/events/odd_eggs.asm
+  assert.ok(a.raikou.some((s) => s.type === 'roamer' && s.level === 40)); // InitRoamMons
+  assert.equal(a.suicune.some((s) => s.type === 'roamer'), false); // no Crystal o Suicune não vaga
+  assert.ok(load('gold-silver-acquisition.json').versions.gold.suicune.some((s) => s.type === 'roamer'));
+  assert.equal(c.pokemon.filter((p) => p.obtainable.crystal).length, 223);
+  assert.deepEqual(c.starters.species, ['chikorita', 'cyndaquil', 'totodile']);
+});
+
+test('S5: estágios da Gen 2 — ginásio fixa a cidade (teto), passagem não fica depois do lado mais cedo, portão = só GATE', () => {
+  // Erros que já tive: Route 29 = 1 (um NPC checa a Zephyr; não é portão); Union Cave = 9 (título de revisita);
+  // Azalea = 2 no Gold (sem seção no detonado; o Bugsy é de lá); Olivine = 5 por igualdade com o ginásio (é visitada no 4);
+  // Radio Tower sem landmark (campo de música "A | B" quebrava o regex de maps.asm).
+  for (const g of ['gold-silver', 'crystal']) {
+    const m = load(`${g}-acquisition.json`).progress.maps;
+    const s = (k) => m[k].stage;
+    assert.equal(s('NEW_BARK_TOWN'), 0); assert.equal(s('ROUTE_29'), 0); assert.equal(s('VIOLET_CITY'), 0);
+    assert.equal(s('AZALEA_TOWN'), 1); assert.ok(s('UNION_CAVE_1F') <= 1); assert.equal(s('SLOWPOKE_WELL_B1F'), 1);
+    assert.equal(s('ROUTE_36'), 3); assert.equal(s('ECRUTEAK_CITY'), 3); assert.ok(s('OLIVINE_CITY') <= 5);
+    assert.equal(s('BLACKTHORN_CITY'), 7); assert.equal(s('ROUTE_27'), 8); assert.equal(s('VERMILION_CITY'), 9);
+    assert.equal(m.RADIO_TOWER_1F.landmark, 'LANDMARK_RADIO_TOWER');
+    const p = load(`${g}-acquisition.json`).progress;
+    assert.deepEqual(p.leaderOrder, ['Falkner', 'Bugsy', 'Whitney', 'Morty', 'Chuck', 'Jasmine', 'Pryce', 'Clair']);
+    assert.equal(p.eliteFound, 4);
+    const surf = Object.values(load(`${g}-acquisition.json`).versions)[0].tentacool.find((x) => x.method === 'Surf');
+    assert.equal(surf.gate.leader, 'Morty'); // overworld.asm: .TrySurf → ENGINE_FOGBADGE
+    const w = load(`${g}-walkthrough.json`);
+    assert.ok(Object.values(w.versions).every((v) => v.unplacedTrainers.length === 0 && v.rematches > 0));
+    assert.ok(Object.values(w.versions)[0].stages.flatMap((st) => st.locations.map((l) => l.name)).includes('Radio Tower'));
+  }
+});
+
+// ---------------------------------------------------------------- R0: banco de lutas (achados de dado)
+
+test('R0: estágio da luta pelo time no detonado — a mesma rota tem lutas de momentos diferentes', async () => {
+  // Erro: o 2º rival da Route 22 no Red/Blue (nv 53, antes da Liga) herdava o estágio 0 do mapa.
+  const { teamStage } = await import('../scripts/lib/progress.mjs');
+  const tl = { blocks: [{ stage: 0, party: [{ species: 'Pidgey', level: 9 }] }, { stage: 8, party: [{ species: 'Pidgeot', level: 47 }, { species: 'Alakazam', level: 50 }, { species: 'Rhyhorn', level: 45 }] }] };
+  assert.equal(teamStage(tl, [{ species: 'pidgeot', level: 47 }, { species: 'alakazam', level: 50 }, { species: 'rhyhorn', level: 45 }, { species: 'gyarados', level: 47 }]), 8);
+  assert.equal(teamStage(tl, [{ species: 'onix', level: 14 }]), null);
+  const w = load('red-blue-walkthrough.json').versions.red.stages;
+  const stageOf = (key) => w.find((s) => s.locations.some((l) => l.trainers.some((t) => t.key === key)))?.stage;
+  assert.equal(stageOf('RIVAL1#4'), 0); // 1ª luta da Route 22
+  assert.equal(stageOf('RIVAL2#10'), 8); // 2ª luta da Route 22
+});
+
+test('R0: Gen 2 — andar interno com o landmark da cidade não fica depois dela; Mt. Mortar pela citação anterior', () => {
+  // Erros: a Goldenrod Dept Store 5F (troca do Machop por Abra) ficava no estágio 7 por ser citada de novo na parte da
+  // Radio Tower → contra a Miltank da Whitney não havia lutador "disponível". Mt. Mortar ia para 9 pelo título.
+  const a = load('crystal-acquisition.json');
+  assert.equal(a.progress.maps.GOLDENROD_DEPT_STORE_5F.stage, 2);
+  assert.equal(a.versions.crystal.machop.find((s) => s.type === 'trade').stage, 2);
+  assert.equal(a.progress.maps.MOUNT_MORTAR_1F_OUTSIDE.stage, 6);
+  assert.equal(a.progress.maps.RADIO_TOWER_2F.stage >= 3, true);
+});
+
+// ---------------------------------------------------------------- R2–R4: fórmula de dano e nova pontuação
+
+test('R2: fórmula de dano por geração — contas à mão a partir do código', async () => {
+  const { statsAt, damage, turnsToKo, badgeBoost } = await import('../public/battle.mjs');
+  // Gen 1 (pokered CalculateDamage): Charmander nv 5 (Atk base 52, DV 8) Scratch 40 em Bulbasaur nv 5 (Def 49, DV 8)
+  // A = ⌊(52+8)·2·5/100⌋+5 = 11; D = ⌊(49+8)·2·5/100⌋+5 = 10; ⌊⌊4·40·11/10⌋/50⌋ = 3; +2 = 5; sem STAB; ×1
+  const rb = load('red-blue.json');
+  const ch = mon(rb, 'charmander'), bu = mon(rb, 'bulbasaur');
+  const a1 = { mon: ch, level: 5, stats: statsAt(1, ch, 5) }, d1 = { mon: bu, level: 5, stats: statsAt(1, bu, 5) };
+  assert.equal(a1.stats.attack, 11); assert.equal(d1.stats.defense, 10);
+  assert.ok(Math.abs(damage(rb, 1, a1, d1, 'scratch').per - 5 * (236 / 255)) < 1e-9); // média de 217–255/255
+  // Gen 3 (pokeemerald CalculateBaseDamage): Mudkip nv 5 (Atk 70, IV 15) Tackle 35 em Zigzagoon nv 5 (Def 41)
+  // A = ⌊(140+15)·5/100⌋+5 = 12; D = ⌊(82+15)·5/100⌋+5 = 9; ⌊⌊12·35·4/9⌋/50⌋ = 3; +2 = 5; ×0,925 (85–100%)
+  const em = load('emerald.json');
+  const mu = mon(em, 'mudkip'), zi = mon(em, 'zigzagoon');
+  const a3 = { mon: mu, level: 5, stats: statsAt(3, mu, 5) }, d3 = { mon: zi, level: 5, stats: statsAt(3, zi, 5) };
+  assert.equal(a3.stats.attack, 12); assert.equal(d3.stats.defense, 9);
+  assert.ok(Math.abs(damage(em, 3, a3, d3, 'tackle').per - 5 * 0.925 * (em.moves.tackle.accuracy / 100)) < 1e-9);
+  // dano fixo: Dragon Rage = 40 (Gen 2: EFFECT_STATIC_DAMAGE); Seismic Toss = nível
+  const c = load('crystal.json');
+  const dn = mon(c, 'dratini'), ra = mon(c, 'rattata');
+  assert.equal(damage(c, 2, { mon: dn, level: 20, stats: statsAt(2, dn, 20) }, { mon: ra, level: 20, stats: statsAt(2, ra, 20) }, 'dragon-rage').per, 40);
+  // Rollout: 1×, 2×, 4×… acumulado (rollout.asm) → nocauteia em menos turnos do que o dano do 1º uso sugere
+  const ro = { per: 10, hits: 1, turns: 1, escalate: 'reset' };
+  assert.equal(turnsToKo(ro, 70), 3); // 10 + 20 + 40
+  assert.equal(turnsToKo({ per: 10, hits: 1, turns: 1 }, 70), 7);
+  // bônus de insígnia (Gen 1: Boulder → Ataque ×9/8) só com o líder já vencido no estágio
+  const prog = load('red-blue-acquisition.json').progress;
+  assert.equal(badgeBoost(1, { attack: 80, defense: 50, speed: 50, 'special-attack': 50, 'special-defense': 50, hp: 50 }, prog, 1).attack, 90);
+  assert.equal(badgeBoost(1, { attack: 80, defense: 50, speed: 50, 'special-attack': 50, 'special-defense': 50, hp: 50 }, prog, 0).attack, 80);
+});
+
+test('R3: nova pontuação — Whitney (Crystal, 2 insígnias): Machop por troca contra a Clefairy; Rollout da Miltank conta', () => {
+  const c = load('crystal.json'), a = load('crystal-acquisition.json');
+  const t = load('crystal-trainers.json').trainers.find((x) => x.key === 'WHITNEY#WHITNEY1');
+  const run = (p) => recommend(c, mon(c, p.species), { level: 20, oppMoves: p.moves, oppLevel: p.level, oppDvs: p.dvs, version: 'crystal', onlyObtainable: true, acq: a, stage: 2, starter: 'cyndaquil' });
+  const clef = run(t.party[0]);
+  assert.ok(clef.picks.some((k) => k.mon.name === 'machop' && k.move.name === 'karate-chop'));
+  const milt = run(t.party[1]);
+  assert.ok(milt.picks[0].duel.win); // ao menos 1 vence a troca…
+  const firstLoss = milt.picks.findIndex((k) => !k.duel.win); // …e quem vence vem antes de quem perde
+  assert.ok(firstLoss === -1 || milt.picks.slice(firstLoss).every((k) => !k.duel.win));
+  assert.equal(milt.candidates.filter((k) => k.duel.win).length >= milt.picks.filter((k) => k.duel.win).length, true);
+  assert.ok(milt.candidates.find((k) => k.mon.name === 'gastly')?.duel.theirMove === 'rollout'); // Gastly não é "invulnerável"
+});
+
+test('R4: banco de lutas — a nova pontuação não pode piorar (sugestões folgadas e que vencem, nos 7 jogos)', () => {
+  // reports/benchmark/_total.json é gerado por scripts/build-benchmark.mjs (o "antes" é reavaliado com a mesma fórmula)
+  const t = JSON.parse(readFileSync(new URL('../reports/benchmark/_total.json', import.meta.url), 'utf8'));
+  const r = (x, k) => x[k] / x.picks;
+  assert.ok(r(t.depois, 'comfy') >= 0.88, `folgadas ${r(t.depois, 'comfy')}`);
+  assert.ok(r(t.depois, 'comfy') >= r(t.antes, 'comfy'));
+  assert.ok(r(t.depois, 'wins') >= r(t.antes, 'wins'));
+  assert.ok(t.depois.covered / t.depois.mons >= 0.98);
+});
+
+test('R5: modo "contra o time inteiro" — soma as trocas por Pokémon do time; quem vence mais vem primeiro', async () => {
+  const { recommendTeam } = await import('../public/engine.mjs');
+  const rb = load('red-blue.json'), a = load('red-blue-acquisition.json');
+  const brock = load('red-blue-trainers.json').trainers.find((t) => t.key === 'BROCK#1');
+  const r = recommendTeam(rb, brock.party, { level: 14, version: 'red', onlyObtainable: true, acq: a, stage: 0, starter: 'charmander' });
+  assert.equal(r.picks[0].wins, 2); // vence Geodude e Onix
+  assert.ok(r.picks.every((p, i, all) => i === 0 || all[i - 1].wins >= p.wins));
+  assert.ok(r.picks.every((p) => p.vs.length === brock.party.length));
+  assert.equal(r.picks.some((p) => ['bulbasaur', 'squirtle'].includes(p.mon.name)), false); // inicial do jogador = Charmander
+});
+
+// ---------------------------------------------------------------- S6: Gen 4 — Platinum (decomp em JSON pret/pokeplatinum)
+
+test('S6: Platinum — núcleo com 0 divergências; PokéAPI sem histórico de prioridade/PP das Gens 8–9', () => {
+  // res/moves/*/data.json: Protect/Detect +3, Fake Out +1, Extreme Speed +1, Teleport 0 na Gen 4; Recover/Roost/Rest PP 10;
+  // Luster Purge 70. A PokéAPI traz os valores atuais (past_values não registra essas mudanças).
+  const pt = load('platinum.json');
+  assert.equal(pt.moves.protect.priority, 3); assert.equal(pt.moves['fake-out'].priority, 1);
+  assert.equal(pt.moves['extreme-speed'].priority, 1); assert.equal(pt.moves.teleport.priority, 0);
+  assert.equal(pt.moves.recover.pp, 10); assert.equal(pt.moves.roost.pp, 10); assert.equal(pt.moves['luster-purge'].power, 70);
+  assert.equal(pt.moves['shadow-ball'].category, 'special'); // divisão física/especial por golpe (Gen 4)
+  const r = JSON.parse(readFileSync(new URL('../reports/platinum/gen4-decomp-audit.json', import.meta.url), 'utf8'));
+  for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${k}: ${JSON.stringify(v.slice(0, 3))}`);
+});
+
+test('S6: Platinum — treinadores: sufixo do rival = inicial do JOGADOR (oposto da Gen 2); IV ≥ 32 = aleatório; lutas em dupla', () => {
+  const t = load('platinum-trainers.json').trainers;
+  const r = t.find((x) => x.key === 'TRAINER_RIVAL_ROUTE_203_PIPLUP');
+  assert.deepEqual(r.forStarter, ['piplup']);
+  assert.ok(r.party.some((p) => p.species === 'turtwig')); // o Barry leva o que vence o seu
+  assert.ok(t.filter((x) => x.group === 'Rival').every((x) => x.forStarter?.length === 1 && x.key.toLowerCase().endsWith('_' + x.forStarter[0])));
+  assert.ok(t.some((x) => x.key === 'TRAINER_RIVAL_ROUTE_201_TURTWIG')); // 1ª luta: StartFirstBattle
+  // trainer_data.c ivs = ivScale·31/255; Pokemon_InitWith: ≥ INIT_IVS_RANDOM (32) → aleatório (Electivire do Volkner, ivScale 2500)
+  assert.equal(t.find((x) => x.key === 'TRAINER_LEADER_VOLKNER').party.at(-1).iv, null);
+  assert.ok(t.some((x) => x.key === 'TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1')); // StartTagBattle
+  assert.ok(t.some((x) => x.key === 'TRAINER_AROMA_LADY_ALISON')); // StartTrainerBattle A, B
+});
+
+test('S6: Platinum — onde obter: dual-slot fora, Regis/Regigigas só por evento (a PokéAPI erra o Regigigas), fontes especiais', () => {
+  const pt = load('platinum.json'), a = load('platinum-acquisition.json').versions.platinum;
+  for (const sp of ['ekans', 'caterpie', 'sandshrew', 'regirock', 'regigigas', 'manaphy']) assert.equal(mon(pt, sp).obtainable.platinum, false, sp);
+  assert.ok(a.regirock.every((s) => s.type === 'event'));
+  assert.ok(a.munchlax.some((s) => s.method === 'Árvore de mel' && /Munchlax/.test(s.detail)));
+  assert.ok(a.feebas.some((s) => s.mapId === 'MAP_HEADER_MT_CORONET_B1F' && s.min === 10 && s.max === 20));
+  assert.ok(a.aerodactyl.some((s) => s.type === 'gift' && s.level === 20 && /Subsolo/.test(s.detail)));
+  assert.ok(a.mesprit.some((s) => s.type === 'roamer' && s.level === 50));
+  assert.ok(!(a.darkrai ?? []).some((s) => s.type === 'roamer')); // slot do Darkrai nunca é ativado por script
+  assert.ok(a.darkrai.every((s) => s.type === 'event')); // Newmoon Island: CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI
+  assert.ok(a.arceus.every((s) => s.type === 'event')); // Hall of Origin: DISTRIBUTION_EVENT_ARCEUS
+  for (const sp of ['dialga', 'palkia', 'giratina-altered']) assert.equal(mon(pt, sp).obtainable.platinum, true, sp); // a checagem no mapa deles é do Arceus
+  assert.equal(mon(pt, 'darkrai').obtainable.platinum, false);
+  const hoot = a.hoothoot?.find((s) => s.times);
+  assert.ok(hoot && hoot.times.includes('noite'));
+  assert.equal(Object.keys(load('platinum-acquisition.json').machines).length, 100);
+});
+
+test('S6: Platinum — estágios: rotas de mar pelo Surf, Great Marsh pelo portão de Pastoria, passagem da Old Rod, itens pela citação', () => {
+  const p = load('platinum-acquisition.json').progress, s = (k) => p.maps[`MAP_HEADER_${k}`].stage;
+  assert.deepEqual(p.leaderOrder, ['Roark', 'Gardenia', 'Fantina', 'Maylene', 'Wake', 'Byron', 'Candice', 'Volkner']);
+  assert.equal(s('TWINLEAF_TOWN'), 0); assert.equal(s('JUBILIFE_CITY'), 0); assert.equal(s('CELESTIC_TOWN'), 5);
+  assert.equal(s('ROUTE_219'), 5); assert.equal(s('ROUTE_220'), 5); assert.equal(s('ROUTE_221'), 5); // rotas de mar → Surf (Wake)
+  assert.equal(s('GREAT_MARSH_1'), 4); assert.equal(s('ROUTE_218_GATE_TO_JUBILIFE_CITY'), 0);
+  const g = Object.values(load('platinum-acquisition.json').versions.platinum).flat().find((x) => x.method === 'Surf').gate;
+  assert.equal(g.leader, 'Wake');
+  const radar = Object.values(load('platinum-acquisition.json').versions.platinum).flat().find((x) => x.method === 'Poké Radar');
+  assert.equal(radar.stage, 9); // Rowan só dá o Poké Radar depois da Pokédex Nacional
+});
+
+// ---------------------------------------------------------------- S6b: Gen 4 — HeartGold/SoulSilver (decomp PARCIAL pret/pokeheartgold)
+
+const haveHgss = existsSync(new URL('../data-sources/pokeheartgold-src/include/', import.meta.url));
+test('S6b: HGSS — núcleo com 0 divergências: HMs ficam em "hms" no personal.json, grafia COMPOUNDEYES, tutores por script', { skip: !haveHgss && 'sem decomp local' }, async () => {
+  const { loadHgss } = await import('../scripts/lib/gen4-hgss.mjs');
+  const g = loadHgss(new URL('../data-sources/pokeheartgold-src/', import.meta.url));
+  // personal.json: "tms": [...] e "hms": [1, 4, 6] separados; HM n = sTMHMMoves[92 + n − 1] (antes: 1156 "faltas" de HM)
+  assert.ok(g.species[1].machine.has(g.moveId.MOVE_CUT)); assert.ok(g.species[131].machine.has(g.moveId.MOVE_SURF));
+  const r = JSON.parse(readFileSync(new URL('../reports/heartgold-soulsilver/hgss-decomp-audit.json', import.meta.url), 'utf8'));
+  for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${k}: ${JSON.stringify(v.slice(0, 3))}`);
+  // golpes: waza_tbl.narc é binário → valores da Gen 4 pelo pokeplatinum (mesma geração), cada correção rotulada
+  const d = load('heartgold-soulsilver.json');
+  assert.equal(d.moves.protect.priority, 3); assert.equal(d.moves['mind-reader'].pp, 5); assert.equal(d.moves.roost.pp, 10);
+  assert.ok(d.corrections.list.filter((c) => c.move).every((c) => c.via === 'pokeplatinum'));
+});
+
+test('S6b: HGSS — treinadores: 1ª luta do rival é TRAINER_PASSERBY_BOY; ramo pelo inicial (GetStarterChoice 152/155/158); IV', () => {
+  const t = load('heartgold-soulsilver-trainers.json').trainers;
+  const first = t.filter((x) => /^TRAINER_PASSERBY_BOY/.test(x.key));
+  assert.equal(first.length, 3);
+  assert.ok(first.every((x) => x.group === 'Rival' && x.map.includes('Cherrygrove') && x.forStarter?.length === 1));
+  // o Silver leva o inicial que vence o do jogador: jogador Chikorita → rival Cyndaquil
+  assert.ok(t.find((x) => x.forStarter?.[0] === 'chikorita' && /PASSERBY/.test(x.key)).party.some((p) => p.species === 'cyndaquil'));
+  assert.ok(t.filter((x) => x.group === 'Rival').every((x) => x.forStarter?.length === 1));
+  const falkner = t.find((x) => x.key === 'TRAINER_LEADER_FALKNER_FALKNER');
+  assert.deepEqual(falkner.party.map((p) => [p.species, p.level, p.iv]), [['pidgey', 9, 6], ['pidgeotto', 13, 6]]); // iv = difficulty·31/255
+  assert.equal(t.find((x) => x.key === 'TRAINER_LEADER_LT_SURGE_LT__SURGE').label, 'Leader Lt. Surge');
+  assert.ok(t.find((x) => x.key === 'TRAINER_LEADER_FALKNER_FALKNER_2').rematch); // Fighting Dojo
+});
+
+test('S6b: HGSS — onde obter: desvios HG×SS do script, visibilidade por FLAG_HIDE, vagantes recriados, eventos', () => {
+  const d = load('heartgold-soulsilver.json'), A = load('heartgold-soulsilver-acquisition.json').versions, hg = A.heartgold, ss = A.soulsilver;
+  const lv = (list, type) => list.filter((s) => s.type === type).map((s) => s.level);
+  // "GetGameVersion / Compare 7 / GoToIfNe": Ho-Oh nv 45 no HG e 70 no SS; Lugia o contrário
+  assert.deepEqual(lv(hg['ho-oh'], 'static'), [45]); assert.deepEqual(lv(ss['ho-oh'], 'static'), [70]);
+  assert.deepEqual(lv(hg.lugia, 'static'), [70]); assert.deepEqual(lv(ss.lugia, 'static'), [45]);
+  // Embedded Tower: o lendário aparece por ClearFlag FLAG_HIDE_… só num ramo de versão (HG: Kyogre; SS: Groudon)
+  assert.ok(hg.kyogre?.some((s) => s.type === 'static') && !hg.groudon);
+  assert.ok(ss.groudon?.some((s) => s.type === 'static') && !ss.kyogre);
+  // vagantes: Latias no HG (CreateRoamer 2), Latios no SS; o Hall of Fame recria vagantes (SetVar …_STATUS, 0) → não conta
+  assert.ok(hg.latias.some((s) => s.type === 'roamer') && !hg.latios.some((s) => s.type === 'roamer'));
+  // Latios/Latias de Pewter: ScrCmd_546 → VAR_UNK_4043, que só o Mystery Gift escreve → evento
+  assert.ok(hg.latios.every((s) => s.type === 'event'));
+  // Sinjoh Ruins: FollowerPokeIsEventTrigger EVENT_ARCEUS_* → Dialga/Palkia/Giratina só por evento (a PokéAPI marca obtível)
+  for (const sp of ['dialga', 'palkia', 'giratina-altered', 'manaphy']) assert.equal(mon(d, sp).obtainable.heartgold, false, sp);
+  // Game Corner de Goldenrod: Ekans no HG, Sandshrew no SS (menus por versão)
+  assert.ok(hg.ekans.some((s) => s.type === 'prize')); assert.ok(!(hg.sandshrew ?? []).some((s) => s.type === 'prize'));
+  assert.ok(ss.sandshrew.some((s) => s.type === 'prize'));
+  // surto só nos 20 mapas de sSwarmMapLUT (todo mapa tem landSwarm preenchido no JSON)
+  const sw = new Set(Object.values(hg).flat().filter((s) => s.swarm).map((s) => s.mapId));
+  assert.ok(sw.has('MAP_ROUTE_35') && !sw.has('MAP_ROUTE_29'));
+  // Hoenn/Sinnoh Sound e conjuntos 1–3 do Concurso exigem a Pokédex Nacional → pós-jogo; conjunto 0 não
+  const contest = Object.values(hg).flat().filter((s) => s.method === 'Concurso de insetos');
+  assert.ok(contest.some((s) => s.stage === 3) && contest.some((s) => s.stage === 9));
+  assert.ok(Object.values(hg).flat().filter((s) => /Hoenn Sound|Sinnoh Sound/.test(s.detail ?? '')).every((s) => s.stage === 9));
+  // Suicune da Burned Tower B1F: o objeto da luta só aparece por ClearFlag no Hall of Fame → pós-jogo
+  assert.equal(hg.suicune.find((s) => s.mapId === 'MAP_BURNED_TOWER_B1F').stage, 9);
+  // Safari: slot = LCRandom() % 10 → 10% cada; espécies "bonus" com a condição de objetos
+  assert.ok(hg.lapras.some((s) => /Safari/.test(s.method) && /objeto/.test(s.detail)));
+});
+
+test('S6b: HGSS — itens e estágios: TM pelo macro GoToIfNoItemSpace, apelidos TM_X, portas de HM, geografia da Gen 2', () => {
+  const acq = load('heartgold-soulsilver-acquisition.json'), p = acq.progress, s = (k) => p.maps[`MAP_${k}`].stage;
+  assert.ok(acq.machines.roost?.some((x) => x.type === 'gift' && x.leader === 'Falkner')); // TM51: GoToIfNoItemSpace ITEM_TM51
+  assert.ok(acq.machines.explosion?.some((x) => x.map === 'MAP_ROUTE_5_UNDERGROUND_PATH_ENTRANCE' || /Route 5/.test(x.where))); // TM_EXPLOSION
+  assert.equal(p.leaderOrder.slice(0, 8).join(), 'Falkner,Bugsy,Whitney,Morty,Chuck,Jasmine,Pryce,Clair');
+  const surf = Object.values(acq.versions.heartgold).flat().find((x) => x.method === 'Surf').gate;
+  assert.equal(surf.leader, 'Morty'); // field_move.c FieldMove_CheckSurf → BADGE_FOG
+  // início = quarto do jogador (location_backup.c) → New Bark 0; Route 29 é corredor entre New Bark e Cherrygrove
+  assert.equal(s('NEW_BARK'), 0); assert.equal(s('ROUTE_29'), 0);
+  assert.equal(s('SLOWPOKE_WELL_B1F'), 1); // "poço dos Slowpokes" no detonado
+  assert.equal(s('RUINS_OF_ALPH'), 1); // guia no fim do detonado, citada antes; porta pelo portão da Route 32
+  assert.equal(s('UNION_CAVE_B1F'), 4); assert.equal(s('MOUNT_MORTAR_1F_ENTRANCE'), 6);
+  assert.equal(s('ROUTE_27'), 8);
+});
+
+// ---------------------------------------------------------------- E2: confiabilidade da origem
+test('E2: origem aleatória/condicionada é marcada e perde para fonte comum (Platinum: 31% das sugestões dependiam disso)', async () => {
+  const { unreliableReason, unreliableFor, recommend } = await import('../public/engine.mjs');
+  assert.equal(unreliableReason({ type: 'wild', swarm: true }), 'surto (depende do dia)');
+  assert.equal(unreliableReason({ type: 'wild', method: 'Poké Radar' }), 'Poké Radar');
+  assert.equal(unreliableReason({ type: 'wild', method: 'Árvore de mel' }), 'árvore de mel (sorteio)');
+  assert.equal(unreliableReason({ type: 'wild', method: 'Grama/caverna', pct: 1 }), 'raro (1%)');
+  assert.equal(unreliableReason({ type: 'wild', method: 'Grama/caverna', pct: 20 }), null);
+  assert.equal(unreliableReason({ type: 'gift' }), null);
+  const pt = load('platinum.json'), acq = load('platinum-acquisition.json');
+  // Heracross no Platinum: só árvore de mel → aleatório em qualquer estágio
+  assert.match(unreliableFor(pt, acq, mon(pt, 'heracross'), 'platinum', { stage: 9 }), /árvore de mel/);
+  assert.equal(unreliableFor(pt, acq, mon(pt, 'machop'), 'platinum', { stage: 9 }), null);
+  // nos líderes do Platinum, no estágio de cada um, no máximo 1 das 3 sugestões por Pokémon é de origem aleatória
+  const t = load('platinum-trainers.json').trainers.filter((x) => x.group === 'Líderes de ginásio' && !x.rematch);
+  let n = 0, u = 0;
+  for (const tr of t) for (const p of tr.party) {
+    const stage = acq.progress.trainerStage?.[tr.key] ?? acq.progress.leaderOrder.indexOf(tr.name);
+    const r = recommend(pt, mon(pt, p.species), { level: Math.max(...tr.party.map((x) => x.level)), oppMoves: p.moves, oppLevel: p.level, version: 'platinum', onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false, acq, stage });
+    for (const s of r.picks) { n++; if (s.unreliable) u++; }
+  }
+  assert.ok(n > 50 && u / n <= 0.1, `${u}/${n} sugestões só por origem aleatória`);
+});
+
+// ---------------------------------------------------------------- E3: golpes das Gens 5–8 conferidos com o Showdown
+test('E3: Gens 5–8 — falta de histórico da PokéAPI corrigida só com 2ª evidência (Showdown Gen 4 = decomp do Platinum)', () => {
+  const bw = load('black-white.json'), swsh = load('sword-shield.json');
+  // Recover/Roost/Rest… PP 10 até a Gen 8 (5 só na Gen 9); Teleport prioridade 0 até a Gen 7 (−6 a partir da Gen 8)
+  assert.equal(bw.moves.recover.pp, 10); assert.equal(bw.moves.teleport.priority, 0); assert.equal(bw.moves['follow-me'].priority, 3);
+  assert.equal(swsh.moves.recover.pp, 10); assert.equal(swsh.moves.teleport.priority, -6);
+  // Protect +4 e Fake Out +3 a partir da Gen 5: a PokéAPI já está certa (não muda)
+  assert.equal(bw.moves.protect.priority, 4); assert.equal(bw.moves['fake-out'].priority, 3);
+  // sem 2ª evidência (golpe posterior à Gen 4) → só sinalizado: Ally Switch fica com o valor da PokéAPI
+  const r = JSON.parse(readFileSync(new URL('../reports/black-white/moves-crosscheck.json', import.meta.url), 'utf8'));
+  assert.ok(r.flagged.some((f) => f.move === 'ally-switch' && f.field === 'priority'));
+  assert.equal(bw.moves['ally-switch'].priority, r.flagged.find((f) => f.move === 'ally-switch').pokeapi);
+  // Hidden Power: variantes do Showdown com o mesmo num (hiddenpowerwater) não podem ser usadas
+  assert.ok(!r.flagged.some((f) => f.move === 'hidden-power' && f.field === 'type'));
+  assert.ok(bw.moveCrosscheck.corrected >= 9 && /Showdown/.test(bw.moveCrosscheck.source));
+});
+
+// ---------------------------------------------------------------- E4: iniciais na camada PokéAPI
+test('E4: iniciais das Gens 4–9 sem decomp = detonado (trecho de escolha) + PokéAPI (linha de 3 estágios); sem as duas, nada', () => {
+  const st = (g) => load(`${g}.json`).starters?.species ?? null;
+  assert.deepEqual(st('diamond-pearl'), ['turtwig', 'chimchar', 'piplup']);
+  assert.deepEqual(st('black-white'), ['snivy', 'tepig', 'oshawott']);
+  assert.deepEqual(st('x-y'), ['chespin', 'fennekin', 'froakie']);
+  assert.deepEqual(st('sun-moon'), ['rowlet', 'litten', 'popplio']);
+  assert.deepEqual(st('sword-shield'), ['grookey', 'scorbunny', 'sobble']);
+  assert.deepEqual(st('scarlet-violet'), ['sprigatito', 'fuecoco', 'quaxly']);
+  // Legends: Arceus lista Turtwig/Chimchar/Piplup em "onde encontrar" (sem trecho de escolha) e o dataset não tem a
+  // Decidueye (linha incompleta) → não confirmado; Let's Go tem um inicial só
+  assert.equal(st('legends-arceus'), null);
+  assert.equal(st('lets-go-pikachu-lets-go-eevee'), null);
+  assert.match(load('black-white.json').starters.evidence, /Escolha/);
+});
+
+// ---------------------------------------------------------------- E5: Diamond/Pearl (pret/pokediamond — núcleo em JSON)
+test('E5: Diamond/Pearl — núcleo do decomp com 0 divergências; chefes com IV do jogo; rival rotulado pelo inicial que ELE leva', () => {
+  const r = JSON.parse(readFileSync(new URL('../reports/diamond-pearl/dp-decomp-audit.json', import.meta.url), 'utf8'));
+  for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${k}: ${JSON.stringify(v.slice(0, 3))}`);
+  const d = load('diamond-pearl.json');
+  assert.equal(d.moves.protect.priority, 3); assert.equal(d.moves.recover.pp, 10); // waza_tbl.json (a PokéAPI traz os da Gen 9)
+  assert.ok(d.pokemon.every((p) => p.levelUpInGameOrder)); // wotbl.json na ordem do jogo
+  assert.deepEqual(d.starters.species, ['turtwig', 'chimchar', 'piplup']); // iniciais: overlay em assembly → regra do E4
+  const t = load('diamond-pearl-trainers.json');
+  assert.match(t.note, /só chefes/);
+  const roark = t.trainers.find((x) => x.key === 'TRAINER_LEADER_ROARK_ROARK');
+  assert.deepEqual(roark.party.map((p) => [p.species, p.level, p.iv]), [['geodude', 12, 6], ['onix', 12, 6], ['cranidos', 14, 6]]);
+  assert.ok(t.trainers.some((x) => x.label === 'Elite Four Lucian')); // a classe do decomp grafa LUCIEN
+  // sem script em texto não se sabe qual time do Barry é de qual inicial do jogador → sem forStarter (todos aparecem)
+  const rivals = t.trainers.filter((x) => x.group === 'Rival');
+  assert.ok(rivals.length === 24 && rivals.every((x) => !x.forStarter && x.carries));
+});
+
+// ---------------------------------------------------------------- Capturas de tela (E6): achados na revisão visual
+test('E6: telas — evoluções da Gen 4 sem parâmetro, descrição de todos os métodos, dual-slot e surto na camada PokéAPI', async () => {
+  const { describeEvolution, recommend } = await import('../public/engine.mjs');
+  const pt = load('platinum.json');
+  // res/pokemon/eevee/data.json: ["EVO_LEVEL_HAPPINESS_NIGHT", "SPECIES_UMBREON"] tem 2 itens (sem parâmetro) → o alvo se perdia
+  for (const [n, kind] of [['umbreon', 'FRIENDSHIP_NIGHT'], ['espeon', 'FRIENDSHIP_DAY'], ['leafeon', 'LOCATION'], ['glaceon', 'LOCATION'], ['magnezone', 'LOCATION']]) {
+    const e = mon(pt, n).evo;
+    assert.equal(e?.kind, kind, n); assert.equal(e.param, null, n); // nunca a string "null"
+  }
+  // "capture Aipom e evolua: Ambipom ()": todo método conhecido tem descrição
+  for (const g of ['platinum', 'heartgold-soulsilver', 'diamond-pearl']) for (const p of load(`${g}.json`).pokemon) if (p.evo) assert.ok(describeEvolution(p.evo), `${g}/${p.name}: ${p.evo.kind}`);
+  assert.match(describeEvolution(mon(pt, 'ambipom').evo), /Double Hit/);
+  // PokéAPI: encontro só com cartucho de GBA (condição slot2-*) não conta — Butterfree/Beedrill eram as sugestões contra o Roark
+  const dp = load('diamond-pearl.json');
+  for (const n of ['caterpie', 'weedle', 'ekans', 'butterfree']) assert.equal(mon(dp, n).obtainable.diamond, false, n);
+  // Pidgey no DP: só surto (swarm-yes, Route 229) → marcado e penalizado (sem "onde obter" para o E2 ver)
+  assert.match(mon(dp, 'pidgey').randomOnly?.diamond ?? '', /surto/);
+  const r = recommend(dp, mon(dp, 'cranidos'), { level: 30, oppLevel: 14, version: 'diamond', onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false });
+  assert.ok(!r.picks.some((s) => ['butterfree', 'beedrill'].includes(s.mon.name)));
+  assert.ok(r.picks.every((s) => !s.unreliable || r.candidates.filter((c) => c.duel.win && !c.unreliable).length < 3));
+});
+
+test('E6: aba Detonado — nomes de item com parte vazia (GUARD_SPEC_, X_SP__DEF) não derrubam a renderização', async () => {
+  const { humanize } = await import('../public/engine.mjs');
+  assert.equal(humanize('guard-spec-'), 'Guard Spec'); assert.equal(humanize('x-sp--def'), 'X Sp Def'); assert.equal(humanize(undefined), '');
+  for (const g of ['heartgold-soulsilver', 'platinum', 'crystal', 'emerald', 'red-blue', 'firered-leafgreen']) {
+    const w = load(`${g}-walkthrough.json`);
+    for (const v of Object.values(w.versions)) for (const s of v.stages) for (const l of s.locations) for (const i of l.items) {
+      assert.doesNotThrow(() => humanize(i.kind === 'TM/HM' ? i.move : i.item.toLowerCase().replace(/_/g, '-')), `${g}: ${JSON.stringify(i)}`);
+    }
+  }
+});
