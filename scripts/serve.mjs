@@ -17,7 +17,9 @@ export function createAppServer() {
     } catch {
       return res.writeHead(404).end('not found');
     }
-    res.writeHead(200, { 'content-type': types[extname(file)] ?? 'application/octet-stream' }).end(body);
+    // no-cache: o navegador sempre confere a versão — sem isso, depois de uma atualização ele podia juntar o index.html novo
+    // com um app.mjs antigo (página quebrada até recarregar com Ctrl+F5)
+    res.writeHead(200, { 'content-type': types[extname(file)] ?? 'application/octet-stream', 'cache-control': 'no-cache' }).end(body);
   });
 }
 
