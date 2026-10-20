@@ -298,6 +298,12 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   forma de obter (Glameow, Stunky, Togetic): o motor usa a fonte direta e não compara com o caminho por evolução — a gruta
   sem rota (= pós-jogo) virou a fonte da Glaceon e escondeu o Eevee de Castelia (banco de lutas perdeu 6 lutas).
   Pendência de motor: comparar fonte direta × evolução em `reachStage`/`reachLevel`.
+- **Mapa da região — FRLG e Unova** (0.20.0, `build-region-maps.mjs`): FRLG — seção em (0, 0) ganha a posição do warp de
+  entrada (`data-sources/pokefirered-scripts/data/maps/*/map.json`); 🧪 seções de MESMO nome são um ponto só (a "Route 4"
+  e o Pokémon Center dela; sem isso o warp do Mt. Moon não achava a rota). B2W2 — `res/field/matrices/overworld.json`
+  tem `zones[y][x]`; lugar (`PLACE_*` da zona) = centro das células; fora da grade, herda a zona de onde sai o warp
+  (`res/field/events/<zona>.json` → `warps[].zone`); nome fora dos rótulos ("Route 2 Hidden Grotto") → maior prefixo.
+  BW pelo `TWIN` (mesma Unova). As coordenadas dos warps do B2W2 (`grid.x/z`) não foram usadas (escala não confirmada).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

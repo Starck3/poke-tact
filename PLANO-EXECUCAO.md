@@ -49,7 +49,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
 - **Validação**: toda espécie de gruta no app existe no PKHeX na mesma versão; diferenças em `reports/black-2-white-2/`.
 - **Se travar**: ❌ com o motivo.
 
-### 7. Mapa da região: B2W2/BW e cavernas do FRLG — ⬜
+### 7. Mapa da região: B2W2/BW e cavernas do FRLG — ✅ 0.20.0
 - **Objetivo**: FRLG — cavernas/florestas sem posição (0,0) ganham a posição da entrada (warps de `data/maps/*/map.json`);
   B2W2 — posições pelas zonas na matriz do mundo, se o pokebw2 tiver o vínculo zona↔célula; BW pela região do B2W2 (TWIN).
 - **Validação**: FRLG > 130/142 locais no mapa; B2W2/BW com mapa e > 70% dos locais; testes.
@@ -89,3 +89,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   todas e o banco de lutas do B2W2 caiu (6 lutas sem vencedor: a gruta sem rota escondeu a Glaceon via Eevee) → revertido
   para a regra acima; banco igual ao de antes. **Achado novo (motor)**: com fonte direta, `whereToGet`/`reachStage` não
   comparam com o caminho por evolução — fica como pendência.
+- **Etapa 7 — ✅ 0.20.0.** FRLG 99 → 140/142 locais no mapa (entrada pelos warps dos map.json; bug encontrado: duas seções
+  "Route 4" viravam um ponto com o id errado). B2W2 86/91 pela grade de zonas do `overworld.json` (warps herdam a zona de
+  origem; coordenadas dos warps não usadas — escala não confirmada). BW 47/54 pela mesma Unova. Mapa em 15/22 jogos.
+  Correção de número: a 0.14.0 dizia 14 jogos com mapa; eram 13.
