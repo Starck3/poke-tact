@@ -1,0 +1,81 @@
+# Poke Tact — status e pendências
+
+Atualizado em 2026-10-20 · versão **0.10.0** (main `ca5d358`, publicada no GitHub).
+Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
+já encontradas).
+
+## Como está cada jogo
+
+**Selo "Verificado"**: dados conferidos com o código do jogo (decomp). **Selo "Parcial"**: núcleo pelas tabelas do jogo
+extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology.
+
+| Jogo | Ger. | Fonte do núcleo | Onde obter | Progresso por insígnia | Treinadores | Aba Detonado | Fora do cálculo (aviso na tela) |
+|---|---|---|---|---|---|---|---|
+| Red/Blue, Yellow | 1 | decomp (pret) | decomp | sim | decomp (golpes reais) | sim | — |
+| Gold/Silver, Crystal | 2 | decomp (pret) | decomp | sim | decomp | sim | — |
+| Ruby/Sapphire, Emerald, FireRed/LeafGreen | 3 | decomp (pret) | decomp | sim | decomp | sim | — |
+| Diamond/Pearl, Platinum, HeartGold/SoulSilver | 4 | decomp (pret; binários lidos pelo código) | decomp | sim | decomp | sim | — |
+| Black 2/White 2 | 5 | decomp (pokebw2) | decomp | sim | decomp | sim | — |
+| Black/White | 5 | PKHeX | PKHeX | sim | detonado (golpes estimados) | sim | — |
+| X/Y, Omega Ruby/Alpha Sapphire | 6 | PKHeX | PKHeX | sim | detonado | sim | Mega Evolução |
+| Sun/Moon | 7 | PKHeX | PKHeX | sim (4 kahunas) | detonado | sim | Mega, golpes Z |
+| **Ultra Sun/Ultra Moon** | 7 | PKHeX | PKHeX | **não** | **não** | **não** | Mega, golpes Z |
+| Let's Go Pikachu/Eevee | 7 | PKHeX | PKHeX | sim | detonado | sim | Mega Evolução |
+| Sword/Shield | 8 | PKHeX | PKHeX | sim | detonado | sim | Dynamax/Gigantamax |
+| Brilliant Diamond/Shining Pearl | 8 | PKHeX | PKHeX | sim | detonado | sim | — |
+| Legends: Arceus | 8 | PKHeX | PKHeX | **não** (sem ginásios) | detonado | sim (sem estágios) | estilos ágil/forte, valores próprios de golpes |
+| Scarlet/Violet | 9 | PKHeX | PKHeX | sim | detonado | sim | Terastal |
+| **Legends: Z-A** | 9 | PKHeX (sem PokéAPI) | PKHeX | **não** | **não** | **não** | tempo real, Mega, valores próprios de golpes |
+
+Também feito nos jogos sem decomp (Gens 5–9): formas regionais como Pokémon próprios (Alola, Galar, Hisui, Paldea), evoluções
+do próprio jogo (troca, item, forma, impossíveis no jogo), TMs pelas tabelas do jogo e as espécies de Hisui do Legends: Arceus.
+Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Banco de lutas: 20 jogos, 99% das sugestões vencem.
+
+## O que falta (do mais importante para o menos)
+
+### Dá para fazer com as fontes que já temos
+1. **Legends: Z-A — treinadores, progresso e Detonado.** O PokeMythology tem `detonado-legends-z-a` (está no índice, em
+   `data-sources/pokemythology/_detonados.json`), mas a página não foi baixada. Baixar (mesmas regras do download dos outros)
+   e rodar `node scripts/build-detonado-modern.mjs legends-za`; conferir o leitor (`scripts/lib/pokemythology-modern.mjs`) nesse
+   formato de página.
+2. **Legends: Arceus — estágios pelos 5 Pokémon nobres** (Kleavor, Lilligant, Arcanine, Electrode, Avalugg). O detonado só os
+   traz como títulos de seção ("… – ACALMANDO O NOBLE X"). Hoje o jogo não tem progresso.
+3. **Sun/Moon — provações dos capitães** (Ilima, Lana, Kiawe, Mallow, Sophocles, Acerola, Mina) como marcos além dos 4
+   kahunas. Os Z-Crystals do texto dão a ordem, mas misturam presentes (Steelium, Buginium, Poisonium, Eevium); os capitães saem
+   como "outros" e os totens não aparecem como "usa:".
+4. **Rival com "inicial" genérico** ("[chespin][fennekin][froakie] inicial lv.5"): esse Pokémon fica fora do time. Dá para
+   montar uma variante por inicial do jogador, mas a regra (o rival pega o forte ou o fraco contra o seu?) muda por jogo e
+   precisa vir do texto.
+5. **Locais "Fora do detonado"** (sem posição na história): BDSP 25, Sword/Shield 19, Let's Go 15, Black/White 14, Sun/Moon 9,
+   ORAS 4, Scarlet/Violet 4, X/Y 1 (ver `reports/<jogo>/detonado-modern.json` → `placesWithoutStage`). Ideias: nomes em
+   português no detonado, cidades vizinhas, nível dos selvagens comparado aos líderes (seria estimativa — marcar como tal).
+6. **Black 2/White 2 — Hidden Grottoes pelo PKHeX** em vez da PokéAPI. O PKHeX tem as espécies, mas não diz em que rota fica
+   cada gruta (manteria a rota da PokéAPI).
+
+### Depende de fonte que não temos
+7. **Ultra Sun/Ultra Moon** — o PokeMythology não tem detonado desse jogo: sem treinadores, progresso e Detonado.
+8. **Golpes reais dos treinadores nas Gens 5–9 sem decomp** — o detonado traz espécie e nível; os golpes são estimados pelo
+   moveset do nível. Nenhuma fonte em texto disponível tem os golpes escolhidos dos chefes.
+9. **Treinadores comuns de rota nas Gens 5–9** — só existem as lutas que o detonado transcreve.
+10. **Onde obter sem taxa de aparição** (Gens 5–9) e com métodos misturados: nas Gens 6/7 grama, surf e varas vêm numa lista
+    só; no BDSP, Poké Radar e surto vêm dentro da grama (o Nidoran da Route 201 aparece como grama); no Scarlet/Violet os
+    exclusivos de versão aparecem nas duas versões (há aviso na tela).
+11. **Itens e TMs no Detonado das Gens 5–9** — o PKHeX não tem a posição dos itens; a evolução por pedra não é limitada pelo
+    ponto da história nesses jogos.
+12. **Black 2/White 2 — 15 TMs vendidas em lojas** comuns: não estão no decomp em texto.
+
+### Trabalho grande no motor
+13. **Mecânicas não simuladas** (hoje só há aviso): Mega Evolução, golpes Z, Dynamax/Gigantamax, Terastal, estilos e valores
+    próprios de golpes do Legends: Arceus, batalha em tempo real do Z-A.
+
+### Fica como está (correto)
+- BDSP: Darkrai, Arceus, Shaymin, Deoxys e Phione não aparecem — são de evento.
+- Jogos sem decomp continuam com o selo "Parcialmente verificado".
+
+## Regras do projeto (para retomar)
+- Decomp = fonte da verdade; PokéAPI é a base com erros conhecidos; PKHeX e detonados para os jogos sem decomp. Nada inventado
+  (sem taxa, sem estágio, sem golpe que a fonte não tenha — quando é estimativa, a tela diz).
+- Todo achado/correção validado ganha teste em `test/regressions.test.mjs` e a armadilha vai para `docs/ADICIONAR-JOGO.md`.
+- Fluxo: branch → testes (inclusive num clone limpo, sem `data-sources/`) → merge `--no-ff` em main → push; CHANGELOG e
+  `package.json` com a mesma versão. `data-sources/` e `.cache/` nunca vão para o git.
+- Pipeline de um jogo: `node scripts/build-game.mjs <jogo>`; servidor local: `npm run serve` (http://localhost:5173).
