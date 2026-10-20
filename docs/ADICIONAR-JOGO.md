@@ -276,6 +276,8 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   um mapa do mundo (x, z em tiles ÷ 32) e, de dentro para dentro, a posição de quem leva até ela. HGSS: posições do
   `crystal-regionmap.json` pelo nome da seção. BDSP/ORAS/Let's Go: `TWIN` em `build-region-maps.mjs` (região do jogo
   original, casando pelo nome do lugar). B2W2: a matriz do mundo em JSON só tem modelos, sem zonas — ainda sem mapa.
+- **Novidades no app** (0.15.0): `build-changelog.mjs` converte o CHANGELOG.md em `public/data/changelog.json` (roda no fim do
+  `build-catalog`); 🧪 um teste exige que ele acompanhe o CHANGELOG e o `package.json` — rode o build-catalog a cada versão.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

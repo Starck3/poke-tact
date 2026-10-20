@@ -2015,3 +2015,23 @@ test('mapa da região na Gen 4 (matriz do mundo + warps) e nos remakes pela regi
   assert.match(app, /\[l\.name, \.\.\.\(l\.maps \?\? \[\]\)\]\.map\(placeOfWhere\)/);
   assert.match(app, /stageMap\(s\)/);
 });
+
+test('novidades: changelog.json acompanha o CHANGELOG.md e a versão do package.json; botão e link #/?novidades', async () => {
+  const { parseChangelog, inline } = await import('../scripts/build-changelog.mjs');
+  const md = readFileSync(new URL('../CHANGELOG.md', import.meta.url), 'utf8');
+  const pub = load('changelog.json');
+  assert.deepEqual(pub, parseChangelog(md)); // rode o build-catalog (ou build-changelog) a cada versão
+  const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+  assert.equal(pub[0].version, pkg.version);
+  assert.ok(pub[0].sections.some((s) => s.items.length));
+  // markdown → HTML seguro: escapa antes de formatar
+  assert.equal(inline('**A** `b` <x> [c](https://x.y)'), '<strong>A</strong> <code>b</code> &lt;x&gt; <a href="https://x.y" target="_blank" rel="noopener">c</a>');
+  // itens com continuação indentada viram um item só
+  const v = parseChangelog('## [9.9.9] — 2026-01-01\n\n### Adicionado\n- linha um\n  continua\n- dois\n');
+  assert.deepEqual(v, [{ version: '9.9.9', date: '2026-01-01', sections: [{ title: 'Adicionado', items: ['linha um continua', 'dois'] }] }]);
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="newsBtn"/); assert.match(html, /id="newsPanel"/);
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /r\.params\.novidades != null\) openNews\(true\)/);
+  assert.match(app, /poketact:news-seen/);
+});

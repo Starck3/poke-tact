@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.14.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.15.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -31,7 +31,7 @@ A tela inicial busca Pokémon (padrão: em que jogos dá para obter) ou líder/j
 Todos os jogos têm a aba **Onde capturar** (todos os locais de um Pokémon na versão, com o ponto da história), com fotos do
 lugar (detonado do PokeMythology, por referência) e o mapa esquemático da região com o lugar destacado (14 jogos: Gens 1–4
 com decomp, BDSP, ORAS e Let's Go pela região do original). A aba Detonado também mostra as fotos e o mapa de cada etapa.
-Tags no app: "📖 detonado no app" e "📍 capturas disponíveis".
+Tags no app: "📖 detonado no app" e "📍 capturas disponíveis". Novidades: botão 🔔 no canto (link `#/?novidades`), lido do CHANGELOG.
 Também feito nos jogos sem decomp (Gens 5–9): formas regionais como Pokémon próprios (Alola, Galar, Hisui, Paldea), evoluções
 do próprio jogo (troca, item, forma, impossíveis no jogo), TMs pelas tabelas do jogo e as espécies de Hisui do Legends: Arceus.
 Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Banco de lutas: 20 jogos, 99% das sugestões vencem.
