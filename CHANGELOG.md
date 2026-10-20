@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.18.0] — 2026-10-20
+
+### Corrigido
+- **Remakes com as rotas no ponto certo da história**: no Brilliant Diamond/Shining Pearl (o detonado não numera as
+  rotas), no Let's Go e no Omega Ruby/Alpha Sapphire, os lugares sem posição no detonado passam a usar a posição do mesmo
+  lugar no jogo original (Diamond/Pearl, Yellow, Ruby/Sapphire), convertida pelo nome do líder. Locais sem posição: BDSP
+  25 → 1, Let's Go 15 → 0, ORAS 4 → 1; no ORAS a Route 102 deixou de aparecer como "depois da 8ª insígnia".
+
 ## [0.17.0] — 2026-10-20
 
 ### Corrigido

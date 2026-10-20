@@ -37,7 +37,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   times de rival continuam com espécies do jogo; testes.
 - **Se travar**: ⚠ com os jogos que ficaram.
 
-### 5. Locais "Fora do detonado" — ⬜
+### 5. Locais "Fora do detonado" — ⚠ 0.18.0 (parcial)
 - **Objetivo**: reduzir os locais sem posição (BDSP 25, SwSh 19, LGPE 15, BW 14, SM 9…) usando só evidência do detonado
   (nomes em português, cidade/rota vizinha citada junto) — sem estimar por nível.
 - **Validação**: total de `placesWithoutStage` cai; nenhuma rota do começo vai para depois (conferir 3 jogos à mão).
@@ -78,3 +78,9 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   Let's Go, N (BW, Reshiram/Zekrom), Honey (SwSh). Banco de lutas: 36171 → 37872 sugestões, 99% vencem. Tentativas: a 1ª
   leitura da regra pegava a frase inteira (X/Y: Calem herdava a "desvantagem" da Shauna) e "golpe de vantagem ao inicial
   de Hop" → corrigido para o trecho com o nome e a forma "… ao seu".
+- **Etapa 5 — ⚠ 0.18.0 (parcial).** BDSP 25 → 1 (sobrou "Traveling Man", que é quem dá o ovo), Let's Go 15 → 0, ORAS 4 → 1;
+  ORAS Route 102 deixou de ficar no estágio 8. **Desvio do plano (validar)**: além do texto do detonado, usei o estágio do
+  MESMO lugar no jogo original com decomp (BDSP→DP, Let's Go→Yellow, ORAS→RS), convertido pelo nome do líder — o
+  detonado do BDSP não numera rotas e não havia outra evidência. **Sem solução**: BW 14, Sword/Shield 19 (subáreas da Wild
+  Area nunca nomeadas no texto), Sun/Moon 9, Scarlet/Violet 4, Z-A 7 — sem jogo original nem citação. **Achado novo**:
+  Yellow põe a Route 6 no estágio 4 (no jogo abre depois da Misty, 2) — vem do gerador da Gen 1, fica para revisão.

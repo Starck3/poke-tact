@@ -64,23 +64,7 @@
    "variants": 2
   }
  ],
- "withStage": 516,
+ "withStage": 1070,
  "total": 1070,
- "placesWithoutStage": [
-  "Route 12",
-  "Route 13",
-  "Route 14",
-  "Route 15",
-  "Route 21",
-  "Route 22",
-  "Route 6",
-  "Route 9",
-  "Route 10",
-  "Route 7",
-  "Route 8",
-  "Route 16",
-  "Route 17",
-  "Route 18",
-  "Route 23"
- ]
+ "placesWithoutStage": []
 }
