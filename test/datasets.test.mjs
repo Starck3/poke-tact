@@ -42,10 +42,8 @@ for (const [gameId, game] of Object.entries(GAMES)) {
   });
 
   test(`[${gameId}] times de treinadores válidos`, { skip: !hasTrainers }, () => {
-    // Gen 1: ~350; Gen 2: ~440–470; Gen 3: >500; Platinum: 500. Diamond/Pearl: só chefes (lugar das lutas em binário) = 37
-    const bossesOnly = /só chefes/.test(load(`${gameId}-trainers.json`).note ?? '');
-    assert.ok(trainers.length > (bossesOnly ? 30 : gen <= 2 ? 300 : gen === 4 ? 450 : 500));
-    if (bossesOnly) assert.ok(trainers.every((t) => ['Líderes de ginásio', 'Elite dos Quatro', 'Campeão', 'Rival'].includes(t.group)));
+    // Gen 1: ~350; Gen 2: ~440–470; Gen 3: >500; Gen 4: Platinum 500, Diamond/Pearl 490, HGSS 489
+    assert.ok(trainers.length > (gen <= 2 ? 300 : gen === 4 ? 450 : 500));
     for (const t of trainers) for (const p of t.party) {
       assert.ok(mon(p.species), `${t.key}: ${p.species}`);
       assert.ok(p.moves.length >= 1 && p.moves.length <= 4, `${t.key}/${p.species}`);

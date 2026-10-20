@@ -1,5 +1,5 @@
 // Confronta o dataset de HeartGold/SoulSilver (PokéAPI) com o decomp pret/pokeheartgold no que está em TEXTO:
-// TM/HM, tutores, atributos, tipos, habilidades e tabela de tipos. (Learnset por nível e golpes estão em binário no decomp.)
+// TM/HM, tutores, atributos, tipos, habilidades e tabela de tipos (texto) + learnset por nível e golpes (binários do jogo).
 // Uso: node scripts/validate-hgss-vs-decomp.mjs <jogo> [--antes]
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { GAMES } from './games.mjs';
@@ -15,7 +15,7 @@ const ids = new Map(Object.keys(data.moves).map((n) => [n, idOf(n)]));
 const scr = new URL(`../data-sources/${game.asmDecomp.dir}/files/fielddata/script/scr_seq/`, import.meta.url);
 const SCRIPT_TUTORS = new Set();
 for (const f of (await import('node:fs')).readdirSync(scr).filter((x) => x.endsWith('.s'))) for (const m of readFileSync(new URL(f, scr), 'utf8').matchAll(/MOVE_(FRENZY_PLANT|BLAST_BURN|HYDRO_CANNON|DRACO_METEOR)\b/g)) SCRIPT_TUTORS.add(g.moveId['MOVE_' + m[1]]);
-const report = { machine: [], tutor: [], stats: [], types: [], abilities: [], chart: [], missing: [] };
+const report = { levelup: [], moves: [], machine: [], tutor: [], stats: [], types: [], abilities: [], chart: [], missing: [] };
 const setDiff = (pokemon, kind, api, dec) => {
   for (const v of api) if (!dec.has(v)) report[kind].push({ pokemon, only: 'pokeapi', value: v });
   for (const v of dec) if (!api.has(v)) report[kind].push({ pokemon, only: 'decomp', value: v });
@@ -23,6 +23,7 @@ const setDiff = (pokemon, kind, api, dec) => {
 for (const mon of data.pokemon) {
   const d = g.species[mon.id];
   if (!d) { report.missing.push(mon.name); continue; }
+  setDiff(mon.name, 'levelup', new Set(mon.learnset.filter((l) => l.method === 'level-up').map((l) => `${ids.get(l.move)}@${l.level}`)), new Set(d.levelOrdered.map(([lv, m]) => `${m}@${lv}`)));
   setDiff(mon.name, 'machine', new Set(mon.learnset.filter((l) => l.method === 'machine').map((l) => ids.get(l.move))), d.machine);
   // tutores por script (golpes supremos, Draco Meteor) ficam fora do waza_oshie.json — mesmo caso do Platinum
   setDiff(mon.name, 'tutor', new Set(mon.learnset.filter((l) => l.method === 'tutor').map((l) => ids.get(l.move)).filter((x) => !SCRIPT_TUTORS.has(x))), d.tutor);
@@ -31,6 +32,13 @@ for (const mon of data.pokemon) {
   // grafia: o decomp escreve COMPOUNDEYES / LIGHTNINGROD (sem separador) — compara sem hífen
   const nh = (l) => [...l].map((x) => x.replace(/-/g, '')).sort().join();
   if (nh(mon.abilities) !== nh(d.abilities)) report.abilities.push({ pokemon: mon.name, pokeapi: mon.abilities.join('/'), decomp: d.abilities.join('/') });
+}
+for (const [name, mv] of Object.entries(data.moves)) {
+  const d = g.moves[ids.get(name)];
+  if (!d) continue;
+  for (const k of ['pp', 'type', 'priority', 'category']) if (mv[k] !== d[k] && !(k === 'category' && mv.category === 'status' && d.category !== 'status')) report.moves.push({ move: name, field: k, pokeapi: mv[k], decomp: d[k] });
+  if (mv.power != null && d.power > 1 && mv.power !== d.power) report.moves.push({ move: name, field: 'power', pokeapi: mv.power, decomp: d.power });
+  if (mv.accuracy != null && d.accuracy > 0 && mv.accuracy !== d.accuracy) report.moves.push({ move: name, field: 'accuracy', pokeapi: mv.accuracy, decomp: d.accuracy });
 }
 for (const a of data.types) for (const b of data.types) {
   const x = data.chart[a][b], y = g.chart[a]?.[b] ?? 1;

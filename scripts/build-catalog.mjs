@@ -114,7 +114,7 @@ for (const c of CATALOG) {
     validation: GAMES[c.group] ? (GAMES[c.group].decomp ? 'decomp' : GAMES[c.group].asmDecomp ? 'decomp-core' : 'pokeapi') : null,
     hasWalkthrough: existsSync(new URL(`../public/data/${c.group}-walkthrough.json`, import.meta.url)),
     // decomp parcial (HGSS: learnset/golpes em binário; DP: só núcleo + chefes) → selo "Parcialmente verificado" no catálogo
-    partial: !!(GAMES[c.group]?.asmDecomp?.partial || GAMES[c.group]?.asmDecomp?.steps === 'dp'),
+    partial: !!GAMES[c.group]?.asmDecomp?.partial,
   });
 }
 if (problems.length) { console.error('PROBLEMAS:\n' + problems.join('\n')); process.exitCode = 1; }

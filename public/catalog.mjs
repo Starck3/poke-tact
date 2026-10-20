@@ -46,3 +46,19 @@ export function homeHash({ platform = null, generation = null } = {}) {
   const s = q.toString();
   return '#/' + (s ? '?' + s : '');
 }
+
+/** Um resumo por geração para a tela inicial: plataformas (sem repetir), anos, total de jogos e quantos estão no app. */
+export function generationSummaries(games) {
+  return groupByGeneration(games).map(([generation, gs]) => ({
+    generation,
+    platforms: platformsOf(gs),
+    years: [gs[0].year, gs[gs.length - 1].year],
+    count: gs.length,
+    supported: gs.filter((g) => g.status === 'supported').length,
+  }));
+}
+
+// Pasta de sprites da versão no repositório PokeAPI/sprites. Quase sempre é o id do jogo; Gold/Silver não tem
+// pasta "gold-silver", só "gold" e "silver" (sprites diferentes entre as duas). Sem pasta (Gens 5–9 em geral), a página usa o sprite padrão.
+const SPRITE_PER_VERSION = new Set(['gold-silver']);
+export const spriteFolder = (gameId, version) => (SPRITE_PER_VERSION.has(gameId) && version ? version : gameId);

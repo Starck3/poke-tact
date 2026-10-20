@@ -1,5 +1,5 @@
 // Confronta o dataset de Diamond/Pearl (PokéAPI) com o decomp pret/pokediamond (JSON): learnset por nível, TM/HM, atributos,
-// tipos, habilidades e golpes. (Tabela de tipos: sem fonte em texto no pokediamond — a batalha é overlay em assembly.)
+// tipos, habilidades, golpes e tabela de tipos (bytes do overlay de batalha, arm9/overlays/11).
 // Uso: node scripts/validate-dp-vs-decomp.mjs <jogo> [--antes]
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { GAMES } from './games.mjs';
@@ -12,7 +12,7 @@ const g = loadDp(new URL(`../data-sources/${game.asmDecomp.dir}/`, import.meta.u
 const data = JSON.parse(readFileSync(new URL(`../public/data/${gameId}.json`, import.meta.url), 'utf8'));
 const idOf = (n) => JSON.parse(readFileSync(new URL(`../.cache/move_${n}.json`, import.meta.url), 'utf8')).id;
 const ids = new Map(Object.keys(data.moves).map((n) => [n, idOf(n)]));
-const report = { levelup: [], machine: [], stats: [], types: [], abilities: [], moves: [], missing: [] };
+const report = { levelup: [], machine: [], stats: [], types: [], abilities: [], moves: [], chart: [], missing: [] };
 const setDiff = (pokemon, kind, api, dec) => {
   for (const v of api) if (!dec.has(v)) report[kind].push({ pokemon, only: 'pokeapi', value: v });
   for (const v of dec) if (!api.has(v)) report[kind].push({ pokemon, only: 'decomp', value: v });
@@ -33,6 +33,10 @@ for (const [name, mv] of Object.entries(data.moves)) {
   for (const k of ['pp', 'type', 'priority', 'category']) if (mv[k] !== d[k] && !(k === 'category' && mv.category === 'status' && d.category !== 'status')) report.moves.push({ move: name, field: k, pokeapi: mv[k], decomp: d[k] });
   if (mv.power != null && d.power > 1 && mv.power !== d.power) report.moves.push({ move: name, field: 'power', pokeapi: mv.power, decomp: d.power });
   if (mv.accuracy != null && d.accuracy > 0 && mv.accuracy !== d.accuracy) report.moves.push({ move: name, field: 'accuracy', pokeapi: mv.accuracy, decomp: d.accuracy });
+}
+for (const a of data.types) for (const b of data.types) {
+  const x = data.chart[a][b], y = g.chart[a]?.[b] ?? 1;
+  if (x !== y) report.chart.push({ attacker: a, defender: b, pokeapi: x, decomp: y });
 }
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 writeFileSync(new URL(`../reports/${gameId}/dp-decomp-audit${before ? '-antes' : ''}.json`, import.meta.url), JSON.stringify(report, null, 1));

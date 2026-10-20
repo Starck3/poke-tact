@@ -52,7 +52,7 @@
 
   /* ---- catálogo */
   .chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:var(--s3); }
-  .games { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:var(--s3); }
+  .games { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:var(--s3); }
   .game { display:flex; flex-direction:column; gap:2px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:var(--s3) var(--s4); color:inherit; text-decoration:none; box-shadow:var(--shadow); }
   a.game:hover { border-color:var(--accent); }
   .game.off { opacity:.55; }
@@ -64,8 +64,8 @@
     background:radial-gradient(1200px 380px at 50% -40px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); }
   .brand { display:inline-block; font-weight:700; font-size:var(--fs-sm); letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s3); }
   .hero-title { font-size:clamp(1.9rem, 4.6vw, 3.2rem); line-height:1.12; letter-spacing:-.025em; margin:0 auto var(--s3); max-width:880px; }
-  .ink { display:inline-flex; vertical-align:middle; width:1.25em; height:1.25em; border-radius:.32em; background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); align-items:center; justify-content:center; transform:translateY(-.06em); }
-  .ink img { width:115%; height:115%; image-rendering:pixelated; transition:opacity .3s; }
+  .ink { display:inline-flex; vertical-align:middle; width:1.6em; height:1.6em; overflow:hidden; border-radius:.32em; background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); align-items:center; justify-content:center; transform:translateY(-.06em); }
+  .ink img { width:135%; height:135%; flex:none; image-rendering:pixelated; transition:opacity .3s; }
   .hero-sub { color:var(--muted); max-width:640px; margin:0 auto var(--s5); font-size:1.05rem; }
   .search { position:relative; max-width:640px; margin:0 auto; }
   .search input { padding:14px 48px 14px 46px; font-size:1.05rem; border-radius:var(--pill); border:1px solid var(--line-strong); background:var(--surface); box-shadow:0 2px 14px rgba(0,0,0,.08); }
@@ -75,15 +75,24 @@
   #homeResults { position:absolute; z-index:10; left:0; right:0; top:calc(100% + 6px); list-style:none; margin:0; padding:6px; text-align:left; background:var(--surface); border:1px solid var(--line-strong); border-radius:var(--r3); box-shadow:0 12px 32px rgba(0,0,0,.18); max-height:min(420px, 60vh); overflow:auto; }
   #homeResults li { display:flex; align-items:center; gap:var(--s3); padding:8px 10px; border-radius:var(--r2); cursor:pointer; }
   #homeResults li[aria-selected=true], #homeResults li:hover { background:var(--surface-2); }
-  #homeResults li img { width:40px; height:40px; image-rendering:pixelated; flex:none; }
+  #homeResults li img { width:60px; height:60px; margin:-8px -4px; image-rendering:pixelated; flex:none; }
   #homeResults .r-kind { margin-left:auto; }
+  /* autocompletar do oponente: só os Pokémon do jogo aberto */
+  .ac { position:relative; }
+  .ac-list { position:absolute; z-index:10; left:0; right:0; top:calc(100% + 4px); list-style:none; margin:0; padding:6px; background:var(--surface); border:1px solid var(--line-strong); border-radius:var(--r3); box-shadow:0 12px 32px rgba(0,0,0,.18); max-height:min(380px, 55vh); overflow:auto; }
+  .ac-list li { display:flex; align-items:center; gap:var(--s3); padding:4px 10px; border-radius:var(--r2); cursor:pointer; }
+  .ac-list li[aria-selected=true], .ac-list li:hover { background:var(--surface-2); }
+  .ac-list li img { width:52px; height:52px; margin:-8px -4px; image-rendering:pixelated; flex:none; }
+  .ac-list .ac-num { color:var(--muted); font-size:var(--fs-sm); font-variant-numeric:tabular-nums; }
+  .ac-list .ac-types { margin-left:auto; display:flex; gap:4px; }
+  .warn { margin-top:6px; padding:var(--s2) var(--s3); border:1px solid color-mix(in srgb, #e0a000 45%, var(--line)); background:color-mix(in srgb, #e0a000 12%, var(--surface)); border-radius:var(--r2); font-size:var(--fs-sm); }
   .quick { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-top:var(--s3); }
   .quick a { text-decoration:none; color:var(--fg); font-size:var(--fs-sm); border:1px solid var(--line); background:var(--surface); border-radius:var(--pill); padding:4px 12px 4px 4px; display:inline-flex; align-items:center; gap:6px; transition:border-color .15s, transform .15s; }
   .quick a:hover { border-color:var(--accent); transform:translateY(-1px); }
-  .quick img { width:26px; height:26px; image-rendering:pixelated; }
+  .quick img { width:44px; height:44px; margin:-8px -4px -8px -6px; image-rendering:pixelated; }
   .resume { display:flex; align-items:center; gap:var(--s3); text-decoration:none; color:inherit; border-left:4px solid var(--accent); }
   .resume:hover { border-color:var(--accent); }
-  .resume img { width:56px; height:56px; image-rendering:pixelated; }
+  .resume img { width:168px; height:168px; margin:-40px -24px; flex:none; image-rendering:pixelated; }
   .stats { display:grid; grid-template-columns:repeat(4, 1fr); gap:var(--s3); margin:0 0 var(--s5); }
   .stat { text-align:center; padding:var(--s3) var(--s2); }
   .stat b { display:block; font-size:clamp(1.5rem, 3.4vw, 2.2rem); letter-spacing:-.02em; line-height:1.1; }
@@ -92,18 +101,29 @@
   .step-n { width:28px; height:28px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:var(--fs-sm); background:var(--accent); color:var(--accent-fg); margin-bottom:4px; }
   .catalog-head { display:flex; align-items:baseline; gap:var(--s3); margin-bottom:var(--s2); }
   .filters-bar { display:flex; flex-direction:column; gap:0; }
-  .game-art { display:flex; justify-content:center; gap:2px; height:72px; margin:-4px -8px 6px; border-radius:var(--r2); background:linear-gradient(160deg, var(--surface-2), transparent); align-items:flex-end; }
-  .game-art img { width:64px; height:64px; image-rendering:pixelated; transition:transform .25s ease; }
+  .game-art { display:flex; justify-content:center; gap:0; height:112px; overflow:visible; margin:-4px -8px 6px; border-radius:var(--r2); background:linear-gradient(160deg, var(--surface-2), transparent); align-items:flex-end; }
+  .game-art img { width:120px; height:120px; margin:0 -22px -10px; image-rendering:pixelated; transition:transform .25s ease; }
   a.game:hover .game-art img { transform:translateY(-6px); }
   a.game:hover .game-art img:nth-child(2) { transition-delay:.05s; } a.game:hover .game-art img:nth-child(3) { transition-delay:.1s; }
   a.game { transition:border-color .15s, transform .15s, box-shadow .15s; }
   a.game:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,.12); }
+  .gens { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:var(--s3); margin-bottom:var(--s5); }
+  .gen { display:flex; flex-direction:column; gap:2px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:var(--s3); color:inherit; text-decoration:none; box-shadow:var(--shadow); transition:border-color .15s, transform .15s, box-shadow .15s; }
+  .gen:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,.12); }
+  .gen[aria-current=true] { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+  .gen-art { display:flex; justify-content:center; align-items:center; gap:var(--s2); overflow:hidden; height:96px; margin-bottom:6px; border-radius:var(--r2); background:linear-gradient(160deg, var(--surface-2), transparent); padding:6px; }
+  .gen-art img:only-child { max-width:60%; }
+  .gen-art img { flex:0 1 auto; min-width:0; max-height:100%; max-width:calc(50% - var(--s1)); object-fit:contain; filter:drop-shadow(0 4px 6px rgba(0,0,0,.18)); }
+  .hint { padding:var(--s3); border:1px dashed var(--line-strong); border-radius:var(--r2); background:var(--surface-2); font-size:var(--fs-sm); color:var(--muted); }
+  .hint strong { color:var(--fg); }
+  .gen-head .note { font-weight:400; margin-left:var(--s2); }
   .pokeball { width:40px; height:40px; margin-bottom:12px; border-radius:50%; border:3px solid var(--line-strong); background:linear-gradient(var(--accent) 0 46%, var(--line-strong) 46% 54%, var(--surface) 54%); position:relative; }
   .pokeball::after { content:""; position:absolute; inset:0; margin:auto; width:12px; height:12px; border-radius:50%; background:var(--surface); border:3px solid var(--line-strong); }
-  @media (prefers-reduced-motion: reduce) { .game-art img, a.game, .quick a, .ink img { transition:none !important; } a.game:hover, a.game:hover .game-art img { transform:none; } }
+  @media (prefers-reduced-motion: reduce) { .game-art img, a.game, .gen, .quick a, .ink img { transition:none !important; } a.game:hover, a.game:hover .game-art img { transform:none; } }
   @media (max-width:520px) {
     .games { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--s2); }
-    .game { padding:var(--s2) var(--s3); } .game .lozenge { white-space:normal; } .game-art { height:52px; } .game-art img { width:44px; height:44px; }
+    .game { padding:var(--s2) var(--s3); } .game .lozenge { white-space:normal; } .game-art { height:80px; } .game-art img { width:84px; height:84px; margin:0 -17px -7px; }
+    .gens { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--s2); } .gen-art { height:72px; }
     .filters-bar .chips { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin-right:calc(-1 * var(--s3)); padding-right:var(--s3); }
     .filters-bar .chips button { flex:none; }
   }
@@ -127,7 +147,7 @@
 
   /* ---- oponente */
   .opp { display:flex; gap:var(--s3); align-items:center; }
-  .opp img, .pick img, .starter img { width:64px; height:64px; image-rendering:pixelated; }
+  .opp img, .pick img, .starter img { width:80px; height:80px; image-rendering:pixelated; }
   .team { display:flex; flex-wrap:wrap; gap:6px; }
   /* fraquezas do oponente: o que usar para vencer */
   .weak { display:flex; flex-direction:column; gap:6px; margin-top:var(--s3); padding:var(--s2) var(--s3); background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r2); }
@@ -144,7 +164,7 @@
   .tchip { display:flex; align-items:center; gap:8px; text-align:left; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:var(--r2); padding:4px 10px 4px 4px; font:inherit; font-size:var(--fs-sm); cursor:pointer; transition:border-color .15s; }
   .tchip:hover { border-color:var(--line-strong); }
   .tchip[aria-pressed=true] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; }
-  .tchip img { width:40px; height:40px; image-rendering:pixelated; flex:none; }
+  .tchip img { width:50px; height:50px; image-rendering:pixelated; flex:none; }
   .tchip .t-name { display:block; font-weight:600; line-height:1.2; }
   .tchip .t-sub { display:block; color:var(--muted); font-size:var(--fs-xs); line-height:1.3; }
   .t-section { font-size:var(--fs-xs); color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin:var(--s3) 0 6px; }
@@ -217,13 +237,10 @@
   </div>
 
   <div class="catalog-head">
-    <h2 style="margin:0">Jogos</h2>
+    <h2 style="margin:0">Escolha a geração</h2>
     <span class="note" id="gameCount"></span>
   </div>
-  <div class="filters-bar">
-    <div class="chips" id="genChips" aria-label="Geração"></div>
-    <div class="chips" id="platformChips" aria-label="Plataforma"></div>
-  </div>
+  <nav class="gens" id="genList" aria-label="Gerações"></nav>
   <div id="gameList"></div>
   <div class="legend card" id="qualityLegend"></div>
   <p class="note" id="catalogSources"></p>
@@ -270,8 +287,11 @@
     <div id="team" class="team"></div>
     <div>
       <label for="opp">Pokémon que você está enfrentando <span class="search-hint meta">atalho <kbd>/</kbd></span></label>
-      <input type="search" id="opp" list="mons" placeholder="Digite o nome — ex.: gyarados" autocomplete="off" spellcheck="false">
-      <datalist id="mons"></datalist>
+      <div class="ac">
+        <input type="search" id="opp" placeholder="Digite o nome — ex.: gyarados" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="oppList" aria-expanded="false" aria-describedby="oppWarn">
+        <ul id="oppList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
+      </div>
+      <div id="oppWarn" class="warn" role="status" hidden></div>
     </div>
     <div id="oppInfo"></div>
     <div class="grid2">

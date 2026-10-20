@@ -2,7 +2,7 @@
 // O comentário de cada teste diz qual era o erro e como foi confirmado o valor correto.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { effectiveness, availableMoves, likelyMoveset, recommend, whereToGet } from '../public/engine.mjs';
 import { filterGames, groupByGeneration } from '../public/catalog.mjs';
 
@@ -187,6 +187,67 @@ test('regressão: catálogo — GBA mostra os 3 jogos de GBA; Geração III most
   assert.deepEqual(groupByGeneration(games).map(([gen]) => gen), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
   assert.deepEqual(games.filter((g) => g.validation === 'decomp').map((g) => g.id).sort(), ['emerald', 'firered-leafgreen', 'ruby-sapphire']); // conferidos com o código do jogo
   assert.equal(games.filter((g) => g.status === 'supported').length, 21); // + 18 pela PokéAPI (Legends: Z-A sem dados)
+});
+
+test('tela inicial por geração: cada geração lista os consoles (sem repetir), anos e jogos no app', async () => {
+  const { generationSummaries } = await import('../public/catalog.mjs');
+  const { games } = load('games.json');
+  const s = generationSummaries(games);
+  assert.deepEqual(s.map((x) => x.generation), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  assert.equal(s.reduce((a, x) => a + x.count, 0), games.length);
+  const g3 = s.find((x) => x.generation === 3);
+  assert.deepEqual(g3.platforms, ['Game Boy Advance']); // 3 jogos de GBA → um console só
+  assert.equal(g3.count, 3);
+  assert.ok(g3.years[0] <= g3.years[1]);
+  assert.ok(s.find((x) => x.generation === 7).platforms.includes('Nintendo Switch')); // Let's Go no Switch, junto do 3DS
+  assert.equal(s.reduce((a, x) => a + x.supported, 0), games.filter((g) => g.status === 'supported').length);
+});
+
+test('regressão: abrir um jogo não traz o inicial de antes — o contexto salvo no navegador não inclui o inicial', () => {
+  const src = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  const fields = src.match(/const CTX_FIELDS = (\[[^\]]*\])/);
+  assert.ok(fields, 'CTX_FIELDS não encontrado em app.mjs');
+  assert.ok(!JSON.parse(fields[1].replace(/'/g, '"')).includes('starter'));
+});
+
+test('oponente: autocompletar só com Pokémon do jogo e aviso para Pokémon de outra geração', async () => {
+  const { searchOpponents, findOpponent, opponentWarning, generationOfDex } = await import('../public/pokedex.mjs');
+  const { pokemon } = load('red-blue.json');
+  const pokedex = load('pokedex.json');
+  const ctx = { pokemon, pokedex, generation: 1, gameLabel: 'Red / Blue' };
+  // a Pokédex nacional cobre 1–1025 sem buracos (o aviso depende dela)
+  assert.equal(pokedex.length, 1025);
+  assert.ok(pokedex.every(([id], i) => id === i + 1));
+  assert.deepEqual([1, 151, 152, 251, 252, 809, 810, 1025].map(generationOfDex), [1, 1, 2, 2, 3, 7, 8, 9]);
+  // sugestões: só do jogo, "começa com" antes de "contém", número também
+  assert.ok(searchOpponents(pokemon, 'pi').every((p) => p.id <= 151));
+  assert.equal(searchOpponents(pokemon, 'pi')[0].name, 'pidgey');
+  assert.ok(searchOpponents(pokemon, 'chu').some((p) => p.name === 'pikachu'));
+  assert.equal(searchOpponents(pokemon, '#25')[0].name, 'pikachu');
+  assert.deepEqual(searchOpponents(pokemon, 'chikorita'), []); // Geração II não aparece no Red/Blue
+  // nome com espaço/pontuação acha o Pokémon do jogo
+  assert.equal(findOpponent(pokemon, 'Mr. Mime')?.name, 'mr-mime');
+  assert.equal(opponentWarning(ctx, 'Mr. Mime'), null);
+  assert.equal(opponentWarning(ctx, 'pika'), null); // ainda digitando, há sugestões
+  assert.equal(opponentWarning(ctx, ''), null);
+  // avisos
+  const w = opponentWarning(ctx, 'Chikorita');
+  assert.equal(w.kind, 'newer');
+  assert.match(w.text, /Chikorita é da Geração II/);
+  assert.equal(opponentWarning(ctx, 'xern').kind, 'newer'); // prefixo que só existe em gerações futuras
+  assert.equal(opponentWarning(ctx, 'zzzz').kind, 'unknown');
+  // jogo sem toda a Pokédex da própria geração (Sword/Shield): o Pokémon existe, mas não está no jogo
+  const swsh = load('sword-shield.json');
+  const absent = pokedex.find(([id, n]) => id <= 898 && !swsh.pokemon.some((p) => p.name === n));
+  assert.equal(opponentWarning({ pokemon: swsh.pokemon, pokedex, generation: 8, gameLabel: 'Sword / Shield' }, absent[1]).kind, 'absent');
+});
+
+test('regressão: sprites do Gold/Silver vêm das pastas gold/silver (não existe "gold-silver"; caía no sprite moderno)', async () => {
+  const { spriteFolder } = await import('../public/catalog.mjs');
+  assert.equal(spriteFolder('gold-silver', 'gold'), 'gold');
+  assert.equal(spriteFolder('gold-silver', 'silver'), 'silver');
+  assert.equal(spriteFolder('crystal', 'crystal'), 'crystal');
+  assert.equal(spriteFolder('heartgold-soulsilver', 'heartgold'), 'heartgold-soulsilver'); // essa pasta existe
 });
 
 test('rotas: filtros da tela inicial e estado do jogo ficam na URL (ida e volta)', async () => {
@@ -1182,10 +1243,23 @@ test('S6b: HGSS — núcleo com 0 divergências: HMs ficam em "hms" no personal.
   assert.ok(g.species[1].machine.has(g.moveId.MOVE_CUT)); assert.ok(g.species[131].machine.has(g.moveId.MOVE_SURF));
   const r = JSON.parse(readFileSync(new URL('../reports/heartgold-soulsilver/hgss-decomp-audit.json', import.meta.url), 'utf8'));
   for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${k}: ${JSON.stringify(v.slice(0, 3))}`);
-  // golpes: waza_tbl.narc é binário → valores da Gen 4 pelo pokeplatinum (mesma geração), cada correção rotulada
+  // golpes e learnset por nível: binários do próprio HGSS (waza_tbl.narc, wotbl.narc) — antes vinham do pokeplatinum / PokéAPI
   const d = load('heartgold-soulsilver.json');
   assert.equal(d.moves.protect.priority, 3); assert.equal(d.moves['mind-reader'].pp, 5); assert.equal(d.moves.roost.pp, 10);
-  assert.ok(d.corrections.list.filter((c) => c.move).every((c) => c.via === 'pokeplatinum'));
+  assert.ok(d.corrections.list.every((c) => !c.via));
+  assert.ok(!d.corrections.partial);
+  assert.ok(d.pokemon.every((p) => p.levelUpInGameOrder));
+  // NARC lido certo: Bulbasaur da Gen 4 (Tackle 1, Growl 3, Leech Seed 7, Vine Whip 9…) na ordem do jogo
+  assert.deepEqual(g.species[1].levelOrdered.slice(0, 4), [[1, 33], [3, 45], [7, 73], [9, 22]]);
+  assert.equal(g.moves[g.moveId.MOVE_SHADOW_FORCE].power, 120);
+  // o learnset do HGSS NÃO é o do Platinum (por isso não bastava conferir com ele): Cyndaquil mudou
+  const haveVersion = existsSync(new URL('../data-sources/pokeplatinum-src/res/', import.meta.url));
+  if (haveVersion) {
+    const { loadGen4 } = await import('../scripts/lib/gen4-json.mjs');
+    const pt = loadGen4(new URL('../data-sources/pokeplatinum-src/', import.meta.url));
+    const ptCyndaquil = pt.species[155].levelOrdered.map(([lv, m]) => [lv, pt.moveId[m]]);
+    assert.notDeepEqual(g.species[155].levelOrdered, ptCyndaquil);
+  }
 });
 
 test('S6b: HGSS — treinadores: 1ª luta do rival é TRAINER_PASSERBY_BOY; ramo pelo inicial (GetStarterChoice 152/155/158); IV', () => {
@@ -1306,21 +1380,76 @@ test('E4: iniciais das Gens 4–9 sem decomp = detonado (trecho de escolha) + Po
 });
 
 // ---------------------------------------------------------------- E5: Diamond/Pearl (pret/pokediamond — núcleo em JSON)
-test('E5: Diamond/Pearl — núcleo do decomp com 0 divergências; chefes com IV do jogo; rival rotulado pelo inicial que ELE leva', () => {
+test('E5: Diamond/Pearl — núcleo do decomp com 0 divergências (inclusive a tabela de tipos); chefes com IV do jogo', () => {
   const r = JSON.parse(readFileSync(new URL('../reports/diamond-pearl/dp-decomp-audit.json', import.meta.url), 'utf8'));
   for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${k}: ${JSON.stringify(v.slice(0, 3))}`);
+  assert.ok('chart' in r); // tabela de tipos lida dos bytes do overlay de batalha (antes: "não conferida")
   const d = load('diamond-pearl.json');
   assert.equal(d.moves.protect.priority, 3); assert.equal(d.moves.recover.pp, 10); // waza_tbl.json (a PokéAPI traz os da Gen 9)
   assert.ok(d.pokemon.every((p) => p.levelUpInGameOrder)); // wotbl.json na ordem do jogo
-  assert.deepEqual(d.starters.species, ['turtwig', 'chimchar', 'piplup']); // iniciais: overlay em assembly → regra do E4
+  assert.ok(!d.corrections.chartUnchecked);
+  assert.deepEqual(d.starters.species, ['turtwig', 'chimchar', 'piplup']); // overlay 64 (escolha na maleta)
+  assert.equal(d.starters.level, 5);
   const t = load('diamond-pearl-trainers.json');
-  assert.match(t.note, /só chefes/);
   const roark = t.trainers.find((x) => x.key === 'TRAINER_LEADER_ROARK_ROARK');
   assert.deepEqual(roark.party.map((p) => [p.species, p.level, p.iv]), [['geodude', 12, 6], ['onix', 12, 6], ['cranidos', 14, 6]]);
   assert.ok(t.trainers.some((x) => x.label === 'Elite Four Lucian')); // a classe do decomp grafa LUCIEN
-  // sem script em texto não se sabe qual time do Barry é de qual inicial do jogador → sem forStarter (todos aparecem)
-  const rivals = t.trainers.filter((x) => x.group === 'Rival');
-  assert.ok(rivals.length === 24 && rivals.every((x) => !x.forStarter && x.carries));
+});
+
+// ---------------------------------------------------------------- Diamond/Pearl: binários do jogo lidos pelo código (bytecode, eventos…)
+test('regressão: Diamond/Pearl — treinadores com o lugar da luta (eventos/scripts binários) e o rival pelo desvio do inicial', () => {
+  const t = load('diamond-pearl-trainers.json').trainers;
+  assert.ok(t.length >= 480 && t.every((x) => x.map.length)); // antes: só 37 chefes, sem lugar
+  const at = (key) => t.find((x) => x.key === key)?.map;
+  assert.deepEqual(at('TRAINER_LEADER_ROARK_ROARK'), ['Oreburgh Gym']); // StartTrainerBattle 246 no script do ginásio
+  assert.deepEqual(at('TRAINER_YOUNGSTER_TRISTAN'), ['Route 202']); // objeto com script 3000 → treinador 1
+  // GetPlayerStarterSpecies + CompareVarToValue/GoToIf: com Piplup o Barry leva Turtwig (e assim por diante)
+  const rivals = t.filter((x) => x.group === 'Rival');
+  assert.ok(rivals.length === 21 && rivals.every((x) => x.forStarter?.length === 1 && x.carries));
+  for (const x of rivals) assert.equal(x.forStarter[0], { turtwig: 'piplup', chimchar: 'turtwig', piplup: 'chimchar' }[x.carries], x.key);
+  // parceiros de luta em dupla (StartTagBattle: Lucas/Dawn/Barry do seu lado) não são oponentes
+  assert.ok(!t.some((x) => /LUCAS|DAWN|BARRY_CEDRIC_1[678]$/.test(x.key)));
+});
+
+test('regressão: Diamond/Pearl — onde obter pelo código do jogo (encontros, scripts por versão, extras) e selo "verificado"', async () => {
+  const { whereToGet } = await import('../public/engine.mjs');
+  const d = load('diamond-pearl.json'), a = load('diamond-pearl-acquisition.json');
+  const types = (v, sp) => (a.versions[v][sp] ?? []).map((s) => s.type);
+  // Spear Pillar: LegendaryBattle por variável (GetGameVersion 10 → Dialga, senão Palkia)
+  assert.ok(types('diamond', 'dialga').includes('static') && !a.versions.pearl.dialga);
+  assert.ok(types('pearl', 'palkia').includes('static') && !a.versions.diamond.palkia);
+  // eventos de distribuição (CheckEventValidity 0/1/2 em Canalave, Route 224, Spear Pillar) e CheckRegis → fora do jogo
+  for (const sp of ['darkrai', 'shaymin-land', 'arceus', 'regigigas', 'manaphy']) assert.equal(mon(d, sp).obtainable.diamond, false, sp);
+  assert.equal(mon(d, 'giratina-altered').obtainable.pearl, true); // a PokéAPI não tinha o Giratina da Turnback Cave
+  // árvores de mel (tabela de 21 mapas do overlay 05) e Great Marsh (lista do dia igual nas duas versões)
+  assert.ok((a.versions.diamond.munchlax ?? []).some((s) => s.method === 'Árvore de mel'));
+  assert.equal(mon(d, 'kangaskhan').obtainable.pearl, true);
+  assert.ok(a.versions.diamond.feebas.some((s) => s.where === 'Mt. Coronet B1F'));
+  // TM/HM: todos com origem (TM08/61/73 só na troca por Battle Points do Battle Park)
+  assert.ok(a.machines['bulk-up'].some((s) => /Battle Points/.test(s.by)));
+  assert.equal(a.progress.leaderOrder.join(), 'Roark,Gardenia,Maylene,Wake,Fantina,Byron,Candice,Volkner');
+  assert.ok(whereToGet(d, a, mon(d, 'abra'), 'diamond').direct.some((s) => s.type === 'trade')); // fld_trade 0: Abra por Machop
+  const g = load('games.json').games.find((x) => x.id === 'diamond-pearl');
+  assert.ok(g.hasWalkthrough && !g.partial && g.trainerCount >= 480);
+});
+
+const haveDp = existsSync(new URL('../data-sources/pokediamond-src/arm9/src/', import.meta.url));
+test('Diamond/Pearl — leitor de bytecode: os 605 scripts de mapa fecham sem erro; tamanhos tirados do código do DP', { skip: !haveDp && 'sem decomp local' }, async () => {
+  const { loadDpField, parseEncounters, parseMatrix } = await import('../scripts/lib/gen4-dp-field.mjs');
+  const root = new URL('../data-sources/pokediamond-src/', import.meta.url);
+  const F = loadDpField(root);
+  assert.equal(F.cmds.names.length, 721); // gScriptCmdTable
+  // GetSetStrength (0x1CF) só lê o ponteiro na opção 2; Unk0289 lê 5 bytes num laço (a contagem automática errava as duas)
+  const level = new Set(F.headers.map((h) => h.level));
+  const files = readdirSync(new URL('files/fielddata/script/scr_seq_release/', root)).filter((f) => f.endsWith('.bin')).map((f) => Number(f.match(/\d+/)[0])).filter((n) => !level.has(n));
+  const bad = files.filter((n) => F.scriptFile(n).errors.length);
+  assert.equal(files.length, 605);
+  assert.deepEqual(bad, []);
+  // eventos: todos os 559 cabeçalhos leem sem bytes sobrando; matrizes e encontros de 424 bytes
+  for (const h of F.headers) F.events(h);
+  assert.ok(parseMatrix(F.raw('mapmatrix/map_matrix', 0)).grid.length === 30);
+  const r201 = F.headers.find((h) => h.id === 'MAP_ROUTE_201');
+  assert.deepEqual(parseEncounters(F.raw('encountdata/d_enc_data', r201.enc.diamond)).swarm, [84, 84]); // Doduo em enxame
 });
 
 // ---------------------------------------------------------------- Capturas de tela (E6): achados na revisão visual

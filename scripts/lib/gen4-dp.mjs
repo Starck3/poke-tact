@@ -7,8 +7,11 @@
 //   files/poketool/trainer/trdata.json     trdata[n] { class, name, doubleBattle, party: [{ difficulty, level, species, moves?, item? }] }
 //   include/constants/{species,moves,trainers}.h  #define X n
 //   arm9/src/itemtool.c sTMHMMoves[]       TM01…TM92, HM01…HM08 (lido com "git show HEAD:" — o checkout esparso não traz o arm9)
+//   arm9/overlays/11/asm/ov11_02242B78.s  tabela de tipos da batalha, em bytes: trincas (atacante, defensor, ×10)
+//                                          — 20 = 2×, 5 = ½×, 0 = imune; 0xFE separa o trecho do Foresight; 0xFF encerra
 // FORA (binário): encontros, scripts, eventos, matriz → sem "onde obter", progresso e lugar dos treinadores.
 import { readFileSync } from 'node:fs';
+import { GEN4_TYPES } from './narc.mjs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
@@ -50,5 +53,22 @@ export function loadDp(rootUrl) {
     const from = byName[e.species];
     for (const x of e.evos ?? []) if (from && x.method && x.method !== 'EVO_NONE' && byName[x.target]) species[from].evo.push({ kind: EVO[x.method] ?? x.method, raw: x.method, param: x.param, to: x.target });
   }
-  return { moveId, speciesId, species, moves, tmhm, byName };
+  return { moveId, speciesId, species, moves, tmhm, byName, chart: loadChart(rootUrl) };
+}
+
+// Tabela de tipos: os bytes do arquivo em sequência (os rótulos do disassembler cortam a tabela no meio); ela começa na
+// 1ª trinca Normal→Rock ½× seguida de Normal→Steel ½× e Fire→Fire ½× (padrão único no arquivo).
+function loadChart(rootUrl) {
+  const src = readFileSync(new URL('arm9/overlays/11/asm/ov11_02242B78.s', rootUrl), 'utf8');
+  const bytes = [...src.matchAll(/^[ \t]*\.byte[ \t]+([^;\r\n]+)/gm)].flatMap((m) => m[1].split(',').map((x) => Number(x.trim())));
+  const start = bytes.findIndex((_, i) => [0, 5, 5, 0, 8, 5, 10, 10, 5].every((v, k) => bytes[i + k] === v));
+  if (start < 0) throw new Error('tabela de tipos não encontrada no overlay 11');
+  const chart = {};
+  for (let i = start; bytes[i] !== 0xff; i += 3) {
+    if (bytes[i] === 0xfe) continue; // separador do Foresight (Normal/Fighting → Ghost vêm depois dele)
+    const [a, d, x] = [GEN4_TYPES[bytes[i]], GEN4_TYPES[bytes[i + 1]], bytes[i + 2] / 10];
+    if (!a || !d) throw new Error(`tabela de tipos: byte inesperado em ${i}`);
+    (chart[a] ??= {})[d] = x;
+  }
+  return chart;
 }
