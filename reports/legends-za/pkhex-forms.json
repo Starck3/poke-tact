@@ -1,0 +1,24 @@
+{
+ "added": [
+  "raichu-alola (electric/psychic)",
+  "meowth-alola (dark)",
+  "meowth-galar (steel)",
+  "persian-alola (dark)",
+  "slowpoke-galar (psychic)",
+  "slowbro-galar (poison/psychic)",
+  "farfetchd-galar (fighting)",
+  "marowak-alola (fire/ghost)",
+  "mr-mime-galar (ice/psychic)",
+  "slowking-galar (poison/psychic)",
+  "qwilfish-hisui (dark/poison)",
+  "yamask-galar (ground/ghost)",
+  "stunfisk-galar (ground/steel)",
+  "sliggoo-hisui (steel/dragon)",
+  "goodra-hisui (steel/dragon)",
+  "avalugg-hisui (ice/rock)"
+ ],
+ "rejected": [],
+ "newMoves": [
+  "shadow-bone"
+ ]
+}

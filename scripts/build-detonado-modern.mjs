@@ -1,0 +1,226 @@
+// Jogos sem decomp com detonado do PokeMythology (BW, XY, ORAS, SM, Let's Go, SwSh, BDSP, Legends: Arceus, SV): o que dá
+// para tirar do detonado + dados do jogo (PKHeX), sem fonte nova:
+//   1) <jogo>-trainers.json — lutas "<nome> usa:" (scripts/lib/pokemythology-modern.mjs): espécie e nível do detonado;
+//      golpes = moveset padrão do jogo no nível (defaultMoves) — o detonado não lista golpes. Fonte marcada 'detonado'.
+//   2) progresso — estágio = líderes vencidos antes do trecho (1ª aparição de cada líder no detonado; SM: grandes
+//      provações); pós-jogo depois do campeão. Cada local do "onde obter" (nome do PKHeX, em inglês) recebe o estágio da
+//      seção do detonado que o nomeia (placeStage, o mesmo da Gen 1–5).
+//   3) <jogo>-walkthrough.json — aba Detonado: por estágio, os locais na ordem do detonado com selvagens, presentes/trocas e
+//      os treinadores da seção.
+// 🧪 Espécie pelo NOME escrito (o nº da imagem do serebii não é o da Pokédex nacional no SV); erro de grafia → nome mais
+// próximo do jogo (distância ≤ 2); formas regionais pelo texto ("Hisuian Braviary") ou sufixo da imagem (-h/-a/-g/-p).
+// Uso: node scripts/build-detonado-modern.mjs <jogo>   (depois do build-acquisition-pkhex)
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { GAMES } from './games.mjs';
+import { parseModernSections, parseModernBattles, parseBadgeEvents } from './lib/pokemythology-modern.mjs';
+import { words, placeStage, POSTGAME } from './lib/progress.mjs';
+import { likelyMoveset } from '../public/engine.mjs';
+
+const gameId = process.argv[2];
+const game = GAMES[gameId];
+const wtFile = new URL(`../data-sources/pokemythology/${game?.walkthrough}.html`, import.meta.url);
+if (!game?.walkthrough || !existsSync(wtFile)) { console.log(`[${gameId}] sem detonado local — nada a fazer`); process.exit(0); }
+const load = (f) => JSON.parse(readFileSync(new URL(`../public/data/${f}`, import.meta.url), 'utf8'));
+const data = load(`${gameId}.json`);
+const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
+const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
+const html = readFileSync(wtFile, 'utf8');
+const sections = parseModernSections(html);
+const battles = parseModernBattles(html);
+const badges = parseBadgeEvents(html, battles);
+
+// ---- espécie do detonado → entrada do dataset
+const key = (s) => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/♀/g, 'f').replace(/♂/g, 'm').replace(/[^a-z0-9]/g, '');
+const baseByKey = new Map(data.pokemon.filter((p) => !p.regionalForm).map((p) => [key(p.name.replace(/-(incarnate|altered|male|female|red-striped|ordinary|aria|land|plant|normal|average|50|midday|solo|amped|full-belly|single-strike|baile|shield|disguised|ice|zero|family-of-four|green-plumage|two-segment|curly|chest|standard|overcast|west|east)$/, '')), p]));
+const regionalOf = (sid, region) => data.pokemon.find((p) => p.regionalForm && p.speciesId === sid && p.name.includes(`-${region}`));
+const REGION = { hisuian: 'hisui', alolan: 'alola', galarian: 'galar', paldean: 'paldea', hisui: 'hisui', alola: 'alola', galar: 'galar', paldea: 'paldea' };
+const SUFFIX = { h: 'hisui', a: 'alola', g: 'galar', p: 'paldea' };
+const lev = (a, b) => { const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]); for (let j = 1; j <= b.length; j++) d[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[a.length][b.length]; };
+const unresolved = [], fuzzy = [];
+function resolve(p) {
+  let text = String(p.species ?? '').replace(/\(.*?\)|\[.*?\]/g, ' ').trim();
+  let region = null;
+  const m = text.match(/\b(hisuian|alolan|galarian|paldean)\b|\bde (hisui|alola|galar|paldea)\b/i);
+  if (m) { region = REGION[(m[1] ?? m[2]).toLowerCase()]; text = text.replace(m[0], ' ').trim(); }
+  if (!region && typeof p.form === 'string' && SUFFIX[p.form]) region = SUFFIX[p.form];
+  if (!region && p.tags) region = REGION[p.tags.find((t) => REGION[t])] ?? null;
+  const k = key(text.split(/\s+@|\s+–/)[0]);
+  // nº da imagem do serebii = Pokédex nacional (menos no SV, onde o leitor devolve dex null): vence a grafia do texto
+  // (SM: Gladion "Golbat" com a imagem do Crobat)
+  const byDex = p.dex && !p.dexByName ? data.pokemon.find((x) => x.id === p.dex) : null;
+  let base = byDex ?? baseByKey.get(k);
+  if (!base && k.length >= 4) {
+    const best = [...baseByKey].map(([n, x]) => [lev(k, n), x]).sort((a, b) => a[0] - b[0])[0];
+    if (best && best[0] <= 2) { base = best[1]; fuzzy.push(`${p.species} → ${base.name}`); }
+  }
+  if (!base) { unresolved.push(p.species); return null; }
+  return (region && regionalOf(base.id, region)) || base;
+}
+
+// ---- progresso: líderes na ordem da 1ª aparição; campeão fecha o jogo
+// líder = nome ligado a insígnia/carimbo de ilha no texto (≥ 4 nomes; SM: kahunas, sem o Guzma) ou, sem isso, a luta
+// classificada como líder. Líderes com a 1ª luta na mesma seção = alternativas de versão (Gordie/Melony) → um estágio só.
+const hinted = [...new Set(badges.filter((e) => ['gym', 'insignia', 'stamp'].includes(e.kind) && e.leaderHint).map((e) => e.leaderHint))];
+const isLeader = hinted.length >= 4 ? (b) => hinted.includes(b.name) : (b) => b.kind === 'leader';
+const firstAt = new Map();
+for (const b of battles) if (isLeader(b) && !firstAt.has(b.name)) firstAt.set(b.name, b);
+// a luta que vale é a última do nome ANTES da 1ª insígnia ligada a ele (Giovanni: ginásio de Viridian, não o esconderijo)
+for (const [n] of firstAt) {
+  const ev = badges.find((e) => e.leaderHint === n);
+  const b = ev && [...battles].reverse().find((x) => x.name === n && x.at < ev.at);
+  if (b) firstAt.set(n, b);
+}
+const byAt = [...firstAt].sort((a, b) => a[1].at - b[1].at);
+firstAt.clear();
+for (const [n, b] of byAt) firstAt.set(n, b);
+const merged = [];
+for (const [n, b] of firstAt) {
+  // alternativa de versão: mesma seção, mesmo nível (±1) e lutas coladas (Gordie/Melony); Piers → Raihan (nv 46 → 48) não
+  const lv = Math.max(0, ...b.party.map((p) => p.level ?? 0));
+  const same = merged.find((m) => m.section && m.section === b.section && Math.abs(m.lv - lv) <= 1 && b.at - m.last < 4000);
+  if (same) { same.names.push(n); same.last = b.at; } else merged.push({ names: [n], at: b.at, last: b.at, lv, section: b.section });
+}
+const leaderOrder = merged.slice(0, 8).map((m) => m.names.join('/'));
+const leaderAt = merged.slice(0, 8).map((m) => m.at);
+const topLevel = (b) => Math.max(0, ...b.party.map((p) => p.level ?? 0));
+// fim da história: a 1ª menção ao Hall da Fama / créditos depois do último líder (o campeão varia: Leon no SwSh é "rival",
+// N/Ghetsis no BW); o campeão é a última luta antes disso
+const endRe = /hall (?:of fame|da fama)|cr[ée]ditos/gi;
+endRe.lastIndex = leaderAt.at(-1) ?? 0;
+const endAt = endRe.exec(html)?.index ?? Infinity;
+const champ = [...battles].reverse().find((b) => b.at < endAt && b.at > (leaderAt.at(-1) ?? 0));
+const postAt = leaderOrder.length >= 3 ? endAt : Infinity;
+const hasProgress = leaderOrder.length >= 3;
+const stageAt = (pos) => (pos > postAt ? POSTGAME : leaderAt.filter((x) => x <= pos).length);
+
+// linha do tempo no formato do progress.mjs (seções + trechos cortados nos líderes)
+const strip = (h) => h.replace(/<[^>]+>/g, ' ');
+const tl = {
+  sections: sections.map((s) => ({ title: s.title, at: s.at, words: words(s.title), text: words(strip(s.html)), stage: stageAt(s.at) })),
+};
+const cuts = [...new Set([...sections.map((s) => s.at), ...leaderAt])].sort((a, b) => a - b);
+tl.chunks = cuts.map((at, i) => { const sec = [...sections].reverse().find((s) => s.at <= at); return { title: sec?.title ?? '', at, stage: stageAt(at), text: words(strip(html.slice(at, cuts[i + 1] ?? html.length))) }; });
+const secIndex = new Map(tl.sections.map((s, i) => [s.title, i]));
+
+// ---- treinadores
+const GROUP = { leader: 'Líderes de ginásio', elite: 'Elite dos Quatro', champion: 'Campeão', rival: 'Rival', boss: 'Chefes', other: 'Outros treinadores' };
+const titleCase = (s) => String(s ?? '').toLowerCase().replace(/(^|[\s(/-])(\S)/g, (m, a, c) => a + c.toUpperCase());
+const starters = data.starters?.species ?? [];
+const trainers = [];
+let skippedPlaceholders = 0;
+for (const [i, b] of battles.entries()) {
+  const teams = b.teams?.length ? b.teams : [{ label: b.variant ?? '', party: b.party }];
+  for (const [j, t] of teams.entries()) {
+    const party = [];
+    for (const p of t.party) {
+      if (p.placeholder || !p.level) { skippedPlaceholders++; continue; }
+      const mon = resolve(p);
+      if (!mon) continue;
+      party.push({ species: mon.name, level: p.level, item: null, iv: null, moves: likelyMoveset(mon, p.level), defaultMoves: true });
+    }
+    if (!party.length) continue;
+    const label = `${t.label ?? ''} ${b.variant ?? ''}`;
+    const forStarter = starters.filter((s) => new RegExp(`\\b${s.split('-')[0]}\\b`, 'i').test(label));
+    const where = titleCase(b.section ?? '');
+    trainers.push({
+      key: `DETONADO_${i}_${j}`, name: b.name, label: b.name + (j > 0 && t.label && !forStarter.length ? ` (${t.label})` : ''), class: b.name, group: firstAt.has(b.name) ? GROUP.leader : b.kind === 'leader' ? GROUP.other : (GROUP[b.kind] ?? GROUP.other),
+      double: false, map: where ? [where] : [], party, ...(forStarter.length && { forStarter }), stage: hasProgress ? stageAt(b.at) : null, source: 'detonado', at: b.at,
+    });
+  }
+}
+
+// ---- estágio de cada fonte do "onde obter"
+const stageOfPlace = new Map();
+// espécies selvagens de cada local (todas as versões) — para achar o trecho quando o detonado não diz o nome ("nesta rota
+// encontramos Sandshrew, Ekans…" no Let's Go; rotas sem número no BW/BDSP)
+const speciesAt = new Map();
+for (const v of Object.values(acq.versions)) for (const [n, list] of Object.entries(v)) for (const s of list) if (s.type === 'wild' && !s.random) { // sem aparições raras/surtos
+  const base = n.replace(/-(alola|galar|hisui|paldea).*$/, '').split('-')[0];
+  if (base.length >= 4) (speciesAt.get(s.where) ?? speciesAt.set(s.where, new Set()).get(s.where)).add(base);
+}
+const bySpecies = (where) => {
+  const sp = [...(speciesAt.get(where) ?? [])];
+  if (sp.length < 3) return null;
+  // o 1º trecho que cita ≥ 3 espécies do local (ou metade delas): o mais cedo, não o que cita mais (o pós-jogo do Let's Go
+  // lista as aparições raras de todas as rotas)
+  const need = Math.max(3, Math.ceil(sp.length / 2));
+  for (const c of tl.chunks) {
+    const txt = ' ' + c.text.join(' ') + ' ';
+    const n = sp.filter((x) => txt.includes(' ' + x + ' ')).length;
+    if (n >= need) return { stage: c.stage, section: c.title, by: 'espécies', name: `${n}/${sp.length} espécies` };
+  }
+  return null;
+};
+const placeOf = (where) => {
+  if (!stageOfPlace.has(where)) {
+    const r = placeStage(tl, where.replace(/\(.*?\)/g, ' '), { generic: ['forest', 'cave', 'tower', 'path', 'area', 'zone'] }) ?? placeStage(tl, where) ?? bySpecies(where);
+    stageOfPlace.set(where, r);
+  }
+  return stageOfPlace.get(where);
+};
+let withStage = 0, total = 0;
+for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
+  total++;
+  const r = placeOf(s.where);
+  if (r && hasProgress) { s.stage = r.stage; withStage++; } else delete s.stage;
+}
+if (hasProgress) {
+  acq.progress = {
+    leaderOrder, leadersFound: leaderOrder.length, eliteFound: battles.filter((b) => b.kind === 'elite').length,
+    source: `PokeMythology ${game.walkthrough} (ordem dos líderes) + locais das tabelas do PKHeX`,
+    trainerStage: Object.fromEntries(trainers.filter((t) => t.stage != null).map((t) => [t.key, t.stage])),
+    placesWithStage: [...stageOfPlace.values()].filter(Boolean).length, placesTotal: stageOfPlace.size,
+  };
+} else delete acq.progress;
+writeFileSync(acqFile, JSON.stringify(acq));
+
+// ---- trainers.json
+const pub = trainers.map(({ at, ...t }) => t);
+writeFileSync(new URL(`../public/data/${gameId}-trainers.json`, import.meta.url), JSON.stringify({
+  source: `PokeMythology ${game.walkthrough} (times: espécie e nível; golpes = moveset padrão do jogo no nível)`, fromWalkthrough: true, trainers: pub, unplaced: [],
+}));
+
+// ---- walkthrough.json: locais por estágio, na ordem do detonado
+const versions = {};
+for (const [v, byMon] of Object.entries(acq.versions)) {
+  const locs = new Map();
+  const locOf = (where, r) => {
+    if (!locs.has(where)) locs.set(where, { section: r?.section ?? where, name: where, stage: hasProgress ? (r?.stage ?? null) : 0, order: r ? (secIndex.get(r.section) ?? 1e6) : 1e6, maps: [where], wild: [], others: [], items: [], tutors: [], trainers: [] });
+    return locs.get(where);
+  };
+  for (const [species, list] of Object.entries(byMon)) for (const s of list) {
+    const l = locOf(s.where, placeOf(s.where));
+    if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }) });
+    else l.others.push({ species, type: s.type, level: s.level, where: s.where, ...(s.detail && { detail: s.detail }) });
+  }
+  // treinadores: no local cujo nome está no título da seção da luta; senão um local com o nome da seção
+  for (const t of trainers) {
+    const sec = t.map[0] ?? '';
+    const hit = [...locs.values()].find((l) => sec && words(sec).join(' ').includes(words(l.name.replace(/\(.*?\)/g, ' ')).join(' ')));
+    const l = hit ?? locOf(sec || 'Outros', { section: sec, stage: t.stage ?? (hasProgress ? null : 0) });
+    if (l.order === 1e6) l.order = secIndex.get(tl.sections.find((s) => s.title && sec.toUpperCase().includes(s.title))?.title) ?? l.order;
+    l.trainers.push({ key: t.key, label: t.label, group: t.group, party: t.party.map(({ species, level }) => ({ species, level })), ...(t.forStarter && { forStarter: t.forStarter }) });
+  }
+  const placed = [...locs.values()].filter((l) => l.stage != null);
+  const stages = (hasProgress ? [...Array(10).keys()] : [0]).map((st) => {
+    const L = leaderOrder[st];
+    const lt = L ? trainers.find((t) => L.split('/').includes(t.name)) : null;
+    return {
+      stage: st,
+      leader: lt ? { key: lt.key, name: L, where: lt.map[0] ?? '', party: lt.party.map((p) => ({ species: p.species, level: p.level, item: null, moves: p.moves })), prize: [] } : null,
+      locations: placed.filter((l) => l.stage === st).sort((a, b) => a.order - b.order).map(({ order, ...l }) => ({ ...l, minLevel: Math.min(...l.wild.map((w) => w.min), ...l.others.map((o) => o.level ?? 100)) })),
+    };
+  }).filter((s) => s.locations.length || s.leader);
+  versions[v] = { stages, undetermined: [...locs.values()].filter((l) => l.stage == null).map(({ order, ...l }) => l), unplacedTrainers: [], rematches: [] };
+}
+writeFileSync(new URL(`../public/data/${gameId}-walkthrough.json`, import.meta.url), JSON.stringify({
+  game: gameId, source: `PokeMythology ${game.walkthrough} + tabelas do PKHeX`, noBadges: !hasProgress,
+  credit: 'Ordem da história baseada no detonado do PokeMythology (pokemythology.net). Times do detonado; locais e Pokémon das tabelas do jogo.',
+  leaders: leaderOrder, versions,
+}));
+mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
+writeFileSync(new URL(`../reports/${gameId}/detonado-modern.json`, import.meta.url), JSON.stringify({ leaderOrder, badges: badges.map((b) => `${b.badge}←${b.leaderHint ?? '?'}`), unresolved, fuzzy, skippedPlaceholders, withStage, total, placesWithoutStage: [...stageOfPlace].filter(([, r]) => !r).map(([w]) => w) }, null, 1));
+const g = trainers.reduce((a, t) => ((a[t.group] = (a[t.group] ?? 0) + 1), a), {});
+console.log(`[${gameId}] detonado: ${sections.length} seções, ${battles.length} lutas → ${trainers.length} treinadores ${JSON.stringify(g)}; líderes: ${leaderOrder.join(' > ') || '—'}${champ && hasProgress ? `; campeão ${champ.name}` : ''}`);
+console.log(`  espécies não reconhecidas ${unresolved.length}${unresolved.length ? ` (${[...new Set(unresolved)].slice(0, 12).join(', ')})` : ''}; por aproximação ${fuzzy.length}${fuzzy.length ? ` (${[...new Set(fuzzy)].slice(0, 8).join('; ')})` : ''}; inicial genérico pulado ${skippedPlaceholders}`);
+console.log(`  fontes do onde obter com estágio: ${withStage}/${total}; locais sem seção no detonado: ${[...stageOfPlace].filter(([, r]) => !r).length}/${stageOfPlace.size}`);

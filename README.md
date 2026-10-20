@@ -11,7 +11,8 @@ história.
   Platinum, HeartGold/SoulSilver, Black 2/White 2. No Diamond/Pearl e no HeartGold/SoulSilver parte dos
   dados está em binário no decomp (scripts em bytecode, eventos, encontros, NARCs) e é lida com as regras tiradas do próprio
   código do jogo.
-- Black/White e Gens 6–9: núcleo (atributos, tipos, habilidades, golpes por nível na ordem do jogo) conferido com as tabelas
+- Black/White e Gens 6–9: treinadores, progresso por insígnia e aba Detonado a partir dos detonados do PokeMythology
+  (times com espécie e nível); formas regionais, evoluções e TMs pelas tabelas do jogo. Núcleo (atributos, tipos, habilidades, golpes por nível na ordem do jogo) conferido com as tabelas
   do próprio jogo extraídas pelo [PKHeX](https://github.com/kwsch/PKHeX); nas Gens 6–9 também onde obter (local e nível, sem taxa)
   pelos encontros do PKHeX; Legends: Z-A montado inteiro pelas tabelas do PKHeX (a PokéAPI não tem o jogo). O resto, dados da
   PokéAPI com as regras da geração, golpes conferidos com o Pokémon Showdown.

@@ -195,8 +195,8 @@
   .spick button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; min-width:0; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:var(--r2); padding:4px 4px 8px; font:inherit; font-size:var(--fs-sm); cursor:pointer; transition:border-color .15s; overflow:hidden; }
   .spick button:hover { border-color:var(--line-strong); }
   .spick button[aria-checked=true] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; font-weight:600; }
-  /* sprites com margem transparente: maiores e com margem negativa para o Pokémon ocupar a caixa */
-  .spick img { width:100%; max-width:150px; aspect-ratio:1; height:auto; margin:-8% 0 -10%; image-rendering:pixelated; }
+  /* sprites: até 150px, sem cortar (alguns jogos têm margem transparente, outros não) */
+  .spick img { width:100%; max-width:150px; aspect-ratio:1; height:auto; object-fit:contain; image-rendering:pixelated; }
   .spick .none { color:var(--muted); text-align:center; }
 
   /* ---- detonado */
@@ -276,6 +276,7 @@
     </div>
   </details>
 
+  <p class="warn" id="mechNote" role="note" hidden></p>
   <div class="card" id="starters" hidden></div>
   <div class="tabs" role="tablist" aria-label="Seções">
     <button type="button" role="tab" id="tabRec" aria-selected="true" aria-controls="recView">Recomendação</button>
@@ -285,7 +286,7 @@
   <div id="recView" role="tabpanel">
   <div class="card stack">
     <div id="trainerBox">
-      <div class="label">Oponente do jogo <span class="meta">— usa o time e os golpes reais</span></div>
+      <div class="label">Oponente do jogo <span class="meta" id="trainerHint">— usa o time e os golpes reais</span></div>
       <div class="seg" id="trainerCats" role="tablist" aria-label="Categoria de oponente"></div>
       <div id="trainerPick"></div>
       <!-- guarda o treinador escolhido (URL, inicial e digitação dependem dele); as abas acima são a interface -->

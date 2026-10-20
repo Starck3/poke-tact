@@ -44,6 +44,7 @@ let currentGame = null;
 const filters = { platform: null, generation: null };
 let trainers = [];
 let acq = null;
+let trainersFromWalk = false;
 let walk = null; // detonado gerado (carregado ao abrir a aba)
 let known = null; // { moves, item } do Pokémon de treinador selecionado; null quando o usuário digita manualmente
 let teamMode = null; // treinador quando o modo "contra o time inteiro" está ativo
@@ -61,6 +62,9 @@ async function load(gameId) {
   $('oppInfo').innerHTML = '';
   $('gameTitle').textContent = 'Pokémon ' + g.label;
   $('qualityBadge').innerHTML = qualityBadge(g);
+  // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
+  $('mechNote').hidden = !g.mechanics?.length;
+  $('mechNote').textContent = g.mechanics?.length ? `⚠ Fora do cálculo neste jogo: ${g.mechanics.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades.` : '';
   $('tabWalk').hidden = !g.hasWalkthrough;
   document.querySelector('.tabs').hidden = !g.hasWalkthrough; // uma aba só não precisa de barra de abas
   $('validationNote').hidden = !['pokeapi', 'decomp-core', 'pkhex'].includes(g.validation);
@@ -77,10 +81,13 @@ async function load(gameId) {
   walk = null;
   showTab('rec');
   data = await (await fetch(`data/${gameId}.json`)).json();
-  try { trainers = (await (await fetch(`data/${gameId}-trainers.json`)).json()).trainers; } catch { trainers = []; }
+  // trainersFromWalk: times transcritos do detonado (jogos sem decomp) — espécie e nível; golpes estimados
+  try { const td = await (await fetch(`data/${gameId}-trainers.json`)).json(); trainers = td.trainers; trainersFromWalk = !!td.fromWalkthrough; } catch { trainers = []; trainersFromWalk = false; }
   try { acq = await (await fetch(`data/${gameId}-acquisition.json`)).json(); } catch { acq = null; }
   if (g.validation === 'pkhex') $('validationNote').textContent += acq?.encountersOnly
-    ? ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível, sem taxa de aparição. Treinadores e progresso por insígnias ainda não estão disponíveis.'
+    ? ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível, sem taxa de aparição.' +
+      (trainersFromWalk ? ' Treinadores: times transcritos do detonado do PokeMythology (espécie e nível); golpes estimados pelo moveset padrão do jogo.' : ' Treinadores ainda não disponíveis.') +
+      (acq.progress ? ' Progresso por insígnia pela ordem dos líderes no detonado.' : ' Sem progresso por insígnia.')
     : ' Treinadores, onde obter e progresso ainda não estão disponíveis.';
   // núcleo + aquisição já conferidos (Gen 1): a nota diz só o que ainda falta
   if (g.validation === 'decomp-core') {
@@ -94,6 +101,7 @@ async function load(gameId) {
   fillTrainers();
   fillStages();
   $('trainerBox').hidden = !trainers.length;
+  $('trainerHint').textContent = trainersFromWalk ? '— time do detonado (espécie e nível); golpes estimados pelo nível' : '— usa o time e os golpes reais';
   // inicial só faz sentido com 2+ opções (Yellow: só Pikachu); progresso só com linha do tempo
   const choosable = (data.starters?.species?.length ?? 0) > 1;
   $('starterWrap').style.display = choosable ? '' : 'none';
@@ -116,9 +124,9 @@ async function load(gameId) {
   else if (acq.encountersOnly) $('disclaimer').textContent =
     `Sugestões usam os dados de ${g.label} com as regras da Geração ${roman(data.game.generation)}: atributos, tipos, habilidades e golpes por nível conferidos com as tabelas do jogo (PKHeX). ` +
     'Disponibilidade = aparece nas tabelas de encontro do jogo nesta versão (selvagem, presente, encontro único, troca no jogo) ou evolui de algo assim; eventos, transferências e criação (breeding) não contam. ' +
-    'As tabelas trazem local e faixa de nível, mas não a taxa de aparição nem em que ponto da história a área abre; o nível estimado é o menor nível de encontro. ' +
+    (acq.progress ? 'As tabelas trazem local e faixa de nível, sem taxa de aparição; o ponto da história de cada local vem do detonado. ' : 'As tabelas trazem local e faixa de nível, mas não a taxa de aparição nem em que ponto da história a área abre; o nível estimado é o menor nível de encontro. ') +
     (acq.notes ?? []).map((n) => n + ' ').join('') +
-    (trainers.length ? 'Ao escolher um treinador do jogo, usamos o nível e os golpes reais do time dele. ' : 'Ainda sem treinadores do jogo. ') +
+    (trainersFromWalk ? 'Treinadores: times do detonado (espécie e nível); os golpes são os que o Pokémon teria no nível (moveset padrão), não necessariamente os reais. ' : trainers.length ? 'Ao escolher um treinador do jogo, usamos o nível e os golpes reais do time dele. ' : 'Ainda sem treinadores do jogo. ') +
     'Com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
   else $('disclaimer').textContent =
     `Sugestões usam apenas dados da Geração ${roman(data.game.generation)} (tipos, stats base, golpes${data.game.generation >= 3 ? ' e habilidades' : ''} daquela geração). ` +
@@ -197,7 +205,7 @@ async function renderWalk() {
     const bySp = {};
     for (const w of l.wild) (bySp[w.species] ??= []).push(w);
     const parts = [];
-    if (l.wild.length) parts.push('<div class="walk-h">Pokémon selvagens</div><ul class="walk-list">' + Object.entries(bySp).map(([sp, ws]) => '<li>' + humanize(sp) + ' — ' + ws.map((w) => w.method + (w.times ? ' (' + w.times.join('/') + ')' : '') + (w.detail ? ' [' + w.detail + ']' : '') + (w.gate ? ' [exige ' + (w.gate.leader ? 'HM + insígnia de ' + humanize(w.gate.leader.toLowerCase()) : w.method) + ']' : '') + ' nv ' + (w.min === w.max ? w.min : w.min + '–' + w.max) + ' (' + w.pct + '%' + (l.maps.length > 1 ? ', ' + w.where : '') + ')').join('; ') + '</li>').join('') + '</ul>');
+    if (l.wild.length) parts.push('<div class="walk-h">Pokémon selvagens</div><ul class="walk-list">' + Object.entries(bySp).map(([sp, ws]) => '<li>' + humanize(sp) + ' — ' + ws.map((w) => w.method + (w.times ? ' (' + w.times.join('/') + ')' : '') + (w.detail ? ' [' + w.detail + ']' : '') + (w.gate ? ' [exige ' + (w.gate.leader ? 'HM + insígnia de ' + humanize(w.gate.leader.toLowerCase()) : w.method) + ']' : '') + ' nv ' + (w.min === w.max ? w.min : w.min + '–' + w.max) + (w.pct != null || l.maps.length > 1 ? ' (' + [w.pct != null && w.pct + '%', l.maps.length > 1 && w.where].filter(Boolean).join(', ') + ')' : '')).join('; ') + '</li>').join('') + '</ul>');
     if (l.others.length) parts.push('<div class="walk-h">Presentes, trocas e encontros</div><ul class="walk-list">' + l.others.map((o) => '<li>' + humanize(o.species) + ' — ' + ({ gift: 'presente', static: 'encontro único', egg: 'ovo', trade: 'troca', prize: 'prêmio', event: 'evento' }[o.type] ?? o.type) + (o.level ? ' nv ' + o.level : '') + ' (' + o.where + ')' + (o.detail ? ' — ' + o.detail : '') + '</li>').join('') + '</ul>');
     if (l.items.length) parts.push('<div class="walk-h">Itens e TMs</div><ul class="walk-list">' + l.items.map((i) => '<li>' + (i.kind === 'TM/HM' ? 'TM/HM ' + humanize(i.move) : humanize(i.item.toLowerCase().replace(/_/g, '-'))) + ' — ' + ({ gym: 'prêmio do líder', gift: 'presente', mart: 'loja', ground: 'no chão', hidden: 'escondido' }[i.type] ?? i.type) + ' em ' + i.where + (i.x != null ? ' (' + i.x + ',' + i.y + ')' : '') + (i.by && i.type !== 'ground' && i.type !== 'hidden' ? ' — ' + i.by : '') + '</li>').join('') + '</ul>');
     if (l.tutors.length) parts.push('<div class="walk-h">Tutores</div><ul class="walk-list">' + l.tutors.map((t) => '<li>' + humanize(t.move) + ' — ' + t.where + (t.x != null ? ' (' + t.x + ',' + t.y + ')' : '') + (t.detail ? ' — ' + t.detail : '') + '</li>').join('') + '</ul>');
@@ -211,8 +219,10 @@ async function renderWalk() {
     const L = s.leader;
     const leaderHtml = L && L.party.length ? '<div class="walk-h">Próximo líder</div><p><strong>' + humanize(L.name.toLowerCase()) + '</strong> — ' + (L.where ?? '') + '<br>' + L.party.map((p) => humanize(p.species) + ' nv ' + p.level + (p.item ? ' (' + p.item + ')' : '') + ': ' + p.moves.map(humanize).join(', ')).join('<br>') + (L.prize.length ? '<br><span class="meta">Prêmio: TM ' + L.prize.map(humanize).join(', ') + '</span>' : '') + '</p>' : '';
     const open = q || cur === s.stage || (cur == null && s.stage === 0);
-    return '<details class="stage' + (cur === s.stage ? ' current' : '') + '"' + (open ? ' open' : '') + '><summary>' + stageLabel(s.stage, lead).replace(/^./, (c) => c.toUpperCase()) + ' <span class="meta">— ' + s.locations.length + ' locais</span></summary>' + leaderHtml + locs.map(locHtml).join('') + '</details>';
-  }).join('');
+    return '<details class="stage' + (cur === s.stage ? ' current' : '') + '"' + (open ? ' open' : '') + '><summary>' + (walk.noBadges ? 'Ordem da história' : stageLabel(s.stage, lead).replace(/^./, (c) => c.toUpperCase())) + ' <span class="meta">— ' + s.locations.length + ' locais</span></summary>' + leaderHtml + locs.map(locHtml).join('') + '</details>';
+  }).join('') +
+    // Gens 5–9: locais das tabelas do jogo que o detonado não cita — sem posição na história
+    ((v.undetermined ?? []).filter(match).length ? '<details class="stage"' + (q ? ' open' : '') + '><summary>Fora do detonado <span class="meta">— ' + v.undetermined.filter(match).length + ' locais sem posição na história</span></summary>' + v.undetermined.filter(match).map(locHtml).join('') + '</details>' : '');
   box.innerHTML = '<div class="card"><input type="text" id="walkSearch" placeholder="Buscar local, Pokémon ou treinador" value="' + q.replace(/"/g, '') + '"><p class="note">' + walk.credit + ' Os estágios são estimados pela ordem do detonado e pelas conexões do mapa.</p></div>' + (stagesHtml || '<div class="card">Nada encontrado.</div>');
   const input = $('walkSearch');
   input.addEventListener('input', () => { const pos = input.selectionStart; renderWalk().then(() => { const i = $('walkSearch'); i.focus(); i.setSelectionRange(pos, pos); }); });
@@ -400,7 +410,7 @@ function update() {
     row('Resiste', eff.filter((x) => x.m > 0 && x.m < 1).sort((a, b) => a.m - b.m), 'bad') +
     row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
   $('oppInfo').innerHTML = `<div class="opp">${img(opp.id)}
-    <div><strong>#${opp.id} ${humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
+    <div><strong>#${opp.speciesId ?? opp.id} ${humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
     <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : '(definidos pelo jogo)'}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
   const baseOpts = {
@@ -420,7 +430,7 @@ function update() {
 
   // a ameaça é o que ELE usa contra você (não as fraquezas dele, que ficam no quadro do oponente)
   const threatLine = threatSource.kind === 'known'
-    ? `Ele ataca com (golpes reais do time): ${threats.map(typeBadge).join('')}`
+    ? `Ele ataca com (${trainersFromWalk ? 'golpes estimados pelo nível — time do detonado' : 'golpes reais do time'}): ${threats.map(typeBadge).join('')}`
     : threatSource.kind === 'moveset'
       ? `Ele deve atacar com (golpes prováveis no nível): ${threats.map(typeBadge).join('')}`
       : `Ele deve atacar com golpes dos próprios tipos (sem nível informado): ${threats.map(typeBadge).join('')}`;
@@ -518,7 +528,7 @@ function renderOppWarn() {
     items = data && !findOpponent(data.pokemon, input.value) ? searchOpponents(data.pokemon, input.value) : [];
     sel = Math.min(sel, Math.max(items.length - 1, 0));
     if (!items.length) return close();
-    list.innerHTML = items.map((p, i) => `<li role="option" id="oa${i}" aria-selected="${i === sel}" data-name="${p.name}">${img(p.id)}<strong>${humanize(p.name)}</strong><span class="ac-num">#${p.id}</span><span class="ac-types">${p.types.map(typeBadge).join('')}</span></li>`).join('');
+    list.innerHTML = items.map((p, i) => `<li role="option" id="oa${i}" aria-selected="${i === sel}" data-name="${p.name}">${img(p.id)}<strong>${humanize(p.name)}</strong><span class="ac-num">#${p.speciesId ?? p.id}</span><span class="ac-types">${p.types.map(typeBadge).join('')}</span></li>`).join('');
     list.hidden = false;
     input.setAttribute('aria-expanded', 'true');
     input.setAttribute('aria-activedescendant', 'oa' + sel);

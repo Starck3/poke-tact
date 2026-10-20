@@ -3,6 +3,7 @@
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { GAMES } from './games.mjs';
+import { READERS } from './lib/pkhex-enc.mjs';
 
 const ids = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(GAMES);
 const cwd = fileURLToPath(new URL('..', import.meta.url));
@@ -20,17 +21,20 @@ const ASM_STEPS = {
 // + iniciais pelo detonado e pela PokéAPI (E4; sem as duas fontes o campo fica escondido)
 const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-pokeapi'];
 // + núcleo pelas tabelas do jogo extraídas pelo PKHeX (Black/White e Gens 6–9), auditado depois (tem que dar 0)
-// + onde obter pelas tabelas de encontro do PKHeX (Gens 6–9)
-// fill-pkhex-species: espécies do jogo que a PokéAPI não tem (Legends: Arceus, formas de Hisui) + loja de golpes
-const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'validate-pkhex'];
-const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex'];
+// + onde obter pelas tabelas de encontro do PKHeX (Black/White e Gens 6–9: os jogos com leitor em READERS)
+// fill-pkhex-species: espécies do jogo que a PokéAPI não tem (Legends: Arceus, formas de Hisui) + loja de golpes;
+// add-pkhex-forms: formas regionais (Alola, Galar, Hisui, Paldea) como entradas próprias
+// apply-pkhex-machines: TM/HM/TR do jogo; apply-pkhex-evos: método de evolução do jogo (troca, item, forma…)
+const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex'];
+// build-detonado-modern: treinadores, progresso por insígnia e aba Detonado a partir do detonado do PokeMythology
+const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
-const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'validate-pkhex', 'build-acquisition-pkhex'];
+const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
 for (const id of ids) {
   if (!GAMES[id]) throw new Error(`Jogo desconhecido: ${id}`);
   console.log(`\n===== ${id} =====`);
   const plain = !GAMES[id].decomp && !GAMES[id].asmDecomp;
-  const pk = GAMES[id].pkhex ? [...PKHEX_STEPS, ...(GAMES[id].generation >= 6 ? PKHEX_ACQ_STEPS : [])] : [];
+  const pk = GAMES[id].pkhex ? [...PKHEX_STEPS, ...(READERS[id] ? PKHEX_ACQ_STEPS : [])] : [];
   for (const step of GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : GAMES[id].pkhexOnly ? PKHEX_ONLY_STEPS : plain ? [...PLAIN_STEPS, ...pk] : STEPS) {
     console.log(`--- ${step}`);
     try {

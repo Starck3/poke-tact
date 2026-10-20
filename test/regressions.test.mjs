@@ -1605,7 +1605,7 @@ test('regressão: learnset do PKHeX com byte de preenchimento (Z-A) — divisão
 
 test('Legends: Z-A — dataset das tabelas do PKHeX (espécies presentes, TMs, evoluções) e golpes da Gen 9', () => {
   const za = load('legends-za.json');
-  assert.equal(za.pokemon.length, 370); // flag "presente no jogo" do personal_za (base + Mega Dimension)
+  assert.equal(za.pokemon.filter((p) => !p.regionalForm).length, 370); // flag "presente no jogo" do personal_za (base + Mega Dimension)
   assert.match(za.game.source, /PKHeX/);
   assert.deepEqual(za.starters.species, ['chikorita', 'tepig', 'totodile']);
   assert.ok(mon(za, 'chikorita').learnset.some((x) => x.method === 'machine'));
@@ -1660,9 +1660,9 @@ test('onde obter (PKHeX): detalhes do leitor viram texto curto; notas técnicas 
   assert.equal(detailText({ stars: 5, dlc: 'Kitakami', time: ['dia', 'noite'] }), '5★; só dia/noite; DLC Kitakami');
   assert.equal(detailText('clima: Raining; PKHeX também aceita nível 60 no Wild Area (EncounterArea8)'), 'clima: Raining');
   assert.equal(detailText('faixa L3–56 agregada no arquivo do PKHeX (motivo não registrado)'), 'faixa de nível agregada na tabela');
-  // todo jogo das Gens 6–9 tem leitor; Black/White (Gen 5) não
+  // todo jogo sem decomp tem leitor (Black/White desde a 0.10.0); Black 2/White 2 usa o decomp (pokebw2)
   for (const g of ['x-y', 'sword-shield', 'scarlet-violet', 'legends-za']) assert.ok(READERS[g], g);
-  assert.equal(READERS['black-white'], undefined);
+  assert.ok(READERS['black-white']); assert.equal(READERS['black-2-white-2'], undefined);
   for (const k of ['other', 'sos', 'horde', 'symbol', 'hidden', 'max-raid', 'honey-tree', 'underground', 'alpha', 'tera-raid', 'fixed-symbol', 'hyperspace']) assert.ok(METHOD_LABEL[k], k);
 });
 
@@ -1673,7 +1673,7 @@ test('regressão: Legends: Arceus tinha 18 espécies do jogo fora do dataset (s�
   // build-data a descartava (Typhlosion, Samurott, Decidueye… sumiam das sugestões e dos oponentes). No personal_la a forma 0
   // dessas espécies vem zerada/ausente e a forma de Hisui (FormStatsIndex @0x1E + forma − 1) é a presente.
   const la = load('legends-arceus.json');
-  assert.equal(la.pokemon.length, 242);
+  assert.equal(la.pokemon.filter((p) => !p.regionalForm).length, 242);
   const t = mon(la, 'typhlosion');
   assert.deepEqual(t.types, ['fire', 'ghost']);
   assert.deepEqual(t.stats, { hp: 73, attack: 84, defense: 78, speed: 95, 'special-attack': 119, 'special-defense': 85 });
@@ -1695,7 +1695,7 @@ test('leitor do PKHeX: forma regional só quando a forma 0 está ausente; loja d
   // só o LA troca a forma: nos outros jogos a forma 0 ausente continua ausente (BDSP: Darkrai/Arceus de evento)
   for (const [g, c] of Object.entries(PKHEX_GAMES)) if (g !== 'legends-arceus') assert.equal(c.forms, undefined, g);
   const { readFileSync } = await import('node:fs');
-  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'validate-pkhex'\]/);
+  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex']/);
 });
 
 test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites logo acima do campo do oponente', () => {
@@ -1707,4 +1707,153 @@ test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites logo acima d
   assert.match(html, /<select id="starter" hidden/); // o <select> continua guardando o valor (URL ?inicial=, rival)
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.match(app, /role="radio"/); assert.match(app, /não informar/);
+});
+
+// ---------------------------------------------------------------- formas regionais (Gens 7–9) pelas tabelas do PKHeX
+
+test('regressão: formas regionais — o Rattata selvagem do Sun/Moon é o de Alola (Sombrio/Normal), não o de Kanto', async () => {
+  // Erro: o dataset tinha uma forma por espécie (a original). No SM o encontro é (espécie 19, forma 1) e virava o Rattata
+  // Normal; Meowth de Galar, Wooper de Paldea etc. não existiam. Formas = personal do jogo (FormStatsIndex + f − 1) com a
+  // variedade regional da PokéAPI (tipos conferidos nas duas fontes); id = id da variedade (sprite certo).
+  const { humanize } = await import('../public/engine.mjs');
+  const { findOpponent, searchOpponents } = await import('../public/pokedex.mjs');
+  const sm = load('sun-moon.json');
+  const ra = mon(sm, 'rattata-alola');
+  assert.deepEqual(ra.types, ['dark', 'normal']); assert.equal(ra.id, 10091); assert.equal(ra.speciesId, 19); assert.equal(ra.form, 1);
+  assert.equal(ra.obtainable.sun, true); assert.equal(mon(sm, 'rattata').obtainable.sun, false); // Kanto não aparece no SM
+  assert.equal(mon(sm, 'raticate-alola').evolvesFrom, 10091); // pré-evolução da mesma região
+  assert.equal(mon(sm, 'raichu-alola').evolvesFrom, 25);
+  // exclusivos conferidos com a PokéAPI: Vulpix de Alola no Sun, Sandshrew de Alola no Moon
+  assert.equal(mon(sm, 'vulpix-alola').obtainable.sun, true); assert.equal(mon(sm, 'vulpix-alola').obtainable.moon, false);
+  assert.deepEqual(mon(load('sword-shield.json'), 'meowth-galar').types, ['steel']);
+  assert.deepEqual(mon(load('scarlet-violet.json'), 'wooper-paldea').types, ['poison', 'ground']);
+  assert.ok(mon(load('scarlet-violet.json'), 'tauros-paldea-aqua-breed'));
+  for (const g of ['x-y', 'omega-ruby-alpha-sapphire', 'brilliant-diamond-shining-pearl']) assert.ok(!load(`${g}.json`).pokemon.some((p) => p.regionalForm), g);
+  // Let's Go não tem habilidades — nem nas formas
+  assert.ok(load('lets-go-pikachu-lets-go-eevee.json').pokemon.filter((p) => p.regionalForm).every((p) => !p.abilities.length));
+  // tela: nome, busca e número da espécie
+  assert.equal(humanize('rattata-alola'), 'Rattata de Alola'); assert.equal(humanize('tauros-paldea-aqua-breed'), 'Tauros de Paldea (Aqua Breed)');
+  assert.equal(humanize('thunder-punch'), 'Thunder Punch');
+  assert.equal(findOpponent(sm.pokemon, 'Rattata de Alola')?.name, 'rattata-alola');
+  assert.deepEqual(searchOpponents(sm.pokemon, 'rattata').map((p) => p.name), ['rattata', 'rattata-alola']);
+  assert.ok(searchOpponents(sm.pokemon, '#19').some((p) => p.name === 'rattata-alola'));
+  // onde obter liga o encontro (espécie, forma) à forma
+  const acq = load('sun-moon-acquisition.json');
+  assert.ok(acq.versions.sun['rattata-alola']?.length); assert.equal(acq.versions.sun.rattata, undefined);
+});
+
+test('Black/White: onde obter pelos encontros do PKHeX (Gen 5), versões conferidas com a PokéAPI', async () => {
+  const { whereToGet } = await import('../public/engine.mjs');
+  const d = load('black-white.json'), a = load('black-white-acquisition.json');
+  assert.equal(a.encountersOnly, true);
+  const w = (n, v) => whereToGet(d, a, mon(d, n), v).direct;
+  assert.ok(w('reshiram', 'black').some((s) => s.type === 'static' && s.level === 50)); assert.equal(w('reshiram', 'white').length, 0);
+  assert.ok(w('snivy', 'white').some((s) => s.type === 'starter'));
+  // Throh também sai no Black, mas só na grama que balança (PokéAPI: grass-spots no Black, walk no White)
+  assert.ok(w('throh', 'black').length && w('sawk', 'black').length);
+  // evento fica de fora: Victini (Liberty Garden), Zorua/Zoroark do evento
+  assert.equal(mon(d, 'victini').obtainable.black, false);
+  // White Forest só no White: muitas espécies de fora de Unova
+  assert.ok(d.pokemon.filter((p) => p.obtainable.white && !p.obtainable.black).length > 50);
+});
+
+test('regressão: evoluções do jogo (PKHeX) nas Gens 5–9 — troca, item, forma e o que não dá para fazer no jogo', async () => {
+  // Erro: esses jogos não tinham `evo` → o filtro de evolução por troca não valia (Alakazam/Gengar como se bastasse
+  // capturar); no SM o Raichu de Kanto (Thunder Stone "fora de Alola") contava como obtível; no SwSh o Perrserker vinha do
+  // Meowth de Kanto. Fonte: evos_<jogo>.pkl (índice por espécie nas Gens 5/6, pela forma do personal da Gen 7 em diante).
+  const { describeEvolution, needsTradeEvolution } = await import('../public/engine.mjs');
+  const sm = load('sun-moon.json'), smAcq = load('sun-moon-acquisition.json');
+  assert.equal(mon(sm, 'raichu').evo.possible, false); assert.equal(mon(sm, 'raichu').obtainable.sun, false);
+  assert.equal(mon(sm, 'raichu-alola').evo.kind, 'ITEM'); assert.equal(mon(sm, 'raichu-alola').obtainable.sun, true);
+  assert.equal(describeEvolution(mon(sm, 'raticate-alola').evo), 'nv 20 (à noite)');
+  assert.equal(mon(sm, 'alakazam').evo.kind, 'TRADE');
+  assert.ok(needsTradeEvolution(sm, smAcq, mon(sm, 'alakazam'), 'sun'));
+  assert.match(describeEvolution(mon(sm, 'sylveon').evo), /Fairy/);
+  const swsh = load('sword-shield.json');
+  assert.equal(mon(swsh, 'perrserker').evolvesFrom, mon(swsh, 'meowth-galar').id);
+  assert.equal(mon(swsh, 'sirfetchd').evolvesFrom, mon(swsh, 'farfetchd-galar').id);
+  // SV: formas de Hisui só chegam pelo HOME — não evoluem dentro do jogo
+  assert.equal(mon(load('scarlet-violet.json'), 'typhlosion-hisui').evo.possible, false);
+  // todo método tem texto na tela
+  for (const g of ['black-white', 'x-y', 'sun-moon', 'sword-shield', 'brilliant-diamond-shining-pearl', 'legends-arceus', 'scarlet-violet', 'legends-za']) {
+    for (const p of load(`${g}.json`).pokemon) if (p.evo && p.evo.kind !== 'NONE') assert.ok(describeEvolution(p.evo), `${g}/${p.name}: ${p.evo.kind}`);
+  }
+});
+
+test('regressão: TMs pelas tabelas do jogo (PKHeX) — Snarl fora do BW, TMs de patch/DLC no SV', () => {
+  // BW: a PokéAPI dava a TM95 Snarl a 55 espécies, mas ela não é obtível no jogo (LearnSource5BW exclui o índice 94).
+  // SV: a PokéAPI misturava na forma 0 as TMs das formas de Hisui e não tinha compatibilidades novas (patch/DLC).
+  const bw = load('black-white.json');
+  assert.ok(!bw.pokemon.some((p) => p.learnset.some((l) => l.move === 'snarl' && l.method === 'machine')));
+  const sv = load('scarlet-violet.json');
+  assert.ok(mon(sv, 'quaxly').learnset.some((l) => l.move === 'sleep-talk' && l.method === 'machine'));
+  assert.ok(mon(sv, 'glaceon').learnset.some((l) => l.move === 'trailblaze' && l.method === 'machine'));
+  assert.ok(!sv.pokemon.some((p) => p.learnset.some((l) => l.move === 'mega-punch' && l.method === 'machine'))); // TM000
+});
+
+test('aviso de mecânicas fora do cálculo (Mega, golpes Z, Dynamax, Terastal, tempo real) chega à tela do jogo', () => {
+  // Antes o battleNote existia em games.mjs mas nunca aparecia no app.
+  const { games } = load('games.json');
+  const m = (id) => games.find((g) => g.id === id).mechanics;
+  assert.deepEqual(m('sun-moon'), ['Mega Evolução', 'golpes Z']);
+  assert.ok(m('sword-shield').some((x) => /Dynamax/.test(x)));
+  assert.ok(m('scarlet-violet').includes('Terastal'));
+  assert.ok(m('legends-za').some((x) => /tempo real/.test(x)));
+  assert.ok(m('legends-arceus').some((x) => /ágil e forte/.test(x)));
+  for (const id of ['red-blue', 'emerald', 'platinum', 'black-2-white-2', 'brilliant-diamond-shining-pearl']) assert.deepEqual(m(id), [], id);
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="mechNote"/);
+  assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /Fora do cálculo neste jogo/);
+});
+
+test('fraquezas seguem a tabela de tipos da geração do jogo', () => {
+  // Gen 1: Fantasma não afeta Psíquico (bug do jogo), Inseto ↔ Veneno 2×, Gelo neutro no Fogo; Aço resiste a
+  // Fantasma/Sombrio até a Gen 5; Fada só a partir da Gen 6.
+  const c = (g) => load(`${g}.json`).chart;
+  assert.equal(c('red-blue').ghost.psychic, 0); assert.equal(c('red-blue').bug.poison, 2); assert.equal(c('red-blue').ice.fire, 1);
+  assert.equal(c('black-2-white-2').ghost.steel, 0.5); assert.equal(c('x-y').ghost.steel, 1);
+  assert.equal(c('black-2-white-2').fairy, undefined); assert.equal(c('x-y').dragon.fairy, 0);
+});
+
+// ---------------------------------------------------------------- Gens 5–9: treinadores, progresso e Detonado pelo detonado
+
+test('Gens 5–9 sem decomp: líderes na ordem do detonado (insígnia ligada ao líder; alternativas de versão juntas)', () => {
+  // Erros encontrados e corrigidos: Guzma como "líder" no SM (vale o carimbo de ilha → kahunas); Giovanni em 4º no Let's Go
+  // (a 1ª luta é no esconderijo — vale a luta antes da insígnia); Piers e Raihan juntados no SwSh (mesma seção, mas níveis
+  // diferentes); Leon como "rival" (fim da história = Hall da Fama/créditos depois do último líder).
+  const order = (g) => load(`${g}-acquisition.json`).progress?.leaderOrder;
+  assert.deepEqual(order('x-y'), ['Viola', 'Grant', 'Korrina', 'Ramos', 'Clemont', 'Valerie', 'Olympia', 'Wulfric']);
+  assert.deepEqual(order('sun-moon'), ['Hala', 'Olivia', 'Nanu', 'Hapu']);
+  assert.equal(order('lets-go-pikachu-lets-go-eevee').at(-1), 'Giovanni');
+  const swsh = order('sword-shield');
+  assert.ok(swsh.includes('Piers') && swsh.includes('Raihan') && swsh.some((n) => /Gordie\//.test(n)), swsh.join());
+  assert.equal(order('brilliant-diamond-shining-pearl').length, 8);
+  assert.deepEqual(order('scarlet-violet'), ['Katy', 'Brassius', 'Iono', 'Kofu', 'Larry', 'Ryme', 'Tulip', 'Grusha']);
+  assert.equal(load('legends-arceus-acquisition.json').progress, undefined); // sem ginásios
+  assert.equal(load('legends-arceus-walkthrough.json').noBadges, true);
+});
+
+test('Gens 5–9 sem decomp: times do detonado (espécie e nível) com golpes estimados; onde obter ganha estágio', async () => {
+  const { recommend } = await import('../public/engine.mjs');
+  for (const g of ['black-white', 'x-y', 'omega-ruby-alpha-sapphire', 'sun-moon', 'lets-go-pikachu-lets-go-eevee', 'sword-shield', 'brilliant-diamond-shining-pearl', 'legends-arceus', 'scarlet-violet']) {
+    const td = load(`${g}-trainers.json`), d = load(`${g}.json`);
+    assert.equal(td.fromWalkthrough, true, g);
+    const names = new Set(d.pokemon.map((p) => p.name));
+    for (const t of td.trainers) for (const p of t.party) { assert.ok(names.has(p.species), `${g}: ${t.label} ${p.species}`); assert.equal(p.defaultMoves, true); }
+    assert.ok(load(`${g}-walkthrough.json`).versions);
+  }
+  const xy = load('x-y-trainers.json').trainers;
+  const viola = xy.find((t) => t.name === 'Viola');
+  assert.deepEqual(viola.party.map((p) => `${p.species}@${p.level}`), ['surskit@10', 'vivillon@12']);
+  // SV: o nº da imagem do serebii não é o nacional — espécie pelo nome (Pawmi do Nemona)
+  assert.ok(load('scarlet-violet-trainers.json').trainers.some((t) => t.name === 'Nemona' && t.party.some((p) => p.species === 'pawmi')));
+  // SM: imagem vence a grafia ("Golbat" com a imagem do Crobat no time do Gladion)
+  assert.ok(load('sun-moon-trainers.json').trainers.filter((t) => t.name === 'Gladion').some((t) => t.party.some((p) => p.species === 'crobat')));
+  // estágio nos locais: Route 2 do XY antes da 1ª insígnia
+  const acq = load('x-y-acquisition.json');
+  assert.equal(acq.versions.x.weedle.find((s) => /Route 2/.test(s.where)).stage, 0);
+  // recomendação com progresso funciona contra o time do detonado
+  const d = load('x-y.json');
+  const r = recommend(d, d.pokemon.find((p) => p.name === 'vivillon'), { level: 12, oppLevel: 12, version: 'x', stage: 0, acq, onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false });
+  assert.ok(r.picks.length > 0);
 });

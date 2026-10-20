@@ -25,6 +25,9 @@ export const PKHEX_GAMES = {
   // Legends: Z-A (PersonalInfo9ZA.cs): mesmo layout do SV; sem PokéAPI → também TMs (bits em 0x2C) e evoluções (evos_za)
   'legends-za': { personal: 'za', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_za.pkl', present: (d) => d[0x1c] !== 0, tm: { offset: 0x2c, cs: 'PersonalInfo9ZA.cs' }, evos: 'za' },
 };
+// índice das formas no personal (PersonalInfo*.cs): FormStatsIndex u16 e FormCount u8 — forma f ≥ 1 = FormStatsIndex + f − 1
+const FORM_AT = { bw: [0x1c, 0x20], b2w2: [0x1c, 0x20], xy: [0x1c, 0x20], ao: [0x1c, 0x20], sm: [0x1c, 0x20], uu: [0x1c, 0x20], gg: [0x1c, 0x20], swsh: [0x1e, 0x20], bdsp: [0x1e, 0x20], la: [0x1e, 0x20], sv: [0x18, 0x1a], za: [0x18, 0x1a] };
+for (const c of Object.values(PKHEX_GAMES)) c.formAt = FORM_AT[c.personal];
 
 /** BinLinkerAccessor16: "XY" + u16 contagem + (contagem + 1) offsets u16. */
 export function binLinker16(b) {
@@ -59,6 +62,8 @@ export function loadPkhex(rootUrl, gameId) {
     shopMoves = [...cs.match(/MoveShopMoves\s*=>\s*\[([\s\S]*?)\];/)[1].matchAll(/Move\.(\w+)/g)].map((m) => byKey.get(m[1].toLowerCase()));
     if (shopMoves.some((x) => x == null)) throw new Error('MoveShopMoves: golpe sem id');
   }
+  // TMs (Legends: Z-A, sem PokéAPI): bits em cfg.tm.offset na ordem de MachineMoves do PersonalInfo<jogo>.cs
+  const tmMoves = cfg.tm ? readFileSync(new URL(`PKHeX.Core/PersonalInfo/Info/${cfg.tm.cs}`, rootUrl), 'utf8').match(/MachineMoves\s*=>\s*\[([\s\S]*?)\];/)[1].replace(/\/\/.*$/gm, '').split(',').map((x) => x.trim()).filter(Boolean).map(Number) : null;
   const entryAt = (index) => {
     const d = personal.subarray(index * cfg.size, (index + 1) * cfg.size);
     const ab = cfg.abil.map((o) => (cfg.wide ? d.readUInt16LE(o) : d[o]));
@@ -70,6 +75,7 @@ export function loadPkhex(rootUrl, gameId) {
       abilities: [...new Set(ab.filter((a) => a > 0).map((a) => abilities[a]))],
       levelOrdered: levelup[index] ? parseLearnset(levelup[index]) : [],
       ...(shopMoves && { moveShop: shopMoves.filter((_, i) => (shop >> BigInt(i)) & 1n) }),
+      ...(tmMoves && { tm: tmMoves.filter((_, i) => d[cfg.tm.offset + (i >> 3)] & (1 << (i & 7))) }),
     };
   };
   for (let id = 1; id < count && id <= (cfg.maxSpecies ?? 1025); id++) {
@@ -82,7 +88,14 @@ export function loadPkhex(rootUrl, gameId) {
       for (let f = 1; fi && f < fc; f++) { const e = entryAt(fi + f - 1); if (e.present) { species[id] = { ...e, form: f }; break; } }
     }
   }
-  return { cfg, species, moveNames, count };
+  // formas f ≥ 1 de cada espécie (formas regionais etc.): mesmo leitor, no índice da forma
+  const forms = {};
+  for (let id = 1; id < count && id <= (cfg.maxSpecies ?? 1025); id++) {
+    const d = personal.subarray(id * cfg.size, (id + 1) * cfg.size);
+    const fi = d.readUInt16LE(cfg.formAt[0]), fc = d[cfg.formAt[1]];
+    for (let f = 1; fi && f < fc && fi + f - 1 < count; f++) (forms[id] ??= {})[f] = entryAt(fi + f - 1);
+  }
+  return { cfg, species, forms, moveNames, count };
 }
 
 /** Commit do checkout local (o .git do clone esparso). */

@@ -2,6 +2,28 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.10.0] — 2026-10-20
+
+### Adicionado
+- **Treinadores nas Gens 5–9 sem decomp** (BW, XY, ORAS, SM, Let's Go, SwSh, BDSP, Legends: Arceus, SV): líderes, Elite, campeões,
+  rivais e chefes transcritos dos detonados do PokeMythology (espécie e nível; golpes estimados pelo moveset do jogo no nível).
+- **Progresso por insígnia** nesses jogos (exceto Legends: Arceus, sem ginásios): ordem dos líderes do detonado e o ponto da
+  história de cada local do "onde obter".
+- **Aba Detonado** nesses 9 jogos, montada só com os dados do jogo (PKHeX) e a ordem do detonado.
+- **Formas regionais** (Alola, Galar, Hisui, Paldea) como Pokémon próprios nas Gens 7–9: Rattata de Alola, Meowth de Galar,
+  Wooper de Paldea… com tipos, atributos e golpes da forma; busca por "Rattata de Alola" ou pelo nº.
+- **Evoluções do jogo** nas Gens 5–9 (pedra, troca, horário, forma, métodos novos): o filtro de evolução por troca passa a valer
+  e evoluções impossíveis no jogo deixam de contar (Raichu de Kanto no Sun/Moon).
+- **Onde obter do Black/White** pelos encontros do PKHeX.
+- **Aviso de mecânicas fora do cálculo** na tela do jogo (Mega Evolução, golpes Z, Dynamax, Terastal, batalha em tempo real).
+
+### Corrigido
+- TMs pelas tabelas do jogo: TM95 Snarl saiu do Black/White (não obtível); Scarlet/Violet com as TMs dos patches/DLC.
+
+### Limitações
+- Times do detonado podem ter erros de transcrição (grafia corrigida pelo nº da imagem; no SV, pelo nome); os golpes são
+  estimados. Rival com "inicial" genérico fica sem esse Pokémon.
+
 ## [0.9.0] — 2026-10-20
 
 ### Adicionado

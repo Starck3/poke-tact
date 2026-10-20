@@ -115,6 +115,8 @@ for (const c of CATALOG) {
     hasWalkthrough: existsSync(new URL(`../public/data/${c.group}-walkthrough.json`, import.meta.url)),
     // decomp parcial (HGSS: learnset/golpes em binário; DP: só núcleo + chefes) → selo "Parcialmente verificado" no catálogo
     partial: !!GAMES[c.group]?.asmDecomp?.partial,
+    // mecânicas do jogo fora do cálculo (Mega Evolução, golpes Z, Dynamax, Terastal, batalha em tempo real…)
+    mechanics: GAMES[c.group]?.mechanics ?? [],
   });
 }
 if (problems.length) { console.error('PROBLEMAS:\n' + problems.join('\n')); process.exitCode = 1; }

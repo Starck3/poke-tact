@@ -1,0 +1,46 @@
+{
+ "leaderOrder": [
+  "Hala",
+  "Olivia",
+  "Nanu",
+  "Hapu"
+ ],
+ "badges": [
+  "Normalium Z←?",
+  "Melemele Island←Hala",
+  "Fightinium Z←Hala",
+  "Waterium Z←Gladion",
+  "Firium Z←Gladion",
+  "Grassium Z←?",
+  "Akala Island←Olivia",
+  "Rockium Z←Olivia",
+  "Electrium Z←Molayne",
+  "Steelium Z←Molayne",
+  "Ghostium Z←?",
+  "Buginium Z←Guzma",
+  "Ula’ula Island←Nanu",
+  "Darkinium Z←Nanu",
+  "Poisonium Z←?",
+  "Poni Island←Hapu",
+  "Groundium Z←Hapu",
+  "Fairium Z←Hapu",
+  "Dragonium Z←Hapu",
+  "Eevium Z←?"
+ ],
+ "unresolved": [],
+ "fuzzy": [],
+ "skippedPlaceholders": 7,
+ "withStage": 1684,
+ "total": 2014,
+ "placesWithoutStage": [
+  "Route 4",
+  "Route 6",
+  "Kala’e Bay",
+  "Route 16",
+  "Route 9",
+  "Route 10",
+  "Route 5",
+  "a Link Trade",
+  "Route 11"
+ ]
+}

@@ -1,6 +1,7 @@
 // Partes puras do "onde obter" das Gens 6–9 (encontros do PKHeX): leitor de cada jogo, rótulos dos métodos e textos.
 // Usadas por scripts/build-acquisition-pkhex.mjs e pelos testes.
 export const READERS = {
+  'black-white': './pkhex-enc-gen5.mjs', // Black 2/White 2 tem decomp (onde obter pelo pokebw2)
   'x-y': './pkhex-enc-gen67.mjs',
   'omega-ruby-alpha-sapphire': './pkhex-enc-gen67.mjs',
   'sun-moon': './pkhex-enc-gen67.mjs',
@@ -21,7 +22,7 @@ export const METHOD_LABEL = {
   underground: 'Grand Underground', 'honey-tree': 'Árvore de mel', 'poke-radar': 'Poké Radar', swarm: 'Surto', 'great-marsh': 'Great Marsh', 'trophy-garden': 'Trophy Garden',
   // Gen 6/7 "Standard": o PKHeX junta grama, surf, varas, DexNav… numa lista só (sem inventar a separação)
   wild: 'Selvagem', alpha: 'Alfa', 'mass-outbreak': 'Surto em massa', 'massive-mass-outbreak': 'Surto em massa gigante', landmark: 'Ponto de interesse', outbreak: 'Surto', 'space-time-distortion': 'Distorção espaço-temporal',
-  'shaking-tree': 'Árvore (sacudir)', curry: 'Curry/pesca', 'dynamax-adventure': 'Dynamax Adventure', 'tera-raid': 'Tera Raid', 'fixed-symbol': 'No mapa (fixo)', 'wild-zone': 'Wild Zone', hyperspace: 'Hyperspace', other: 'Selvagem',
+  'hidden-grotto': 'Hidden Grotto', 'shaking-tree': 'Árvore (sacudir)', curry: 'Curry/pesca', 'dynamax-adventure': 'Dynamax Adventure', 'tera-raid': 'Tera Raid', 'fixed-symbol': 'No mapa (fixo)', 'wild-zone': 'Wild Zone', hyperspace: 'Hyperspace', other: 'Selvagem',
 };
 // detalhe do leitor (texto, ou objeto no BDSP/LA) → texto curto da tela; campos técnicos (ids, bola, IVs…) ficam de fora
 export function detailText(d) {
