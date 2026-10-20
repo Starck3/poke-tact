@@ -2,6 +2,22 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.14.0] — 2026-10-20
+
+### Adicionado
+- **Imagens na aba Detonado**: cada local com foto do lugar (📷, carregada ao abrir) e cada etapa da história com
+  "🗺 Ver no mapa da região" (os locais da etapa destacados).
+- **Mapa da região na Gen 4**: Diamond/Pearl e Platinum pela matriz do mundo do decomp + warps de entrada (Mt. Coronet,
+  lagos, Great Marsh, cavernas na posição da entrada) — 170/173 e 173/176 locais no mapa; HeartGold/SoulSilver com as
+  posições do mapa do Crystal (mesma região).
+- **Remakes com o mapa da mesma região**: BDSP (Sinnoh do Platinum), ORAS (Hoenn do Emerald), Let's Go (Kanto do Red/Blue).
+  Mapa da região em 14 dos 22 jogos.
+- **Tags** ao lado do selo de verificação, nos cards e no cabeçalho do jogo: "📖 detonado no app" e "📍 capturas
+  disponíveis" (o tooltip diz se tem fotos e mapa). `games.json` ganhou `capture: { places, regionMap }`.
+
+### Corrigido
+- Legenda do mapa cortava o nome da fonte (escape perdido no regex).
+
 ## [0.13.0] — 2026-10-20
 
 ### Adicionado

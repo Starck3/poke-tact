@@ -270,6 +270,12 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   foto de outro lugar). 🧪 Crystal/GS: Johto × Kanto pelo nº de `const` antes de `KANTO_LANDMARK EQU`. 🧪 FRLG: cavernas em
   (0, 0) = sem posição; Ilhas Sevii a partir de `MAPSEC_ONE_ISLAND` têm grade própria. Nomes: "Mount" = "Mt.", plural
   ("Whirl Islands"), prédio → cidade pela 1ª palavra. As imagens do PokeMythology ficam no site deles (só referência).
+- **Mapa da região — Gen 4 e remakes** (0.14.0): cada cabeçalho tem a seção do mapa (`acq.progress.maps[].landmark`);
+  posição = centro das células da matriz do mundo (Platinum `map_matrix_000.json`; DP `map_matrix/narc_0000.bin`).
+  🧪 Seções fora da matriz (Mt. Coronet, lagos, cavernas) ficavam sem ponto (73/173 no DP): vale o warp de entrada vindo de
+  um mapa do mundo (x, z em tiles ÷ 32) e, de dentro para dentro, a posição de quem leva até ela. HGSS: posições do
+  `crystal-regionmap.json` pelo nome da seção. BDSP/ORAS/Let's Go: `TWIN` em `build-region-maps.mjs` (região do jogo
+  original, casando pelo nome do lugar). B2W2: a matriz do mundo em JSON só tem modelos, sem zonas — ainda sem mapa.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

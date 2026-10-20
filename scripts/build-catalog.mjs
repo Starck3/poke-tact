@@ -113,6 +113,13 @@ for (const c of CATALOG) {
     // decomp = conferido com o código do jogo; decomp-core = só o núcleo (espécies, golpes, tabela) conferido (Gen 1/2 em assembly)
     validation: GAMES[c.group] ? (GAMES[c.group].decomp ? 'decomp' : GAMES[c.group].asmDecomp ? 'decomp-core' : GAMES[c.group].pkhex ? 'pkhex' : 'pokeapi') : null,
     hasWalkthrough: existsSync(new URL(`../public/data/${c.group}-walkthrough.json`, import.meta.url)),
+    // aba Onde capturar: dados de onde obter, fotos dos lugares (detonado) e mapa da região (decomp) — tags no app
+    capture: (() => {
+      const j = (suf) => { try { return JSON.parse(readFileSync(new URL(`../public/data/${c.group}-${suf}.json`, import.meta.url), 'utf8')); } catch { return null; } };
+      const acq = existsSync(new URL(`../public/data/${c.group}-acquisition.json`, import.meta.url));
+      const places = Object.keys(j('places')?.places ?? {}).length, map = j('regionmap');
+      return acq ? { places, regionMap: !!map?.regions?.length } : null;
+    })(),
     // decomp parcial (HGSS: learnset/golpes em binário; DP: só núcleo + chefes) → selo "Parcialmente verificado" no catálogo
     partial: !!GAMES[c.group]?.asmDecomp?.partial,
     // mecânicas do jogo fora do cálculo (Mega Evolução, golpes Z, Dynamax, Terastal, batalha em tempo real…)

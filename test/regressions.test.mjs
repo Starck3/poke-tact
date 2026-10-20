@@ -1986,3 +1986,32 @@ test('mapa da região (Gens 1–3): posições do decomp e lugares do onde obter
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.match(app, /function renderRegionMap/); assert.match(app, /function renderPlaces/);
 });
+
+test('mapa da região na Gen 4 (matriz do mundo + warps) e nos remakes pela região do original; tags no catálogo', () => {
+  // Gen 4: posição da seção (MAPSEC) = centro das células da matriz do mundo; fora dela (Mt. Coronet, lagos, Great
+  // Marsh) = posição do warp de entrada vindo do mundo (x, z ÷ 32). Antes desses warps só 73/173 locais do DP caíam no mapa.
+  const pt = load('platinum-regionmap.json');
+  const P = (n) => pt.regions[0].points.find((p) => p.name === n);
+  assert.ok(P('Mt. Coronet') && P('Lake Verity') && P('Great Marsh'));
+  assert.ok(Math.abs(P('Oreburgh Mine').x - P('Oreburgh City').x) < 2); // a mina fica em Oreburgh
+  const reach = (g) => { const m = load(`${g}-regionmap.json`), a = load(`${g}-acquisition.json`); const ws = new Set(Object.values(a.versions).flatMap((v) => Object.values(v).flat().map((s) => s.where))); return [...ws].filter((w) => m.placeOf[w]).length / ws.size; };
+  assert.ok(reach('diamond-pearl') > 0.95 && reach('platinum') > 0.95, 'Gen 4 quase toda no mapa');
+  assert.match(load('heartgold-soulsilver-regionmap.json').source, /pokecrystal/); // mesma região do Crystal
+  for (const [g, twin] of [['brilliant-diamond-shining-pearl', 'platinum'], ['omega-ruby-alpha-sapphire', 'emerald'], ['lets-go-pikachu-lets-go-eevee', 'red-blue']]) {
+    assert.match(load(`${g}-regionmap.json`).source, new RegExp(`mesma região de ${twin}`), g);
+    assert.ok(reach(g) > 0.7, g);
+  }
+  // tags do app: detonado no app e capturas disponíveis (fotos/mapa no tooltip)
+  const { games } = load('games.json');
+  const g = (id) => games.find((x) => x.id === id);
+  assert.deepEqual(g('firered-leafgreen').capture.regionMap, true);
+  assert.ok(g('firered-leafgreen').capture.places > 50);
+  assert.equal(g('x-y').capture.regionMap, false); // sem decomp e sem região irmã
+  assert.ok(games.filter((x) => x.status === 'supported').every((x) => x.capture), 'todo jogo disponível tem Onde capturar');
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /capturas disponíveis/); assert.match(app, /detonado no app/);
+  assert.match(app, /qualityBadge\(g\) \+ featureTags\(g\)/); // também no cabeçalho do jogo
+  // Detonado: fotos pelo local e pelos mapas dele; mapa de cada etapa
+  assert.match(app, /\[l\.name, \.\.\.\(l\.maps \?\? \[\]\)\]\.map\(placeOfWhere\)/);
+  assert.match(app, /stageMap\(s\)/);
+});
