@@ -17,6 +17,7 @@
     "test": "node --test \"test/*.test.mjs\"",
     "build:catalog": "node scripts/build-catalog.mjs",
     "fetch:decomp": "node scripts/fetch-decomp.mjs",
-    "build:pokedex": "node scripts/build-pokedex.mjs"
+    "build:pokedex": "node scripts/build-pokedex.mjs",
+    "rede": "node scripts/check-lan.mjs"
   }
 }

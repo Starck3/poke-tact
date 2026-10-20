@@ -1901,3 +1901,42 @@ test('tela inicial: busca de Pokémon (padrão) com seletor para líder/jogo; í
   // exclusivo de versão: Ekans só no FireRed
   assert.deepEqual(idx.where.ekans['firered-leafgreen'], ['firered']);
 });
+
+// ---------------------------------------------------------------- acesso pela rede local (outro aparelho)
+
+test('regressão: servidor local acessível de outro aparelho — escuta em todas as interfaces e manda no-cache', async () => {
+  // Erros de 2026-10-20: (1) depois de uma atualização o navegador juntou index.html novo com app.mjs antigo (sem
+  // cabeçalho de cache) → página quebrada; (2) do outro aparelho, ERR_CONNECTION_TIMED_OUT com o servidor no ar: regras do
+  // Firewall do Windows bloqueavam o node.exe no perfil "Privado" (bloqueio vence a regra que libera a porta 5173).
+  const src = readFileSync(new URL('../scripts/serve.mjs', import.meta.url), 'utf8');
+  assert.match(src, /\.listen\(port,/); // sem host → todas as interfaces (0.0.0.0), não só localhost
+  assert.ok(!/listen\([^)]*(127\.0\.0\.1|'localhost')/.test(src), 'servidor preso ao localhost: outro aparelho não acessa');
+  const { createAppServer } = await import('../scripts/serve.mjs');
+  const server = createAppServer();
+  await new Promise((r) => server.listen(0, '0.0.0.0', r));
+  try {
+    const { port } = server.address();
+    for (const p of ['/', '/app.mjs', '/data/games.json']) {
+      const res = await fetch(`http://127.0.0.1:${port}${p}`);
+      assert.equal(res.status, 200, p);
+      assert.equal(res.headers.get('cache-control'), 'no-cache', p);
+    }
+  } finally { server.close(); }
+});
+
+test('regressão: diagnóstico de rede acusa bloqueio do Node no perfil atual e mostra a correção', async () => {
+  const { blockingRules, fixCommand, lanAddresses } = await import('../scripts/lib/lan.mjs');
+  // o caso real: Permitir no Público, Bloquear no Privado, rede Privada
+  const rules = [
+    { name: 'Node.js JavaScript Runtime', enabled: true, action: 'Allow', profile: 'Public' },
+    { name: 'Node.js JavaScript Runtime', enabled: true, action: 'Block', profile: 'Private' },
+    { name: 'poke-tact', enabled: true, action: 'Allow', profile: 'Private' },
+  ];
+  assert.equal(blockingRules(rules, 'Private').length, 1);
+  assert.equal(blockingRules(rules, 'Public').length, 0);
+  assert.equal(blockingRules([{ name: 'Node.js', enabled: true, action: 'Block', profile: 'Domain, Private' }], 'Private').length, 1);
+  assert.equal(blockingRules([{ name: 'Node.js', enabled: false, action: 'Block', profile: 'Private' }], 'Private').length, 0);
+  assert.match(fixCommand('Private'), /Set-NetFirewallRule -Action Allow/);
+  assert.match(fixCommand('Private'), /'Private'/);
+  assert.deepEqual(lanAddresses({ eth: [{ family: 'IPv4', address: '192.168.15.4', internal: false }], lo: [{ family: 'IPv4', address: '127.0.0.1', internal: true }] }), ['192.168.15.4']);
+});
