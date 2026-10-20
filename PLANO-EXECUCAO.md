@@ -17,7 +17,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
 
 ## Etapas
 
-### 1. Estágio pela citação anterior no detonado (jogos com decomp) — ⬜
+### 1. Estágio pela citação anterior no detonado (jogos com decomp) — ✅ 0.16.0
 - **Objetivo**: lugares descritos numa seção do pós-jogo mas citados antes no detonado (`acq.progress.reviewEarlierMention`)
   ganham o estágio da citação anterior **só quando um mapa vizinho (conexão/warp do decomp) já está liberado nesse estágio**.
 - **Validação**: Emerald/RS Safari Zone ≤ 6; FRLG Power Plant ≤ 6; Crystal Silver Cave continua pós-jogo (9); Gold/Silver
@@ -63,3 +63,9 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
 
 ## Registro
 (preenchido durante a execução: data/hora, resultado, versão publicada, motivo de ⚠/❌)
+
+- **Etapa 1 — ✅ 0.16.0.** `applyEarlierMentions` (lib/progress.mjs) em 5 geradores. Validação: Safari Zone RS/E = 6, Power
+  Plant FRLG = 6, Silver Cave = 9, Viridian (GS) = 9; banco de lutas igual em vitórias e com mais folgadas (34447 → 34478).
+  1ª tentativa tinha 2 falsos positivos (Magma Hideout 6→3; Abandoned Ship RS 9→3) → regras "só pós-jogo" e "rota só de
+  água conta a partir do Surf". Aceito: Pal Park (DP/Pt) no estágio 5 (sem fonte de captura). Abandoned Ship do RS
+  continua pós-jogo (conservador; no jogo abre com Surf, estágio 5).

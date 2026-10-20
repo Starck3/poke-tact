@@ -2035,3 +2035,29 @@ test('novidades: changelog.json acompanha o CHANGELOG.md e a versão do package.
   assert.match(app, /r\.params\.novidades != null\) openNews\(true\)/);
   assert.match(app, /poketact:news-seen/);
 });
+
+// ---------------------------------------------------------------- plano autônomo: etapa 1
+
+test('regressão: área descrita no pós-jogo mas citada antes no detonado ganha o estágio da citação (com vizinho liberado)', async () => {
+  // Erro: "título vence" punha como pós-jogo a Safari Zone de Hoenn (citada em Fortree) e a Power Plant do FRLG (citada
+  // em "Agora você tem Surf!"). A citação anterior só vale com um vizinho já liberado nesse estágio, só para lugares que
+  // o título pôs no pós-jogo (o Magma Hideout, estágio 6, tem a entrada citada cedo mas trancada) e rota só de água conta
+  // a partir do Surf (a Route 108 liberava o Abandoned Ship do Ruby/Sapphire no estágio 3).
+  const stages = (g, re) => [...new Set(Object.values(load(`${g}-acquisition.json`).progress.maps).filter((x) => re.test(x.label)).map((x) => x.stage))];
+  assert.deepEqual(stages('emerald', /^Safari Zone/), [6]);
+  assert.deepEqual(stages('ruby-sapphire', /^Safari Zone/), [6]);
+  assert.deepEqual(stages('firered-leafgreen', /^Power Plant/), [6]);
+  assert.deepEqual(stages('crystal', /^Silver Cave/), [9]); // citada cedo, mas fechada: continua pós-jogo
+  assert.ok(stages('gold-silver', /^Viridian City$/).every((s) => s >= 8));
+  assert.ok(stages('emerald', /^Magma Hideout/).every((s) => s >= 6));
+  assert.ok(stages('ruby-sapphire', /^Abandoned Ship/).every((s) => s >= 5));
+  assert.ok(load('emerald-acquisition.json').progress.earlierUsed.some((u) => /Safari Zone/.test(u.map)));
+  const { applyEarlierMentions } = await import('../scripts/lib/progress.mjs');
+  // sem vizinho liberado no estágio da citação → não muda
+  const st = new Map([['A', 9], ['B', 9]]);
+  const conn = new Map([['A', new Set(['B'])], ['B', new Set(['A'])]]);
+  assert.equal(applyEarlierMentions(st, { A: { stage: 9, earlierMention: { stage: 3 } } }, conn, new Map()).length, 0);
+  st.set('B', 2);
+  assert.equal(applyEarlierMentions(st, { A: { stage: 9, earlierMention: { stage: 3 } } }, conn, new Map()).length, 1);
+  assert.equal(st.get('A'), 3);
+});

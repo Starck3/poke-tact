@@ -2,6 +2,15 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.16.0] — 2026-10-20
+
+### Corrigido
+- **Lugares que abrem no meio da história não aparecem mais como pós-jogo**: a Safari Zone de Hoenn (Ruby/Sapphire e
+  Emerald) passa a "depois de Winona", a Power Plant e as Seafoam Islands do FireRed/LeafGreen a "depois de Sabrina", e
+  também Abandoned Ship e New Mauville (Emerald), Mirage Tower, Trick House, Old Chateau, Wayward Cave, Solaceon Ruins
+  (Diamond/Pearl e Platinum) e Black City/White Forest (Black 2/White 2). O detonado descreve essas áreas numa seção do
+  pós-jogo, mas cita antes; agora vale a citação anterior quando um lugar vizinho já está liberado nesse ponto.
+
 ## [0.15.0] — 2026-10-20
 
 ### Adicionado
