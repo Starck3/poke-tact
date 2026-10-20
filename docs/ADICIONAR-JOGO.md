@@ -265,6 +265,11 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   Sun/Moon: carimbos de ilha + Z-Crystal até 2500 caracteres depois de "totem" (🧪 presentes como Steelium/Buginium/Poisonium/
   Eevium não contam; o Fairium da Mina não tem totem e fica de fora). 🧪 Local sem título no detonado: vale a evidência mais
   cedo entre o nome no texto e as espécies (o SM só numera a Route 1 depois da 2ª provação); subárea ≤ local-pai.
+- **Imagens do "Onde capturar"** (0.13.0): `build-place-images.mjs` (todos os jogos com detonado) e `build-region-maps.mjs`
+  (Gens 1–3), no fim do pipeline (`IMAGE_STEPS`). 🧪 Foto só de trecho cujo TÍTULO nomeia o lugar (citação no texto trazia
+  foto de outro lugar). 🧪 Crystal/GS: Johto × Kanto pelo nº de `const` antes de `KANTO_LANDMARK EQU`. 🧪 FRLG: cavernas em
+  (0, 0) = sem posição; Ilhas Sevii a partir de `MAPSEC_ONE_ISLAND` têm grade própria. Nomes: "Mount" = "Mt.", plural
+  ("Whirl Islands"), prédio → cidade pela 1ª palavra. As imagens do PokeMythology ficam no site deles (só referência).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

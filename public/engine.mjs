@@ -408,7 +408,7 @@ export function catchReport(data, acq, mon, version) {
   const post = acq.progress?.post ?? 9;
   const order = (s) => [s.stage ?? post, s.type === 'wild' ? 0 : 1, s.min ?? s.level ?? 0];
   const sorted = [...w.direct].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; });
-  const lines = sorted.map((s) => ({ text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? s.stage : null, random: !!unreliableReason(s) }));
+  const lines = sorted.map((s) => ({ where: s.where, text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? s.stage : null, random: !!unreliableReason(s) }));
   const others = Object.keys(acq.versions).filter((v) => v !== version).map((v) => ({ version: v, count: whereToGet(data, acq, mon, v).direct.length })).filter((o) => o.count);
   return { lines, from: w.from ?? null, steps: w.steps, events: w.events.map((s) => formatSources([s], 1)[0] ?? s.where), others, obtainable: !!mon.obtainable?.[version] };
 }

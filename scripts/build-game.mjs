@@ -30,12 +30,16 @@ const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-for
 const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
 const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
+// todos os jogos, no fim: fotos dos lugares (detonado) e mapa esquemático da região (decomp, Gens 1–3); saem sem erro
+// quando o jogo não tem a fonte
+const IMAGE_STEPS = ['build-place-images', 'build-region-maps'];
 for (const id of ids) {
   if (!GAMES[id]) throw new Error(`Jogo desconhecido: ${id}`);
   console.log(`\n===== ${id} =====`);
   const plain = !GAMES[id].decomp && !GAMES[id].asmDecomp;
   const pk = GAMES[id].pkhex ? [...PKHEX_STEPS, ...(READERS[id] ? PKHEX_ACQ_STEPS : [])] : [];
-  for (const step of GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : GAMES[id].pkhexOnly ? PKHEX_ONLY_STEPS : plain ? [...PLAIN_STEPS, ...pk] : STEPS) {
+  const steps = GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : GAMES[id].pkhexOnly ? PKHEX_ONLY_STEPS : plain ? [...PLAIN_STEPS, ...pk] : STEPS;
+  for (const step of [...steps, ...IMAGE_STEPS]) {
     console.log(`--- ${step}`);
     try {
       execFileSync(process.execPath, [`scripts/${step}.mjs`, id], { cwd, stdio: 'inherit' });
