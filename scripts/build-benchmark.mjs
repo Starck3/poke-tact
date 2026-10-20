@@ -25,7 +25,9 @@ export function evaluatePick(data, acq, monName, moveName, p, level, stage) {
 }
 
 mkdirSync(new URL('../reports/benchmark/', import.meta.url), { recursive: true });
-const total = { antes: { wins: 0, picks: 0, covered: 0, mons: 0, comfy: 0, turnsSum: 0, turnsN: 0 }, depois: { wins: 0, picks: 0, covered: 0, mons: 0, comfy: 0, turnsSum: 0, turnsN: 0 } };
+// antes/depois: só jogos com linha de base (comparação justa); atual: TODOS os jogos do banco (o número da tela inicial)
+const zero = () => ({ wins: 0, picks: 0, covered: 0, mons: 0, comfy: 0, turnsSum: 0, turnsN: 0 });
+const total = { antes: zero(), depois: zero(), atual: { ...zero(), games: [] } };
 for (const gameId of ids) {
   const data = load(`${gameId}.json`), acq = load(`${gameId}-acquisition.json`), walk = load(`${gameId}-walkthrough.json`);
   const trainers = new Map(load(`${gameId}-trainers.json`).trainers.map((t) => [t.key, t]));
@@ -71,6 +73,8 @@ for (const gameId of ids) {
   const s = { fights: fights.length, depois: sum((m) => m.picks), antes: sum((m) => m.before), semVencedorPossivel: rows.filter((m) => !m.winnersAvailable).length };
   // jogo sem linha de base (antes/) não entra em nenhum dos dois totais — a comparação fica justa
   if (before) for (const k of ['antes', 'depois']) for (const f of Object.keys(total[k])) total[k][f] += s[k][f];
+  for (const f of Object.keys(zero())) total.atual[f] += s.depois[f];
+  total.atual.games.push(gameId);
   writeFileSync(new URL(`../reports/benchmark/${gameId}.json`, import.meta.url), JSON.stringify({ game: gameId, summary: s, fights }, null, 1));
   const pct = (a, b) => (b ? `${Math.round((a / b) * 100)}%` : '—');
   const avg = (x) => (x.turnsN ? (x.turnsSum / x.turnsN).toFixed(2) : '—');
@@ -78,7 +82,8 @@ for (const gameId of ids) {
 }
 const pct = (a, b) => (b ? `${Math.round((a / b) * 100)}%` : '—');
 const avgT = (x) => (x.turnsN ? (x.turnsSum / x.turnsN).toFixed(2) : '—');
-console.log(`TOTAL (time ${DELTA} nv abaixo) | 1+ vence: ${pct(total.antes.covered, total.antes.mons)} → ${pct(total.depois.covered, total.depois.mons)} | vencem: ${pct(total.antes.wins, total.antes.picks)} → ${pct(total.depois.wins, total.depois.picks)} | folgadas: ${pct(total.antes.comfy, total.antes.picks)} → ${pct(total.depois.comfy, total.depois.picks)} | turnos: ${avgT(total.antes)} → ${avgT(total.depois)}`);
+console.log(`ATUAL (${total.atual.games.length} jogos) | 1+ vence: ${pct(total.atual.covered, total.atual.mons)} | vencem: ${pct(total.atual.wins, total.atual.picks)} (${total.atual.picks} sugestões) | folgadas: ${pct(total.atual.comfy, total.atual.picks)}`);
+console.log(`TOTAL com linha de base (time ${DELTA} nv abaixo) | 1+ vence: ${pct(total.antes.covered, total.antes.mons)} → ${pct(total.depois.covered, total.depois.mons)} | vencem: ${pct(total.antes.wins, total.antes.picks)} → ${pct(total.depois.wins, total.depois.picks)} | folgadas: ${pct(total.antes.comfy, total.antes.picks)} → ${pct(total.depois.comfy, total.depois.picks)} | turnos: ${avgT(total.antes)} → ${avgT(total.depois)}`);
 writeFileSync(new URL(`../reports/benchmark/_total${DELTA ? '-' + DELTA : ''}.json`, import.meta.url), JSON.stringify(total, null, 1));
 
 function pickOut(d) {

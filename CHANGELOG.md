@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.5.1] — 2026-10-19
+
+### Corrigido
+- O número da tela inicial ("das sugestões vencem a troca") passa a contar todos os jogos do banco de lutas (10 jogos,
+  12.348 sugestões); antes deixava de fora quem não tinha linha de base, como o Diamond/Pearl. A comparação antes/depois
+  continua só com os jogos que têm linha de base (`_total.json`: `atual` × `antes`/`depois`).
+- A legenda dos selos mostra só os selos em uso (nenhum jogo é mais "Parcialmente verificado").
+
 ## [0.5.0] — 2026-10-19
 
 ### Adicionado

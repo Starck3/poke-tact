@@ -250,6 +250,18 @@ test('regressão: sprites do Gold/Silver vêm das pastas gold/silver (não exist
   assert.equal(spriteFolder('heartgold-soulsilver', 'heartgold'), 'heartgold-soulsilver'); // essa pasta existe
 });
 
+test('regressão: o número da tela inicial (banco de lutas) conta TODOS os jogos com detonado — o DP ficava de fora', () => {
+  const b = load('games.json').benchmark;
+  const games = load('games.json').games.filter((g) => g.hasWalkthrough).map((g) => g.id);
+  const report = (g) => JSON.parse(readFileSync(new URL(`../reports/benchmark/${g}.json`, import.meta.url), 'utf8')).summary.depois;
+  assert.equal(b.games, games.length);
+  assert.equal(b.picks, games.reduce((a, g) => a + report(g).picks, 0));
+  assert.ok(games.includes('diamond-pearl') && report('diamond-pearl').picks > 0);
+  // a comparação antes/depois continua só com jogos que têm linha de base
+  const t = JSON.parse(readFileSync(new URL('../reports/benchmark/_total.json', import.meta.url), 'utf8'));
+  assert.ok(t.depois.picks < t.atual.picks);
+});
+
 test('rotas: filtros da tela inicial e estado do jogo ficam na URL (ida e volta)', async () => {
   const { parseRoute, homeHash } = await import('../public/catalog.mjs');
   const h = homeHash({ platform: 'Game Boy Advance', generation: 3 });
