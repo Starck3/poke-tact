@@ -16,5 +16,26 @@
   "comfy": 9894,
   "turnsSum": 17215,
   "turnsN": 10818
+ },
+ "atual": {
+  "wins": 12103,
+  "picks": 12348,
+  "covered": 4081,
+  "mons": 4116,
+  "comfy": 11278,
+  "turnsSum": 19364,
+  "turnsN": 12348,
+  "games": [
+   "red-blue",
+   "yellow",
+   "gold-silver",
+   "crystal",
+   "diamond-pearl",
+   "platinum",
+   "heartgold-soulsilver",
+   "firered-leafgreen",
+   "ruby-sapphire",
+   "emerald"
+  ]
  }
 }
