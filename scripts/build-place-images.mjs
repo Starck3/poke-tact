@@ -42,22 +42,49 @@ const fileKey = (src) => decodeURIComponent(src.split('?')[0].split('/').pop()).
 const places = {};
 const all = new Set();
 for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) if (s.where) all.add(s.where);
-let found = 0;
+const baseOf = (where) => where.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+/** Chaves do lugar para o nome do arquivo: o nome e os prefixos de 2+ palavras, sem o andar ("Ice Path B1F" → icepathb1f,
+ *  icepathb, icepath; "Mount Mortar" = mtmortar). Uma palavra só nunca ("route", "celadon" = outro lugar da cidade). */
+export function stemsOf(where) {
+  const w = words(baseOf(where)).map((x) => (x === 'mount' ? 'mt' : x));
+  const out = [];
+  for (let n = w.length; n >= 2; n--) { const k = w.slice(0, n).join(''); if (k.length >= 6) out.push(k); }
+  return out;
+}
+/** O nome do arquivo cita o lugar por inteiro ("icepath2.png" → Ice Path; "route4black.png" → Route 4, não Route 40). */
+export function fileNames(src, ks) {
+  const f = fileKey(src);
+  for (const k of ks) for (let i = f.indexOf(k); i >= 0; i = f.indexOf(k, i + 1)) if (!(/\d$/.test(k) && /\d/.test(f[i + k.length] ?? ''))) return true;
+  return false;
+}
+const allStems = [...new Set([...all].flatMap(stemsOf))];
+// a foto cujo nome cita OUTRO lugar (e não este) não é deste lugar (GS: as fotos "icepath*.png" no trecho de Blackthorn)
+const otherPlace = (u, ks) => !fileNames(u, ks) && allStems.some((o) => !ks.some((k) => k.includes(o)) && fileNames(u, [o]));
+const everyImg = sections.flatMap((s) => screenshots(s.html).map((u) => ({ u, sec: s })));
+let found = 0, byFile = 0, dropped = 0;
 for (const where of [...all].sort()) {
-  const base = where.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+  const base = baseOf(where), k = stemsOf(where);
   const r = placeStage(tl, base) ?? placeStage(tl, where);
-  // só trecho cujo TÍTULO nomeia o lugar: citação no texto leva a fotos de outro lugar (SM: "Route 1" citada no trecho de
+  // trecho cujo TÍTULO nomeia o lugar: citação no texto leva a fotos de outro lugar (SM: "Route 1" citada no trecho de
   // Ten Carat Hill) — melhor sem foto do que com foto errada
-  if (!r || r.by !== 'título') continue;
-  const sec = sections.find((s) => s.title === r.section);
-  if (!sec) continue;
-  let imgs = screenshots(sec.html);
-  if (!imgs.length) continue;
-  // o arquivo cujo nome cita o lugar vem primeiro (mapas/fotos da própria área)
-  const k = words(base).join('');
-  imgs = [...imgs.filter((u) => k.length >= 4 && fileKey(u).includes(k.slice(0, Math.max(4, k.length - 2)))), ...imgs.filter((u) => !(k.length >= 4 && fileKey(u).includes(k.slice(0, Math.max(4, k.length - 2)))))];
-  places[where] = { section: sec.full ?? sec.title, by: r.by, images: imgs.slice(0, 4) };
-  found++;
+  const sec = r?.by === 'título' ? sections.find((s) => s.title === r.section) : null;
+  let imgs = sec ? screenshots(sec.html) : [];
+  const n = imgs.length;
+  imgs = imgs.filter((u) => !otherPlace(u, k));
+  dropped += n - imgs.length;
+  if (imgs.length) {
+    // o arquivo cujo nome cita o lugar vem primeiro (mapas/fotos da própria área)
+    const w1 = words(base).join(''), own = (u) => fileNames(u, k) || (w1.length >= 4 && fileKey(u).includes(w1.slice(0, Math.max(4, w1.length - 2)))); // "Violet" → 019violet.png
+    imgs = [...imgs.filter(own), ...imgs.filter((u) => !own(u))];
+    places[where] = { section: sec.full ?? sec.title, by: r.by, images: imgs.slice(0, 4) };
+    found++;
+    continue;
+  }
+  // sem trecho com o título: só imagens cujo NOME de arquivo cita o lugar, em qualquer trecho ("mtmoon1.png")
+  const hit = everyImg.filter((x) => fileNames(x.u, k));
+  if (!hit.length) continue;
+  places[where] = { section: hit[0].sec.full ?? hit[0].sec.title, by: 'arquivo', images: [...new Set(hit.map((x) => x.u))].slice(0, 4) };
+  found++; byFile++;
 }
 writeFileSync(new URL(`../public/data/${gameId}-places.json`, import.meta.url), JSON.stringify({
   source: `PokeMythology ${game.walkthrough}`, page: PAGE,
@@ -65,4 +92,4 @@ writeFileSync(new URL(`../public/data/${gameId}-places.json`, import.meta.url), 
 }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 writeFileSync(new URL(`../reports/${gameId}/place-images.json`, import.meta.url), JSON.stringify({ withImages: found, total: all.size, without: [...all].filter((w) => !places[w]) }, null, 1));
-console.log(`[${gameId}] fotos dos lugares: ${found}/${all.size} locais com imagem do detonado`);
+console.log(`[${gameId}] fotos dos lugares: ${found}/${all.size} locais com imagem do detonado (${byFile} pelo nome do arquivo; ${dropped} fotos de outro lugar tiradas)`);

@@ -2,6 +2,17 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.21.0] — 2026-10-20
+
+### Adicionado
+- **Fotos dos lugares**: lugar citado só no texto do detonado ganha a foto cujo nome de arquivo é o lugar (Ice Path,
+  Mt. Mortar, Tin Tower, Whirl Islands, Dark Cave, Mt. Moon, Victory Road, Safari Zone…). Red/Blue 19 → 23, Gold/Silver
+  9 → 35, Crystal 33 → 36, HeartGold/SoulSilver 76 → 86, FireRed/LeafGreen 73 → 80 lugares com foto.
+
+### Corrigido
+- Foto cujo nome é de OUTRO lugar saiu do trecho: Blackthorn (GS/Crystal) mostrava o Ice Path; Mossdeep (ORAS) o mapa da
+  Shoal Cave; Silver Cave o Mt. Mortar; o Dojo de Saffron (FRLG) a Silph Co.
+
 ## [0.20.0] — 2026-10-20
 
 ### Adicionado
