@@ -4,7 +4,7 @@ Escolha o jogo Pokémon que você está jogando e o oponente (ou um treinador do
 vencer a luta**, usando só os Pokémon, golpes e regras **daquele jogo** — com o que você já consegue ter no seu ponto da
 história.
 
-- 22 jogos da série principal no catálogo, 21 disponíveis (Legends: Z-A ainda não tem dados na PokéAPI).
+- 22 jogos da série principal no catálogo, todos disponíveis.
 - 11 jogos conferidos com o código do jogo (decomps do [pret](https://github.com/pret) e o
   [pokebw2](https://github.com/fuddlesworth/pokebw2)), com treinadores, onde obter cada Pokémon, progresso por insígnia e
   detonado dentro do app: Red/Blue, Yellow, Gold/Silver, Crystal, Ruby/Sapphire, Emerald, FireRed/LeafGreen, Diamond/Pearl,
@@ -12,7 +12,9 @@ história.
   dados está em binário no decomp (scripts em bytecode, eventos, encontros, NARCs) e é lida com as regras tiradas do próprio
   código do jogo.
 - Black/White e Gens 6–9: núcleo (atributos, tipos, habilidades, golpes por nível na ordem do jogo) conferido com as tabelas
-  do próprio jogo extraídas pelo [PKHeX](https://github.com/kwsch/PKHeX); o resto, dados da PokéAPI com as regras da geração, golpes conferidos com o Pokémon Showdown.
+  do próprio jogo extraídas pelo [PKHeX](https://github.com/kwsch/PKHeX); nas Gens 6–9 também onde obter (local e nível, sem taxa)
+  pelos encontros do PKHeX; Legends: Z-A montado inteiro pelas tabelas do PKHeX (a PokéAPI não tem o jogo). O resto, dados da
+  PokéAPI com as regras da geração, golpes conferidos com o Pokémon Showdown.
 - Cálculo de dano da geração (troca de golpes com nível, atributos, golpes reais do oponente e bônus de insígnia).
 
 ## Rodar

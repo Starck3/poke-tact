@@ -186,7 +186,7 @@ test('regressão: catálogo — GBA mostra os 3 jogos de GBA; Geração III most
   assert.deepEqual(filterGames(games, { platform: 'Nintendo DS', generation: 5 }).map((g) => g.id), ['black-white', 'black-2-white-2']);
   assert.deepEqual(groupByGeneration(games).map(([gen]) => gen), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
   assert.deepEqual(games.filter((g) => g.validation === 'decomp').map((g) => g.id).sort(), ['emerald', 'firered-leafgreen', 'ruby-sapphire']); // conferidos com o código do jogo
-  assert.equal(games.filter((g) => g.status === 'supported').length, 21); // + 18 pela PokéAPI (Legends: Z-A sem dados)
+  assert.equal(games.filter((g) => g.status === 'supported').length, 22); // todos; Legends: Z-A montado pelo PKHeX (0.8.0)
 });
 
 test('tela inicial por geração: cada geração lista os consoles (sem repetir), anos e jogos no app', async () => {
@@ -822,7 +822,9 @@ test('S7: tipo Stellar (Terastalização) não entra na tabela; Fada só a parti
 
 test('S7: jogo sem dados na PokéAPI não é publicado vazio (Legends: Z-A) e sem encontros o filtro de obtíveis não esvazia tudo', () => {
   const { games } = load('games.json');
-  assert.equal(games.find((g) => g.id === 'legends-za').status, 'planned');
+  // até a 0.7.0 o Z-A ficava "planejado" (build-data sai com 3); desde a 0.8.0 vem inteiro das tabelas do PKHeX
+  assert.equal(games.find((g) => g.id === 'legends-za').status, 'supported');
+  assert.equal(games.find((g) => g.id === 'legends-za').validation, 'pkhex');
   const sv = load('scarlet-violet.json');
   const r = recommend(sv, sv.pokemon.find((p) => p.name === 'gyarados'), { level: 50, version: 'scarlet', onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false });
   assert.equal(r.picks.length, 3);
@@ -1472,9 +1474,10 @@ test('E4: iniciais das Gens 4–9 sem decomp = detonado (trecho de escolha) + Po
   assert.deepEqual(st('sun-moon'), ['rowlet', 'litten', 'popplio']);
   assert.deepEqual(st('sword-shield'), ['grookey', 'scorbunny', 'sobble']);
   assert.deepEqual(st('scarlet-violet'), ['sprigatito', 'fuecoco', 'quaxly']);
-  // Legends: Arceus lista Turtwig/Chimchar/Piplup em "onde encontrar" (sem trecho de escolha) e o dataset não tem a
-  // Decidueye (linha incompleta) → não confirmado; Let's Go tem um inicial só
-  assert.equal(st('legends-arceus'), null);
+  // Legends: Arceus lista Turtwig/Chimchar/Piplup em "onde encontrar" (sem trecho de escolha) → o detonado não confirma;
+  // desde a 0.8.0 os iniciais vêm dos encontros fixos do PKHeX (Jubilife Village, nv 5). Let's Go tem um inicial só por versão
+  assert.deepEqual(st('legends-arceus'), ['rowlet', 'cyndaquil', 'oshawott']);
+  assert.equal(load('legends-arceus.json').starters.source, 'encontros fixos do PKHeX');
   assert.equal(st('lets-go-pikachu-lets-go-eevee'), null);
   assert.match(load('black-white.json').starters.evidence, /Escolha/);
 });
@@ -1583,4 +1586,82 @@ test('E6: aba Detonado — nomes de item com parte vazia (GUARD_SPEC_, X_SP__DEF
       assert.doesNotThrow(() => humanize(i.kind === 'TM/HM' ? i.move : i.item.toLowerCase().replace(/_/g, '-')), `${g}: ${JSON.stringify(i)}`);
     }
   }
+});
+
+// ---------------------------------------------------------------- 0.8.0: onde obter nas Gens 6–9 e Legends: Z-A pelo PKHeX
+
+test('regressão: learnset do PKHeX com byte de preenchimento (Z-A) — divisão inteira como no LearnsetReader.cs', async () => {
+  // Erro: parseLearnset usava length / 3 sem arredondar; a entrada da Chikorita no lvlmove_za tem 40 bytes (13 × 3 + 1) e
+  // todos os níveis saíam undefined (o JSON perdia o campo "level").
+  const { parseLearnset } = await import('../scripts/lib/pkhex.mjs');
+  const b = Buffer.from('210027009e023e024b00490022007300db00eb004c007100b501010106090c0e161b24282d323800', 'hex');
+  const l = parseLearnset(b);
+  assert.equal(l.length, 13);
+  assert.deepEqual(l[0], [1, 33]); assert.deepEqual(l[12], [56, 437]);
+  const za = load('legends-za.json');
+  for (const p of za.pokemon) for (const x of p.learnset.filter((y) => y.method === 'level-up')) assert.ok(Number.isInteger(x.level), `${p.name} ${x.move}`);
+  assert.equal(mon(za, 'chikorita').learnset.find((x) => x.move === 'leaf-storm').level, 56);
+});
+
+test('Legends: Z-A — dataset das tabelas do PKHeX (espécies presentes, TMs, evoluções) e golpes da Gen 9', () => {
+  const za = load('legends-za.json');
+  assert.equal(za.pokemon.length, 370); // flag "presente no jogo" do personal_za (base + Mega Dimension)
+  assert.match(za.game.source, /PKHeX/);
+  assert.deepEqual(za.starters.species, ['chikorita', 'tepig', 'totodile']);
+  assert.ok(mon(za, 'chikorita').learnset.some((x) => x.method === 'machine'));
+  // Melmetal/Sinistcha: a PokéAPI diz "evolui de", mas a tabela de evoluções do Z-A não tem a evolução → não obtível evoluindo
+  for (const n of ['melmetal', 'sinistcha']) if (mon(za, n)) assert.equal(mon(za, n).evo?.possible, false, n);
+  // forma regional evolui pela própria entrada do personal (Qwilfish de Hisui → Overqwil): não é diferença
+  if (mon(za, 'overqwil')) assert.notEqual(mon(za, 'overqwil').evo?.possible, false);
+  assert.equal(za.moves.tackle.power, 40);
+});
+
+test('onde obter nas Gens 6–9 (PKHeX): versões separadas, sem taxa, eventos fora', async () => {
+  const { whereToGet, formatSources, unreliableReason } = await import('../public/engine.mjs');
+  const src = (g, v, n) => { const d = load(`${g}.json`), a = load(`${g}-acquisition.json`); return { a, w: whereToGet(d, a, mon(d, n), v) }; };
+  for (const g of ['x-y', 'omega-ruby-alpha-sapphire', 'sun-moon', 'ultra-sun-ultra-moon', 'lets-go-pikachu-lets-go-eevee', 'sword-shield', 'brilliant-diamond-shining-pearl', 'legends-arceus', 'scarlet-violet', 'legends-za']) {
+    const a = load(`${g}-acquisition.json`);
+    assert.equal(a.encountersOnly, true, g); assert.match(a.source, /PKHeX/, g);
+    for (const v of Object.values(a.versions)) for (const list of Object.values(v)) for (const s of list) {
+      assert.equal(s.pct, undefined, g); // o PKHeX não tem taxa — nada inventado
+      assert.ok(s.where && s.where !== '?', `${g}: ${JSON.stringify(s)}`);
+      assert.ok(!/PKHeX/.test(s.detail ?? ''), `${g}: nota técnica na tela: ${s.detail}`);
+    }
+  }
+  // XY Route 2: Weedle só no X, Caterpie só no Y; iniciais de Kanto em Lumiose (nv 10)
+  assert.ok(src('x-y', 'x', 'weedle').w.direct.some((s) => /Route 2/.test(s.where)));
+  assert.ok(!src('x-y', 'y', 'weedle').w.direct.some((s) => /Route 2/.test(s.where)));
+  assert.ok(src('x-y', 'x', 'charmander').w.direct.some((s) => s.type === 'gift' && s.where === 'Lumiose City' && s.level === 10));
+  // lendários por versão
+  assert.ok(src('brilliant-diamond-shining-pearl', 'brilliant-diamond', 'dialga').w.direct.length);
+  assert.equal(src('brilliant-diamond-shining-pearl', 'shining-pearl', 'dialga').w.direct.length, 0);
+  assert.equal(src('sword-shield', 'shield', 'zacian').w.direct.length, 0);
+  assert.equal(src('scarlet-violet', 'violet', 'koraidon').w.direct.length, 0);
+  // SV: crossover fora (Scyther/Dreepy não estão na South Province Area One); aviso de versões não separadas
+  const sv = src('scarlet-violet', 'scarlet', 'scyther');
+  assert.ok(!sv.w.direct.some((s) => s.where === 'South Province (Area One)'));
+  assert.ok(sv.a.notes.some((n) => /não separa/.test(n)));
+  // eventos (FatefulEncounter / Mystery Gift) não contam: Darkrai/Arceus no BDSP, Magearna no SM
+  for (const n of ['darkrai', 'arceus', 'mew', 'jirachi']) assert.equal(load('brilliant-diamond-shining-pearl-acquisition.json').versions['brilliant-diamond'][n], undefined, n);
+  assert.equal(mon(load('sun-moon.json'), 'magearna').obtainable.sun, false);
+  // sem taxa: a linha não mostra "(undefined%)"; surto/raid/árvore de mel contam como aleatórios (E2)
+  const lines = formatSources(src('legends-arceus', 'legends-arceus', 'bidoof').w.direct);
+  assert.ok(lines.length && lines.every((l) => !/undefined|%/.test(l)), lines.join(' | '));
+  const honey = src('brilliant-diamond-shining-pearl', 'brilliant-diamond', 'munchlax').w.direct;
+  assert.ok(honey.filter((s) => s.method === 'Árvore de mel').length && honey.filter((s) => s.method === 'Árvore de mel').every((s) => unreliableReason(s)), 'árvore de mel = sorteio'); // (no BDSP o Munchlax também sai no Grand Underground)
+  // Let's Go: faixa agregada (L3–56 na Route 1) não vira "Charizard a partir do nv 3" confiável
+  assert.ok(src('lets-go-pikachu-lets-go-eevee', 'lets-go-pikachu', 'charizard').w.direct.filter((s) => s.type === 'wild').every((s) => unreliableReason(s)));
+});
+
+test('onde obter (PKHeX): detalhes do leitor viram texto curto; notas técnicas e campos internos ficam de fora', async () => {
+  const { detailText, METHOD_LABEL, READERS } = await import('../scripts/lib/pkhex-enc.mjs');
+  assert.equal(detailText({ locationId: 1, alpha: 'guaranteed', ball: 'Poke', levels: [[1, 2]] }), 'alfa garantido');
+  assert.equal(detailText({ locationId: 1, section: 'Gifts' }), undefined);
+  assert.equal(detailText({ stars: 5, dlc: 'Kitakami', time: ['dia', 'noite'] }), '5★; só dia/noite; DLC Kitakami');
+  assert.equal(detailText('clima: Raining; PKHeX também aceita nível 60 no Wild Area (EncounterArea8)'), 'clima: Raining');
+  assert.equal(detailText('faixa L3–56 agregada no arquivo do PKHeX (motivo não registrado)'), 'faixa de nível agregada na tabela');
+  // todo jogo das Gens 6–9 tem leitor; Black/White (Gen 5) não
+  for (const g of ['x-y', 'sword-shield', 'scarlet-violet', 'legends-za']) assert.ok(READERS[g], g);
+  assert.equal(READERS['black-white'], undefined);
+  for (const k of ['other', 'sos', 'horde', 'symbol', 'hidden', 'max-raid', 'honey-tree', 'underground', 'alpha', 'tera-raid', 'fixed-symbol', 'hyperspace']) assert.ok(METHOD_LABEL[k], k);
 });

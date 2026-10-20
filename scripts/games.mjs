@@ -104,7 +104,8 @@ export const GAMES = {
   'brilliant-diamond-shining-pearl': { ...pokeapiOnly(8, 493), pkhex: PKHEX, label: 'Pokémon Brilliant Diamond / Shining Pearl (Switch)', versionGroup: 'brilliant-diamond-shining-pearl', versions: ['brilliant-diamond', 'shining-pearl'], walkthrough: 'detonado-brilliantdiamond-shiningpearl' },
   'legends-arceus': { ...pokeapiOnly(8, 905), pkhex: PKHEX, label: 'Pokémon Legends: Arceus (Switch)', versionGroup: 'legends-arceus', versions: ['legends-arceus'], walkthrough: 'detonado-legends-arceus', battleNote: 'sistema de batalha próprio (estilos ágil/forte) — o motor usa as regras padrão' },
   'scarlet-violet': { ...pokeapiOnly(9, 1025), pkhex: PKHEX, label: 'Pokémon Scarlet / Violet (Switch)', versionGroup: 'scarlet-violet', versions: ['scarlet', 'violet'], walkthrough: 'detonado-scarlet-violet' },
-  'legends-za': { ...pokeapiOnly(9, 1025), label: 'Pokémon Legends: Z-A (Switch)', versionGroup: 'legends-za', versions: ['legends-za'], walkthrough: 'detonado-legends-z-a', battleNote: 'batalha em tempo real — o motor usa as regras padrão' },
+  // sem PokéAPI: dataset montado das tabelas do PKHeX (build-data-pkhex); golpes/tipos da Gen 9 do Scarlet/Violet
+  'legends-za': { ...pokeapiOnly(9, 1025), validation: 'pkhex', pkhex: PKHEX, pkhexOnly: true, movesFrom: 'scarlet-violet', label: 'Pokémon Legends: Z-A (Switch)', versionGroup: 'legends-za', versions: ['legends-za'], walkthrough: 'detonado-legends-z-a', battleNote: 'batalha em tempo real — o motor usa as regras padrão' },
   'firered-leafgreen': {
     ...GEN3,
     label: 'Pokémon FireRed / LeafGreen (GBA)',

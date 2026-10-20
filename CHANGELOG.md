@@ -2,6 +2,26 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.8.0] — 2026-10-20
+
+### Adicionado
+- **Onde obter nas Gens 6–9** (XY, ORAS, SM, USUM, Let's Go, SwSh, BDSP, Legends: Arceus, SV, Z-A) pelas tabelas de encontro
+  do PKHeX: selvagens (local, método, faixa de nível), presentes, encontros únicos, trocas, ovos e iniciais, por versão. Antes
+  BDSP, Legends: Arceus e Scarlet/Violet não tinham nenhum encontro (a PokéAPI não tem) e o filtro "só o que dá para obter"
+  ficava desligado. Eventos, distribuições, GO/HOME, crossover do SV e Friend Safari ficam de fora.
+- **Legends: Z-A disponível**: dataset montado das tabelas do jogo extraídas pelo PKHeX (370 espécies com a expansão Mega
+  Dimension; atributos, tipos, habilidades, golpes por nível, TMs, evoluções); golpes com os valores da Gen 9.
+- Iniciais pelos encontros fixos do PKHeX quando o detonado não confirma (Legends: Arceus, Ultra Sun/Ultra Moon, Z-A).
+
+### Corrigido
+- Leitor de learnset do PKHeX: entrada com byte de preenchimento (Z-A) perdia todos os níveis (divisão inteira, como no C#).
+- Tela: fonte sem taxa de aparição não mostra mais "(undefined%)" nem é tratada como rara.
+
+### Limitações
+- O PKHeX não tem taxas nem a ordem da história (sem progresso por insígnia nesses jogos); junta grama/surf/varas nas Gens 6/7
+  e Radar/surto na grama do BDSP; no Scarlet/Violet não separa as versões nos selvagens (aviso na tela).
+- Legends: Arceus: 18 espécies que só existem em forma de Hisui não estão no dataset (PokéAPI).
+
 ## [0.7.0] — 2026-10-20
 
 ### Adicionado

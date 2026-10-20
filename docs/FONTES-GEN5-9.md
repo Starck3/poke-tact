@@ -2,7 +2,9 @@
 
 **Feito (0.6.0, 2026-10-20):** Black 2 / White 2 pelo pokebw2 — "Verificado" (ver `docs/ADICIONAR-JOGO.md`, Gen 5).
 **Feito (0.7.0, 2026-10-20):** núcleo de Black/White e Gens 6–9 pelo PKHeX (atributos, tipos, habilidades, learnset na ordem do
-jogo) — "Parcialmente verificado". Próximos: encontros/fixos do PKHeX (onde obter), Legends: Z-A (só o PKHeX tem dados).
+jogo) — "Parcialmente verificado".
+**Feito (0.8.0, 2026-10-20):** onde obter nas Gens 6–9 pelos encontros do PKHeX (sem taxas) e Legends: Z-A montado pelas
+tabelas do PKHeX (ver `docs/ADICIONAR-JOGO.md`).
 
 Medição das fontes da lista do usuário (e do que apareceu no caminho) para decidir o que pode ser fonte da verdade nos jogos
 que hoje só têm a PokéAPI. Método igual ao dos decomps de DS: abrir o repositório, achar os arquivos, ler o formato, conferir

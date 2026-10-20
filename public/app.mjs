@@ -66,7 +66,7 @@ async function load(gameId) {
   $('onlyObtainable').disabled = false;
   $('validationNote').textContent = g.validation === 'pokeapi' ? 'Atenção: este jogo usa dados da PokéAPI com as regras da geração, ainda SEM conferência com o código do jogo (decomp). Treinadores, onde obter e progresso ainda não estão disponíveis.'
     : g.validation === 'decomp-core' ? 'Espécies, golpes, learnsets, TM/HM, tabela de tipos e treinadores conferidos com o código do jogo (decomp). Onde obter e progresso ainda não estão disponíveis.'
-    : g.validation === 'pkhex' ? 'Atributos, tipos, habilidades e golpes aprendidos por nível (na ordem do jogo) conferidos com as tabelas extraídas do próprio jogo (PKHeX). Valores dos golpes: PokéAPI conferida com o Pokémon Showdown. Treinadores, onde obter e progresso ainda não estão disponíveis.' : '';
+    : g.validation === 'pkhex' ? 'Atributos, tipos, habilidades e golpes aprendidos por nível (na ordem do jogo) conferidos com as tabelas extraídas do próprio jogo (PKHeX). Valores dos golpes: PokéAPI conferida com o Pokémon Showdown.' : '';
   $('walkthrough').innerHTML = !g.walkthrough ? '' : g.hasWalkthrough
     ? 'Ordem da história (aba Detonado) baseada no detonado do <a href="' + g.walkthrough + '" target="_blank" rel="noopener">PokeMythology</a>.'
     : 'Detonado deste jogo ainda não está no app; referência externa: <a href="' + g.walkthrough + '" target="_blank" rel="noopener">PokeMythology</a>.';
@@ -78,6 +78,9 @@ async function load(gameId) {
   data = await (await fetch(`data/${gameId}.json`)).json();
   try { trainers = (await (await fetch(`data/${gameId}-trainers.json`)).json()).trainers; } catch { trainers = []; }
   try { acq = await (await fetch(`data/${gameId}-acquisition.json`)).json(); } catch { acq = null; }
+  if (g.validation === 'pkhex') $('validationNote').textContent += acq?.encountersOnly
+    ? ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível, sem taxa de aparição. Treinadores e progresso por insígnias ainda não estão disponíveis.'
+    : ' Treinadores, onde obter e progresso ainda não estão disponíveis.';
   // núcleo + aquisição já conferidos (Gen 1): a nota diz só o que ainda falta
   if (g.validation === 'decomp-core') {
     // diz exatamente o que já foi conferido e o que falta
@@ -108,6 +111,14 @@ async function load(gameId) {
     (g.validation === 'decomp-core' ? 'Espécies, golpes e tabela conferidos com o código do jogo (decomp)' : g.validation === 'pkhex' ? 'Atributos, tipos, habilidades e golpes por nível conferidos com as tabelas do jogo (PKHeX)' : 'Ainda não conferidos com o código do jogo') +
     (trainers.length ? '; treinadores com os times e golpes do jogo; ainda sem onde obter e progresso.' : '; sem treinadores, onde obter e progresso.') +
     ' Com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
+  // Gens 6–9: onde obter pelas tabelas de encontro do PKHeX — local e nível, sem taxa e sem linha do tempo de insígnias
+  else if (acq.encountersOnly) $('disclaimer').textContent =
+    `Sugestões usam os dados de ${g.label} com as regras da Geração ${roman(data.game.generation)}: atributos, tipos, habilidades e golpes por nível conferidos com as tabelas do jogo (PKHeX). ` +
+    'Disponibilidade = aparece nas tabelas de encontro do jogo nesta versão (selvagem, presente, encontro único, troca no jogo) ou evolui de algo assim; eventos, transferências e criação (breeding) não contam. ' +
+    'As tabelas trazem local e faixa de nível, mas não a taxa de aparição nem em que ponto da história a área abre; o nível estimado é o menor nível de encontro. ' +
+    (acq.notes ?? []).map((n) => n + ' ').join('') +
+    (trainers.length ? 'Ao escolher um treinador do jogo, usamos o nível e os golpes reais do time dele. ' : 'Ainda sem treinadores do jogo. ') +
+    'Com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
   else $('disclaimer').textContent =
     `Sugestões usam apenas dados da Geração ${roman(data.game.generation)} (tipos, stats base, golpes${data.game.generation >= 3 ? ' e habilidades' : ''} daquela geração). ` +
     'Disponibilidade = pode ser obtido nesta versão (selvagem, presente, troca dentro do jogo, prêmio…) ou evolui de algo assim; trocas com outros jogos, eventos e criação (breeding) não contam. ' +
@@ -140,7 +151,7 @@ function renderWhere(mon, reach, stageNeeded) {
   const when = stageNeeded != null ? ' <span class="meta">(disponível: ' + stageLabel(stageNeeded, acq.progress?.leaderOrder) + ')</span>' : Number.isFinite(reach) && reach > 1 ? ' <span class="meta">(estimado: a partir do nv ' + reach + ')</span>' : '';
   let html = '<li><strong>Onde obter</strong>' + when + ': ' + routeHtml(w);
   // Se a própria espécie é rara na natureza, mostra também o caminho pela pré-evolução
-  const bestPct = Math.max(0, ...w.direct.filter((s) => s.type === 'wild').map((s) => s.pct));
+  const bestPct = Math.max(0, ...w.direct.filter((s) => s.type === 'wild').map((s) => s.pct ?? 100)); // sem taxa (PKHeX): não dá para dizer que é raro
   const onlyRareWild = !w.from && w.direct.every((s) => s.type === 'wild') && bestPct < 10;
   const alt = onlyRareWild && preEvolutionRoute(data, acq, mon, version);
   if (alt) html += '<span class="meta">ou </span>' + routeHtml(alt);
