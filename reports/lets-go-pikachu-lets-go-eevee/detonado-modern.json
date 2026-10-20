@@ -19,18 +19,51 @@
   "Volcano Badge←Blaine",
   "Earth Badge←Giovanni"
  ],
- "unresolved": [
-  "Pikachu/Eevee",
-  "Pikachu/Eevee",
-  "Pikachu/Eevee",
-  "Pikachu/Eevee",
-  "Raichu/Jolteon",
-  "Raichu/Jolteon",
-  "Raichu/Jolteon",
-  "Raichu/Jolteon"
- ],
+ "unresolved": [],
  "fuzzy": [],
  "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Seu rival",
+   "rule": null,
+   "variants": 2
+  }
+ ],
  "withStage": 516,
  "total": 1070,
  "placesWithoutStage": [

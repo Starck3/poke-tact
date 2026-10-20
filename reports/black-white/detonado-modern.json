@@ -12,11 +12,16 @@
  "badges": [
   "null←Brycen"
  ],
- "unresolved": [
-  "Reshiram/Zekrom"
- ],
+ "unresolved": [],
  "fuzzy": [],
  "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "N",
+   "rule": null,
+   "variants": 2
+  }
+ ],
  "withStage": 808,
  "total": 1122,
  "placesWithoutStage": [

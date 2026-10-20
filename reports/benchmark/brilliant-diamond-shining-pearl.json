@@ -3,16 +3,16 @@
  "summary": {
   "fights": 276,
   "depois": {
-   "mons": 1284,
-   "covered": 1284,
-   "wins": 3852,
-   "picks": 3852,
-   "comfy": 3810,
-   "turnsSum": 4523,
-   "turnsN": 3852
+   "mons": 1290,
+   "covered": 1290,
+   "wins": 3870,
+   "picks": 3870,
+   "comfy": 3828,
+   "turnsSum": 4547,
+   "turnsN": 3870
   },
   "antes": {
-   "mons": 1284,
+   "mons": 1290,
    "covered": 0,
    "wins": 0,
    "picks": 0,
@@ -531,7 +531,7 @@
    "group": "Rival",
    "stage": 0,
    "starter": "turtwig",
-   "level": 7,
+   "level": 9,
    "mons": [
     {
      "opp": "starly",
@@ -541,8 +541,8 @@
       "growl",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 6,
-     "winnersAvailable": 27,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 28,
      "candidates": 31,
      "picks": [
       {
@@ -552,10 +552,62 @@
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
+       "myTurns": 1,
+       "theirTurns": 15,
        "faster": 1,
        "theirMove": "tackle"
+      },
+      {
+       "mon": "gyarados",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "chimchar",
+     "level": 9,
+     "moves": [
+      "scratch",
+      "leer",
+      "ember",
+      "taunt"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 25,
+     "candidates": 32,
+     "picks": [
+      {
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "ember"
       },
       {
        "mon": "armaldo",
@@ -565,12 +617,12 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
+       "theirTurns": 6,
        "faster": 0,
-       "theirMove": "tackle"
+       "theirMove": "ember"
       },
       {
-       "mon": "omastar",
+       "mon": "omanyte",
        "move": "rollout",
        "eff": 2,
        "via": "level-up",
@@ -579,7 +631,7 @@
        "myTurns": 2,
        "theirTurns": 15,
        "faster": 0,
-       "theirMove": "tackle"
+       "theirMove": "scratch"
       }
      ],
      "before": []
@@ -588,12 +640,12 @@
   },
   {
    "version": "brilliant-diamond",
-   "key": "DETONADO_0_0",
+   "key": "DETONADO_0_0_1",
    "label": "Barry",
    "group": "Rival",
    "stage": 0,
    "starter": "chimchar",
-   "level": 7,
+   "level": 9,
    "mons": [
     {
      "opp": "starly",
@@ -603,8 +655,8 @@
       "growl",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 6,
-     "winnersAvailable": 27,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 28,
      "candidates": 31,
      "picks": [
       {
@@ -614,34 +666,85 @@
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
+       "myTurns": 1,
+       "theirTurns": 15,
        "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "armaldo",
-       "move": "smack-down",
+       "mon": "gyarados",
+       "move": "ice-fang",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 0,
+       "theirTurns": 7,
+       "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "omastar",
-       "move": "rollout",
+       "mon": "aerodactyl",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 15,
-       "faster": 0,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
        "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "piplup",
+     "level": 9,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 4,
+     "winnersAvailable": 20,
+     "candidates": 32,
+     "picks": [
+      {
+       "mon": "whiscash",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "crobat",
+       "move": "cross-poison",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "gyarados",
+       "move": "bite",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "pound"
       }
      ],
      "before": []
@@ -650,12 +753,12 @@
   },
   {
    "version": "brilliant-diamond",
-   "key": "DETONADO_0_0",
+   "key": "DETONADO_0_0_2",
    "label": "Barry",
    "group": "Rival",
    "stage": 0,
    "starter": "piplup",
-   "level": 7,
+   "level": 9,
    "mons": [
     {
      "opp": "starly",
@@ -665,8 +768,8 @@
       "growl",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 6,
-     "winnersAvailable": 27,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 28,
      "candidates": 31,
      "picks": [
       {
@@ -676,34 +779,85 @@
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
+       "myTurns": 1,
+       "theirTurns": 15,
        "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "armaldo",
-       "move": "smack-down",
+       "mon": "gyarados",
+       "move": "ice-fang",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 0,
+       "theirTurns": 7,
+       "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "omastar",
-       "move": "rollout",
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "turtwig",
+     "level": 9,
+     "moves": [
+      "tackle",
+      "withdraw",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 12,
+     "winnersAvailable": 14,
+     "candidates": 32,
+     "picks": [
+      {
+       "mon": "crobat",
+       "move": "cross-poison",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 15,
-       "faster": 0,
+       "theirTurns": 8,
+       "faster": 1,
        "theirMove": "tackle"
+      },
+      {
+       "mon": "gyarados",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "leafage"
+      },
+      {
+       "mon": "armaldo",
+       "move": "fury-cutter",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "leafage"
       }
      ],
      "before": []
@@ -35430,7 +35584,7 @@
    "group": "Rival",
    "stage": 0,
    "starter": "turtwig",
-   "level": 7,
+   "level": 9,
    "mons": [
     {
      "opp": "starly",
@@ -35440,8 +35594,8 @@
       "growl",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 6,
-     "winnersAvailable": 27,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 28,
      "candidates": 31,
      "picks": [
       {
@@ -35451,10 +35605,62 @@
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
+       "myTurns": 1,
+       "theirTurns": 15,
        "faster": 1,
        "theirMove": "tackle"
+      },
+      {
+       "mon": "gyarados",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "chimchar",
+     "level": 9,
+     "moves": [
+      "scratch",
+      "leer",
+      "ember",
+      "taunt"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 25,
+     "candidates": 32,
+     "picks": [
+      {
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "ember"
       },
       {
        "mon": "armaldo",
@@ -35464,12 +35670,12 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
+       "theirTurns": 6,
        "faster": 0,
-       "theirMove": "tackle"
+       "theirMove": "ember"
       },
       {
-       "mon": "omastar",
+       "mon": "omanyte",
        "move": "rollout",
        "eff": 2,
        "via": "level-up",
@@ -35478,7 +35684,7 @@
        "myTurns": 2,
        "theirTurns": 15,
        "faster": 0,
-       "theirMove": "tackle"
+       "theirMove": "scratch"
       }
      ],
      "before": []
@@ -35487,12 +35693,12 @@
   },
   {
    "version": "shining-pearl",
-   "key": "DETONADO_0_0",
+   "key": "DETONADO_0_0_1",
    "label": "Barry",
    "group": "Rival",
    "stage": 0,
    "starter": "chimchar",
-   "level": 7,
+   "level": 9,
    "mons": [
     {
      "opp": "starly",
@@ -35502,8 +35708,8 @@
       "growl",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 6,
-     "winnersAvailable": 27,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 28,
      "candidates": 31,
      "picks": [
       {
@@ -35513,34 +35719,85 @@
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
+       "myTurns": 1,
+       "theirTurns": 15,
        "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "armaldo",
-       "move": "smack-down",
+       "mon": "gyarados",
+       "move": "ice-fang",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 0,
+       "theirTurns": 7,
+       "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "omastar",
-       "move": "rollout",
+       "mon": "aerodactyl",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 15,
-       "faster": 0,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
        "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "piplup",
+     "level": 9,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 4,
+     "winnersAvailable": 20,
+     "candidates": 32,
+     "picks": [
+      {
+       "mon": "whiscash",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "crobat",
+       "move": "cross-poison",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "gyarados",
+       "move": "bite",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "pound"
       }
      ],
      "before": []
@@ -35549,12 +35806,12 @@
   },
   {
    "version": "shining-pearl",
-   "key": "DETONADO_0_0",
+   "key": "DETONADO_0_0_2",
    "label": "Barry",
    "group": "Rival",
    "stage": 0,
    "starter": "piplup",
-   "level": 7,
+   "level": 9,
    "mons": [
     {
      "opp": "starly",
@@ -35564,8 +35821,8 @@
       "growl",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 6,
-     "winnersAvailable": 27,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 28,
      "candidates": 31,
      "picks": [
       {
@@ -35575,34 +35832,85 @@
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
+       "myTurns": 1,
+       "theirTurns": 15,
        "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "armaldo",
-       "move": "smack-down",
+       "mon": "gyarados",
+       "move": "ice-fang",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 0,
+       "theirTurns": 7,
+       "faster": 1,
        "theirMove": "tackle"
       },
       {
-       "mon": "omastar",
-       "move": "rollout",
+       "mon": "aerodactyl",
+       "move": "ancient-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "turtwig",
+     "level": 9,
+     "moves": [
+      "tackle",
+      "withdraw",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 12,
+     "winnersAvailable": 14,
+     "candidates": 32,
+     "picks": [
+      {
+       "mon": "crobat",
+       "move": "cross-poison",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 15,
-       "faster": 0,
+       "theirTurns": 8,
+       "faster": 1,
        "theirMove": "tackle"
+      },
+      {
+       "mon": "gyarados",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "leafage"
+      },
+      {
+       "mon": "armaldo",
+       "move": "fury-cutter",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "leafage"
       }
      ],
      "before": []

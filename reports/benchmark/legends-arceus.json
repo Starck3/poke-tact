@@ -3,16 +3,16 @@
  "summary": {
   "fights": 27,
   "depois": {
-   "mons": 78,
-   "covered": 78,
-   "wins": 234,
-   "picks": 234,
-   "comfy": 216,
-   "turnsSum": 330,
-   "turnsN": 234
+   "mons": 84,
+   "covered": 84,
+   "wins": 252,
+   "picks": 252,
+   "comfy": 227,
+   "turnsSum": 351,
+   "turnsN": 252
   },
   "antes": {
-   "mons": 78,
+   "mons": 84,
    "covered": 0,
    "wins": 0,
    "picks": 0,
@@ -2871,6 +2871,58 @@
      "before": []
     },
     {
+     "opp": "empoleon",
+     "level": 63,
+     "moves": [
+      "liquidation",
+      "double-edge",
+      "hydro-pump",
+      "wave-crash"
+     ],
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 14,
+     "candidates": 89,
+     "picks": [
+      {
+       "mon": "heracross",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "wave-crash"
+      },
+      {
+       "mon": "machoke",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 0,
+       "theirMove": "hydro-pump"
+      },
+      {
+       "mon": "snorlax",
+       "move": "high-horsepower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "wave-crash"
+      }
+     ],
+     "before": []
+    },
+    {
      "opp": "pikachu",
      "level": 63,
      "moves": [
@@ -2926,7 +2978,7 @@
   },
   {
    "version": "legends-arceus",
-   "key": "DETONADO_35_0",
+   "key": "DETONADO_35_0_1",
    "label": "Rei/Akari",
    "group": "Rival",
    "stage": 0,
@@ -3090,6 +3142,58 @@
      "before": []
     },
     {
+     "opp": "torterra",
+     "level": 63,
+     "moves": [
+      "leaf-blade",
+      "double-edge",
+      "wood-hammer",
+      "headlong-rush"
+     ],
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 16,
+     "candidates": 89,
+     "picks": [
+      {
+       "mon": "staraptor",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "scyther",
+       "move": "x-scissor",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "heracross",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "double-edge"
+      }
+     ],
+     "before": []
+    },
+    {
      "opp": "pikachu",
      "level": 63,
      "moves": [
@@ -3145,7 +3249,7 @@
   },
   {
    "version": "legends-arceus",
-   "key": "DETONADO_35_0",
+   "key": "DETONADO_35_0_2",
    "label": "Rei/Akari",
    "group": "Rival",
    "stage": 0,
@@ -3304,6 +3408,58 @@
        "theirTurns": 4,
        "faster": 0,
        "theirMove": "double-edge"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "infernape",
+     "level": 63,
+     "moves": [
+      "double-edge",
+      "raging-fury",
+      "flare-blitz",
+      "close-combat"
+     ],
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 7,
+     "candidates": 88,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "staraptor",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 0,
+       "theirMove": "raging-fury"
+      },
+      {
+       "mon": "alakazam",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 1,
+       "faster": 1,
+       "theirMove": "raging-fury"
       }
      ],
      "before": []
@@ -3923,12 +4079,64 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "prinplup",
+     "level": 62,
+     "moves": [
+      "water-pulse",
+      "roost",
+      "liquidation",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 45,
+     "winnersAvailable": 132,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "tangrowth",
+       "move": "energy-ball",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0.5,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "torterra",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "magnezone",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "legends-arceus",
-   "key": "DETONADO_34_0",
+   "key": "DETONADO_34_0_1",
    "label": "Rei/Akari",
    "group": "Rival",
    "stage": 6,
@@ -4142,12 +4350,64 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "grotle",
+     "level": 62,
+     "moves": [
+      "bulldoze",
+      "sleep-powder",
+      "leaf-blade",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 100,
+     "winnersAvailable": 119,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "togekiss",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "yanmega",
+       "move": "bug-buzz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "braviary",
+       "move": "hurricane",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "double-edge"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "legends-arceus",
-   "key": "DETONADO_34_0",
+   "key": "DETONADO_34_0_2",
    "label": "Rei/Akari",
    "group": "Rival",
    "stage": 6,
@@ -4358,6 +4618,58 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "dazzling-gleam"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "monferno",
+     "level": 62,
+     "moves": [
+      "flame-wheel",
+      "nasty-plot",
+      "flamethrower",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 118,
+     "winnersAvailable": 131,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "rhyperior",
+       "move": "high-horsepower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "flamethrower"
+      },
+      {
+       "mon": "garchomp",
+       "move": "bulldoze",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "golem",
+       "move": "bulldoze",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "flamethrower"
       }
      ],
      "before": []

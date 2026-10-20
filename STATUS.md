@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.16.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.17.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -46,8 +46,8 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
    Silver Cave (Crystal) e Viridian City (Gold/Silver). Plano: aceitar só quando um mapa vizinho (conexão/warp do decomp) já
    está liberado naquele estágio; mexe nos 7 `build-acquisition*` (gen1, gen2, gen3, gen4, dp, hgss, gen5) + testes.
 2. ✅ **Sun/Moon — provação da Mina (Fairium)**: não é pendência — no SM ela entrega o Fairium sem provação (o detonado diz).
-3. **Legends: Z-A — o rival/companheiro (Urbain/Taunie) e as lutas com inicial genérico** ("Chikorita/Tepig/Totodile").
-4. **Rival com "inicial" genérico** ("[chespin][fennekin][froakie] inicial lv.5"): esse Pokémon fica fora do time. Dá para
+3. ✅ (0.17.0) **Legends: Z-A — o rival/companheiro (Urbain/Taunie) e as lutas com inicial genérico** ("Chikorita/Tepig/Totodile").
+4. ✅ (0.17.0) **Rival com "inicial" genérico** ("[chespin][fennekin][froakie] inicial lv.5"): esse Pokémon fica fora do time. Dá para
    montar uma variante por inicial do jogador, mas a regra (o rival pega o forte ou o fraco contra o seu?) muda por jogo e
    precisa vir do texto.
 5. **Locais "Fora do detonado"** (sem posição na história): BDSP 25, Sword/Shield 19, Let's Go 15, Black/White 14, Sun/Moon 9,

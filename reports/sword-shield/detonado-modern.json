@@ -22,15 +22,77 @@
   "Dragon Badge←Raihan"
  ],
  "unresolved": [
-  "Dynamax inicial",
-  "Zacian/Zamazenta",
-  "Zacian/Zamazenta",
-  "Venusaur/Blastoise",
-  "Venusaur/Blastoise",
-  "Zacian/Zamazenta"
+  "Dynamax inicial"
  ],
  "fuzzy": [],
- "skippedPlaceholders": 11,
+ "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": "weak",
+   "by": "Hop irá pegar o inicial de fraqueza ao seu"
+  },
+  {
+   "battle": "Hop",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Hop",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Honey",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Honey",
+   "rule": null,
+   "variants": 2
+  },
+  {
+   "battle": "Hop",
+   "rule": null,
+   "variants": 3
+  }
+ ],
  "withStage": 7100,
  "total": 11748,
  "placesWithoutStage": [

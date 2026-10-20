@@ -153,24 +153,80 @@ const titleCase = (s) => String(s ?? '').toLowerCase().replace(/(^|[\s(/-])(\S)/
 const starters = data.starters?.species ?? [];
 const trainers = [];
 let skippedPlaceholders = 0;
+// ---- Pokémon "inicial" genérico no time ("[chespin][fennekin][froakie] inicial lv.5", "inicial com vantagem ao seu"):
+// a regra vem do TEXTO — no próprio nome ("inicial de vantagem ao seu") ou numa frase anterior com o nome do treinador
+// ("Hop irá pegar o inicial de fraqueza ao seu", "Calem/Serena ficará com inicial com vantagem ao seu"). Com a regra e o
+// triângulo de tipos (Fogo > Planta, Água > Fogo, Planta > Água) sai um time por inicial do jogador (forStarter); sem a
+// regra, uma variante por inicial possível do treinador, rotulada — sem inventar a regra.
+const plainText = html.replace(/<[^>]+>/g, ' ').replace(/&#8211;/g, '–').replace(/\s+/g, ' ');
+const textAt = (at) => html.slice(0, at).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').length; // posição no texto puro
+// regra = em relação ao SEU inicial ("de vantagem ao seu", "com fraqueza ao seu", "que tem desvantagem ao seu"); "golpe de
+// vantagem ao inicial de Hop" fala da SUA vantagem e não conta
+const RULE = (s) => { const m = String(s).match(/(desvantagem|fraqueza|vantagem)\s+(?:ao|contra o|sobre o)\s+seu\b/i); return m ? (/vantagem$/i.test(m[1]) && !/^des/i.test(m[1]) ? 'strong' : 'weak') : null; };
+function ruleFor(b, ph) {
+  const own = RULE(ph.species ?? '');
+  if (own) return { rule: own, by: `"${ph.species}"` };
+  const names = String(b.name).split(/\s*\/\s*|\s+e\s+/).map((n) => n.trim()).filter((n) => n.length >= 3);
+  const before = plainText.slice(0, textAt(b.at));
+  // só o TRECHO da frase com o nome: "Shauna ficará com o de desvantagem, e Calem/Serena com o de vantagem ao seu";
+  // "Hop irá pegar o inicial de fraqueza ao seu, enquanto Leon ficará com o que tem vantagem"
+  const clauses = before.split(/(?<=[.!?])\s+/).filter((s) => /inicial/i.test(s)).flatMap((s) => s.split(/,\s*|;\s*|\s+enquanto\s+|\s+e\s+(?=[A-Z])/));
+  const hit = clauses.filter((c) => names.some((n) => c.includes(n)) && RULE(c)).at(-1);
+  return hit ? { rule: RULE(hit), by: hit.trim().slice(0, 140) } : null;
+}
+const TRI = ['grass', 'fire', 'water'];
+const triIdx = (mon) => TRI.findIndex((t) => mon?.types.includes(t));
+const starterMons = starters.map((n) => data.pokemon.find((p) => p.name === n)).filter(Boolean);
+const optionMon = (o) => (o.dex ? data.pokemon.find((p) => p.id === o.dex) : o.image ? baseByKey.get(key(o.image)) : null) ?? null;
+const placeholderReport = [];
+/** Times concretos de uma luta: [{ party (com os genéricos resolvidos), forStarter?, note? }]. */
+function expandTeam(b, rawParty0) {
+  // "Chikorita/Tepig/Totodile lv.5", "Pikachu/Eevee lv.6", "Reshiram/Zekrom": vira genérico com as opções pelos nomes
+  const rawParty = rawParty0.map((p) => {
+    if (p.placeholder || !/\//.test(p.species ?? '')) return p;
+    const parts = p.species.replace(/\(.*?\)/g, '').split('/').map((x) => x.trim()).filter(Boolean);
+    const ms = parts.map((x) => baseByKey.get(key(x)));
+    return ms.length >= 2 && ms.every(Boolean) ? { ...p, placeholder: true, options: ms.map((m) => ({ dex: m.id })) } : p;
+  });
+  const ph = rawParty.filter((p) => p.placeholder && p.options?.length);
+  const fixed = (pick) => rawParty.flatMap((p) => {
+    if (p.placeholder) { const m = pick(p); return m && p.level ? [[m, p.level]] : []; }
+    if (!p.level) return [];
+    const m = resolve(p);
+    return m ? [[m, p.level]] : [];
+  });
+  if (!ph.length) return [{ party: fixed(() => null) }];
+  const r = ruleFor(b, ph[0]);
+  const opts = (p) => p.options.map(optionMon).filter(Boolean);
+  if (r && starterMons.length === 3 && ph.every((p) => opts(p).length === 3 && opts(p).every((m) => triIdx(m) >= 0))) {
+    placeholderReport.push({ battle: b.name, rule: r.rule, by: r.by });
+    return starterMons.map((s) => {
+      const target = (triIdx(s) + (r.rule === 'strong' ? 1 : 2)) % 3;
+      return { party: fixed((p) => opts(p).find((m) => triIdx(m) === target)), forStarter: [s.name] };
+    });
+  }
+  // sem regra no texto: uma variante por inicial possível (pela posição da opção)
+  const n = Math.max(...ph.map((p) => opts(p).length));
+  placeholderReport.push({ battle: b.name, rule: null, variants: n });
+  return Array.from({ length: n }, (_, k) => ({ party: fixed((p) => opts(p)[k] ?? null), note: `se o inicial dele for ${titleCase((opts(ph[0])[k]?.name ?? '?').replace(/-/g, ' '))}` }));
+}
 for (const [i, b] of battles.entries()) {
   const teams = b.teams?.length ? b.teams : [{ label: b.variant ?? '', party: b.party }];
   for (const [j, t] of teams.entries()) {
-    const party = [];
-    for (const p of t.party) {
-      if (p.placeholder || !p.level) { skippedPlaceholders++; continue; }
-      const mon = resolve(p);
-      if (!mon) continue;
-      party.push({ species: mon.name, level: p.level, item: null, iv: null, moves: likelyMoveset(mon, p.level), defaultMoves: true });
+    for (const [k, x] of expandTeam(b, t.party).entries()) {
+      const party = x.party.map(([mon, level]) => ({ species: mon.name, level, item: null, iv: null, moves: likelyMoveset(mon, level), defaultMoves: true }));
+      if (!party.length) continue;
+      const label = `${t.label ?? ''} ${b.variant ?? ''}`;
+      const forStarter = x.forStarter ?? starters.filter((s) => new RegExp(`\\b${s.split('-')[0]}\\b`, 'i').test(label));
+      const where = titleCase(b.section ?? '');
+      trainers.push({
+        key: `DETONADO_${i}_${j}${k ? `_${k}` : ''}`, name: b.name, label: b.name + (j > 0 && t.label && !forStarter.length ? ` (${t.label})` : '') + (x.note ? ` (${x.note})` : ''), class: b.name,
+        group: promoBattles.has(b) ? 'Partidas de promoção' : firstAt.has(b.name) ? GROUP.leader : b.kind === 'leader' ? GROUP.other : (GROUP[b.kind] ?? GROUP.other),
+        double: false, map: where ? [where] : [], party, ...(forStarter.length && { forStarter }), stage: hasProgress ? stageAt(b.at) : null, source: 'detonado', at: b.at,
+      });
     }
-    if (!party.length) continue;
-    const label = `${t.label ?? ''} ${b.variant ?? ''}`;
-    const forStarter = starters.filter((s) => new RegExp(`\\b${s.split('-')[0]}\\b`, 'i').test(label));
-    const where = titleCase(b.section ?? '');
-    trainers.push({
-      key: `DETONADO_${i}_${j}`, name: b.name, label: b.name + (j > 0 && t.label && !forStarter.length ? ` (${t.label})` : ''), class: b.name, group: promoBattles.has(b) ? 'Partidas de promoção' : firstAt.has(b.name) ? GROUP.leader : b.kind === 'leader' ? GROUP.other : (GROUP[b.kind] ?? GROUP.other),
-      double: false, map: where ? [where] : [], party, ...(forStarter.length && { forStarter }), stage: hasProgress ? stageAt(b.at) : null, source: 'detonado', at: b.at,
-    });
+    // genéricos que ficaram sem resolver (sem opções ou sem nível)
+    skippedPlaceholders += t.party.filter((p) => p.placeholder && !(p.options?.length && p.level)).length;
   }
 }
 
@@ -271,7 +327,7 @@ writeFileSync(new URL(`../public/data/${gameId}-walkthrough.json`, import.meta.u
   leaders: leaderOrder, versions,
 }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
-writeFileSync(new URL(`../reports/${gameId}/detonado-modern.json`, import.meta.url), JSON.stringify({ leaderOrder, badges: badges.map((b) => `${b.badge}←${b.leaderHint ?? '?'}`), unresolved, fuzzy, skippedPlaceholders, withStage, total, placesWithoutStage: [...stageOfPlace].filter(([, r]) => !r).map(([w]) => w) }, null, 1));
+writeFileSync(new URL(`../reports/${gameId}/detonado-modern.json`, import.meta.url), JSON.stringify({ leaderOrder, badges: badges.map((b) => `${b.badge}←${b.leaderHint ?? '?'}`), unresolved, fuzzy, skippedPlaceholders, placeholderReport, withStage, total, placesWithoutStage: [...stageOfPlace].filter(([, r]) => !r).map(([w]) => w) }, null, 1));
 const g = trainers.reduce((a, t) => ((a[t.group] = (a[t.group] ?? 0) + 1), a), {});
 console.log(`[${gameId}] detonado: ${sections.length} seções, ${battles.length} lutas → ${trainers.length} treinadores ${JSON.stringify(g)}; líderes: ${leaderOrder.join(' > ') || '—'}${champ && hasProgress ? `; campeão ${champ.name}` : ''}`);
 console.log(`  espécies não reconhecidas ${unresolved.length}${unresolved.length ? ` (${[...new Set(unresolved)].slice(0, 12).join(', ')})` : ''}; por aproximação ${fuzzy.length}${fuzzy.length ? ` (${[...new Set(fuzzy)].slice(0, 8).join('; ')})` : ''}; inicial genérico pulado ${skippedPlaceholders}`);

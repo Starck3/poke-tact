@@ -1,18 +1,18 @@
 {
  "game": "lets-go-pikachu-lets-go-eevee",
  "summary": {
-  "fights": 84,
+  "fights": 102,
   "depois": {
-   "mons": 324,
-   "covered": 324,
-   "wins": 972,
-   "picks": 972,
-   "comfy": 887,
-   "turnsSum": 1443,
-   "turnsN": 972
+   "mons": 396,
+   "covered": 396,
+   "wins": 1188,
+   "picks": 1188,
+   "comfy": 1094,
+   "turnsSum": 1737,
+   "turnsN": 1188
   },
   "antes": {
-   "mons": 324,
+   "mons": 396,
    "covered": 0,
    "wins": 0,
    "picks": 0,
@@ -140,36 +140,89 @@
   },
   {
    "version": "lets-go-pikachu",
-   "key": "DETONADO_1_0",
-   "label": "Seu rival",
+   "key": "DETONADO_0_0",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
    "group": "Rival",
    "stage": 0,
    "starter": null,
-   "level": 3,
+   "level": 6,
    "mons": [
     {
-     "opp": "pidgey",
-     "level": 3,
+     "opp": "pikachu",
+     "level": 6,
      "moves": [
-      "tackle",
-      "sand-attack"
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
      ],
-     "superEffectiveAvailable": 2,
-     "winnersAvailable": 11,
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 9,
      "candidates": 15,
      "picks": [
       {
-       "mon": "raichu",
-       "move": "thunder-punch",
-       "eff": 2,
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "tackle"
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "quick-attack"
       },
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "beedrill",
+       "move": "twineedle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_0_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 6,
+   "mons": [
+    {
+     "opp": "eevee",
+     "level": 6,
+     "moves": [
+      "tackle",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 11,
+     "candidates": 16,
+     "picks": [
       {
        "mon": "dragonite",
        "move": "dragon-rage",
@@ -185,7 +238,245 @@
       {
        "mon": "venusaur",
        "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_1_0",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 7,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 3,
+     "moves": [
+      "tackle",
+      "sand-attack"
+     ],
+     "superEffectiveAvailable": 3,
+     "winnersAvailable": 15,
+     "candidates": 15,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
        "eff": 0.5,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunder-shock",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 7,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 9,
+     "candidates": 15,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "beedrill",
+       "move": "twineedle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_1_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 7,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 3,
+     "moves": [
+      "tackle",
+      "sand-attack"
+     ],
+     "superEffectiveAvailable": 3,
+     "winnersAvailable": 15,
+     "candidates": 15,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 0.5,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunder-shock",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "eevee",
+     "level": 7,
+     "moves": [
+      "tackle",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 9,
+     "candidates": 16,
+     "picks": [
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
@@ -432,11 +723,11 @@
   {
    "version": "lets-go-pikachu",
    "key": "DETONADO_4_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
    "group": "Rival",
    "stage": 1,
    "starter": null,
-   "level": 12,
+   "level": 13,
    "mons": [
     {
      "opp": "pidgey",
@@ -448,7 +739,7 @@
       "quick-attack"
      ],
      "superEffectiveAvailable": 5,
-     "winnersAvailable": 28,
+     "winnersAvailable": 34,
      "candidates": 42,
      "picks": [
       {
@@ -459,7 +750,7 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "quick-attack"
       },
@@ -471,18 +762,18 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 9,
+       "theirTurns": 10,
        "faster": 1,
        "theirMove": "gust"
       },
       {
-       "mon": "dragonite",
-       "move": "thunder-punch",
-       "eff": 2,
+       "mon": "blastoise",
+       "move": "flash-cannon",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 9,
        "faster": 1,
        "theirMove": "gust"
@@ -499,10 +790,22 @@
       "acid",
       "poison-powder"
      ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 20,
+     "superEffectiveAvailable": 12,
+     "winnersAvailable": 23,
      "candidates": 42,
      "picks": [
+      {
+       "mon": "beedrill",
+       "move": "twineedle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 12,
+       "faster": 1,
+       "theirMove": "acid"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -511,7 +814,7 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "acid"
       },
@@ -523,10 +826,141 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "acid"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 13,
+     "moves": [
+      "tail-whip",
+      "quick-attack",
+      "double-kick",
+      "double-team"
+     ],
+     "superEffectiveAvailable": 1,
+     "winnersAvailable": 27,
+     "candidates": 42,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "quick-attack"
       },
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "fearow",
+       "move": "drill-run",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "double-kick"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_4_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 1,
+   "starter": null,
+   "level": 13,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 12,
+     "moves": [
+      "sand-attack",
+      "gust",
+      "mirror-move",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 5,
+     "winnersAvailable": 34,
+     "candidates": 42,
+     "picks": [
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "gust"
+      },
+      {
+       "mon": "blastoise",
+       "move": "flash-cannon",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "gust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "oddish",
+     "level": 12,
+     "moves": [
+      "absorb",
+      "growth",
+      "acid",
+      "poison-powder"
+     ],
+     "superEffectiveAvailable": 12,
+     "winnersAvailable": 23,
+     "candidates": 42,
+     "picks": [
       {
        "mon": "beedrill",
        "move": "twineedle",
@@ -534,10 +968,86 @@
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
+       "myTurns": 2,
+       "theirTurns": 12,
        "faster": 1,
        "theirMove": "acid"
+      },
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "acid"
+      },
+      {
+       "mon": "dragonite",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "acid"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "eevee",
+     "level": 13,
+     "moves": [
+      "growl",
+      "tail-whip",
+      "quick-attack",
+      "double-kick"
+     ],
+     "superEffectiveAvailable": 3,
+     "winnersAvailable": 22,
+     "candidates": 43,
+     "picks": [
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "blastoise",
+       "move": "flash-cannon",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "double-kick"
       }
      ],
      "before": []
@@ -829,11 +1339,11 @@
   {
    "version": "lets-go-pikachu",
    "key": "DETONADO_6_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
    "group": "Rival",
    "stage": 2,
    "starter": null,
-   "level": 20,
+   "level": 21,
    "mons": [
     {
      "opp": "pidgeotto",
@@ -845,7 +1355,7 @@
       "roost"
      ],
      "superEffectiveAvailable": 7,
-     "winnersAvailable": 18,
+     "winnersAvailable": 19,
      "candidates": 49,
      "picks": [
       {
@@ -856,7 +1366,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 15,
+       "theirTurns": 16,
        "faster": 0,
        "theirMove": "quick-attack"
       },
@@ -880,7 +1390,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 10,
        "faster": 0,
        "theirMove": "wing-attack"
       }
@@ -897,7 +1407,7 @@
       "razor-leaf"
      ],
      "superEffectiveAvailable": 14,
-     "winnersAvailable": 31,
+     "winnersAvailable": 32,
      "candidates": 49,
      "picks": [
       {
@@ -908,13 +1418,13 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "razor-leaf"
       },
       {
        "mon": "butterfree",
-       "move": "gust",
+       "move": "psybeam",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -932,9 +1442,228 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 3,
-       "theirTurns": 22,
+       "theirTurns": 23,
        "faster": 0.5,
        "theirMove": "razor-leaf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 21,
+     "moves": [
+      "double-team",
+      "thunder-wave",
+      "light-screen",
+      "thunderbolt"
+     ],
+     "superEffectiveAvailable": 4,
+     "winnersAvailable": 25,
+     "candidates": 49,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      },
+      {
+       "mon": "geodude",
+       "move": "take-down",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_6_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 2,
+   "starter": null,
+   "level": 21,
+   "mons": [
+    {
+     "opp": "pidgeotto",
+     "level": 20,
+     "moves": [
+      "quick-attack",
+      "mirror-move",
+      "wing-attack",
+      "roost"
+     ],
+     "superEffectiveAvailable": 7,
+     "winnersAvailable": 19,
+     "candidates": 49,
+     "picks": [
+      {
+       "mon": "graveler-alola",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 16,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "oddish",
+     "level": 20,
+     "moves": [
+      "poison-powder",
+      "stun-spore",
+      "sleep-powder",
+      "razor-leaf"
+     ],
+     "superEffectiveAvailable": 14,
+     "winnersAvailable": 32,
+     "candidates": 49,
+     "picks": [
+      {
+       "mon": "growlithe",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "butterfree",
+       "move": "psybeam",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 17,
+       "faster": 1,
+       "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "parasect",
+       "move": "slash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 23,
+       "faster": 0.5,
+       "theirMove": "razor-leaf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "eevee",
+     "level": 21,
+     "moves": [
+      "double-kick",
+      "sand-attack",
+      "bite",
+      "swift"
+     ],
+     "superEffectiveAvailable": 3,
+     "winnersAvailable": 27,
+     "candidates": 50,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "swift"
+      },
+      {
+       "mon": "primeape",
+       "move": "karate-chop",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "swift"
+      },
+      {
+       "mon": "blastoise",
+       "move": "flash-cannon",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "swift"
       }
      ],
      "before": []
@@ -1278,11 +2007,11 @@
   {
    "version": "lets-go-pikachu",
    "key": "DETONADO_9_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Rival",
    "stage": 3,
    "starter": null,
-   "level": 27,
+   "level": 28,
    "mons": [
     {
      "opp": "pidgeotto",
@@ -1294,7 +2023,7 @@
       "whirlwind"
      ],
      "superEffectiveAvailable": 11,
-     "winnersAvailable": 32,
+     "winnersAvailable": 39,
      "candidates": 62,
      "picks": [
       {
@@ -1310,14 +2039,14 @@
        "theirMove": "wing-attack"
       },
       {
-       "mon": "sandslash-alola",
-       "move": "ice-shard",
+       "mon": "sandshrew-alola",
+       "move": "ice-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 13,
+       "myTurns": 1,
+       "theirTurns": 9,
        "faster": 0,
        "theirMove": "wing-attack"
       },
@@ -1328,8 +2057,8 @@
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 17,
+       "myTurns": 1,
+       "theirTurns": 18,
        "faster": 0,
        "theirMove": "wing-attack"
       }
@@ -1345,19 +2074,31 @@
       "razor-leaf",
       "mega-drain"
      ],
-     "superEffectiveAvailable": 15,
-     "winnersAvailable": 28,
+     "superEffectiveAvailable": 14,
+     "winnersAvailable": 31,
      "candidates": 63,
      "picks": [
       {
        "mon": "butterfree",
-       "move": "psybeam",
+       "move": "air-slash",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 12,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "beedrill",
+       "move": "pin-missile",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "mega-drain"
       },
@@ -1372,18 +2113,225 @@
        "theirTurns": 13,
        "faster": 1,
        "theirMove": "mega-drain"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 28,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 12,
+     "winnersAvailable": 34,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "quick-attack"
       },
       {
-       "mon": "parasect",
-       "move": "leech-life",
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "rhyhorn",
+       "move": "drill-run",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 19,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_9_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Rival",
+   "stage": 3,
+   "starter": null,
+   "level": 28,
+   "mons": [
+    {
+     "opp": "pidgeotto",
+     "level": 27,
+     "moves": [
+      "mirror-move",
+      "wing-attack",
+      "roost",
+      "whirlwind"
+     ],
+     "superEffectiveAvailable": 11,
+     "winnersAvailable": 39,
+     "candidates": 62,
+     "picks": [
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "wing-attack"
+      },
+      {
+       "mon": "sandshrew-alola",
+       "move": "ice-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      },
+      {
+       "mon": "geodude-alola",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 18,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "gloom",
+     "level": 27,
+     "moves": [
+      "stun-spore",
+      "sleep-powder",
+      "razor-leaf",
+      "mega-drain"
+     ],
+     "superEffectiveAvailable": 14,
+     "winnersAvailable": 31,
+     "candidates": 63,
+     "picks": [
+      {
+       "mon": "butterfree",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 12,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "beedrill",
+       "move": "pin-missile",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 28,
+     "moves": [
+      "pin-missile",
+      "thunder-wave",
+      "agility",
+      "helping-hand"
+     ],
+     "superEffectiveAvailable": 12,
+     "winnersAvailable": 40,
+     "candidates": 63,
+     "picks": [
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "pin-missile"
+      },
+      {
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "pin-missile"
+      },
+      {
+       "mon": "charmeleon",
+       "move": "dragon-rage",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 12,
+       "theirTurns": 8,
        "faster": 0,
-       "theirMove": "mega-drain"
+       "theirMove": "pin-missile"
       }
      ],
      "before": []
@@ -3605,11 +4553,11 @@
   {
    "version": "lets-go-pikachu",
    "key": "DETONADO_23_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Rival",
    "stage": 8,
    "starter": null,
-   "level": 50,
+   "level": 51,
    "mons": [
     {
      "opp": "pidgeot",
@@ -3621,7 +4569,7 @@
       "air-slash"
      ],
      "superEffectiveAvailable": 26,
-     "winnersAvailable": 43,
+     "winnersAvailable": 45,
      "candidates": 104,
      "picks": [
       {
@@ -3632,7 +4580,7 @@
        "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
+       "theirTurns": 12,
        "faster": 0,
        "theirMove": "air-slash"
       },
@@ -3649,15 +4597,15 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "graveler-alola",
-       "move": "thunder-punch",
+       "mon": "aerodactyl",
+       "move": "rock-slide",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 2,
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "air-slash"
       }
      ],
@@ -3673,7 +4621,7 @@
       "poison-powder"
      ],
      "superEffectiveAvailable": 33,
-     "winnersAvailable": 52,
+     "winnersAvailable": 54,
      "candidates": 105,
      "picks": [
       {
@@ -3689,6 +4637,18 @@
        "theirMove": "absorb"
       },
       {
+       "mon": "jynx",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "absorb"
+      },
+      {
        "mon": "golbat",
        "move": "wing-attack",
        "eff": 2,
@@ -3699,18 +4659,6 @@
        "theirTurns": 9,
        "faster": 1,
        "theirMove": "acid"
-      },
-      {
-       "mon": "muk-alola",
-       "move": "crunch",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 13,
-       "faster": 0.5,
-       "theirMove": "absorb"
       }
      ],
      "before": []
@@ -3724,8 +4672,8 @@
       "thrash",
       "double-edge"
      ],
-     "superEffectiveAvailable": 34,
-     "winnersAvailable": 30,
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 33,
      "candidates": 104,
      "picks": [
       {
@@ -3753,16 +4701,287 @@
        "theirMove": "bonemerang"
       },
       {
-       "mon": "jynx",
-       "move": "blizzard",
+       "mon": "seadra",
+       "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
        "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 51,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 64,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "sandshrew",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0.5,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_23_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Rival",
+   "stage": 8,
+   "starter": null,
+   "level": 51,
+   "mons": [
+    {
+     "opp": "pidgeot",
+     "level": 50,
+     "moves": [
+      "roost",
+      "whirlwind",
+      "agility",
+      "air-slash"
+     ],
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 45,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 12,
+       "faster": 0,
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "aerodactyl",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "air-slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "vileplume",
+     "level": 50,
+     "moves": [
+      "absorb",
+      "growth",
+      "acid",
+      "poison-powder"
+     ],
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 54,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "marowak-alola",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "absorb"
+      },
+      {
+       "mon": "jynx",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "absorb"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "acid"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "marowak",
+     "level": 50,
+     "moves": [
+      "focus-energy",
+      "bonemerang",
+      "thrash",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 33,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "seadra",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 51,
+     "moves": [
+      "thunder-wave",
+      "agility",
+      "helping-hand",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 29,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "sandshrew",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
       }
      ],
      "before": []
@@ -4856,11 +6075,11 @@
   {
    "version": "lets-go-pikachu",
    "key": "DETONADO_28_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Campeão",
    "stage": 8,
    "starter": null,
-   "level": 56,
+   "level": 57,
    "mons": [
     {
      "opp": "pidgeot",
@@ -4872,7 +6091,7 @@
       "razor-wind"
      ],
      "superEffectiveAvailable": 25,
-     "winnersAvailable": 45,
+     "winnersAvailable": 51,
      "candidates": 104,
      "picks": [
       {
@@ -4888,6 +6107,18 @@
        "theirMove": "razor-wind"
       },
       {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      },
+      {
        "mon": "aerodactyl",
        "move": "rock-slide",
        "eff": 2,
@@ -4898,18 +6129,6 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "air-slash"
-      },
-      {
-       "mon": "graveler-alola",
-       "move": "thunder-punch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "razor-wind"
       }
      ],
      "before": []
@@ -4924,7 +6143,7 @@
       "petal-dance"
      ],
      "superEffectiveAvailable": 33,
-     "winnersAvailable": 27,
+     "winnersAvailable": 28,
      "candidates": 105,
      "picks": [
       {
@@ -4976,7 +6195,7 @@
       "double-edge"
      ],
      "superEffectiveAvailable": 33,
-     "winnersAvailable": 34,
+     "winnersAvailable": 36,
      "candidates": 104,
      "picks": [
       {
@@ -5004,14 +6223,14 @@
        "theirMove": "bonemerang"
       },
       {
-       "mon": "jynx",
-       "move": "blizzard",
+       "mon": "seadra",
+       "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
        "theirMove": "bonemerang"
       }
@@ -5028,7 +6247,7 @@
       "take-down"
      ],
      "superEffectiveAvailable": 41,
-     "winnersAvailable": 43,
+     "winnersAvailable": 44,
      "candidates": 105,
      "picks": [
       {
@@ -5080,7 +6299,7 @@
       "psychic"
      ],
      "superEffectiveAvailable": 44,
-     "winnersAvailable": 13,
+     "winnersAvailable": 16,
      "candidates": 104,
      "picks": [
       {
@@ -5118,6 +6337,381 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "psychic"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 57,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 63,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "sandshrew",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0.5,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 15,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_28_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Campeão",
+   "stage": 8,
+   "starter": null,
+   "level": 57,
+   "mons": [
+    {
+     "opp": "pidgeot",
+     "level": 56,
+     "moves": [
+      "whirlwind",
+      "agility",
+      "air-slash",
+      "razor-wind"
+     ],
+     "superEffectiveAvailable": 25,
+     "winnersAvailable": 51,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "aerodactyl",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "air-slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "vileplume",
+     "level": 56,
+     "moves": [
+      "growth",
+      "acid",
+      "poison-powder",
+      "petal-dance"
+     ],
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 28,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
+       "mon": "butterfree",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "acid"
+      },
+      {
+       "mon": "beedrill",
+       "move": "poison-jab",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "marowak",
+     "level": 56,
+     "moves": [
+      "focus-energy",
+      "bonemerang",
+      "thrash",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 36,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "seadra",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "rapidash",
+     "level": 56,
+     "moves": [
+      "fire-spin",
+      "agility",
+      "fire-blast",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 41,
+     "winnersAvailable": 44,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "fire-blast"
+      },
+      {
+       "mon": "gyarados",
+       "move": "waterfall",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "take-down"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "slowbro",
+     "level": 56,
+     "moves": [
+      "disable",
+      "rest",
+      "surf",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 44,
+     "winnersAvailable": 16,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "muk-alola",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "exeggutor-alola",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "psychic"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 57,
+     "moves": [
+      "thunder-wave",
+      "agility",
+      "helping-hand",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 29,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "sandshrew",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
       }
      ],
      "before": []
@@ -6419,11 +8013,11 @@
   {
    "version": "lets-go-pikachu",
    "key": "DETONADO_48_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Rival",
    "stage": 8,
    "starter": null,
-   "level": 66,
+   "level": 67,
    "mons": [
     {
      "opp": "pidgeot",
@@ -6435,7 +8029,7 @@
       "razor-wind"
      ],
      "superEffectiveAvailable": 25,
-     "winnersAvailable": 44,
+     "winnersAvailable": 48,
      "candidates": 104,
      "picks": [
       {
@@ -6487,9 +8081,21 @@
       "petal-dance"
      ],
      "superEffectiveAvailable": 33,
-     "winnersAvailable": 27,
+     "winnersAvailable": 29,
      "candidates": 105,
      "picks": [
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
       {
        "mon": "butterfree",
        "move": "air-slash",
@@ -6513,18 +8119,6 @@
        "theirTurns": 6,
        "faster": 1,
        "theirMove": "acid"
-      },
-      {
-       "mon": "beedrill",
-       "move": "poison-jab",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "petal-dance"
       }
      ],
      "before": []
@@ -6538,7 +8132,7 @@
       "thrash",
       "double-edge"
      ],
-     "superEffectiveAvailable": 33,
+     "superEffectiveAvailable": 34,
      "winnersAvailable": 33,
      "candidates": 104,
      "picks": [
@@ -6591,9 +8185,21 @@
       "flare-blitz"
      ],
      "superEffectiveAvailable": 41,
-     "winnersAvailable": 28,
+     "winnersAvailable": 29,
      "candidates": 105,
      "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "flare-blitz"
+      },
       {
        "mon": "omastar",
        "move": "hydro-pump",
@@ -6605,18 +8211,6 @@
        "theirTurns": 9,
        "faster": 0,
        "theirMove": "fire-blast"
-      },
-      {
-       "mon": "slowbro",
-       "move": "surf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "flare-blitz"
       },
       {
        "mon": "rhydon",
@@ -6643,7 +8237,7 @@
       "amnesia"
      ],
      "superEffectiveAvailable": 43,
-     "winnersAvailable": 13,
+     "winnersAvailable": 14,
      "candidates": 104,
      "picks": [
       {
@@ -6681,6 +8275,381 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "psychic"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 67,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 62,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "sandshrew",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0.5,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-pikachu",
+   "key": "DETONADO_48_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Rival",
+   "stage": 8,
+   "starter": null,
+   "level": 67,
+   "mons": [
+    {
+     "opp": "pidgeot",
+     "level": 66,
+     "moves": [
+      "whirlwind",
+      "agility",
+      "air-slash",
+      "razor-wind"
+     ],
+     "superEffectiveAvailable": 25,
+     "winnersAvailable": 48,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "aerodactyl",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "air-slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "vileplume",
+     "level": 66,
+     "moves": [
+      "growth",
+      "acid",
+      "poison-powder",
+      "petal-dance"
+     ],
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 29,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
+       "mon": "butterfree",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "acid"
+      },
+      {
+       "mon": "venusaur",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "acid"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "marowak",
+     "level": 66,
+     "moves": [
+      "focus-energy",
+      "bonemerang",
+      "thrash",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 34,
+     "winnersAvailable": 33,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "jynx",
+       "move": "blizzard",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "rapidash",
+     "level": 66,
+     "moves": [
+      "agility",
+      "fire-blast",
+      "take-down",
+      "flare-blitz"
+     ],
+     "superEffectiveAvailable": 41,
+     "winnersAvailable": 29,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "flare-blitz"
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "fire-blast"
+      },
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "fire-blast"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "slowbro",
+     "level": 66,
+     "moves": [
+      "rest",
+      "surf",
+      "psychic",
+      "amnesia"
+     ],
+     "superEffectiveAvailable": 43,
+     "winnersAvailable": 14,
+     "candidates": 104,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "muk-alola",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "exeggutor-alola",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "psychic"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 67,
+     "moves": [
+      "thunder-wave",
+      "agility",
+      "helping-hand",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 28,
+     "candidates": 105,
+     "picks": [
+      {
+       "mon": "sandshrew",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
       }
      ],
      "before": []
@@ -9024,12 +10993,138 @@
   },
   {
    "version": "lets-go-eevee",
-   "key": "DETONADO_1_0",
-   "label": "Seu rival",
+   "key": "DETONADO_0_0",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
    "group": "Rival",
    "stage": 0,
    "starter": null,
-   "level": 3,
+   "level": 6,
+   "mons": [
+    {
+     "opp": "pikachu",
+     "level": 6,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 12,
+     "candidates": 19,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "beedrill",
+       "move": "twineedle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_0_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 6,
+   "mons": [
+    {
+     "opp": "eevee",
+     "level": 6,
+     "moves": [
+      "tackle",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 15,
+     "candidates": 19,
+     "picks": [
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_1_0",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 7,
    "mons": [
     {
      "opp": "pidgey",
@@ -9038,19 +11133,31 @@
       "tackle",
       "sand-attack"
      ],
-     "superEffectiveAvailable": 3,
-     "winnersAvailable": 15,
+     "superEffectiveAvailable": 4,
+     "winnersAvailable": 19,
      "candidates": 19,
      "picks": [
       {
-       "mon": "raichu",
-       "move": "thunder-punch",
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 0.5,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunder-shock",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 6,
        "faster": 1,
        "theirMove": "tackle"
       },
@@ -9062,9 +11169,37 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 7,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 13,
+     "candidates": 19,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "quick-attack"
       },
       {
        "mon": "dragonite",
@@ -9074,6 +11209,131 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "flareon",
+       "move": "ember",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_1_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": null,
+   "level": 7,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 3,
+     "moves": [
+      "tackle",
+      "sand-attack"
+     ],
+     "superEffectiveAvailable": 4,
+     "winnersAvailable": 19,
+     "candidates": 19,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 0.5,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pikachu",
+       "move": "thunder-shock",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder-shock",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "eevee",
+     "level": 7,
+     "moves": [
+      "tackle",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 12,
+     "candidates": 19,
+     "picks": [
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "tackle"
@@ -9316,11 +11576,11 @@
   {
    "version": "lets-go-eevee",
    "key": "DETONADO_4_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
    "group": "Rival",
    "stage": 1,
    "starter": null,
-   "level": 12,
+   "level": 13,
    "mons": [
     {
      "opp": "pidgey",
@@ -9332,9 +11592,21 @@
       "quick-attack"
      ],
      "superEffectiveAvailable": 6,
-     "winnersAvailable": 34,
+     "winnersAvailable": 39,
      "candidates": 46,
      "picks": [
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
       {
        "mon": "jolteon",
        "move": "thunder-shock",
@@ -9348,18 +11620,6 @@
        "theirMove": "quick-attack"
       },
       {
-       "mon": "raichu",
-       "move": "thunder-punch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "quick-attack"
-      },
-      {
        "mon": "onix",
        "move": "rock-throw",
        "eff": 2,
@@ -9367,7 +11627,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 9,
+       "theirTurns": 10,
        "faster": 1,
        "theirMove": "gust"
       }
@@ -9383,10 +11643,34 @@
       "acid",
       "poison-powder"
      ],
-     "superEffectiveAvailable": 12,
-     "winnersAvailable": 24,
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 30,
      "candidates": 47,
      "picks": [
+      {
+       "mon": "beedrill",
+       "move": "twineedle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 12,
+       "faster": 1,
+       "theirMove": "acid"
+      },
+      {
+       "mon": "arbok",
+       "move": "crunch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "absorb"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -9395,13 +11679,168 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "acid"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 13,
+     "moves": [
+      "tail-whip",
+      "quick-attack",
+      "double-kick",
+      "double-team"
+     ],
+     "superEffectiveAvailable": 1,
+     "winnersAvailable": 29,
+     "candidates": 46,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "dragonite",
+       "move": "dragon-rage",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "arbok",
+       "move": "crunch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_4_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 1,
+   "starter": null,
+   "level": 13,
+   "mons": [
+    {
+     "opp": "pidgey",
+     "level": 12,
+     "moves": [
+      "sand-attack",
+      "gust",
+      "mirror-move",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 6,
+     "winnersAvailable": 39,
+     "candidates": 46,
+     "picks": [
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder-shock",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "gust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "oddish",
+     "level": 12,
+     "moves": [
+      "absorb",
+      "growth",
+      "acid",
+      "poison-powder"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 30,
+     "candidates": 47,
+     "picks": [
+      {
+       "mon": "beedrill",
+       "move": "twineedle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 12,
        "faster": 1,
        "theirMove": "acid"
       },
       {
-       "mon": "dragonite",
-       "move": "wing-attack",
+       "mon": "arbok",
+       "move": "crunch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "absorb"
+      },
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -9410,18 +11849,58 @@
        "theirTurns": 7,
        "faster": 1,
        "theirMove": "acid"
-      },
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "eevee",
+     "level": 13,
+     "moves": [
+      "growl",
+      "tail-whip",
+      "quick-attack",
+      "double-kick"
+     ],
+     "superEffectiveAvailable": 4,
+     "winnersAvailable": 25,
+     "candidates": 46,
+     "picks": [
       {
-       "mon": "beedrill",
-       "move": "twineedle",
+       "mon": "dragonite",
+       "move": "dragon-rage",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
+       "myTurns": 1,
+       "theirTurns": 8,
        "faster": 1,
-       "theirMove": "acid"
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "vaporeon",
+       "move": "double-kick",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "double-kick"
       }
      ],
      "before": []
@@ -9713,11 +12192,11 @@
   {
    "version": "lets-go-eevee",
    "key": "DETONADO_6_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Pikachu)",
    "group": "Rival",
    "stage": 2,
    "starter": null,
-   "level": 20,
+   "level": 21,
    "mons": [
     {
      "opp": "pidgeotto",
@@ -9729,7 +12208,7 @@
       "roost"
      ],
      "superEffectiveAvailable": 9,
-     "winnersAvailable": 21,
+     "winnersAvailable": 22,
      "candidates": 53,
      "picks": [
       {
@@ -9740,7 +12219,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 15,
+       "theirTurns": 16,
        "faster": 0,
        "theirMove": "quick-attack"
       },
@@ -9764,7 +12243,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 10,
        "faster": 0,
        "theirMove": "wing-attack"
       }
@@ -9781,12 +12260,12 @@
       "razor-leaf"
      ],
      "superEffectiveAvailable": 16,
-     "winnersAvailable": 37,
+     "winnersAvailable": 38,
      "candidates": 54,
      "picks": [
       {
        "mon": "butterfree",
-       "move": "gust",
+       "move": "psybeam",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -9816,9 +12295,228 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 3,
-       "theirTurns": 22,
+       "theirTurns": 23,
        "faster": 0.5,
        "theirMove": "razor-leaf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 21,
+     "moves": [
+      "double-team",
+      "thunder-wave",
+      "light-screen",
+      "thunderbolt"
+     ],
+     "superEffectiveAvailable": 2,
+     "winnersAvailable": 25,
+     "candidates": 53,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      },
+      {
+       "mon": "geodude",
+       "move": "take-down",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      },
+      {
+       "mon": "onix",
+       "move": "dig",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_6_0_1",
+   "label": "Seu rival (se o inicial dele for Eevee)",
+   "group": "Rival",
+   "stage": 2,
+   "starter": null,
+   "level": 21,
+   "mons": [
+    {
+     "opp": "pidgeotto",
+     "level": 20,
+     "moves": [
+      "quick-attack",
+      "mirror-move",
+      "wing-attack",
+      "roost"
+     ],
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 22,
+     "candidates": 53,
+     "picks": [
+      {
+       "mon": "graveler-alola",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 16,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "oddish",
+     "level": 20,
+     "moves": [
+      "poison-powder",
+      "stun-spore",
+      "sleep-powder",
+      "razor-leaf"
+     ],
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 38,
+     "candidates": 54,
+     "picks": [
+      {
+       "mon": "butterfree",
+       "move": "psybeam",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 17,
+       "faster": 1,
+       "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "arcanine",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 14,
+       "faster": 1,
+       "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "parasect",
+       "move": "slash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 23,
+       "faster": 0.5,
+       "theirMove": "razor-leaf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "eevee",
+     "level": 21,
+     "moves": [
+      "double-kick",
+      "sand-attack",
+      "bite",
+      "swift"
+     ],
+     "superEffectiveAvailable": 4,
+     "winnersAvailable": 28,
+     "candidates": 53,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "swift"
+      },
+      {
+       "mon": "vaporeon",
+       "move": "double-kick",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "double-kick"
+      },
+      {
+       "mon": "arcanine",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "swift"
       }
      ],
      "before": []
@@ -10162,11 +12860,11 @@
   {
    "version": "lets-go-eevee",
    "key": "DETONADO_9_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Rival",
    "stage": 3,
    "starter": null,
-   "level": 27,
+   "level": 28,
    "mons": [
     {
      "opp": "pidgeotto",
@@ -10178,7 +12876,7 @@
       "whirlwind"
      ],
      "superEffectiveAvailable": 13,
-     "winnersAvailable": 35,
+     "winnersAvailable": 43,
      "candidates": 66,
      "picks": [
       {
@@ -10200,19 +12898,19 @@
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 17,
+       "myTurns": 1,
+       "theirTurns": 18,
        "faster": 0,
        "theirMove": "wing-attack"
       },
       {
-       "mon": "rhyhorn",
-       "move": "rock-throw",
+       "mon": "graveler",
+       "move": "rock-slide",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
        "win": true,
-       "myTurns": 2,
+       "myTurns": 1,
        "theirTurns": 12,
        "faster": 0,
        "theirMove": "wing-attack"
@@ -10229,19 +12927,31 @@
       "razor-leaf",
       "mega-drain"
      ],
-     "superEffectiveAvailable": 17,
-     "winnersAvailable": 33,
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 37,
      "candidates": 67,
      "picks": [
       {
        "mon": "butterfree",
-       "move": "psybeam",
+       "move": "air-slash",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 12,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "beedrill",
+       "move": "pin-missile",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "mega-drain"
       },
@@ -10256,18 +12966,225 @@
        "theirTurns": 13,
        "faster": 1,
        "theirMove": "mega-drain"
-      },
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 28,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 10,
+     "winnersAvailable": 36,
+     "candidates": 66,
+     "picks": [
       {
-       "mon": "parasect",
-       "move": "leech-life",
-       "eff": 1,
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "rhyhorn",
+       "move": "drill-run",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 19,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_9_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Rival",
+   "stage": 3,
+   "starter": null,
+   "level": 28,
+   "mons": [
+    {
+     "opp": "pidgeotto",
+     "level": 27,
+     "moves": [
+      "mirror-move",
+      "wing-attack",
+      "roost",
+      "whirlwind"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 43,
+     "candidates": 66,
+     "picks": [
+      {
+       "mon": "raichu",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "wing-attack"
+      },
+      {
+       "mon": "geodude-alola",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 18,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      },
+      {
+       "mon": "graveler",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 12,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "gloom",
+     "level": 27,
+     "moves": [
+      "stun-spore",
+      "sleep-powder",
+      "razor-leaf",
+      "mega-drain"
+     ],
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 37,
+     "candidates": 67,
+     "picks": [
+      {
+       "mon": "butterfree",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 12,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "beedrill",
+       "move": "pin-missile",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 28,
+     "moves": [
+      "pin-missile",
+      "thunder-wave",
+      "agility",
+      "helping-hand"
+     ],
+     "superEffectiveAvailable": 10,
+     "winnersAvailable": 42,
+     "candidates": 66,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
        "theirTurns": 12,
        "faster": 0,
-       "theirMove": "mega-drain"
+       "theirMove": "pin-missile"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "pin-missile"
+      },
+      {
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "pin-missile"
       }
      ],
      "before": []
@@ -12489,11 +15406,11 @@
   {
    "version": "lets-go-eevee",
    "key": "DETONADO_23_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Rival",
    "stage": 8,
    "starter": null,
-   "level": 50,
+   "level": 51,
    "mons": [
     {
      "opp": "pidgeot",
@@ -12504,8 +15421,8 @@
       "agility",
       "air-slash"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 46,
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 48,
      "candidates": 108,
      "picks": [
       {
@@ -12516,20 +15433,8 @@
        "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 11,
+       "theirTurns": 12,
        "faster": 0,
-       "theirMove": "air-slash"
-      },
-      {
-       "mon": "electabuzz",
-       "move": "thunderbolt",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 1,
        "theirMove": "air-slash"
       },
       {
@@ -12538,6 +15443,18 @@
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
@@ -12556,8 +15473,8 @@
       "acid",
       "poison-powder"
      ],
-     "superEffectiveAvailable": 36,
-     "winnersAvailable": 54,
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 56,
      "candidates": 109,
      "picks": [
       {
@@ -12585,16 +15502,16 @@
        "theirMove": "absorb"
       },
       {
-       "mon": "golbat",
-       "move": "wing-attack",
+       "mon": "jynx",
+       "move": "psychic",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 6,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 9,
+       "myTurns": 1,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "acid"
+       "theirMove": "absorb"
       }
      ],
      "before": []
@@ -12608,8 +15525,8 @@
       "thrash",
       "double-edge"
      ],
-     "superEffectiveAvailable": 35,
-     "winnersAvailable": 32,
+     "superEffectiveAvailable": 34,
+     "winnersAvailable": 35,
      "candidates": 108,
      "picks": [
       {
@@ -12637,8 +15554,215 @@
        "theirMove": "bonemerang"
       },
       {
-       "mon": "vaporeon",
+       "mon": "seadra",
        "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 51,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 64,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0.5,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_23_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Rival",
+   "stage": 8,
+   "starter": null,
+   "level": 51,
+   "mons": [
+    {
+     "opp": "pidgeot",
+     "level": 50,
+     "moves": [
+      "roost",
+      "whirlwind",
+      "agility",
+      "air-slash"
+     ],
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 48,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 12,
+       "faster": 0,
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "air-slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "vileplume",
+     "level": 50,
+     "moves": [
+      "absorb",
+      "growth",
+      "acid",
+      "poison-powder"
+     ],
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 56,
+     "candidates": 109,
+     "picks": [
+      {
+       "mon": "flareon",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "acid"
+      },
+      {
+       "mon": "marowak-alola",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "absorb"
+      },
+      {
+       "mon": "jynx",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "absorb"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "marowak",
+     "level": 50,
+     "moves": [
+      "focus-energy",
+      "bonemerang",
+      "thrash",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 34,
+     "winnersAvailable": 35,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -12647,6 +15771,70 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "bonemerang"
+      },
+      {
+       "mon": "seadra",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 51,
+     "moves": [
+      "thunder-wave",
+      "agility",
+      "helping-hand",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 29,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
       }
      ],
      "before": []
@@ -13740,11 +16928,11 @@
   {
    "version": "lets-go-eevee",
    "key": "DETONADO_28_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Campeão",
    "stage": 8,
    "starter": null,
-   "level": 56,
+   "level": 57,
    "mons": [
     {
      "opp": "pidgeot",
@@ -13755,8 +16943,8 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 48,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 55,
      "candidates": 108,
      "picks": [
       {
@@ -13772,6 +16960,18 @@
        "theirMove": "razor-wind"
       },
       {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      },
+      {
        "mon": "jolteon",
        "move": "thunder",
        "eff": 2,
@@ -13782,18 +16982,6 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "razor-wind"
-      },
-      {
-       "mon": "aerodactyl",
-       "move": "rock-slide",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "air-slash"
       }
      ],
      "before": []
@@ -13807,8 +16995,8 @@
       "poison-powder",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 35,
-     "winnersAvailable": 27,
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 29,
      "candidates": 109,
      "picks": [
       {
@@ -13860,7 +17048,7 @@
       "double-edge"
      ],
      "superEffectiveAvailable": 34,
-     "winnersAvailable": 35,
+     "winnersAvailable": 37,
      "candidates": 108,
      "picks": [
       {
@@ -13888,11 +17076,11 @@
        "theirMove": "bonemerang"
       },
       {
-       "mon": "vaporeon",
+       "mon": "seadra",
        "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -13912,7 +17100,7 @@
       "take-down"
      ],
      "superEffectiveAvailable": 40,
-     "winnersAvailable": 43,
+     "winnersAvailable": 44,
      "candidates": 109,
      "picks": [
       {
@@ -13964,7 +17152,7 @@
       "psychic"
      ],
      "superEffectiveAvailable": 47,
-     "winnersAvailable": 13,
+     "winnersAvailable": 16,
      "candidates": 108,
      "picks": [
       {
@@ -14002,6 +17190,381 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "surf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 57,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 63,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0.5,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 15,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_28_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Campeão",
+   "stage": 8,
+   "starter": null,
+   "level": 57,
+   "mons": [
+    {
+     "opp": "pidgeot",
+     "level": 56,
+     "moves": [
+      "whirlwind",
+      "agility",
+      "air-slash",
+      "razor-wind"
+     ],
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 55,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "vileplume",
+     "level": 56,
+     "moves": [
+      "growth",
+      "acid",
+      "poison-powder",
+      "petal-dance"
+     ],
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 29,
+     "candidates": 109,
+     "picks": [
+      {
+       "mon": "flareon",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
+       "mon": "butterfree",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "acid"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "marowak",
+     "level": 56,
+     "moves": [
+      "focus-energy",
+      "bonemerang",
+      "thrash",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 34,
+     "winnersAvailable": 37,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "seadra",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "rapidash",
+     "level": 56,
+     "moves": [
+      "fire-spin",
+      "agility",
+      "fire-blast",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 40,
+     "winnersAvailable": 44,
+     "candidates": 109,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "fire-blast"
+      },
+      {
+       "mon": "gyarados",
+       "move": "waterfall",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "take-down"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "slowbro",
+     "level": 56,
+     "moves": [
+      "disable",
+      "rest",
+      "surf",
+      "psychic"
+     ],
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 16,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "exeggutor-alola",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 57,
+     "moves": [
+      "thunder-wave",
+      "agility",
+      "helping-hand",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 29,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
       }
      ],
      "before": []
@@ -15303,11 +18866,11 @@
   {
    "version": "lets-go-eevee",
    "key": "DETONADO_48_0",
-   "label": "Seu rival",
+   "label": "Seu rival (se o inicial dele for Raichu)",
    "group": "Rival",
    "stage": 8,
    "starter": null,
-   "level": 66,
+   "level": 67,
    "mons": [
     {
      "opp": "pidgeot",
@@ -15318,8 +18881,8 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 26,
-     "winnersAvailable": 47,
+     "superEffectiveAvailable": 27,
+     "winnersAvailable": 52,
      "candidates": 108,
      "picks": [
       {
@@ -15371,7 +18934,7 @@
       "petal-dance"
      ],
      "superEffectiveAvailable": 35,
-     "winnersAvailable": 27,
+     "winnersAvailable": 29,
      "candidates": 109,
      "picks": [
       {
@@ -15387,6 +18950,18 @@
        "theirMove": "petal-dance"
       },
       {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
        "mon": "butterfree",
        "move": "air-slash",
        "eff": 2,
@@ -15395,18 +18970,6 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "acid"
-      },
-      {
-       "mon": "venusaur",
-       "move": "double-edge",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 6,
        "faster": 1,
        "theirMove": "acid"
       }
@@ -15422,7 +18985,7 @@
       "thrash",
       "double-edge"
      ],
-     "superEffectiveAvailable": 34,
+     "superEffectiveAvailable": 35,
      "winnersAvailable": 34,
      "candidates": 108,
      "picks": [
@@ -15475,9 +19038,21 @@
       "flare-blitz"
      ],
      "superEffectiveAvailable": 40,
-     "winnersAvailable": 29,
+     "winnersAvailable": 30,
      "candidates": 109,
      "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "flare-blitz"
+      },
       {
        "mon": "omastar",
        "move": "hydro-pump",
@@ -15489,18 +19064,6 @@
        "theirTurns": 9,
        "faster": 0,
        "theirMove": "fire-blast"
-      },
-      {
-       "mon": "slowbro",
-       "move": "surf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "flare-blitz"
       },
       {
        "mon": "rhydon",
@@ -15527,7 +19090,7 @@
       "amnesia"
      ],
      "superEffectiveAvailable": 46,
-     "winnersAvailable": 13,
+     "winnersAvailable": 14,
      "candidates": 108,
      "picks": [
       {
@@ -15565,6 +19128,381 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "surf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "raichu",
+     "level": 67,
+     "moves": [
+      "thunder-shock",
+      "growl",
+      "tail-whip",
+      "quick-attack"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 62,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0.5,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "lets-go-eevee",
+   "key": "DETONADO_48_0_1",
+   "label": "Seu rival (se o inicial dele for Jolteon)",
+   "group": "Rival",
+   "stage": 8,
+   "starter": null,
+   "level": 67,
+   "mons": [
+    {
+     "opp": "pidgeot",
+     "level": 66,
+     "moves": [
+      "whirlwind",
+      "agility",
+      "air-slash",
+      "razor-wind"
+     ],
+     "superEffectiveAvailable": 27,
+     "winnersAvailable": 52,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "jolteon",
+       "move": "thunder",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "razor-wind"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "vileplume",
+     "level": 66,
+     "moves": [
+      "growth",
+      "acid",
+      "poison-powder",
+      "petal-dance"
+     ],
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 29,
+     "candidates": 109,
+     "picks": [
+      {
+       "mon": "flareon",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
+       "mon": "butterfree",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "acid"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "marowak",
+     "level": 66,
+     "moves": [
+      "focus-energy",
+      "bonemerang",
+      "thrash",
+      "double-edge"
+     ],
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 34,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      },
+      {
+       "mon": "vaporeon",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "bonemerang"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "rapidash",
+     "level": 66,
+     "moves": [
+      "agility",
+      "fire-blast",
+      "take-down",
+      "flare-blitz"
+     ],
+     "superEffectiveAvailable": 40,
+     "winnersAvailable": 30,
+     "candidates": 109,
+     "picks": [
+      {
+       "mon": "slowbro",
+       "move": "surf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "flare-blitz"
+      },
+      {
+       "mon": "omastar",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "fire-blast"
+      },
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "fire-blast"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "slowbro",
+     "level": 66,
+     "moves": [
+      "rest",
+      "surf",
+      "psychic",
+      "amnesia"
+     ],
+     "superEffectiveAvailable": 46,
+     "winnersAvailable": 14,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "exeggutor-alola",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "electabuzz",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "jolteon",
+     "level": 67,
+     "moves": [
+      "thunder-wave",
+      "agility",
+      "helping-hand",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 28,
+     "candidates": 108,
+     "picks": [
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "geodude",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "thunder"
       }
      ],
      "before": []

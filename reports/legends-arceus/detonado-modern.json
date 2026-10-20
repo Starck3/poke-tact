@@ -9,7 +9,19 @@
  "badges": [],
  "unresolved": [],
  "fuzzy": [],
- "skippedPlaceholders": 2,
+ "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Rei/Akari",
+   "rule": "weak",
+   "by": "\"inicial de Sinnoh com desvantagem ao seu\""
+  },
+  {
+   "battle": "Rei/Akari",
+   "rule": "weak",
+   "by": "\"inicial com desvantagem ao seu\""
+  }
+ ],
  "withStage": 1974,
  "total": 1975,
  "placesWithoutStage": [

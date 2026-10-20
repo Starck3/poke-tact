@@ -21,7 +21,29 @@
  ],
  "unresolved": [],
  "fuzzy": [],
- "skippedPlaceholders": 4,
+ "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Shauna",
+   "rule": "weak",
+   "by": "Shauna irá escolher o inicial que tem desvantagem ao seu"
+  },
+  {
+   "battle": "Calem/Serena",
+   "rule": "strong",
+   "by": "enquanto Calem/Serena ficará com inicial com vantagem ao seu."
+  },
+  {
+   "battle": "Calem/Serena",
+   "rule": "strong",
+   "by": "enquanto Calem/Serena ficará com inicial com vantagem ao seu."
+  },
+  {
+   "battle": "Calem/Serena",
+   "rule": "strong",
+   "by": "enquanto Calem/Serena ficará com inicial com vantagem ao seu."
+  }
+ ],
  "withStage": 920,
  "total": 938,
  "placesWithoutStage": [

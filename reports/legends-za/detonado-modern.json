@@ -12,11 +12,16 @@
   "Grisham"
  ],
  "badges": [],
- "unresolved": [
-  "Chikorita/Tepig/Totodile"
- ],
+ "unresolved": [],
  "fuzzy": [],
  "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Urbain/Taunie",
+   "rule": null,
+   "variants": 3
+  }
+ ],
  "withStage": 1810,
  "total": 1818,
  "placesWithoutStage": [
