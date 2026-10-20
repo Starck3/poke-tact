@@ -96,6 +96,13 @@
   .region-map svg { display:block; width:100%; height:auto; max-height:520px; }
   .rm-town { opacity:.85; }
   .rm-town-label { fill:var(--muted); }
+  /* aba Detonado: fotos de cada lugar e mapa da etapa */
+  .loc-photos { display:flex; gap:4px; margin:6px 0; }
+  .loc-photos a { flex:1; min-width:0; max-width:320px; }
+  .loc-photos img { display:block; width:100%; height:160px; object-fit:cover; border-radius:var(--r1); image-rendering:pixelated; }
+  details.stage-map { margin:6px 0 8px; }
+  details.stage-map > summary { cursor:pointer; }
+  details.stage-map .region-maps { max-width:560px; }
   .rm-bg { fill:var(--surface-2); stroke:var(--line); }
   .rm-dot { fill:var(--muted); opacity:.55; }
   .rm-hit { fill:var(--accent); stroke:var(--surface); stroke-width:.15%; }

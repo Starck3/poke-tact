@@ -25,6 +25,9 @@ const QUALITY = {
 };
 // pkhex = núcleo conferido com as tabelas do jogo extraídas pelo PKHeX (jogos sem decomp) → parcial
 const qualityOf = (g) => (g.validation === 'pokeapi' ? 'pokeapi' : g.partial || g.validation === 'pkhex' || (g.validation === 'decomp-core' && !g.hasWalkthrough) ? 'partial' : 'ok');
+// tags do que o jogo tem no app (ao lado do selo de verificação): detonado e onde capturar (com fotos/mapa no tooltip)
+const featureTags = (g) => (g.hasWalkthrough ? lozenge('info', '📖 detonado no app', 'Aba Detonado: a história em ordem, com os Pokémon, presentes e treinadores de cada lugar.') : '') +
+  (g.capture ? lozenge('info', '📍 capturas disponíveis', 'Aba Onde capturar: todos os locais de cada Pokémon' + [g.capture.places && ` · fotos de ${g.capture.places} lugares (detonado)`, g.capture.regionMap && ' · mapa da região'].filter(Boolean).join('') + '.') : '');
 const qualityBadge = (g) => { const [k, t, tip] = QUALITY[qualityOf(g)]; return lozenge(k, t, tip); };
 // contexto da partida (versão, progresso, nível) guardado por jogo no navegador — a URL tem prioridade
 // o inicial fica de fora: o jogo sempre abre em "não informar" (só a URL ?inicial= escolhe um)
@@ -64,7 +67,7 @@ async function load(gameId) {
   $('results').innerHTML = skeleton();
   $('oppInfo').innerHTML = '';
   $('gameTitle').textContent = 'Pokémon ' + g.label;
-  $('qualityBadge').innerHTML = qualityBadge(g);
+  $('qualityBadge').innerHTML = qualityBadge(g) + featureTags(g);
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
   $('mechNote').hidden = !g.mechanics?.length;
   $('mechNote').textContent = g.mechanics?.length ? `⚠ Fora do cálculo neste jogo: ${g.mechanics.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades.` : '';
@@ -229,15 +232,25 @@ function renderDex() {
 
 // fotos dos lugares: capturas do trecho do detonado do PokeMythology que fala de cada lugar (até 4 lugares, 2 fotos cada)
 // mapa esquemático da região (desenho nosso com as posições do decomp): todos os lugares em cinza, os de captura destacados
-async function renderRegionMap(wheres) {
-  const game = currentGame;
-  if (regionMap === null) { try { regionMap = await (await fetch(`data/${game}-regionmap.json`)).json(); } catch { regionMap = { regions: [], placeOf: {} }; } }
-  const box = $('dexMap');
-  if (!box || game !== currentGame) return;
+// arquivos de imagens do jogo aberto (baixados na 1ª vez que uma aba precisa deles)
+async function loadRegionMap() {
+  if (regionMap === null) { try { regionMap = await (await fetch(`data/${currentGame}-regionmap.json`)).json(); } catch { regionMap = { regions: [], placeOf: {} }; } }
+  return regionMap;
+}
+async function loadPlaces() {
+  if (places === null) { try { places = await (await fetch(`data/${currentGame}-places.json`)).json(); } catch { places = { places: {} }; } }
+  return places;
+}
+const placeOfWhere = (w) => places?.places?.[w] ?? places?.places?.[w.replace(/\s*\(.*?\)\s*/g, ' ').trim()];
+const mapSourceNote = () => 'Desenho com as posições do mapa da região tiradas do código do jogo (' + regionMap.source.replace(/\s*\(.*\)$/, '') + '). Passe o mouse nos pontos para ver os nomes.';
+
+/** SVG(s) do mapa da região com os lugares `wheres` destacados; '' se nenhum lugar está no mapa. */
+function regionSvg(wheres, caption = 'mapa esquemático') {
+  if (!regionMap?.regions?.length) return '';
   const hits = new Map(); // região → Set de índices de ponto
   for (const w of wheres) { const at = regionMap.placeOf?.[w]; if (at) (hits.get(at[0]) ?? hits.set(at[0], new Set()).get(at[0])).add(at[1]); }
-  if (!hits.size) { box.innerHTML = ''; return; }
-  const svgs = [...hits].map(([ri, set]) => {
+  if (!hits.size) return '';
+  return [...hits].map(([ri, set]) => {
     const r = regionMap.regions[ri];
     const pad = Math.max(r.w, r.h) * 0.06, u = Math.max(r.w, r.h) / 60; // unidade de desenho proporcional à grade do jogo
     // cidades com o nome em letra pequena (referência para se localizar); o resto só o ponto
@@ -245,9 +258,17 @@ async function renderRegionMap(wheres) {
     const side = (p, d) => (p.x > r.w * 0.62 ? `x="${p.x - d}" text-anchor="end"` : `x="${p.x + d}"`);
     const dots = r.points.map((p, i) => set.has(i) ? '' : `<circle cx="${p.x}" cy="${p.y}" r="${u * (town(p) ? 1.3 : 0.8)}" class="rm-dot${town(p) ? ' rm-town' : ''}"><title>${p.name}</title></circle>` + (town(p) ? `<text ${side(p, u * 1.8)} y="${p.y + u * 0.8}" font-size="${u * 2}" class="rm-town-label">${p.name.replace(/ (City|Town)$/, '')}</text>` : '')).join('');
     const hot = [...set].map((i) => { const p = r.points[i]; return `<circle cx="${p.x}" cy="${p.y}" r="${u * 2}" class="rm-hit"><title>${p.name}</title></circle><text x="${p.x}" y="${p.y - u * 2.6}" text-anchor="${p.x < r.w * 0.22 ? 'start' : p.x > r.w * 0.78 ? 'end' : 'middle'}" font-size="${u * 2.8}" class="rm-label">${p.name}</text>`; }).join('');
-    return `<figure class="region-map"><svg viewBox="${-pad} ${-pad} ${r.w + pad * 2} ${r.h + pad * 2}" role="img" aria-label="Mapa de ${r.name} com os lugares de captura destacados"><rect x="${-pad}" y="${-pad}" width="${r.w + pad * 2}" height="${r.h + pad * 2}" rx="${u * 2}" class="rm-bg"/>${dots}${hot}</svg><figcaption class="meta">${r.name} — mapa esquemático</figcaption></figure>`;
-  });
-  box.innerHTML = '<div class="walk-h">No mapa da região</div><div class="region-maps">' + svgs.join('') + '</div><p class="note">Desenho com as posições do mapa da região tiradas do código do jogo (' + regionMap.source.replace(/ (.*)$/, '') + '). Passe o mouse nos pontos para ver os nomes.</p>';
+    return `<figure class="region-map"><svg viewBox="${-pad} ${-pad} ${r.w + pad * 2} ${r.h + pad * 2}" role="img" aria-label="Mapa de ${r.name} com os lugares destacados"><rect x="${-pad}" y="${-pad}" width="${r.w + pad * 2}" height="${r.h + pad * 2}" rx="${u * 2}" class="rm-bg"/>${dots}${hot}</svg><figcaption class="meta">${r.name} — ${caption}</figcaption></figure>`;
+  }).join('');
+}
+
+async function renderRegionMap(wheres) {
+  const game = currentGame;
+  await loadRegionMap();
+  const box = $('dexMap');
+  if (!box || game !== currentGame) return;
+  const svg = regionSvg(wheres);
+  box.innerHTML = svg ? '<div class="walk-h">No mapa da região</div><div class="region-maps">' + svg + '</div><p class="note">' + mapSourceNote() + '</p>' : '';
 }
 
 async function renderPlaces(wheres) {
@@ -272,7 +293,10 @@ async function renderWalk() {
     box.innerHTML = '<div class="card" aria-busy="true"><div class="skel" style="width:40%"></div><div class="skel"></div></div>' + '<div class="skel tall"></div>'.repeat(3);
     try { walk = await (await fetch(`data/${currentGame}-walkthrough.json`)).json(); } catch { box.innerHTML = '<div class="card">Este jogo ainda não tem detonado.</div>'; return; }
   }
+  await Promise.all([loadPlaces(), loadRegionMap()]); // fotos dos lugares e mapa da região (Onde capturar e Detonado)
   const v = walk.versions[$('version').value] ?? Object.values(walk.versions)[0];
+  // mapa da região de cada etapa: os locais dela destacados (onde a história passa nesse trecho); recolhível
+  const stageMap = (s) => { const svg = q ? '' : regionSvg(s.locations.flatMap((l) => [l.name, ...(l.maps ?? [])]), 'locais desta etapa'); return svg ? '<details class="stage-map"><summary class="meta">🗺 Ver no mapa da região</summary><div class="region-maps">' + svg + '</div></details>' : ''; };
   const q = ($('walkSearch')?.value ?? '').trim().toLowerCase();
   const mine = $('starter').value;
   const cur = $('stage').value === '' ? null : Number($('stage').value);
@@ -288,7 +312,10 @@ async function renderWalk() {
     if (l.items.length) parts.push('<div class="walk-h">Itens e TMs</div><ul class="walk-list">' + l.items.map((i) => '<li>' + (i.kind === 'TM/HM' ? 'TM/HM ' + humanize(i.move) : humanize(i.item.toLowerCase().replace(/_/g, '-'))) + ' — ' + ({ gym: 'prêmio do líder', gift: 'presente', mart: 'loja', ground: 'no chão', hidden: 'escondido' }[i.type] ?? i.type) + ' em ' + i.where + (i.x != null ? ' (' + i.x + ',' + i.y + ')' : '') + (i.by && i.type !== 'ground' && i.type !== 'hidden' ? ' — ' + i.by : '') + '</li>').join('') + '</ul>');
     if (l.tutors.length) parts.push('<div class="walk-h">Tutores</div><ul class="walk-list">' + l.tutors.map((t) => '<li>' + humanize(t.move) + ' — ' + t.where + (t.x != null ? ' (' + t.x + ',' + t.y + ')' : '') + (t.detail ? ' — ' + t.detail : '') + '</li>').join('') + '</ul>');
     if (trainers.length) parts.push('<div class="walk-h">Treinadores</div><ul class="walk-list">' + trainers.map((t) => '<li><strong>' + t.label + '</strong>' + (t.double ? ' (dupla)' : '') + ': ' + mons(t.party) + '</li>').join('') + '</ul>');
-    return '<details class="loc"' + (q ? ' open' : '') + '><summary>' + l.name + (l.minLevel ? ' <span class="meta">nv ' + l.minLevel + '+</span>' : '') + '</summary>' + parts.join('') + '</details>';
+    // fotos do lugar (detonado do PokeMythology, por referência) — carregam só quando o local é aberto (loading=lazy)
+    const ph = [l.name, ...(l.maps ?? [])].map(placeOfWhere).find(Boolean); // o local do detonado reúne vários mapas ("Mt Moon 1F"…)
+    const photos = ph ? '<div class="loc-photos">' + ph.images.slice(0, 2).map((src) => '<a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + l.name + '" loading="lazy" referrerpolicy="no-referrer"></a>').join('') + '</div>' : '';
+    return '<details class="loc"' + (q ? ' open' : '') + '><summary>' + l.name + (l.minLevel ? ' <span class="meta">nv ' + l.minLevel + '+</span>' : '') + (ph ? ' <span class="meta" title="tem fotos do lugar">📷</span>' : '') + '</summary>' + photos + parts.join('') + '</details>';
   };
   const match = (l) => !q || l.name.toLowerCase().includes(q) || l.wild.some((w) => w.species.includes(q)) || l.others.some((o) => o.species.includes(q)) || l.trainers.some((t) => t.label.toLowerCase().includes(q));
   const stagesHtml = v.stages.map((s) => {
@@ -297,7 +324,7 @@ async function renderWalk() {
     const L = s.leader;
     const leaderHtml = L && L.party.length ? '<div class="walk-h">' + (walk.leaderTitle ?? 'Próximo líder') + '</div><p><strong>' + humanize(L.name.toLowerCase()) + '</strong> — ' + (L.where ?? '') + '<br>' + L.party.map((p) => humanize(p.species) + ' nv ' + p.level + (p.item ? ' (' + p.item + ')' : '') + ': ' + p.moves.map(humanize).join(', ')).join('<br>') + (L.prize.length ? '<br><span class="meta">Prêmio: TM ' + L.prize.map(humanize).join(', ') + '</span>' : '') + '</p>' : '';
     const open = q || cur === s.stage || (cur == null && s.stage === 0);
-    return '<details class="stage' + (cur === s.stage ? ' current' : '') + '"' + (open ? ' open' : '') + '><summary>' + (walk.noBadges ? 'Ordem da história' : stageLabel(s.stage, lead, walk).replace(/^./, (c) => c.toUpperCase())) + ' <span class="meta">— ' + s.locations.length + ' locais</span></summary>' + leaderHtml + locs.map(locHtml).join('') + '</details>';
+    return '<details class="stage' + (cur === s.stage ? ' current' : '') + '"' + (open ? ' open' : '') + '><summary>' + (walk.noBadges ? 'Ordem da história' : stageLabel(s.stage, lead, walk).replace(/^./, (c) => c.toUpperCase())) + ' <span class="meta">— ' + s.locations.length + ' locais</span></summary>' + leaderHtml + stageMap(s) + locs.map(locHtml).join('') + '</details>';
   }).join('') +
     // Gens 5–9: locais das tabelas do jogo que o detonado não cita — sem posição na história
     ((v.undetermined ?? []).filter(match).length ? '<details class="stage"' + (q ? ' open' : '') + '><summary>Fora do detonado <span class="meta">— ' + v.undetermined.filter(match).length + ' locais sem posição na história</span></summary>' + v.undetermined.filter(match).map(locHtml).join('') + '</details>' : '');
@@ -656,7 +683,7 @@ function renderHome() {
       // um selo de qualidade por cartão (legenda explica uma vez) + "detonado no app" só quando existe de fato
       const body = art + '<strong>' + g.label + '</strong><span class="meta">' + g.platforms.join(' + ') + ' · ' + g.year + '</span>' +
         (g.note ? '<span class="meta">' + g.note + '</span>' : '') +
-        '<span class="row">' + (on ? qualityBadge(g) : lozenge('neutral', 'Em breve')) + (on && g.hasWalkthrough ? lozenge('info', '📖 detonado no app') : '') + '</span>';
+        '<span class="row">' + (on ? qualityBadge(g) : lozenge('neutral', 'Em breve')) + (on ? featureTags(g) : '') + '</span>';
       return on ? '<a class="game" href="#/jogo/' + g.id + '">' + body + '</a>' : '<div class="game off">' + body + '</div>';
     }).join('') + '</div>').join('');
   $('catalogSources').textContent = 'Fontes do catálogo: ' + catalog.sources.join(' · ') + ' · Fotos dos consoles: Evan-Amos (Wikimedia Commons, domínio público)';
