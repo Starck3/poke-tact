@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.11.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.12.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -27,6 +27,7 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 | Scarlet/Violet | 9 | PKHeX | PKHeX | sim | detonado | sim | Terastal |
 | Legends: Z-A | 9 | PKHeX (sem PokéAPI) | PKHeX | sim (rank Z → A) | detonado | sim | tempo real, Mega, valores próprios de golpes |
 
+A tela inicial busca Pokémon (padrão: em que jogos dá para obter) ou líder/jogo (seletor ao lado do campo).
 Todos os jogos têm a aba **Onde capturar** (todos os locais de um Pokémon na versão, com o ponto da história).
 Também feito nos jogos sem decomp (Gens 5–9): formas regionais como Pokémon próprios (Alola, Galar, Hisui, Paldea), evoluções
 do próprio jogo (troca, item, forma, impossíveis no jogo), TMs pelas tabelas do jogo e as espécies de Hisui do Legends: Arceus.
