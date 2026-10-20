@@ -2102,3 +2102,19 @@ test('regressão: remakes sem o lugar no detonado usam o estágio do jogo origin
   assert.equal(st('lets-go-pikachu-lets-go-eevee', 'Route 1'), 0);
   assert.ok(st('brilliant-diamond-shining-pearl', 'Route 230') >= 9);
 });
+
+test('Black 2/White 2: Hidden Grottoes conferidas com a tabela do jogo (PKHeX)', () => {
+  // Etapa 6: as grutas vinham só da PokéAPI. Toda espécie dela existe no PKHeX na mesma versão; o PKHeX tem 15 a mais
+  // (família do Eevee, Glameow, Stunky, Chansey…) sem rota → "Hidden Grotto (rota não registrada)", aleatórias.
+  const r = JSON.parse(readFileSync(new URL('../reports/black-2-white-2/grotto-check.json', import.meta.url), 'utf8'));
+  assert.equal(r.onlyPokeapi.length, 0);
+  assert.ok(r.addedFromPkhex.some((x) => /glameow/.test(x)));
+  const a = load('black-2-white-2-acquisition.json');
+  const g = a.versions['black-2'].glameow.find((s) => s.method === 'Hidden Grotto');
+  assert.ok(g && g.random && g.source === 'pkhex' && /rota não registrada/.test(g.where));
+  assert.ok(!(a.versions['white-2'].beedrill ?? []).some((s) => s.method === 'Hidden Grotto')); // Beedrill de gruta só no B2
+  // só entra quem não tinha outra forma de obter: uma gruta sem rota (= pós-jogo) como fonte direta da Glaceon escondia o
+  // caminho pelo Eevee de Castelia e o banco de lutas perdeu 6 lutas contra o Flygon do rival
+  assert.ok(!(a.versions['black-2'].glaceon ?? []).some((s) => s.source === 'pkhex'));
+  assert.ok(r.confirmedOnly.some((x) => /glaceon/.test(x)));
+});

@@ -1,0 +1,37 @@
+{
+ "onlyPokeapi": [],
+ "addedFromPkhex": [
+  "black-2:togetic",
+  "white-2:togetic",
+  "black-2:glameow",
+  "white-2:glameow",
+  "black-2:stunky",
+  "white-2:stunky"
+ ],
+ "confirmedOnly": [
+  "black-2:magneton",
+  "white-2:magneton",
+  "black-2:chansey",
+  "white-2:chansey",
+  "black-2:eevee",
+  "white-2:eevee",
+  "black-2:vaporeon",
+  "white-2:vaporeon",
+  "black-2:jolteon",
+  "white-2:jolteon",
+  "black-2:flareon",
+  "white-2:flareon",
+  "black-2:dragonair",
+  "white-2:dragonair",
+  "black-2:espeon",
+  "white-2:espeon",
+  "black-2:umbreon",
+  "white-2:umbreon",
+  "black-2:shelgon",
+  "white-2:shelgon",
+  "black-2:leafeon",
+  "white-2:leafeon",
+  "black-2:glaceon",
+  "white-2:glaceon"
+ ]
+}

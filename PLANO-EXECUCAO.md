@@ -43,7 +43,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
 - **Validação**: total de `placesWithoutStage` cai; nenhuma rota do começo vai para depois (conferir 3 jogos à mão).
 - **Se travar**: ⚠ com o que melhorou.
 
-### 6. Black 2/White 2 — Hidden Grottoes conferidas pelo PKHeX — ⬜
+### 6. Black 2/White 2 — Hidden Grottoes conferidas pelo PKHeX — ✅ 0.19.0
 - **Objetivo**: as espécies das grutas (hoje da PokéAPI) conferidas com o PKHeX por versão (Beedrill no B2 / Butterfree no
   W2); a rota continua da PokéAPI (o PKHeX não tem).
 - **Validação**: toda espécie de gruta no app existe no PKHeX na mesma versão; diferenças em `reports/black-2-white-2/`.
@@ -84,3 +84,8 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   detonado do BDSP não numera rotas e não havia outra evidência. **Sem solução**: BW 14, Sword/Shield 19 (subáreas da Wild
   Area nunca nomeadas no texto), Sun/Moon 9, Scarlet/Violet 4, Z-A 7 — sem jogo original nem citação. **Achado novo**:
   Yellow põe a Route 6 no estágio 4 (no jogo abre depois da Misty, 2) — vem do gerador da Gen 1, fica para revisão.
+- **Etapa 6 — ✅ 0.19.0.** 0 espécies de gruta só na PokéAPI; exclusivos por versão conferem. Das 15 a mais do PKHeX, entram
+  só Glameow, Stunky e Togetic (sem outra forma de obter); 24 registros ficam como "confirmados". 1ª tentativa acrescentava
+  todas e o banco de lutas do B2W2 caiu (6 lutas sem vencedor: a gruta sem rota escondeu a Glaceon via Eevee) → revertido
+  para a regra acima; banco igual ao de antes. **Achado novo (motor)**: com fonte direta, `whereToGet`/`reachStage` não
+  comparam com o caminho por evolução — fica como pendência.
