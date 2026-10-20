@@ -2,6 +2,12 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.15.0] — 2026-10-20
+
+### Adicionado
+- **Novidades no app**: botão 🔔 no canto inferior direito com o número de versões que você ainda não viu e um painel com
+  as mudanças de cada versão (vem deste CHANGELOG). Link direto para mostrar a alguém: `#/?novidades`.
+
 ## [0.14.0] — 2026-10-20
 
 ### Adicionado

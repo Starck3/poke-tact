@@ -8,6 +8,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { GAMES } from './games.mjs';
 import { parseDetonadoIndex, matchDetonados } from './lib/pokemythology.mjs';
+import { parseChangelog } from './build-changelog.mjs';
 
 const CACHE = new URL('../.cache/catalog/', import.meta.url);
 await mkdir(CACHE, { recursive: true });
@@ -135,6 +136,9 @@ else {
     // "atual" = todos os jogos do banco
     benchmark: (() => { try { const all = JSON.parse(readFileSync(new URL('../reports/benchmark/_total.json', import.meta.url), 'utf8')); const t = all.atual ?? all.depois; return { games: t.games?.length ?? null, picks: t.picks, winPct: Math.round((100 * t.wins) / t.picks), comfyPct: Math.round((100 * t.comfy) / t.picks) }; } catch { return null; } })(),
   }));
+  // novidades do app (sino no canto da tela): CHANGELOG.md → public/data/changelog.json
+  const versions = parseChangelog(readFileSync(new URL('../CHANGELOG.md', import.meta.url), 'utf8'));
+  await writeFile(new URL('../public/data/changelog.json', import.meta.url), JSON.stringify(versions));
   console.log(`${games.length} jogos`);
   for (const g of games) console.log(`  G${g.generation} ${String(g.year)} ${g.platforms.join('+').padEnd(26)} ${g.label.padEnd(36)} ${g.decomp ?? ''} ${g.status === 'supported' ? '[suportado]' : ''}`);
 }

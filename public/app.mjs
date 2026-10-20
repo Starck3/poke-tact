@@ -739,7 +739,7 @@ function renderHero() {
   $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.stage !== '' && ctx?.stage != null && (ctx.stageText || (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)')), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` : '';
   // números (Vercel): tudo calculado dos dados
   const verified = on.filter((g) => qualityOf(g) === 'ok').length, trainersN = on.reduce((a, g) => a + (g.trainerCount ?? 0), 0), b = catalog.benchmark;
-  $('stats').innerHTML = [[on.length, 'jogos no app'], [verified, 'conferidos no código do jogo'], [trainersN.toLocaleString('pt-BR'), 'treinadores com o time real'], b && [b.winPct + '%', `das sugestões vencem a troca (${b.picks.toLocaleString('pt-BR')} testadas${b.games ? ` em ${b.games} jogos` : ''})`]]
+  $('stats').innerHTML = [[on.length, 'jogos no app'], [verified, 'conferidos no código do jogo'], [trainersN.toLocaleString('pt-BR'), 'treinadores com o time do jogo'], b && [b.winPct + '%', `das sugestões vencem a troca (${b.picks.toLocaleString('pt-BR')} testadas${b.games ? ` em ${b.games} jogos` : ''})`]]
     .filter(Boolean).map(([n, t]) => `<div class="stat card"><b>${n}</b><span class="meta">${t}</span></div>`).join('');
   startTypingPlaceholder();
 }
@@ -869,6 +869,8 @@ async function route() {
     filters.generation = r.params.geracao ? Number(r.params.geracao) : null;
     document.title = 'Poke Tact';
     renderHome();
+    // #/?novidades → abre o painel de novidades (link para compartilhar)
+    if (r.params.novidades != null) openNews(true);
     // #/?capturar=pikachu → busca de Pokémon já respondida (em que jogos dá para obter)
     if (r.params.capturar) loadPokeGames().then(() => { if (!pokedex) return; $('homeSearch').value = humanize(r.params.capturar); renderHomeDex(r.params.capturar); });
     // ao escolher uma geração, leva até os jogos dela
@@ -906,3 +908,39 @@ $('dexQ').addEventListener('input', renderDex);
 $('version').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });
 $('stage').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });
 for (const id of ['version', 'stage', 'starter']) $(id).addEventListener('input', () => { if (!$('walk').hidden) renderWalk(); });
+
+// ---------------------------------------------------------------- novidades (CHANGELOG): sino no canto
+// link direto: #/?novidades (abre o painel ao carregar)
+let openNews = () => {};
+// data/changelog.json (gerado do CHANGELOG.md). "Visto" = a versão mais nova que o visitante já abriu, guardada no navegador
+// (sem ela, só a última versão conta como novidade). Abrir o painel marca tudo como visto.
+{
+  const SEEN = 'poketact:news-seen';
+  let versions = [];
+  const seen = () => { try { return localStorage.getItem(SEEN); } catch { return null; } };
+  const unseen = () => { const i = versions.findIndex((v) => v.version === seen()); return i < 0 ? versions.slice(0, 1) : versions.slice(0, i); };
+  const paintCount = () => { const n = unseen().length; $('newsCount').hidden = !n; $('newsCount').textContent = n; $('newsBtn').title = n ? `${n} novidade${n > 1 ? 's' : ''} no app` : 'Novidades do app'; };
+  const fmtDate = (d) => (d && /^\d{4}-\d{2}-\d{2}$/.test(d) ? d.split('-').reverse().join('/') : d ?? '');
+  const render = () => {
+    const fresh = new Set(unseen().map((v) => v.version));
+    $('newsList').innerHTML = versions.map((v, i) => `<details class="news-ver"${i === 0 || fresh.has(v.version) ? ' open' : ''}><summary>Versão ${v.version} <span class="meta">${fmtDate(v.date)}</span>${fresh.has(v.version) ? ' ' + lozenge('info', 'novo') : ''}</summary>` +
+      v.sections.map((s) => `<h3>${s.title}</h3><ul>${s.items.map((x) => `<li>${x}</li>`).join('')}</ul>`).join('') + '</details>').join('');
+  };
+  const open = (show) => {
+    $('newsPanel').hidden = !show;
+    $('newsBtn').setAttribute('aria-expanded', String(show));
+    if (!show) return;
+    render();
+    try { if (versions[0]) localStorage.setItem(SEEN, versions[0].version); } catch {}
+    paintCount();
+    $('newsClose').focus();
+  };
+  // a rota pede para abrir (#/?novidades) antes de o changelog.json chegar → fica pendente
+  let pending = false;
+  openNews = (show) => (versions.length ? open(show) : (pending = show));
+  fetch('data/changelog.json').then((r) => r.json()).then((d) => { versions = d; paintCount(); if (pending) open(true); }).catch(() => { $('newsBtn').hidden = true; });
+  $('newsBtn').addEventListener('click', () => open($('newsPanel').hidden));
+  $('newsClose').addEventListener('click', () => { open(false); $('newsBtn').focus(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('newsPanel').hidden) { open(false); $('newsBtn').focus(); } });
+  document.addEventListener('mousedown', (e) => { if (!$('newsPanel').hidden && !e.target.closest('#newsPanel, #newsBtn')) open(false); });
+}
