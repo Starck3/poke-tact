@@ -262,6 +262,55 @@ test('regressão: o número da tela inicial (banco de lutas) conta TODOS os jogo
   assert.ok(t.depois.picks < t.atual.picks);
 });
 
+// ---------------------------------------------------------------- Black 2 / White 2 (fuddlesworth/pokebw2)
+test('B2W2: núcleo conferido no decomp (0 divergências); a PokéAPI trocava Ataque e Defesa do Cryogonal', () => {
+  const r = JSON.parse(readFileSync(new URL('../reports/black-2-white-2/gen5-decomp-audit.json', import.meta.url), 'utf8'));
+  for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${k}: ${JSON.stringify(v.slice(0, 3))}`);
+  const d = load('black-2-white-2.json');
+  assert.deepEqual([mon(d, 'cryogonal').stats.attack, mon(d, 'cryogonal').stats.defense], [50, 30]);
+  assert.equal(d.chart.ghost.steel, 0.5); assert.equal(d.chart.dark.steel, 0.5); // Gen 5: Steel ainda resiste a Ghost/Dark
+  assert.ok(d.pokemon.every((p) => p.levelUpInGameOrder));
+  assert.equal(mon(d, 'escavalier').evo.kind, 'TRADE_SPECIES'); // Karrablast ↔ Shelmet
+  assert.ok(mon(d, 'meloetta-aria').learnset.some((l) => l.move === 'relic-song' && l.method === 'tutor')); // tutor de plugin (docs/scripts.md)
+});
+
+test('B2W2: treinadores com lugar e rival pelo inicial (EVENT_WORK_0x4030; VMJumpIf salta quando a comparação é FALSA)', () => {
+  const t = load('black-2-white-2-trainers.json').trainers;
+  assert.ok(t.length >= 570);
+  const leaders = t.filter((x) => x.group === 'Líderes de ginásio' && !x.rematch);
+  assert.equal(new Set(leaders.map((x) => x.name)).size, 8);
+  assert.deepEqual(t.find((x) => x.key === 'TRAINER_LEADER_CHEREN').map, ['Aspertia City Gym']);
+  // com Snivy o rival vem de Tepig; com Tepig, de Oshawott; com Oshawott, de Snivy (lido no script, não suposto)
+  const first = t.filter((x) => /^TRAINER_RIVAL(_[23])?$/.test(x.key));
+  assert.deepEqual(first.map((x) => [x.forStarter[0], x.party.at(-1).species]).sort(), [['oshawott', 'snivy'], ['snivy', 'tepig'], ['tepig', 'oshawott']]);
+  assert.ok(t.filter((x) => x.group === 'Rival').every((x) => x.forStarter?.length === 1));
+  // parceiros de luta em dupla (CallTrainerMultiBattle: o 1º argumento é o aliado) não são oponentes
+  assert.ok(!t.some((x) => /^TRAINER_(BIANCA|CHEREN|NATE|ROSA)$/.test(x.key)));
+});
+
+test('B2W2: onde obter pelo código do jogo — zonas por versão, fósseis, enxames no pós-jogo, Hidden Grotto da PokéAPI', () => {
+  const a = load('black-2-white-2-acquisition.json'), d = load('black-2-white-2.json');
+  const types = (v, sp) => (a.versions[v][sp] ?? []).map((s) => s.type);
+  // VERSION_SPECIFIC_ZONES (zonedata.c, só o White 2 liga): Route 4 do Black 2 = Mandibuzz, do White 2 (Route 4_16) = Braviary
+  assert.ok(types('black-2', 'mandibuzz').includes('static') && !types('white-2', 'mandibuzz').includes('static'));
+  assert.ok(types('white-2', 'braviary').includes('static') && !types('black-2', 'braviary').includes('static'));
+  // Floccesy: GameGetVersion → Gible no Black 2, Dratini no White 2 (presente)
+  assert.ok(types('black-2', 'gible').includes('gift') && !types('white-2', 'gible').includes('gift'));
+  // fósseis revividos no global 10280 (Nacrene) — antes ficavam fora por virem de variável
+  assert.ok(a.versions['black-2'].archen.some((s) => s.type === 'gift' && s.level === 25));
+  // enxames (FLAG_SWARMS = estrela do Hall da Fama) — a PokéAPI não os tem
+  const farf = a.versions['black-2'].farfetchd.find((s) => s.swarm);
+  assert.ok(farf && farf.stage === 9);
+  // trocas com NPC por versão (antes o simulador seguia sempre o mesmo ramo do CallPokeSelect)
+  assert.ok(types('black-2', 'petilil').includes('trade') && types('white-2', 'rotom').includes('trade'));
+  // Hidden Grotto: fora do decomp em texto → PokéAPI, rotulado
+  assert.ok(Object.values(a.versions['black-2']).flat().some((s) => s.method === 'Hidden Grotto' && s.source === 'pokeapi'));
+  assert.equal(a.progress.leaderOrder.join(), 'Cheren,Roxie,Burgh,Elesa,Clay,Skyla,Drayden,Marlon'); // Roxie: "Whrilipede" no detonado
+  assert.deepEqual(d.starters.species, ['snivy', 'tepig', 'oshawott']);
+  const g = load('games.json').games.find((x) => x.id === 'black-2-white-2');
+  assert.ok(g.validation === 'decomp-core' && g.hasWalkthrough && !g.partial);
+});
+
 test('rotas: filtros da tela inicial e estado do jogo ficam na URL (ida e volta)', async () => {
   const { parseRoute, homeHash } = await import('../public/catalog.mjs');
   const h = homeHash({ platform: 'Game Boy Advance', generation: 3 });

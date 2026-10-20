@@ -5,12 +5,13 @@ vencer a luta**, usando só os Pokémon, golpes e regras **daquele jogo** — co
 história.
 
 - 22 jogos da série principal no catálogo, 21 disponíveis (Legends: Z-A ainda não tem dados na PokéAPI).
-- 10 jogos conferidos com o código do jogo (decomps do [pret](https://github.com/pret)), com treinadores, onde obter cada
-  Pokémon, progresso por insígnia e detonado dentro do app: Red/Blue, Yellow, Gold/Silver, Crystal, Ruby/Sapphire, Emerald,
-  FireRed/LeafGreen, Diamond/Pearl, Platinum, HeartGold/SoulSilver. No Diamond/Pearl e no HeartGold/SoulSilver parte dos
+- 11 jogos conferidos com o código do jogo (decomps do [pret](https://github.com/pret) e o
+  [pokebw2](https://github.com/fuddlesworth/pokebw2)), com treinadores, onde obter cada Pokémon, progresso por insígnia e
+  detonado dentro do app: Red/Blue, Yellow, Gold/Silver, Crystal, Ruby/Sapphire, Emerald, FireRed/LeafGreen, Diamond/Pearl,
+  Platinum, HeartGold/SoulSilver, Black 2/White 2. No Diamond/Pearl e no HeartGold/SoulSilver parte dos
   dados está em binário no decomp (scripts em bytecode, eventos, encontros, NARCs) e é lida com as regras tiradas do próprio
   código do jogo.
-- Gens 5–9: dados da PokéAPI com as regras da geração, golpes conferidos com o Pokémon Showdown.
+- Black/White e Gens 6–9: dados da PokéAPI com as regras da geração, golpes conferidos com o Pokémon Showdown.
 - Cálculo de dano da geração (troca de golpes com nível, atributos, golpes reais do oponente e bônus de insígnia).
 
 ## Rodar

@@ -1,0 +1,104 @@
+[
+ {
+  "move": "ally-switch",
+  "field": "priority",
+  "from": 2,
+  "to": 1
+ },
+ {
+  "move": "follow-me",
+  "field": "priority",
+  "from": 2,
+  "to": 3
+ },
+ {
+  "move": "luster-purge",
+  "field": "power",
+  "from": 95,
+  "to": 70
+ },
+ {
+  "move": "magic-room",
+  "field": "priority",
+  "from": 0,
+  "to": -7
+ },
+ {
+  "move": "milk-drink",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "rage-powder",
+  "field": "priority",
+  "from": 2,
+  "to": 3
+ },
+ {
+  "move": "recover",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "rest",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "roost",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "slack-off",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "soft-boiled",
+  "field": "pp",
+  "from": 5,
+  "to": 10
+ },
+ {
+  "move": "teleport",
+  "field": "priority",
+  "from": -6,
+  "to": 0
+ },
+ {
+  "move": "wonder-room",
+  "field": "priority",
+  "from": 0,
+  "to": -7
+ },
+ {
+  "pokemon": "koffing",
+  "field": "abilities",
+  "from": "levitate/stench",
+  "to": "levitate"
+ },
+ {
+  "pokemon": "weezing",
+  "field": "abilities",
+  "from": "levitate/stench",
+  "to": "levitate"
+ },
+ {
+  "pokemon": "cryogonal",
+  "field": "attack",
+  "from": 30,
+  "to": 50
+ },
+ {
+  "pokemon": "cryogonal",
+  "field": "defense",
+  "from": 50,
+  "to": 30
+ }
+]

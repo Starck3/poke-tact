@@ -190,6 +190,42 @@ está em C/asm no decomp — daí saem as regras. `scripts/lib/gen4-dp-script.mj
 - Resultado: 490 treinadores com lugar, 21/21 rivais pelo inicial, TM/HM 100/100, 550/557 mapas com estágio, 112 locais no
   detonado; vs PokéAPI só 12 mudanças de "obtível" (Giratina passa a sim; Regigigas, Darkrai, Shaymin, Arceus e Manaphy a não).
 
+### Gen 5 — Black 2 / White 2 (fuddlesworth/pokebw2, GPL-3.0) — 2026-10-20 🧪
+`scripts/lib/gen5-bw2.mjs`, `apply-gen5-overlay.mjs`, `validate-gen5-vs-decomp.mjs`, `build-trainers-gen5.mjs`,
+`build-acquisition-gen5.mjs`. O pokebw2 reconstrói as ROMs byte a byte e segue o esquema do pokeplatinum: dados em JSON
+(`res/pokemon/<x>/data.json`, `res/moves`, `res/trainers/data`, `res/field/{zones,events,encounters,trades,matrices}`) e scripts
+de campo em TEXTO (`res/field/scripts/*.s`, comandos com os nomes do swan); a documentação dele (`docs/data.md`,
+`docs/scripts.md`) e o C em `src/` dizem como o jogo lê cada coisa. Fixar o commit (repo novo e muito ativo).
+- Núcleo: tipos/stats/habilidades (com a oculta), learnset na ordem do jogo, TM (`TM_MOVE_LIST` em `src/system/pml_item.c`:
+  TM01–92, HM01–06, TM93–95), tutores, evoluções (🧪 Gen 5 tem `EVO_METHOD_TRADE_WITH_SPECIES` → `TRADE_SPECIES` no motor) e a
+  tabela de tipos (`btl_calc.c`, 17×17 em metades). 🧪 Relic Song/Secret Sword são tutores de PLUGIN (bytes no decomp; tabela de
+  plugins em `docs/scripts.md`) → ficam da PokéAPI. 🧪 A PokéAPI troca Ataque/Defesa do Cryogonal. Grafia sem hífen
+  (`COMPOUNDEYES`), como no HGSS.
+- 🧪 **`VMJumpIf CMP_STACK` salta quando a comparação é FALSA** (`s001F_VMJumpIf`: `if (VM_StackPop(vm) != 1) VM_Jump`) — o
+  comentário de `include/constants/field_script.h` diz o contrário; vale o código. O bloco logo depois do teste é o caso "igual"
+  (confirmado pela escolha do inicial: `0x4030 = 0` junto com Snivy).
+- `simulateText()` executa o script por versão (`GameGetVersion` 23 Black 2 / 22 White 2): Floccesy dá Gible no B2 e Dratini no
+  W2. 🧪 Comando não modelado que recebe variável pode ESCREVÊ-LA (`YesNoWin`, `CallPokeSelect`): sem esquecê-la, o simulador
+  seguia sempre o mesmo ramo e perdia as trocas (Petilil, Cottonee, Rotom). 🧪 Orçamento de passos POR entrada (a HM03 da Route 6
+  só aparecia com 10× mais passos quando o orçamento era do arquivo).
+- 🧪 **Zonas de uma versão só**: `VERSION_SPECIFIC_ZONES` em `src/system/zonedata.c` + `#ifdef WHITE2` → 1º do par = Black 2,
+  2º = White 2 (Black City × White Forest, os portões, Route 4 × Route 4_16: Mandibuzz no B2, Braviary no W2).
+- Treinadores: NPC com script 3000+n / 5000+n (`trainer_script.c`), `CallTrainerBattle A, B`, `CallTrainerMultiBattle PARCEIRO,
+  A, B` (o 1º é aliado). Rival: `EVENT_WORK_0x4030` (0/1/2 = Snivy/Tepig/Oshawott, gravado junto com a espécie na escolha).
+  🧪 A cadeia de testes do rival só se lê do começo (um rótulo-alvo de outro teste daria o "senão" errado).
+- Onde obter: encontros por estação e versão; slots e taxas em `src/ov036/enc_pokeset.c` (12 slots grama/escura/balançando;
+  60,30,5,4,1 surf; 40,40,15,4,1 pesca — 1ª linha; as outras só com poderes do Entralink); enxames (`data_ov036_021d01fc`) e
+  🧪 só depois do Hall da Fama (`FLAG_SWARMS` 0x960 = estrela do cartão); Pokémon do N (`N_POKEMON_INFO`); presentes, ovos,
+  estáticos, trocas (`FieldTradeCheck … TRADE_X` → `wanted_species`); item = `WorkSet 0x8000, ITEM` + `RTCallGlobal` de um global
+  que chega a `ItemAdd` (calculado); item no chão 7000+i → `global_7000.s`; escondido 8000+i → `global_8000.s`; 🧪 NPC que chama um
+  script GLOBAL direto (fósseis: global 10280, cada ramo grava a espécie) — o global roda como se fosse do mapa.
+- **Fora do decomp em texto** (ficam no arquivo do jogo): itens das lojas comuns ("shop dat"; 15 TMs sem origem) e os Hidden
+  Grottoes (`SLOT_ARC`) → os grottoes vêm da PokéAPI (cache), com `source: 'pokeapi'`.
+- 🧪 Detonado: lista o time normal e o do Challenge Mode no mesmo bloco → `buildTimeline` aceita bloco com o NOME e o time inteiro
+  contido; grafia "Whrilipede" (Roxie) em `walkthroughTypos`. Surf: o global 10002 testa uma flag, não insígnia → porta = HM03.
+- Resultado: 0 divergências no núcleo; 577 treinadores (18/18 rivais pelo inicial); 8 líderes + Elite 4/4; 584/615 zonas com
+  estágio; 119 locais no detonado; 102 lutas no banco (99% vencem); vs PokéAPI só acréscimos (enxames, Pokémon do N).
+
 ### Gen 4 com decomp em JSON (`scripts/lib/gen4-json.mjs`, `*-gen4.mjs`) — S6 🧪
 - Núcleo: `generated/moves.txt`/`species.txt` (ordem = id); `res/pokemon/<x>/data.json` (learnset `by_level` na ordem do jogo,
   `by_tm` "TM06" → golpe pelo `teachesMove` de `res/items/data/tmNN.json`, `by_tutor`, evoluções); `res/moves/<x>/data.json`

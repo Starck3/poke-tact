@@ -86,7 +86,13 @@ export const GAMES = {
         '/include/', '/src/', '/asm/include/', '/files/arc/headbutt.json', '/files/arc/safari_enc.json', '/files/data/mushi/'] } },
   // ---- Gen 5 a 9 (sem decomp — S7)
   'black-white': { ...pokeapiOnly(5, 649), label: 'Pokémon Black / White (DS)', versionGroup: 'black-white', versions: ['black', 'white'], walkthrough: 'detonado-black-white' },
-  'black-2-white-2': { ...pokeapiOnly(5, 649), label: 'Pokémon Black 2 / White 2 (DS)', versionGroup: 'black-2-white-2', versions: ['black-2', 'white-2'], walkthrough: 'detonado-black-2-white-2' },
+  'black-2-white-2': { ...pokeapiOnly(5, 649), label: 'Pokémon Black 2 / White 2 (DS)', versionGroup: 'black-2-white-2', versions: ['black-2', 'white-2'], walkthrough: 'detonado-black-2-white-2',
+    walkthroughTypos: { Whrilipede: 'Whirlipede' }, // grafia do detonado no time da Roxie (só para casar nomes)
+    // decomp fuddlesworth/pokebw2 (GPL-3.0, reconstrói as ROMs byte a byte): dados em JSON e scripts em texto, no esquema do pokeplatinum
+    asmDecomp: { repo: 'fuddlesworth/pokebw2', commit: '5541f3444a0e53802499b7c22b79bc5ccc70b910', dir: 'pokebw2-src', steps: 5,
+      sparse: ['/res/pokemon/*/data.json', '/res/pokemon/*/form_*.json', '/res/pokemon/forms.json', '/res/moves/*/data.json', '/res/items/*/data.json', '/res/trainers/data/',
+        '/res/trainers/classes/', '/res/field/zones/', '/res/field/events/', '/res/field/encounters/', '/res/field/scripts/', '/res/field/trades/', '/res/field/places/',
+        '/res/field/matrices/', '/res/types/', '/generated/', '/include/', '/src/', '/asm/', '/docs/'] } },
   'x-y': { ...pokeapiOnly(6, 721), label: 'Pokémon X / Y (3DS)', versionGroup: 'x-y', versions: ['x', 'y'], walkthrough: 'detonado-x-y' },
   'omega-ruby-alpha-sapphire': { ...pokeapiOnly(6, 721), label: 'Pokémon Omega Ruby / Alpha Sapphire (3DS)', versionGroup: 'omega-ruby-alpha-sapphire', versions: ['omega-ruby', 'alpha-sapphire'], walkthrough: 'detonado-omegaruby-alphasapphire' },
   'sun-moon': { ...pokeapiOnly(7, 809), label: 'Pokémon Sun / Moon (3DS)', versionGroup: 'sun-moon', versions: ['sun', 'moon'], walkthrough: 'detonado-sun-moon' },

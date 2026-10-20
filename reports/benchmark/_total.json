@@ -18,13 +18,13 @@
   "turnsN": 10818
  },
  "atual": {
-  "wins": 12103,
-  "picks": 12348,
-  "covered": 4081,
-  "mons": 4116,
-  "comfy": 11278,
-  "turnsSum": 19364,
-  "turnsN": 12348,
+  "wins": 13171,
+  "picks": 13428,
+  "covered": 4441,
+  "mons": 4476,
+  "comfy": 12134,
+  "turnsSum": 20927,
+  "turnsN": 13428,
   "games": [
    "red-blue",
    "yellow",
@@ -33,6 +33,7 @@
    "diamond-pearl",
    "platinum",
    "heartgold-soulsilver",
+   "black-2-white-2",
    "firered-leafgreen",
    "ruby-sapphire",
    "emerald"

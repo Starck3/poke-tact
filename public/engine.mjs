@@ -249,6 +249,8 @@ export function describeEvolution(evo) {
   if (evo.kind === 'ITEM') return TITLE(evo.param);
   if (evo.kind === 'TRADE') return 'troca';
   if (evo.kind === 'TRADE_ITEM') return `troca segurando ${TITLE(evo.param)}`;
+  // Gen 5: Karrablast ↔ Shelmet evoluem trocando um pelo outro
+  if (evo.kind === 'TRADE_SPECIES') return `troca por ${TITLE(evo.param)}`;
   if (evo.kind === 'FRIENDSHIP') return 'amizade alta';
   if (evo.kind === 'FRIENDSHIP_DAY') return 'amizade alta (de dia)';
   if (evo.kind === 'FRIENDSHIP_NIGHT') return 'amizade alta (à noite)';
