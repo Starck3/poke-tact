@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel } from './engine.mjs';
+import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -29,7 +29,8 @@ const qualityBadge = (g) => { const [k, t, tip] = QUALITY[qualityOf(g)]; return 
 // contexto da partida (versão, progresso, nível) guardado por jogo no navegador — a URL tem prioridade
 // o inicial fica de fora: o jogo sempre abre em "não informar" (só a URL ?inicial= escolhe um)
 const CTX_FIELDS = ['version', 'stage', 'level'];
-const saveCtx = () => { try { localStorage.setItem(`poketact:${currentGame}`, JSON.stringify(Object.fromEntries(CTX_FIELDS.map((f) => [f, $(f).value])))); } catch {} };
+// stageText: o rótulo do estágio como a tela mostra (insígnias, rank do Z-A, nobres…) — o card "Continuar" da tela inicial usa
+const saveCtx = () => { try { const st = $('stage'); localStorage.setItem(`poketact:${currentGame}`, JSON.stringify({ ...Object.fromEntries(CTX_FIELDS.map((f) => [f, $(f).value])), stageText: st.value === '' ? '' : st.selectedOptions[0]?.textContent ?? '' })); } catch {} };
 const restoreCtx = () => {
   let c = null;
   try { c = JSON.parse(localStorage.getItem(`poketact:${currentGame}`) ?? 'null'); } catch {}
@@ -65,8 +66,7 @@ async function load(gameId) {
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
   $('mechNote').hidden = !g.mechanics?.length;
   $('mechNote').textContent = g.mechanics?.length ? `⚠ Fora do cálculo neste jogo: ${g.mechanics.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades.` : '';
-  $('tabWalk').hidden = !g.hasWalkthrough;
-  document.querySelector('.tabs').hidden = !g.hasWalkthrough; // uma aba só não precisa de barra de abas
+  $('tabWalk').hidden = !g.hasWalkthrough; // a aba Onde capturar existe em todos os jogos
   $('validationNote').hidden = !['pokeapi', 'decomp-core', 'pkhex'].includes(g.validation);
   $('onlyObtainable').disabled = false;
   $('validationNote').textContent = g.validation === 'pokeapi' ? 'Atenção: este jogo usa dados da PokéAPI com as regras da geração, ainda SEM conferência com o código do jogo (decomp). Treinadores, onde obter e progresso ainda não estão disponíveis.'
@@ -169,7 +169,7 @@ function renderWhere(mon, reach, stageNeeded) {
   const version = $('version').value;
   const w = whereToGet(data, acq, mon, version);
   if (!w.direct.length) return '<li class="meta">Onde obter: sem forma direta nesta versão</li>';
-  const when = stageNeeded != null ? ' <span class="meta">(disponível: ' + stageLabel(stageNeeded, acq.progress?.leaderOrder) + ')</span>' : Number.isFinite(reach) && reach > 1 ? ' <span class="meta">(estimado: a partir do nv ' + reach + ')</span>' : '';
+  const when = stageNeeded != null ? ' <span class="meta">(disponível: ' + stageLabel(stageNeeded, acq.progress?.leaderOrder, acq.progress) + ')</span>' : Number.isFinite(reach) && reach > 1 ? ' <span class="meta">(estimado: a partir do nv ' + reach + ')</span>' : '';
   let html = '<li><strong>Onde obter</strong>' + when + ': ' + routeHtml(w);
   // Se a própria espécie é rara na natureza, mostra também o caminho pela pré-evolução
   const bestPct = Math.max(0, ...w.direct.filter((s) => s.type === 'wild').map((s) => s.pct ?? 100)); // sem taxa (PKHeX): não dá para dizer que é raro
@@ -183,9 +183,42 @@ function renderWhere(mon, reach, stageNeeded) {
 function showTab(which) {
   $('tabRec').setAttribute('aria-selected', String(which === 'rec'));
   $('tabWalk').setAttribute('aria-selected', String(which === 'walk'));
+  $('tabDex').setAttribute('aria-selected', String(which === 'dex'));
   $('recView').hidden = which !== 'rec';
   $('walk').hidden = which !== 'walk';
+  $('dex').hidden = which !== 'dex';
   if (which === 'walk') renderWalk();
+  if (which === 'dex') renderDex();
+}
+
+// ---------------------------------------------------------------- aba Onde capturar
+const currentGameLabel = () => catalog?.games.find((g) => g.id === currentGame)?.label ?? data.game.label;
+function renderDex() {
+  const out = $('dexOut');
+  if (!data) return;
+  const q = $('dexQ').value.trim();
+  const mon = findOpponent(data.pokemon, q);
+  if (!mon) {
+    const w = q && opponentWarning({ pokemon: data.pokemon, pokedex, generation: data.game.generation, gameLabel: currentGameLabel() }, q);
+    out.innerHTML = w ? '<p class="warn">⚠ ' + w.text + '</p>' : '<p class="meta">Digite um Pokémon para ver onde capturar em ' + currentGameLabel() + ' — todos os locais da versão escolhida, com método e nível.</p>';
+    return;
+  }
+  const version = $('version').value;
+  const vLabel = $('version').selectedOptions[0]?.textContent ?? version;
+  const head = '<div class="opp">' + img(mon.id) + '<div><strong>#' + (mon.speciesId ?? mon.id) + ' ' + humanize(mon.name) + '</strong><br>' + mon.types.map(typeBadge).join('') + '</div></div>';
+  if (!acq) { out.innerHTML = head + '<p class="meta">Este jogo ainda não tem dados de onde obter.</p>'; return; }
+  const r = catchReport(data, acq, mon, version);
+  const cur = $('stage').value === '' ? null : Number($('stage').value);
+  const stageTxt = (st) => (st == null ? '' : ' <span class="meta">— ' + stageLabel(st, acq.progress?.leaderOrder, acq.progress) + (cur != null && st > cur ? ' (ainda não liberado no seu progresso)' : '') + '</span>');
+  let html = head;
+  if (r.lines.length) {
+    if (r.from) html += '<p><strong>Não aparece direto em ' + vLabel + '.</strong> Capture ' + humanize(r.from) + ' e evolua: ' + r.steps.map((st) => { const d = describeEvolution(st.evo); return humanize(st.to) + (d ? ' (' + d + ')' : ''); }).join(' → ') + '</p><div class="walk-h">Onde capturar ' + humanize(r.from) + '</div>';
+    else html += '<div class="walk-h">Em ' + vLabel + ' (' + r.lines.length + (r.lines.length > 1 ? ' formas de obter' : ' forma de obter') + ')</div>';
+    html += '<ul class="walk-list">' + r.lines.map((l) => '<li>' + l.text + (l.random ? ' <span class="meta">(aleatório)</span>' : '') + stageTxt(l.stage) + '</li>').join('') + '</ul>';
+  } else html += '<p><strong>Não dá para obter em ' + vLabel + '</strong> — nem capturando, nem evoluindo algo que se captura' + (r.events.length ? '; só por evento: ' + r.events.join('; ') : ' (só trocando com outro jogo)') + '.</p>';
+  if (r.others.length) html += '<p class="meta">Nas outras versões: ' + r.others.map((o) => ($('version').querySelector('option[value="' + o.version + '"]')?.textContent ?? o.version) + ' (' + o.count + (o.count > 1 ? ' formas de obter' : ' forma de obter') + ')').join(', ') + '.</p>';
+  if (acq.encountersOnly) html += '<p class="note">Locais e níveis das tabelas do jogo (PKHeX), sem taxa de aparição.</p>';
+  out.innerHTML = html;
 }
 
 async function renderWalk() {
@@ -217,9 +250,9 @@ async function renderWalk() {
     const locs = s.locations.filter(match);
     if (q && !locs.length) return '';
     const L = s.leader;
-    const leaderHtml = L && L.party.length ? '<div class="walk-h">Próximo líder</div><p><strong>' + humanize(L.name.toLowerCase()) + '</strong> — ' + (L.where ?? '') + '<br>' + L.party.map((p) => humanize(p.species) + ' nv ' + p.level + (p.item ? ' (' + p.item + ')' : '') + ': ' + p.moves.map(humanize).join(', ')).join('<br>') + (L.prize.length ? '<br><span class="meta">Prêmio: TM ' + L.prize.map(humanize).join(', ') + '</span>' : '') + '</p>' : '';
+    const leaderHtml = L && L.party.length ? '<div class="walk-h">' + (walk.leaderTitle ?? 'Próximo líder') + '</div><p><strong>' + humanize(L.name.toLowerCase()) + '</strong> — ' + (L.where ?? '') + '<br>' + L.party.map((p) => humanize(p.species) + ' nv ' + p.level + (p.item ? ' (' + p.item + ')' : '') + ': ' + p.moves.map(humanize).join(', ')).join('<br>') + (L.prize.length ? '<br><span class="meta">Prêmio: TM ' + L.prize.map(humanize).join(', ') + '</span>' : '') + '</p>' : '';
     const open = q || cur === s.stage || (cur == null && s.stage === 0);
-    return '<details class="stage' + (cur === s.stage ? ' current' : '') + '"' + (open ? ' open' : '') + '><summary>' + (walk.noBadges ? 'Ordem da história' : stageLabel(s.stage, lead).replace(/^./, (c) => c.toUpperCase())) + ' <span class="meta">— ' + s.locations.length + ' locais</span></summary>' + leaderHtml + locs.map(locHtml).join('') + '</details>';
+    return '<details class="stage' + (cur === s.stage ? ' current' : '') + '"' + (open ? ' open' : '') + '><summary>' + (walk.noBadges ? 'Ordem da história' : stageLabel(s.stage, lead, walk).replace(/^./, (c) => c.toUpperCase())) + ' <span class="meta">— ' + s.locations.length + ' locais</span></summary>' + leaderHtml + locs.map(locHtml).join('') + '</details>';
   }).join('') +
     // Gens 5–9: locais das tabelas do jogo que o detonado não cita — sem posição na história
     ((v.undetermined ?? []).filter(match).length ? '<details class="stage"' + (q ? ' open' : '') + '><summary>Fora do detonado <span class="meta">— ' + v.undetermined.filter(match).length + ' locais sem posição na história</span></summary>' + v.undetermined.filter(match).map(locHtml).join('') + '</details>' : '');
@@ -237,7 +270,7 @@ function fillStages() {
   const sel = $('stage');
   const p = acq?.progress;
   sel.innerHTML = '<option value="">não informar (estimar pelo nível)</option>' +
-    (p ? Array.from({ length: 10 }, (_, s) => '<option value="' + s + '">' + stageLabel(s, p.leaderOrder) + '</option>').join('') : '');
+    (p ? Array.from({ length: (p.post ?? 9) + 1 }, (_, s) => '<option value="' + s + '">' + stageLabel(s, p.leaderOrder, p) + '</option>').join('') : '');
   sel.disabled = !p;
   sel.title = p ? 'Estimado pela ordem do detonado (' + p.source + ')' : 'Sem linha do tempo para este jogo';
 }
@@ -269,7 +302,7 @@ function fillTrainers() {
 
 // ---------------------------------------------------------------- oponente por categoria (abas) — no lugar do dropdown único
 // ordem das abas; grupos que só alguns jogos têm (Equipe Aqua / Magma, Frontier Brains) entram antes dos comuns
-const CAT_ORDER = ['Líderes de ginásio', 'Líderes de Kanto', 'Elite dos Quatro', 'Campeão', 'Rival'];
+const CAT_ORDER = ['Líderes de ginásio', 'Partidas de promoção', 'Líderes de Kanto', 'Elite dos Quatro', 'Campeão', 'Rival'];
 const CAT_LABEL = { 'Líderes de ginásio': 'Líderes', 'Treinadores comuns': 'Outros treinadores' };
 let trainerCat = null;
 const topLevel = (t) => Math.max(...t.party.map((p) => p.level));
@@ -476,10 +509,10 @@ function howToGet(s) {
   if (!w.direct.length) return '';
   // a fonte que libera mais cedo (estágio/nível), não a 1ª selvagem: o Machop no HGSS saía "Mt. Mortar" (estágio 6) com a
   // troca da Goldenrod (estágio 2) disponível
-  const at = (x) => (s.stageNeeded != null ? Math.max(x.stage ?? 9, x.gate?.stage ?? 0) : Math.max(x.min ?? x.level ?? 1, x.gate?.level ?? 1));
+  const at = (x) => (s.stageNeeded != null ? Math.max(x.stage ?? (acq.progress?.post ?? 9), x.gate?.stage ?? 0) : Math.max(x.min ?? x.level ?? 1, x.gate?.level ?? 1));
   const best = [...w.direct].sort((a, b) => at(a) - at(b) || (b.pct ?? 0) - (a.pct ?? 0))[0];
   const first = formatSources([best], 1)[0] ?? '';
-  const when = s.stageNeeded != null ? stageLabel(s.stageNeeded, acq.progress?.leaderOrder) : Number.isFinite(s.reach) && s.reach > 1 ? `a partir do nv ${s.reach}` : '';
+  const when = s.stageNeeded != null ? stageLabel(s.stageNeeded, acq.progress?.leaderOrder, acq.progress) : Number.isFinite(s.reach) && s.reach > 1 ? `a partir do nv ${s.reach}` : '';
   return `<div class="kv"><b>Como conseguir${when ? ` · ${when}` : ''}</b>${w.from ? `evolua de ${humanize(w.from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
 }
 
@@ -519,8 +552,9 @@ function renderOppWarn() {
   $('oppWarn').hidden = !w;
   $('oppWarn').textContent = w ? '⚠ ' + w.text : '';
 }
-{
-  const input = $('opp'), list = $('oppList');
+// autocompletar com os Pokémon do jogo (campo do oponente e aba Onde capturar)
+function bindPokemonAc(inputId, listId, prefix) {
+  const input = $(inputId), list = $(listId);
   let items = [], sel = 0;
   const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.setAttribute('aria-activedescendant', ''); };
   const paint = () => {
@@ -528,10 +562,10 @@ function renderOppWarn() {
     items = data && !findOpponent(data.pokemon, input.value) ? searchOpponents(data.pokemon, input.value) : [];
     sel = Math.min(sel, Math.max(items.length - 1, 0));
     if (!items.length) return close();
-    list.innerHTML = items.map((p, i) => `<li role="option" id="oa${i}" aria-selected="${i === sel}" data-name="${p.name}">${img(p.id)}<strong>${humanize(p.name)}</strong><span class="ac-num">#${p.speciesId ?? p.id}</span><span class="ac-types">${p.types.map(typeBadge).join('')}</span></li>`).join('');
+    list.innerHTML = items.map((p, i) => `<li role="option" id="${prefix}${i}" aria-selected="${i === sel}" data-name="${p.name}">${img(p.id)}<strong>${humanize(p.name)}</strong><span class="ac-num">#${p.speciesId ?? p.id}</span><span class="ac-types">${p.types.map(typeBadge).join('')}</span></li>`).join('');
     list.hidden = false;
     input.setAttribute('aria-expanded', 'true');
-    input.setAttribute('aria-activedescendant', 'oa' + sel);
+    input.setAttribute('aria-activedescendant', prefix + sel);
     list.querySelector('[aria-selected=true]')?.scrollIntoView({ block: 'nearest' });
   };
   const pick = (name) => { input.value = name; close(); input.dispatchEvent(new Event('input')); };
@@ -546,6 +580,8 @@ function renderOppWarn() {
   });
   list.addEventListener('mousedown', (e) => { const li = e.target.closest('li[data-name]'); if (li) { e.preventDefault(); pick(li.dataset.name); } });
 }
+bindPokemonAc('opp', 'oppList', 'oa');
+bindPokemonAc('dexQ', 'dexList', 'da');
 $('trainer').addEventListener('change', () => {
   const t = trainers.find((x) => x.key === $('trainer').value);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; update(); return; }
@@ -628,7 +664,7 @@ function renderHero() {
   let last = null, ctx = null;
   try { last = localStorage.getItem('poketact:last'); ctx = JSON.parse(localStorage.getItem(`poketact:${last}`) ?? 'null'); } catch {}
   const lg = last && on.find((g) => g.id === last);
-  $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.stage !== '' && ctx?.stage != null && (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)'), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` : '';
+  $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.stage !== '' && ctx?.stage != null && (ctx.stageText || (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)')), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` : '';
   // números (Vercel): tudo calculado dos dados
   const verified = on.filter((g) => qualityOf(g) === 'ok').length, trainersN = on.reduce((a, g) => a + (g.trainerCount ?? 0), 0), b = catalog.benchmark;
   $('stats').innerHTML = [[on.length, 'jogos no app'], [verified, 'conferidos no código do jogo'], [trainersN.toLocaleString('pt-BR'), 'treinadores com o time real'], b && [b.winPct + '%', `das sugestões vencem a troca (${b.picks.toLocaleString('pt-BR')} testadas${b.games ? ` em ${b.games} jogos` : ''})`]]
@@ -703,6 +739,8 @@ function applyGameParams(p) {
   if (p.meu) $('level').value = p.meu;
   if (p.inicial && [...$('starter').options].some((o) => o.value === p.inicial)) { $('starter').value = p.inicial; fillTrainers(); renderStarters(); }
   if (p.aba === 'detonado') showTab('walk');
+  // ?capturar=pikachu → aba Onde capturar já preenchida
+  if (p.capturar) { $('dexQ').value = p.capturar; showTab('dex'); }
   if (p.insignias != null && [...$('stage').options].some((o) => o.value === p.insignias)) $('stage').value = p.insignias;
   const t = p.treinador && trainers.find((x) => x.key === p.treinador);
   if (t) { $('trainer').value = t.key; pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1)); renderTrainerPicker(); return; }
@@ -717,4 +755,8 @@ $('starter').addEventListener('input', () => { const t = $('trainer').value; fil
 $('version').addEventListener('input', renderStarters); // sprites da pasta da versão
 $('tabRec').addEventListener('click', () => showTab('rec'));
 $('tabWalk').addEventListener('click', () => showTab('walk'));
+$('tabDex').addEventListener('click', () => showTab('dex'));
+$('dexQ').addEventListener('input', renderDex);
+$('version').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });
+$('stage').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });
 for (const id of ['version', 'stage', 'starter']) $(id).addEventListener('input', () => { if (!$('walk').hidden) renderWalk(); });

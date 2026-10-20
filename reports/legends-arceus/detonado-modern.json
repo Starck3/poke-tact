@@ -1,10 +1,16 @@
 {
- "leaderOrder": [],
+ "leaderOrder": [
+  "Kleavor",
+  "Lilligant",
+  "Arcanine",
+  "Electrode",
+  "Avalugg"
+ ],
  "badges": [],
  "unresolved": [],
  "fuzzy": [],
  "skippedPlaceholders": 2,
- "withStage": 0,
+ "withStage": 1974,
  "total": 1975,
  "placesWithoutStage": [
   "Turnback Cave"

@@ -1823,14 +1823,21 @@ test('Gens 5–9 sem decomp: líderes na ordem do detonado (insígnia ligada ao 
   // diferentes); Leon como "rival" (fim da história = Hall da Fama/créditos depois do último líder).
   const order = (g) => load(`${g}-acquisition.json`).progress?.leaderOrder;
   assert.deepEqual(order('x-y'), ['Viola', 'Grant', 'Korrina', 'Ramos', 'Clemont', 'Valerie', 'Olympia', 'Wulfric']);
-  assert.deepEqual(order('sun-moon'), ['Hala', 'Olivia', 'Nanu', 'Hapu']);
+  assert.deepEqual(order('sun-moon').filter((n) => /grande/.test(n)).map((n) => n.match(/\((\w+)\)/)[1]), ['Hala', 'Olivia', 'Nanu', 'Hapu']); // kahunas, sem o Guzma
   assert.equal(order('lets-go-pikachu-lets-go-eevee').at(-1), 'Giovanni');
   const swsh = order('sword-shield');
   assert.ok(swsh.includes('Piers') && swsh.includes('Raihan') && swsh.some((n) => /Gordie\//.test(n)), swsh.join());
   assert.equal(order('brilliant-diamond-shining-pearl').length, 8);
   assert.deepEqual(order('scarlet-violet'), ['Katy', 'Brassius', 'Iono', 'Kofu', 'Larry', 'Ryme', 'Tulip', 'Grusha']);
-  assert.equal(load('legends-arceus-acquisition.json').progress, undefined); // sem ginásios
-  assert.equal(load('legends-arceus-walkthrough.json').noBadges, true);
+  // jogos sem ginásio: marcos próprios do detonado (0.11.0) — Legends: Arceus pelos 5 nobres, Z-A pelas promoções de rank,
+  // Sun/Moon pelas provações (Z-Crystal depois de totem) + grandes provações
+  const la = load('legends-arceus-acquisition.json').progress;
+  assert.deepEqual(la.leaderOrder, ['Kleavor', 'Lilligant', 'Arcanine', 'Electrode', 'Avalugg']); assert.equal(la.post, 6);
+  const za = load('legends-za-acquisition.json').progress;
+  assert.equal(za.leaderOrder[0], 'Zach'); assert.equal(za.stageNames.length, 11); assert.match(za.stageNames.at(-1), /^Rank A/);
+  const sm = load('sun-moon-acquisition.json').progress;
+  assert.equal(sm.stageNames.length, 12); assert.ok(!sm.stageNames.some((n) => /Steelium|Buginium|Poisonium|Eevium/.test(n)));
+  assert.ok(load('legends-za-trainers.json').trainers.filter((t) => t.group === 'Partidas de promoção').length >= 10);
 });
 
 test('Gens 5–9 sem decomp: times do detonado (espécie e nível) com golpes estimados; onde obter ganha estágio', async () => {
@@ -1856,4 +1863,25 @@ test('Gens 5–9 sem decomp: times do detonado (espécie e nível) com golpes es
   const d = load('x-y.json');
   const r = recommend(d, d.pokemon.find((p) => p.name === 'vivillon'), { level: 12, oppLevel: 12, version: 'x', stage: 0, acq, onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false });
   assert.ok(r.picks.length > 0);
+});
+
+test('aba Onde capturar: todos os locais da versão, rota por evolução, eventos e outras versões', async () => {
+  const { catchReport } = await import('../public/engine.mjs');
+  const r = (g, v, n) => { const d = load(`${g}.json`), a = load(`${g}-acquisition.json`); return catchReport(d, a, d.pokemon.find((p) => p.name === n), v); };
+  // Pikachu na Gen 3: Safari Zone no Emerald; Viridian Forest (antes da 1ª insígnia) e Power Plant no FireRed
+  assert.ok(r('emerald', 'emerald', 'pikachu').lines.every((l) => /Safari Zone/.test(l.text)));
+  const fr = r('firered-leafgreen', 'firered', 'pikachu');
+  assert.match(fr.lines[0].text, /Viridian Forest/); assert.equal(fr.lines[0].stage, 0);
+  assert.ok(fr.lines.some((l) => /Power Plant/.test(l.text)));
+  // sem forma direta → de qual Pokémon evoluir
+  const rai = r('firered-leafgreen', 'firered', 'raichu');
+  assert.equal(rai.from, 'pikachu'); assert.ok(rai.lines.length);
+  // exclusivo de versão: aparece nas outras versões
+  const ekans = r('firered-leafgreen', 'leafgreen', 'ekans');
+  assert.equal(ekans.lines.length, 0); assert.ok(ekans.others.some((o) => o.version === 'firered'));
+  // jogos sem decomp também (PKHeX): sem taxa
+  const xy = r('x-y', 'x', 'pikachu');
+  assert.ok(xy.lines.length && xy.lines.every((l) => !/%/.test(l.text)));
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="tabDex"/); assert.match(html, /id="dexQ"/);
 });

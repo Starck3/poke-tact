@@ -80,8 +80,53 @@ for (const [n, b] of firstAt) {
   const same = merged.find((m) => m.section && m.section === b.section && Math.abs(m.lv - lv) <= 1 && b.at - m.last < 4000);
   if (same) { same.names.push(n); same.last = b.at; } else merged.push({ names: [n], at: b.at, last: b.at, lv, section: b.section });
 }
-const leaderOrder = merged.slice(0, 8).map((m) => m.names.join('/'));
-const leaderAt = merged.slice(0, 8).map((m) => m.at);
+let leaderOrder = merged.slice(0, 8).map((m) => m.names.join('/'));
+let leaderAt = merged.slice(0, 8).map((m) => m.at);
+const promoBattles = new Set(); // Z-A: as lutas de promoção viram a categoria "Partidas de promoção"
+let stageNames = null; // rótulo de cada estágio quando o marco não é insígnia (Z-A: rank; Legends: Arceus: nobres)
+// Jogos sem ginásio: marcos próprios tirados dos títulos de seção do detonado
+//   Z-A: "PARTIDA DE PROMOÇÃO – RANK Z → RANK Y" (a luta de promoção é a 1ª "usa:" da seção)
+//   Legends: Arceus: "… – ACALMANDO O NOBLE KLEAVOR" (vale o fim da seção: o nobre é acalmado nela)
+const promos = sections.filter((s) => /PARTIDA DE PROMO/i.test(s.full) && /RANK\s+([A-Z])\s*(?:→|->|&#8594;)\s*RANK\s+([A-Z])/i.test(s.full));
+const nobles = sections.filter((s) => /ACALMANDO (?:O|A) NOBLE\s+(\S+)/i.test(s.full) && !/REVANCHE/i.test(s.full));
+if (promos.length >= 3) {
+  const ms = promos.map((s) => {
+    const [, from, to] = s.full.match(/RANK\s+([A-Z])\s*(?:→|->|&#8594;)\s*RANK\s+([A-Z])/i);
+    const b = battles.find((x) => x.at > s.at);
+    if (b) promoBattles.add(b);
+    return { from: from.toUpperCase(), to: to.toUpperCase(), name: b?.name ?? `Rank ${to}`, at: b?.endAt ?? b?.at ?? s.at };
+  });
+  leaderOrder = ms.map((m) => m.name);
+  leaderAt = ms.map((m) => m.at);
+  stageNames = [`Rank ${ms[0].from} (início)`, ...ms.map((m) => `Rank ${m.to} (depois de vencer ${m.name})`)];
+} else if (nobles.length >= 3) {
+  const ms = nobles.map((s) => {
+    const name = s.full.match(/ACALMANDO (?:O|A) NOBLE\s+(\S+)/i)[1];
+    const next = sections.find((x) => x.at > s.at);
+    return { name: name[0] + name.slice(1).toLowerCase(), at: (next?.at ?? s.at) - 1 };
+  });
+  leaderOrder = ms.map((m) => m.name);
+  leaderAt = ms.map((m) => m.at);
+  stageNames = ['antes do 1º nobre', ...ms.map((m, i) => `${i + 1} nobre${i ? 's' : ''} acalmado${i ? 's' : ''} (depois de ${m.name})`)];
+}
+// Sun/Moon: provações dos capitães + grandes provações (carimbos de ilha). Provação = Z-Crystal recebido até 2500
+// caracteres depois de um "totem" no texto (Normalium, Waterium, Firium, Grassium, Electrium, Ghostium, Dragonium); os
+// de presente (Steelium junto com o Electrium, Buginium, Poisonium, Eevium) não contam ou se juntam ao marco do mesmo
+// momento (≤ 1500 caracteres). A provação da Mina (Fairium) não tem totem e fica de fora.
+const stamps = badges.filter((e) => e.kind === 'stamp');
+if (!stageNames && stamps.length >= 3) {
+  const totem = (e) => /totem/i.test(html.slice(Math.max(0, e.at - 2500), e.at).replace(/<[^>]+>/g, ' '));
+  const evs = [...stamps.map((e) => ({ at: e.at, label: `grande provação de ${e.badge.replace(/ Island$/, '')}${e.leaderHint ? ` (${e.leaderHint})` : ''}` })),
+    ...badges.filter((e) => e.kind === 'trial' && totem(e)).map((e) => ({ at: e.at, label: `provação do ${e.badge}${(e.text.match(/\bde ([A-Z]\w+)/) ?? [])[1] ? ` (${e.text.match(/\bde ([A-Z]\w+)/)[1]})` : ''}` }))]
+    .sort((a, b) => a.at - b.at);
+  const ms = [];
+  for (const e of evs) { const last = ms.at(-1); if (!last || e.at - last.at > 1500) ms.push({ ...e }); } // mesmo momento: vale o 1º (Electrium, não o Steelium)
+  leaderOrder = ms.map((m) => m.label);
+  leaderAt = ms.map((m) => m.at);
+  stageNames = ['antes da 1ª provação', ...ms.map((m, i) => `${i + 1} provaç${i ? 'ões' : 'ão'} (depois da ${m.label})`)];
+}
+// pós-jogo = estágio depois do último marco (insígnias: 9, como nas Gens 1–5; Z-A: 11)
+const POST = stageNames ? stageNames.length : POSTGAME;
 const topLevel = (b) => Math.max(0, ...b.party.map((p) => p.level ?? 0));
 // fim da história: a 1ª menção ao Hall da Fama / créditos depois do último líder (o campeão varia: Leon no SwSh é "rival",
 // N/Ghetsis no BW); o campeão é a última luta antes disso
@@ -91,7 +136,7 @@ const endAt = endRe.exec(html)?.index ?? Infinity;
 const champ = [...battles].reverse().find((b) => b.at < endAt && b.at > (leaderAt.at(-1) ?? 0));
 const postAt = leaderOrder.length >= 3 ? endAt : Infinity;
 const hasProgress = leaderOrder.length >= 3;
-const stageAt = (pos) => (pos > postAt ? POSTGAME : leaderAt.filter((x) => x <= pos).length);
+const stageAt = (pos) => (pos > postAt ? POST : leaderAt.filter((x) => x <= pos).length);
 
 // linha do tempo no formato do progress.mjs (seções + trechos cortados nos líderes)
 const strip = (h) => h.replace(/<[^>]+>/g, ' ');
@@ -123,7 +168,7 @@ for (const [i, b] of battles.entries()) {
     const forStarter = starters.filter((s) => new RegExp(`\\b${s.split('-')[0]}\\b`, 'i').test(label));
     const where = titleCase(b.section ?? '');
     trainers.push({
-      key: `DETONADO_${i}_${j}`, name: b.name, label: b.name + (j > 0 && t.label && !forStarter.length ? ` (${t.label})` : ''), class: b.name, group: firstAt.has(b.name) ? GROUP.leader : b.kind === 'leader' ? GROUP.other : (GROUP[b.kind] ?? GROUP.other),
+      key: `DETONADO_${i}_${j}`, name: b.name, label: b.name + (j > 0 && t.label && !forStarter.length ? ` (${t.label})` : ''), class: b.name, group: promoBattles.has(b) ? 'Partidas de promoção' : firstAt.has(b.name) ? GROUP.leader : b.kind === 'leader' ? GROUP.other : (GROUP[b.kind] ?? GROUP.other),
       double: false, map: where ? [where] : [], party, ...(forStarter.length && { forStarter }), stage: hasProgress ? stageAt(b.at) : null, source: 'detonado', at: b.at,
     });
   }
@@ -153,7 +198,14 @@ const bySpecies = (where) => {
 };
 const placeOf = (where) => {
   if (!stageOfPlace.has(where)) {
-    const r = placeStage(tl, where.replace(/\(.*?\)/g, ' '), { generic: ['forest', 'cave', 'tower', 'path', 'area', 'zone'] }) ?? placeStage(tl, where) ?? bySpecies(where);
+    const byName = placeStage(tl, where.replace(/\(.*?\)/g, ' '), { generic: ['forest', 'cave', 'tower', 'path', 'area', 'zone'] }) ?? placeStage(tl, where);
+    // título de seção com o nome vence; citação só no texto pode ser tardia (SM: "siga pela rota" sem número no começo e
+    // "Route 1" só depois da 2ª provação) → vale a evidência mais cedo entre o nome e o trecho que lista as espécies
+    const sp = byName?.by === 'título' ? null : bySpecies(where);
+    let r = byName && sp ? (sp.stage < byName.stage ? sp : byName) : byName ?? sp;
+    // subárea ("Route 1 (Hau'oli Outskirts)"): não fica depois do local-pai ("Route 1")
+    const parent = where.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+    if (parent !== where && r?.by !== 'título') { const pr = placeOf(parent); if (pr && (!r || pr.stage < r.stage)) r = pr; }
     stageOfPlace.set(where, r);
   }
   return stageOfPlace.get(where);
@@ -166,7 +218,7 @@ for (const v of Object.values(acq.versions)) for (const list of Object.values(v)
 }
 if (hasProgress) {
   acq.progress = {
-    leaderOrder, leadersFound: leaderOrder.length, eliteFound: battles.filter((b) => b.kind === 'elite').length,
+    leaderOrder, ...(stageNames && { stageNames, post: POST }), leadersFound: leaderOrder.length, eliteFound: battles.filter((b) => b.kind === 'elite').length,
     source: `PokeMythology ${game.walkthrough} (ordem dos líderes) + locais das tabelas do PKHeX`,
     trainerStage: Object.fromEntries(trainers.filter((t) => t.stage != null).map((t) => [t.key, t.stage])),
     placesWithStage: [...stageOfPlace.values()].filter(Boolean).length, placesTotal: stageOfPlace.size,
@@ -202,7 +254,7 @@ for (const [v, byMon] of Object.entries(acq.versions)) {
     l.trainers.push({ key: t.key, label: t.label, group: t.group, party: t.party.map(({ species, level }) => ({ species, level })), ...(t.forStarter && { forStarter: t.forStarter }) });
   }
   const placed = [...locs.values()].filter((l) => l.stage != null);
-  const stages = (hasProgress ? [...Array(10).keys()] : [0]).map((st) => {
+  const stages = (hasProgress ? [...Array(POST + 1).keys()] : [0]).map((st) => {
     const L = leaderOrder[st];
     const lt = L ? trainers.find((t) => L.split('/').includes(t.name)) : null;
     return {
@@ -214,7 +266,7 @@ for (const [v, byMon] of Object.entries(acq.versions)) {
   versions[v] = { stages, undetermined: [...locs.values()].filter((l) => l.stage == null).map(({ order, ...l }) => l), unplacedTrainers: [], rematches: [] };
 }
 writeFileSync(new URL(`../public/data/${gameId}-walkthrough.json`, import.meta.url), JSON.stringify({
-  game: gameId, source: `PokeMythology ${game.walkthrough} + tabelas do PKHeX`, noBadges: !hasProgress,
+  game: gameId, source: `PokeMythology ${game.walkthrough} + tabelas do PKHeX`, noBadges: !hasProgress, ...(stageNames && { stageNames, post: POST }), ...(promoBattles.size && { leaderTitle: 'Próxima partida de promoção' }),
   credit: 'Ordem da história baseada no detonado do PokeMythology (pokemythology.net). Times do detonado; locais e Pokémon das tabelas do jogo.',
   leaders: leaderOrder, versions,
 }));

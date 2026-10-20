@@ -13,7 +13,7 @@ const load = (f) => JSON.parse(readFileSync(new URL(`../public/data/${f}`, impor
 const has = (f) => existsSync(new URL(`../public/data/${f}`, import.meta.url));
 const ids = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(GAMES).filter((g) => has(`${g}-walkthrough.json`));
 const DELTA = Number(process.env.BENCH_DELTA ?? 0); // níveis abaixo do ás do oponente
-const IMPORTANT = new Set(['Líderes de ginásio', 'Elite dos Quatro', 'Campeão', 'Rival']);
+const IMPORTANT = new Set(['Líderes de ginásio', 'Partidas de promoção', 'Elite dos Quatro', 'Campeão', 'Rival']);
 
 /** Reavalia UMA sugestão (Pokémon + golpe) contra o Pokémon do oponente com a fórmula de dano. */
 export function evaluatePick(data, acq, monName, moveName, p, level, stage) {

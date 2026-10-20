@@ -340,7 +340,7 @@ export function reachStage(data, acq, mon, version, seen = new Set()) {
   const w = whereToGet(data, acq, mon, version);
   if (!w.direct.length) return Infinity;
   const stageOf = (s) => {
-    let st = Math.max(s.stage ?? 9, s.gate?.stage ?? 0);
+    let st = Math.max(s.stage ?? (acq.progress?.post ?? 9), s.gate?.stage ?? 0);
     if (s.type === 'trade' && s.want) {
       const want = data.pokemon.find((p) => p.name === s.want);
       st = Math.max(st, want ? reachStage(data, acq, want, version, seen) : Infinity);
@@ -380,7 +380,7 @@ export function unreliableReason(s) {
  */
 export function unreliableFor(data, acq, mon, version, { stage = null, level = null } = {}) {
   const w = whereToGet(data, acq, mon, version);
-  const ok = (s) => (stage != null ? Math.max(s.stage ?? 9, s.gate?.stage ?? 0) <= stage : level == null || Math.max(s.min ?? s.level ?? 1, s.gate?.level ?? 1) <= level);
+  const ok = (s) => (stage != null ? Math.max(s.stage ?? (acq.progress?.post ?? 9), s.gate?.stage ?? 0) <= stage : level == null || Math.max(s.min ?? s.level ?? 1, s.gate?.level ?? 1) <= level);
   const avail = w.direct.filter(ok);
   if (!avail.length) return null;
   const reasons = avail.map(unreliableReason);
@@ -388,10 +388,27 @@ export function unreliableFor(data, acq, mon, version, { stage = null, level = n
 }
 
 /** Rótulo do estágio para a tela. */
-export function stageLabel(stage, leaderOrder = []) {
+// progress.stageNames/post: jogos cujo marco não é insígnia (Z-A: rank do Z-A Royale; Legends: Arceus: nobres acalmados)
+export function stageLabel(stage, leaderOrder = [], progress = null) {
+  if (progress?.stageNames) return stage >= progress.post ? 'pós-jogo' : progress.stageNames[stage] ?? 'pós-jogo';
   if (stage >= 9) return 'pós-jogo';
   if (stage === 0) return 'antes da 1ª insígnia';
   // "LT. SURGE" / "Lt.Surge" → "Lt. Surge" (cada palavra com maiúscula)
   const name = (n) => n.replace(/\.(?=\S)/g, '. ').toLowerCase().replace(/(^|\s)(\S)/g, (m, a, b) => a + b.toUpperCase());
   return `${stage} insígnia${stage > 1 ? 's' : ''}${leaderOrder[stage - 1] ? ` (depois de ${name(leaderOrder[stage - 1])})` : ''}`;
+}
+
+/**
+ * Aba "Onde capturar": todas as formas de obter a espécie na versão (sem limite de locais), na ordem da história, com o
+ * estágio de cada uma; a rota por evolução quando não há forma direta; e o que existe nas outras versões do jogo.
+ * Retorna { lines: [{ text, stage, random }], from, steps, events, others: [{ version, count }], obtainable }.
+ */
+export function catchReport(data, acq, mon, version) {
+  const w = whereToGet(data, acq, mon, version);
+  const post = acq.progress?.post ?? 9;
+  const order = (s) => [s.stage ?? post, s.type === 'wild' ? 0 : 1, s.min ?? s.level ?? 0];
+  const sorted = [...w.direct].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; });
+  const lines = sorted.map((s) => ({ text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? s.stage : null, random: !!unreliableReason(s) }));
+  const others = Object.keys(acq.versions).filter((v) => v !== version).map((v) => ({ version: v, count: whereToGet(data, acq, mon, v).direct.length })).filter((o) => o.count);
+  return { lines, from: w.from ?? null, steps: w.steps, events: w.events.map((s) => formatSources([s], 1)[0] ?? s.where), others, obtainable: !!mon.obtainable?.[version] };
 }

@@ -18,13 +18,13 @@
   "turnsN": 10818
  },
  "atual": {
-  "wins": 35311,
-  "picks": 35568,
-  "covered": 11821,
-  "mons": 11856,
-  "comfy": 33864,
-  "turnsSum": 49866,
-  "turnsN": 35568,
+  "wins": 35914,
+  "picks": 36171,
+  "covered": 12022,
+  "mons": 12057,
+  "comfy": 34447,
+  "turnsSum": 50374,
+  "turnsN": 36171,
   "games": [
    "red-blue",
    "yellow",
@@ -43,6 +43,7 @@
    "brilliant-diamond-shining-pearl",
    "legends-arceus",
    "scarlet-violet",
+   "legends-za",
    "firered-leafgreen",
    "ruby-sapphire",
    "emerald"
