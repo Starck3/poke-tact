@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.20.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.21.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -58,7 +58,9 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
 7. ✅ (0.20.0: BW, B2W2 e cavernas do FRLG feitos) **Mapa da região**: falta
    X/Y, Sun/Moon/USUM, Sword/Shield, Legends: Arceus, Scarlet/Violet e Z-A (sem decomp). FRLG: cavernas e florestas sem
    posição no `region_map_sections.json` (99/142).
-8. **Fotos dos lugares** só onde o título do trecho do detonado é o próprio lugar (ex.: X/Y 16/44, SV 15/76, Z-A 3/106).
+8. ✅ (0.21.0: também pelo nome do arquivo da imagem; RB, GS, Crystal, HGSS e FRLG subiram) **Fotos dos lugares** só onde o
+   título do trecho do detonado é o próprio lugar (ex.: X/Y 16/44, SV 15/76, Z-A 3/106). Nos jogos modernos as imagens têm
+   nome numérico/do imgur — sem evidência no nome, continuam sem foto (melhor que foto errada).
 
 ### Depende de fonte que não temos
 9. **Ultra Sun/Ultra Moon** — o PokeMythology não tem detonado desse jogo: sem treinadores, progresso e Detonado.

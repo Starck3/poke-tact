@@ -55,7 +55,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
 - **Validação**: FRLG > 130/142 locais no mapa; B2W2/BW com mapa e > 70% dos locais; testes.
 - **Se travar**: fazer só o FRLG (⚠).
 
-### 8. Fotos dos lugares — mais cobertura sem foto errada — ⬜
+### 8. Fotos dos lugares — mais cobertura sem foto errada — ✅ 0.21.0
 - **Objetivo**: aceitar também trechos citados só no texto **quando o nome do arquivo da imagem cita o lugar**
   ("mtmoon1.png") — sem voltar a pegar foto de outro lugar.
 - **Validação**: cobertura sobe em ≥ 3 jogos; nenhuma foto do Sun/Moon "Route 1" vinda de Ten Carat Hill (teste existente).
@@ -93,3 +93,20 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   "Route 4" viravam um ponto com o id errado). B2W2 86/91 pela grade de zonas do `overworld.json` (warps herdam a zona de
   origem; coordenadas dos warps não usadas — escala não confirmada). BW 47/54 pela mesma Unova. Mapa em 15/22 jogos.
   Correção de número: a 0.14.0 dizia 14 jogos com mapa; eram 13.
+- **Etapa 8 — ✅ 0.21.0.** Sem trecho com o título, entram só imagens cujo nome de arquivo cita o lugar (prefixos de 2+
+  palavras, "mount" = "mt"). Cobertura: RB 19 → 23, GS 9 → 35, Crystal 33 → 36, HGSS 76 → 86, FRLG 73 → 80, B2W2 42 → 43
+  (5 jogos com ganho real). Bônus: no trecho pelo título sai a foto cujo nome é de OUTRO lugar — Blackthorn (GS/Crystal)
+  perdeu as fotos do Ice Path (fica sem foto), Mossdeep (ORAS) o mapa da Shoal Cave, Silver Cave a do Mt. Mortar, Dojo de
+  Saffron (FRLG) a da Silph Co. Teste do SM "Route 1" continua passando. Jogos modernos (X/Y, SM, SwSh, SV, Z-A, BDSP):
+  nomes de imagem numéricos/imgur — nenhum ganho possível por esse caminho. 1ª tentativa (chave = nome inteiro) só achava
+  1 lugar ("Ice Path B1F" ≠ icepath) → prefixos.
+
+## Resumo final (2026-10-20)
+- **Feitas e validadas**: 1 (0.16.0), 2 (sem mudança: não era pendência), 3+4 (0.17.0), 6 (0.19.0), 7 (0.20.0), 8 (0.21.0).
+- **Parcial**: 5 (0.18.0) — BDSP/Let's Go/ORAS resolvidos; BW 14, SwSh 19, SM 9, SV 4, Z-A 7 sem evidência.
+- **Para o usuário validar**:
+  1. Etapa 5 usa o estágio do jogo original (BDSP→DP, Let's Go→Yellow, ORAS→RS) — desvio do "só detonado".
+  2. Yellow: Route 6 no estágio 4 (deveria ser 2) — gerador da Gen 1.
+  3. Motor: com fonte direta, `whereToGet`/`reachStage` não comparam com o caminho por evolução (achado na etapa 6).
+  4. Fotos: Blackthorn (GS/Crystal) agora fica sem foto (o trecho dela só tinha fotos do Ice Path).
+- Nada ficou pela metade em branch: todas as etapas foram mescladas em `main` e publicadas.

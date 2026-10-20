@@ -304,6 +304,11 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   tem `zones[y][x]`; lugar (`PLACE_*` da zona) = centro das células; fora da grade, herda a zona de onde sai o warp
   (`res/field/events/<zona>.json` → `warps[].zone`); nome fora dos rótulos ("Route 2 Hidden Grotto") → maior prefixo.
   BW pelo `TWIN` (mesma Unova). As coordenadas dos warps do B2W2 (`grid.x/z`) não foram usadas (escala não confirmada).
+- **Fotos dos lugares pelo nome do arquivo** (0.21.0, `build-place-images.mjs`): sem trecho com o título do lugar, entram só
+  as imagens cujo nome de arquivo cita o lugar — chaves = nome e prefixos de 2+ palavras, "mount" = "mt" ("Ice Path B1F" →
+  icepath; "Mount Mortar 1FInside" → mtmortar); 🧪 nunca uma palavra só ("celadon" é a cidade, não o Game Corner) e número
+  no fim não continua em outro dígito ("route4black" é Route 4, não Route 40). No trecho pelo título, sai a foto cujo nome
+  cita OUTRO lugar (o trecho de Blackthorn só tinha fotos do Ice Path).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

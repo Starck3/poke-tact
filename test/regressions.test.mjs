@@ -1962,11 +1962,32 @@ test('fotos dos lugares: só de trechos do detonado cujo título é o lugar; ref
   for (const g of ['firered-leafgreen', 'emerald', 'sun-moon', 'x-y']) {
     const p = load(`${g}-places.json`);
     for (const [w, x] of Object.entries(p.places)) {
-      assert.equal(x.by, 'título', `${g}/${w}`); // SM: "Route 1" citada no trecho de Ten Carat Hill não ganha foto de lá
+      // SM: "Route 1" citada no trecho de Ten Carat Hill não ganha foto de lá; sem título, só arquivo cujo nome cita o lugar
+      assert.ok(['título', 'arquivo'].includes(x.by), `${g}/${w}`);
       assert.ok(x.images.length && x.images.every((u) => /^https:\/\//.test(u) && !/serebii|\/sprites\//.test(u)), `${g}/${w}`);
     }
   }
   assert.equal(load('sun-moon-places.json').places['Route 1'], undefined);
+});
+
+test('fotos dos lugares (0.21.0): lugar só citado no texto ganha a foto cujo NOME de arquivo o cita; foto de outro lugar sai', () => {
+  const name = (u) => u.split('?')[0].split('/').pop().toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const g of ['red-blue', 'gold-silver', 'crystal', 'heartgold-soulsilver', 'firered-leafgreen', 'black-2-white-2']) {
+    for (const [w, x] of Object.entries(load(`${g}-places.json`).places)) {
+      if (x.by !== 'arquivo') continue;
+      const k = w.toLowerCase().replace(/\(.*?\)/g, '').replace(/\bmount\b/, 'mt').replace(/[^a-z0-9 ]/g, '').split(/\s+/).slice(0, 2).join('');
+      assert.ok(x.images.every((u) => name(u).includes(k)), `${g}/${w}: ${x.images}`);
+    }
+  }
+  const gs = load('gold-silver-places.json').places;
+  assert.match(gs['Ice Path B1F'].images[0], /icepath\d\.png/);
+  assert.match(gs['Mount Mortar 1FInside'].images[0], /mtmortar\d\.png/);
+  assert.equal(gs['Blackthorn City'], undefined); // o trecho de Blackthorn só tem fotos do Ice Path
+  assert.ok(!gs['Silver Cave Outside'].images.some((u) => /mtmortar/.test(u)));
+  assert.ok(load('red-blue-places.json').places['Mt. Moon 1F'].images.some((u) => /mtmoon/.test(u)));
+  assert.ok(!load('omega-ruby-alpha-sapphire-places.json').places['Mossdeep City'].images.some((u) => /shoalcave/.test(u)));
+  assert.equal(load('firered-leafgreen-places.json').places['Saffron City Dojo'], undefined); // silphco2.png não é do Dojo
+  assert.ok(load('black-2-white-2-places.json').places['Route 4'].images.every((u) => /route4(black|white)/.test(u)));
 });
 
 test('mapa da região (Gens 1–3): posições do decomp e lugares do onde obter ligados aos pontos', () => {

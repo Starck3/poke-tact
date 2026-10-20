@@ -1,12 +1,11 @@
 {
- "withImages": 76,
+ "withImages": 86,
  "total": 168,
  "without": [
   "Route 32",
   "Route 34",
   "Route 40",
   "Route 41",
-  "Whirl Islands 1F",
   "Route 47",
   "Route 12",
   "Route 19",
@@ -16,7 +15,6 @@
   "Route 27",
   "Route 13",
   "Route 21",
-  "Whirl Islands B2F",
   "Route 30",
   "Route 31",
   "Slowpoke Well B1F",
@@ -63,14 +61,8 @@
   "Route 48",
   "Route 16 East",
   "Route 17",
-  "Whirl Islands B1F",
-  "Whirl Islands B3F",
   "Cliff Cave",
   "National Park Bug Catching Contest",
-  "Ice Path 1F",
-  "Ice Path B1F",
-  "Ice Path B2F",
-  "Ice Path B3F",
   "Mount Moon",
   "Mount Moon Square Entrance",
   "Victory Road 3F",
@@ -90,9 +82,7 @@
   "Team Rocket Headquarters B2F",
   "Saffron Silph Co Hq",
   "pelo mapa (vagante)",
-  "Whirl Islands B3F Lugia Cave",
   "Pallet Town Oaks Lab",
-  "Sinjoh Ruins Mystri Stage",
-  "New Bark — laboratório do Prof. Elm"
+  "Sinjoh Ruins Mystri Stage"
  ]
 }
