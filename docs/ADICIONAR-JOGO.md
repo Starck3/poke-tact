@@ -207,6 +207,28 @@ e o código que as lê. `scripts/lib/pkhex.mjs`, `apply-pkhex-overlay.mjs`, `val
   encontros (o PKHeX tem, mas para legalidade: sem taxas, com "crossover" e eventos — ver `docs/FONTES-GEN5-9.md`). Selo:
   `validation: 'pkhex'` = "Parcialmente verificado".
 
+### Gens 6–9 — onde obter pelos encontros do PKHeX; Legends: Z-A inteiro pelo PKHeX — 2026-10-20 🧪
+`scripts/lib/pkhex-enc-{gen67,gg-swsh,bdsp-la,sv-za}.mjs` (um leitor por família; o cabeçalho de cada um cita os `.cs` seguidos),
+`scripts/lib/pkhex-enc.mjs` (rótulos/textos, testável) e `build-acquisition-pkhex.mjs` (passo `PKHEX_ACQ_STEPS`, Gen ≥ 6).
+- 🧪 Os `encounter_*.pkl` usam o BinLinkerAccessor de offsets **u32** (não o BinLinkerAccessor16 do learnset).
+- 🧪 Sem taxa de aparição e sem ordem da história: o `acquisition.json` tem `encountersOnly: true` e fontes sem `pct`/`stage`
+  (o app mostra "a partir do nv X" pelo menor nível). Nada de taxa inventada.
+- 🧪 Fora: `FatefulEncounter`/Mystery Gift (Darkrai/Arceus/Mew/Jirachi no BDSP, Magearna no SM), raids de distribuição
+  (`*_dist`, `might_paldea`, `outbreak_paldea`), GO/HOME, **blocos de crossover do SV** (CrossFrom ≠ 0: Scyther/Dreepy na
+  Area One) e o Friend Safari do XY (exige o código de amigo de outro jogador).
+- 🧪 O PKHeX junta métodos que o jogo separa: "Standard" das Gens 6/7 = grama + surf + varas (rótulo "Selvagem"); a grama do
+  BDSP inclui Poké Radar e surto (Nidoran/Doduo na Route 201); **o SV não separa Scarlet de Violet nos selvagens** (aviso em
+  `acq.notes`; os exclusivos só saem certos nas Tera Raids, que têm taxa por versão). Let's Go: faixas "L3–56" agregadas → `random`.
+- Surto, Radar, árvore de mel, Max/Tera Raid, Dynamax Adventure e distorção → `random: true` (o motor penaliza, E2).
+- Iniciais sem confirmação no detonado (E4) → lista "starter" dos fixos do PKHeX (Legends: Arceus, USUM, Z-A).
+- **Legends: Z-A** (`pkhexOnly` em `games.mjs`; `build-data-pkhex.mjs`): espécies com a flag "presente" do `personal_za`,
+  learnset, TMs (bits em 0x2C + `MachineMoves` do `PersonalInfo9ZA.cs`) e evoluções (`evos_za`, 8 bytes por método; a forma
+  regional evolui pela entrada da forma: FormStatsIndex u16 @0x18). Golpes e tabela de tipos = Gen 9 do Scarlet/Violet (o
+  Showdown usa os mesmos no formato do Z-A: o mod `gen9legends` herda os golpes da gen9). 🧪 O `lvlmove_za` tem byte de
+  preenchimento → `parseLearnset` usa divisão inteira (como o C#); sem isso todos os níveis saíam vazios.
+- Lacuna: o dataset do Legends: Arceus (PokéAPI) não tem as espécies que só existem em forma de Hisui (Typhlosion, Samurott,
+  Decidueye, Lilligant, Braviary, Avalugg, Sliggoo/Goodra…): 18 espécies dos encontros ficam de fora.
+
 ### Gen 5 — Black 2 / White 2 (fuddlesworth/pokebw2, GPL-3.0) — 2026-10-20 🧪
 `scripts/lib/gen5-bw2.mjs`, `apply-gen5-overlay.mjs`, `validate-gen5-vs-decomp.mjs`, `build-trainers-gen5.mjs`,
 `build-acquisition-gen5.mjs`. O pokebw2 reconstrói as ROMs byte a byte e segue o esquema do pokeplatinum: dados em JSON

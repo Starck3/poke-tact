@@ -279,9 +279,10 @@ const SRC_LABEL = {
 /** Linhas de texto para exibir (até `maxWild` locais selvagens, mais todas as outras formas de obter). */
 export function formatSources(sources, maxWild = 3) {
   // locais mais cedo primeiro (estágio), depois os mais comuns — senão a Gen 2 mostrava a Route 26 (estágio 8) antes da Route 29
-  const wild = sources.filter((s) => s.type === 'wild').sort((a, b) => (a.stage ?? 9) - (b.stage ?? 9) || b.pct - a.pct);
+  // Gens 6–9 (encontros do PKHeX): sem taxa (pct) → ordena pelo menor nível
+  const wild = sources.filter((s) => s.type === 'wild').sort((a, b) => (a.stage ?? 9) - (b.stage ?? 9) || (b.pct ?? 0) - (a.pct ?? 0) || a.min - b.min);
   // Gen 2: horário (manhã/dia/noite) e enxame/concurso aparecem junto do método
-  const lines = wild.slice(0, maxWild).map((s) => `${s.where} — ${s.method}${s.times ? ` (${s.times.join('/')})` : ''}${s.detail ? ` [${s.detail}]` : ''}, nv ${s.min === s.max ? s.min : `${s.min}–${s.max}`} (${s.pct}%)` + (s.gate ? ` — exige ${s.gate.badge ? `HM de ${s.method} + insígnia ${s.gate.badge} (${s.gate.leader})` : (s.gateAs ?? s.method)}; estimativa: nv ${s.gate.level}+` : ''));
+  const lines = wild.slice(0, maxWild).map((s) => `${s.where} — ${s.method}${s.times ? ` (${s.times.join('/')})` : ''}${s.detail ? ` [${s.detail}]` : ''}, nv ${s.min === s.max ? s.min : `${s.min}–${s.max}`}${s.pct != null ? ` (${s.pct}%)` : ''}` + (s.gate ? ` — exige ${s.gate.badge ? `HM de ${s.method} + insígnia ${s.gate.badge} (${s.gate.leader})` : (s.gateAs ?? s.method)}; estimativa: nv ${s.gate.level}+` : ''));
   if (wild.length > maxWild) lines.push(`+${wild.length - maxWild} outros locais`);
   for (const s of sources) if (s.type !== 'wild' && SRC_LABEL[s.type]) lines.push(SRC_LABEL[s.type](s) + (s.area ? ` — estimativa: área de selvagens nv ${s.area.level}+ (${s.area.near})` : ''));
   return lines;
@@ -353,6 +354,7 @@ export function unreliableReason(s) {
   if (s.type !== 'wild') return null;
   const d = s.detail ?? '';
   if (s.swarm) return 'surto (depende do dia)';
+  if (s.random) return `${s.method} (sorteio/condição)`; // Gens 6–9 (PKHeX): surto, Radar, árvore de mel, aparição rara…
   if (s.method === 'Poké Radar') return 'Poké Radar';
   if (s.method === 'Árvore de mel') return 'árvore de mel (sorteio)';
   if (/sorteio diário|espécie do dia/.test(d)) return 'sorteio diário';

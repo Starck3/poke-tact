@@ -21,6 +21,8 @@ export const PKHEX_GAMES = {
   'brilliant-diamond-shining-pearl': { personal: 'bdsp', size: 0x44, abil: [0x18, 0x1a, 0x1c], wide: true, lvl: 'lvlmove_bdsp.pkl', present: (d) => ((d[0x21] >> 6) & 1) === 1 },
   'legends-arceus': { personal: 'la', size: 0xb0, abil: [0x18, 0x1a, 0x1c], wide: true, lvl: 'lvlmove_la.pkl', present: (d) => ((d[0x21] >> 6) & 1) === 1 },
   'scarlet-violet': { personal: 'sv', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_sv.pkl', present: (d) => d[0x1c] !== 0 },
+  // Legends: Z-A (PersonalInfo9ZA.cs): mesmo layout do SV; sem PokéAPI → também TMs (bits em 0x2C) e evoluções (evos_za)
+  'legends-za': { personal: 'za', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_za.pkl', present: (d) => d[0x1c] !== 0, tm: { offset: 0x2c, cs: 'PersonalInfo9ZA.cs' }, evos: 'za' },
 };
 
 /** BinLinkerAccessor16: "XY" + u16 contagem + (contagem + 1) offsets u16. */
@@ -31,7 +33,8 @@ export function binLinker16(b) {
 
 /** Entrada de learnset: [[nível, golpe]] na ordem do jogo. */
 export function parseLearnset(d) {
-  const n = d.length / 3;
+  // divisão INTEIRA como no LearnsetReader.cs: o Z-A tem byte de preenchimento (Chikorita: 40 bytes = 13 golpes × 3 + 1)
+  const n = Math.floor(d.length / 3);
   return Array.from({ length: n }, (_, i) => [d[2 * n + i], d.readUInt16LE(2 * i)]);
 }
 

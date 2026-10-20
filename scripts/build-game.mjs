@@ -20,12 +20,17 @@ const ASM_STEPS = {
 // + iniciais pelo detonado e pela PokéAPI (E4; sem as duas fontes o campo fica escondido)
 const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-pokeapi'];
 // + núcleo pelas tabelas do jogo extraídas pelo PKHeX (Black/White e Gens 6–9), auditado depois (tem que dar 0)
+// + onde obter pelas tabelas de encontro do PKHeX (Gens 6–9)
 const PKHEX_STEPS = ['apply-pkhex-overlay', 'validate-pkhex'];
+const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex'];
+// jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
+const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'validate-pkhex', 'build-acquisition-pkhex'];
 for (const id of ids) {
   if (!GAMES[id]) throw new Error(`Jogo desconhecido: ${id}`);
   console.log(`\n===== ${id} =====`);
   const plain = !GAMES[id].decomp && !GAMES[id].asmDecomp;
-  for (const step of GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : plain ? [...PLAIN_STEPS, ...(GAMES[id].pkhex ? PKHEX_STEPS : [])] : STEPS) {
+  const pk = GAMES[id].pkhex ? [...PKHEX_STEPS, ...(GAMES[id].generation >= 6 ? PKHEX_ACQ_STEPS : [])] : [];
+  for (const step of GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : GAMES[id].pkhexOnly ? PKHEX_ONLY_STEPS : plain ? [...PLAIN_STEPS, ...pk] : STEPS) {
     console.log(`--- ${step}`);
     try {
       execFileSync(process.execPath, [`scripts/${step}.mjs`, id], { cwd, stdio: 'inherit' });
