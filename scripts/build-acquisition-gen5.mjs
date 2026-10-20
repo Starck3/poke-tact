@@ -130,6 +130,27 @@ for (const mon of data.pokemon) {
     grottoes.push(mon.name);
   }
 }
+// Hidden Grottoes conferidas com a tabela do jogo extraída pelo PKHeX (scripts/lib/pkhex-enc-gen5.mjs, SlotType5
+// HiddenGrotto): toda espécie da PokéAPI existe no PKHeX na mesma versão (Beedrill só no B2, Butterfree só no W2). O PKHeX
+// tem 15 espécies a mais (família do Eevee, Glameow, Stunky, Chansey…) sem a rota e com a faixa de nível agregada (15–60)
+// → entram como "Hidden Grotto (rota não registrada)", aleatórias (o conteúdo das grutas é sorteado) — SÓ as que não têm
+// nenhuma outra forma de obter (decidido no passo 6): o motor usa a fonte direta e não compara com a evolução, então uma
+// gruta sem rota (= pós-jogo) escondia a Glaceon que sai do Eevee de Castelia (o banco de lutas perdeu 6 lutas).
+const grottoCheck = { onlyPokeapi: [], addedFromPkhex: [], confirmedOnly: [], pending: [] };
+const pkhexRoot = new URL('../data-sources/pkhex-src/', import.meta.url);
+if (existsSync(new URL('PKHeX.Core/', pkhexRoot))) {
+  const { readEncounters } = await import('./lib/pkhex-enc-gen5.mjs');
+  const enc = readEncounters(pkhexRoot, gameId).wild.filter((w) => w.method === 'hidden-grotto');
+  for (const v of VERSIONS) {
+    const pk = new Map(enc.filter((w) => w.version === v).map((w) => [w.species, w]));
+    const fromApi = new Set(Object.entries(out[v]).filter(([, l]) => l.some((s) => s.method === 'Hidden Grotto')).map(([n]) => monById.get(data.pokemon.find((p) => p.name === n)?.id)?.id));
+    for (const id of fromApi) if (id && !pk.has(id)) grottoCheck.onlyPokeapi.push(`${v}:${monById.get(id)?.name}`);
+    for (const [id, w] of pk) {
+      if (fromApi.has(id) || !monById.get(id)) continue;
+      grottoCheck.pending.push({ v, id, w });
+    }
+  }
+}
 
 // ---- 3) presentes, ovos, estáticos, trocas, iniciais (scripts executados por versão)
 const ITEM_GIVERS = new Set();
@@ -273,6 +294,21 @@ for (const t of trainers.filter((x) => ['Líderes de ginásio', 'Elite dos Quatr
 
 // ---- 6) obtível
 const USABLE = new Set(['wild', 'gift', 'static', 'trade', 'starter', 'egg', 'roamer']);
+// grutas do PKHeX (passo 2): só entra a espécie que não tem outra forma de obter (direta ou evoluindo) — em ordem de nº,
+// para a pré-evolução entrar antes (Glameow entra; Purugly já sai evoluindo)
+const canNow = (v, mon, seen = new Set()) => {
+  if (seen.has(mon.name)) return false;
+  seen.add(mon.name);
+  const parent = monById.get(mon.evolvesFrom);
+  return (out[v][mon.name] ?? []).some((s) => USABLE.has(s.type)) || (!!parent && mon.evo?.possible !== false && canNow(v, parent, seen));
+};
+for (const { v, id, w } of grottoCheck.pending.sort((a, b) => a.id - b.id)) {
+  const mon = monById.get(id);
+  if (canNow(v, mon)) { grottoCheck.confirmedOnly.push(`${v}:${mon.name}`); continue; }
+  push(v, id, { type: 'wild', where: 'Hidden Grotto (rota não registrada)', method: 'Hidden Grotto', min: w.min, max: w.max, detail: 'tabela de grutas do jogo (PKHeX): rota e nível exato não registrados', source: 'pkhex', random: true });
+  grottoCheck.addedFromPkhex.push(`${v}:${mon.name}`);
+}
+delete grottoCheck.pending;
 const changes = [];
 for (const v of VERSIONS) {
   const memo = new Map();
@@ -299,6 +335,8 @@ const progress = {
 writeFileSync(new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url), JSON.stringify({ source: `${game.asmDecomp.repo}@${game.asmDecomp.commit.slice(0, 7)}`, versions: out, machines, tutors: {}, items: itemsOut, progress }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 writeFileSync(new URL(`../reports/${gameId}/obtainable-changes.json`, import.meta.url), JSON.stringify(changes, null, 1));
+writeFileSync(new URL(`../reports/${gameId}/grotto-check.json`, import.meta.url), JSON.stringify(grottoCheck, null, 1));
+console.log(`  Hidden Grotto × PKHeX: ${grottoCheck.onlyPokeapi.length} só na PokéAPI; ${grottoCheck.addedFromPkhex.length} acrescentadas do PKHeX (rota não registrada)`);
 const tmTotal = Object.keys(tm).length, tmWith = Object.keys(tm).filter((it) => machines[tm[it]]?.length).length;
 console.log(`[${gameId}] líderes: ${timeline.leaderOrder.join(' > ')} (${timeline.leadersFound}; Elite ${timeline.eliteFound}/4); mapas com estágio ${st.size}/${ids.length}; conexões ${conn.size}; iniciais ${data.starters.species.join(', ')} (nv ${starterLevel}, ${starterWhere})`);
 console.log(`  scripts globais que dão item: ${[...ITEM_GIVERS].sort().join(', ')}; Hidden Grotto (PokéAPI): ${new Set(grottoes).size} espécies`);

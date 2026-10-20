@@ -2,6 +2,13 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.19.0] — 2026-10-20
+
+### Corrigido
+- **Black 2/White 2 — Hidden Grottoes conferidas com a tabela do jogo (PKHeX)**: toda espécie de gruta que o app mostra
+  existe no jogo na mesma versão (Beedrill só no Black 2, Butterfree só no White 2). Glameow, Stunky e Togetic — que só
+  saem de gruta — passam a aparecer como obtíveis, em "Hidden Grotto (rota não registrada)", marcadas como aleatórias.
+
 ## [0.18.0] — 2026-10-20
 
 ### Corrigido

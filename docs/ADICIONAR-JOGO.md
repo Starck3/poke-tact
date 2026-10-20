@@ -293,6 +293,11 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   Let's Go → Yellow, ORAS → RS. Sem título próprio no detonado, vale a evidência mais cedo entre o texto e o mesmo rótulo
   no original (ou as partes dele: "Route 204 South/North"), com o estágio convertido pelo NOME do líder. Ficam sem posição
   os jogos sem original nem citação (BW, Sword/Shield, Sun/Moon, Scarlet/Violet, Z-A).
+- **B2W2 — grutas × PKHeX** (0.19.0, `build-acquisition-gen5.mjs`, relatório `reports/black-2-white-2/grotto-check.json`):
+  0 espécies só na PokéAPI. Das 15 a mais do PKHeX (sem rota, nível agregado 15–60), 🧪 só entram as que não têm OUTRA
+  forma de obter (Glameow, Stunky, Togetic): o motor usa a fonte direta e não compara com o caminho por evolução — a gruta
+  sem rota (= pós-jogo) virou a fonte da Glaceon e escondeu o Eevee de Castelia (banco de lutas perdeu 6 lutas).
+  Pendência de motor: comparar fonte direta × evolução em `reachStage`/`reachLevel`.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

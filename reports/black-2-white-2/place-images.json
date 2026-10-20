@@ -1,6 +1,6 @@
 {
  "withImages": 42,
- "total": 90,
+ "total": 91,
  "without": [
   "Route 1",
   "Route 3",
@@ -49,6 +49,7 @@
   "Route 3 Hidden Grotto Dark Grass",
   "Abundant Shrine Hidden Grotto Near Youngster",
   "Route 3 Hidden Grotto Pond",
-  "Floccesy Town"
+  "Floccesy Town",
+  "Hidden Grotto (rota não registrada)"
  ]
 }
