@@ -45,7 +45,7 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
    está em `acq.progress.reviewEarlierMention` de cada jogo (centenas de mapas). Aceitar a citação anterior direto erraria
    Silver Cave (Crystal) e Viridian City (Gold/Silver). Plano: aceitar só quando um mapa vizinho (conexão/warp do decomp) já
    está liberado naquele estágio; mexe nos 7 `build-acquisition*` (gen1, gen2, gen3, gen4, dp, hgss, gen5) + testes.
-2. **Sun/Moon — provação da Mina (Fairium)**: não tem totem no texto e ficou fora dos marcos.
+2. ✅ **Sun/Moon — provação da Mina (Fairium)**: não é pendência — no SM ela entrega o Fairium sem provação (o detonado diz).
 3. **Legends: Z-A — o rival/companheiro (Urbain/Taunie) e as lutas com inicial genérico** ("Chikorita/Tepig/Totodile").
 4. **Rival com "inicial" genérico** ("[chespin][fennekin][froakie] inicial lv.5"): esse Pokémon fica fora do time. Dá para
    montar uma variante por inicial do jogador, mas a regra (o rival pega o forte ou o fraco contra o seu?) muda por jogo e

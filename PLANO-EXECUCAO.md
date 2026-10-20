@@ -24,7 +24,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   Viridian City continua ≥ 8; testes passam; banco de lutas não piora.
 - **Se travar**: aplicar só nos jogos em que a regra valida (marcar ⚠ com a lista).
 
-### 2. Sun/Moon — provação da Mina (Fairium) — ⬜
+### 2. Sun/Moon — provação da Mina (Fairium) — ✅ (não era pendência real)
 - **Objetivo**: entrar como marco do progresso sem pegar presentes (Steelium/Buginium/Poisonium/Eevium).
 - **Validação**: `sun-moon-acquisition.json` → `progress.stageNames` com a provação do Fairium; nenhum dos presentes.
 - **Se travar**: ❌ com o motivo (o texto não dá pista confiável).
@@ -69,3 +69,6 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   1ª tentativa tinha 2 falsos positivos (Magma Hideout 6→3; Abandoned Ship RS 9→3) → regras "só pós-jogo" e "rota só de
   água conta a partir do Surf". Aceito: Pal Park (DP/Pt) no estágio 5 (sem fonte de captura). Abandoned Ship do RS
   continua pós-jogo (conservador; no jogo abre com Surf, estágio 5).
+- **Etapa 2 — ✅ sem mudança de dados.** O detonado diz que no Sun/Moon a Mina "não tem nenhum trial para lhe oferecer" e
+  entrega o Fairium como presente — o progresso atual (7 provações + 4 grandes provações) está certo. Teste de regressão
+  registra o motivo. Sem versão nova (só teste + plano).
