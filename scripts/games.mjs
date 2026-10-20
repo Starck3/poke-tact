@@ -45,6 +45,8 @@ const HGSS_STAGE_FACTS = { MAP_ROUTE_27: { stage: 8, why: 'só pelo mar a partir
 // Platinum: a Great Marsh é descrita numa seção de extras no fim do detonado, mas a entrada é o portão do observatório de
 // Pastoria (events_pastoria_city_observatory_gate_1f.json → MAP_HEADER_GREAT_MARSH_6); Pastoria = estágio 4 (ginásio do Wake)
 const PLATINUM_STAGE_FACTS = Object.fromEntries([1, 2, 3, 4, 5, 6].map((n) => [`MAP_HEADER_GREAT_MARSH_${n}`, { stage: 4, why: 'entrada pelo portão do observatório de Pastoria (warp para GREAT_MARSH_6); Pastoria = estágio 4' }]));
+// Diamond/Pearl: o jogo começa no quarto do jogador (o detonado não cita o mapa interno da casa)
+const DP_STAGE_FACTS = { MAP_TWINLEAF_PLAYER_HOUSE_2F: { stage: 0, why: 'início do jogo: quarto do jogador em Twinleaf Town' } };
 // Estágios que o detonado não nomeia, tirados do código (valem como título). Cada um com a evidência.
 const GEN1_STAGE_FACTS = {
   ROUTE_22: { stage: 0, why: 'scripts/Route22.asm: 1ª luta com o rival (RIVAL1, mesma fase do laboratório; times nv 8–9). Quem exige insígnias é o portão para a Route 23 (Route22Gate.asm)' },
@@ -66,17 +68,21 @@ export const GAMES = {
     asmDecomp: { repo: 'pret/pokecrystal', commit: '3bc8daa4173e96a7f4011dad3922eb6fa5dad5c6', dir: 'pokecrystal-asm' } },
   // ---- Gen 4 (decomps de DS incompletos — S6). A partir daqui: físico/especial POR GOLPE.
   'diamond-pearl': { ...pokeapiOnly(4, 493), label: 'Pokémon Diamond / Pearl (DS)', versionGroup: 'diamond-pearl', versions: ['diamond', 'pearl'], walkthrough: 'detonado-diamond-pearl',
-    // E5: o núcleo e os treinadores estão em JSON (a medição de antes errou); encontros/scripts/eventos seguem em binário
+    stageFacts: DP_STAGE_FACTS,
+    // núcleo e treinadores em JSON; encontros, scripts (bytecode), eventos e matrizes em binário — lidos por
+    // scripts/lib/gen4-dp-field.mjs e gen4-dp-script.mjs com as regras tiradas do código (arm9/src, arm9/asm, arm9/overlays)
     asmDecomp: { repo: 'pret/pokediamond', commit: 'b623abef1b4dfe204ca50aab42447ac00c134290', dir: 'pokediamond-src', steps: 'dp',
-      sparse: ['/files/poketool/personal/*.json', '/files/poketool/personal_pearl/*.json', '/files/poketool/trainer/', '/files/poketool/waza/*.json', '/include/'] } },
+      sparse: ['/files/poketool/personal/*.json', '/files/poketool/personal_pearl/*.json', '/files/poketool/trainer/', '/files/poketool/waza/*.json', '/include/',
+        '/arm9/src/', '/arm9/asm/', '/arm9/overlays/', '/files/fielddata/script/', '/files/fielddata/eventdata/', '/files/fielddata/encountdata/',
+        '/files/fielddata/mapmatrix/', '/files/fielddata/pokemon_trade/', '/files/arc/encdata_ex/'] } },
   platinum: { ...pokeapiOnly(4, 493), label: 'Pokémon Platinum (DS)', versionGroup: 'platinum', versions: ['platinum'], walkthrough: 'detonado-platinum',
     // decomp em JSON (res/pokemon/*/data.json…), mesmo esquema "asmDecomp" do pipeline (o carregador é escolhido pela geração)
     stageFacts: PLATINUM_STAGE_FACTS,
     asmDecomp: { repo: 'pret/pokeplatinum', commit: '1dc13dcea40c04ab53f1f607de46023dc409ef20', dir: 'pokeplatinum-src' } },
   'heartgold-soulsilver': { ...pokeapiOnly(4, 493), label: 'Pokémon HeartGold / SoulSilver (DS)', versionGroup: 'heartgold-soulsilver', versions: ['heartgold', 'soulsilver'], walkthrough: 'detonado-heartgold-soulsilver', walkthroughTypos: HGSS_PLACE_NAMES, stageFacts: HGSS_STAGE_FACTS,
-    // decomp parcial: só o que está em TEXTO (atributos, TM/HM, tutores, evoluções, tipos); learnset e golpes em binário
-    asmDecomp: { repo: 'pret/pokeheartgold', commit: '708163e10169173d2bbab252538231721d983155', dir: 'pokeheartgold-src', steps: 'hgss', partial: true,
-      sparse: ['/files/poketool/personal/*.json', '/files/poketool/trainer/', '/files/fielddata/encountdata/', '/files/fielddata/wazaoshie/', '/files/fielddata/script/scr_seq/', '/files/fielddata/eventdata/',
+    // texto (atributos, TM/HM, tutores, evoluções, tipos) + binários lidos por scripts/lib/narc.mjs (learnset por nível e golpes)
+    asmDecomp: { repo: 'pret/pokeheartgold', commit: '708163e10169173d2bbab252538231721d983155', dir: 'pokeheartgold-src', steps: 'hgss',
+      sparse: ['/files/poketool/personal/*.json', '/files/poketool/personal/wotbl.narc', '/files/poketool/waza/waza_tbl.narc', '/files/poketool/trainer/', '/files/fielddata/encountdata/', '/files/fielddata/wazaoshie/', '/files/fielddata/script/scr_seq/', '/files/fielddata/eventdata/',
         '/include/', '/src/', '/asm/include/', '/files/arc/headbutt.json', '/files/arc/safari_enc.json', '/files/data/mushi/'] } },
   // ---- Gen 5 a 9 (sem decomp — S7)
   'black-white': { ...pokeapiOnly(5, 649), label: 'Pokémon Black / White (DS)', versionGroup: 'black-white', versions: ['black', 'white'], walkthrough: 'detonado-black-white' },

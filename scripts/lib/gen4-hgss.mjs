@@ -6,8 +6,10 @@
 //   src/item.c sTMHMMoves[]                TM/HM nº → golpe
 //   include/constants/moves.h              #define MOVE_X n (id nacional)
 //   src/battle/overlay_12_0224E4FC.c       tabela de tipos { ATACANTE, DEFENSOR, TYPE_MUL_* }
-// FORA (binário): learnset por nível (wotbl.narc) e dados dos golpes (waza_tbl.narc) → continuam da PokéAPI.
+//   files/poketool/personal/wotbl.narc     learnset por nível (binário; um arquivo por espécie, na ordem do jogo)
+//   files/poketool/waza/waza_tbl.narc      dados dos golpes (binário; um arquivo por golpe = id nacional)
 import { readFileSync } from 'node:fs';
+import { readNarc, parseLevelUp, parseMove } from './narc.mjs';
 
 const T = (t) => t.replace(/^TYPE_/, '').toLowerCase().replace('mystery', 'unknown');
 const MUL = { TYPE_MUL_SUPER_EFFECTIVE: 2, TYPE_MUL_NOT_EFFECTIVE: 0.5, TYPE_MUL_NO_EFFECT: 0 };
@@ -55,5 +57,10 @@ export function loadHgss(rootUrl) {
       if (from && to) species[from].evo.push({ kind: EVO[x.method] ?? x.method, raw: x.method, param: x.param, to: x.target });
     }
   }
-  return { moveId, species, chart, speciesId: byName, tmhm };
+  // binários do jogo (NARC): learnset por nível na ordem do jogo e dados dos golpes
+  const wotbl = readNarc(new URL('files/poketool/personal/wotbl.narc', rootUrl));
+  for (const [id, s] of Object.entries(species)) s.levelOrdered = parseLevelUp(wotbl[id]);
+  const moves = {};
+  readNarc(new URL('files/poketool/waza/waza_tbl.narc', rootUrl)).forEach((b, id) => { if (id && id <= 467) moves[id] = parseMove(b); });
+  return { moveId, species, chart, speciesId: byName, tmhm, moves };
 }

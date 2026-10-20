@@ -2991,7 +2991,7 @@
       },
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -3230,7 +3230,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -3310,7 +3310,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -3470,7 +3470,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -3561,7 +3561,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -3641,7 +3641,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -3801,7 +3801,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -3892,7 +3892,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -3972,7 +3972,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -4132,7 +4132,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -4223,7 +4223,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -4377,7 +4377,7 @@
       "bite",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 31,
+     "superEffectiveAvailable": 30,
      "winnersAvailable": 56,
      "candidates": 70,
      "picks": [
@@ -4554,7 +4554,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -4708,7 +4708,7 @@
       "bite",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 29,
+     "superEffectiveAvailable": 28,
      "winnersAvailable": 55,
      "candidates": 70,
      "picks": [
@@ -4885,7 +4885,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -5039,7 +5039,7 @@
       "bite",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 29,
+     "superEffectiveAvailable": 28,
      "winnersAvailable": 56,
      "candidates": 70,
      "picks": [
@@ -8388,7 +8388,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -8548,9 +8548,9 @@
      "picks": [
       {
        "mon": "crobat",
-       "move": "sludge-bomb",
+       "move": "cross-poison",
        "eff": 2,
-       "via": "machine",
+       "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
@@ -8799,7 +8799,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -10277,7 +10277,7 @@
       "feint-attack",
       "shadow-claw"
      ],
-     "superEffectiveAvailable": 260,
+     "superEffectiveAvailable": 261,
      "winnersAvailable": 225,
      "candidates": 323,
      "picks": [
@@ -10547,7 +10547,7 @@
       },
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -10768,7 +10768,7 @@
       "feint-attack",
       "shadow-claw"
      ],
-     "superEffectiveAvailable": 260,
+     "superEffectiveAvailable": 261,
      "winnersAvailable": 224,
      "candidates": 323,
      "picks": [
@@ -11038,7 +11038,7 @@
       },
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -11168,7 +11168,7 @@
       "flame-wheel",
       "swift"
      ],
-     "superEffectiveAvailable": 172,
+     "superEffectiveAvailable": 173,
      "winnersAvailable": 63,
      "candidates": 324,
      "picks": [
@@ -11259,7 +11259,7 @@
       "feint-attack",
       "shadow-claw"
      ],
-     "superEffectiveAvailable": 260,
+     "superEffectiveAvailable": 261,
      "winnersAvailable": 225,
      "candidates": 323,
      "picks": [
@@ -11529,7 +11529,7 @@
       },
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -11910,7 +11910,7 @@
       "blizzard",
       "giga-impact"
      ],
-     "superEffectiveAvailable": 54,
+     "superEffectiveAvailable": 56,
      "winnersAvailable": 64,
      "candidates": 325,
      "picks": [
@@ -12401,7 +12401,7 @@
       "blizzard",
       "giga-impact"
      ],
-     "superEffectiveAvailable": 54,
+     "superEffectiveAvailable": 56,
      "winnersAvailable": 65,
      "candidates": 325,
      "picks": [
@@ -12892,7 +12892,7 @@
       "blizzard",
       "giga-impact"
      ],
-     "superEffectiveAvailable": 54,
+     "superEffectiveAvailable": 56,
      "winnersAvailable": 64,
      "candidates": 325,
      "picks": [
@@ -13223,7 +13223,7 @@
       "feint-attack",
       "fury-swipes"
      ],
-     "superEffectiveAvailable": 254,
+     "superEffectiveAvailable": 255,
      "winnersAvailable": 237,
      "candidates": 316,
      "picks": [
@@ -13383,7 +13383,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 200,
+     "superEffectiveAvailable": 201,
      "winnersAvailable": 220,
      "candidates": 316,
      "picks": [
@@ -13469,7 +13469,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -13714,7 +13714,7 @@
       "feint-attack",
       "fury-swipes"
      ],
-     "superEffectiveAvailable": 254,
+     "superEffectiveAvailable": 255,
      "winnersAvailable": 237,
      "candidates": 316,
      "picks": [
@@ -13874,7 +13874,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 200,
+     "superEffectiveAvailable": 201,
      "winnersAvailable": 219,
      "candidates": 316,
      "picks": [
@@ -13960,7 +13960,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -14205,7 +14205,7 @@
       "feint-attack",
       "fury-swipes"
      ],
-     "superEffectiveAvailable": 254,
+     "superEffectiveAvailable": 255,
      "winnersAvailable": 237,
      "candidates": 316,
      "picks": [
@@ -14365,7 +14365,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 201,
+     "superEffectiveAvailable": 202,
      "winnersAvailable": 221,
      "candidates": 316,
      "picks": [
@@ -14451,7 +14451,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -14696,7 +14696,7 @@
       "waterfall",
       "ice-fang"
      ],
-     "superEffectiveAvailable": 143,
+     "superEffectiveAvailable": 144,
      "winnersAvailable": 79,
      "candidates": 323,
      "picks": [
@@ -15187,7 +15187,7 @@
       "waterfall",
       "ice-fang"
      ],
-     "superEffectiveAvailable": 146,
+     "superEffectiveAvailable": 147,
      "winnersAvailable": 79,
      "candidates": 323,
      "picks": [
@@ -15678,7 +15678,7 @@
       "waterfall",
       "ice-fang"
      ],
-     "superEffectiveAvailable": 143,
+     "superEffectiveAvailable": 144,
      "winnersAvailable": 80,
      "candidates": 323,
      "picks": [
@@ -16249,7 +16249,7 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 237,
+     "superEffectiveAvailable": 238,
      "winnersAvailable": 97,
      "candidates": 318,
      "picks": [
@@ -16329,7 +16329,7 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 295,
+     "superEffectiveAvailable": 294,
      "winnersAvailable": 100,
      "candidates": 318,
      "picks": [
@@ -16489,7 +16489,7 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 239,
+     "superEffectiveAvailable": 238,
      "winnersAvailable": 66,
      "candidates": 318,
      "picks": [
@@ -16660,7 +16660,7 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 237,
+     "superEffectiveAvailable": 238,
      "winnersAvailable": 97,
      "candidates": 318,
      "picks": [
@@ -16740,7 +16740,7 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 298,
+     "superEffectiveAvailable": 297,
      "winnersAvailable": 102,
      "candidates": 318,
      "picks": [
@@ -16900,7 +16900,7 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 239,
+     "superEffectiveAvailable": 238,
      "winnersAvailable": 67,
      "candidates": 318,
      "picks": [
@@ -17071,7 +17071,7 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 237,
+     "superEffectiveAvailable": 238,
      "winnersAvailable": 97,
      "candidates": 318,
      "picks": [
@@ -17151,7 +17151,7 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 298,
+     "superEffectiveAvailable": 297,
      "winnersAvailable": 101,
      "candidates": 318,
      "picks": [
@@ -17311,7 +17311,7 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 242,
+     "superEffectiveAvailable": 241,
      "winnersAvailable": 67,
      "candidates": 318,
      "picks": [
@@ -17402,7 +17402,7 @@
       "feint-attack",
       "payback"
      ],
-     "superEffectiveAvailable": 123,
+     "superEffectiveAvailable": 125,
      "winnersAvailable": 169,
      "candidates": 321,
      "picks": [
@@ -17482,7 +17482,7 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 214,
+     "superEffectiveAvailable": 213,
      "winnersAvailable": 164,
      "candidates": 321,
      "picks": [
@@ -17722,7 +17722,7 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 190,
+     "superEffectiveAvailable": 192,
      "winnersAvailable": 59,
      "candidates": 321,
      "picks": [
@@ -17813,7 +17813,7 @@
       "feint-attack",
       "payback"
      ],
-     "superEffectiveAvailable": 123,
+     "superEffectiveAvailable": 125,
      "winnersAvailable": 170,
      "candidates": 321,
      "picks": [
@@ -17893,7 +17893,7 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 217,
+     "superEffectiveAvailable": 216,
      "winnersAvailable": 166,
      "candidates": 321,
      "picks": [
@@ -18133,7 +18133,7 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 191,
+     "superEffectiveAvailable": 193,
      "winnersAvailable": 60,
      "candidates": 321,
      "picks": [
@@ -18224,7 +18224,7 @@
       "feint-attack",
       "payback"
      ],
-     "superEffectiveAvailable": 122,
+     "superEffectiveAvailable": 124,
      "winnersAvailable": 170,
      "candidates": 321,
      "picks": [
@@ -18304,7 +18304,7 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 217,
+     "superEffectiveAvailable": 216,
      "winnersAvailable": 164,
      "candidates": 321,
      "picks": [
@@ -18544,7 +18544,7 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 192,
+     "superEffectiveAvailable": 194,
      "winnersAvailable": 60,
      "candidates": 321,
      "picks": [
@@ -18635,7 +18635,7 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 179,
+     "superEffectiveAvailable": 180,
      "winnersAvailable": 202,
      "candidates": 319,
      "picks": [
@@ -18955,7 +18955,7 @@
       "wing-attack",
       "poison-fang"
      ],
-     "superEffectiveAvailable": 216,
+     "superEffectiveAvailable": 215,
      "winnersAvailable": 99,
      "candidates": 319,
      "picks": [
@@ -19046,7 +19046,7 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 182,
+     "superEffectiveAvailable": 183,
      "winnersAvailable": 205,
      "candidates": 319,
      "picks": [
@@ -19366,7 +19366,7 @@
       "wing-attack",
       "poison-fang"
      ],
-     "superEffectiveAvailable": 216,
+     "superEffectiveAvailable": 215,
      "winnersAvailable": 100,
      "candidates": 319,
      "picks": [
@@ -19457,7 +19457,7 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 180,
+     "superEffectiveAvailable": 181,
      "winnersAvailable": 204,
      "candidates": 319,
      "picks": [
@@ -19777,7 +19777,7 @@
       "wing-attack",
       "poison-fang"
      ],
-     "superEffectiveAvailable": 219,
+     "superEffectiveAvailable": 218,
      "winnersAvailable": 101,
      "candidates": 319,
      "picks": [
@@ -19868,7 +19868,7 @@
       "dig",
       "triple-kick"
      ],
-     "superEffectiveAvailable": 120,
+     "superEffectiveAvailable": 118,
      "winnersAvailable": 171,
      "candidates": 321,
      "picks": [
@@ -19948,7 +19948,7 @@
       "high-jump-kick",
       "blaze-kick"
      ],
-     "superEffectiveAvailable": 121,
+     "superEffectiveAvailable": 120,
      "winnersAvailable": 111,
      "candidates": 321,
      "picks": [
@@ -20028,7 +20028,7 @@
       "fire-punch",
       "bullet-punch"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 129,
      "winnersAvailable": 146,
      "candidates": 321,
      "picks": [
@@ -20188,7 +20188,7 @@
       "revenge",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 128,
      "winnersAvailable": 44,
      "candidates": 322,
      "picks": [
@@ -20279,7 +20279,7 @@
       "dig",
       "triple-kick"
      ],
-     "superEffectiveAvailable": 120,
+     "superEffectiveAvailable": 118,
      "winnersAvailable": 172,
      "candidates": 321,
      "picks": [
@@ -20359,7 +20359,7 @@
       "high-jump-kick",
       "blaze-kick"
      ],
-     "superEffectiveAvailable": 124,
+     "superEffectiveAvailable": 123,
      "winnersAvailable": 111,
      "candidates": 321,
      "picks": [
@@ -20439,7 +20439,7 @@
       "fire-punch",
       "bullet-punch"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 129,
      "winnersAvailable": 147,
      "candidates": 321,
      "picks": [
@@ -20549,7 +20549,7 @@
       },
       {
        "mon": "leafeon",
-       "move": "giga-drain",
+       "move": "magical-leaf",
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 3,
@@ -20599,7 +20599,7 @@
       "revenge",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 128,
      "winnersAvailable": 44,
      "candidates": 322,
      "picks": [
@@ -20690,7 +20690,7 @@
       "dig",
       "triple-kick"
      ],
-     "superEffectiveAvailable": 122,
+     "superEffectiveAvailable": 120,
      "winnersAvailable": 171,
      "candidates": 321,
      "picks": [
@@ -20770,7 +20770,7 @@
       "high-jump-kick",
       "blaze-kick"
      ],
-     "superEffectiveAvailable": 124,
+     "superEffectiveAvailable": 123,
      "winnersAvailable": 111,
      "candidates": 321,
      "picks": [
@@ -20850,7 +20850,7 @@
       "fire-punch",
       "bullet-punch"
      ],
-     "superEffectiveAvailable": 133,
+     "superEffectiveAvailable": 132,
      "winnersAvailable": 146,
      "candidates": 321,
      "picks": [
@@ -20960,7 +20960,7 @@
       },
       {
        "mon": "leafeon",
-       "move": "giga-drain",
+       "move": "magical-leaf",
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 3,
@@ -21010,7 +21010,7 @@
       "revenge",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 133,
+     "superEffectiveAvailable": 131,
      "winnersAvailable": 45,
      "candidates": 322,
      "picks": [
@@ -21261,7 +21261,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 207,
+     "superEffectiveAvailable": 208,
      "winnersAvailable": 152,
      "candidates": 325,
      "picks": [
@@ -21752,7 +21752,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 207,
+     "superEffectiveAvailable": 208,
      "winnersAvailable": 152,
      "candidates": 325,
      "picks": [
@@ -22243,7 +22243,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 208,
+     "superEffectiveAvailable": 209,
      "winnersAvailable": 154,
      "candidates": 325,
      "picks": [
@@ -26277,7 +26277,7 @@
       },
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -26516,7 +26516,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -26596,7 +26596,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -26756,7 +26756,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -26847,7 +26847,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -26927,7 +26927,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -27087,7 +27087,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -27178,7 +27178,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -27258,7 +27258,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -27418,7 +27418,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -27509,7 +27509,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -27663,7 +27663,7 @@
       "bite",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 31,
+     "superEffectiveAvailable": 30,
      "winnersAvailable": 56,
      "candidates": 70,
      "picks": [
@@ -27840,7 +27840,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -27994,7 +27994,7 @@
       "bite",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 29,
+     "superEffectiveAvailable": 28,
      "winnersAvailable": 55,
      "candidates": 70,
      "picks": [
@@ -28171,7 +28171,7 @@
      "picks": [
       {
        "mon": "rattata",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -28325,7 +28325,7 @@
       "bite",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 29,
+     "superEffectiveAvailable": 28,
      "winnersAvailable": 56,
      "candidates": 70,
      "picks": [
@@ -31674,7 +31674,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -31834,9 +31834,9 @@
      "picks": [
       {
        "mon": "crobat",
-       "move": "sludge-bomb",
+       "move": "cross-poison",
        "eff": 2,
-       "via": "machine",
+       "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
@@ -32085,7 +32085,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -33563,7 +33563,7 @@
       "feint-attack",
       "shadow-claw"
      ],
-     "superEffectiveAvailable": 259,
+     "superEffectiveAvailable": 260,
      "winnersAvailable": 224,
      "candidates": 323,
      "picks": [
@@ -34054,7 +34054,7 @@
       "feint-attack",
       "shadow-claw"
      ],
-     "superEffectiveAvailable": 259,
+     "superEffectiveAvailable": 260,
      "winnersAvailable": 223,
      "candidates": 323,
      "picks": [
@@ -34454,7 +34454,7 @@
       "flame-wheel",
       "swift"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 170,
      "winnersAvailable": 61,
      "candidates": 324,
      "picks": [
@@ -34545,7 +34545,7 @@
       "feint-attack",
       "shadow-claw"
      ],
-     "superEffectiveAvailable": 259,
+     "superEffectiveAvailable": 260,
      "winnersAvailable": 224,
      "candidates": 323,
      "picks": [
@@ -35196,7 +35196,7 @@
       "blizzard",
       "giga-impact"
      ],
-     "superEffectiveAvailable": 54,
+     "superEffectiveAvailable": 56,
      "winnersAvailable": 65,
      "candidates": 325,
      "picks": [
@@ -35687,7 +35687,7 @@
       "blizzard",
       "giga-impact"
      ],
-     "superEffectiveAvailable": 54,
+     "superEffectiveAvailable": 56,
      "winnersAvailable": 66,
      "candidates": 325,
      "picks": [
@@ -36178,7 +36178,7 @@
       "blizzard",
       "giga-impact"
      ],
-     "superEffectiveAvailable": 54,
+     "superEffectiveAvailable": 56,
      "winnersAvailable": 65,
      "candidates": 325,
      "picks": [
@@ -36509,7 +36509,7 @@
       "feint-attack",
       "fury-swipes"
      ],
-     "superEffectiveAvailable": 253,
+     "superEffectiveAvailable": 254,
      "winnersAvailable": 236,
      "candidates": 316,
      "picks": [
@@ -36669,7 +36669,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 200,
+     "superEffectiveAvailable": 201,
      "winnersAvailable": 217,
      "candidates": 316,
      "picks": [
@@ -36755,7 +36755,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -37000,7 +37000,7 @@
       "feint-attack",
       "fury-swipes"
      ],
-     "superEffectiveAvailable": 253,
+     "superEffectiveAvailable": 254,
      "winnersAvailable": 236,
      "candidates": 316,
      "picks": [
@@ -37160,7 +37160,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 200,
+     "superEffectiveAvailable": 201,
      "winnersAvailable": 216,
      "candidates": 316,
      "picks": [
@@ -37246,7 +37246,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -37491,7 +37491,7 @@
       "feint-attack",
       "fury-swipes"
      ],
-     "superEffectiveAvailable": 253,
+     "superEffectiveAvailable": 254,
      "winnersAvailable": 236,
      "candidates": 316,
      "picks": [
@@ -37651,7 +37651,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 201,
+     "superEffectiveAvailable": 202,
      "winnersAvailable": 218,
      "candidates": 316,
      "picks": [
@@ -37737,7 +37737,7 @@
      "picks": [
       {
        "mon": "raticate",
-       "move": "crunch",
+       "move": "sucker-punch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
@@ -37982,7 +37982,7 @@
       "waterfall",
       "ice-fang"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 142,
      "winnersAvailable": 79,
      "candidates": 323,
      "picks": [
@@ -38473,7 +38473,7 @@
       "waterfall",
       "ice-fang"
      ],
-     "superEffectiveAvailable": 144,
+     "superEffectiveAvailable": 145,
      "winnersAvailable": 79,
      "candidates": 323,
      "picks": [
@@ -38964,7 +38964,7 @@
       "waterfall",
       "ice-fang"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 142,
      "winnersAvailable": 80,
      "candidates": 323,
      "picks": [
@@ -39535,7 +39535,7 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 236,
+     "superEffectiveAvailable": 237,
      "winnersAvailable": 98,
      "candidates": 318,
      "picks": [
@@ -39615,7 +39615,7 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 295,
+     "superEffectiveAvailable": 294,
      "winnersAvailable": 100,
      "candidates": 318,
      "picks": [
@@ -39775,7 +39775,7 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 239,
+     "superEffectiveAvailable": 238,
      "winnersAvailable": 65,
      "candidates": 318,
      "picks": [
@@ -39946,7 +39946,7 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 236,
+     "superEffectiveAvailable": 237,
      "winnersAvailable": 98,
      "candidates": 318,
      "picks": [
@@ -40026,7 +40026,7 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 298,
+     "superEffectiveAvailable": 297,
      "winnersAvailable": 102,
      "candidates": 318,
      "picks": [
@@ -40186,7 +40186,7 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 239,
+     "superEffectiveAvailable": 238,
      "winnersAvailable": 66,
      "candidates": 318,
      "picks": [
@@ -40357,7 +40357,7 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 236,
+     "superEffectiveAvailable": 237,
      "winnersAvailable": 98,
      "candidates": 318,
      "picks": [
@@ -40437,7 +40437,7 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 298,
+     "superEffectiveAvailable": 297,
      "winnersAvailable": 101,
      "candidates": 318,
      "picks": [
@@ -40597,7 +40597,7 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 242,
+     "superEffectiveAvailable": 241,
      "winnersAvailable": 66,
      "candidates": 318,
      "picks": [
@@ -40688,7 +40688,7 @@
       "feint-attack",
       "payback"
      ],
-     "superEffectiveAvailable": 123,
+     "superEffectiveAvailable": 125,
      "winnersAvailable": 167,
      "candidates": 321,
      "picks": [
@@ -40768,7 +40768,7 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 217,
+     "superEffectiveAvailable": 215,
      "winnersAvailable": 165,
      "candidates": 321,
      "picks": [
@@ -41008,7 +41008,7 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 187,
+     "superEffectiveAvailable": 189,
      "winnersAvailable": 58,
      "candidates": 321,
      "picks": [
@@ -41099,7 +41099,7 @@
       "feint-attack",
       "payback"
      ],
-     "superEffectiveAvailable": 123,
+     "superEffectiveAvailable": 125,
      "winnersAvailable": 168,
      "candidates": 321,
      "picks": [
@@ -41179,7 +41179,7 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 220,
+     "superEffectiveAvailable": 218,
      "winnersAvailable": 167,
      "candidates": 321,
      "picks": [
@@ -41419,7 +41419,7 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 188,
+     "superEffectiveAvailable": 190,
      "winnersAvailable": 59,
      "candidates": 321,
      "picks": [
@@ -41510,7 +41510,7 @@
       "feint-attack",
       "payback"
      ],
-     "superEffectiveAvailable": 122,
+     "superEffectiveAvailable": 124,
      "winnersAvailable": 168,
      "candidates": 321,
      "picks": [
@@ -41590,7 +41590,7 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 220,
+     "superEffectiveAvailable": 218,
      "winnersAvailable": 165,
      "candidates": 321,
      "picks": [
@@ -41830,7 +41830,7 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 189,
+     "superEffectiveAvailable": 191,
      "winnersAvailable": 59,
      "candidates": 321,
      "picks": [
@@ -41921,7 +41921,7 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 178,
+     "superEffectiveAvailable": 179,
      "winnersAvailable": 200,
      "candidates": 320,
      "picks": [
@@ -42241,7 +42241,7 @@
       "wing-attack",
       "poison-fang"
      ],
-     "superEffectiveAvailable": 215,
+     "superEffectiveAvailable": 214,
      "winnersAvailable": 101,
      "candidates": 319,
      "picks": [
@@ -42332,7 +42332,7 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 181,
+     "superEffectiveAvailable": 182,
      "winnersAvailable": 203,
      "candidates": 320,
      "picks": [
@@ -42652,7 +42652,7 @@
       "wing-attack",
       "poison-fang"
      ],
-     "superEffectiveAvailable": 215,
+     "superEffectiveAvailable": 214,
      "winnersAvailable": 102,
      "candidates": 319,
      "picks": [
@@ -42743,7 +42743,7 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 179,
+     "superEffectiveAvailable": 180,
      "winnersAvailable": 202,
      "candidates": 320,
      "picks": [
@@ -43063,7 +43063,7 @@
       "wing-attack",
       "poison-fang"
      ],
-     "superEffectiveAvailable": 218,
+     "superEffectiveAvailable": 217,
      "winnersAvailable": 103,
      "candidates": 319,
      "picks": [
@@ -43154,7 +43154,7 @@
       "dig",
       "triple-kick"
      ],
-     "superEffectiveAvailable": 124,
+     "superEffectiveAvailable": 122,
      "winnersAvailable": 165,
      "candidates": 321,
      "picks": [
@@ -43234,7 +43234,7 @@
       "high-jump-kick",
       "blaze-kick"
      ],
-     "superEffectiveAvailable": 121,
+     "superEffectiveAvailable": 120,
      "winnersAvailable": 108,
      "candidates": 321,
      "picks": [
@@ -43314,7 +43314,7 @@
       "fire-punch",
       "bullet-punch"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 129,
      "winnersAvailable": 145,
      "candidates": 321,
      "picks": [
@@ -43474,7 +43474,7 @@
       "revenge",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 132,
+     "superEffectiveAvailable": 130,
      "winnersAvailable": 43,
      "candidates": 322,
      "picks": [
@@ -43565,7 +43565,7 @@
       "dig",
       "triple-kick"
      ],
-     "superEffectiveAvailable": 124,
+     "superEffectiveAvailable": 122,
      "winnersAvailable": 166,
      "candidates": 321,
      "picks": [
@@ -43645,7 +43645,7 @@
       "high-jump-kick",
       "blaze-kick"
      ],
-     "superEffectiveAvailable": 124,
+     "superEffectiveAvailable": 123,
      "winnersAvailable": 108,
      "candidates": 321,
      "picks": [
@@ -43725,7 +43725,7 @@
       "fire-punch",
       "bullet-punch"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 129,
      "winnersAvailable": 146,
      "candidates": 321,
      "picks": [
@@ -43835,7 +43835,7 @@
       },
       {
        "mon": "leafeon",
-       "move": "giga-drain",
+       "move": "magical-leaf",
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 3,
@@ -43885,7 +43885,7 @@
       "revenge",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 132,
+     "superEffectiveAvailable": 130,
      "winnersAvailable": 43,
      "candidates": 322,
      "picks": [
@@ -43976,7 +43976,7 @@
       "dig",
       "triple-kick"
      ],
-     "superEffectiveAvailable": 126,
+     "superEffectiveAvailable": 124,
      "winnersAvailable": 165,
      "candidates": 321,
      "picks": [
@@ -44056,7 +44056,7 @@
       "high-jump-kick",
       "blaze-kick"
      ],
-     "superEffectiveAvailable": 124,
+     "superEffectiveAvailable": 123,
      "winnersAvailable": 108,
      "candidates": 321,
      "picks": [
@@ -44136,7 +44136,7 @@
       "fire-punch",
       "bullet-punch"
      ],
-     "superEffectiveAvailable": 133,
+     "superEffectiveAvailable": 132,
      "winnersAvailable": 145,
      "candidates": 321,
      "picks": [
@@ -44246,7 +44246,7 @@
       },
       {
        "mon": "leafeon",
-       "move": "giga-drain",
+       "move": "magical-leaf",
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 3,
@@ -44296,7 +44296,7 @@
       "revenge",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 135,
+     "superEffectiveAvailable": 133,
      "winnersAvailable": 44,
      "candidates": 322,
      "picks": [
@@ -44547,7 +44547,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 208,
+     "superEffectiveAvailable": 209,
      "winnersAvailable": 147,
      "candidates": 325,
      "picks": [
@@ -45038,7 +45038,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 208,
+     "superEffectiveAvailable": 209,
      "winnersAvailable": 147,
      "candidates": 325,
      "picks": [
@@ -45529,7 +45529,7 @@
       "thunder-wave",
       "magnet-bomb"
      ],
-     "superEffectiveAvailable": 209,
+     "superEffectiveAvailable": 210,
      "winnersAvailable": 149,
      "candidates": 325,
      "picks": [

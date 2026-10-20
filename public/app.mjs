@@ -1,5 +1,6 @@
 import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel } from './engine.mjs';
-import { filterGames, groupByGeneration, platformsOf, generationsOf, roman, parseRoute, homeHash } from './catalog.mjs';
+import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
+import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
 const COLORS = {
   normal: '#8a8a59', fire: '#e8742c', water: '#5a7fe8', electric: '#d9ad12', grass: '#5ca83c', ice: '#6bb8b8',
@@ -7,9 +8,9 @@ const COLORS = {
   rock: '#9a8528', ghost: '#5f4a8a', dragon: '#5a24e8', dark: '#5a4a3f', steel: '#8a8aa5', fairy: '#d685ad',
 };
 const $ = (id) => document.getElementById(id);
-// sprites da própria versão do jogo (pasta do repositório PokeAPI/sprites; conferida para os jogos suportados)
+// sprites da própria versão do jogo (pasta do repositório PokeAPI/sprites)
 const SPRITES = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-const sprite = (id) => `${SPRITES}versions/generation-${roman(data.game.generation).toLowerCase()}/${currentGame}/${id}.png`;
+const sprite = (id) => `${SPRITES}versions/generation-${roman(data.game.generation).toLowerCase()}/${spriteFolder(currentGame, $('version').value)}/${id}.png`;
 // <img> com substituto: se a pasta da versão não existir (ex.: Gen 9), usa o sprite padrão
 const img = (id) => `<img src="${sprite(id)}" alt="" onerror="this.onerror=null;this.src='${SPRITES}${id}.png'">`;
 const typeBadge = (t) => `<span class="type" style="background:${COLORS[t]}">${t}</span>`;
@@ -23,8 +24,9 @@ const QUALITY = {
 };
 const qualityOf = (g) => (g.validation === 'pokeapi' ? 'pokeapi' : g.partial || (g.validation === 'decomp-core' && !g.hasWalkthrough) ? 'partial' : 'ok');
 const qualityBadge = (g) => { const [k, t, tip] = QUALITY[qualityOf(g)]; return lozenge(k, t, tip); };
-// contexto da partida (versão, inicial, progresso, nível) guardado por jogo no navegador — a URL tem prioridade
-const CTX_FIELDS = ['version', 'starter', 'stage', 'level'];
+// contexto da partida (versão, progresso, nível) guardado por jogo no navegador — a URL tem prioridade
+// o inicial fica de fora: o jogo sempre abre em "não informar" (só a URL ?inicial= escolhe um)
+const CTX_FIELDS = ['version', 'stage', 'level'];
 const saveCtx = () => { try { localStorage.setItem(`poketact:${currentGame}`, JSON.stringify(Object.fromEntries(CTX_FIELDS.map((f) => [f, $(f).value])))); } catch {} };
 const restoreCtx = () => {
   let c = null;
@@ -43,6 +45,8 @@ let acq = null;
 let walk = null; // detonado gerado (carregado ao abrir a aba)
 let known = null; // { moves, item } do Pokémon de treinador selecionado; null quando o usuário digita manualmente
 let teamMode = null; // treinador quando o modo "contra o time inteiro" está ativo
+let pokedex = null; // Pokédex nacional [[número, nome]]: só para avisar que um Pokémon é de outra geração
+fetch('data/pokedex.json').then((r) => r.json()).then((d) => { pokedex = d; }).catch(() => {});
 
 async function load(gameId) {
   const g = catalog.games.find((x) => x.id === gameId);
@@ -70,22 +74,15 @@ async function load(gameId) {
   walk = null;
   showTab('rec');
   data = await (await fetch(`data/${gameId}.json`)).json();
-  let trainersNote = '';
-  try { const tj = await (await fetch(`data/${gameId}-trainers.json`)).json(); trainers = tj.trainers; trainersNote = tj.note ?? ''; } catch { trainers = []; }
-  const bossesOnly = /só chefes/.test(trainersNote); // Diamond/Pearl: lugar das lutas em binário no decomp
+  try { trainers = (await (await fetch(`data/${gameId}-trainers.json`)).json()).trainers; } catch { trainers = []; }
   try { acq = await (await fetch(`data/${gameId}-acquisition.json`)).json(); } catch { acq = null; }
   // núcleo + aquisição já conferidos (Gen 1): a nota diz só o que ainda falta
   if (g.validation === 'decomp-core') {
-    // diz exatamente o que já foi conferido e o que falta (Gen 1 completa; Gen 2 começa só com o núcleo)
-    // decomp PARCIAL (HGSS): learnset por nível e tabela de golpes estão em binário no decomp
-    const partial = !!data.corrections?.partial;
-    const noChart = !!data.corrections?.chartUnchecked; // Diamond/Pearl: tabela de tipos sem fonte em texto no decomp
-    const done = [partial ? 'atributos, tipos, habilidades, evoluções, TM/HM, tutores e tabela de tipos' : noChart ? 'espécies, golpes, learnsets e TM/HM' : 'espécies, golpes, learnsets, TM/HM e tabela de tipos', trainers.length && (bossesOnly ?'times dos chefes (líderes, Elite dos Quatro, campeã e rival)' : 'treinadores'), acq && 'onde obter e progresso'].filter(Boolean);
+    // diz exatamente o que já foi conferido e o que falta
+    const done = ['espécies, golpes, learnsets, TM/HM e tabela de tipos', trainers.length && 'treinadores', acq && 'onde obter e progresso'].filter(Boolean);
     const missing = [!trainers.length && 'treinadores', !acq && 'onde obter e progresso', !g.hasWalkthrough && 'detonado dentro do app'].filter(Boolean);
-    $('validationNote').textContent = `Conferido com o código do jogo (decomp): ${done.join('; ')}.` + (missing.length ? ` Ainda não disponível: ${missing.join(', ')}.` : '') +
-      (partial ? ' Learnset por nível vem da PokéAPI (no decomp está em binário) e os valores dos golpes vêm do decomp do Platinum (mesma geração).' : '') +
-      (noChart ? ' A tabela de tipos não está em texto neste decomp (usa-se a da Gen 4, a mesma conferida nos decomps de Platinum e HeartGold/SoulSilver).' : '');
-    $('validationNote').hidden = !missing.length && !partial; // completo como a Gen 3: sem aviso
+    $('validationNote').textContent = `Conferido com o código do jogo (decomp): ${done.join('; ')}.` + (missing.length ? ` Ainda não disponível: ${missing.join(', ')}.` : '');
+    $('validationNote').hidden = !missing.length; // completo como a Gen 3: sem aviso
   }
   fillStarters();
   fillTrainers();
@@ -104,11 +101,10 @@ async function load(gameId) {
     $('onlyObtainable').disabled = true;
     $('validationNote').textContent += ' A PokéAPI não tem dados de encontro deste jogo: o filtro "só o que dá para obter" fica desligado.';
   }
-  $('mons').innerHTML = data.pokemon.map((p) => `<option value="${p.name}">#${p.id}</option>`).join('');
   // Jogos sem treinadores/onde obter: aviso próprio (antes era sobrescrito pelo texto abaixo e falava de treinadores e habilidades)
   if (!acq) $('disclaimer').textContent = `Sugestões usam os dados da PokéAPI para ${g.label} com as regras da Geração ${roman(data.game.generation)} (tabela de tipos, ${data.game.generation <= 3 ? 'categoria física/especial pelo tipo' : 'categoria física/especial de cada golpe'}${data.game.generation < 3 ? ', sem habilidades' : ''}). ` +
-    (g.validation === 'decomp-core' ? (data.corrections?.chartUnchecked ? 'Espécies e golpes conferidos com o código do jogo (decomp)' : 'Espécies, golpes e tabela conferidos com o código do jogo (decomp)') : 'Ainda não conferidos com o código do jogo') +
-    (trainers.length ? (bossesOnly ? '; líderes, Elite dos Quatro, campeã e rival com os times e golpes do jogo; ainda sem os outros treinadores, onde obter e progresso.' : '; treinadores com os times e golpes do jogo; ainda sem onde obter e progresso.') : '; sem treinadores, onde obter e progresso.') +
+    (g.validation === 'decomp-core' ? 'Espécies, golpes e tabela conferidos com o código do jogo (decomp)' : 'Ainda não conferidos com o código do jogo') +
+    (trainers.length ? '; treinadores com os times e golpes do jogo; ainda sem onde obter e progresso.' : '; sem treinadores, onde obter e progresso.') +
     ' Com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
   else $('disclaimer').textContent =
     `Sugestões usam apenas dados da Geração ${roman(data.game.generation)} (tipos, stats base, golpes${data.game.generation >= 3 ? ' e habilidades' : ''} daquela geração). ` +
@@ -117,6 +113,7 @@ async function load(gameId) {
     (data.game.generation >= 3 ? '; a habilidade do Pokémon dele não é determinada, então só imunidades de habilidade única entram na conta. ' : '. ') +
     'Sem treinador: com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
   restoreCtx();
+  trainerCat = null;
   fillTrainers();
   renderStarters();
   update();
@@ -129,19 +126,8 @@ function routeHtml(w) {
 }
 
 function renderStarters() {
-  const box = $('starters');
-  const st = data.starters;
-  // escolher o inicial é o 1º passo do fluxo: os cartões são botões; depois de escolhido o cartão some (fica na barra do topo)
-  if (!st?.species?.length || $('starter').value) { box.hidden = true; return; }
-  box.hidden = false;
-  const pickable = st.species.length > 1;
-  box.innerHTML = '<div class="label">' + (pickable ? 'Qual foi o seu inicial? ' : 'Inicial deste jogo — ') + '<span class="meta">' + st.where + (st.level ? ' (nv ' + st.level + ')' : '') + '</span></div><div class="starters">' +
-    st.species.map((n) => {
-      const p = data.pokemon.find((x) => x.name === n);
-      const inner = img(p.id) + '<div><strong>' + humanize(n) + '</strong></div><div>' + p.types.map(typeBadge).join('') + '</div>';
-      return pickable ? '<button type="button" class="starter" data-starter="' + n + '" style="font:inherit;color:inherit;cursor:pointer">' + inner + '</button>' : '<div class="starter">' + inner + '</div>';
-    }).join('') + '</div>' + (pickable ? '<p class="note" style="margin-bottom:0">Com o inicial, o rival e os Pokémon que só vêm por troca ficam certos.</p>' : '');
-  for (const b of box.querySelectorAll('[data-starter]')) b.addEventListener('click', () => { $('starter').value = b.dataset.starter; $('starter').dispatchEvent(new Event('input')); });
+  // o inicial fica só no seletor da barra do topo; o cartão com os iniciais poluía a tela
+  $('starters').hidden = true;
 }
 
 function renderWhere(mon, reach, stageNeeded) {
@@ -274,11 +260,17 @@ function renderTrainerPicker() {
   if (!cats.length) return;
   const current = trainers.find((x) => x.key === $('trainer').value);
   if (current && cats.some((c) => c.g === current.group)) trainerCat = current.group;
-  if (!cats.some((c) => c.g === trainerCat)) trainerCat = cats[0].g;
+  if (!cats.some((c) => c.g === trainerCat)) trainerCat = null;
   $('trainerCats').innerHTML = cats.map((c) => `<button type="button" role="tab" data-cat="${c.g}" aria-selected="${c.g === trainerCat}">${CAT_LABEL[c.g] ?? c.g}<span class="count">${c.list.length}</span></button>`).join('');
-  for (const b of $('trainerCats').querySelectorAll('button')) b.addEventListener('click', () => { trainerCat = b.dataset.cat; renderTrainerPicker(); });
+  for (const b of $('trainerCats').querySelectorAll('button')) b.addEventListener('click', () => { trainerCat = trainerCat === b.dataset.cat ? null : b.dataset.cat; renderTrainerPicker(); });
   const cat = cats.find((c) => c.g === trainerCat);
   const box = $('trainerPick');
+  // sem categoria aberta, a lista de oponentes não aparece: só a orientação do que dá para escolher
+  if (!cat) {
+    const names = cats.map((c) => CAT_LABEL[c.g] ?? c.g);
+    box.innerHTML = `<div class="hint">👆 Toque em <strong>${names.length > 1 ? names.slice(0, -1).join(', ') + ' ou ' + names.at(-1) : names[0]}</strong> para ver quem você pode enfrentar — com o time e os golpes reais. Se preferir, digite o Pokémon do oponente logo abaixo.</div>`;
+    return;
+  }
   if (cat.g === 'Treinadores comuns' || cat.list.length > 60) {
     // muitos: seletor agrupado por classe, com o lugar (vários "Youngster Joey" em mapas diferentes)
     const byClass = Object.groupBy(cat.list, (t) => t.class ?? 'Outros');
@@ -360,17 +352,17 @@ function duelLine(d) {
 }
 
 function currentOpp() {
-  const name = $('opp').value.trim().toLowerCase();
-  return data.pokemon.find((p) => p.name === name);
+  return findOpponent(data.pokemon, $('opp').value);
 }
 
 function update() {
+  renderOppWarn();
   const opp = currentOpp();
   const out = $('results');
   if (!opp) {
     $('oppInfo').innerHTML = '';
     // estado vazio com o próximo passo (em vez de tela em branco)
-    out.innerHTML = data ? `<div class="card empty"><strong>Quem você vai enfrentar?</strong><br>${trainers.length ? 'Escolha um treinador do jogo acima (usa o time real) ou digite' : 'Digite'} o nome do Pokémon — atalho <kbd>/</kbd>.</div>` : '';
+    out.innerHTML = data && !trainers.length ? '<div class="card empty"><strong>Quem você vai enfrentar?</strong><br>Digite o nome do Pokémon — atalho <kbd>/</kbd>.</div>' : '';
     return;
   }
   const oppLevel = Number($('oppLevel').value) || 0;
@@ -485,6 +477,39 @@ document.addEventListener('keydown', (e) => {
 });
 // Digitar manualmente o Pokémon ou o nível do oponente sai do modo "treinador" (os golpes deixam de ser os do jogo)
 for (const id of ['opp', 'oppLevel']) $(id).addEventListener('input', () => { known = null; teamMode = null; $('trainer').value = ''; $('team').innerHTML = ''; renderTrainerPicker(); update(); });
+// autocompletar do oponente: só os Pokémon do jogo aberto (↑ ↓ escolhem, Enter confirma, Esc fecha)
+function renderOppWarn() {
+  const w = data && opponentWarning({ pokemon: data.pokemon, pokedex, generation: data.game.generation, gameLabel: catalog.games.find((g) => g.id === currentGame)?.label ?? data.game.label }, $('opp').value);
+  $('oppWarn').hidden = !w;
+  $('oppWarn').textContent = w ? '⚠ ' + w.text : '';
+}
+{
+  const input = $('opp'), list = $('oppList');
+  let items = [], sel = 0;
+  const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.setAttribute('aria-activedescendant', ''); };
+  const paint = () => {
+    // já é um Pokémon do jogo (escolhido ou digitado por inteiro): nada a sugerir
+    items = data && !findOpponent(data.pokemon, input.value) ? searchOpponents(data.pokemon, input.value) : [];
+    sel = Math.min(sel, Math.max(items.length - 1, 0));
+    if (!items.length) return close();
+    list.innerHTML = items.map((p, i) => `<li role="option" id="oa${i}" aria-selected="${i === sel}" data-name="${p.name}">${img(p.id)}<strong>${humanize(p.name)}</strong><span class="ac-num">#${p.id}</span><span class="ac-types">${p.types.map(typeBadge).join('')}</span></li>`).join('');
+    list.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+    input.setAttribute('aria-activedescendant', 'oa' + sel);
+    list.querySelector('[aria-selected=true]')?.scrollIntoView({ block: 'nearest' });
+  };
+  const pick = (name) => { input.value = name; close(); input.dispatchEvent(new Event('input')); };
+  input.addEventListener('input', () => { sel = 0; paint(); });
+  input.addEventListener('focus', paint);
+  input.addEventListener('blur', () => setTimeout(close, 120));
+  input.addEventListener('keydown', (e) => {
+    if (list.hidden) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); sel = (sel + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length; paint(); }
+    else if (e.key === 'Enter' && items[sel]) { e.preventDefault(); pick(items[sel].name); }
+    else if (e.key === 'Escape') { e.preventDefault(); close(); }
+  });
+  list.addEventListener('mousedown', (e) => { const li = e.target.closest('li[data-name]'); if (li) { e.preventDefault(); pick(li.dataset.name); } });
+}
 $('trainer').addEventListener('change', () => {
   const t = trainers.find((x) => x.key === $('trainer').value);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; update(); return; }
@@ -492,26 +517,22 @@ $('trainer').addEventListener('change', () => {
 });
 
 // ---------------------------------------------------------------- tela inicial (catálogo)
-function chipRow(el, items, current, label, onPick) {
-  el.innerHTML = '';
-  for (const [value, text] of [[null, 'Todas'], ...items.map((x) => [x, label(x)])]) {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.textContent = text;
-    b.setAttribute('aria-pressed', String(value === current));
-    b.addEventListener('click', () => onPick(value === current ? null : value));
-    el.append(b);
-  }
-}
+// fotos dos consoles (Evan-Amos, Wikimedia Commons, domínio público); o Switch 2 usa a do Switch
+const CONSOLE_IMG = { 'Game Boy': 'game-boy', 'Game Boy Color': 'game-boy-color', 'Game Boy Advance': 'game-boy-advance', 'Nintendo DS': 'nintendo-ds', 'Nintendo 3DS': 'nintendo-3ds', 'Nintendo Switch': 'nintendo-switch', 'Nintendo Switch 2': 'nintendo-switch' };
+const consoleImgs = (platforms) => [...new Set(platforms.map((p) => CONSOLE_IMG[p]).filter(Boolean))].map((f) => `<img src="img/consoles/${f}.png" alt="" loading="lazy">`).join('');
 
 function renderHome() {
   const games = catalog.games;
-  chipRow($('platformChips'), platformsOf(games), filters.platform, (p) => p, (v) => { location.hash = homeHash({ ...filters, platform: v }); });
-  chipRow($('genChips'), generationsOf(games), filters.generation, (n) => 'Geração ' + roman(n), (v) => { location.hash = homeHash({ ...filters, generation: v }); });
-  const list = filterGames(games, filters);
-  $('gameCount').textContent = list.length + (list.length === 1 ? ' jogo' : ' jogos') + ' · ' + list.filter((g) => g.status === 'supported').length + ' disponível(is) no app';
+  // a tela inicial mostra só as gerações (com os consoles); os jogos aparecem ao escolher uma
+  $('genList').innerHTML = generationSummaries(games).map((s) => {
+    const on = s.generation === filters.generation;
+    const years = s.years[0] === s.years[1] ? s.years[0] : s.years.join('–');
+    return `<a class="gen" href="${homeHash({ generation: on ? null : s.generation })}" aria-current="${on}"><span class="gen-art">${consoleImgs(s.platforms)}</span><strong>Geração ${roman(s.generation)}</strong><span class="meta">${s.platforms.join(' + ')} · ${years}</span><span class="meta">${s.count} ${s.count === 1 ? 'jogo' : 'jogos'}${s.supported < s.count ? ` · ${s.supported} no app` : ''}</span></a>`;
+  }).join('');
+  const list = filters.generation ? filterGames(games, { generation: filters.generation }) : [];
+  $('gameCount').textContent = games.length + ' jogos · ' + games.filter((g) => g.status === 'supported').length + ' disponíveis no app';
   $('gameList').innerHTML = groupByGeneration(list).map(([gen, gs]) =>
-    '<h2 class="gen-head">Geração ' + roman(gen) + '</h2><div class="games">' + gs.map((g) => {
+    '<h2 class="gen-head" id="genGames">Geração ' + roman(gen) + ' <a class="note" href="#/">fechar ✕</a></h2><div class="games">' + gs.map((g) => {
       const on = g.status === 'supported';
       // arte do cartão: os iniciais do jogo (sobem ao passar o mouse); sem iniciais confirmados, uma Poké Ball
       const art = '<div class="game-art">' + (g.starters?.length ? g.starters.map((id) => `<img src="${SPRITES}${id}.png" alt="" loading="lazy">`).join('') : '<span class="pokeball"></span>') + '</div>';
@@ -520,8 +541,8 @@ function renderHome() {
         (g.note ? '<span class="meta">' + g.note + '</span>' : '') +
         '<span class="row">' + (on ? qualityBadge(g) : lozenge('neutral', 'Em breve')) + (on && g.hasWalkthrough ? lozenge('info', '📖 detonado no app') : '') + '</span>';
       return on ? '<a class="game" href="#/jogo/' + g.id + '">' + body + '</a>' : '<div class="game off">' + body + '</div>';
-    }).join('') + '</div>').join('') || '<div class="card">Nenhum jogo com esses filtros.</div>';
-  $('catalogSources').textContent = 'Fontes do catálogo: ' + catalog.sources.join(' · ');
+    }).join('') + '</div>').join('');
+  $('catalogSources').textContent = 'Fontes do catálogo: ' + catalog.sources.join(' · ') + ' · Fotos dos consoles: Evan-Amos (Wikimedia Commons, domínio público)';
   $('qualityLegend').innerHTML = Object.entries(QUALITY).map(([, [k, t, tip]]) => `<span>${lozenge(k, t)} <span class="meta">${tip}</span></span>`).join('');
   renderHero();
 }
@@ -569,7 +590,7 @@ function renderHero() {
   let last = null, ctx = null;
   try { last = localStorage.getItem('poketact:last'); ctx = JSON.parse(localStorage.getItem(`poketact:${last}`) ?? 'null'); } catch {}
   const lg = last && on.find((g) => g.id === last);
-  $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.starter && 'inicial: ' + humanize(ctx.starter), ctx?.stage !== '' && ctx?.stage != null && (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)'), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` : '';
+  $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.stage !== '' && ctx?.stage != null && (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)'), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` : '';
   // números (Vercel): tudo calculado dos dados
   const verified = on.filter((g) => qualityOf(g) === 'ok').length, trainersN = on.reduce((a, g) => a + (g.trainerCount ?? 0), 0), b = catalog.benchmark;
   $('stats').innerHTML = [[on.length, 'jogos no app'], [verified, 'conferidos no código do jogo'], [trainersN.toLocaleString('pt-BR'), 'treinadores com o time real'], b && [b.winPct + '%', `das sugestões vencem a troca (${b.picks.toLocaleString('pt-BR')} testadas)`]]
@@ -630,6 +651,8 @@ async function route() {
     filters.generation = r.params.geracao ? Number(r.params.geracao) : null;
     document.title = 'Poke Tact';
     renderHome();
+    // ao escolher uma geração, leva até os jogos dela
+    if (filters.generation) $('genGames')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     return;
   }
   if (currentGame !== game.id) { await load(game.id); window.scrollTo(0, 0); }

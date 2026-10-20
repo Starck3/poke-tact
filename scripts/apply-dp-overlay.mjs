@@ -45,8 +45,8 @@ for (const s of Object.values(g.species)) for (const e of s.evo) {
 const minLevel = (mon) => { const parent = byDex.get(mon.evolvesFrom); const own = /^LEVEL/.test(evoInfo[mon.id]?.kind ?? '') ? evoInfo[mon.id].param : 0; return Math.max(parent ? minLevel(parent) : 1, own, 1); };
 for (const mon of data.pokemon) { mon.evo = evoInfo[mon.id] ?? mon.evo ?? null; mon.minLevel = minLevel(mon); }
 const all = [...(data.corrections?.list ?? []), ...corrections];
-// tabela de tipos: a batalha do DP é overlay em assembly (sem tabela em texto) → o app diz que ela não foi conferida neste decomp
-data.corrections = { source: `${game.asmDecomp.repo}@${game.asmDecomp.commit.slice(0, 7)}`, chartUnchecked: true, list: all };
+// tabela de tipos: lida dos bytes do overlay de batalha (scripts/lib/gen4-dp.mjs) e conferida em validate-dp-vs-decomp
+data.corrections = { source: `${game.asmDecomp.repo}@${game.asmDecomp.commit.slice(0, 7)}`, list: all };
 writeFileSync(file, JSON.stringify(data));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 writeFileSync(new URL(`../reports/${gameId}/overlay-corrections.json`, import.meta.url), JSON.stringify(all, null, 1));

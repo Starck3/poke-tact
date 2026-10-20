@@ -150,16 +150,45 @@ Tudo resolvido sem duplicar o pipeline, com **apelidos de arquivo por jogo** (`d
 - **pret/pokeplatinum** (1dc13dc): dados em **JSON/texto** — espécies, golpes, treinadores, encontros, eventos, scripts, matrizes,
   lojas, trocas. **Portado por completo** (núcleo, treinadores, onde obter, progresso, detonado).
 - **pret/pokeheartgold** (708163e): JSON de atributos/evoluções (`files/poketool/personal/*.json`), treinadores, encontros e
-  tutores; **learnsets em `.narc` binário** (`wotbl.narc`) → portável em parte (learnset continuaria da PokéAPI).
+  tutores; learnset por nível e golpes em `.narc` binário → lidos com `scripts/lib/narc.mjs` (2026-10-19, ver HGSS abaixo).
 - **pret/pokediamond** (b623abe): 🧪 **medição corrigida (E5)** — eu tinha olhado só `files/fielddata/` (encontros, scripts,
   eventos, matriz: `narc_*.bin`), mas o NÚCLEO está em JSON: `files/poketool/personal/{personal,wotbl,evo}.json`,
   `waza/waza_tbl.json`, `trainer/trdata.json` (times com golpes), `include/constants/*.h`; TM/HM em `arm9/src/itemtool.c`
   (lido com `git show HEAD:`). Portado como **núcleo + chefes** (`scripts/lib/gen4-dp.mjs`, `*-dp.mjs`): 0 divergências em
-  learnset/TM/atributos/tipos/habilidades; 15 golpes corrigidos (os mesmos do Platinum); learnset na ordem do jogo; 37 chefes
-  (`note: 'só chefes'`). Sem texto: tabela de tipos (overlay de batalha em assembly → `corrections.chartUnchecked` e o app diz),
-  iniciais (overlay → regra do E4), lugar das lutas e desvio do rival pelo inicial (script binário → cada time do Barry rotulado
-  pelo inicial que ELE leva, sem `forStarter`). `personal_pearl/personal.json` só muda itens segurados.
+  learnset/TM/atributos/tipos/habilidades; 15 golpes corrigidos (os mesmos do Platinum); learnset na ordem do jogo.
+  `personal_pearl/personal.json` só muda itens segurados. O resto (antes "só chefes") está na seção seguinte.
   Lição: medir pela árvore inteira (`git ls-tree -r --name-only HEAD | grep -E "\.(json|csv|txt)$"`), não por uma pasta.
+
+### Gen 4 — Diamond/Pearl com os BINÁRIOS lidos pelo código do jogo (2026-10-19) 🧪
+O resto do DP (scripts, eventos, encontros, matrizes, trocas) está em `.bin` (um por entrada de NARC), mas o **código** que os lê
+está em C/asm no decomp — daí saem as regras. `scripts/lib/gen4-dp-script.mjs`, `gen4-dp-field.mjs`, `build-trainers-dp.mjs`,
+`build-acquisition-dp.mjs`; o checkout esparso inclui `arm9/src`, `arm9/asm`, `arm9/overlays` (~40 MB).
+- **Scripts (bytecode)**: comando u16 + argumentos. Tamanho de cada um dos 721 comandos = leituras da função em
+  `gScriptCmdTable` (`arm9/asm/unk_02038C78.s`): `ScriptReadHalfword`/`ScriptGetVar` 2, `ScriptReadWord` 4, `ScriptReadByte` 1
+  (no asm o byte é inline: soma 1 em `[ctx, #0x8]`). 🧪 A contagem automática erra laço (0x289: 5 bytes num `for`) e leitura
+  condicional (0x1CF–0x1D1 só leem o ponteiro na opção 2; 0x21D, 0x235, 0x237, 0x23E, 0x27C por subcomando) → `VARIABLE`/`FIXED`
+  com a regra conferida no código. **Validação**: todo script termina em End/Return/GoTo e todo salto cai num comando — os 605
+  scripts de mapa fecham (os 446 "level scripts" do cabeçalho têm outro formato; arquivos de 4–8 bytes = mapa sem script).
+  🧪 Também saltam 0x17–0x19 (ObjectGoTo, BgGoTo, DirectionGoTo). 🧪 653 dos 668 comandos de tamanho certo batem com o Platinum
+  (mesmos ids) — os NOMES do Platinum explicam os do DP (`Unk00E5` = StartTrainerBattle).
+- **Faixas de script** (carregador em `unk_02038C78.s`): 2000+ comuns (arquivo 205), 3000+/5000+ treinadores (script − 2999 /
+  − 4999 = treinador), 7000+ itens no chão (arquivo 370: `SetVar 0x8008, ITEM`), 8000+ escondidos (tabela `UNK_020F2DB4`, mesmo
+  formato do `gHiddenItems` do Platinum).
+- 🧪 **Valores por variável**: a Spear Pillar faz `LegendaryBattle 0x8004` com `0x8004` = Dialga ou Palkia por `GetGameVersion` →
+  `simulate()` executa o script por versão (SetVar/CopyVar/comparações; desvio desconhecido = os dois lados).
+- 🧪 Presente de item = `SetVar 0x8004, ITEM` que chega aos comuns 2016/2044 (os únicos com `GiveItem 0x8004`); o `0x8004` também é
+  o PARCEIRO da luta em dupla (`StartTagBattle`: Lucas/Dawn/Barry do seu lado — não são oponentes).
+- 🧪 Rival: `GetPlayerStarterSpecies` + `CompareVarToValue`/`GoToIf` → o `StartTrainerBattle` de cada ramo. A Fight Area não tem o
+  desvio: usa-se a relação lida nos outros (com Piplup o Barry leva Turtwig…), só se for a mesma em todos.
+- Encontros (424 bytes), matrizes, eventos (bg 20 / objeto 32 / warp 12 / gatilho 16 bytes, cada lista com u32 de contagem — os
+  559 leem sem sobra), trocas (`fld_trade`: oferecido em 0, pedido em 76), extras em `arc/encdata_ex` (0 Feebas; 2–7 árvores de mel
+  D/P; 8 Trophy Garden; 9/10 Great Marsh COM/SEM Pokédex Nacional — 🧪 não é Diamond/Pearl: `ov06_02245658`). Árvores de mel:
+  tabela de 21 mapas `ov05_021FC650` (o motor dispara o comum 2008). Vagantes: `Save_CreateRoamerByID`. Iniciais: overlay 64.
+  Tabela de tipos: bytes do overlay 11 (`ov11_02242B78.s`; trincas atacante/defensor/×10). Eventos de distribuição:
+  `CheckEventValidity` 0/1/2 (Darkrai/Shaymin/Arceus, ordem do enum do Platinum) nos mapas de ACESSO; `CheckRegis` (Regigigas)
+  exige os 3 Regis, que não existem no DP.
+- Resultado: 490 treinadores com lugar, 21/21 rivais pelo inicial, TM/HM 100/100, 550/557 mapas com estágio, 112 locais no
+  detonado; vs PokéAPI só 12 mudanças de "obtível" (Giratina passa a sim; Regigigas, Darkrai, Shaymin, Arceus e Manaphy a não).
 
 ### Gen 4 com decomp em JSON (`scripts/lib/gen4-json.mjs`, `*-gen4.mjs`) — S6 🧪
 - Núcleo: `generated/moves.txt`/`species.txt` (ordem = id); `res/pokemon/<x>/data.json` (learnset `by_level` na ordem do jogo,
@@ -211,7 +240,7 @@ Tudo resolvido sem duplicar o pipeline, com **apelidos de arquivo por jogo** (`d
   observatório de Pastoria (`stageFacts`). 🧪 A checagem de insígnia do Surf fica a ~500 caracteres do nome da função.
 - Resultado: 0 divergências no núcleo; 500 lutas (24 do rival, todas pelo inicial); 387 obtíveis; 112 locais no detonado.
 
-### Gen 4 com decomp PARCIAL — HeartGold/SoulSilver (`scripts/lib/gen4-hgss.mjs`, `*-hgss.mjs`) — E1 🧪
+### Gen 4 — HeartGold/SoulSilver (`scripts/lib/gen4-hgss.mjs`, `*-hgss.mjs`) — E1 🧪
 - **O que está em texto** (`game.asmDecomp.sparse` lista os caminhos; no Git Bash use `MSYS_NO_PATHCONV=1` para mexer no sparse
   à mão — sem isso `/files/...` vira `C:/Program Files/Git/files/...`): `files/poketool/personal/personal.json` (atributos, tipos,
   habilidades, TM/HM), `evo.json`, `wazaoshie/waza_oshie.json` (tutores), `trainer/trainers.json`, `encountdata/gs_enc_data.json`,
@@ -220,8 +249,10 @@ Tudo resolvido sem duplicar o pipeline, com **apelidos de arquivo por jogo** (`d
   trocas com NPC (`a/1/1/2`), matriz do mundo.
 - Núcleo: 🧪 HMs ficam num campo à parte (`"hms": [1, 4, 6]`) → HM n = `sTMHMMoves[92 + n − 1]` (`src/item.c`; antes 1156 "faltas");
   🧪 grafia do decomp sem hífen (`COMPOUNDEYES`, `LIGHTNINGROD`) → comparar sem hífen; tutores supremos/Draco Meteor por script
-  (`scr_seq_0948_T30R0601.s`). Golpes: valores da Gen 4 do **pokeplatinum** (mesma geração), cada correção com `via: 'pokeplatinum'`;
-  learnset fica da PokéAPI → `corrections.partial` e o app avisa. Resultado: 0 divergências no que está em texto.
+  (`scr_seq_0948_T30R0601.s`). Golpes e learnset por nível: 🧪 dos binários do próprio HGSS (`waza_tbl.narc`, `wotbl.narc`) com
+  `scripts/lib/narc.mjs` (NARC = BTAF/BTNF/GMIF; learnset u16 = golpe 9 bits + nível 7 bits, 0xFFFF encerra; golpe 16 bytes). Os
+  golpes batem 100% com o Platinum, mas o learnset difere em 13 espécies (Cyndaquil, Lugia, Ho-Oh…) — por isso não bastava usar o
+  Platinum, nem o Gold/Silver (Gen 2: outra lista de golpes). Resultado: 0 divergências, inclusive learnset e golpes.
 - Treinadores: `trainers.h` (`#define TRAINER_X n`) → `trainers.json.trainers[n]`; iv = `difficulty·31/255` (`trainer_data.c`).
   Lugar: `std_trainer(TRAINER_X)` no zone_event ou `TrainerBattle A[, B]` no script; código do mapa ↔ `MAP_X` pelo
   `map_headers.h` (`.scriptsBank = scr_seq_N_<código>_bin`, `.eventsBank`). 🧪 A **1ª luta do rival é `TRAINER_PASSERBY_BOY`**
