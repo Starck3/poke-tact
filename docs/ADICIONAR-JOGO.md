@@ -289,6 +289,10 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   TRECHO da frase com o nome do treinador (o X/Y fala de Shauna e Calem na mesma frase; "golpe de vantagem ao inicial de
   Hop" é a vantagem do jogador). Com regra: triângulo Planta→Fogo→Água, um time por inicial do jogador (`forStarter`). Sem
   regra: uma variante por opção, rotulada. Relatório em `reports/<jogo>/detonado-modern.json` → `placeholderReport`.
+- **Remakes: estágio pelo jogo original** (0.18.0, `twinStage` em `build-detonado-modern.mjs`, `TWIN_STAGE`): BDSP → DP,
+  Let's Go → Yellow, ORAS → RS. Sem título próprio no detonado, vale a evidência mais cedo entre o texto e o mesmo rótulo
+  no original (ou as partes dele: "Route 204 South/North"), com o estágio convertido pelo NOME do líder. Ficam sem posição
+  os jogos sem original nem citação (BW, Sword/Shield, Sun/Moon, Scarlet/Violet, Z-A).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

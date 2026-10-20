@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.17.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.18.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -50,7 +50,7 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
 4. ✅ (0.17.0) **Rival com "inicial" genérico** ("[chespin][fennekin][froakie] inicial lv.5"): esse Pokémon fica fora do time. Dá para
    montar uma variante por inicial do jogador, mas a regra (o rival pega o forte ou o fraco contra o seu?) muda por jogo e
    precisa vir do texto.
-5. **Locais "Fora do detonado"** (sem posição na história): BDSP 25, Sword/Shield 19, Let's Go 15, Black/White 14, Sun/Moon 9,
+5. ⚠ (0.18.0: BDSP, Let's Go e ORAS resolvidos pelo jogo original) **Locais "Fora do detonado"** (sem posição na história): BDSP 25, Sword/Shield 19, Let's Go 15, Black/White 14, Sun/Moon 9,
    ORAS 4, Scarlet/Violet 4, X/Y 1 (ver `reports/<jogo>/detonado-modern.json` → `placesWithoutStage`). Ideias: nomes em
    português no detonado, cidades vizinhas, nível dos selvagens comparado aos líderes (seria estimativa — marcar como tal).
 6. **Black 2/White 2 — Hidden Grottoes pelo PKHeX** em vez da PokéAPI. O PKHeX tem as espécies, mas não diz em que rota fica

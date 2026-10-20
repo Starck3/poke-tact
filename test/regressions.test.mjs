@@ -2088,3 +2088,17 @@ test('regressão: Pokémon "inicial" genérico do rival — regra do texto + tri
     assert.equal(JSON.parse(readFileSync(new URL(`../reports/${g}/detonado-modern.json`, import.meta.url), 'utf8')).skippedPlaceholders, 0, g);
   }
 });
+
+test('regressão: remakes sem o lugar no detonado usam o estágio do jogo original (convertido pelo nome do líder)', () => {
+  // Etapa 5: o detonado do BDSP não numera as rotas ("ao entrar nesta rota") → 25 locais sem posição; o do ORAS citava a
+  // Route 102 só no estágio 8. Agora: sem título próprio, vale a evidência mais cedo entre o texto e o MESMO lugar no jogo
+  // original (decomp: DP, Yellow, RS), com o estágio convertido pelo nome do líder (a ordem pode mudar entre os jogos).
+  const rep = (g) => JSON.parse(readFileSync(new URL(`../reports/${g}/detonado-modern.json`, import.meta.url), 'utf8')).placesWithoutStage;
+  assert.ok(rep('brilliant-diamond-shining-pearl').length <= 2);
+  assert.equal(rep('lets-go-pikachu-lets-go-eevee').length, 0);
+  const st = (g, w) => Object.values(load(`${g}-acquisition.json`).versions)[0] && Object.values(Object.values(load(`${g}-acquisition.json`).versions)[0]).flat().find((s) => s.where === w)?.stage;
+  assert.equal(st('brilliant-diamond-shining-pearl', 'Route 201'), 0);
+  assert.equal(st('omega-ruby-alpha-sapphire', 'Route 102'), 0);
+  assert.equal(st('lets-go-pikachu-lets-go-eevee', 'Route 1'), 0);
+  assert.ok(st('brilliant-diamond-shining-pearl', 'Route 230') >= 9);
+});

@@ -262,10 +262,44 @@ const placeOf = (where) => {
     // subárea ("Route 1 (Hau'oli Outskirts)"): não fica depois do local-pai ("Route 1")
     const parent = where.replace(/\s*\(.*?\)\s*/g, ' ').trim();
     if (parent !== where && r?.by !== 'título') { const pr = placeOf(parent); if (pr && (!r || pr.stage < r.stage)) r = pr; }
+    // remake sem o lugar no detonado (o do BDSP não numera as rotas: "ao entrar nesta rota"): estágio do MESMO lugar no
+    // jogo original (decomp), convertido pelo nome do líder — a ordem pode mudar (Let's Go: Sabrina antes de Koga)
+    // sem título próprio, a citação no texto pode ser tardia (ORAS: Route 102 citada só no estágio 8) → vale a mais cedo
+    // entre o texto e o jogo original
+    if (r?.by !== 'título') { const tw = twinStage(where) ?? twinStage(parent); if (tw && (!r || tw.stage < r.stage)) r = tw; }
     stageOfPlace.set(where, r);
   }
   return stageOfPlace.get(where);
 };
+// remakes → jogo original com estágio tirado do decomp (mesma história e mesmos líderes)
+const TWIN_STAGE = { 'brilliant-diamond-shining-pearl': 'diamond-pearl', 'lets-go-pikachu-lets-go-eevee': 'yellow', 'omega-ruby-alpha-sapphire': 'ruby-sapphire' };
+let twin = null;
+function twinStage(where) {
+  if (!TWIN_STAGE[gameId] || !hasProgress) return null;
+  if (twin === null) {
+    try {
+      const a = JSON.parse(readFileSync(new URL(`../public/data/${TWIN_STAGE[gameId]}-acquisition.json`, import.meta.url), 'utf8'));
+      const byLabel = new Map();
+      for (const m of Object.values(a.progress?.maps ?? {})) if (m.stage != null && (!byLabel.has(m.label) || m.stage < byLabel.get(m.label))) byLabel.set(m.label, m.stage);
+      twin = { byLabel, order: a.progress?.leaderOrder ?? [] };
+    } catch { twin = { byLabel: new Map(), order: [] }; }
+  }
+  // o original pode dividir o lugar ("Route 204 South" / "Route 204 North"): vale o menor estágio das partes
+  const parts = [...twin.byLabel].filter(([l]) => l.startsWith(where + ' ')).map(([, st]) => st);
+  const s = twin.byLabel.get(where) ?? (parts.length ? Math.min(...parts) : null);
+  if (s == null) return null;
+  const fold = (x) => String(x).toLowerCase().replace(/[^a-z]/g, '');
+  let stage;
+  if (s === 0) stage = 0;
+  else if (s >= POSTGAME) stage = POST;
+  else {
+    const leader = fold(twin.order[s - 1] ?? '');
+    const i = leaderOrder.findIndex((n) => n.split('/').some((x) => fold(x) && (fold(x).includes(leader) || leader.includes(fold(x)))));
+    if (i < 0) return null;
+    stage = i + 1;
+  }
+  return { stage, section: `${TWIN_STAGE[gameId]} (decomp)`, by: 'jogo original', name: where };
+}
 let withStage = 0, total = 0;
 for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
   total++;
