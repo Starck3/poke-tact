@@ -55,26 +55,25 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
    português no detonado, cidades vizinhas, nível dos selvagens comparado aos líderes (seria estimativa — marcar como tal).
 6. **Black 2/White 2 — Hidden Grottoes pelo PKHeX** em vez da PokéAPI. O PKHeX tem as espécies, mas não diz em que rota fica
    cada gruta (manteria a rota da PokéAPI).
-
 7. **Mapa da região**: falta Black/White, Black 2/White 2 (a matriz do mundo do pokebw2 tem só modelos, sem zonas),
    X/Y, Sun/Moon/USUM, Sword/Shield, Legends: Arceus, Scarlet/Violet e Z-A (sem decomp). FRLG: cavernas e florestas sem
    posição no `region_map_sections.json` (99/142).
 8. **Fotos dos lugares** só onde o título do trecho do detonado é o próprio lugar (ex.: X/Y 16/44, SV 15/76, Z-A 3/106).
 
 ### Depende de fonte que não temos
-7. **Ultra Sun/Ultra Moon** — o PokeMythology não tem detonado desse jogo: sem treinadores, progresso e Detonado.
-8. **Golpes reais dos treinadores nas Gens 5–9 sem decomp** — o detonado traz espécie e nível; os golpes são estimados pelo
+9. **Ultra Sun/Ultra Moon** — o PokeMythology não tem detonado desse jogo: sem treinadores, progresso e Detonado.
+10. **Golpes reais dos treinadores nas Gens 5–9 sem decomp** — o detonado traz espécie e nível; os golpes são estimados pelo
    moveset do nível. Nenhuma fonte em texto disponível tem os golpes escolhidos dos chefes.
-9. **Treinadores comuns de rota nas Gens 5–9** — só existem as lutas que o detonado transcreve.
-10. **Onde obter sem taxa de aparição** (Gens 5–9) e com métodos misturados: nas Gens 6/7 grama, surf e varas vêm numa lista
+11. **Treinadores comuns de rota nas Gens 5–9** — só existem as lutas que o detonado transcreve.
+12. **Onde obter sem taxa de aparição** (Gens 5–9) e com métodos misturados: nas Gens 6/7 grama, surf e varas vêm numa lista
     só; no BDSP, Poké Radar e surto vêm dentro da grama (o Nidoran da Route 201 aparece como grama); no Scarlet/Violet os
     exclusivos de versão aparecem nas duas versões (há aviso na tela).
-11. **Itens e TMs no Detonado das Gens 5–9** — o PKHeX não tem a posição dos itens; a evolução por pedra não é limitada pelo
+13. **Itens e TMs no Detonado das Gens 5–9** — o PKHeX não tem a posição dos itens; a evolução por pedra não é limitada pelo
     ponto da história nesses jogos.
-12. **Black 2/White 2 — 15 TMs vendidas em lojas** comuns: não estão no decomp em texto.
+14. **Black 2/White 2 — 15 TMs vendidas em lojas** comuns: não estão no decomp em texto.
 
 ### Trabalho grande no motor
-13. **Mecânicas não simuladas** (hoje só há aviso): Mega Evolução, golpes Z, Dynamax/Gigantamax, Terastal, estilos e valores
+15. **Mecânicas não simuladas** (hoje só há aviso): Mega Evolução, golpes Z, Dynamax/Gigantamax, Terastal, estilos e valores
     próprios de golpes do Legends: Arceus, batalha em tempo real do Z-A.
 
 ### Fica como está (correto)
