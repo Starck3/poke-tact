@@ -26,7 +26,8 @@ const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-
 // add-pkhex-forms: formas regionais (Alola, Galar, Hisui, Paldea) como entradas próprias
 // apply-pkhex-machines: TM/HM/TR do jogo; apply-pkhex-evos: método de evolução do jogo (troca, item, forma…)
 const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex'];
-const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex'];
+// build-detonado-modern: treinadores, progresso por insígnia e aba Detonado a partir do detonado do PokeMythology
+const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
 const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
 for (const id of ids) {

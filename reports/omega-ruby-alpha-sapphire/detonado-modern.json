@@ -1,0 +1,33 @@
+{
+ "leaderOrder": [
+  "Roxanne",
+  "Brawly",
+  "Wattson",
+  "Flannery",
+  "Norman",
+  "Winona",
+  "Tate e Liza",
+  "Wallace"
+ ],
+ "badges": [
+  "Stone Badge←Roxanne",
+  "Knuckle Badge←Brawly",
+  "Dynamo Badge←Wattson",
+  "Heat Badge←Flannery",
+  "Balance Badge←Norman",
+  "Feather Badge←Winona",
+  "Mind Badge←Tate e Liza",
+  "Rain Badge←Wallace"
+ ],
+ "unresolved": [],
+ "fuzzy": [],
+ "skippedPlaceholders": 0,
+ "withStage": 1440,
+ "total": 1508,
+ "placesWithoutStage": [
+  "Route 106",
+  "Route 130",
+  "Route 133",
+  "an old hot-springs visitor"
+ ]
+}

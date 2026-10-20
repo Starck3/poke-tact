@@ -1790,3 +1790,70 @@ test('regressão: TMs pelas tabelas do jogo (PKHeX) — Snarl fora do BW, TMs de
   assert.ok(mon(sv, 'glaceon').learnset.some((l) => l.move === 'trailblaze' && l.method === 'machine'));
   assert.ok(!sv.pokemon.some((p) => p.learnset.some((l) => l.move === 'mega-punch' && l.method === 'machine'))); // TM000
 });
+
+test('aviso de mecânicas fora do cálculo (Mega, golpes Z, Dynamax, Terastal, tempo real) chega à tela do jogo', () => {
+  // Antes o battleNote existia em games.mjs mas nunca aparecia no app.
+  const { games } = load('games.json');
+  const m = (id) => games.find((g) => g.id === id).mechanics;
+  assert.deepEqual(m('sun-moon'), ['Mega Evolução', 'golpes Z']);
+  assert.ok(m('sword-shield').some((x) => /Dynamax/.test(x)));
+  assert.ok(m('scarlet-violet').includes('Terastal'));
+  assert.ok(m('legends-za').some((x) => /tempo real/.test(x)));
+  assert.ok(m('legends-arceus').some((x) => /ágil e forte/.test(x)));
+  for (const id of ['red-blue', 'emerald', 'platinum', 'black-2-white-2', 'brilliant-diamond-shining-pearl']) assert.deepEqual(m(id), [], id);
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="mechNote"/);
+  assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /Fora do cálculo neste jogo/);
+});
+
+test('fraquezas seguem a tabela de tipos da geração do jogo', () => {
+  // Gen 1: Fantasma não afeta Psíquico (bug do jogo), Inseto ↔ Veneno 2×, Gelo neutro no Fogo; Aço resiste a
+  // Fantasma/Sombrio até a Gen 5; Fada só a partir da Gen 6.
+  const c = (g) => load(`${g}.json`).chart;
+  assert.equal(c('red-blue').ghost.psychic, 0); assert.equal(c('red-blue').bug.poison, 2); assert.equal(c('red-blue').ice.fire, 1);
+  assert.equal(c('black-2-white-2').ghost.steel, 0.5); assert.equal(c('x-y').ghost.steel, 1);
+  assert.equal(c('black-2-white-2').fairy, undefined); assert.equal(c('x-y').dragon.fairy, 0);
+});
+
+// ---------------------------------------------------------------- Gens 5–9: treinadores, progresso e Detonado pelo detonado
+
+test('Gens 5–9 sem decomp: líderes na ordem do detonado (insígnia ligada ao líder; alternativas de versão juntas)', () => {
+  // Erros encontrados e corrigidos: Guzma como "líder" no SM (vale o carimbo de ilha → kahunas); Giovanni em 4º no Let's Go
+  // (a 1ª luta é no esconderijo — vale a luta antes da insígnia); Piers e Raihan juntados no SwSh (mesma seção, mas níveis
+  // diferentes); Leon como "rival" (fim da história = Hall da Fama/créditos depois do último líder).
+  const order = (g) => load(`${g}-acquisition.json`).progress?.leaderOrder;
+  assert.deepEqual(order('x-y'), ['Viola', 'Grant', 'Korrina', 'Ramos', 'Clemont', 'Valerie', 'Olympia', 'Wulfric']);
+  assert.deepEqual(order('sun-moon'), ['Hala', 'Olivia', 'Nanu', 'Hapu']);
+  assert.equal(order('lets-go-pikachu-lets-go-eevee').at(-1), 'Giovanni');
+  const swsh = order('sword-shield');
+  assert.ok(swsh.includes('Piers') && swsh.includes('Raihan') && swsh.some((n) => /Gordie\//.test(n)), swsh.join());
+  assert.equal(order('brilliant-diamond-shining-pearl').length, 8);
+  assert.deepEqual(order('scarlet-violet'), ['Katy', 'Brassius', 'Iono', 'Kofu', 'Larry', 'Ryme', 'Tulip', 'Grusha']);
+  assert.equal(load('legends-arceus-acquisition.json').progress, undefined); // sem ginásios
+  assert.equal(load('legends-arceus-walkthrough.json').noBadges, true);
+});
+
+test('Gens 5–9 sem decomp: times do detonado (espécie e nível) com golpes estimados; onde obter ganha estágio', async () => {
+  const { recommend } = await import('../public/engine.mjs');
+  for (const g of ['black-white', 'x-y', 'omega-ruby-alpha-sapphire', 'sun-moon', 'lets-go-pikachu-lets-go-eevee', 'sword-shield', 'brilliant-diamond-shining-pearl', 'legends-arceus', 'scarlet-violet']) {
+    const td = load(`${g}-trainers.json`), d = load(`${g}.json`);
+    assert.equal(td.fromWalkthrough, true, g);
+    const names = new Set(d.pokemon.map((p) => p.name));
+    for (const t of td.trainers) for (const p of t.party) { assert.ok(names.has(p.species), `${g}: ${t.label} ${p.species}`); assert.equal(p.defaultMoves, true); }
+    assert.ok(load(`${g}-walkthrough.json`).versions);
+  }
+  const xy = load('x-y-trainers.json').trainers;
+  const viola = xy.find((t) => t.name === 'Viola');
+  assert.deepEqual(viola.party.map((p) => `${p.species}@${p.level}`), ['surskit@10', 'vivillon@12']);
+  // SV: o nº da imagem do serebii não é o nacional — espécie pelo nome (Pawmi do Nemona)
+  assert.ok(load('scarlet-violet-trainers.json').trainers.some((t) => t.name === 'Nemona' && t.party.some((p) => p.species === 'pawmi')));
+  // SM: imagem vence a grafia ("Golbat" com a imagem do Crobat no time do Gladion)
+  assert.ok(load('sun-moon-trainers.json').trainers.filter((t) => t.name === 'Gladion').some((t) => t.party.some((p) => p.species === 'crobat')));
+  // estágio nos locais: Route 2 do XY antes da 1ª insígnia
+  const acq = load('x-y-acquisition.json');
+  assert.equal(acq.versions.x.weedle.find((s) => /Route 2/.test(s.where)).stage, 0);
+  // recomendação com progresso funciona contra o time do detonado
+  const d = load('x-y.json');
+  const r = recommend(d, d.pokemon.find((p) => p.name === 'vivillon'), { level: 12, oppLevel: 12, version: 'x', stage: 0, acq, onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false });
+  assert.ok(r.picks.length > 0);
+});

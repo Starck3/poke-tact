@@ -234,6 +234,35 @@ e o código que as lê. `scripts/lib/pkhex.mjs`, `apply-pkhex-overlay.mjs`, `val
   o sprite da forma). A loja de golpes do jogo (bits u64 @0xA8, lista `MoveShopMoves`) substitui o "tutor" incompleto da
   PokéAPI (62 → 3161). Só o LA tem `forms` no leitor: nos outros jogos a forma 0 ausente é evento (BDSP: Darkrai, Arceus…).
 
+### Gens 5–9 sem decomp — tudo o que o PKHeX e os detonados dão (0.10.0) 🧪
+Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-pkhex-evos` (núcleo) e `build-detonado-modern`
+(depois do `build-acquisition-pkhex`).
+- **Formas regionais** (`add-pkhex-forms.mjs`): entradas próprias com o id da variedade da PokéAPI (rattata-alola = 10091),
+  `speciesId`/`form`/`regionalForm`; tabela da forma no personal (FormStatsIndex + f − 1: @0x1C/0x20 Gens 5–7 e GG, @0x1E/0x20
+  Gen 8, @0x18/0x1A SV/Z-A). 🧪 Só variedades regionais (-alola/-galar/-hisui/-paldea, sem totens) e tipos conferidos nas duas
+  fontes. Encontro (espécie, forma) → forma; o app mostra "Rattata de Alola" e busca pelo nº da espécie. Exclusivos conferidos
+  com a PokéAPI (Vulpix de Alola no Sun, Sandshrew de Alola no Moon — a memória dizia o contrário).
+- **Evoluções** (`scripts/lib/pkhex-evos.mjs`, `apply-pkhex-evos.mjs`): evos_<jogo>.pkl (índice por espécie nas Gens 5/6; pela
+  forma da Gen 7 em diante — o SM usa evos_uu). Métodos sem equivalente ganham `evo.text` em português. 🧪 Corrige: Raichu/
+  Exeggutor/Marowak de Kanto impossíveis no SM ("fora de Alola"), Perrserker/Sirfetch'd/Obstagoon… a partir da forma de Galar,
+  formas de Hisui no SV sem evolução no jogo (só HOME), filtro de evolução por troca nas Gens 5–9.
+- **TMs** (`scripts/lib/pkhex-machines.mjs`, `apply-pkhex-machines.mjs`): bits do personal + listas do C#. 100% iguais à PokéAPI em
+  7 jogos; 🧪 BW sem TM95 Snarl (não obtível); SV com as TMs de patch/DLC e sem as das formas de Hisui misturadas; TM000 fora.
+  Tutores continuam da PokéAPI.
+- **Onde obter do Black/White** (`scripts/lib/pkhex-enc-gen5.mjs`): mesmo formato das Gens 6–9; White Forest/Black City por versão;
+  eventos (Victini, Zorua/Zoroark de evento), Dream World e Dream Radar fora.
+- **Detonados modernos** (`scripts/lib/pokemythology-modern.mjs` + `build-detonado-modern.mjs`): lutas "<nome> usa:" com a imagem
+  do serebii (nº nacional — 🧪 menos no SV, onde a numeração é própria → espécie pelo nome; imagem vence a grafia: "Golbat"
+  com imagem de Crobat), formas por "Hisuian X"/sufixo -h. Gera `<jogo>-trainers.json` (`fromWalkthrough`; golpes = moveset padrão
+  no nível, `defaultMoves`), `acq.progress` e `<jogo>-walkthrough.json`. Líderes: nome ligado a insígnia/carimbo (≥ 4) ou luta
+  "líder"; vale a luta logo antes da insígnia (🧪 Giovanni do Let's Go: o esconderijo vem antes); alternativas de versão = mesma
+  seção + mesmo nível + lutas coladas (Gordie/Melony sim; Piers → Raihan não). Fim da história = Hall da Fama/créditos depois do
+  último líder (🧪 Leon sai "rival", Ghetsis "campeão"). Estágio dos locais: nome do PKHeX no detonado (placeStage); sem nome
+  ("nesta rota encontramos…"), o 1º trecho que cita ≥ 3 espécies comuns do local (sem aparições raras — 🧪 o pós-jogo do Let's Go
+  lista todas). Locais sem posição ficam em "Fora do detonado". USUM e Z-A não têm detonado local.
+- **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
+  estilos do LA, tempo real do Z-A.
+
 ### Gen 5 — Black 2 / White 2 (fuddlesworth/pokebw2, GPL-3.0) — 2026-10-20 🧪
 `scripts/lib/gen5-bw2.mjs`, `apply-gen5-overlay.mjs`, `validate-gen5-vs-decomp.mjs`, `build-trainers-gen5.mjs`,
 `build-acquisition-gen5.mjs`. O pokebw2 reconstrói as ROMs byte a byte e segue o esquema do pokeplatinum: dados em JSON

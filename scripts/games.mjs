@@ -12,6 +12,7 @@ const GEN3 = {
 // Regras por geração para jogos SEM decomp utilizável ainda (camada "PokéAPI + regras da geração").
 // Esses jogos aparecem como "não validados por decomp" — ver docs/PLANO.md (S4–S7).
 const SPLIT_BY_TYPE = { physicalTypes: GEN3.physicalTypes, specialTypes: GEN3.specialTypes };
+// mechanics: mecânicas de batalha do jogo que o motor NÃO simula — aviso na tela do jogo (games.json → app)
 const pokeapiOnly = (generation, maxDex, extra = {}) => ({ generation, maxDex, ...SPLIT_BY_TYPE, validation: 'pokeapi', ...extra });
 
 // Detonados da Gen 1 (PokeMythology, PT-BR): nome do lugar no texto → nome do mapa no decomp (regex, sem diferenciar maiúsculas).
@@ -95,17 +96,17 @@ export const GAMES = {
       sparse: ['/res/pokemon/*/data.json', '/res/pokemon/*/form_*.json', '/res/pokemon/forms.json', '/res/moves/*/data.json', '/res/items/*/data.json', '/res/trainers/data/',
         '/res/trainers/classes/', '/res/field/zones/', '/res/field/events/', '/res/field/encounters/', '/res/field/scripts/', '/res/field/trades/', '/res/field/places/',
         '/res/field/matrices/', '/res/types/', '/generated/', '/include/', '/src/', '/asm/', '/docs/'] } },
-  'x-y': { ...pokeapiOnly(6, 721), pkhex: PKHEX, label: 'Pokémon X / Y (3DS)', versionGroup: 'x-y', versions: ['x', 'y'], walkthrough: 'detonado-x-y' },
-  'omega-ruby-alpha-sapphire': { ...pokeapiOnly(6, 721), pkhex: PKHEX, label: 'Pokémon Omega Ruby / Alpha Sapphire (3DS)', versionGroup: 'omega-ruby-alpha-sapphire', versions: ['omega-ruby', 'alpha-sapphire'], walkthrough: 'detonado-omegaruby-alphasapphire' },
-  'sun-moon': { ...pokeapiOnly(7, 809), pkhex: PKHEX, label: 'Pokémon Sun / Moon (3DS)', versionGroup: 'sun-moon', versions: ['sun', 'moon'], walkthrough: 'detonado-sun-moon' },
-  'ultra-sun-ultra-moon': { ...pokeapiOnly(7, 809), pkhex: PKHEX, label: 'Pokémon Ultra Sun / Ultra Moon (3DS)', versionGroup: 'ultra-sun-ultra-moon', versions: ['ultra-sun', 'ultra-moon'], walkthrough: null },
-  'lets-go-pikachu-lets-go-eevee': { ...pokeapiOnly(7, 809, { noAbilities: true }), pkhex: PKHEX, label: "Pokémon Let's Go, Pikachu! / Eevee! (Switch)", versionGroup: 'lets-go-pikachu-lets-go-eevee', versions: ['lets-go-pikachu', 'lets-go-eevee'], walkthrough: 'detonado-lets-go-pikachu-lets-go-eevee' },
-  'sword-shield': { ...pokeapiOnly(8, 898), pkhex: PKHEX, label: 'Pokémon Sword / Shield (Switch)', versionGroup: 'sword-shield', versions: ['sword', 'shield'], walkthrough: 'detonado-sword-shield' },
+  'x-y': { ...pokeapiOnly(6, 721), pkhex: PKHEX, label: 'Pokémon X / Y (3DS)', versionGroup: 'x-y', versions: ['x', 'y'], walkthrough: 'detonado-x-y', mechanics: ['Mega Evolução'] },
+  'omega-ruby-alpha-sapphire': { ...pokeapiOnly(6, 721), pkhex: PKHEX, label: 'Pokémon Omega Ruby / Alpha Sapphire (3DS)', versionGroup: 'omega-ruby-alpha-sapphire', versions: ['omega-ruby', 'alpha-sapphire'], walkthrough: 'detonado-omegaruby-alphasapphire', mechanics: ['Mega Evolução'] },
+  'sun-moon': { ...pokeapiOnly(7, 809), pkhex: PKHEX, label: 'Pokémon Sun / Moon (3DS)', versionGroup: 'sun-moon', versions: ['sun', 'moon'], walkthrough: 'detonado-sun-moon', mechanics: ['Mega Evolução', 'golpes Z'] },
+  'ultra-sun-ultra-moon': { ...pokeapiOnly(7, 809), pkhex: PKHEX, label: 'Pokémon Ultra Sun / Ultra Moon (3DS)', versionGroup: 'ultra-sun-ultra-moon', versions: ['ultra-sun', 'ultra-moon'], walkthrough: null, mechanics: ['Mega Evolução', 'golpes Z'] },
+  'lets-go-pikachu-lets-go-eevee': { ...pokeapiOnly(7, 809, { noAbilities: true }), pkhex: PKHEX, label: "Pokémon Let's Go, Pikachu! / Eevee! (Switch)", versionGroup: 'lets-go-pikachu-lets-go-eevee', versions: ['lets-go-pikachu', 'lets-go-eevee'], walkthrough: 'detonado-lets-go-pikachu-lets-go-eevee', mechanics: ['Mega Evolução'] },
+  'sword-shield': { ...pokeapiOnly(8, 898), pkhex: PKHEX, label: 'Pokémon Sword / Shield (Switch)', versionGroup: 'sword-shield', versions: ['sword', 'shield'], walkthrough: 'detonado-sword-shield', mechanics: ['Dynamax e Gigantamax'] },
   'brilliant-diamond-shining-pearl': { ...pokeapiOnly(8, 493), pkhex: PKHEX, label: 'Pokémon Brilliant Diamond / Shining Pearl (Switch)', versionGroup: 'brilliant-diamond-shining-pearl', versions: ['brilliant-diamond', 'shining-pearl'], walkthrough: 'detonado-brilliantdiamond-shiningpearl' },
-  'legends-arceus': { ...pokeapiOnly(8, 905), pkhex: PKHEX, label: 'Pokémon Legends: Arceus (Switch)', versionGroup: 'legends-arceus', versions: ['legends-arceus'], walkthrough: 'detonado-legends-arceus', battleNote: 'sistema de batalha próprio (estilos ágil/forte) — o motor usa as regras padrão' },
-  'scarlet-violet': { ...pokeapiOnly(9, 1025), pkhex: PKHEX, label: 'Pokémon Scarlet / Violet (Switch)', versionGroup: 'scarlet-violet', versions: ['scarlet', 'violet'], walkthrough: 'detonado-scarlet-violet' },
+  'legends-arceus': { ...pokeapiOnly(8, 905), pkhex: PKHEX, label: 'Pokémon Legends: Arceus (Switch)', versionGroup: 'legends-arceus', versions: ['legends-arceus'], walkthrough: 'detonado-legends-arceus', mechanics: ['estilos ágil e forte', 'valores de golpes próprios do jogo (o app usa os da série principal)', 'ordem de ação própria do jogo (o app usa a de turnos)'] },
+  'scarlet-violet': { ...pokeapiOnly(9, 1025), pkhex: PKHEX, label: 'Pokémon Scarlet / Violet (Switch)', versionGroup: 'scarlet-violet', versions: ['scarlet', 'violet'], walkthrough: 'detonado-scarlet-violet', mechanics: ['Terastal'] },
   // sem PokéAPI: dataset montado das tabelas do PKHeX (build-data-pkhex); golpes/tipos da Gen 9 do Scarlet/Violet
-  'legends-za': { ...pokeapiOnly(9, 1025), validation: 'pkhex', pkhex: PKHEX, pkhexOnly: true, movesFrom: 'scarlet-violet', label: 'Pokémon Legends: Z-A (Switch)', versionGroup: 'legends-za', versions: ['legends-za'], walkthrough: 'detonado-legends-z-a', battleNote: 'batalha em tempo real — o motor usa as regras padrão' },
+  'legends-za': { ...pokeapiOnly(9, 1025), validation: 'pkhex', pkhex: PKHEX, pkhexOnly: true, movesFrom: 'scarlet-violet', label: 'Pokémon Legends: Z-A (Switch)', versionGroup: 'legends-za', versions: ['legends-za'], walkthrough: 'detonado-legends-z-a', mechanics: ['batalha em tempo real (o app calcula como se fosse por turnos)', 'Mega Evolução', 'valores de golpes próprios do jogo (o app usa os da Gen 9)'] },
   'firered-leafgreen': {
     ...GEN3,
     label: 'Pokémon FireRed / LeafGreen (GBA)',

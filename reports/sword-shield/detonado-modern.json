@@ -1,0 +1,57 @@
+{
+ "leaderOrder": [
+  "Milo",
+  "Nessa",
+  "Kabu",
+  "Bea/Allister",
+  "Opal",
+  "Gordie/Melody",
+  "Piers",
+  "Raihan"
+ ],
+ "badges": [
+  "Grass Badge←Milo",
+  "Water Badge←Nessa",
+  "Fire Badge←Kabu",
+  "Fighting Badge←Bea",
+  "Ghost Badge←Allister",
+  "Fairy Badge←Opal",
+  "Rock Badge←Gordie",
+  "Ice Badge←Melody",
+  "Dark Badge←Piers",
+  "Dragon Badge←Raihan"
+ ],
+ "unresolved": [
+  "Dynamax inicial",
+  "Zacian/Zamazenta",
+  "Zacian/Zamazenta",
+  "Venusaur/Blastoise",
+  "Venusaur/Blastoise",
+  "Zacian/Zamazenta"
+ ],
+ "fuzzy": [],
+ "skippedPlaceholders": 11,
+ "withStage": 7100,
+ "total": 11748,
+ "placesWithoutStage": [
+  "Rolling Fields",
+  "Dappled Grove",
+  "Fields of Honor",
+  "Soothing Wetlands",
+  "Challenge Beach",
+  "North Lake Miloch",
+  "Stony Wilderness",
+  "East Lake Axewell",
+  "Loop Lagoon",
+  "Stepping-Stone Sea",
+  "Workout Sea",
+  "Insular Sea",
+  "Dusty Bowl",
+  "West Lake Axewell",
+  "South Lake Miloch",
+  "Axew’s Eye",
+  "Path to the Peak",
+  "Challenge Road",
+  "Brawlers’ Cave"
+ ]
+}

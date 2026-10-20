@@ -1,0 +1,30 @@
+{
+ "leaderOrder": [
+  "Viola",
+  "Grant",
+  "Korrina",
+  "Ramos",
+  "Clemont",
+  "Valerie",
+  "Olympia",
+  "Wulfric"
+ ],
+ "badges": [
+  "Bug Badge←Viola",
+  "Cliff Badge←Grant",
+  "Rumble Badge←Korrina",
+  "Plant Badge←Ramos",
+  "Voltage Badge←Clemont",
+  "Fairy Badge←Valerie",
+  "Psychic Badge←Olympia",
+  "Iceberg Badge←Wulfric"
+ ],
+ "unresolved": [],
+ "fuzzy": [],
+ "skippedPlaceholders": 4,
+ "withStage": 920,
+ "total": 938,
+ "placesWithoutStage": [
+  "a Link Trade"
+ ]
+}

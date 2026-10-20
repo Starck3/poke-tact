@@ -1,0 +1,53 @@
+{
+ "leaderOrder": [
+  "Brock",
+  "Misty",
+  "Lt. Surge",
+  "Erika",
+  "Sabrina",
+  "Koga",
+  "Blaine",
+  "Giovanni"
+ ],
+ "badges": [
+  "Boulder Badge←Brock",
+  "Cascade Badge←Misty",
+  "Thunder Badge←Lt. Surge",
+  "Rainbow Badge←Erika",
+  "Marsh Badge←Sabrina",
+  "Soul Badge←Koga",
+  "Volcano Badge←Blaine",
+  "Earth Badge←Giovanni"
+ ],
+ "unresolved": [
+  "Pikachu/Eevee",
+  "Pikachu/Eevee",
+  "Pikachu/Eevee",
+  "Pikachu/Eevee",
+  "Raichu/Jolteon",
+  "Raichu/Jolteon",
+  "Raichu/Jolteon",
+  "Raichu/Jolteon"
+ ],
+ "fuzzy": [],
+ "skippedPlaceholders": 0,
+ "withStage": 516,
+ "total": 1070,
+ "placesWithoutStage": [
+  "Route 12",
+  "Route 13",
+  "Route 14",
+  "Route 15",
+  "Route 21",
+  "Route 22",
+  "Route 6",
+  "Route 9",
+  "Route 10",
+  "Route 7",
+  "Route 8",
+  "Route 16",
+  "Route 17",
+  "Route 18",
+  "Route 23"
+ ]
+}

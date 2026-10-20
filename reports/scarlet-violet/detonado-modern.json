@@ -1,0 +1,62 @@
+{
+ "leaderOrder": [
+  "Katy",
+  "Brassius",
+  "Iono",
+  "Kofu",
+  "Larry",
+  "Ryme",
+  "Tulip",
+  "Grusha"
+ ],
+ "badges": [
+  "Gym Badge do tipo inseto←Katy",
+  "Titan Badge do tipo pedra←?",
+  "Gym Badge do tipo planta←Brassius",
+  "Titan Badge do tipo voador←?",
+  "Star Badge do tipo noturno←Giacomo",
+  "Gym Badge do tipo elétrico←Iono",
+  "Star Badge do tipo fogo←Mela",
+  "Titan Badge do tipo metálico←?",
+  "Gym Badge do tipo água←Kofu",
+  "Star Badge do tipo veneno←Atticus",
+  "Gym Badge do tipo normal←Larry",
+  "Gym Badge do tipo fantasma←Ryme",
+  "Titan Badge do tipo terra←?",
+  "Gym Badge do tipo psíquico←Tulip",
+  "Gym Badge do tipo gelo←Grusha",
+  "Star Badge do tipo fada←Ortega",
+  "Titan Badge do tipo dragão←?",
+  "Star Badge do tipo lutador←Eri"
+ ],
+ "unresolved": [
+  "Sprigatito/Fuecoco/Quaxly",
+  "Sprigatito/Fuecoco/Quaxly",
+  "Segin Starmobile",
+  "Floragato/Crocalor/Quaxwell",
+  "Schedar Starmobile",
+  "Navi Starmobile",
+  "Meowscarada/Skeledirge/Quaquaval",
+  "Meowscarada/Skeledirge/Quaquaval",
+  "Ruchbah Starmobile",
+  "Caph Starmobile",
+  "Meowscarada/Skeledirge/Quaquaval",
+  "Meowscarada/Skeledirge/Quaquaval"
+ ],
+ "fuzzy": [
+  "Skovillain → scovillain",
+  "Iron Valliant → iron-valiant",
+  "Kimgambit → kingambit",
+  "Skovillain → scovillain",
+  "Skovillain → scovillain"
+ ],
+ "skippedPlaceholders": 0,
+ "withStage": 10610,
+ "total": 10864,
+ "placesWithoutStage": [
+  "Chilling Waterhead",
+  "a Link Trade",
+  "Torchlit Labyrinth",
+  "Jacq"
+ ]
+}

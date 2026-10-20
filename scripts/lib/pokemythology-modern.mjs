@@ -43,13 +43,20 @@ export function contentRange(html) {
 
 // Imagem de Pokémon: serebii …/pokemon/[small/]NNN[-forma].png ou B2W2 …/b2w2/sprites/bw[b]/NNN.png.
 // Sprites de treinador (pokearth/trainers, /b2w2/t/NNN.gif, imgur, "vs01.png", "trainer08.png") NÃO casam.
-const MON_NUM = /\/(?:pokemon\/(?:small\/)?|sprites\/bwb?\/)(\d{1,4})(?:-([a-z0-9]+))?\.(?:png|gif|jpe?g)/i;
+// BW também usa sprites do pokemonelite2000 (via web.archive) e /conteudo/detonados/bw/NNN.gif; B2W2 /b2w2/s/NNN.gif;
+// SV um shiny em serebii /Shiny/SV/new/NNN.png.
+const MON_NUM = /(?:\/pokemon\/(?:small\/)?|\/sprites\/bwb?\/|\/detonados\/bw\/|\/b2w2\/s\/|\/Shiny\/[A-Za-z]+\/new\/|pokemonelite2000\.com\/(?:wp-content\/uploads\/\d{4}\/\d{2}|sprites\/bwf)\/)(\d{1,4})(?:-([a-z0-9]+))?\.(?:png|gif|jpe?g)/i;
+// serebii /scarletviolet/: as imagens 906–1010 (Gen 9) seguem a numeração PRÓPRIA do serebii, não a nacional
+// (954.png = Pawmi #921, 943.png = Revavroom/Starmobile #966, 1007.png = Toedscruel #949…). Nesses casos o nº
+// fica de fora (dex: null, serebii: N) e a espécie tem que ser resolvida pelo nome.
+const SEREBII_OWN_NUMBERING = (path, n) => /\/scarletviolet\//i.test(path) && n >= 906 && n <= 1010;
 const MON_NAMED = /\/pokemon\/(?:small\/)?([a-z][a-z-]+)\.(?:png|gif)/i; // XY: chespin.png/fennekin.png/froakie.png
 function monFromImg(tag) {
   const src = /\bsrc="([^"]+)"/i.exec(tag)?.[1];
   if (!src) return null;
   const path = src.split('?')[0];
   const m = MON_NUM.exec(path);
+  if (m && SEREBII_OWN_NUMBERING(path, Number(m[1]))) return { dex: null, serebii: Number(m[1]), ...(m[2] && { form: m[2].toLowerCase() }) };
   if (m) return { dex: Number(m[1]), ...(m[2] && { form: m[2].toLowerCase() }) };
   const n = MON_NAMED.exec(path);
   if (n) return { dex: null, image: n[1].toLowerCase() };
@@ -196,6 +203,7 @@ function parseEntry(mons, rawText) {
     const forms = [...new Set(mons.map((x) => x.form).filter(Boolean))];
     if (forms.length === 1) e.form = forms[0]; else if (forms.length > 1) e.forms = forms; // Silvally (-fire/-water/-grass)
   }
+  if (mons.length === 1 && mons[0].serebii) { e.serebii = mons[0].serebii; e.dexByName = true; } // SV Gen 9
   if (tags.size) e.tags = [...tags];
   if (Object.keys(notes).length) e.notes = notes;
   return e;
@@ -217,7 +225,10 @@ function readParty(toks, i, limit = toks.length) {
     const text = clean(k.text);
     if (!text) continue;
     if (isAnchor(text)) break;
-    const hasLv = /\blv\.?\s*\d/i.test(text);
+    // "lv." no meio de uma frase do texto ("…pokémons beirando o lv.60") não é linha de time: sem imagem antes, o
+    // trecho antes do nível tem que ser curto e começar com maiúscula (nome de espécie)
+    const pre = /^(.*?)\s*\blv\.?\s*\d/i.exec(text)?.[1];
+    const hasLv = pre != null && (pending.length ? pre.length <= 80 : pre.length <= 30 && pre.split(' ').length <= 4 && pre.split(' ').every((w) => /^[A-ZÀ-Ý(]/.test(w)));
     if (hasLv || (pending.length && text.length <= 60 && !/[.!?]$/.test(text))) {
       // um texto pode ter mais de um Pokémon ("Corphish lv.12 e Pikachu lv.14") — raro; separa pelos níveis
       const parts = hasLv ? text.split(/(?<=\blv\.?\s*\d{1,3}(?:\s*\([^)]*\))*)\s*(?:,|\be\b)\s+(?=[A-Z])/) : [text];
@@ -239,20 +250,26 @@ function cellLabel(toks, cell, upTo) {
   return parts.join(' ').replace(/\s+/g, ' ').trim();
 }
 const cellHasAnchor = (toks, c) => { for (let i = c.from; i < c.to; i++) if (toks[i].t === 'text' && isAnchor(toks[i].text)) return true; return false; };
-const cellHasLv = (toks, c) => { for (let i = c.from; i < c.to; i++) if (toks[i].t === 'text' && /lv.?s*d/i.test(toks[i].text)) return true; return false; };
+const cellHasLv = (toks, c) => { for (let i = c.from; i < c.to; i++) if (toks[i].t === 'text' && /\blv\.?\s*\d/i.test(toks[i].text)) return true; return false; };
 const cellHasMon = (toks, c) => { for (let i = c.from; i < c.to; i++) if (toks[i].t === 'mon') return true; return false; };
 
 /**
  * Lutas "<nome> usa:" na ordem da página:
- *   { name, at, section, subtitle, party:[{dex, form?, species, level, placeholder?, options?, tags?, notes?}],
- *     placeholders, teams:[{label, party}], variant, group, note, context, after, nameCount, kind }
+ *   { name, at, endAt, section, subtitle,
+ *     party:[{dex, form?, forms?, species, level, placeholder?, options?, tags?, notes?, serebii?, dexByName?}],
+ *     placeholders, teams:[{label, party}], variant, group, note, context, after,
+ *     nameCount, seenBefore, prevKind, rivalName, badgeAfter, kind, kindBy? }
  * • party = teams[0].party; teams > 1 quando a MESMA âncora tem times alternativos (células vizinhas sem "usa:":
  *   um por inicial no BW, "Challenge Mode" no B2W2).
  * • variant = rótulo antes da âncora na célula ("Se você começou com Chespin", "20ª BATALHA SINGLE BATTLE");
  *   group = id compartilhado pelas âncoras do mesmo nome na mesma tabela (o mesmo combate em variantes).
- * • placeholders = Pokémon sem nº único (inicial genérico, "Pikachu/Eevee", "Reshiram/Zekrom").
+ * • placeholders = Pokémon do time sem espécie única (inicial genérico "inicial evoluído", "Pikachu/Eevee",
+ *   "Reshiram/Zekrom"): vêm com `options` [{dex, species?}]. dexByName = nº de imagem não confiável (SV Gen 9).
+ * • notes: altLevel/altMode ("(lv.43 no Challenge Mode)"), tera, version ("(em Sword)"), ability/item/moves, note.
+ * • tags: prefixos de forma tirados do nome (mega, gigantamax, dynamax, alolan, galarian, hisuian, paldean, alpha).
  * • âncoras sem time nenhum (cabeçalho "Shauna usa:" antes da tabela por inicial) são descartadas.
- * • kind = classifyBattle(...) com a contagem do nome na página.
+ * • kind = classifyBattle(...); kindBy diz quando veio de regra de pós-processamento ('nome', 'depois da Elite').
+ * • Limites: não distingue aliado de adversário em batalha em dupla ("junte-se a Cheren… Cheren usa:" no B2W2).
  */
 export function parseModernBattles(html) {
   const { toks, tables } = tokenize(html);
@@ -274,6 +291,7 @@ export function parseModernBattles(html) {
       const r = readParty(toks, i + 1);
       const cell = k.cell;
       const teams = [];
+      let lastTok = r.end;
       if (r.party.length) teams.push({ label: r.labels.join(' ') || null, party: r.party });
       if (cell) {
         const table = tables[cell.table];
@@ -284,6 +302,7 @@ export function parseModernBattles(html) {
           if (cellHasAnchor(toks, sib)) break;
           if (!cellHasMon(toks, sib)) continue;
           const rr = readParty(toks, sib.from, sib.to);
+          if (rr.party.length) lastTok = Math.max(lastTok, rr.end);
           const head = table.rows[0] !== row ? table.rows[0][c] : null;
           // rótulo da coluna (BW: "Snivy"/"Tepig"/"Oshawott" na 1ª linha)
           const headLabel = head && !cellHasAnchor(toks, head) && !cellHasLv(toks, head) ? cellLabel(toks, head, head.to) : '';
@@ -292,7 +311,7 @@ export function parseModernBattles(html) {
         // linha de cabeçalho só com "X usa:" (BW Elite 4) → time na linha de baixo, mesma coluna
         if (!teams.length && row.every((c) => cellHasAnchor(toks, c))) {
           const below = table.rows[cell.row + 1]?.[cell.col];
-          if (below && !cellHasAnchor(toks, below)) { const rr = readParty(toks, below.from, below.to); if (rr.party.length) teams.push({ label: null, party: rr.party }); }
+          if (below && !cellHasAnchor(toks, below)) { const rr = readParty(toks, below.from, below.to); if (rr.party.length) { teams.push({ label: null, party: rr.party }); lastTok = Math.max(lastTok, rr.end); } }
         }
       }
       if (!teams.length) continue; // cabeçalho sem time
@@ -300,11 +319,11 @@ export function parseModernBattles(html) {
       out.push({
         name, at: anchorAt, section: sec?.title ?? null, subtitle: sec?.subtitle ?? null,
         party: teams[0].party, teams,
-        placeholders: teams[0].party.filter((p) => p.dex == null).length,
+        placeholders: teams[0].party.filter((p) => p.placeholder || p.options).length,
         variant: cell ? cellLabel(toks, cell, i) .replace(new RegExp(`${escapeRe(name)}\\s*$`), '').trim() || null : null,
         note: tail || null,
         tableCell: cell ? `${cell.table}:${cell.row}:${cell.col}` : null,
-        endAt: toks[r.end]?.end ?? k.end,
+        endAt: toks[lastTok]?.end ?? k.end,
       });
     }
   }
@@ -316,10 +335,13 @@ export function parseModernBattles(html) {
     if (!groups.has(key)) groups.set(key, groups.size);
     b.group = groups.get(key);
   });
-  // contexto: texto antes (desde o fim da luta anterior, no máx. 600 caracteres) e depois (até a próxima luta, máx. 900)
+  // contexto: texto antes (desde o fim da luta anterior, últimos 600 caracteres de TEXTO) e depois (até a próxima
+  // luta, máx. 900); dentro de uma mesma tabela o contexto é o da 1ª célula (o texto antes da tabela)
+  const tableOf = (b) => b.tableCell?.split(':')[0] ?? null;
   out.forEach((b, i) => {
-    const prevEnd = i > 0 ? out[i - 1].endAt : 0;
-    const from = Math.max(prevEnd, b.at - 600);
+    let j = i;
+    while (j > 0 && tableOf(b) != null && tableOf(out[j - 1]) === tableOf(b)) j--;
+    const from = Math.max(j > 0 ? out[j - 1].endAt : 0, b.at - 30000);
     b.context = stripTags(html.slice(from, b.at + 1)).slice(-600);
     const nextAt = out.slice(i + 1).find((x) => x.group !== b.group)?.at ?? html.length;
     b.after = stripTags(html.slice(b.endAt, Math.min(nextAt, b.endAt + 1500))).slice(0, 900);
@@ -329,14 +351,34 @@ export function parseModernBattles(html) {
   for (const b of out) { const k = nameKey(b.name); if (!byName.has(k)) byName.set(k, new Set()); byName.get(k).add(b.group); }
   const badges = parseBadgeEvents(html, out);
   const rivalNames = rivalNameSet(out, byName);
+  const seen = new Map(); // nome → 1º grupo
+  const role = new Map(); // nome → 1º papel ≠ 'other' já atribuído (lutas em ordem da página)
   for (const b of out) {
-    b.nameCount = byName.get(nameKey(b.name)).size;
-    b.rivalName = rivalNames.has(nameKey(b.name));
+    const nk = nameKey(b.name);
+    if (!seen.has(nk)) seen.set(nk, b.group);
+    b.seenBefore = seen.get(nk) !== b.group; // o nome já lutou antes (seção "ELITE 4…" também tem N/Ghetsis)
+    b.prevKind = b.seenBefore ? role.get(nk) ?? null : null;
+    b.nameCount = byName.get(nk).size;
+    b.rivalName = rivalNames.has(nk);
     const nextAt = out.find((x) => x.at > b.at && x.group !== b.group)?.at ?? Infinity;
     b.badgeAfter = badges.find((e) => e.at > b.at && e.at < nextAt && e.at - b.endAt < 2500) ?? null;
     b.kind = classifyBattle(b, b.section, `${b.context} ¦ ${b.after}`);
-    delete b.tableCell;
+    if (b.kind !== 'other' && !role.has(nk)) role.set(nk, b.kind);
   }
+  // Lutas 'other' herdam o 1º papel não-'other' do mesmo nome (revanche/tabela pós-jogo sem texto: "Grant usa:" no
+  // Battle Chateau; 2ª luta de Lysandre). Não sobrescreve papel já dado pelo texto (Hala: kahuna → Elite no SM).
+  const firstRole = new Map();
+  for (const b of out) { const k = nameKey(b.name); if (b.kind !== 'other' && !firstRole.has(k)) firstRole.set(k, b.kind); }
+  for (const b of out) if (b.kind === 'other' && firstRole.has(nameKey(b.name))) { b.kind = firstRole.get(nameKey(b.name)); b.kindBy = 'nome'; }
+  // Campeão sem a palavra "campeão" perto (BW: Alder): na mesma seção, a 1ª luta logo depois de 4 nomes 'elite'
+  // distintos, se não for rival/líder, é o campeão.
+  for (let i = 0; i < out.length; i++) {
+    const b = out[i];
+    if (b.kind !== 'elite' || b.rivalName) continue;
+    const elites = new Set(out.slice(0, i).filter((x) => x.section === b.section && x.kind === 'elite').map((x) => nameKey(x.name)));
+    if (elites.size >= 4 && !elites.has(nameKey(b.name)) && !out.slice(0, i).some((x) => x.section === b.section && x.kind === 'champion')) { b.kind = 'champion'; b.kindBy = 'depois da Elite'; }
+  }
+  for (const b of out) delete b.tableCell;
   return out;
 }
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -352,16 +394,21 @@ function rivalNameSet(battles, byName) {
     const k = nameKey(b.name);
     const near = b.context.slice(-350);
     const firstName = b.name.split(/[\/ ]/)[0];
-    const mentions = new RegExp(`rival[^.]{0,80}\\b${escapeRe(firstName)}\\b|\\b${escapeRe(firstName)}\\b[^.]{0,80}rival`, 'i').test(near);
-    const starter = b.teams.some((t) => t.party.some((p) => p.placeholder || (p.options && p.notes?.note && /inicial/i.test(p.notes.note)))) || /come[çc]ou com/i.test(b.variant ?? '');
-    if (/\brival\b/i.test(b.name) || mentions || (starter && byName.get(k).size >= 3)) set.add(k);
+    // "seu rival Hugh", "Hugh, seu rival", "rival, Hugh" — não "Passando pelo seu rival, você verá que Cheren…"
+    const fn = escapeRe(firstName);
+    const mentions = new RegExp(`\\brival,?\\s+(?:\\S+\\s+){0,2}${fn}\\b|\\b${fn},?\\s+(?:\\S+\\s+){0,3}rival\\b`, 'i').test(near);
+    // Pokémon genérico "inicial…" (o inicial do rival) ou "(inicial com fraqueza ao seu)" depois do nível
+    const generic = b.teams.some((t) => t.party.some((p) => p.placeholder || (p.options && /inicial/i.test(p.notes?.note ?? ''))));
+    // variante por inicial (o campeão/diretor também tem): "Se você começou com…" ou ≥ 3 times alternativos (BW)
+    const byStarter = /come[çc]ou com/i.test(b.variant ?? '') || b.teams.length >= 3;
+    if (/\brival\b/i.test(b.name) || mentions || (generic && byName.get(k).size >= 2) || (byStarter && byName.get(k).size >= 3)) set.add(k);
   }
   return set;
 }
 
 // ───────────────────────── insígnias ─────────────────────────
 
-const VERB = String.raw`(?:receb\w*|ganh\w*|consig\w*|conquist\w*|obt[eé]\w*|entreg\w*|pegue|pegar|dar[áa]|ficar com)`;
+const VERB = String.raw`(?:[Rr]eceb\w*|[Gg]anh\w*|[Cc]onsig\w*|[Cc]onquist\w*|[Oo]bt[eé]\w*|[Ee]ntreg\w*|[Pp]egue|[Pp]egar|[Dd]ar[áa]|[Ff]icar com)`;
 const BADGE_RES = [
   // "receba a Bug Badge", "insígnia Boulder Badge", "ganhará a Gym Badge do tipo inseto", "Titan Badge", "Star Badge"
   { kind: 'badge', re: new RegExp(String.raw`${VERB}[^.!?]{0,40}?\b((?:[A-Z][a-z]+ )?[A-Z][a-z]+ Badge)\b(?! d[eo]st[ae])(?: do tipo ([a-zà-ú]+))?`, 'g') },
@@ -371,7 +418,8 @@ const BADGE_RES = [
   { kind: 'stamp', re: /\bconseguir[áa] o carimbo d[ao] ([A-Z][\w’']+ Island)/g },
   { kind: 'trial', re: new RegExp(String.raw`${VERB}[^.!?]{0,30}?\b([A-Z][a-z]+ium Z)\b`, 'g') },
 ];
-const NEG_BEFORE = /\b(sem|antes de|at[ée] que|precisa\w*|dev\w+|poder[áa]|quando|pr[óo]xima|todas)\b[^.!?]{0,25}$/i;
+// ("Quando vencer, receba…" é afirmativo; só "quando conseguir…" — quando + o próprio verbo — é futuro)
+const NEG_BEFORE = /(\b(sem|antes de|at[ée] que|precisa\w*|dev\w+|poder[áa]|pr[óo]xima|todas)\b[^.!?]{0,25}|\bquando\s+)$/i;
 
 /** Texto do artigo com mapa de posições (índice no texto → posição no HTML). */
 function textWithMap(html) {
@@ -417,9 +465,11 @@ export function parseBadgeEvents(html, battles = null) {
   events.sort((a, b) => a.at - b.at);
   const out = [];
   for (const e of events) {
-    const dup = out.find((o) => o.kind === e.kind && e.at - o.at < 1500 && (o.badge === e.badge || !e.type || (o.badge ?? '').startsWith(e.badge ?? '\0')));
+    const dup = out.find((o) => o.kind === e.kind && e.at - o.at < 1500 && (o.badge === e.badge || (e.badge && !e.type && (o.badge ?? '').startsWith(e.badge + ' '))));
     if (dup && e.kind !== 'insignia') continue;
     if (dup && e.kind === 'insignia' && e.at - dup.at < 600) continue;
+    // "Consiga a insígnia Boulder Badge" casa os dois padrões: fica só o com nome
+    if (e.kind === 'insignia' && events.some((o) => o.kind !== 'insignia' && o.kind !== 'trial' && Math.abs(o.at - e.at) < 300)) continue;
     out.push(e);
   }
   const bs = battles ?? parseModernBattles(html);
@@ -435,19 +485,31 @@ export function parseBadgeEvents(html, battles = null) {
 const TEAM_WORDS = /\b(Equipe|Team|Rocket|Plasma|Flare|Magma|Aqua|Skull|Aether|Galactic|Yell|Star|Macro Cosmos|Neo)\b/;
 /**
  * Papel da luta usando só as palavras da página (regras na ordem; a 1ª que casa vence):
- *  1. 'champion' — "campeão/campeã/champion" no texto logo antes da luta (≤ 300 caracteres) ou no título da seção
- *     (exceto "Hall of Fame"/"tornou campeão"), e o nome não é de um membro já anunciado como Elite no mesmo trecho.
- *  2. 'elite'    — "Elite 4 / Elite dos Quatro / elite four / membro(s) da elite" no texto antes (≤ 400) OU seção
- *     com ELITE / LIGA POKÉMON / POKÉMON LEAGUE no título, desde que o nome não seja de rival nem haja Equipe/Team perto.
- *  3. 'leader'   — evento de insígnia (gym/insignia/stamp/trial) logo depois do time, antes da próxima luta; ou
- *     "líder" (não "líder da Equipe/Team …") / "kahuna" / "ginásio" no texto logo antes (≤ 350).
- *  4. 'rival'    — o nome é de rival (ver rivalNameSet: "rival" perto do nome, ou ≥ 3 combates dependentes do inicial).
- *  5. 'boss'     — chefe/boss/admin/comandante/Commander, ou nome de equipe vilã (Equipe/Team Rocket/Plasma/…), no
- *     nome ou no texto antes (≤ 350), ou evento Star Badge depois (SV: chefes da Team Star).
- *  6. 'other'.
- * Revanches pós-jogo (líderes a nv. 60+, Battle Tree/Tower…) recebem o mesmo papel se o texto disser; a ordem dos
- * líderes deve usar só a 1ª aparição de cada nome.
+ *  0. 'leader'   — evento de insígnia de ginásio (Badge/insígnia sem nome/carimbo de ilha do SM) logo depois do time,
+ *     antes da próxima luta.
+ *  1. 'champion' — "campeão/campeã/champion" nos 300 caracteres de texto antes da luta (exceto "tornou-se campeão",
+ *     "Hall of Fame", "defenda o título"), ou CAMPEÃO no título da seção na 1ª luta do nome.
+ *  2. 'elite'    — "Elite 4 / Elite dos Quatro / membro(s) da elite" no texto antes (≤ 400), menos "após derrotar a
+ *     Elite 4…"; não vale para rival nem com Equipe/Team logo antes.
+ *  3. 'leader'   — Z-Crystal (trial do SM) depois; ou "líder" (não "líder da Equipe/Team") / "kahuna" / "ginásio" nos
+ *     350 caracteres antes, se não for rival.
+ *  4. 'rival'    — o nome é de rival (rivalNameSet: "rival" perto do nome; Pokémon "inicial" genérico em ≥ 2 combates;
+ *     variantes por inicial em ≥ 3 combates).
+ *  5. 'boss'     — evento Star Badge depois (chefes da Team Star); chefe/boss/admin/comandante ou nome de equipe vilã
+ *     (Equipe/Team/Rocket/Plasma/Flare/…) no nome ou nos 200 caracteres antes.
+ *  6. 'elite'    — seção com ELITE / LIGA POKÉMON no título, só na 1ª luta do nome (a seção "ELITE 4 E O N'S CASTLE"
+ *     do BW também tem N e Ghetsis, que já lutaram antes).
+ *  7. 'other'.
+ * Depois, em parseModernBattles: 'other' herda o 1º papel do mesmo nome, e a 1ª luta não-rival depois de 4 nomes
+ * 'elite' na mesma seção vira 'champion'. A ordem dos líderes deve usar só a 1ª aparição de cada nome.
  */
+// (\b do JS não entende acento: "campeão\b" falha antes de espaço → fim de palavra = (?![\wÀ-ÿ]))
+const END = '(?![\\wÀ-ÿ])';
+const CHAMP = new RegExp(`\\bcampe(?:ão|ã|ões)${END}|\\bchampion\\b(?! cup)`, 'i'); // "Champion Cup" é o torneio
+const CHAMP_NOT = /hall of fame|voc[êe] (é|era|for|se tornou) (o |a )?(nov[oa] )?campe|tornou(-se)? (o |a )?(primeir[oa] )?campe|tornar(á|-se)? (o |a )?(primeir[oa] )?campe|defend\w* (o )?(seu )?t[íi]tulo/i;
+const ELITE = /\belite ?(4|dos quatro|four)\b|\bmembros? da elite\b/gi;
+const ELITE_PAST = /\b(derrot\w*|venc\w*|após|depois d\w*|passar pel\w*|n[ãa]o (tem|temos|h[áa]|existe))\s+(\S+\s+){0,3}$/i; // "Após derrotar a Elite 4…"
+const BOSS = new RegExp(`\\b(chefe|chefão|boss|admin|comandante|commander)${END}`, 'i');
 export function classifyBattle(b, sectionTitle = '', textAround = '') {
   const [beforeRaw] = String(textAround).split(' ¦ ');
   const before = (b.context ?? beforeRaw ?? '').slice(-400);
@@ -455,15 +517,26 @@ export function classifyBattle(b, sectionTitle = '', textAround = '') {
   const title = `${sectionTitle ?? ''} ${b.subtitle ?? ''}`;
   const name = b.name ?? '';
   const ev = b.badgeAfter;
+  const league = /\bELITE\b|LIGA POKÉMON|POKÉMON LEAGUE/.test(title) && !/L[ÍI]DERES DE GIN[ÁA]SIO/.test(title);
+  const champTitle = /\bCAMPE(ÃO|Ã)(?![A-ZÀ-Ý])|\bCHAMPION\b(?! CUP)/.test(title) && !/ELITE|DEFEND|T[ÍI]TULO/.test(title);
+  const bossWords = (s) => BOSS.test(s) || TEAM_WORDS.test(s);
   if (ev && (ev.kind === 'gym' || ev.kind === 'insignia' || ev.kind === 'stamp')) return 'leader';
-  if (/\bcampe(ão|ã|ões)\b|\bchampion\b/i.test(before.slice(-300)) && !/hall of fame|tornou(-se)? (o )?campe|(se )?tornar(á)? (o )?(primeiro )?campe/i.test(before.slice(-300))) return 'champion';
-  if (/\bCAMPE(ÃO|Ã)\b|CHAMPION/.test(title) && !b.rivalName) return 'champion';
-  if (/\belite ?(4|dos quatro|four)\b|\bmembros? da elite\b/i.test(before) && !b.rivalName && !TEAM_WORDS.test(near)) return 'elite';
-  if (ev && ev.kind === 'trial') return 'leader';
-  if (/\bl[íi]der(es)?\b(?! d[ao] (Equipe|Team|clan|clã))|\bkahuna\b|\bgin[áa]sio\b/i.test(near) && !/\bl[íi]der d[ao] (Equipe|Team)/i.test(near) && !b.rivalName) return 'leader';
+  const cm = b.teams?.some((t) => /challenge mode/i.test(t.label ?? '')); // B2W2: só líder/Elite/campeã têm time CM à parte
+  if (cm && !league) return 'leader';
+  const b300 = before.slice(-300);
+  if (CHAMP.test(b300) && !CHAMP_NOT.test(b300)) return 'champion';
+  if (champTitle && !b.rivalName && !b.seenBefore) return 'champion';
+  // continuidade: revanche/tabela pós-jogo fora da Liga mantém o papel anterior do nome (o texto de tabelas como o
+  // Battle Chateau do XY fala de "líderes" e "elite 4" ao mesmo tempo)
+  if (b.prevKind && !league && !champTitle) return b.prevKind;
+  const eliteText = [...before.matchAll(ELITE)].some((m) => !ELITE_PAST.test(before.slice(Math.max(0, m.index - 40), m.index)));
+  if (eliteText && !b.rivalName && !TEAM_WORDS.test(near.slice(-200))) return 'elite';
+  if (league && !b.rivalName && (!b.seenBefore || b.prevKind === 'leader' || b.prevKind === 'elite') && !bossWords(near.slice(-200))) return 'elite';
+  // "o líder" / "a líder do ginásio" perto (≤ 150 caracteres); não "líder da Equipe/Team/do metrô/do clã"
+  const n150 = near.slice(-150);
+  if ((/\bl[íi]der(es)?\b(?! (?:d[aoe]s?|dest[ae]s?|dess[ae]s?) (?!gin[áa]sio|tipo))/i.test(n150) || /\bkahuna\b/i.test(n150)) && !b.rivalName) return 'leader';
   if (b.rivalName) return 'rival';
   if (ev && ev.kind === 'star') return 'boss';
-  if (/\b(chefe|chefão|boss|admin|comandante|commander)\b/i.test(`${name} ${near}`) || TEAM_WORDS.test(`${name} ${near}`)) return 'boss';
-  if (/\bELITE\b|LIGA POKÉMON|POKÉMON LEAGUE/.test(title)) return 'elite';
+  if (bossWords(`${name} ${near.slice(-200)}`)) return 'boss';
   return 'other';
 }
