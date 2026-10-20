@@ -1,0 +1,922 @@
+{
+ "stats": [],
+ "types": [],
+ "abilities": [
+  {
+   "pokemon": "bulbasaur",
+   "pokeapi": "",
+   "pkhex": "overgrow/chlorophyll"
+  },
+  {
+   "pokemon": "ivysaur",
+   "pokeapi": "",
+   "pkhex": "overgrow/chlorophyll"
+  },
+  {
+   "pokemon": "venusaur",
+   "pokeapi": "",
+   "pkhex": "overgrow/chlorophyll"
+  },
+  {
+   "pokemon": "charmander",
+   "pokeapi": "",
+   "pkhex": "blaze/solar-power"
+  },
+  {
+   "pokemon": "charmeleon",
+   "pokeapi": "",
+   "pkhex": "blaze/solar-power"
+  },
+  {
+   "pokemon": "charizard",
+   "pokeapi": "",
+   "pkhex": "blaze/solar-power"
+  },
+  {
+   "pokemon": "squirtle",
+   "pokeapi": "",
+   "pkhex": "torrent/rain-dish"
+  },
+  {
+   "pokemon": "wartortle",
+   "pokeapi": "",
+   "pkhex": "torrent/rain-dish"
+  },
+  {
+   "pokemon": "blastoise",
+   "pokeapi": "",
+   "pkhex": "torrent/rain-dish"
+  },
+  {
+   "pokemon": "caterpie",
+   "pokeapi": "",
+   "pkhex": "shield-dust/run-away"
+  },
+  {
+   "pokemon": "metapod",
+   "pokeapi": "",
+   "pkhex": "shed-skin"
+  },
+  {
+   "pokemon": "butterfree",
+   "pokeapi": "",
+   "pkhex": "compound-eyes/tinted-lens"
+  },
+  {
+   "pokemon": "weedle",
+   "pokeapi": "",
+   "pkhex": "shield-dust/run-away"
+  },
+  {
+   "pokemon": "kakuna",
+   "pokeapi": "",
+   "pkhex": "shed-skin"
+  },
+  {
+   "pokemon": "beedrill",
+   "pokeapi": "",
+   "pkhex": "swarm/sniper"
+  },
+  {
+   "pokemon": "pidgey",
+   "pokeapi": "",
+   "pkhex": "keen-eye/tangled-feet/big-pecks"
+  },
+  {
+   "pokemon": "pidgeotto",
+   "pokeapi": "",
+   "pkhex": "keen-eye/tangled-feet/big-pecks"
+  },
+  {
+   "pokemon": "pidgeot",
+   "pokeapi": "",
+   "pkhex": "keen-eye/tangled-feet/big-pecks"
+  },
+  {
+   "pokemon": "rattata",
+   "pokeapi": "",
+   "pkhex": "run-away/guts/hustle"
+  },
+  {
+   "pokemon": "raticate",
+   "pokeapi": "",
+   "pkhex": "run-away/guts/hustle"
+  },
+  {
+   "pokemon": "spearow",
+   "pokeapi": "",
+   "pkhex": "keen-eye/sniper"
+  },
+  {
+   "pokemon": "fearow",
+   "pokeapi": "",
+   "pkhex": "keen-eye/sniper"
+  },
+  {
+   "pokemon": "ekans",
+   "pokeapi": "",
+   "pkhex": "intimidate/shed-skin/unnerve"
+  },
+  {
+   "pokemon": "arbok",
+   "pokeapi": "",
+   "pkhex": "intimidate/shed-skin/unnerve"
+  },
+  {
+   "pokemon": "pikachu",
+   "pokeapi": "",
+   "pkhex": "static/lightning-rod"
+  },
+  {
+   "pokemon": "raichu",
+   "pokeapi": "",
+   "pkhex": "static/lightning-rod"
+  },
+  {
+   "pokemon": "sandshrew",
+   "pokeapi": "",
+   "pkhex": "sand-veil/sand-rush"
+  },
+  {
+   "pokemon": "sandslash",
+   "pokeapi": "",
+   "pkhex": "sand-veil/sand-rush"
+  },
+  {
+   "pokemon": "nidoran-f",
+   "pokeapi": "",
+   "pkhex": "poison-point/rivalry/hustle"
+  },
+  {
+   "pokemon": "nidorina",
+   "pokeapi": "",
+   "pkhex": "poison-point/rivalry/hustle"
+  },
+  {
+   "pokemon": "nidoqueen",
+   "pokeapi": "",
+   "pkhex": "poison-point/rivalry/sheer-force"
+  },
+  {
+   "pokemon": "nidoran-m",
+   "pokeapi": "",
+   "pkhex": "poison-point/rivalry/hustle"
+  },
+  {
+   "pokemon": "nidorino",
+   "pokeapi": "",
+   "pkhex": "poison-point/rivalry/hustle"
+  },
+  {
+   "pokemon": "nidoking",
+   "pokeapi": "",
+   "pkhex": "poison-point/rivalry/sheer-force"
+  },
+  {
+   "pokemon": "clefairy",
+   "pokeapi": "",
+   "pkhex": "cute-charm/magic-guard/friend-guard"
+  },
+  {
+   "pokemon": "clefable",
+   "pokeapi": "",
+   "pkhex": "cute-charm/magic-guard/unaware"
+  },
+  {
+   "pokemon": "vulpix",
+   "pokeapi": "",
+   "pkhex": "flash-fire/drought"
+  },
+  {
+   "pokemon": "ninetales",
+   "pokeapi": "",
+   "pkhex": "flash-fire/drought"
+  },
+  {
+   "pokemon": "jigglypuff",
+   "pokeapi": "",
+   "pkhex": "cute-charm/competitive/friend-guard"
+  },
+  {
+   "pokemon": "wigglytuff",
+   "pokeapi": "",
+   "pkhex": "cute-charm/competitive/frisk"
+  },
+  {
+   "pokemon": "zubat",
+   "pokeapi": "",
+   "pkhex": "inner-focus/infiltrator"
+  },
+  {
+   "pokemon": "golbat",
+   "pokeapi": "",
+   "pkhex": "inner-focus/infiltrator"
+  },
+  {
+   "pokemon": "oddish",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/run-away"
+  },
+  {
+   "pokemon": "gloom",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/stench"
+  },
+  {
+   "pokemon": "vileplume",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/effect-spore"
+  },
+  {
+   "pokemon": "paras",
+   "pokeapi": "",
+   "pkhex": "effect-spore/dry-skin/damp"
+  },
+  {
+   "pokemon": "parasect",
+   "pokeapi": "",
+   "pkhex": "effect-spore/dry-skin/damp"
+  },
+  {
+   "pokemon": "venonat",
+   "pokeapi": "",
+   "pkhex": "compound-eyes/tinted-lens/run-away"
+  },
+  {
+   "pokemon": "venomoth",
+   "pokeapi": "",
+   "pkhex": "shield-dust/tinted-lens/wonder-skin"
+  },
+  {
+   "pokemon": "diglett",
+   "pokeapi": "",
+   "pkhex": "sand-veil/arena-trap/sand-force"
+  },
+  {
+   "pokemon": "dugtrio",
+   "pokeapi": "",
+   "pkhex": "sand-veil/arena-trap/sand-force"
+  },
+  {
+   "pokemon": "meowth",
+   "pokeapi": "",
+   "pkhex": "pickup/technician/unnerve"
+  },
+  {
+   "pokemon": "persian",
+   "pokeapi": "",
+   "pkhex": "limber/technician/unnerve"
+  },
+  {
+   "pokemon": "psyduck",
+   "pokeapi": "",
+   "pkhex": "damp/cloud-nine/swift-swim"
+  },
+  {
+   "pokemon": "golduck",
+   "pokeapi": "",
+   "pkhex": "damp/cloud-nine/swift-swim"
+  },
+  {
+   "pokemon": "mankey",
+   "pokeapi": "",
+   "pkhex": "vital-spirit/anger-point/defiant"
+  },
+  {
+   "pokemon": "primeape",
+   "pokeapi": "",
+   "pkhex": "vital-spirit/anger-point/defiant"
+  },
+  {
+   "pokemon": "growlithe",
+   "pokeapi": "",
+   "pkhex": "intimidate/flash-fire/justified"
+  },
+  {
+   "pokemon": "arcanine",
+   "pokeapi": "",
+   "pkhex": "intimidate/flash-fire/justified"
+  },
+  {
+   "pokemon": "poliwag",
+   "pokeapi": "",
+   "pkhex": "water-absorb/damp/swift-swim"
+  },
+  {
+   "pokemon": "poliwhirl",
+   "pokeapi": "",
+   "pkhex": "water-absorb/damp/swift-swim"
+  },
+  {
+   "pokemon": "poliwrath",
+   "pokeapi": "",
+   "pkhex": "water-absorb/damp/swift-swim"
+  },
+  {
+   "pokemon": "abra",
+   "pokeapi": "",
+   "pkhex": "synchronize/inner-focus/magic-guard"
+  },
+  {
+   "pokemon": "kadabra",
+   "pokeapi": "",
+   "pkhex": "synchronize/inner-focus/magic-guard"
+  },
+  {
+   "pokemon": "alakazam",
+   "pokeapi": "",
+   "pkhex": "synchronize/inner-focus/magic-guard"
+  },
+  {
+   "pokemon": "machop",
+   "pokeapi": "",
+   "pkhex": "guts/no-guard/steadfast"
+  },
+  {
+   "pokemon": "machoke",
+   "pokeapi": "",
+   "pkhex": "guts/no-guard/steadfast"
+  },
+  {
+   "pokemon": "machamp",
+   "pokeapi": "",
+   "pkhex": "guts/no-guard/steadfast"
+  },
+  {
+   "pokemon": "bellsprout",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/gluttony"
+  },
+  {
+   "pokemon": "weepinbell",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/gluttony"
+  },
+  {
+   "pokemon": "victreebel",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/gluttony"
+  },
+  {
+   "pokemon": "tentacool",
+   "pokeapi": "",
+   "pkhex": "clear-body/liquid-ooze/rain-dish"
+  },
+  {
+   "pokemon": "tentacruel",
+   "pokeapi": "",
+   "pkhex": "clear-body/liquid-ooze/rain-dish"
+  },
+  {
+   "pokemon": "geodude",
+   "pokeapi": "",
+   "pkhex": "rock-head/sturdy/sand-veil"
+  },
+  {
+   "pokemon": "graveler",
+   "pokeapi": "",
+   "pkhex": "rock-head/sturdy/sand-veil"
+  },
+  {
+   "pokemon": "golem",
+   "pokeapi": "",
+   "pkhex": "rock-head/sturdy/sand-veil"
+  },
+  {
+   "pokemon": "ponyta",
+   "pokeapi": "",
+   "pkhex": "run-away/flash-fire/flame-body"
+  },
+  {
+   "pokemon": "rapidash",
+   "pokeapi": "",
+   "pkhex": "run-away/flash-fire/flame-body"
+  },
+  {
+   "pokemon": "slowpoke",
+   "pokeapi": "",
+   "pkhex": "oblivious/own-tempo/regenerator"
+  },
+  {
+   "pokemon": "slowbro",
+   "pokeapi": "",
+   "pkhex": "oblivious/own-tempo/regenerator"
+  },
+  {
+   "pokemon": "magnemite",
+   "pokeapi": "",
+   "pkhex": "magnet-pull/sturdy/analytic"
+  },
+  {
+   "pokemon": "magneton",
+   "pokeapi": "",
+   "pkhex": "magnet-pull/sturdy/analytic"
+  },
+  {
+   "pokemon": "farfetchd",
+   "pokeapi": "",
+   "pkhex": "keen-eye/inner-focus/defiant"
+  },
+  {
+   "pokemon": "doduo",
+   "pokeapi": "",
+   "pkhex": "run-away/early-bird/tangled-feet"
+  },
+  {
+   "pokemon": "dodrio",
+   "pokeapi": "",
+   "pkhex": "run-away/early-bird/tangled-feet"
+  },
+  {
+   "pokemon": "seel",
+   "pokeapi": "",
+   "pkhex": "thick-fat/hydration/ice-body"
+  },
+  {
+   "pokemon": "dewgong",
+   "pokeapi": "",
+   "pkhex": "thick-fat/hydration/ice-body"
+  },
+  {
+   "pokemon": "grimer",
+   "pokeapi": "",
+   "pkhex": "stench/sticky-hold/poison-touch"
+  },
+  {
+   "pokemon": "muk",
+   "pokeapi": "",
+   "pkhex": "stench/sticky-hold/poison-touch"
+  },
+  {
+   "pokemon": "shellder",
+   "pokeapi": "",
+   "pkhex": "shell-armor/skill-link/overcoat"
+  },
+  {
+   "pokemon": "cloyster",
+   "pokeapi": "",
+   "pkhex": "shell-armor/skill-link/overcoat"
+  },
+  {
+   "pokemon": "gastly",
+   "pokeapi": "",
+   "pkhex": "levitate"
+  },
+  {
+   "pokemon": "haunter",
+   "pokeapi": "",
+   "pkhex": "levitate"
+  },
+  {
+   "pokemon": "gengar",
+   "pokeapi": "",
+   "pkhex": "cursed-body"
+  },
+  {
+   "pokemon": "onix",
+   "pokeapi": "",
+   "pkhex": "rock-head/sturdy/weak-armor"
+  },
+  {
+   "pokemon": "drowzee",
+   "pokeapi": "",
+   "pkhex": "insomnia/forewarn/inner-focus"
+  },
+  {
+   "pokemon": "hypno",
+   "pokeapi": "",
+   "pkhex": "insomnia/forewarn/inner-focus"
+  },
+  {
+   "pokemon": "krabby",
+   "pokeapi": "",
+   "pkhex": "hyper-cutter/shell-armor/sheer-force"
+  },
+  {
+   "pokemon": "kingler",
+   "pokeapi": "",
+   "pkhex": "hyper-cutter/shell-armor/sheer-force"
+  },
+  {
+   "pokemon": "voltorb",
+   "pokeapi": "",
+   "pkhex": "soundproof/static/aftermath"
+  },
+  {
+   "pokemon": "electrode",
+   "pokeapi": "",
+   "pkhex": "soundproof/static/aftermath"
+  },
+  {
+   "pokemon": "exeggcute",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/harvest"
+  },
+  {
+   "pokemon": "exeggutor",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/harvest"
+  },
+  {
+   "pokemon": "cubone",
+   "pokeapi": "",
+   "pkhex": "rock-head/lightning-rod/battle-armor"
+  },
+  {
+   "pokemon": "marowak",
+   "pokeapi": "",
+   "pkhex": "rock-head/lightning-rod/battle-armor"
+  },
+  {
+   "pokemon": "hitmonlee",
+   "pokeapi": "",
+   "pkhex": "limber/reckless/unburden"
+  },
+  {
+   "pokemon": "hitmonchan",
+   "pokeapi": "",
+   "pkhex": "keen-eye/iron-fist/inner-focus"
+  },
+  {
+   "pokemon": "lickitung",
+   "pokeapi": "",
+   "pkhex": "own-tempo/oblivious/cloud-nine"
+  },
+  {
+   "pokemon": "koffing",
+   "pokeapi": "",
+   "pkhex": "levitate"
+  },
+  {
+   "pokemon": "weezing",
+   "pokeapi": "",
+   "pkhex": "levitate"
+  },
+  {
+   "pokemon": "rhyhorn",
+   "pokeapi": "",
+   "pkhex": "lightning-rod/rock-head/reckless"
+  },
+  {
+   "pokemon": "rhydon",
+   "pokeapi": "",
+   "pkhex": "lightning-rod/rock-head/reckless"
+  },
+  {
+   "pokemon": "chansey",
+   "pokeapi": "",
+   "pkhex": "natural-cure/serene-grace/healer"
+  },
+  {
+   "pokemon": "tangela",
+   "pokeapi": "",
+   "pkhex": "chlorophyll/leaf-guard/regenerator"
+  },
+  {
+   "pokemon": "kangaskhan",
+   "pokeapi": "",
+   "pkhex": "early-bird/scrappy/inner-focus"
+  },
+  {
+   "pokemon": "horsea",
+   "pokeapi": "",
+   "pkhex": "swift-swim/sniper/damp"
+  },
+  {
+   "pokemon": "seadra",
+   "pokeapi": "",
+   "pkhex": "poison-point/sniper/damp"
+  },
+  {
+   "pokemon": "goldeen",
+   "pokeapi": "",
+   "pkhex": "swift-swim/water-veil/lightning-rod"
+  },
+  {
+   "pokemon": "seaking",
+   "pokeapi": "",
+   "pkhex": "swift-swim/water-veil/lightning-rod"
+  },
+  {
+   "pokemon": "staryu",
+   "pokeapi": "",
+   "pkhex": "illuminate/natural-cure/analytic"
+  },
+  {
+   "pokemon": "starmie",
+   "pokeapi": "",
+   "pkhex": "illuminate/natural-cure/analytic"
+  },
+  {
+   "pokemon": "mr-mime",
+   "pokeapi": "",
+   "pkhex": "soundproof/filter/technician"
+  },
+  {
+   "pokemon": "scyther",
+   "pokeapi": "",
+   "pkhex": "swarm/technician/steadfast"
+  },
+  {
+   "pokemon": "jynx",
+   "pokeapi": "",
+   "pkhex": "oblivious/forewarn/dry-skin"
+  },
+  {
+   "pokemon": "electabuzz",
+   "pokeapi": "",
+   "pkhex": "static/vital-spirit"
+  },
+  {
+   "pokemon": "magmar",
+   "pokeapi": "",
+   "pkhex": "flame-body/vital-spirit"
+  },
+  {
+   "pokemon": "pinsir",
+   "pokeapi": "",
+   "pkhex": "hyper-cutter/mold-breaker/moxie"
+  },
+  {
+   "pokemon": "tauros",
+   "pokeapi": "",
+   "pkhex": "intimidate/anger-point/sheer-force"
+  },
+  {
+   "pokemon": "magikarp",
+   "pokeapi": "",
+   "pkhex": "swift-swim/rattled"
+  },
+  {
+   "pokemon": "gyarados",
+   "pokeapi": "",
+   "pkhex": "intimidate/moxie"
+  },
+  {
+   "pokemon": "lapras",
+   "pokeapi": "",
+   "pkhex": "water-absorb/shell-armor/hydration"
+  },
+  {
+   "pokemon": "ditto",
+   "pokeapi": "",
+   "pkhex": "limber/imposter"
+  },
+  {
+   "pokemon": "eevee",
+   "pokeapi": "",
+   "pkhex": "run-away/adaptability/anticipation"
+  },
+  {
+   "pokemon": "vaporeon",
+   "pokeapi": "",
+   "pkhex": "water-absorb/hydration"
+  },
+  {
+   "pokemon": "jolteon",
+   "pokeapi": "",
+   "pkhex": "volt-absorb/quick-feet"
+  },
+  {
+   "pokemon": "flareon",
+   "pokeapi": "",
+   "pkhex": "flash-fire/guts"
+  },
+  {
+   "pokemon": "porygon",
+   "pokeapi": "",
+   "pkhex": "trace/download/analytic"
+  },
+  {
+   "pokemon": "omanyte",
+   "pokeapi": "",
+   "pkhex": "swift-swim/shell-armor/weak-armor"
+  },
+  {
+   "pokemon": "omastar",
+   "pokeapi": "",
+   "pkhex": "swift-swim/shell-armor/weak-armor"
+  },
+  {
+   "pokemon": "kabuto",
+   "pokeapi": "",
+   "pkhex": "swift-swim/battle-armor/weak-armor"
+  },
+  {
+   "pokemon": "kabutops",
+   "pokeapi": "",
+   "pkhex": "swift-swim/battle-armor/weak-armor"
+  },
+  {
+   "pokemon": "aerodactyl",
+   "pokeapi": "",
+   "pkhex": "rock-head/pressure/unnerve"
+  },
+  {
+   "pokemon": "snorlax",
+   "pokeapi": "",
+   "pkhex": "immunity/thick-fat/gluttony"
+  },
+  {
+   "pokemon": "articuno",
+   "pokeapi": "",
+   "pkhex": "pressure/snow-cloak"
+  },
+  {
+   "pokemon": "zapdos",
+   "pokeapi": "",
+   "pkhex": "pressure/static"
+  },
+  {
+   "pokemon": "moltres",
+   "pokeapi": "",
+   "pkhex": "pressure/flame-body"
+  },
+  {
+   "pokemon": "dratini",
+   "pokeapi": "",
+   "pkhex": "shed-skin/marvel-scale"
+  },
+  {
+   "pokemon": "dragonair",
+   "pokeapi": "",
+   "pkhex": "shed-skin/marvel-scale"
+  },
+  {
+   "pokemon": "dragonite",
+   "pokeapi": "",
+   "pkhex": "inner-focus/multiscale"
+  },
+  {
+   "pokemon": "mewtwo",
+   "pokeapi": "",
+   "pkhex": "pressure/unnerve"
+  },
+  {
+   "pokemon": "mew",
+   "pokeapi": "",
+   "pkhex": "synchronize"
+  },
+  {
+   "pokemon": "meltan",
+   "pokeapi": "",
+   "pkhex": "magnet-pull"
+  },
+  {
+   "pokemon": "melmetal",
+   "pokeapi": "",
+   "pkhex": "iron-fist"
+  }
+ ],
+ "levelup": [],
+ "order": [
+  "bulbasaur",
+  "ivysaur",
+  "venusaur",
+  "charmander",
+  "charmeleon",
+  "charizard",
+  "squirtle",
+  "wartortle",
+  "blastoise",
+  "butterfree",
+  "beedrill",
+  "pidgey",
+  "pidgeotto",
+  "pidgeot",
+  "rattata",
+  "raticate",
+  "spearow",
+  "fearow",
+  "ekans",
+  "arbok",
+  "pikachu",
+  "raichu",
+  "sandshrew",
+  "sandslash",
+  "nidoran-f",
+  "nidorina",
+  "nidoqueen",
+  "nidoran-m",
+  "nidorino",
+  "nidoking",
+  "clefairy",
+  "clefable",
+  "vulpix",
+  "ninetales",
+  "jigglypuff",
+  "wigglytuff",
+  "zubat",
+  "golbat",
+  "oddish",
+  "gloom",
+  "vileplume",
+  "paras",
+  "parasect",
+  "venonat",
+  "venomoth",
+  "diglett",
+  "dugtrio",
+  "meowth",
+  "persian",
+  "psyduck",
+  "golduck",
+  "mankey",
+  "primeape",
+  "growlithe",
+  "arcanine",
+  "poliwag",
+  "poliwhirl",
+  "poliwrath",
+  "kadabra",
+  "alakazam",
+  "machop",
+  "machoke",
+  "machamp",
+  "bellsprout",
+  "weepinbell",
+  "victreebel",
+  "tentacool",
+  "tentacruel",
+  "geodude",
+  "graveler",
+  "golem",
+  "ponyta",
+  "rapidash",
+  "slowpoke",
+  "slowbro",
+  "magnemite",
+  "magneton",
+  "farfetchd",
+  "doduo",
+  "dodrio",
+  "seel",
+  "dewgong",
+  "grimer",
+  "muk",
+  "shellder",
+  "cloyster",
+  "gastly",
+  "haunter",
+  "gengar",
+  "onix",
+  "drowzee",
+  "hypno",
+  "krabby",
+  "kingler",
+  "voltorb",
+  "electrode",
+  "exeggcute",
+  "exeggutor",
+  "cubone",
+  "marowak",
+  "hitmonlee",
+  "hitmonchan",
+  "lickitung",
+  "koffing",
+  "weezing",
+  "rhyhorn",
+  "rhydon",
+  "chansey",
+  "tangela",
+  "kangaskhan",
+  "horsea",
+  "seadra",
+  "goldeen",
+  "seaking",
+  "staryu",
+  "starmie",
+  "mr-mime",
+  "scyther",
+  "jynx",
+  "electabuzz",
+  "magmar",
+  "pinsir",
+  "tauros",
+  "magikarp",
+  "gyarados",
+  "lapras",
+  "eevee",
+  "vaporeon",
+  "jolteon",
+  "flareon",
+  "porygon",
+  "omanyte",
+  "omastar",
+  "kabuto",
+  "kabutops",
+  "aerodactyl",
+  "snorlax",
+  "articuno",
+  "zapdos",
+  "moltres",
+  "dratini",
+  "dragonair",
+  "dragonite",
+  "mewtwo",
+  "mew",
+  "meltan",
+  "melmetal"
+ ],
+ "missing": []
+}

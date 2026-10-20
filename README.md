@@ -11,7 +11,8 @@ história.
   Platinum, HeartGold/SoulSilver, Black 2/White 2. No Diamond/Pearl e no HeartGold/SoulSilver parte dos
   dados está em binário no decomp (scripts em bytecode, eventos, encontros, NARCs) e é lida com as regras tiradas do próprio
   código do jogo.
-- Black/White e Gens 6–9: dados da PokéAPI com as regras da geração, golpes conferidos com o Pokémon Showdown.
+- Black/White e Gens 6–9: núcleo (atributos, tipos, habilidades, golpes por nível na ordem do jogo) conferido com as tabelas
+  do próprio jogo extraídas pelo [PKHeX](https://github.com/kwsch/PKHeX); o resto, dados da PokéAPI com as regras da geração, golpes conferidos com o Pokémon Showdown.
 - Cálculo de dano da geração (troca de golpes com nível, atributos, golpes reais do oponente e bônus de insígnia).
 
 ## Rodar

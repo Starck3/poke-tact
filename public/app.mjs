@@ -19,10 +19,11 @@ const lozenge = (kind, text, title = '') => `<span class="lozenge ${kind}"${titl
 // selo de qualidade dos dados (um só, no lugar dos avisos longos): verificado no decomp / parcial / só PokéAPI
 const QUALITY = {
   ok: ['ok', '✓ Verificado no código do jogo', 'Espécies, golpes, treinadores, onde obter e progresso conferidos com o decomp do jogo.'],
-  partial: ['warn', '◐ Parcialmente verificado', 'Parte dos dados foi conferida com o decomp; o resto vem da PokéAPI. Detalhes em "Sobre os dados".'],
+  partial: ['warn', '◐ Parcialmente verificado', 'Parte dos dados foi conferida com o código do jogo ou com as tabelas extraídas dele; o resto vem da PokéAPI. Detalhes em "Sobre os dados".'],
   pokeapi: ['neutral', 'Dados da PokéAPI', 'Dados da PokéAPI com as regras da geração, sem conferência com o código do jogo.'],
 };
-const qualityOf = (g) => (g.validation === 'pokeapi' ? 'pokeapi' : g.partial || (g.validation === 'decomp-core' && !g.hasWalkthrough) ? 'partial' : 'ok');
+// pkhex = núcleo conferido com as tabelas do jogo extraídas pelo PKHeX (jogos sem decomp) → parcial
+const qualityOf = (g) => (g.validation === 'pokeapi' ? 'pokeapi' : g.partial || g.validation === 'pkhex' || (g.validation === 'decomp-core' && !g.hasWalkthrough) ? 'partial' : 'ok');
 const qualityBadge = (g) => { const [k, t, tip] = QUALITY[qualityOf(g)]; return lozenge(k, t, tip); };
 // contexto da partida (versão, progresso, nível) guardado por jogo no navegador — a URL tem prioridade
 // o inicial fica de fora: o jogo sempre abre em "não informar" (só a URL ?inicial= escolhe um)
@@ -61,10 +62,11 @@ async function load(gameId) {
   $('qualityBadge').innerHTML = qualityBadge(g);
   $('tabWalk').hidden = !g.hasWalkthrough;
   document.querySelector('.tabs').hidden = !g.hasWalkthrough; // uma aba só não precisa de barra de abas
-  $('validationNote').hidden = g.validation !== 'pokeapi' && g.validation !== 'decomp-core';
+  $('validationNote').hidden = !['pokeapi', 'decomp-core', 'pkhex'].includes(g.validation);
   $('onlyObtainable').disabled = false;
   $('validationNote').textContent = g.validation === 'pokeapi' ? 'Atenção: este jogo usa dados da PokéAPI com as regras da geração, ainda SEM conferência com o código do jogo (decomp). Treinadores, onde obter e progresso ainda não estão disponíveis.'
-    : g.validation === 'decomp-core' ? 'Espécies, golpes, learnsets, TM/HM, tabela de tipos e treinadores conferidos com o código do jogo (decomp). Onde obter e progresso ainda não estão disponíveis.' : '';
+    : g.validation === 'decomp-core' ? 'Espécies, golpes, learnsets, TM/HM, tabela de tipos e treinadores conferidos com o código do jogo (decomp). Onde obter e progresso ainda não estão disponíveis.'
+    : g.validation === 'pkhex' ? 'Atributos, tipos, habilidades e golpes aprendidos por nível (na ordem do jogo) conferidos com as tabelas extraídas do próprio jogo (PKHeX). Valores dos golpes: PokéAPI conferida com o Pokémon Showdown. Treinadores, onde obter e progresso ainda não estão disponíveis.' : '';
   $('walkthrough').innerHTML = !g.walkthrough ? '' : g.hasWalkthrough
     ? 'Ordem da história (aba Detonado) baseada no detonado do <a href="' + g.walkthrough + '" target="_blank" rel="noopener">PokeMythology</a>.'
     : 'Detonado deste jogo ainda não está no app; referência externa: <a href="' + g.walkthrough + '" target="_blank" rel="noopener">PokeMythology</a>.';
@@ -94,7 +96,7 @@ async function load(gameId) {
   $('stageWrap').style.display = acq?.progress ? '' : 'none';
   $('tradeEvos').closest('label').style.display = acq ? '' : 'none';
   $('gameInfo').textContent = `${data.game.label} · ${data.pokemon.length} Pokémon · ${Object.keys(data.moves).length} golpes · ${data.types.length} tipos · fonte: ${data.game.source}` +
-    (data.corrections ? ` + correções do decomp ${data.corrections.source} (${data.corrections.list.length})` : '') +
+    (data.corrections ? ` + correções ${/PKHeX/.test(data.corrections.source) ? 'das tabelas do jogo extraídas pelo' : 'do decomp'} ${data.corrections.source} (${data.corrections.list.length})` : '') +
     (data.moveCrosscheck ? ` + golpes conferidos com ${data.moveCrosscheck.source}: ${data.moveCrosscheck.corrected} corrigidos, ${data.moveCrosscheck.flagged} divergências só sinalizadas` : '');
   renderStarters();
   if (!data.pokemon.some((p) => Object.values(p.obtainable ?? {}).some(Boolean))) {
@@ -103,7 +105,7 @@ async function load(gameId) {
   }
   // Jogos sem treinadores/onde obter: aviso próprio (antes era sobrescrito pelo texto abaixo e falava de treinadores e habilidades)
   if (!acq) $('disclaimer').textContent = `Sugestões usam os dados da PokéAPI para ${g.label} com as regras da Geração ${roman(data.game.generation)} (tabela de tipos, ${data.game.generation <= 3 ? 'categoria física/especial pelo tipo' : 'categoria física/especial de cada golpe'}${data.game.generation < 3 ? ', sem habilidades' : ''}). ` +
-    (g.validation === 'decomp-core' ? 'Espécies, golpes e tabela conferidos com o código do jogo (decomp)' : 'Ainda não conferidos com o código do jogo') +
+    (g.validation === 'decomp-core' ? 'Espécies, golpes e tabela conferidos com o código do jogo (decomp)' : g.validation === 'pkhex' ? 'Atributos, tipos, habilidades e golpes por nível conferidos com as tabelas do jogo (PKHeX)' : 'Ainda não conferidos com o código do jogo') +
     (trainers.length ? '; treinadores com os times e golpes do jogo; ainda sem onde obter e progresso.' : '; sem treinadores, onde obter e progresso.') +
     ' Com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
   else $('disclaimer').textContent =

@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.7.0] — 2026-10-20
+
+### Adicionado
+- **Black/White e Gens 6–9 com o núcleo conferido** (selo "Parcialmente verificado") pelas tabelas do próprio jogo extraídas
+  pelo PKHeX (kwsch/PKHeX, GPL-3.0; fica em `data-sources/`): atributos, tipos, habilidades e golpes aprendidos por nível na
+  ORDEM do jogo (o moveset padrão do oponente sai dela). O leitor foi validado contra os decomps (0 diferenças no B2W2 e no
+  learnset de Emerald, DP, Platinum e HGSS). Auditoria com 0 diferenças nos 10 jogos depois do overlay.
+- Correções em relação à PokéAPI: Cryogonal (Ataque/Defesa trocados no BW, XY e ORAS), Koffing/Weezing sem Stench até a Gen 7,
+  learnset do Scarlet/Violet (8 espécies).
+
 ## [0.6.0] — 2026-10-20
 
 ### Adicionado

@@ -19,11 +19,13 @@ const ASM_STEPS = {
 // camada PokéAPI (sem decomp): dados + conferência dos golpes com o Showdown (E3; o script ignora gerações fora de 5–8)
 // + iniciais pelo detonado e pela PokéAPI (E4; sem as duas fontes o campo fica escondido)
 const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-pokeapi'];
+// + núcleo pelas tabelas do jogo extraídas pelo PKHeX (Black/White e Gens 6–9), auditado depois (tem que dar 0)
+const PKHEX_STEPS = ['apply-pkhex-overlay', 'validate-pkhex'];
 for (const id of ids) {
   if (!GAMES[id]) throw new Error(`Jogo desconhecido: ${id}`);
   console.log(`\n===== ${id} =====`);
   const plain = !GAMES[id].decomp && !GAMES[id].asmDecomp;
-  for (const step of GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : plain ? PLAIN_STEPS : STEPS) {
+  for (const step of GAMES[id].asmDecomp ? ASM_STEPS[GAMES[id].asmDecomp.steps ?? GAMES[id].generation] : plain ? [...PLAIN_STEPS, ...(GAMES[id].pkhex ? PKHEX_STEPS : [])] : STEPS) {
     console.log(`--- ${step}`);
     try {
       execFileSync(process.execPath, [`scripts/${step}.mjs`, id], { cwd, stdio: 'inherit' });
