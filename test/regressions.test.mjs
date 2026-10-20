@@ -1940,3 +1940,49 @@ test('regressão: diagnóstico de rede acusa bloqueio do Node no perfil atual e 
   assert.match(fixCommand('Private'), /'Private'/);
   assert.deepEqual(lanAddresses({ eth: [{ family: 'IPv4', address: '192.168.15.4', internal: false }], lo: [{ family: 'IPv4', address: '127.0.0.1', internal: true }] }), ['192.168.15.4']);
 });
+
+// ---------------------------------------------------------------- onde capturar: fotos dos lugares e mapa da região
+
+test('regressão: nenhum arquivo de texto do app/scripts com caractere de controle (\b virou backspace numa edição pelo shell)', () => {
+  // Erro de 2026-10-20: "/\b(town|city…)\b/" passou pelo shell e o \b virou o byte 0x08 → o regex nunca casava e o mapa
+  // da região saiu sem os nomes das cidades, sem erro nenhum.
+  const dirs = ['../public/', '../scripts/', '../scripts/lib/', '../test/'];
+  for (const d of dirs) for (const f of readdirSync(new URL(d, import.meta.url))) {
+    if (!/\.(mjs|js|html|css|json)$/.test(f) || /^(?!.*-(walkthrough|trainers|acquisition)).*\.json$/.test(f) && d === '../public/') continue;
+    const txt = readFileSync(new URL(d + f, import.meta.url), 'utf8');
+    assert.ok(!/[\x00-\x08\x0B\x0C\x0E-\x1F]/.test(txt), `${d}${f}: caractere de controle`);
+  }
+});
+
+test('fotos dos lugares: só de trechos do detonado cujo título é o lugar; referências (não arquivos) com crédito', () => {
+  const fr = load('firered-leafgreen-places.json');
+  assert.match(fr.credit, /PokeMythology/); assert.match(fr.page, /^https:\/\/www\.pokemythology\.net\/detonados\//);
+  assert.match(fr.places['Viridian Forest'].images[0], /screenfrlg\/viridian1\.png/); // o mapa da própria área
+  assert.ok(fr.places['Mt Moon 1F'].images.some((u) => /mtmoon/.test(u)));
+  for (const g of ['firered-leafgreen', 'emerald', 'sun-moon', 'x-y']) {
+    const p = load(`${g}-places.json`);
+    for (const [w, x] of Object.entries(p.places)) {
+      assert.equal(x.by, 'título', `${g}/${w}`); // SM: "Route 1" citada no trecho de Ten Carat Hill não ganha foto de lá
+      assert.ok(x.images.length && x.images.every((u) => /^https:\/\//.test(u) && !/serebii|\/sprites\//.test(u)), `${g}/${w}`);
+    }
+  }
+  assert.equal(load('sun-moon-places.json').places['Route 1'], undefined);
+});
+
+test('mapa da região (Gens 1–3): posições do decomp e lugares do onde obter ligados aos pontos', () => {
+  const rb = load('red-blue-regionmap.json');
+  assert.equal(rb.regions[0].name, 'Kanto');
+  const pt = (m, w) => { const at = m.placeOf[w]; return at && m.regions[at[0]].points[at[1]]; };
+  assert.equal(pt(rb, 'Viridian Forest').name, 'Viridian Forest');
+  const cr = load('crystal-regionmap.json');
+  assert.deepEqual(cr.regions.map((r) => r.name), ['Johto', 'Kanto']); // KANTO_LANDMARK separa as duas
+  assert.ok(cr.regions[1].points.some((p) => p.name === 'Pallet Town'));
+  assert.equal(pt(cr, 'Mount Mortar 1FOutside')?.name, 'Mt. Mortar'); // "Mount" = "Mt."
+  const em = load('emerald-regionmap.json');
+  assert.equal(pt(em, 'Safari Zone South')?.name, 'Safari Zone');
+  const fr = load('firered-leafgreen-regionmap.json');
+  assert.deepEqual(fr.regions.map((r) => r.name), ['Kanto', 'Ilhas Sevii']);
+  assert.ok(!fr.regions.some((r) => r.points.some((p) => p.x === 0.5 && p.y === 0.5))); // (0,0) = sem posição
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /function renderRegionMap/); assert.match(app, /function renderPlaces/);
+});

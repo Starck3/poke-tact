@@ -2,6 +2,23 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.13.0] — 2026-10-20
+
+### Adicionado
+- **Onde capturar com imagens**:
+  - **Como é o lugar**: as capturas de tela do trecho do detonado do PokeMythology cujo título é o próprio lugar (no
+    FireRed/LeafGreen e no Emerald são mapas inteiros das áreas). Guardadas como referência (endereço + crédito + link),
+    sem copiar as imagens deles para o repositório. `public/data/<jogo>-places.json` (`build-place-images.mjs`).
+  - **No mapa da região** (Gens 1–3): desenho nosso (SVG) com as posições do mapa da região tiradas do decomp
+    (pokered/pokeyellow `town_map_entries`, pokegold/pokecrystal `landmarks`, pokeemerald/pokeruby/pokefirered
+    `region_map_sections.json`) e os lugares de captura destacados. `public/data/<jogo>-regionmap.json`
+    (`build-region-maps.mjs`).
+- `npm run rede`: diagnóstico de acesso de outro aparelho (endereço na rede e regra do Firewall que bloqueia o Node).
+
+### Corrigido
+- Servidor local com `cache-control: no-cache` (o navegador juntava a página nova com o script antigo).
+- Teste novo contra caractere de controle nos arquivos (um `\b` virou backspace numa edição e o mapa perdeu os nomes).
+
 ## [0.12.0] — 2026-10-20
 
 ### Adicionado

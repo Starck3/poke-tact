@@ -46,6 +46,8 @@ const filters = { platform: null, generation: null };
 let trainers = [];
 let acq = null;
 let trainersFromWalk = false;
+let regionMap = null; // <jogo>-regionmap.json: posições dos lugares no mapa da região (decomp) — Gens 1–3
+let places = null; // <jogo>-places.json: fotos dos lugares de captura (referências ao detonado do PokeMythology)
 let walk = null; // detonado gerado (carregado ao abrir a aba)
 let known = null; // { moves, item } do Pokémon de treinador selecionado; null quando o usuário digita manualmente
 let teamMode = null; // treinador quando o modo "contra o time inteiro" está ativo
@@ -79,6 +81,8 @@ async function load(gameId) {
   $('version').innerHTML = g.versions.map((v) => '<option value="' + v.id + '">' + v.label + '</option>').join('');
   $('gameInfo').textContent = 'Carregando dados…';
   walk = null;
+  places = null; // fotos dos lugares (aba Onde capturar) — do jogo novo
+  regionMap = null;
   showTab('rec');
   data = await (await fetch(`data/${gameId}.json`)).json();
   // trainersFromWalk: times transcritos do detonado (jogos sem decomp) — espécie e nível; golpes estimados
@@ -218,7 +222,48 @@ function renderDex() {
   } else html += '<p><strong>Não dá para obter em ' + vLabel + '</strong> — nem capturando, nem evoluindo algo que se captura' + (r.events.length ? '; só por evento: ' + r.events.join('; ') : ' (só trocando com outro jogo)') + '.</p>';
   if (r.others.length) html += '<p class="meta">Nas outras versões: ' + r.others.map((o) => ($('version').querySelector('option[value="' + o.version + '"]')?.textContent ?? o.version) + ' (' + o.count + (o.count > 1 ? ' formas de obter' : ' forma de obter') + ')').join(', ') + '.</p>';
   if (acq.encountersOnly) html += '<p class="note">Locais e níveis das tabelas do jogo (PKHeX), sem taxa de aparição.</p>';
-  out.innerHTML = html;
+  out.innerHTML = html + '<div id="dexMap"></div><div id="dexPlaces"></div>';
+  renderRegionMap(r.lines.map((l) => l.where));
+  renderPlaces(r.lines.map((l) => l.where));
+}
+
+// fotos dos lugares: capturas do trecho do detonado do PokeMythology que fala de cada lugar (até 4 lugares, 2 fotos cada)
+// mapa esquemático da região (desenho nosso com as posições do decomp): todos os lugares em cinza, os de captura destacados
+async function renderRegionMap(wheres) {
+  const game = currentGame;
+  if (regionMap === null) { try { regionMap = await (await fetch(`data/${game}-regionmap.json`)).json(); } catch { regionMap = { regions: [], placeOf: {} }; } }
+  const box = $('dexMap');
+  if (!box || game !== currentGame) return;
+  const hits = new Map(); // região → Set de índices de ponto
+  for (const w of wheres) { const at = regionMap.placeOf?.[w]; if (at) (hits.get(at[0]) ?? hits.set(at[0], new Set()).get(at[0])).add(at[1]); }
+  if (!hits.size) { box.innerHTML = ''; return; }
+  const svgs = [...hits].map(([ri, set]) => {
+    const r = regionMap.regions[ri];
+    const pad = Math.max(r.w, r.h) * 0.06, u = Math.max(r.w, r.h) / 60; // unidade de desenho proporcional à grade do jogo
+    // cidades com o nome em letra pequena (referência para se localizar); o resto só o ponto
+    const town = (p) => /\b(town|city|island|plateau|village)\b/i.test(p.name) && !/route|gate|port/i.test(p.name);
+    const side = (p, d) => (p.x > r.w * 0.62 ? `x="${p.x - d}" text-anchor="end"` : `x="${p.x + d}"`);
+    const dots = r.points.map((p, i) => set.has(i) ? '' : `<circle cx="${p.x}" cy="${p.y}" r="${u * (town(p) ? 1.3 : 0.8)}" class="rm-dot${town(p) ? ' rm-town' : ''}"><title>${p.name}</title></circle>` + (town(p) ? `<text ${side(p, u * 1.8)} y="${p.y + u * 0.8}" font-size="${u * 2}" class="rm-town-label">${p.name.replace(/ (City|Town)$/, '')}</text>` : '')).join('');
+    const hot = [...set].map((i) => { const p = r.points[i]; return `<circle cx="${p.x}" cy="${p.y}" r="${u * 2}" class="rm-hit"><title>${p.name}</title></circle><text x="${p.x}" y="${p.y - u * 2.6}" text-anchor="${p.x < r.w * 0.22 ? 'start' : p.x > r.w * 0.78 ? 'end' : 'middle'}" font-size="${u * 2.8}" class="rm-label">${p.name}</text>`; }).join('');
+    return `<figure class="region-map"><svg viewBox="${-pad} ${-pad} ${r.w + pad * 2} ${r.h + pad * 2}" role="img" aria-label="Mapa de ${r.name} com os lugares de captura destacados"><rect x="${-pad}" y="${-pad}" width="${r.w + pad * 2}" height="${r.h + pad * 2}" rx="${u * 2}" class="rm-bg"/>${dots}${hot}</svg><figcaption class="meta">${r.name} — mapa esquemático</figcaption></figure>`;
+  });
+  box.innerHTML = '<div class="walk-h">No mapa da região</div><div class="region-maps">' + svgs.join('') + '</div><p class="note">Desenho com as posições do mapa da região tiradas do código do jogo (' + regionMap.source.replace(/ (.*)$/, '') + '). Passe o mouse nos pontos para ver os nomes.</p>';
+}
+
+async function renderPlaces(wheres) {
+  const game = currentGame;
+  if (places === null) { try { places = await (await fetch(`data/${game}-places.json`)).json(); } catch { places = { places: {} }; } }
+  const box = $('dexPlaces');
+  if (!box || game !== currentGame) return;
+  const seen = new Set(), cards = [];
+  for (const w of wheres) {
+    const p = places.places?.[w] ?? places.places?.[w.replace(/\s*\(.*?\)\s*/g, ' ').trim()];
+    if (!p || seen.has(p.section)) continue;
+    seen.add(p.section);
+    cards.push('<figure class="place"><div class="place-imgs">' + p.images.slice(0, 2).map((src) => '<a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + w + '" loading="lazy" referrerpolicy="no-referrer"></a>').join('') + '</div><figcaption><strong>' + w + '</strong>' + (p.section.toLowerCase() === w.toLowerCase() ? '' : ' <span class="meta">— trecho do detonado: ' + p.section.toLowerCase().replace(/(^|\s)(\S)/g, (m, a, c) => a + c.toUpperCase()) + '</span>') + '</figcaption></figure>');
+    if (cards.length === 4) break;
+  }
+  box.innerHTML = cards.length ? '<div class="walk-h">Como é o lugar</div><div class="places">' + cards.join('') + '</div><p class="note">' + places.credit + ' <a href="' + places.page + '" target="_blank" rel="noopener">Abrir o detonado</a></p>' : '';
 }
 
 async function renderWalk() {

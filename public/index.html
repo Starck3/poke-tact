@@ -83,6 +83,23 @@
   .home-dex a:hover { border-color:var(--accent); }
   .home-dex .dex-head { display:flex; align-items:center; gap:var(--s3); }
   .home-dex .dex-head img { width:80px; height:80px; image-rendering:pixelated; }
+  /* aba Onde capturar: fotos dos lugares (detonado do PokeMythology) */
+  .places { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--s3); margin-top:6px; }
+  .place { margin:0; border:1px solid var(--line); border-radius:var(--r2); overflow:hidden; background:var(--surface-2); }
+  .place-imgs { display:flex; gap:2px; background:var(--line); }
+  .place-imgs a { flex:1; min-width:0; }
+  .place-imgs img { display:block; width:100%; height:180px; object-fit:cover; image-rendering:pixelated; }
+  .place figcaption { padding:6px 10px; font-size:var(--fs-sm); }
+  /* mapa esquemático da região (SVG gerado com as posições do decomp) */
+  .region-maps { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 460px), 1fr)); gap:var(--s3); margin-top:6px; }
+  .region-map { margin:0; }
+  .region-map svg { display:block; width:100%; height:auto; max-height:520px; }
+  .rm-town { opacity:.85; }
+  .rm-town-label { fill:var(--muted); }
+  .rm-bg { fill:var(--surface-2); stroke:var(--line); }
+  .rm-dot { fill:var(--muted); opacity:.55; }
+  .rm-hit { fill:var(--accent); stroke:var(--surface); stroke-width:.15%; }
+  .rm-label { fill:var(--fg); font-weight:600; paint-order:stroke; stroke:var(--surface-2); stroke-width:.4%; }
   .search input { padding:14px 48px 14px 46px; font-size:1.05rem; border-radius:var(--pill); border:1px solid var(--line-strong); background:var(--surface); box-shadow:0 2px 14px rgba(0,0,0,.08); }
   .search input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); }
   .search-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1.25rem; pointer-events:none; }

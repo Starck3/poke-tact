@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.12.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.13.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -28,7 +28,8 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 | Legends: Z-A | 9 | PKHeX (sem PokéAPI) | PKHeX | sim (rank Z → A) | detonado | sim | tempo real, Mega, valores próprios de golpes |
 
 A tela inicial busca Pokémon (padrão: em que jogos dá para obter) ou líder/jogo (seletor ao lado do campo).
-Todos os jogos têm a aba **Onde capturar** (todos os locais de um Pokémon na versão, com o ponto da história).
+Todos os jogos têm a aba **Onde capturar** (todos os locais de um Pokémon na versão, com o ponto da história), com fotos do
+lugar (detonado do PokeMythology, por referência) e, nas Gens 1–3, o mapa esquemático da região com o lugar destacado.
 Também feito nos jogos sem decomp (Gens 5–9): formas regionais como Pokémon próprios (Alola, Galar, Hisui, Paldea), evoluções
 do próprio jogo (troca, item, forma, impossíveis no jogo), TMs pelas tabelas do jogo e as espécies de Hisui do Legends: Arceus.
 Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Banco de lutas: 20 jogos, 99% das sugestões vencem.
@@ -52,6 +53,11 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
    português no detonado, cidades vizinhas, nível dos selvagens comparado aos líderes (seria estimativa — marcar como tal).
 6. **Black 2/White 2 — Hidden Grottoes pelo PKHeX** em vez da PokéAPI. O PKHeX tem as espécies, mas não diz em que rota fica
    cada gruta (manteria a rota da PokéAPI).
+
+7. **Mapa da região nas Gens 4–9** — os decomps de DS têm o mapa da cidade em binário/C (pokeplatinum
+   `src/applications/town_map`, pokeheartgold `map_section`, pokebw2 `townmap_data.h`); falta ler as posições. FRLG: cavernas
+   e florestas não têm posição no `region_map_sections.json` (99/142 locais no mapa).
+8. **Fotos dos lugares** só onde o título do trecho do detonado é o próprio lugar (ex.: X/Y 16/44, SV 15/76, Z-A 3/106).
 
 ### Depende de fonte que não temos
 7. **Ultra Sun/Ultra Moon** — o PokeMythology não tem detonado desse jogo: sem treinadores, progresso e Detonado.
