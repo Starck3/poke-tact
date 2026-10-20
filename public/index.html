@@ -190,6 +190,14 @@
   /* ---- iniciais */
   .starters { display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--s2); margin-top:var(--s2); }
   .starter { text-align:center; border:1px solid var(--line); border-radius:var(--r2); padding:var(--s2) 4px; background:var(--surface-2); }
+  /* escolha do inicial (acima do campo do oponente): 3 sprites + "não informar" */
+  .spick { display:grid; grid-template-columns:repeat(4, minmax(0, 160px)); gap:6px; }
+  .spick button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; min-width:0; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:var(--r2); padding:4px 4px 8px; font:inherit; font-size:var(--fs-sm); cursor:pointer; transition:border-color .15s; overflow:hidden; }
+  .spick button:hover { border-color:var(--line-strong); }
+  .spick button[aria-checked=true] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; font-weight:600; }
+  /* sprites com margem transparente: maiores e com margem negativa para o Pokémon ocupar a caixa */
+  .spick img { width:100%; max-width:150px; aspect-ratio:1; height:auto; margin:-8% 0 -10%; image-rendering:pixelated; }
+  .spick .none { color:var(--muted); text-align:center; }
 
   /* ---- detonado */
   details.stage { background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:10px 14px; margin-bottom:10px; }
@@ -254,7 +262,6 @@
       <span id="qualityBadge"></span>
       <span class="spacer"></span>
       <span class="field"><label for="version" style="margin:0">Versão</label><select id="version"></select></span>
-      <span class="field" id="starterWrap"><label for="starter" style="margin:0">Inicial</label><select id="starter"></select></span>
       <span class="field" id="stageWrap"><label for="stage" style="margin:0">Progresso</label><select id="stage"></select></span>
     </div>
   </div>
@@ -285,6 +292,12 @@
       <select id="trainer" hidden aria-hidden="true"><option value="">—</option></select>
     </div>
     <div id="team" class="team"></div>
+    <div id="starterWrap">
+      <div class="label" id="starterLabel">Seu inicial <span class="meta" id="starterHint">— opcional</span></div>
+      <div class="spick" id="starterPick" role="radiogroup" aria-labelledby="starterLabel"></div>
+      <!-- guarda o inicial escolhido (URL e lista de treinadores dependem dele); os botões acima são a interface -->
+      <select id="starter" hidden aria-hidden="true"></select>
+    </div>
     <div>
       <label for="opp">Pokémon que você está enfrentando <span class="search-hint meta">atalho <kbd>/</kbd></span></label>
       <div class="ac">

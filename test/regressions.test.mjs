@@ -1665,3 +1665,46 @@ test('onde obter (PKHeX): detalhes do leitor viram texto curto; notas técnicas 
   assert.equal(READERS['black-white'], undefined);
   for (const k of ['other', 'sos', 'horde', 'symbol', 'hidden', 'max-raid', 'honey-tree', 'underground', 'alpha', 'tera-raid', 'fixed-symbol', 'hyperspace']) assert.ok(METHOD_LABEL[k], k);
 });
+
+// ---------------------------------------------------------------- 0.9.0: espécies de Hisui no Legends: Arceus e o inicial com sprites
+
+test('regressão: Legends: Arceus tinha 18 espécies do jogo fora do dataset (só existem em forma de Hisui)', () => {
+  // Erro: a PokéAPI guarda o learnset do LA na variedade "-hisui"; a espécie base ficava sem learnset do version-group e o
+  // build-data a descartava (Typhlosion, Samurott, Decidueye… sumiam das sugestões e dos oponentes). No personal_la a forma 0
+  // dessas espécies vem zerada/ausente e a forma de Hisui (FormStatsIndex @0x1E + forma − 1) é a presente.
+  const la = load('legends-arceus.json');
+  assert.equal(la.pokemon.length, 242);
+  const t = mon(la, 'typhlosion');
+  assert.deepEqual(t.types, ['fire', 'ghost']);
+  assert.deepEqual(t.stats, { hp: 73, attack: 84, defense: 78, speed: 95, 'special-attack': 119, 'special-defense': 85 });
+  assert.equal(t.spriteId, 10233); assert.equal(t.form, 'typhlosion-hisui');
+  assert.ok(t.learnset.some((l) => l.move === 'infernal-parade' && l.method === 'level-up'));
+  assert.equal(t.evolvesFrom, 156);
+  for (const [n, types] of [['goodra', ['steel', 'dragon']], ['decidueye', ['grass', 'fighting']], ['samurott', ['water', 'dark']], ['arcanine', ['fire', 'rock']]]) assert.deepEqual(mon(la, n).types, types, n);
+  // agora obtíveis pelos encontros do PKHeX (Typhlosion evoluindo o Cyndaquil inicial)
+  assert.equal(t.obtainable['legends-arceus'], true);
+  // loja de golpes do jogo no lugar do "tutor" incompleto da PokéAPI (62 no jogo inteiro)
+  assert.ok(la.pokemon.reduce((a, p) => a + p.learnset.filter((l) => l.method === 'tutor').length, 0) > 3000);
+});
+
+test('leitor do PKHeX: forma regional só quando a forma 0 está ausente; loja de golpes pelo MoveShopMoves', async () => {
+  const { PKHEX_GAMES } = await import('../scripts/lib/pkhex.mjs');
+  const la = PKHEX_GAMES['legends-arceus'];
+  assert.deepEqual(la.forms, { index: 0x1e, count: 0x20 }); // PersonalInfo8LA.cs
+  assert.equal(la.moveShop.offset, 0xa8);
+  // só o LA troca a forma: nos outros jogos a forma 0 ausente continua ausente (BDSP: Darkrai/Arceus de evento)
+  for (const [g, c] of Object.entries(PKHEX_GAMES)) if (g !== 'legends-arceus') assert.equal(c.forms, undefined, g);
+  const { readFileSync } = await import('node:fs');
+  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'validate-pkhex'\]/);
+});
+
+test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites logo acima do campo do oponente', () => {
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  const top = html.slice(html.indexOf('id="context"'), html.indexOf('</div>', html.indexOf('id="stageWrap"')));
+  assert.ok(!/id="starter"/.test(top), 'o seletor de inicial não pode ficar na barra do topo');
+  const pick = html.indexOf('id="starterPick"'), opp = html.indexOf('id="opp"');
+  assert.ok(pick > 0 && pick < opp && !html.slice(pick, opp).includes('id="oppInfo"'), 'escolha do inicial logo acima do campo do oponente');
+  assert.match(html, /<select id="starter" hidden/); // o <select> continua guardando o valor (URL ?inicial=, rival)
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /role="radio"/); assert.match(app, /não informar/);
+});

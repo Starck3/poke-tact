@@ -21,7 +21,8 @@ const ASM_STEPS = {
 const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-pokeapi'];
 // + núcleo pelas tabelas do jogo extraídas pelo PKHeX (Black/White e Gens 6–9), auditado depois (tem que dar 0)
 // + onde obter pelas tabelas de encontro do PKHeX (Gens 6–9)
-const PKHEX_STEPS = ['apply-pkhex-overlay', 'validate-pkhex'];
+// fill-pkhex-species: espécies do jogo que a PokéAPI não tem (Legends: Arceus, formas de Hisui) + loja de golpes
+const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'validate-pkhex'];
 const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
 const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'validate-pkhex', 'build-acquisition-pkhex'];
