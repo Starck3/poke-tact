@@ -190,6 +190,23 @@ está em C/asm no decomp — daí saem as regras. `scripts/lib/gen4-dp-script.mj
 - Resultado: 490 treinadores com lugar, 21/21 rivais pelo inicial, TM/HM 100/100, 550/557 mapas com estágio, 112 locais no
   detonado; vs PokéAPI só 12 mudanças de "obtível" (Giratina passa a sim; Regigigas, Darkrai, Shaymin, Arceus e Manaphy a não).
 
+### Jogos sem decomp — núcleo pelas tabelas do jogo do PKHeX (kwsch/PKHeX, GPL-3.0) — 2026-10-20 🧪
+Black/White e Gens 6–9 não têm decomp com dados em texto; o PKHeX.Core traz as tabelas que extrai dos próprios jogos (pkNX/pk3DS)
+e o código que as lê. `scripts/lib/pkhex.mjs`, `apply-pkhex-overlay.mjs`, `validate-pkhex.mjs` (passos `PKHEX_STEPS` do
+`build-game` para os jogos com `pkhex` em `games.mjs`; checkout em `data-sources/pkhex-src`, commit fixo).
+- Formatos: `Resources/byte/personal/personal_<jogo>` (registro fixo por espécie — `PersonalInfo/Info/PersonalInfo*.cs`:
+  stats 0x00–0x05, tipos 0x06/0x07, habilidades u8 em 0x18–0x1A até a Gen 7, u16 em 0x18–0x1D na Gen 8, u16 em 0x12–0x17 no SV);
+  `Resources/byte/levelup/lvlmove_<jogo>.pkl` = BinLinkerAccessor16 ("2 letras", u16 contagem, offsets u16), entrada = golpes u16
+  e depois níveis u8, na ORDEM do jogo (`LearnsetReader.cs`).
+- 🧪 **Validado contra os decomps antes de usar**: 0 diferenças no B2W2 inteiro (atributos, tipos, habilidades, learnset com
+  ordem) e no learnset de Emerald, DP, Platinum e HGSS — teste em `test/regressions.test.mjs`.
+- O que corrige na PokéAPI: a ORDEM do learnset em quase todas as espécies (moveset padrão do oponente); Cryogonal com Ataque e
+  Defesa trocados (BW, XY, ORAS); Koffing/Weezing sem Stench (até a Gen 7); learnset do SV (Defog do Noctowl no 15, Vice Grip;
+  "nv 0" inventado no Walking Wake). 🧪 Let's Go não tem habilidades (o personal_gg tem — não usar).
+- Fora: valores dos golpes (o PKHeX só tem PP e tipo → PokéAPI + Showdown), treinadores e itens no mapa (nenhuma fonte em texto),
+  encontros (o PKHeX tem, mas para legalidade: sem taxas, com "crossover" e eventos — ver `docs/FONTES-GEN5-9.md`). Selo:
+  `validation: 'pkhex'` = "Parcialmente verificado".
+
 ### Gen 5 — Black 2 / White 2 (fuddlesworth/pokebw2, GPL-3.0) — 2026-10-20 🧪
 `scripts/lib/gen5-bw2.mjs`, `apply-gen5-overlay.mjs`, `validate-gen5-vs-decomp.mjs`, `build-trainers-gen5.mjs`,
 `build-acquisition-gen5.mjs`. O pokebw2 reconstrói as ROMs byte a byte e segue o esquema do pokeplatinum: dados em JSON

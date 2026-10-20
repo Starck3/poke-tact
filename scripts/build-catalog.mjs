@@ -111,7 +111,7 @@ for (const c of CATALOG) {
     walkthrough: walkthroughs[c.group] ?? null, // detonado em português (PokeMythology)
     status: GAMES[c.group] && existsSync(new URL(`../public/data/${c.group}.json`, import.meta.url)) ? 'supported' : 'planned',
     // decomp = conferido com o código do jogo; decomp-core = só o núcleo (espécies, golpes, tabela) conferido (Gen 1/2 em assembly)
-    validation: GAMES[c.group] ? (GAMES[c.group].decomp ? 'decomp' : GAMES[c.group].asmDecomp ? 'decomp-core' : 'pokeapi') : null,
+    validation: GAMES[c.group] ? (GAMES[c.group].decomp ? 'decomp' : GAMES[c.group].asmDecomp ? 'decomp-core' : GAMES[c.group].pkhex ? 'pkhex' : 'pokeapi') : null,
     hasWalkthrough: existsSync(new URL(`../public/data/${c.group}-walkthrough.json`, import.meta.url)),
     // decomp parcial (HGSS: learnset/golpes em binário; DP: só núcleo + chefes) → selo "Parcialmente verificado" no catálogo
     partial: !!GAMES[c.group]?.asmDecomp?.partial,

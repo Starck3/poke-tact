@@ -218,3 +218,16 @@ test('scripts do projeto: todos com sintaxe válida (o build-catalog quebrou com
   const files = [...readdirSync(dir).filter((f) => f.endsWith('.mjs')).map((f) => new URL(f, dir)), ...readdirSync(new URL('lib/', dir)).filter((f) => f.endsWith('.mjs')).map((f) => new URL(`lib/${f}`, dir))];
   for (const f of files) { const r = spawnSync(process.execPath, ['--check', f.pathname.replace(/^\/([A-Za-z]:)/, '$1')], { encoding: 'utf8' }); assert.equal(r.status, 0, `${f.pathname}: ${r.stderr}`); }
 });
+
+// ---------------------------------------------------------------- PKHeX (jogos sem decomp): BinLinker16 e learnset
+test('PKHeX: BinLinkerAccessor16 ("XY" + u16 contagem + offsets u16) e learnset = golpes u16 e depois níveis u8', async () => {
+  const { binLinker16, parseLearnset } = await import('../scripts/lib/pkhex.mjs');
+  // entrada 1: Tackle (33) nv 1, Growl (45) nv 3 → [33,45 | 1,3]
+  const e1 = [...u16(33, 45), 1, 3];
+  const header = 4 + 2 * 3; // "sv" + contagem 2 + 3 offsets
+  const b = Buffer.from([...Buffer.from('sv'), ...u16(2), ...u16(header, header, header + e1.length), ...e1]);
+  const entries = binLinker16(b);
+  assert.equal(entries.length, 2);
+  assert.equal(entries[0].length, 0); // entrada 0 vazia (o PKHeX ignora)
+  assert.deepEqual(parseLearnset(entries[1]), [[1, 33], [3, 45]]);
+});

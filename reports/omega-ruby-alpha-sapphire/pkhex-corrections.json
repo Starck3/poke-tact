@@ -1,0 +1,26 @@
+[
+ {
+  "pokemon": "koffing",
+  "field": "abilities",
+  "from": "levitate/stench",
+  "to": "levitate"
+ },
+ {
+  "pokemon": "weezing",
+  "field": "abilities",
+  "from": "levitate/stench",
+  "to": "levitate"
+ },
+ {
+  "pokemon": "cryogonal",
+  "field": "attack",
+  "from": 30,
+  "to": 50
+ },
+ {
+  "pokemon": "cryogonal",
+  "field": "defense",
+  "from": 50,
+  "to": 30
+ }
+]

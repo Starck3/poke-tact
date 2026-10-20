@@ -1,0 +1,50 @@
+[
+ {
+  "pokemon": "noctowl",
+  "field": "learnset",
+  "from": 15,
+  "to": 16
+ },
+ {
+  "pokemon": "clauncher",
+  "field": "learnset",
+  "from": 12,
+  "to": 13
+ },
+ {
+  "pokemon": "clawitzer",
+  "field": "learnset",
+  "from": 15,
+  "to": 16
+ },
+ {
+  "pokemon": "crabrawler",
+  "field": "learnset",
+  "from": 12,
+  "to": 13
+ },
+ {
+  "pokemon": "regidrago",
+  "field": "learnset",
+  "from": 13,
+  "to": 14
+ },
+ {
+  "pokemon": "klawf",
+  "field": "learnset",
+  "from": 14,
+  "to": 15
+ },
+ {
+  "pokemon": "walking-wake",
+  "field": "learnset",
+  "from": 15,
+  "to": 15
+ },
+ {
+  "pokemon": "iron-leaves",
+  "field": "learnset",
+  "from": 17,
+  "to": 17
+ }
+]

@@ -1,0 +1,14 @@
+[
+ {
+  "pokemon": "koffing",
+  "field": "abilities",
+  "from": "levitate/stench",
+  "to": "levitate"
+ },
+ {
+  "pokemon": "weezing",
+  "field": "abilities",
+  "from": "levitate/stench",
+  "to": "levitate"
+ }
+]

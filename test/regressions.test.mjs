@@ -311,6 +311,45 @@ test('B2W2: onde obter pelo código do jogo — zonas por versão, fósseis, enx
   assert.ok(g.validation === 'decomp-core' && g.hasWalkthrough && !g.partial);
 });
 
+// ---------------------------------------------------------------- PKHeX: núcleo dos jogos sem decomp (Black/White e Gens 6–9)
+const havePkhex = existsSync(new URL('../data-sources/pkhex-src/PKHeX.Core/Resources/', import.meta.url));
+test('PKHeX: o leitor bate com os decomps — B2W2 inteiro e o learnset de Emerald, DP, Platinum e HGSS (0 diferenças, com ordem)', { skip: !havePkhex && 'sem PKHeX local' }, async () => {
+  const { loadPkhex, binLinker16, parseLearnset } = await import('../scripts/lib/pkhex.mjs');
+  const root = new URL('../data-sources/pkhex-src/', import.meta.url);
+  const idOf = (n) => JSON.parse(readFileSync(new URL(`../.cache/move_${n}.json`, import.meta.url), 'utf8')).id;
+  const P = loadPkhex(root, 'black-2-white-2');
+  const b2 = load('black-2-white-2.json');
+  const nh = (l) => [...l].map((x) => x.replace(/-/g, '')).sort().join();
+  for (const mon of b2.pokemon) {
+    const d = P.species[mon.id];
+    assert.deepEqual(d.stats, mon.stats, mon.name); assert.deepEqual(d.types, mon.types, mon.name); assert.equal(nh(d.abilities), nh(mon.abilities), mon.name);
+  }
+  for (const [game, f] of [['black-2-white-2', 'lvlmove_b2w2.pkl'], ['emerald', 'lvlmove_e.pkl'], ['diamond-pearl', 'lvlmove_dp.pkl'], ['platinum', 'lvlmove_pt.pkl'], ['heartgold-soulsilver', 'lvlmove_hgss.pkl']]) {
+    const L = binLinker16(readFileSync(new URL(`PKHeX.Core/Resources/byte/levelup/${f}`, root)));
+    const data = load(`${game}.json`);
+    const ids = new Map(Object.keys(data.moves).map((n) => [n, idOf(n)])), known = new Set(ids.values());
+    for (const mon of data.pokemon) assert.equal(parseLearnset(L[mon.id]).filter(([, m]) => known.has(m)).map(([l, m]) => m + '@' + l).join(), mon.learnset.filter((l) => l.method === 'level-up').map((l) => ids.get(l.move) + '@' + l.level).join(), `${game}/${mon.name}`);
+  }
+});
+
+test('PKHeX: correções nos jogos sem decomp (o que a PokéAPI erra) e learnset na ordem do jogo', () => {
+  for (const g of ['black-white', 'x-y', 'omega-ruby-alpha-sapphire']) assert.deepEqual([mon(load(`${g}.json`), 'cryogonal').stats.attack, mon(load(`${g}.json`), 'cryogonal').stats.defense], [50, 30], g);
+  for (const g of ['black-white', 'sun-moon']) assert.deepEqual(mon(load(`${g}.json`), 'koffing').abilities, ['levitate'], g); // Stench não existe no jogo
+  const sv = load('scarlet-violet.json');
+  assert.ok(mon(sv, 'noctowl').learnset.some((l) => l.move === 'defog' && l.level === 15)); // faltava na PokéAPI
+  assert.ok(!mon(sv, 'walking-wake').learnset.some((l) => l.method === 'level-up' && l.level === 0)); // "nv 0" inventado (não evolui)
+  const games = ['black-white', 'x-y', 'omega-ruby-alpha-sapphire', 'sun-moon', 'ultra-sun-ultra-moon', 'lets-go-pikachu-lets-go-eevee', 'sword-shield', 'brilliant-diamond-shining-pearl', 'legends-arceus', 'scarlet-violet'];
+  for (const g of games) {
+    const d = load(`${g}.json`);
+    assert.ok(d.pokemon.filter((p) => p.id <= 1025).every((p) => p.levelUpInGameOrder), g);
+    assert.match(d.corrections.source, /PKHeX/, g);
+    const r = JSON.parse(readFileSync(new URL(`../reports/${g}/pkhex-audit.json`, import.meta.url), 'utf8'));
+    for (const [k, v] of Object.entries(r)) assert.equal(v.length, 0, `${g} ${k}`);
+    assert.equal(load('games.json').games.find((x) => x.id === g).validation, 'pkhex', g);
+  }
+  assert.ok(load('lets-go-pikachu-lets-go-eevee.json').pokemon.every((p) => !p.abilities.length)); // Let's Go não tem habilidades
+});
+
 test('rotas: filtros da tela inicial e estado do jogo ficam na URL (ida e volta)', async () => {
   const { parseRoute, homeHash } = await import('../public/catalog.mjs');
   const h = homeHash({ platform: 'Game Boy Advance', generation: 3 });
@@ -787,7 +826,7 @@ test('S7: jogo sem dados na PokéAPI não é publicado vazio (Legends: Z-A) e se
   const sv = load('scarlet-violet.json');
   const r = recommend(sv, sv.pokemon.find((p) => p.name === 'gyarados'), { level: 50, version: 'scarlet', onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false });
   assert.equal(r.picks.length, 3);
-  assert.ok(games.filter((g) => ['pokeapi', 'decomp-core'].includes(g.validation) && g.status === 'supported').length >= 17);
+  assert.ok(games.filter((g) => ['pokeapi', 'decomp-core', 'pkhex'].includes(g.validation) && g.status === 'supported').length >= 17);
   // Gen 1 com núcleo conferido no decomp em assembly (S4) não pode ser anunciada como "sem validação"
   for (const id of ['red-blue', 'yellow']) assert.equal(games.find((g) => g.id === id).validation, 'decomp-core');
 });

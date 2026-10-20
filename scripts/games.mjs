@@ -45,6 +45,8 @@ const HGSS_STAGE_FACTS = { MAP_ROUTE_27: { stage: 8, why: 'só pelo mar a partir
 // Platinum: a Great Marsh é descrita numa seção de extras no fim do detonado, mas a entrada é o portão do observatório de
 // Pastoria (events_pastoria_city_observatory_gate_1f.json → MAP_HEADER_GREAT_MARSH_6); Pastoria = estágio 4 (ginásio do Wake)
 const PLATINUM_STAGE_FACTS = Object.fromEntries([1, 2, 3, 4, 5, 6].map((n) => [`MAP_HEADER_GREAT_MARSH_${n}`, { stage: 4, why: 'entrada pelo portão do observatório de Pastoria (warp para GREAT_MARSH_6); Pastoria = estágio 4' }]));
+// tabelas do jogo extraídas pelo PKHeX (kwsch/PKHeX, GPL-3.0; fica em data-sources/ como os decomps): núcleo dos jogos sem decomp
+const PKHEX = { repo: 'kwsch/PKHeX', commit: '6042efa241a9925ce57e645329ea7f976deabdd3', dir: 'pkhex-src', sparse: ['/PKHeX.Core/'] };
 // Diamond/Pearl: o jogo começa no quarto do jogador (o detonado não cita o mapa interno da casa)
 const DP_STAGE_FACTS = { MAP_TWINLEAF_PLAYER_HOUSE_2F: { stage: 0, why: 'início do jogo: quarto do jogador em Twinleaf Town' } };
 // Estágios que o detonado não nomeia, tirados do código (valem como título). Cada um com a evidência.
@@ -85,7 +87,7 @@ export const GAMES = {
       sparse: ['/files/poketool/personal/*.json', '/files/poketool/personal/wotbl.narc', '/files/poketool/waza/waza_tbl.narc', '/files/poketool/trainer/', '/files/fielddata/encountdata/', '/files/fielddata/wazaoshie/', '/files/fielddata/script/scr_seq/', '/files/fielddata/eventdata/',
         '/include/', '/src/', '/asm/include/', '/files/arc/headbutt.json', '/files/arc/safari_enc.json', '/files/data/mushi/'] } },
   // ---- Gen 5 a 9 (sem decomp — S7)
-  'black-white': { ...pokeapiOnly(5, 649), label: 'Pokémon Black / White (DS)', versionGroup: 'black-white', versions: ['black', 'white'], walkthrough: 'detonado-black-white' },
+  'black-white': { ...pokeapiOnly(5, 649), pkhex: PKHEX, label: 'Pokémon Black / White (DS)', versionGroup: 'black-white', versions: ['black', 'white'], walkthrough: 'detonado-black-white' },
   'black-2-white-2': { ...pokeapiOnly(5, 649), label: 'Pokémon Black 2 / White 2 (DS)', versionGroup: 'black-2-white-2', versions: ['black-2', 'white-2'], walkthrough: 'detonado-black-2-white-2',
     walkthroughTypos: { Whrilipede: 'Whirlipede' }, // grafia do detonado no time da Roxie (só para casar nomes)
     // decomp fuddlesworth/pokebw2 (GPL-3.0, reconstrói as ROMs byte a byte): dados em JSON e scripts em texto, no esquema do pokeplatinum
@@ -93,15 +95,15 @@ export const GAMES = {
       sparse: ['/res/pokemon/*/data.json', '/res/pokemon/*/form_*.json', '/res/pokemon/forms.json', '/res/moves/*/data.json', '/res/items/*/data.json', '/res/trainers/data/',
         '/res/trainers/classes/', '/res/field/zones/', '/res/field/events/', '/res/field/encounters/', '/res/field/scripts/', '/res/field/trades/', '/res/field/places/',
         '/res/field/matrices/', '/res/types/', '/generated/', '/include/', '/src/', '/asm/', '/docs/'] } },
-  'x-y': { ...pokeapiOnly(6, 721), label: 'Pokémon X / Y (3DS)', versionGroup: 'x-y', versions: ['x', 'y'], walkthrough: 'detonado-x-y' },
-  'omega-ruby-alpha-sapphire': { ...pokeapiOnly(6, 721), label: 'Pokémon Omega Ruby / Alpha Sapphire (3DS)', versionGroup: 'omega-ruby-alpha-sapphire', versions: ['omega-ruby', 'alpha-sapphire'], walkthrough: 'detonado-omegaruby-alphasapphire' },
-  'sun-moon': { ...pokeapiOnly(7, 809), label: 'Pokémon Sun / Moon (3DS)', versionGroup: 'sun-moon', versions: ['sun', 'moon'], walkthrough: 'detonado-sun-moon' },
-  'ultra-sun-ultra-moon': { ...pokeapiOnly(7, 809), label: 'Pokémon Ultra Sun / Ultra Moon (3DS)', versionGroup: 'ultra-sun-ultra-moon', versions: ['ultra-sun', 'ultra-moon'], walkthrough: null },
-  'lets-go-pikachu-lets-go-eevee': { ...pokeapiOnly(7, 809, { noAbilities: true }), label: "Pokémon Let's Go, Pikachu! / Eevee! (Switch)", versionGroup: 'lets-go-pikachu-lets-go-eevee', versions: ['lets-go-pikachu', 'lets-go-eevee'], walkthrough: 'detonado-lets-go-pikachu-lets-go-eevee' },
-  'sword-shield': { ...pokeapiOnly(8, 898), label: 'Pokémon Sword / Shield (Switch)', versionGroup: 'sword-shield', versions: ['sword', 'shield'], walkthrough: 'detonado-sword-shield' },
-  'brilliant-diamond-shining-pearl': { ...pokeapiOnly(8, 493), label: 'Pokémon Brilliant Diamond / Shining Pearl (Switch)', versionGroup: 'brilliant-diamond-shining-pearl', versions: ['brilliant-diamond', 'shining-pearl'], walkthrough: 'detonado-brilliantdiamond-shiningpearl' },
-  'legends-arceus': { ...pokeapiOnly(8, 905), label: 'Pokémon Legends: Arceus (Switch)', versionGroup: 'legends-arceus', versions: ['legends-arceus'], walkthrough: 'detonado-legends-arceus', battleNote: 'sistema de batalha próprio (estilos ágil/forte) — o motor usa as regras padrão' },
-  'scarlet-violet': { ...pokeapiOnly(9, 1025), label: 'Pokémon Scarlet / Violet (Switch)', versionGroup: 'scarlet-violet', versions: ['scarlet', 'violet'], walkthrough: 'detonado-scarlet-violet' },
+  'x-y': { ...pokeapiOnly(6, 721), pkhex: PKHEX, label: 'Pokémon X / Y (3DS)', versionGroup: 'x-y', versions: ['x', 'y'], walkthrough: 'detonado-x-y' },
+  'omega-ruby-alpha-sapphire': { ...pokeapiOnly(6, 721), pkhex: PKHEX, label: 'Pokémon Omega Ruby / Alpha Sapphire (3DS)', versionGroup: 'omega-ruby-alpha-sapphire', versions: ['omega-ruby', 'alpha-sapphire'], walkthrough: 'detonado-omegaruby-alphasapphire' },
+  'sun-moon': { ...pokeapiOnly(7, 809), pkhex: PKHEX, label: 'Pokémon Sun / Moon (3DS)', versionGroup: 'sun-moon', versions: ['sun', 'moon'], walkthrough: 'detonado-sun-moon' },
+  'ultra-sun-ultra-moon': { ...pokeapiOnly(7, 809), pkhex: PKHEX, label: 'Pokémon Ultra Sun / Ultra Moon (3DS)', versionGroup: 'ultra-sun-ultra-moon', versions: ['ultra-sun', 'ultra-moon'], walkthrough: null },
+  'lets-go-pikachu-lets-go-eevee': { ...pokeapiOnly(7, 809, { noAbilities: true }), pkhex: PKHEX, label: "Pokémon Let's Go, Pikachu! / Eevee! (Switch)", versionGroup: 'lets-go-pikachu-lets-go-eevee', versions: ['lets-go-pikachu', 'lets-go-eevee'], walkthrough: 'detonado-lets-go-pikachu-lets-go-eevee' },
+  'sword-shield': { ...pokeapiOnly(8, 898), pkhex: PKHEX, label: 'Pokémon Sword / Shield (Switch)', versionGroup: 'sword-shield', versions: ['sword', 'shield'], walkthrough: 'detonado-sword-shield' },
+  'brilliant-diamond-shining-pearl': { ...pokeapiOnly(8, 493), pkhex: PKHEX, label: 'Pokémon Brilliant Diamond / Shining Pearl (Switch)', versionGroup: 'brilliant-diamond-shining-pearl', versions: ['brilliant-diamond', 'shining-pearl'], walkthrough: 'detonado-brilliantdiamond-shiningpearl' },
+  'legends-arceus': { ...pokeapiOnly(8, 905), pkhex: PKHEX, label: 'Pokémon Legends: Arceus (Switch)', versionGroup: 'legends-arceus', versions: ['legends-arceus'], walkthrough: 'detonado-legends-arceus', battleNote: 'sistema de batalha próprio (estilos ágil/forte) — o motor usa as regras padrão' },
+  'scarlet-violet': { ...pokeapiOnly(9, 1025), pkhex: PKHEX, label: 'Pokémon Scarlet / Violet (Switch)', versionGroup: 'scarlet-violet', versions: ['scarlet', 'violet'], walkthrough: 'detonado-scarlet-violet' },
   'legends-za': { ...pokeapiOnly(9, 1025), label: 'Pokémon Legends: Z-A (Switch)', versionGroup: 'legends-za', versions: ['legends-za'], walkthrough: 'detonado-legends-z-a', battleNote: 'batalha em tempo real — o motor usa as regras padrão' },
   'firered-leafgreen': {
     ...GEN3,
