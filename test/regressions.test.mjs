@@ -2061,3 +2061,13 @@ test('regressão: área descrita no pós-jogo mas citada antes no detonado ganha
   assert.equal(applyEarlierMentions(st, { A: { stage: 9, earlierMention: { stage: 3 } } }, conn, new Map()).length, 1);
   assert.equal(st.get('A'), 3);
 });
+
+test('Sun/Moon: o Fairium da Mina não é marco do progresso (no SM ela não tem provação na história)', () => {
+  // Etapa 2 do plano: investigado no detonado — "Ela seria uma trial captain daqui, contudo ela não tem nenhum trial para lhe
+  // oferecer… você receberá o Fairium Z". Presente, não provação: o progresso continua com 7 provações + 4 grandes provações.
+  const p = load('sun-moon-acquisition.json').progress;
+  assert.ok(!p.stageNames.some((n) => /Fairium/.test(n)));
+  assert.equal(p.leaderOrder.filter((n) => /grande provação/.test(n)).length, 4);
+  const html = existsSync(new URL('../data-sources/pokemythology/detonado-sun-moon.html', import.meta.url)) ? readFileSync(new URL('../data-sources/pokemythology/detonado-sun-moon.html', import.meta.url), 'utf8') : null;
+  if (html) assert.match(html.replace(/<[^>]+>/g, ' '), /não tem nenhum trial para lhe oferecer/);
+});
