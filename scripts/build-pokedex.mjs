@@ -9,7 +9,8 @@ const DATA = new URL('../public/data/', import.meta.url);
 const byId = new Map();
 for (const f of readdirSync(DATA)) {
   if (!f.endsWith('.json') || /-(acquisition|trainers|walkthrough)\.json$/.test(f) || f === 'games.json' || f === 'pokedex.json') continue;
-  for (const { id, name } of JSON.parse(readFileSync(new URL(f, DATA), 'utf8')).pokemon ?? []) {
+  for (const { id, name, regionalForm } of JSON.parse(readFileSync(new URL(f, DATA), 'utf8')).pokemon ?? []) {
+    if (regionalForm) continue; // formas regionais (id da variedade, 10091…) não são números da Pokédex
     if (byId.has(id) && byId.get(id) !== name) throw new Error(`#${id}: "${byId.get(id)}" x "${name}" (${f})`);
     byId.set(id, name);
   }
