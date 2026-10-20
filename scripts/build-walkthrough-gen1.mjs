@@ -23,11 +23,12 @@ const maps = acq.progress.maps; // CONST -> { folder, label, stage }
 // tokens de texto do Game Boy: "#" = POKé ("#MON TOWER"), "<PKMN>" = POKéMON, "<BSP>" = quebra de linha (Gen 2)
 const title = (s) => s.replace(/#MON|<PKMN>/g, 'POKéMON').replace(/#/g, 'POKé').replace(/<BSP>|¯/g, ' ').toLowerCase().replace(/(^|[\s.])([a-zé])/g, (m, a, b) => a + b.toUpperCase()).replace(/\bS\.s\./i, 'S.S.').replace(/\bMt\.(?=\S)/, 'Mt. ');
 const sectionOf = {};
-if (game.generation === 4) {
+if (game.generation >= 4) {
   // Gen 4: o cabeçalho do mapa traz o nome do local (mapLabelTextID: "LocationNames_Text_JubilifeCity") → "Jubilife City"
   // HGSS: .mapsec = MAPSEC_VIOLET_CITY (include/constants/map_sections.h) → "Violet City"
   for (const [c, m] of Object.entries(maps)) {
-    if (/^MAPSEC_/.test(m.landmark ?? '')) { sectionOf[c] = title(m.landmark.replace(/^MAPSEC_/, '').replace(/_/g, ' ')).replace(/\bMt\b/, 'Mt.').replace(/\bPokemon\b/g, 'Pokémon').replace(/\bSs\b/, 'S.S.'); continue; }
+    // B2W2: .place = PLACE_ASPERTIA_CITY (generated/places.txt) — mesmo tratamento
+    if (/^(MAPSEC|PLACE)_/.test(m.landmark ?? '')) { sectionOf[c] = title(m.landmark.replace(/^(MAPSEC|PLACE)_/, '').replace(/_/g, ' ')).replace(/\bMt\b/, 'Mt.').replace(/\bPokemon\b/g, 'Pokémon').replace(/\bSs\b/, 'S.S.'); continue; }
     const t = (m.landmark ?? '').replace(/^LocationNames_Text_/, '');
     sectionOf[c] = t ? t.replace(/([a-z])([A-Z0-9])/g, '$1 $2').replace(/(\d)([A-Z])/g, '$1 $2').replace(/Pokemon/g, 'Pokémon') : m.label;
   }

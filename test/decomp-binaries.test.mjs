@@ -153,4 +153,68 @@ test('pipeline: DP e HGSS buscam e usam os binários (checkout esparso e passos 
   const steps = (k) => bg.match(new RegExp(`\\b${k}: \\[([^\\]]+)\\]`))[1];
   for (const s of ['validate-dp-vs-decomp', 'validate-dp-scripts', 'build-trainers-dp', 'build-acquisition-dp', 'build-walkthrough-gen1']) assert.ok(steps('dp').includes(`'${s}'`), s);
   assert.ok(steps('hgss').includes("'apply-hgss-overlay'"));
+  const bw = GAMES['black-2-white-2'].asmDecomp;
+  assert.equal(bw.repo, 'fuddlesworth/pokebw2'); assert.equal(bw.steps, 5);
+  for (const p of ['/res/field/scripts/', '/res/field/encounters/', '/res/trainers/data/', '/src/', '/generated/']) assert.ok(bw.sparse.includes(p), p);
+  for (const s of ['apply-gen5-overlay', 'validate-gen5-vs-decomp', 'build-trainers-gen5', 'build-acquisition-gen5', 'build-walkthrough-gen1']) assert.ok(steps('5').includes(`'${s}'`), s);
+});
+
+// ---------------------------------------------------------------- B2W2 (fuddlesworth/pokebw2): scripts em texto
+test('B2W2: script em texto — rótulos, entradas e argumentos; comentário // não vira argumento', async () => {
+  const { parseScriptText } = await import('../scripts/lib/gen5-bw2.mjs');
+  const p = parseScriptText(['    ScriptEntry Script_1', '    ScriptEntriesEnd', '', 'Script_1:', '    // "texto"', '    WorkSetConst 0x8000, 410 // comentário', '    VMEnd'].join('\n'));
+  assert.deepEqual(p.entries, ['Script_1']);
+  assert.deepEqual(p.labels.get('Script_1'), [{ cmd: 'WorkSetConst', args: ['0x8000', '410'] }, { cmd: 'VMEnd', args: [] }]);
+});
+
+test('B2W2: simulateText — versão (GameGetVersion 23/22), VMJumpIf CMP_STACK salta quando FALSO, comando desconhecido esquece a variável', async () => {
+  const { parseScriptText, simulateText } = await import('../scripts/lib/gen5-bw2.mjs');
+  // Floccesy: "GameGetVersion; Push v; PushConst 23; Cmp EQ; JumpIf CMP_STACK, L" → o bloco seguinte é o caso IGUAL (Black 2)
+  const s = parseScriptText(`    ScriptEntry Script_1
+Script_1:
+    GameGetVersion 0x8028
+    VMStackPush 0x8028
+    VMStackPushConst 23
+    VMStackCmp CMP_EQ
+    VMJumpIf CMP_STACK, L_B
+    PokePartyAddEx 0x8029, 443, 0, 1
+    VMEnd
+L_B:
+    PokePartyAddEx 0x8029, 147, 0, 1
+    VMEnd`);
+  const gift = (v) => simulateText(s, v, new Set(['PokePartyAddEx'])).map((e) => e.args[1]);
+  assert.deepEqual(gift(23), [443]); // Black 2: Gible
+  assert.deepEqual(gift(22), [147]); // White 2: Dratini
+  // CallPokeSelect escreve 0x8021: o valor antigo (0) não pode decidir o desvio — os dois lados são possíveis
+  const t = parseScriptText(`    ScriptEntry Script_1
+Script_1:
+    WorkSetConst 0x8021, 0
+    CallPokeSelect 0, 0x8021, 0x8020, 0
+    VMStackPush 0x8021
+    VMStackPushConst 1
+    VMStackCmp CMP_EQ
+    VMJumpIf CMP_STACK, L_NO
+    FieldTradeCheck 0x8022, TRADE_PETILIL, 0x8020
+    VMEnd
+L_NO:
+    VMEnd`);
+  assert.deepEqual(simulateText(t, 23, new Set(['FieldTradeCheck'])).map((e) => e.args[1]), ['TRADE_PETILIL']);
+  // a variável no momento do comando (presente de item: WorkSet 0x8000, ITEM + RTCallGlobal)
+  const u = parseScriptText('    ScriptEntry Script_1\nScript_1:\n    WorkSet 0x8000, 422\n    RTCallGlobal 2805\n    VMEnd');
+  assert.equal(simulateText(u, 23, new Set(['RTCallGlobal']))[0].vars['0x8000'], 422);
+});
+
+test('B2W2: rótulos de zona e de lugar', async () => {
+  const { placeLabel, zoneLabel } = await import('../scripts/lib/gen5-bw2.mjs');
+  assert.equal(placeLabel('PLACE_ROUTE_19'), 'Route 19');
+  assert.equal(zoneLabel('ZONE_ASPERTIA_CITY_GYM', { place: 'PLACE_ASPERTIA_CITY' }), 'Aspertia City Gym');
+  assert.equal(zoneLabel('ZONE_BLACK_CITY_2', { place: 'PLACE_BLACK_CITY' }), 'Black City'); // cópias numeradas → nome do lugar
+});
+
+test('scripts do projeto: todos com sintaxe válida (o build-catalog quebrou com um // no meio da linha e passou despercebido)', async () => {
+  const { readdirSync } = await import('node:fs');
+  const { spawnSync } = await import('node:child_process');
+  const dir = new URL('../scripts/', import.meta.url);
+  const files = [...readdirSync(dir).filter((f) => f.endsWith('.mjs')).map((f) => new URL(f, dir)), ...readdirSync(new URL('lib/', dir)).filter((f) => f.endsWith('.mjs')).map((f) => new URL(`lib/${f}`, dir))];
+  for (const f of files) { const r = spawnSync(process.execPath, ['--check', f.pathname.replace(/^\/([A-Za-z]:)/, '$1')], { encoding: 'utf8' }); assert.equal(r.status, 0, `${f.pathname}: ${r.stderr}`); }
 });

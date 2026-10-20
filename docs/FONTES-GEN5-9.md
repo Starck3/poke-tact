@@ -1,5 +1,7 @@
 # Fontes para as Gens 5–9 — medição de 2026-10-19
 
+**Feito (0.6.0, 2026-10-20):** Black 2 / White 2 pelo pokebw2 — "Verificado" (ver `docs/ADICIONAR-JOGO.md`, Gen 5).
+
 Medição das fontes da lista do usuário (e do que apareceu no caminho) para decidir o que pode ser fonte da verdade nos jogos
 que hoje só têm a PokéAPI. Método igual ao dos decomps de DS: abrir o repositório, achar os arquivos, ler o formato, conferir
 valores conhecidos. Nada aqui foi usado ainda — é a base para a próxima etapa.

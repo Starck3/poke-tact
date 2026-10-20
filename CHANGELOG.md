@@ -2,6 +2,23 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.6.0] — 2026-10-20
+
+### Adicionado
+- **Black 2 / White 2 conferidos no código do jogo** (selo "Verificado") pelo decomp fuddlesworth/pokebw2 (GPL-3.0; usado
+  como os do pret: fica em `data-sources/`, só os dados gerados vão para o app): núcleo com 0 divergências (a PokéAPI trocava
+  Ataque/Defesa do Cryogonal), 577 treinadores com o lugar da luta e o rival pelo seu inicial, onde obter por estação e versão
+  (zonas de uma versão só, enxames do pós-jogo, Pokémon do N, fósseis, trocas), progresso por insígnia, detonado no app e
+  banco de lutas (102 lutas, 99% com sugestão que vence). Scripts em texto executados por versão (`simulateText`).
+- Medição das fontes das Gens 5–9 em `docs/FONTES-GEN5-9.md`.
+
+### Corrigido
+- `build-catalog.mjs` estava com erro de sintaxe desde a 0.5.1 (um `//` no meio da linha): teste novo confere a sintaxe de
+  todos os scripts.
+
+### Limitações
+- B2W2: itens das lojas comuns (15 TMs sem origem) e Hidden Grottoes não estão no decomp em texto; os grottoes vêm da PokéAPI.
+
 ## [0.5.1] — 2026-10-19
 
 ### Corrigido

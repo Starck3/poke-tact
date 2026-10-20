@@ -122,8 +122,9 @@ else {
   await writeFile(new URL('../public/data/games.json', import.meta.url), JSON.stringify({
     sources: ['PokeAPI (geração/versões)', 'Wikipedia List of Pokémon video games (plataforma/ano)', 'github.com/pret (decomps)', 'PokeMythology (detonados)'],
     builtAt: new Date().toISOString(), games,
-    // números reais do banco de lutas (reports/benchmark/_total.json) para a faixa da tela inicial — nada fixo no código
-    benchmark: (() => { try { const all = JSON.parse(readFileSync(new URL('../reports/benchmark/_total.json', import.meta.url), 'utf8')); const t = all.atual ?? all.depois; // atual = todos os jogos do banco return { games: t.games?.length ?? null, picks: t.picks, winPct: Math.round((100 * t.wins) / t.picks), comfyPct: Math.round((100 * t.comfy) / t.picks) }; } catch { return null; } })(),
+    // números reais do banco de lutas (reports/benchmark/_total.json) para a faixa da tela inicial — nada fixo no código;
+    // "atual" = todos os jogos do banco
+    benchmark: (() => { try { const all = JSON.parse(readFileSync(new URL('../reports/benchmark/_total.json', import.meta.url), 'utf8')); const t = all.atual ?? all.depois; return { games: t.games?.length ?? null, picks: t.picks, winPct: Math.round((100 * t.wins) / t.picks), comfyPct: Math.round((100 * t.comfy) / t.picks) }; } catch { return null; } })(),
   }));
   console.log(`${games.length} jogos`);
   for (const g of games) console.log(`  G${g.generation} ${String(g.year)} ${g.platforms.join('+').padEnd(26)} ${g.label.padEnd(36)} ${g.decomp ?? ''} ${g.status === 'supported' ? '[suportado]' : ''}`);

@@ -39,7 +39,10 @@ export function buildTimeline(html, leaders, elite, { blocks: given, sectionRe }
       for (const p of people) {
         if (seen.has(p.name)) continue;
         const named = has(text, words(p.name.replace(/&/g, ' ')));
-        if (p.teams.some((t) => teamSig(t) === sig) || (named && p.teams.some((t) => speciesSig(t) === spSig))) seen.set(p.name, b.at);
+        // B2W2: o detonado lista o time normal e o do Challenge Mode no mesmo bloco → com o NOME no bloco, basta o time
+        // inteiro do jogo estar contido nele (multiconjunto de espécie + nível)
+        const contains = (t) => { const pool = sig.split(','); return teamSig(t).split(',').every((x) => { const i = pool.indexOf(x); return i >= 0 && pool.splice(i, 1); }); };
+        if (p.teams.some((t) => teamSig(t) === sig) || (named && p.teams.some((t) => speciesSig(t) === spSig || contains(t)))) seen.set(p.name, b.at);
       }
     }
     return seen;
