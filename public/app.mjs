@@ -12,7 +12,8 @@ const $ = (id) => document.getElementById(id);
 const SPRITES = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 const sprite = (id) => `${SPRITES}versions/generation-${roman(data.game.generation).toLowerCase()}/${spriteFolder(currentGame, $('version').value)}/${id}.png`;
 // <img> com substituto: se a pasta da versão não existir (ex.: Gen 9), usa o sprite padrão
-const img = (id) => `<img src="${sprite(id)}" alt="" onerror="this.onerror=null;this.src='${SPRITES}${id}.png'">`;
+// forma regional (Legends: Arceus: Typhlosion de Hisui = variedade 10233 da PokéAPI) → sprite da forma
+const img = (id0) => { const id = data?.pokemon.find((p) => p.id === id0)?.spriteId ?? id0; return `<img src="${sprite(id)}" alt="" onerror="this.onerror=null;this.src='${SPRITES}${id}.png'">`; };
 const typeBadge = (t) => `<span class="type" style="background:${COLORS[t]}">${t}</span>`;
 const fmtMult = (m) => (m === 0 ? '0×' : m === 0.5 ? '½×' : m === 0.25 ? '¼×' : `${m}×`);
 const lozenge = (kind, text, title = '') => `<span class="lozenge ${kind}"${title ? ` title="${title.replace(/"/g, '&quot;')}"` : ''}>${text}</span>`;
@@ -139,9 +140,21 @@ function routeHtml(w) {
 }
 
 function renderStarters() {
-  // o inicial fica só no seletor da barra do topo; o cartão com os iniciais poluía a tela
+  // o cartão antigo com os iniciais poluía a tela; a escolha fica logo acima do campo do oponente, com os sprites
   $('starters').hidden = true;
+  const cur = $('starter').value;
+  $('starterHint').textContent = trainers.length ? '— opcional: define o time do rival' : '— opcional';
+  const opt = (value, inner, label, cls = '') => `<button type="button" role="radio" class="${cls}" data-v="${value}" aria-checked="${cur === value}" aria-label="${label}">${inner}</button>`;
+  $('starterPick').innerHTML = (data.starters?.species ?? []).map((n) => { const p = data.pokemon.find((x) => x.name === n); return p ? opt(n, img(p.id) + `<span>${humanize(n)}</span>`, humanize(n)) : ''; }).join('') +
+    opt('', '<span>não informar</span>', 'não informar', 'none');
 }
+// clique num sprite = escolher no <select> escondido (mesmo caminho do ?inicial= da URL)
+$('starterPick').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-v]');
+  if (!b || b.dataset.v === $('starter').value) return;
+  $('starter').value = b.dataset.v;
+  $('starter').dispatchEvent(new Event('input'));
+});
 
 function renderWhere(mon, reach, stageNeeded) {
   if (!acq) return '';
@@ -691,6 +704,7 @@ route();
 
 $('starter').addEventListener('input', () => { const t = $('trainer').value; fillTrainers(); $('trainer').value = [...$('trainer').options].some((o) => o.value === t) ? t : ''; renderStarters(); update(); });
 
+$('version').addEventListener('input', renderStarters); // sprites da pasta da versão
 $('tabRec').addEventListener('click', () => showTab('rec'));
 $('tabWalk').addEventListener('click', () => showTab('walk'));
 for (const id of ['version', 'stage', 'starter']) $(id).addEventListener('input', () => { if (!$('walk').hidden) renderWalk(); });

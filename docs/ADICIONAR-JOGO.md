@@ -226,8 +226,13 @@ e o código que as lê. `scripts/lib/pkhex.mjs`, `apply-pkhex-overlay.mjs`, `val
   regional evolui pela entrada da forma: FormStatsIndex u16 @0x18). Golpes e tabela de tipos = Gen 9 do Scarlet/Violet (o
   Showdown usa os mesmos no formato do Z-A: o mod `gen9legends` herda os golpes da gen9). 🧪 O `lvlmove_za` tem byte de
   preenchimento → `parseLearnset` usa divisão inteira (como o C#); sem isso todos os níveis saíam vazios.
-- Lacuna: o dataset do Legends: Arceus (PokéAPI) não tem as espécies que só existem em forma de Hisui (Typhlosion, Samurott,
-  Decidueye, Lilligant, Braviary, Avalugg, Sliggoo/Goodra…): 18 espécies dos encontros ficam de fora.
+- **Espécies que a PokéAPI não traz no Legends: Arceus** (`fill-pkhex-species.mjs`, passo entre o overlay e a auditoria): 🧪 a
+  PokéAPI guarda o learnset do LA na variedade "-hisui", e a espécie base ficava sem learnset e era descartada (18 espécies:
+  Typhlosion, Samurott, Decidueye, Goodra…, mais Giratina e Porygon2). No `personal_la` a forma 0 dessas espécies vem zerada e
+  ausente; o leitor usa a 1ª forma presente (`PersonalInfo.FormIndex`: FormStatsIndex u16 @0x1E + forma − 1, FormCount @0x20;
+  o learnset usa o mesmo índice). Nome = espécie da PokéAPI; `form`/`spriteId` = variedade (typhlosion-hisui = 10233, o app usa
+  o sprite da forma). A loja de golpes do jogo (bits u64 @0xA8, lista `MoveShopMoves`) substitui o "tutor" incompleto da
+  PokéAPI (62 → 3161). Só o LA tem `forms` no leitor: nos outros jogos a forma 0 ausente é evento (BDSP: Darkrai, Arceus…).
 
 ### Gen 5 — Black 2 / White 2 (fuddlesworth/pokebw2, GPL-3.0) — 2026-10-20 🧪
 `scripts/lib/gen5-bw2.mjs`, `apply-gen5-overlay.mjs`, `validate-gen5-vs-decomp.mjs`, `build-trainers-gen5.mjs`,

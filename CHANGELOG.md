@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.9.0] — 2026-10-20
+
+### Adicionado
+- **Legends: Arceus com as espécies de Hisui**: 18 espécies que o jogo tem e o dataset não tinha (Typhlosion, Samurott,
+  Decidueye, Arcanine, Goodra, Avalugg, Braviary, Lilligant, Zoroark… nas formas de Hisui, mais Giratina e Porygon2), com
+  atributos, tipos, habilidades, golpes por nível e loja de golpes das tabelas do jogo (PKHeX) e o sprite da forma.
+- Loja de golpes do Legends: Arceus (PKHeX) no lugar da lista de tutor incompleta da PokéAPI.
+- Tela do jogo: o inicial saiu da barra do topo e virou uma escolha com os sprites dos 3 iniciais (e "não informar"), logo
+  acima do campo do oponente.
+
 ## [0.8.0] — 2026-10-20
 
 ### Adicionado
@@ -20,7 +30,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 ### Limitações
 - O PKHeX não tem taxas nem a ordem da história (sem progresso por insígnia nesses jogos); junta grama/surf/varas nas Gens 6/7
   e Radar/surto na grama do BDSP; no Scarlet/Violet não separa as versões nos selvagens (aviso na tela).
-- Legends: Arceus: 18 espécies que só existem em forma de Hisui não estão no dataset (PokéAPI).
+- Legends: Arceus: 18 espécies que só existem em forma de Hisui não estão no dataset (PokéAPI) — resolvido na 0.9.0.
 
 ## [0.7.0] — 2026-10-20
 

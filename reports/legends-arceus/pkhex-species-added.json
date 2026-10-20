@@ -1,0 +1,39 @@
+{
+ "added": [
+  "58 growlithe-hisui (fire/rock)",
+  "59 arcanine-hisui (fire/rock)",
+  "100 voltorb-hisui (electric/grass)",
+  "101 electrode-hisui (electric/grass)",
+  "157 typhlosion-hisui (fire/ghost)",
+  "211 qwilfish-hisui (dark/poison)",
+  "233 porygon2 (normal)",
+  "487 giratina (ghost/dragon)",
+  "503 samurott-hisui (water/dark)",
+  "549 lilligant-hisui (grass/fighting)",
+  "550 basculin-white-striped (water)",
+  "570 zorua-hisui (normal/ghost)",
+  "571 zoroark-hisui (normal/ghost)",
+  "628 braviary-hisui (psychic/flying)",
+  "705 sliggoo-hisui (steel/dragon)",
+  "706 goodra-hisui (steel/dragon)",
+  "713 avalugg-hisui (ice/rock)",
+  "724 decidueye-hisui (grass/fighting)"
+ ],
+ "newMoves": [
+  "chloroblast",
+  "infernal-parade",
+  "shadow-force",
+  "ceaseless-edge",
+  "victory-dance",
+  "bitter-malice",
+  "esper-wing",
+  "mountain-gale",
+  "triple-arrows",
+  "volt-tackle",
+  "steel-beam",
+  "power-shift",
+  "draco-meteor"
+ ],
+ "tutorBefore": 62,
+ "tutorAfter": 3161
+}

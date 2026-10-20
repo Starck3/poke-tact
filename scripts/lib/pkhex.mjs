@@ -19,7 +19,8 @@ export const PKHEX_GAMES = {
   'lets-go-pikachu-lets-go-eevee': { personal: 'gg', size: 0x54, abil: [0x18, 0x19, 0x1a], wide: false, lvl: 'lvlmove_gg.pkl' },
   'sword-shield': { personal: 'swsh', size: 0xb0, abil: [0x18, 0x1a, 0x1c], wide: true, lvl: 'lvlmove_swsh.pkl', present: (d) => ((d[0x21] >> 6) & 1) === 1 },
   'brilliant-diamond-shining-pearl': { personal: 'bdsp', size: 0x44, abil: [0x18, 0x1a, 0x1c], wide: true, lvl: 'lvlmove_bdsp.pkl', present: (d) => ((d[0x21] >> 6) & 1) === 1 },
-  'legends-arceus': { personal: 'la', size: 0xb0, abil: [0x18, 0x1a, 0x1c], wide: true, lvl: 'lvlmove_la.pkl', present: (d) => ((d[0x21] >> 6) & 1) === 1 },
+  // forms: FormStatsIndex u16 @0x1E / FormCount @0x20 (PersonalInfo8LA.cs) — espécies só de Hisui; loja de golpes @0xA8
+  'legends-arceus': { personal: 'la', size: 0xb0, abil: [0x18, 0x1a, 0x1c], wide: true, lvl: 'lvlmove_la.pkl', present: (d) => ((d[0x21] >> 6) & 1) === 1, maxSpecies: 905, forms: { index: 0x1e, count: 0x20 }, moveShop: { offset: 0xa8, cs: 'PersonalInfo8LA.cs' } },
   'scarlet-violet': { personal: 'sv', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_sv.pkl', present: (d) => d[0x1c] !== 0 },
   // Legends: Z-A (PersonalInfo9ZA.cs): mesmo layout do SV; sem PokéAPI → também TMs (bits em 0x2C) e evoluções (evos_za)
   'legends-za': { personal: 'za', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_za.pkl', present: (d) => d[0x1c] !== 0, tm: { offset: 0x2c, cs: 'PersonalInfo9ZA.cs' }, evos: 'za' },
@@ -49,16 +50,37 @@ export function loadPkhex(rootUrl, gameId) {
   const levelup = binLinker16(readFileSync(new URL(`byte/levelup/${cfg.lvl}`, res)));
   const species = {};
   const count = personal.length / cfg.size;
-  for (let id = 1; id < count && id <= 1025; id++) {
-    const d = personal.subarray(id * cfg.size, (id + 1) * cfg.size);
+  // loja de golpes (Legends: Arceus): bits u64 em cfg.moveShop.offset na ordem de MoveShopMoves do PersonalInfo8LA.cs
+  // (nomes do enum Move → id pelo text_Moves_en sem espaços/pontuação)
+  let shopMoves = null;
+  if (cfg.moveShop) {
+    const cs = readFileSync(new URL(`PKHeX.Core/PersonalInfo/Info/${cfg.moveShop.cs}`, rootUrl), 'utf8');
+    const byKey = new Map(moveNames.map((n, i) => [n.replace(/[^A-Za-z0-9]/g, '').toLowerCase(), i]));
+    shopMoves = [...cs.match(/MoveShopMoves\s*=>\s*\[([\s\S]*?)\];/)[1].matchAll(/Move\.(\w+)/g)].map((m) => byKey.get(m[1].toLowerCase()));
+    if (shopMoves.some((x) => x == null)) throw new Error('MoveShopMoves: golpe sem id');
+  }
+  const entryAt = (index) => {
+    const d = personal.subarray(index * cfg.size, (index + 1) * cfg.size);
     const ab = cfg.abil.map((o) => (cfg.wide ? d.readUInt16LE(o) : d[o]));
-    species[id] = {
+    const shop = shopMoves ? d.readBigUInt64LE(cfg.moveShop.offset) : 0n;
+    return {
       present: cfg.present ? cfg.present(d) : true,
       stats: { hp: d[0], attack: d[1], defense: d[2], speed: d[3], 'special-attack': d[4], 'special-defense': d[5] },
       types: [...new Set([types[d[6]], types[d[7]]])],
       abilities: [...new Set(ab.filter((a) => a > 0).map((a) => abilities[a]))],
-      levelOrdered: levelup[id] ? parseLearnset(levelup[id]) : [],
+      levelOrdered: levelup[index] ? parseLearnset(levelup[index]) : [],
+      ...(shopMoves && { moveShop: shopMoves.filter((_, i) => (shop >> BigInt(i)) & 1n) }),
     };
+  };
+  for (let id = 1; id < count && id <= (cfg.maxSpecies ?? 1025); id++) {
+    species[id] = entryAt(id);
+    // espécie que só existe em forma regional no jogo (Legends: Arceus: Typhlosion, Goodra… só de Hisui): a forma 0 vem
+    // zerada e "ausente"; vale a 1ª forma presente — índice = FormStatsIndex + forma − 1 (PersonalInfo.FormIndex)
+    if (cfg.forms && !species[id].present) {
+      const d = personal.subarray(id * cfg.size, (id + 1) * cfg.size);
+      const fi = d.readUInt16LE(cfg.forms.index), fc = d[cfg.forms.count];
+      for (let f = 1; fi && f < fc; f++) { const e = entryAt(fi + f - 1); if (e.present) { species[id] = { ...e, form: f }; break; } }
+    }
   }
   return { cfg, species, moveNames, count };
 }
