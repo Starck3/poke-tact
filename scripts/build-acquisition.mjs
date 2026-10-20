@@ -7,7 +7,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { decompPaths, loadDecomp } from './lib/decomp.mjs';
 import { parseBlocks, labelAt, eventsReaching, reachable, describeGfx } from './lib/script-graph.mjs';
-import { buildTimeline, placeStage, propagateStages, POSTGAME } from './lib/progress.mjs';
+import { buildTimeline, placeStage, propagateStages, applyEarlierMentions, POSTGAME } from './lib/progress.mjs';
 import { roamerByStarter } from './lib/starters.mjs';
 import { parseVersionAliases, resolveFor } from './lib/version-aliases.mjs';
 
@@ -402,6 +402,11 @@ let itemReport = null;
       known.set(id, around.length ? Math.min(Math.max(s, Math.min(...around)), Math.max(...around)) : s);
     }
     let st = propagateStages(known, conn, warp);
+    // área descrita no pós-jogo mas citada antes, com vizinho já liberado (Safari Zone de Hoenn, Power Plant do FRLG)
+    const surfLeader = gates[VERSIONS[0]].Surf?.leader;
+    const surfStage = surfLeader && timeline.leaderOrder.includes(surfLeader) ? timeline.leaderOrder.indexOf(surfLeader) + 1 : POSTGAME;
+    const waterOnly = new Set(wild.encounters.filter((e) => e.water_mons && !e.land_mons).map((e) => e.map));
+    const earlierUsed = applyEarlierMentions(st, detail, conn, warp, { access: (n) => (waterOnly.has(n) ? surfStage : 0) });
     mapStage = st;
     speciesFirstStage = (sp) => timeline.chunks.find((c) => c.text.includes(sp.replace(/-/g, '')) || c.text.join(' ').includes(sp.replace(/-/g, ' ')))?.stage ?? null;
     // nº da insígnia (FLAG_BADGE0N_GET no script do ginásio) → líder do mesmo mapa — bônus de atributo (pokemon.c / battle_main.c)
@@ -421,6 +426,7 @@ let itemReport = null;
       mapsWithStage: st.size, mapsTotal: ids.length,
       maps: Object.fromEntries(Object.entries(idOf).map(([f, id]) => { const j = mapJsonOf(f); return [id, { folder: f, label: mapLabel(id), stage: st.get(id) ?? null, section: j?.region_map_section ?? null, type: j?.map_type ?? null }]; })),
       reviewEarlierMention: Object.entries(detail).filter(([, r]) => r.earlierMention).map(([id, r]) => ({ map: mapLabel(id), stage: r.stage, earlier: r.earlierMention })),
+      earlierUsed: earlierUsed.map((u) => ({ map: mapLabel(u.id), from: u.from, to: u.to, section: u.section })),
     };
     // vagantes: estágio da seção que cita a espécie (ex.: "OS CÃES LENDÁRIOS", "LATIOS E LATIAS")
     for (const v of VERSIONS) for (const [sp, list] of Object.entries(out[v])) for (const src of list) if (src.type === 'roamer') src.stage = placeStage(timeline, sp)?.stage ?? POSTGAME;

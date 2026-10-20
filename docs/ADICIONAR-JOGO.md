@@ -278,6 +278,12 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   original, casando pelo nome do lugar). B2W2: a matriz do mundo em JSON só tem modelos, sem zonas — ainda sem mapa.
 - **Novidades no app** (0.15.0): `build-changelog.mjs` converte o CHANGELOG.md em `public/data/changelog.json` (roda no fim do
   `build-catalog`); 🧪 um teste exige que ele acompanhe o CHANGELOG e o `package.json` — rode o build-catalog a cada versão.
+- **Citação anterior no detonado** (0.16.0): `applyEarlierMentions` em `scripts/lib/progress.mjs`, chamado logo depois do
+  `propagateStages` em `build-acquisition` (Gen 3), `-gen1`, `-gen4`, `-dp` e `-gen5` (Gen 2 e HGSS já tinham a regra das
+  portas). 🧪 Só para lugares que o título pôs no pós-jogo (Magma Hideout, estágio 6, tem a entrada citada cedo mas
+  trancada); só com vizinho (conexão ou porta) liberado no estágio da citação (Silver Cave e Viridian City do GS continuam
+  no pós-jogo); rota só de água conta a partir do Surf (a Route 108 liberava o Abandoned Ship do RS no estágio 3). O
+  relatório fica em `acq.progress.earlierUsed`. Aceito: o Pal Park (DP/Pt) foi para o estágio 5 — não tem fonte de captura.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

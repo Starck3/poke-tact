@@ -107,6 +107,36 @@ export function propagateStages(known, connections, warps = new Map(), passes = 
 }
 
 /**
+ * Citação anterior no detonado (r.earlierMention): o título da seção põe o lugar num estágio, mas o texto o cita antes —
+ * típico de áreas opcionais descritas no pós-jogo (Safari Zone de Hoenn citada em Fortree; Power Plant do FRLG citada em
+ * "Agora você tem Surf!"). Vale a citação anterior SÓ quando um vizinho (conexão ou porta) já está liberado nesse estágio —
+ * sem isso a Silver Cave (Crystal) e a Viridian City (Gold/Silver), citadas cedo mas fechadas, iriam para antes.
+ * Repete até estabilizar: a entrada da Safari libera a área sul, que libera as outras. Altera `st`; devolve os mapas mudados.
+ */
+// Opções: fromStage — só lugares que o título pôs a partir desse estágio (padrão: o pós-jogo; o Magma Hideout do Emerald,
+// estágio 6, tem a entrada citada cedo mas trancada); access(n) — estágio a partir do qual o vizinho n dá acesso (rota só de
+// água: o do Surf — senão a Route 108, só mar, liberava o Abandoned Ship no estágio 3 do Ruby/Sapphire).
+export function applyEarlierMentions(st, detail, conn, warp, { skip = () => false, passes = 8, fromStage = POSTGAME, access = () => 0 } = {}) {
+  const used = [];
+  for (let p = 0; p < passes; p++) {
+    let changed = false;
+    for (const [id, r] of Object.entries(detail)) {
+      const e = r?.earlierMention?.stage;
+      if (e == null || skip(id) || (r.stage ?? 0) < fromStage) continue;
+      const cur = st.get(id);
+      if (cur == null || cur <= e) continue;
+      const near = [...(conn.get(id) ?? []), ...(warp.get(id) ?? [])];
+      if (!near.some((n) => st.has(n) && Math.max(st.get(n), access(n)) <= e)) continue;
+      st.set(id, e);
+      used.push({ id, from: cur, to: e, section: r.earlierMention.section });
+      changed = true;
+    }
+    if (!changed) break;
+  }
+  return used;
+}
+
+/**
  * Estágio de um nome de lugar ("Route 24", "Mt Moon 1F", "Cerulean Cave B1F"): 1º a seção cujo TÍTULO nomeia o lugar;
  * senão, a 1ª seção cujo texto o cita. Tenta o nome completo e depois versões encurtadas (sem andar/sala).
  */

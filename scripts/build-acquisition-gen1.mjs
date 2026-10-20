@@ -17,7 +17,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { GAMES } from './games.mjs';
 import { loadGen1, resolveIfdef, mapLabel } from './lib/gen1-asm.mjs';
-import { buildTimeline, placeStage, propagateStages, POSTGAME, teamStage } from './lib/progress.mjs';
+import { buildTimeline, placeStage, propagateStages, applyEarlierMentions, POSTGAME, teamStage } from './lib/progress.mjs';
 import { parseTrainerRuns, SECTIONS_WITH_SUBTITLES } from './lib/pokemythology.mjs';
 
 const gameId = process.argv[2] ?? 'red-blue';
@@ -240,6 +240,8 @@ for (const [id, s] of textKnown) {
   known.set(id, Math.min(Math.max(s, Math.min(...around)), Math.max(...around)));
 }
 const st = propagateStages(known, conn, warp);
+// área descrita no pós-jogo mas citada antes, com vizinho já liberado (lib/progress.mjs)
+const earlierUsed = applyEarlierMentions(st, detail, conn, warp);
 if (process.env.WHY) for (const id of process.env.WHY.split(',')) console.log('WHY', id, label(id), JSON.stringify(detail[id] ?? null), 'text', textKnown.get(id), 'known', known.get(id), 'st', st.get(id), 'conn', [...(conn.get(id) ?? [])].join('/'), 'warp', [...(warp.get(id) ?? [])].join('/'));
 // interior (só portas, sem conexões) nunca antes do lado de fora: a "Route 12 Super Rod House" era citada ("Super Rod")
 // num trecho do estágio 1, mas só se chega à Route 12 depois da Poké Flute
@@ -322,6 +324,7 @@ const progress = {
   mapsWithStage: st.size, mapsTotal: ids.length,
   maps: Object.fromEntries(ids.map((c) => [c, { folder: fileOf[c], label: label(c), stage: st.get(c) ?? null }])),
   reviewEarlierMention: Object.entries(detail).filter(([, r]) => r.earlierMention).map(([id, r]) => ({ map: label(id), stage: r.stage, earlier: r.earlierMention })),
+  earlierUsed: earlierUsed.map((u) => ({ map: label(u.id), from: u.from, to: u.to, section: u.section })),
 };
 writeFileSync(new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url), JSON.stringify({ source: `${game.asmDecomp.repo}@${game.asmDecomp.commit.slice(0, 7)}`, versions: out, machines, tutors: {}, items, progress }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });

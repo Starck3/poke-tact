@@ -19,7 +19,7 @@
 // Uso: node scripts/build-acquisition-gen5.mjs <jogo>
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { GAMES } from './games.mjs';
-import { buildTimeline, placeStage, propagateStages, POSTGAME, teamStage, words } from './lib/progress.mjs';
+import { buildTimeline, placeStage, propagateStages, applyEarlierMentions, POSTGAME, teamStage, words } from './lib/progress.mjs';
 import { parseTrainerRuns, SECTIONS_WITH_SUBTITLES } from './lib/pokemythology.mjs';
 import { loadBw2, loadBw2Field, constList, zoneLabel, simulateText, versionExcludedZones } from './lib/gen5-bw2.mjs';
 
@@ -222,6 +222,8 @@ for (const [id, s] of textKnown) {
   known.set(id, Math.min(Math.max(s, Math.min(...around)), Math.max(...around)));
 }
 const st = propagateStages(known, conn, warp);
+// área descrita no pós-jogo mas citada antes, com vizinho já liberado (lib/progress.mjs)
+const earlierUsed = applyEarlierMentions(st, detail, conn, warp);
 for (const id of ids) {
   if (conn.has(id) || facts[id]) continue;
   const outsides = [...(warp.get(id) ?? [])].filter((n) => conn.has(n) && st.has(n));
@@ -292,6 +294,7 @@ const progress = {
   mapsWithStage: st.size, mapsTotal: ids.length,
   maps: Object.fromEntries(ids.map((h) => [h, { folder: h, label: label(h), stage: st.get(h) ?? null, landmark: Z[h].place ?? null, env: Z[h].map_type ?? null }])),
   reviewEarlierMention: Object.entries(detail).filter(([, r]) => r.earlierMention).map(([id, r]) => ({ map: label(id), stage: r.stage, earlier: r.earlierMention })),
+  earlierUsed: earlierUsed.map((u) => ({ map: label(u.id), from: u.from, to: u.to, section: u.section })),
 };
 writeFileSync(new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url), JSON.stringify({ source: `${game.asmDecomp.repo}@${game.asmDecomp.commit.slice(0, 7)}`, versions: out, machines, tutors: {}, items: itemsOut, progress }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });

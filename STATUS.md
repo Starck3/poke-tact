@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.15.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.16.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -39,7 +39,7 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
 ## O que falta (do mais importante para o menos)
 
 ### Dá para fazer com as fontes que já temos
-1. **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
+1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
    pós-jogo; a regra atual ("título vence") marca como pós-jogo lugares que abrem antes: Safari Zone de Hoenn (RSE, citada em
    Fortree, estágio 6), Power Plant do FRLG (citada em "Agora você tem Surf!", estágio 6), Abandoned Ship, Tin Tower… A lista
    está em `acq.progress.reviewEarlierMention` de cada jogo (centenas de mapas). Aceitar a citação anterior direto erraria
