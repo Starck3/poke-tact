@@ -68,6 +68,21 @@
   .ink img { width:135%; height:135%; flex:none; image-rendering:pixelated; transition:opacity .3s; }
   .hero-sub { color:var(--muted); max-width:640px; margin:0 auto var(--s5); font-size:1.05rem; }
   .search { position:relative; max-width:640px; margin:0 auto; }
+  /* seletor ao lado da busca: Pokémon | Líder ou jogo */
+  .search-row { display:flex; gap:8px; align-items:center; justify-content:center; max-width:820px; margin:0 auto; }
+  .search-row .search { flex:1; margin:0; }
+  .search-mode { display:flex; flex:none; gap:3px; padding:3px; background:var(--surface-2); border:1px solid var(--line); border-radius:var(--pill); }
+  .search-mode button { border:0; background:transparent; color:var(--muted); border-radius:var(--pill); padding:8px 14px; font:inherit; font-size:var(--fs-sm); cursor:pointer; white-space:nowrap; }
+  .search-mode button[aria-checked=true] { background:var(--surface); color:var(--fg); font-weight:600; box-shadow:var(--shadow); }
+  @media (max-width:640px) { .search-row { flex-direction:column; align-items:stretch; } .search-mode { align-self:center; } }
+  /* resultado da busca de Pokémon: jogos onde obter, por geração */
+  .home-dex { max-width:820px; margin:var(--s3) auto 0; text-align:left; }
+  .home-dex .gen-row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:6px; }
+  .home-dex .gen-row > b { min-width:110px; font-size:var(--fs-xs); color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+  .home-dex a { text-decoration:none; color:var(--fg); font-size:var(--fs-sm); border:1px solid var(--line); background:var(--surface); border-radius:var(--pill); padding:5px 12px; }
+  .home-dex a:hover { border-color:var(--accent); }
+  .home-dex .dex-head { display:flex; align-items:center; gap:var(--s3); }
+  .home-dex .dex-head img { width:80px; height:80px; image-rendering:pixelated; }
   .search input { padding:14px 48px 14px 46px; font-size:1.05rem; border-radius:var(--pill); border:1px solid var(--line-strong); background:var(--surface); box-shadow:0 2px 14px rgba(0,0,0,.08); }
   .search input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); }
   .search-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1.25rem; pointer-events:none; }
@@ -225,13 +240,21 @@
   <header class="hero">
     <div class="brand">Poke Tact</div>
     <h1 class="hero-title">Qual Pokémon <span class="ink" id="heroA"></span> vence a sua próxima luta <span class="ink" id="heroB"></span>?</h1>
-    <p class="hero-sub">Escolha o jogo e o oponente. Você recebe 3 sugestões com o veredito da troca de golpes — usando só os Pokémon, golpes e regras daquele jogo, e o que você já consegue ter.</p>
+    <p class="hero-sub">Busque um Pokémon para saber em que jogo e onde capturá-lo, ou escolha o jogo e o oponente e receba 3 sugestões com o veredito da troca de golpes — usando só os Pokémon, golpes e regras daquele jogo, e o que você já consegue ter.</p>
+    <div class="search-row">
+    <!-- o que buscar: Pokémon (padrão: em que jogos e onde capturar) ou líder/jogo (vai direto para a luta) -->
+    <div class="search-mode" id="searchMode" role="radiogroup" aria-label="O que buscar">
+      <button type="button" role="radio" data-mode="pokemon" aria-checked="true">Pokémon</button>
+      <button type="button" role="radio" data-mode="lider" aria-checked="false">Líder ou jogo</button>
+    </div>
     <div class="search" role="combobox" aria-expanded="false" aria-owns="homeResults" aria-haspopup="listbox" id="searchBox">
       <span class="search-icon" aria-hidden="true">⌕</span>
-      <input type="search" id="homeSearch" aria-label="Buscar jogo ou líder" aria-autocomplete="list" aria-controls="homeResults" autocomplete="off" spellcheck="false" placeholder="Busque um jogo ou um líder…">
+      <input type="search" id="homeSearch" aria-label="Buscar" aria-autocomplete="list" aria-controls="homeResults" autocomplete="off" spellcheck="false" placeholder="Busque um Pokémon…">
       <kbd class="search-kbd">/</kbd>
       <ul id="homeResults" role="listbox" hidden></ul>
     </div>
+    </div>
+    <div id="homeDex" class="home-dex" aria-live="polite" hidden></div>
     <div class="quick" id="quickPicks"></div>
   </header>
 

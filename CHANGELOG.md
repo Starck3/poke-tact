@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.12.0] — 2026-10-20
+
+### Adicionado
+- **Busca de Pokémon na tela inicial** (padrão), com um seletor ao lado para trocar para "Líder ou jogo" (a busca antiga
+  continua igual). Escolhido o Pokémon, aparecem os jogos em que dá para obtê-lo, por geração (e "só FireRed" quando é
+  exclusivo de versão); cada jogo abre a aba Onde capturar. Índice em `public/data/pokemon-games.json` (gerado pelo
+  `build-pokedex.mjs`), baixado só na 1ª busca. Link direto: `#/?capturar=pikachu`.
+
 ## [0.11.0] — 2026-10-20
 
 ### Adicionado

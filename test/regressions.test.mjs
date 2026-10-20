@@ -1885,3 +1885,19 @@ test('aba Onde capturar: todos os locais da versão, rota por evolução, evento
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
   assert.match(html, /id="tabDex"/); assert.match(html, /id="dexQ"/);
 });
+
+test('tela inicial: busca de Pokémon (padrão) com seletor para líder/jogo; índice de jogos onde obter', () => {
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.match(html, /data-mode="pokemon" aria-checked="true"/); // Pokémon é o padrão
+  assert.match(html, /data-mode="lider" aria-checked="false"/); // líderes continuam buscáveis
+  assert.match(html, /id="homeDex"/);
+  const idx = load('pokemon-games.json');
+  // Pikachu: Gen 3 no Emerald e no FRLG; não aparece na Gen 5 (BW/B2W2)
+  assert.deepEqual(idx.where.pikachu['firered-leafgreen'], ['firered', 'leafgreen']);
+  assert.ok(idx.where.pikachu.emerald && !idx.where.pikachu['black-white'] && !idx.where.pikachu['black-2-white-2']);
+  // forma regional: só nos jogos da Gen 7 em que dá para obter; nº da espécie e sprite da variedade
+  assert.deepEqual(Object.keys(idx.where['rattata-alola']).sort(), ['lets-go-pikachu-lets-go-eevee', 'sun-moon', 'ultra-sun-ultra-moon']);
+  assert.deepEqual(idx.forms['rattata-alola'], [19, 10091]);
+  // exclusivo de versão: Ekans só no FireRed
+  assert.deepEqual(idx.where.ekans['firered-leafgreen'], ['firered']);
+});

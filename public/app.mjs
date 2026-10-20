@@ -671,15 +671,19 @@ function renderHero() {
     .filter(Boolean).map(([n, t]) => `<div class="stat card"><b>${n}</b><span class="meta">${t}</span></div>`).join('');
   startTypingPlaceholder();
 }
-// placeholder que "digita" exemplos (Mobbin); para ao focar ou com movimento reduzido
+// placeholder que "digita" exemplos (Mobbin); para ao focar ou com movimento reduzido — exemplos do modo de busca
+let searchMode = 'pokemon'; // 'pokemon' (padrão) | 'lider' (líder ou jogo)
+const PLACEHOLDER = { pokemon: 'Busque um Pokémon…', lider: 'Busque um jogo ou um líder…' };
+const EXAMPLES = { pokemon: ['Pikachu', 'Eevee', 'Lucario', 'Rattata de Alola', 'Gible', 'Dratini', 'Riolu'], lider: ['Whitney', 'HeartGold', 'Cynthia', 'Game Boy Advance', 'Misty', 'Geração 3', 'Lance'] };
 function startTypingPlaceholder() {
   const el = $('homeSearch');
   clearTimeout(typeTimer);
+  el.placeholder = PLACEHOLDER[searchMode];
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const ex = ['Whitney', 'HeartGold', 'Cynthia', 'Game Boy Advance', 'Misty', 'Geração 3', 'Lance'];
+  const ex = EXAMPLES[searchMode];
   let i = 0, j = 0, back = false;
   const tick = () => {
-    if (document.activeElement === el || el.value || $('home').hidden) { el.placeholder = 'Busque um jogo ou um líder…'; typeTimer = setTimeout(tick, 1200); return; }
+    if (document.activeElement === el || el.value || $('home').hidden) { el.placeholder = PLACEHOLDER[searchMode]; typeTimer = setTimeout(tick, 1200); return; }
     const w = ex[i % ex.length];
     j += back ? -1 : 1;
     el.placeholder = 'Busque: ' + w.slice(0, j) + (j % 2 ? '▏' : '');
@@ -689,26 +693,94 @@ function startTypingPlaceholder() {
   };
   tick();
 }
+
+// ---- busca de Pokémon na tela inicial: em que jogos dá para obter (data/pokemon-games.json, baixado na 1ª busca)
+let pokeGames = null, pokeGamesLoading = null;
+const loadPokeGames = () => (pokeGamesLoading ??= fetch('data/pokemon-games.json').then((r) => r.json()).then((d) => { pokeGames = d; return d; }).catch(() => null));
+const plain = (s) => fold(s).replace(/[^a-z0-9]/g, '');
+function pokemonResults(q) {
+  const t = plain(q);
+  if (!t || !pokedex) return [];
+  // espécies da Pokédex nacional + formas regionais ("Rattata de Alola" / "rattata alola")
+  const names = [...pokedex.map(([id, n]) => [n, id, id]), ...Object.entries(pokeGames?.forms ?? {}).map(([n, [dex, sprite]]) => [n, dex, sprite])];
+  const hits = [];
+  for (const [n, dex, sprite] of names) {
+    const ks = [plain(n), plain(humanize(n))];
+    const score = ks.some((k) => k.startsWith(t)) ? 0 : ks.some((k) => k.includes(t)) ? 1 : -1;
+    if (score >= 0) hits.push({ n, dex, sprite, score });
+  }
+  return hits.sort((a, b) => a.score - b.score || a.dex - b.dex || a.sprite - b.sprite).slice(0, 8).map(({ n, dex, sprite }) => {
+    const games = Object.keys(pokeGames?.where?.[n] ?? {}).length;
+    return { kind: 'pokemon', name: n, title: humanize(n), sub: '#' + dex + (pokeGames ? ' · ' + (games ? `obtível em ${games} jogo${games > 1 ? 's' : ''}` : 'não dá para obter em nenhum jogo do app') : ''), img: sprite };
+  });
+}
+/** Painel abaixo da busca: os jogos (por geração) em que dá para obter o Pokémon, cada um abrindo a aba Onde capturar. */
+function renderHomeDex(name) {
+  const box = $('homeDex');
+  if (!name) { box.hidden = true; box.innerHTML = ''; return; }
+  const where = pokeGames?.where?.[name] ?? {};
+  const sprite = pokeGames?.forms?.[name]?.[1] ?? pokedex?.find(([, n]) => n === name)?.[0];
+  const on = catalog.games.filter((g) => g.status === 'supported' && where[g.id]).sort((a, b) => a.generation - b.generation || a.year - b.year);
+  const byGen = new Map();
+  for (const g of on) (byGen.get(g.generation) ?? byGen.set(g.generation, []).get(g.generation)).push(g);
+  const chip = (g) => {
+    const vs = where[g.id];
+    const only = vs.length < g.versions.length ? ` (só ${vs.map((v) => g.versions.find((x) => x.id === v)?.label ?? v).join(', ')})` : '';
+    return `<a href="#/jogo/${g.id}?capturar=${name}">${g.label}${only}</a>`;
+  };
+  box.innerHTML = `<div class="card"><div class="dex-head">${pic(sprite)}<div><strong>Onde capturar ${humanize(name)}</strong><div class="meta">${on.length ? 'Escolha o jogo para ver os locais, o método, o nível e em que ponto da história.' : 'Não dá para obter em nenhum jogo do app sem troca ou evento.'}</div></div></div>` +
+    [...byGen].map(([gen, gs]) => `<div class="gen-row"><b>Geração ${roman(gen)}</b>${gs.map(chip).join('')}</div>`).join('') + '</div>';
+  box.hidden = false;
+}
+
 // busca com teclado: ↑ ↓ escolhem, Enter abre, Esc limpa
 {
   const input = $('homeSearch'), box = $('homeResults');
   let items = [], sel = 0;
+  const results = () => (searchMode === 'pokemon' ? pokemonResults(input.value) : searchResults(input.value));
+  const kindTag = (it) => (it.kind === 'pokemon' ? '<span class="r-kind lozenge info">onde capturar</span>' : `<span class="r-kind lozenge ${it.kind === 'jogo' ? 'neutral' : 'info'}">${it.kind === 'jogo' ? 'jogo' : 'ir para a luta'}</span>`);
   const paint = () => {
     box.hidden = !input.value.trim();
     $('searchBox').setAttribute('aria-expanded', String(!box.hidden));
-    box.innerHTML = items.length ? items.map((it, i) => `<li role="option" id="hr${i}" aria-selected="${i === sel}" data-href="${it.href}">${pic(it.img)}<div><strong>${it.title}</strong><div class="meta">${it.sub}</div></div><span class="r-kind lozenge ${it.kind === 'jogo' ? 'neutral' : 'info'}">${it.kind === 'jogo' ? 'jogo' : 'ir para a luta'}</span></li>`).join('')
-      : '<li class="meta" style="cursor:default">Nada encontrado — tente o nome de um jogo (ex.: Emerald) ou de um líder (ex.: Brock).</li>';
+    box.innerHTML = items.length ? items.map((it, i) => `<li role="option" id="hr${i}" aria-selected="${i === sel}" ${it.href ? `data-href="${it.href}"` : `data-name="${it.name}"`}>${pic(it.img)}<div><strong>${it.title}</strong><div class="meta">${it.sub}</div></div>${kindTag(it)}</li>`).join('')
+      : `<li class="meta" style="cursor:default">${searchMode === 'pokemon' ? 'Nenhum Pokémon com esse nome.' : 'Nada encontrado — tente o nome de um jogo (ex.: Emerald) ou de um líder (ex.: Brock).'}</li>`;
     input.setAttribute('aria-activedescendant', items.length ? 'hr' + sel : '');
   };
-  input.addEventListener('input', () => { items = searchResults(input.value); sel = 0; paint(); });
+  const refresh = () => { items = results(); sel = 0; paint(); };
+  const choose = (it) => {
+    if (!it) return;
+    if (it.href) { location.hash = it.href; input.value = ''; items = []; paint(); return; }
+    input.value = it.title; items = []; box.hidden = true; renderHomeDex(it.name);
+  };
+  input.addEventListener('input', () => {
+    renderHomeDex(null);
+    if (searchMode === 'pokemon' && !pokeGames) loadPokeGames().then(() => { if (input.value.trim()) refresh(); });
+    refresh();
+  });
   input.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (items.length) { sel = (sel + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length; paint(); } }
-    else if (e.key === 'Enter' && items[sel]) { location.hash = items[sel].href; input.value = ''; paint(); }
-    else if (e.key === 'Escape') { input.value = ''; items = []; paint(); }
+    else if (e.key === 'Enter' && items[sel]) { e.preventDefault(); choose(items[sel]); }
+    else if (e.key === 'Escape') { input.value = ''; items = []; paint(); renderHomeDex(null); }
   });
-  box.addEventListener('mousedown', (e) => { const li = e.target.closest('li[data-href]'); if (li) { e.preventDefault(); location.hash = li.dataset.href; input.value = ''; paint(); } });
+  box.addEventListener('mousedown', (e) => {
+    const li = e.target.closest('li[data-href], li[data-name]');
+    if (!li) return;
+    e.preventDefault();
+    choose(items.find((it) => (li.dataset.href ? it.href === li.dataset.href : it.name === li.dataset.name)));
+  });
   input.addEventListener('blur', () => setTimeout(() => { box.hidden = true; }, 120));
-  input.addEventListener('focus', () => { if (input.value.trim()) paint(); });
+  input.addEventListener('focus', () => { if (input.value.trim() && $('homeDex').hidden) paint(); });
+  // seletor ao lado da busca: Pokémon | Líder ou jogo
+  $('searchMode').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-mode]');
+    if (!b || b.dataset.mode === searchMode) return;
+    searchMode = b.dataset.mode;
+    for (const x of $('searchMode').querySelectorAll('button')) x.setAttribute('aria-checked', String(x === b));
+    input.value = ''; items = []; box.hidden = true; renderHomeDex(null);
+    startTypingPlaceholder();
+    input.focus();
+    if (searchMode === 'pokemon') loadPokeGames();
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === '/' && !$('home').hidden && document.activeElement !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName ?? '')) { e.preventDefault(); input.focus(); }
   });
@@ -725,6 +797,8 @@ async function route() {
     filters.generation = r.params.geracao ? Number(r.params.geracao) : null;
     document.title = 'Poke Tact';
     renderHome();
+    // #/?capturar=pikachu → busca de Pokémon já respondida (em que jogos dá para obter)
+    if (r.params.capturar) loadPokeGames().then(() => { if (!pokedex) return; $('homeSearch').value = humanize(r.params.capturar); renderHomeDex(r.params.capturar); });
     // ao escolher uma geração, leva até os jogos dela
     if (filters.generation) $('genGames')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     return;
