@@ -15,7 +15,14 @@
  ],
  "unresolved": [],
  "fuzzy": [],
- "skippedPlaceholders": 1,
+ "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Barry",
+   "rule": "strong",
+   "by": "\"inicial com vantagem ao seu\""
+  }
+ ],
  "withStage": 2550,
  "total": 3429,
  "placesWithoutStage": [

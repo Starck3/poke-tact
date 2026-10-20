@@ -284,6 +284,11 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   trancada); só com vizinho (conexão ou porta) liberado no estágio da citação (Silver Cave e Viridian City do GS continuam
   no pós-jogo); rota só de água conta a partir do Surf (a Route 108 liberava o Abandoned Ship do RS no estágio 3). O
   relatório fica em `acq.progress.earlierUsed`. Aceito: o Pal Park (DP/Pt) foi para o estágio 5 — não tem fonte de captura.
+- **Inicial genérico no time do rival** (0.17.0, `expandTeam` em `build-detonado-modern.mjs`): placeholders do leitor e
+  nomes com barra ("Chikorita/Tepig/Totodile") viram opções. 🧪 Regra só na forma "(des)vantagem/fraqueza AO SEU", no
+  TRECHO da frase com o nome do treinador (o X/Y fala de Shauna e Calem na mesma frase; "golpe de vantagem ao inicial de
+  Hop" é a vantagem do jogador). Com regra: triângulo Planta→Fogo→Água, um time por inicial do jogador (`forStarter`). Sem
+  regra: uma variante por opção, rotulada. Relatório em `reports/<jogo>/detonado-modern.json` → `placeholderReport`.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

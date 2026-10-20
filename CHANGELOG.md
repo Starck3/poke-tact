@@ -2,6 +2,15 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.17.0] — 2026-10-20
+
+### Corrigido
+- **Times de rival completos nas Gens 5–9**: o Pokémon que o detonado escreve como "inicial" (ou "Chikorita/Tepig/Totodile")
+  não some mais do time. Quando o texto diz a regra ("o inicial com vantagem ao seu", "de fraqueza ao seu"), o app monta o
+  time certo para cada inicial que você escolher (ex.: no X/Y, com Chespin o Calem/Serena vem de Braixen). Quando o texto
+  não diz (Hau no Sun/Moon, Urbain/Taunie no Z-A, o rival do Let's Go), aparece uma variante para cada inicial possível,
+  marcada "se o inicial dele for X".
+
 ## [0.16.0] — 2026-10-20
 
 ### Corrigido

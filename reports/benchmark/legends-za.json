@@ -1,18 +1,18 @@
 {
  "game": "legends-za",
  "summary": {
-  "fights": 69,
+  "fights": 78,
   "depois": {
-   "mons": 279,
-   "covered": 279,
-   "wins": 837,
-   "picks": 837,
-   "comfy": 817,
-   "turnsSum": 1012,
-   "turnsN": 837
+   "mons": 288,
+   "covered": 288,
+   "wins": 864,
+   "picks": 864,
+   "comfy": 844,
+   "turnsSum": 1039,
+   "turnsN": 864
   },
   "antes": {
-   "mons": 279,
+   "mons": 288,
    "covered": 0,
    "wins": 0,
    "picks": 0,
@@ -515,6 +515,555 @@
        "theirTurns": 12,
        "faster": 0.5,
        "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0",
+   "label": "Urbain/Taunie (se o inicial dele for Chikorita)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "chikorita",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "chikorita",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "tail-whip"
+     ],
+     "superEffectiveAvailable": 84,
+     "winnersAvailable": 297,
+     "candidates": 336,
+     "picks": [
+      {
+       "mon": "charizard",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "victreebel",
+       "move": "sludge-bomb",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "glalie",
+       "move": "freeze-dry",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0",
+   "label": "Urbain/Taunie (se o inicial dele for Chikorita)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "tepig",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "chikorita",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "tail-whip"
+     ],
+     "superEffectiveAvailable": 84,
+     "winnersAvailable": 298,
+     "candidates": 337,
+     "picks": [
+      {
+       "mon": "charizard",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "victreebel",
+       "move": "sludge-bomb",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "glalie",
+       "move": "freeze-dry",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0",
+   "label": "Urbain/Taunie (se o inicial dele for Chikorita)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "totodile",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "chikorita",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "tail-whip"
+     ],
+     "superEffectiveAvailable": 84,
+     "winnersAvailable": 298,
+     "candidates": 337,
+     "picks": [
+      {
+       "mon": "charizard",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "victreebel",
+       "move": "sludge-bomb",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "glalie",
+       "move": "freeze-dry",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0_1",
+   "label": "Urbain/Taunie (se o inicial dele for Tepig)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "chikorita",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "tepig",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "tail-whip"
+     ],
+     "superEffectiveAvailable": 56,
+     "winnersAvailable": 296,
+     "candidates": 337,
+     "picks": [
+      {
+       "mon": "blastoise",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-blast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 21,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "milotic",
+       "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0_1",
+   "label": "Urbain/Taunie (se o inicial dele for Tepig)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "tepig",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "tepig",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "tail-whip"
+     ],
+     "superEffectiveAvailable": 56,
+     "winnersAvailable": 295,
+     "candidates": 336,
+     "picks": [
+      {
+       "mon": "blastoise",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-blast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 21,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "milotic",
+       "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0_1",
+   "label": "Urbain/Taunie (se o inicial dele for Tepig)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "totodile",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "tepig",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "tail-whip"
+     ],
+     "superEffectiveAvailable": 56,
+     "winnersAvailable": 296,
+     "candidates": 337,
+     "picks": [
+      {
+       "mon": "blastoise",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-blast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 21,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "milotic",
+       "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0_2",
+   "label": "Urbain/Taunie (se o inicial dele for Totodile)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "chikorita",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "totodile",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer"
+     ],
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 290,
+     "candidates": 337,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "bayleef",
+       "move": "giga-drain",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "ampharos",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0_2",
+   "label": "Urbain/Taunie (se o inicial dele for Totodile)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "tepig",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "totodile",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer"
+     ],
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 291,
+     "candidates": 337,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "ampharos",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pyroar-male",
+       "move": "hyper-beam",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-za",
+   "key": "DETONADO_1_0_2",
+   "label": "Urbain/Taunie (se o inicial dele for Totodile)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "totodile",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "totodile",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer"
+     ],
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 290,
+     "candidates": 336,
+     "picks": [
+      {
+       "mon": "venusaur",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "ampharos",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pyroar-male",
+       "move": "hyper-beam",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
       }
      ],
      "before": []

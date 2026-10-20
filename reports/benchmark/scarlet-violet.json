@@ -1,18 +1,18 @@
 {
  "game": "scarlet-violet",
  "summary": {
-  "fights": 390,
+  "fights": 408,
   "depois": {
-   "mons": 1818,
-   "covered": 1818,
-   "wins": 5454,
-   "picks": 5454,
-   "comfy": 5412,
-   "turnsSum": 6480,
-   "turnsN": 5454
+   "mons": 1872,
+   "covered": 1872,
+   "wins": 5616,
+   "picks": 5616,
+   "comfy": 5571,
+   "turnsSum": 6681,
+   "turnsN": 5616
   },
   "antes": {
-   "mons": 1818,
+   "mons": 1872,
    "covered": 0,
    "wins": 0,
    "picks": 0,
@@ -526,6 +526,564 @@
   },
   {
    "version": "scarlet",
+   "key": "DETONADO_0_0",
+   "label": "Nemona (se o inicial dele for Sprigatito)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "sprigatito",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 64,
+     "winnersAvailable": 134,
+     "candidates": 216,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "salamence",
+       "move": "dual-wingbeat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "staraptor",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0",
+   "label": "Nemona (se o inicial dele for Sprigatito)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 67,
+     "winnersAvailable": 135,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "salamence",
+       "move": "dual-wingbeat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "staraptor",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0",
+   "label": "Nemona (se o inicial dele for Sprigatito)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "quaxly",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 64,
+     "winnersAvailable": 133,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "salamence",
+       "move": "dual-wingbeat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "staraptor",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0_1",
+   "label": "Nemona (se o inicial dele for Fuecoco)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "sprigatito",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember"
+     ],
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 134,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "clawitzer",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "lycanroc-midday",
+       "move": "accelerock",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "ember"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0_1",
+   "label": "Nemona (se o inicial dele for Fuecoco)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember"
+     ],
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 136,
+     "candidates": 216,
+     "picks": [
+      {
+       "mon": "clawitzer",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "lycanroc-midday",
+       "move": "accelerock",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "ember"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0_1",
+   "label": "Nemona (se o inicial dele for Fuecoco)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "quaxly",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember"
+     ],
+     "superEffectiveAvailable": 57,
+     "winnersAvailable": 137,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "clawitzer",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "quaquaval",
+       "move": "aqua-step",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0_2",
+   "label": "Nemona (se o inicial dele for Quaxly)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "sprigatito",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "quaxly",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 43,
+     "winnersAvailable": 145,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0_2",
+   "label": "Nemona (se o inicial dele for Quaxly)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "quaxly",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 40,
+     "winnersAvailable": 143,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_0_0_2",
+   "label": "Nemona (se o inicial dele for Quaxly)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "quaxly",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "quaxly",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 40,
+     "winnersAvailable": 144,
+     "candidates": 216,
+     "picks": [
+      {
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
    "key": "DETONADO_2_0",
    "label": "Nemona",
    "group": "Rival",
@@ -534,68 +1092,57 @@
    "level": 9,
    "mons": [
     {
-     "opp": "pawmi",
-     "level": 9,
+     "opp": "quaxly",
+     "level": 8,
      "moves": [
+      "pound",
       "growl",
-      "thunder-shock",
-      "quick-attack",
-      "charge"
+      "water-gun",
+      "work-up"
      ],
-     "superEffectiveAvailable": 15,
-     "winnersAvailable": 179,
-     "candidates": 219,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 173,
+     "candidates": 220,
      "picks": [
       {
-       "mon": "arcanine",
-       "move": "flare-blitz",
-       "eff": 1,
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
        "faster": 1,
-       "theirMove": "thunder-shock"
+       "theirMove": "water-gun"
       },
       {
-       "mon": "flareon",
-       "move": "double-edge",
-       "eff": 1,
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "gallade",
+       "move": "leaf-blade",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "thunder-shock"
-      },
-      {
-       "mon": "garchomp",
-       "move": "sand-tomb",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "quick-attack"
+       "theirMove": "water-gun"
       }
      ],
      "before": []
-    }
-   ]
-  },
-  {
-   "version": "scarlet",
-   "key": "DETONADO_2_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 0,
-   "starter": "fuecoco",
-   "level": 9,
-   "mons": [
+    },
     {
      "opp": "pawmi",
      "level": 9,
@@ -652,13 +1199,180 @@
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_2_0",
+   "key": "DETONADO_2_0_1",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 9,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 8,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage",
+      "bite"
+     ],
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 155,
+     "candidates": 220,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "gyarados",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "leafage"
+      },
+      {
+       "mon": "houndoom",
+       "move": "ember",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmi",
+     "level": 9,
+     "moves": [
+      "growl",
+      "thunder-shock",
+      "quick-attack",
+      "charge"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 179,
+     "candidates": 219,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "flareon",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "garchomp",
+       "move": "sand-tomb",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_2_0_2",
    "label": "Nemona",
    "group": "Rival",
    "stage": 0,
    "starter": "quaxly",
    "level": 9,
    "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 8,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember",
+      "round"
+     ],
+     "superEffectiveAvailable": 60,
+     "winnersAvailable": 171,
+     "candidates": 220,
+     "picks": [
+      {
+       "mon": "donphan",
+       "move": "bulldoze",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "ember"
+      },
+      {
+       "mon": "mismagius",
+       "move": "power-gem",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "ember"
+      },
+      {
+       "mon": "clawitzer",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "round"
+      }
+     ],
+     "before": []
+    },
     {
      "opp": "pawmi",
      "level": 9,
@@ -2880,122 +3594,7 @@
    "group": "Rival",
    "stage": 2,
    "starter": "sprigatito",
-   "level": 21,
-   "mons": [
-    {
-     "opp": "rockruff",
-     "level": 21,
-     "moves": [
-      "double-team",
-      "rock-throw",
-      "howl",
-      "bite"
-     ],
-     "superEffectiveAvailable": 142,
-     "winnersAvailable": 221,
-     "candidates": 301,
-     "picks": [
-      {
-       "mon": "golduck",
-       "move": "water-pulse",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      },
-      {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 14,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      },
-      {
-       "mon": "tauros-paldea-blaze-breed",
-       "move": "double-kick",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pawmi",
-     "level": 21,
-     "moves": [
-      "charge",
-      "nuzzle",
-      "dig",
-      "bite"
-     ],
-     "superEffectiveAvailable": 32,
-     "winnersAvailable": 279,
-     "candidates": 301,
-     "picks": [
-      {
-       "mon": "arcanine",
-       "move": "flare-blitz",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "dig"
-      },
-      {
-       "mon": "cloyster",
-       "move": "icicle-spear",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "nuzzle"
-      },
-      {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 12,
-       "faster": 1,
-       "theirMove": "nuzzle"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "scarlet",
-   "key": "DETONADO_6_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 2,
-   "starter": "fuecoco",
-   "level": 21,
+   "level": 22,
    "mons": [
     {
      "opp": "rockruff",
@@ -3007,12 +3606,24 @@
       "bite"
      ],
      "superEffectiveAvailable": 139,
-     "winnersAvailable": 219,
+     "winnersAvailable": 236,
      "candidates": 301,
      "picks": [
       {
        "mon": "golduck",
        "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -3033,18 +3644,6 @@
        "theirTurns": 14,
        "faster": 1,
        "theirMove": "rock-throw"
-      },
-      {
-       "mon": "tauros-paldea-blaze-breed",
-       "move": "double-kick",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "rock-throw"
       }
      ],
      "before": []
@@ -3059,9 +3658,21 @@
       "bite"
      ],
      "superEffectiveAvailable": 32,
-     "winnersAvailable": 279,
+     "winnersAvailable": 284,
      "candidates": 301,
      "picks": [
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dig"
+      },
       {
        "mon": "arcanine",
        "move": "flare-blitz",
@@ -3070,7 +3681,7 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "dig"
       },
@@ -3085,18 +3696,58 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "nuzzle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quaxwell",
+     "level": 22,
+     "moves": [
+      "wing-attack",
+      "aqua-jet",
+      "water-pulse",
+      "low-sweep"
+     ],
+     "superEffectiveAvailable": 71,
+     "winnersAvailable": 128,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "luxray",
+       "move": "spark",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-pulse"
       },
       {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 1,
+       "mon": "tropius",
+       "move": "leaf-storm",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 12,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      },
+      {
+       "mon": "dragonite",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "nuzzle"
+       "theirMove": "wing-attack"
       }
      ],
      "before": []
@@ -3105,12 +3756,12 @@
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_6_0",
+   "key": "DETONADO_6_0_1",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
-   "starter": "quaxly",
-   "level": 21,
+   "starter": "fuecoco",
+   "level": 22,
    "mons": [
     {
      "opp": "rockruff",
@@ -3121,13 +3772,25 @@
       "howl",
       "bite"
      ],
-     "superEffectiveAvailable": 142,
-     "winnersAvailable": 221,
+     "superEffectiveAvailable": 136,
+     "winnersAvailable": 234,
      "candidates": 301,
      "picks": [
       {
        "mon": "golduck",
        "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -3148,16 +3811,171 @@
        "theirTurns": 14,
        "faster": 1,
        "theirMove": "rock-throw"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmi",
+     "level": 21,
+     "moves": [
+      "charge",
+      "nuzzle",
+      "dig",
+      "bite"
+     ],
+     "superEffectiveAvailable": 32,
+     "winnersAvailable": 284,
+     "candidates": 301,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dig"
       },
       {
-       "mon": "tauros-paldea-blaze-breed",
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "dig"
+      },
+      {
+       "mon": "cloyster",
+       "move": "icicle-spear",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "nuzzle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "floragato",
+     "level": 22,
+     "moves": [
+      "hone-claws",
+      "magical-leaf",
+      "quick-attack",
+      "seed-bomb"
+     ],
+     "superEffectiveAvailable": 111,
+     "winnersAvailable": 128,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "seed-bomb"
+      },
+      {
+       "mon": "salamence",
+       "move": "dual-wingbeat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "talonflame",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_6_0_2",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 2,
+   "starter": "quaxly",
+   "level": 22,
+   "mons": [
+    {
+     "opp": "rockruff",
+     "level": 21,
+     "moves": [
+      "double-team",
+      "rock-throw",
+      "howl",
+      "bite"
+     ],
+     "superEffectiveAvailable": 139,
+     "winnersAvailable": 236,
+     "candidates": 301,
+     "picks": [
+      {
+       "mon": "golduck",
+       "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "tauros-paldea-combat-breed",
        "move": "double-kick",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 14,
        "faster": 1,
        "theirMove": "rock-throw"
       }
@@ -3174,9 +3992,21 @@
       "bite"
      ],
      "superEffectiveAvailable": 32,
-     "winnersAvailable": 279,
+     "winnersAvailable": 284,
      "candidates": 301,
      "picks": [
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dig"
+      },
       {
        "mon": "arcanine",
        "move": "flare-blitz",
@@ -3185,7 +4015,7 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "dig"
       },
@@ -3200,18 +4030,58 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "nuzzle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "crocalor",
+     "level": 22,
+     "moves": [
+      "round",
+      "bite",
+      "yawn",
+      "incinerate"
+     ],
+     "superEffectiveAvailable": 98,
+     "winnersAvailable": 127,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "waterfall",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "round"
       },
       {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 1,
+       "mon": "garganacl",
+       "move": "rock-blast",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 12,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "incinerate"
+      },
+      {
+       "mon": "vaporeon",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
        "faster": 1,
-       "theirMove": "nuzzle"
+       "theirMove": "round"
       }
      ],
      "before": []
@@ -3225,7 +4095,7 @@
    "group": "Rival",
    "stage": 2,
    "starter": "sprigatito",
-   "level": 36,
+   "level": 37,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -3237,7 +4107,226 @@
       "rock-slide"
      ],
      "superEffectiveAvailable": 148,
-     "winnersAvailable": 85,
+     "winnersAvailable": 93,
+     "candidates": 301,
+     "picks": [
+      {
+       "mon": "donphan",
+       "move": "stomping-tantrum",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "magnezone",
+       "move": "flash-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "mudsdale",
+       "move": "high-horsepower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "goomy",
+     "level": 36,
+     "moves": [
+      "flail",
+      "water-pulse",
+      "rain-dance",
+      "dragon-pulse"
+     ],
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 230,
+     "candidates": 301,
+     "picks": [
+      {
+       "mon": "azumarill",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 20,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "dachsbun",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "tinkatink",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmo",
+     "level": 36,
+     "moves": [
+      "bite",
+      "spark",
+      "thunder-wave",
+      "slam"
+     ],
+     "superEffectiveAvailable": 97,
+     "winnersAvailable": 197,
+     "candidates": 301,
+     "picks": [
+      {
+       "mon": "garchomp",
+       "move": "bulldoze",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "sawsbuck",
+       "move": "zen-headbutt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 37,
+     "moves": [
+      "water-pulse",
+      "aqua-cutter",
+      "air-slash",
+      "focus-energy"
+     ],
+     "superEffectiveAvailable": 160,
+     "winnersAvailable": 68,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "dragonite",
+       "move": "hurricane",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "aqua-cutter"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "salamence",
+       "move": "fly",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "air-slash"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_12_0_1",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 2,
+   "starter": "fuecoco",
+   "level": 37,
+   "mons": [
+    {
+     "opp": "lycanroc-midday",
+     "level": 36,
+     "moves": [
+      "bite",
+      "rock-tomb",
+      "roar",
+      "rock-slide"
+     ],
+     "superEffectiveAvailable": 145,
+     "winnersAvailable": 92,
      "candidates": 301,
      "picks": [
       {
@@ -3289,7 +4378,7 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 49,
-     "winnersAvailable": 223,
+     "winnersAvailable": 229,
      "candidates": 301,
      "picks": [
       {
@@ -3300,7 +4389,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 17,
+       "theirTurns": 20,
        "faster": 1,
        "theirMove": "water-pulse"
       },
@@ -3317,181 +4406,14 @@
        "theirMove": "water-pulse"
       },
       {
-       "mon": "tinkatuff",
+       "mon": "tinkatink",
        "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "water-pulse"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pawmo",
-     "level": 36,
-     "moves": [
-      "bite",
-      "spark",
-      "thunder-wave",
-      "slam"
-     ],
-     "superEffectiveAvailable": 97,
-     "winnersAvailable": 186,
-     "candidates": 301,
-     "picks": [
-      {
-       "mon": "garchomp",
-       "move": "bulldoze",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
-       "mon": "lilligant",
-       "move": "petal-dance",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 0,
-       "theirMove": "slam"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "scarlet",
-   "key": "DETONADO_12_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 2,
-   "starter": "fuecoco",
-   "level": 36,
-   "mons": [
-    {
-     "opp": "lycanroc-midday",
-     "level": 36,
-     "moves": [
-      "bite",
-      "rock-tomb",
-      "roar",
-      "rock-slide"
-     ],
-     "superEffectiveAvailable": 145,
-     "winnersAvailable": 84,
-     "candidates": 301,
-     "picks": [
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "magnezone",
-       "move": "flash-cannon",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "mudsdale",
-       "move": "high-horsepower",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "bite"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "goomy",
-     "level": 36,
-     "moves": [
-      "flail",
-      "water-pulse",
-      "rain-dance",
-      "dragon-pulse"
-     ],
-     "superEffectiveAvailable": 48,
-     "winnersAvailable": 221,
-     "candidates": 301,
-     "picks": [
-      {
-       "mon": "azumarill",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 17,
-       "faster": 1,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "tinkatuff",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 8,
        "faster": 1,
        "theirMove": "water-pulse"
       }
@@ -3508,7 +4430,7 @@
       "slam"
      ],
      "superEffectiveAvailable": 96,
-     "winnersAvailable": 186,
+     "winnersAvailable": 197,
      "candidates": 301,
      "picks": [
       {
@@ -3521,7 +4443,7 @@
        "myTurns": 1,
        "theirTurns": 9,
        "faster": 1,
-       "theirMove": "slam"
+       "theirMove": "bite"
       },
       {
        "mon": "lilligant",
@@ -3536,16 +4458,68 @@
        "theirMove": "bite"
       },
       {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
+       "mon": "sawsbuck",
+       "move": "zen-headbutt",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 37,
+     "moves": [
+      "seed-bomb",
+      "u-turn",
+      "worry-seed",
+      "slash"
+     ],
+     "superEffectiveAvailable": 175,
+     "winnersAvailable": 94,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "skeledirge",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "slam"
+       "theirMove": "seed-bomb"
+      },
+      {
+       "mon": "corviknight",
+       "move": "drill-peck",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 12,
+       "faster": 0,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "dragapult",
+       "move": "u-turn",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "seed-bomb"
       }
      ],
      "before": []
@@ -3554,12 +4528,12 @@
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_12_0",
+   "key": "DETONADO_12_0_2",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
    "starter": "quaxly",
-   "level": 36,
+   "level": 37,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -3571,7 +4545,7 @@
       "rock-slide"
      ],
      "superEffectiveAvailable": 148,
-     "winnersAvailable": 85,
+     "winnersAvailable": 94,
      "candidates": 301,
      "picks": [
       {
@@ -3622,8 +4596,8 @@
       "rain-dance",
       "dragon-pulse"
      ],
-     "superEffectiveAvailable": 48,
-     "winnersAvailable": 222,
+     "superEffectiveAvailable": 49,
+     "winnersAvailable": 230,
      "candidates": 301,
      "picks": [
       {
@@ -3634,7 +4608,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 17,
+       "theirTurns": 20,
        "faster": 1,
        "theirMove": "water-pulse"
       },
@@ -3651,14 +4625,14 @@
        "theirMove": "water-pulse"
       },
       {
-       "mon": "tinkatuff",
+       "mon": "tinkatink",
        "move": "play-rough",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 6,
        "faster": 1,
        "theirMove": "water-pulse"
       }
@@ -3675,7 +4649,7 @@
       "slam"
      ],
      "superEffectiveAvailable": 96,
-     "winnersAvailable": 184,
+     "winnersAvailable": 195,
      "candidates": 301,
      "picks": [
       {
@@ -3688,7 +4662,7 @@
        "myTurns": 1,
        "theirTurns": 9,
        "faster": 1,
-       "theirMove": "slam"
+       "theirMove": "bite"
       },
       {
        "mon": "lilligant",
@@ -3703,16 +4677,68 @@
        "theirMove": "bite"
       },
       {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
+       "mon": "sawsbuck",
+       "move": "zen-headbutt",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "skeledirge",
+     "level": 37,
+     "moves": [
+      "incinerate",
+      "snarl",
+      "roar",
+      "flamethrower"
+     ],
+     "superEffectiveAvailable": 199,
+     "winnersAvailable": 64,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "slam"
+       "theirMove": "flamethrower"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "flamethrower"
+      },
+      {
+       "mon": "dragonite",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "flamethrower"
       }
      ],
      "before": []
@@ -3726,7 +4752,7 @@
    "group": "Rival",
    "stage": 2,
    "starter": "sprigatito",
-   "level": 42,
+   "level": 43,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -3737,10 +4763,22 @@
       "rock-slide",
       "crunch"
      ],
-     "superEffectiveAvailable": 148,
-     "winnersAvailable": 90,
+     "superEffectiveAvailable": 147,
+     "winnersAvailable": 105,
      "candidates": 301,
      "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
       {
        "mon": "dondozo",
        "move": "aqua-tail",
@@ -3752,18 +4790,6 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "rock-slide"
-      },
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "crunch"
       },
       {
        "mon": "breloom",
@@ -3790,11 +4816,23 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 57,
-     "winnersAvailable": 126,
+     "winnersAvailable": 139,
      "candidates": 301,
      "picks": [
       {
        "mon": "klefki",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "dachsbun",
        "move": "play-rough",
        "eff": 2,
        "via": "level-up",
@@ -3813,20 +4851,8 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 13,
+       "theirTurns": 15,
        "faster": 0,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
        "theirMove": "water-pulse"
       }
      ],
@@ -3841,8 +4867,8 @@
       "slam",
       "entrainment"
      ],
-     "superEffectiveAvailable": 102,
-     "winnersAvailable": 127,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 140,
      "candidates": 302,
      "picks": [
       {
@@ -3870,16 +4896,68 @@
        "theirMove": "slam"
       },
       {
-       "mon": "gastly",
+       "mon": "mismagius",
+       "move": "mystical-fire",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "arm-thrust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 43,
+     "moves": [
+      "air-slash",
+      "focus-energy",
+      "mega-kick",
+      "acrobatics"
+     ],
+     "superEffectiveAvailable": 163,
+     "winnersAvailable": 110,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "discharge",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "mega-kick"
+      },
+      {
+       "mon": "gholdengo",
        "move": "shadow-ball",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
-       "theirTurns": null,
+       "theirTurns": 11,
        "faster": 0,
-       "theirMove": "arm-thrust"
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "mega-kick"
       }
      ],
      "before": []
@@ -3888,12 +4966,12 @@
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_14_0",
+   "key": "DETONADO_14_0_1",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
    "starter": "fuecoco",
-   "level": 42,
+   "level": 43,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -3904,10 +4982,22 @@
       "rock-slide",
       "crunch"
      ],
-     "superEffectiveAvailable": 145,
-     "winnersAvailable": 89,
+     "superEffectiveAvailable": 144,
+     "winnersAvailable": 104,
      "candidates": 301,
      "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
       {
        "mon": "dondozo",
        "move": "aqua-tail",
@@ -3919,18 +5009,6 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "rock-slide"
-      },
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "crunch"
       },
       {
        "mon": "breloom",
@@ -3957,11 +5035,23 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 55,
-     "winnersAvailable": 124,
+     "winnersAvailable": 137,
      "candidates": 301,
      "picks": [
       {
        "mon": "klefki",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "dachsbun",
        "move": "play-rough",
        "eff": 2,
        "via": "level-up",
@@ -3980,20 +5070,8 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 13,
+       "theirTurns": 15,
        "faster": 0,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
        "theirMove": "water-pulse"
       }
      ],
@@ -4008,8 +5086,8 @@
       "slam",
       "entrainment"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 127,
+     "superEffectiveAvailable": 102,
+     "winnersAvailable": 140,
      "candidates": 302,
      "picks": [
       {
@@ -4037,16 +5115,68 @@
        "theirMove": "slam"
       },
       {
-       "mon": "gastly",
-       "move": "shadow-ball",
+       "mon": "mismagius",
+       "move": "mystical-fire",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
+       "myTurns": 3,
        "theirTurns": null,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "arm-thrust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 43,
+     "moves": [
+      "worry-seed",
+      "slash",
+      "night-slash",
+      "energy-ball"
+     ],
+     "superEffectiveAvailable": 179,
+     "winnersAvailable": 81,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "breloom",
+       "move": "brick-break",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "lokix",
+       "move": "lunge",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "talonflame",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "night-slash"
       }
      ],
      "before": []
@@ -4055,12 +5185,12 @@
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_14_0",
+   "key": "DETONADO_14_0_2",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
    "starter": "quaxly",
-   "level": 42,
+   "level": 43,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -4071,10 +5201,22 @@
       "rock-slide",
       "crunch"
      ],
-     "superEffectiveAvailable": 148,
-     "winnersAvailable": 91,
+     "superEffectiveAvailable": 147,
+     "winnersAvailable": 106,
      "candidates": 301,
      "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
       {
        "mon": "quaquaval",
        "move": "aqua-step",
@@ -4098,18 +5240,6 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "rock-slide"
-      },
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "crunch"
       }
      ],
      "before": []
@@ -4124,11 +5254,23 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 55,
-     "winnersAvailable": 124,
+     "winnersAvailable": 137,
      "candidates": 301,
      "picks": [
       {
        "mon": "klefki",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "dachsbun",
        "move": "play-rough",
        "eff": 2,
        "via": "level-up",
@@ -4147,20 +5289,8 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 13,
+       "theirTurns": 15,
        "faster": 0,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
        "theirMove": "water-pulse"
       }
      ],
@@ -4175,8 +5305,8 @@
       "slam",
       "entrainment"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 126,
+     "superEffectiveAvailable": 102,
+     "winnersAvailable": 139,
      "candidates": 302,
      "picks": [
       {
@@ -4204,16 +5334,68 @@
        "theirMove": "slam"
       },
       {
-       "mon": "gastly",
-       "move": "shadow-ball",
+       "mon": "mismagius",
+       "move": "mystical-fire",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
+       "myTurns": 3,
        "theirTurns": null,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "arm-thrust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "skeledirge",
+     "level": 43,
+     "moves": [
+      "roar",
+      "flamethrower",
+      "shadow-ball",
+      "hyper-voice"
+     ],
+     "superEffectiveAvailable": 197,
+     "winnersAvailable": 34,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "muddy-water",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "shadow-ball"
+      },
+      {
+       "mon": "golduck",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "shadow-ball"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "shadow-ball"
       }
      ],
      "before": []
@@ -16020,7 +17202,7 @@
    "group": "Campeão",
    "stage": 8,
    "starter": "sprigatito",
-   "level": 65,
+   "level": 66,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -16031,8 +17213,8 @@
       "stealth-rock",
       "stone-edge"
      ],
-     "superEffectiveAvailable": 227,
-     "winnersAvailable": 141,
+     "superEffectiveAvailable": 228,
+     "winnersAvailable": 149,
      "candidates": 430,
      "picks": [
       {
@@ -16060,11 +17242,11 @@
        "theirMove": "stone-edge"
       },
       {
-       "mon": "lucario",
-       "move": "close-combat",
+       "mon": "donphan",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -16084,7 +17266,7 @@
       "muddy-water"
      ],
      "superEffectiveAvailable": 112,
-     "winnersAvailable": 154,
+     "winnersAvailable": 161,
      "candidates": 431,
      "picks": [
       {
@@ -16100,6 +17282,18 @@
        "theirMove": "muddy-water"
       },
       {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
        "mon": "garchomp",
        "move": "dragon-claw",
        "eff": 2,
@@ -16110,18 +17304,6 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "muddy-water"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -16135,8 +17317,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 45,
-     "winnersAvailable": 72,
+     "superEffectiveAvailable": 46,
+     "winnersAvailable": 77,
      "candidates": 430,
      "picks": [
       {
@@ -16161,7 +17343,7 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
-       "theirMove": "boomburst"
+       "theirMove": "double-edge"
       },
       {
        "mon": "ceruledge",
@@ -16188,7 +17370,7 @@
       "shed-tail"
      ],
      "superEffectiveAvailable": 139,
-     "winnersAvailable": 149,
+     "winnersAvailable": 159,
      "candidates": 430,
      "picks": [
       {
@@ -16204,20 +17386,20 @@
        "theirMove": "iron-tail"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "salamence",
+       "move": "flamethrower",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "earthquake"
+       "faster": 1,
+       "theirMove": "iron-tail"
       },
       {
-       "mon": "iron-hands",
-       "move": "close-combat",
+       "mon": "gastrodon",
+       "move": "earth-power",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 8,
@@ -16240,7 +17422,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 134,
-     "winnersAvailable": 56,
+     "winnersAvailable": 59,
      "candidates": 431,
      "picks": [
       {
@@ -16281,17 +17463,69 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 66,
+     "moves": [
+      "liquidation",
+      "feather-dance",
+      "close-combat",
+      "wave-crash"
+     ],
+     "superEffectiveAvailable": 230,
+     "winnersAvailable": 60,
+     "candidates": 431,
+     "picks": [
+      {
+       "mon": "brambleghast",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "wave-crash"
+      },
+      {
+       "mon": "chesnaught",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "corviknight",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "close-combat"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_29_0",
+   "key": "DETONADO_29_0_1",
    "label": "Nemona",
    "group": "Campeão",
    "stage": 8,
    "starter": "fuecoco",
-   "level": 65,
+   "level": 66,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -16302,8 +17536,8 @@
       "stealth-rock",
       "stone-edge"
      ],
-     "superEffectiveAvailable": 224,
-     "winnersAvailable": 140,
+     "superEffectiveAvailable": 225,
+     "winnersAvailable": 148,
      "candidates": 430,
      "picks": [
       {
@@ -16331,11 +17565,11 @@
        "theirMove": "stone-edge"
       },
       {
-       "mon": "lucario",
-       "move": "close-combat",
+       "mon": "donphan",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -16355,7 +17589,7 @@
       "muddy-water"
      ],
      "superEffectiveAvailable": 109,
-     "winnersAvailable": 152,
+     "winnersAvailable": 159,
      "candidates": 431,
      "picks": [
       {
@@ -16371,6 +17605,18 @@
        "theirMove": "muddy-water"
       },
       {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
        "mon": "garchomp",
        "move": "dragon-claw",
        "eff": 2,
@@ -16381,18 +17627,6 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "muddy-water"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -16406,8 +17640,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 45,
-     "winnersAvailable": 73,
+     "superEffectiveAvailable": 46,
+     "winnersAvailable": 78,
      "candidates": 430,
      "picks": [
       {
@@ -16432,7 +17666,7 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
-       "theirMove": "boomburst"
+       "theirMove": "double-edge"
       },
       {
        "mon": "ceruledge",
@@ -16459,7 +17693,7 @@
       "shed-tail"
      ],
      "superEffectiveAvailable": 142,
-     "winnersAvailable": 150,
+     "winnersAvailable": 160,
      "candidates": 430,
      "picks": [
       {
@@ -16475,20 +17709,20 @@
        "theirMove": "iron-tail"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "salamence",
+       "move": "flamethrower",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "earthquake"
+       "faster": 1,
+       "theirMove": "iron-tail"
       },
       {
-       "mon": "iron-hands",
-       "move": "close-combat",
+       "mon": "gastrodon",
+       "move": "earth-power",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 8,
@@ -16511,7 +17745,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 131,
-     "winnersAvailable": 57,
+     "winnersAvailable": 60,
      "candidates": 431,
      "picks": [
       {
@@ -16552,17 +17786,69 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 66,
+     "moves": [
+      "play-rough",
+      "knock-off",
+      "grassy-terrain",
+      "leaf-storm"
+     ],
+     "superEffectiveAvailable": 270,
+     "winnersAvailable": 137,
+     "candidates": 431,
+     "picks": [
+      {
+       "mon": "forretress",
+       "move": "bug-bite",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "skarmory",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "incineroar",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_29_0",
+   "key": "DETONADO_29_0_2",
    "label": "Nemona",
    "group": "Campeão",
    "stage": 8,
    "starter": "quaxly",
-   "level": 65,
+   "level": 66,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -16573,8 +17859,8 @@
       "stealth-rock",
       "stone-edge"
      ],
-     "superEffectiveAvailable": 227,
-     "winnersAvailable": 141,
+     "superEffectiveAvailable": 228,
+     "winnersAvailable": 149,
      "candidates": 430,
      "picks": [
       {
@@ -16602,11 +17888,11 @@
        "theirMove": "stone-edge"
       },
       {
-       "mon": "lucario",
-       "move": "close-combat",
+       "mon": "donphan",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -16626,7 +17912,7 @@
       "muddy-water"
      ],
      "superEffectiveAvailable": 109,
-     "winnersAvailable": 153,
+     "winnersAvailable": 160,
      "candidates": 431,
      "picks": [
       {
@@ -16642,6 +17928,18 @@
        "theirMove": "muddy-water"
       },
       {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
        "mon": "garchomp",
        "move": "dragon-claw",
        "eff": 2,
@@ -16652,18 +17950,6 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "muddy-water"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -16677,8 +17963,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 73,
+     "superEffectiveAvailable": 48,
+     "winnersAvailable": 78,
      "candidates": 430,
      "picks": [
       {
@@ -16703,7 +17989,7 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
-       "theirMove": "boomburst"
+       "theirMove": "double-edge"
       },
       {
        "mon": "ceruledge",
@@ -16730,7 +18016,7 @@
       "shed-tail"
      ],
      "superEffectiveAvailable": 140,
-     "winnersAvailable": 149,
+     "winnersAvailable": 159,
      "candidates": 430,
      "picks": [
       {
@@ -16746,20 +18032,20 @@
        "theirMove": "iron-tail"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "salamence",
+       "move": "flamethrower",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "earthquake"
+       "faster": 1,
+       "theirMove": "iron-tail"
       },
       {
-       "mon": "iron-hands",
-       "move": "close-combat",
+       "mon": "gastrodon",
+       "move": "earth-power",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 8,
@@ -16782,7 +18068,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 131,
-     "winnersAvailable": 56,
+     "winnersAvailable": 59,
      "candidates": 431,
      "picks": [
       {
@@ -16820,6 +18106,58 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "close-combat"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "skeledirge",
+     "level": 66,
+     "moves": [
+      "will-o-wisp",
+      "hex",
+      "fire-blast",
+      "overheat"
+     ],
+     "superEffectiveAvailable": 270,
+     "winnersAvailable": 80,
+     "candidates": 431,
+     "picks": [
+      {
+       "mon": "quaquaval",
+       "move": "wave-crash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "hex"
+      },
+      {
+       "mon": "roaring-moon",
+       "move": "night-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "overheat"
+      },
+      {
+       "mon": "vaporeon",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "hex"
       }
      ],
      "before": []
@@ -25275,7 +26613,7 @@
    "group": "Rival",
    "stage": 9,
    "starter": "sprigatito",
-   "level": 71,
+   "level": 72,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -25287,7 +26625,7 @@
       "stone-edge"
      ],
      "superEffectiveAvailable": 371,
-     "winnersAvailable": 241,
+     "winnersAvailable": 251,
      "candidates": 664,
      "picks": [
       {
@@ -25339,7 +26677,7 @@
       "power-whip"
      ],
      "superEffectiveAvailable": 168,
-     "winnersAvailable": 206,
+     "winnersAvailable": 216,
      "candidates": 664,
      "picks": [
       {
@@ -25350,19 +26688,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "power-whip"
-      },
-      {
-       "mon": "garchomp",
-       "move": "dragon-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "power-whip"
       },
@@ -25375,8 +26701,20 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0.5,
+       "faster": 1,
        "theirMove": "body-slam"
+      },
+      {
+       "mon": "garchomp",
+       "move": "dragon-claw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "power-whip"
       }
      ],
      "before": []
@@ -25390,8 +26728,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 68,
-     "winnersAvailable": 110,
+     "superEffectiveAvailable": 66,
+     "winnersAvailable": 121,
      "candidates": 664,
      "picks": [
       {
@@ -25414,21 +26752,21 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 3,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "hurricane"
       },
       {
-       "mon": "ceruledge",
-       "move": "flare-blitz",
-       "eff": 1,
+       "mon": "lucario",
+       "move": "close-combat",
+       "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
+       "myTurns": 1,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "boomburst"
       }
      ],
      "before": []
@@ -25442,8 +26780,8 @@
       "earthquake",
       "shed-tail"
      ],
-     "superEffectiveAvailable": 214,
-     "winnersAvailable": 250,
+     "superEffectiveAvailable": 213,
+     "winnersAvailable": 257,
      "candidates": 664,
      "picks": [
       {
@@ -25454,7 +26792,7 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "iron-tail"
       },
@@ -25495,7 +26833,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 224,
-     "winnersAvailable": 101,
+     "winnersAvailable": 108,
      "candidates": 664,
      "picks": [
       {
@@ -25536,17 +26874,69 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 72,
+     "moves": [
+      "liquidation",
+      "feather-dance",
+      "close-combat",
+      "wave-crash"
+     ],
+     "superEffectiveAvailable": 361,
+     "winnersAvailable": 114,
+     "candidates": 665,
+     "picks": [
+      {
+       "mon": "exeggutor",
+       "move": "leaf-storm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "swanna",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "brambleghast",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "wave-crash"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "scarlet",
-   "key": "DETONADO_58_0",
+   "key": "DETONADO_58_0_1",
    "label": "Nemona",
    "group": "Rival",
    "stage": 9,
    "starter": "fuecoco",
-   "level": 71,
+   "level": 72,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -25558,7 +26948,7 @@
       "stone-edge"
      ],
      "superEffectiveAvailable": 368,
-     "winnersAvailable": 240,
+     "winnersAvailable": 250,
      "candidates": 664,
      "picks": [
       {
@@ -25610,7 +27000,7 @@
       "power-whip"
      ],
      "superEffectiveAvailable": 165,
-     "winnersAvailable": 204,
+     "winnersAvailable": 214,
      "candidates": 664,
      "picks": [
       {
@@ -25621,19 +27011,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "power-whip"
-      },
-      {
-       "mon": "garchomp",
-       "move": "dragon-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "power-whip"
       },
@@ -25646,8 +27024,343 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0.5,
+       "faster": 1,
        "theirMove": "body-slam"
+      },
+      {
+       "mon": "garchomp",
+       "move": "dragon-claw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "power-whip"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "dudunsparce-two-segment",
+     "level": 71,
+     "moves": [
+      "double-edge",
+      "endeavor",
+      "hurricane",
+      "boomburst"
+     ],
+     "superEffectiveAvailable": 66,
+     "winnersAvailable": 122,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "gholdengo",
+       "move": "make-it-rain",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "hurricane"
+      },
+      {
+       "mon": "annihilape",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "hurricane"
+      },
+      {
+       "mon": "lucario",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "boomburst"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "orthworm",
+     "level": 71,
+     "moves": [
+      "iron-defense",
+      "iron-tail",
+      "earthquake",
+      "shed-tail"
+     ],
+     "superEffectiveAvailable": 216,
+     "winnersAvailable": 258,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "charizard",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "ursaluna",
+       "move": "headlong-rush",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "palossand",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmot",
+     "level": 71,
+     "moves": [
+      "close-combat",
+      "discharge",
+      "agility",
+      "double-shock"
+     ],
+     "superEffectiveAvailable": 221,
+     "winnersAvailable": 109,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "golurk",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "palossand",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "exeggutor",
+       "move": "extrasensory",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "close-combat"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 72,
+     "moves": [
+      "play-rough",
+      "knock-off",
+      "grassy-terrain",
+      "leaf-storm"
+     ],
+     "superEffectiveAvailable": 419,
+     "winnersAvailable": 212,
+     "candidates": 665,
+     "picks": [
+      {
+       "mon": "forretress",
+       "move": "bug-bite",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "skarmory",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "incineroar",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "scarlet",
+   "key": "DETONADO_58_0_2",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 9,
+   "starter": "quaxly",
+   "level": 72,
+   "mons": [
+    {
+     "opp": "lycanroc-midday",
+     "level": 71,
+     "moves": [
+      "crunch",
+      "scary-face",
+      "stealth-rock",
+      "stone-edge"
+     ],
+     "superEffectiveAvailable": 371,
+     "winnersAvailable": 251,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "tauros-paldea-combat-breed",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "stone-edge"
+      },
+      {
+       "mon": "tauros-paldea-aqua-breed",
+       "move": "wave-crash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "stone-edge"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "goodra",
+     "level": 71,
+     "moves": [
+      "curse",
+      "body-slam",
+      "muddy-water",
+      "power-whip"
+     ],
+     "superEffectiveAvailable": 165,
+     "winnersAvailable": 215,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "dragapult",
+       "move": "dragon-darts",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "power-whip"
+      },
+      {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
+       "mon": "garchomp",
+       "move": "dragon-claw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "power-whip"
       }
      ],
      "before": []
@@ -25662,7 +27375,7 @@
       "boomburst"
      ],
      "superEffectiveAvailable": 68,
-     "winnersAvailable": 111,
+     "winnersAvailable": 122,
      "candidates": 664,
      "picks": [
       {
@@ -25685,21 +27398,21 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 3,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "hurricane"
       },
       {
-       "mon": "ceruledge",
-       "move": "flare-blitz",
-       "eff": 1,
+       "mon": "lucario",
+       "move": "close-combat",
+       "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
+       "myTurns": 1,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "boomburst"
       }
      ],
      "before": []
@@ -25713,8 +27426,8 @@
       "earthquake",
       "shed-tail"
      ],
-     "superEffectiveAvailable": 217,
-     "winnersAvailable": 251,
+     "superEffectiveAvailable": 214,
+     "winnersAvailable": 257,
      "candidates": 664,
      "picks": [
       {
@@ -25725,7 +27438,7 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "iron-tail"
       },
@@ -25766,7 +27479,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 221,
-     "winnersAvailable": 102,
+     "winnersAvailable": 108,
      "candidates": 664,
      "picks": [
       {
@@ -25807,198 +27520,31 @@
       }
      ],
      "before": []
-    }
-   ]
-  },
-  {
-   "version": "scarlet",
-   "key": "DETONADO_58_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 9,
-   "starter": "quaxly",
-   "level": 71,
-   "mons": [
+    },
     {
-     "opp": "lycanroc-midday",
-     "level": 71,
+     "opp": "skeledirge",
+     "level": 72,
      "moves": [
-      "crunch",
-      "scary-face",
-      "stealth-rock",
-      "stone-edge"
+      "will-o-wisp",
+      "hex",
+      "fire-blast",
+      "overheat"
      ],
-     "superEffectiveAvailable": 371,
-     "winnersAvailable": 241,
-     "candidates": 664,
+     "superEffectiveAvailable": 414,
+     "winnersAvailable": 143,
+     "candidates": 665,
      "picks": [
       {
-       "mon": "rhydon",
-       "move": "earthquake",
+       "mon": "primarina",
+       "move": "sparkling-aria",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "stone-edge"
-      },
-      {
-       "mon": "tauros-paldea-aqua-breed",
-       "move": "wave-crash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "stone-edge"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "goodra",
-     "level": 71,
-     "moves": [
-      "curse",
-      "body-slam",
-      "muddy-water",
-      "power-whip"
-     ],
-     "superEffectiveAvailable": 165,
-     "winnersAvailable": 205,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "dragapult",
-       "move": "dragon-darts",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "power-whip"
-      },
-      {
-       "mon": "garchomp",
-       "move": "dragon-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "power-whip"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "dudunsparce-two-segment",
-     "level": 71,
-     "moves": [
-      "double-edge",
-      "endeavor",
-      "hurricane",
-      "boomburst"
-     ],
-     "superEffectiveAvailable": 70,
-     "winnersAvailable": 111,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "gholdengo",
-       "move": "make-it-rain",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "hurricane"
-      },
-      {
-       "mon": "annihilape",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 9,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "hurricane"
-      },
-      {
-       "mon": "ceruledge",
-       "move": "flare-blitz",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "hurricane"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "orthworm",
-     "level": 71,
-     "moves": [
-      "iron-defense",
-      "iron-tail",
-      "earthquake",
-      "shed-tail"
-     ],
-     "superEffectiveAvailable": 215,
-     "winnersAvailable": 250,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "charizard",
-       "move": "flamethrower",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 9,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "iron-tail"
+       "theirMove": "hex"
       },
       {
        "mon": "ursaluna",
@@ -26008,73 +27554,21 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 3,
        "faster": 0,
-       "theirMove": "iron-tail"
+       "theirMove": "overheat"
       },
       {
-       "mon": "palossand",
-       "move": "earth-power",
+       "mon": "roaring-moon",
+       "move": "night-slash",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "iron-tail"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pawmot",
-     "level": 71,
-     "moves": [
-      "close-combat",
-      "discharge",
-      "agility",
-      "double-shock"
-     ],
-     "superEffectiveAvailable": 221,
-     "winnersAvailable": 101,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "golurk",
-       "move": "earthquake",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 0,
-       "theirMove": "close-combat"
-      },
-      {
-       "mon": "palossand",
-       "move": "earth-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 0,
-       "theirMove": "close-combat"
-      },
-      {
-       "mon": "exeggutor",
-       "move": "extrasensory",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 9,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "close-combat"
+       "faster": 1,
+       "theirMove": "overheat"
       }
      ],
      "before": []
@@ -49939,6 +51433,564 @@
   },
   {
    "version": "violet",
+   "key": "DETONADO_0_0",
+   "label": "Nemona (se o inicial dele for Sprigatito)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "sprigatito",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 65,
+     "winnersAvailable": 135,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "staraptor",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "sawsbuck",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0",
+   "label": "Nemona (se o inicial dele for Sprigatito)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 68,
+     "winnersAvailable": 136,
+     "candidates": 218,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "staraptor",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "sawsbuck",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0",
+   "label": "Nemona (se o inicial dele for Sprigatito)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "quaxly",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage"
+     ],
+     "superEffectiveAvailable": 65,
+     "winnersAvailable": 134,
+     "candidates": 218,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "staraptor",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "sawsbuck",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0_1",
+   "label": "Nemona (se o inicial dele for Fuecoco)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "sprigatito",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember"
+     ],
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 134,
+     "candidates": 218,
+     "picks": [
+      {
+       "mon": "clawitzer",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "ember"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0_1",
+   "label": "Nemona (se o inicial dele for Fuecoco)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember"
+     ],
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 136,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "clawitzer",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "ember"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0_1",
+   "label": "Nemona (se o inicial dele for Fuecoco)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "quaxly",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember"
+     ],
+     "superEffectiveAvailable": 58,
+     "winnersAvailable": 137,
+     "candidates": 218,
+     "picks": [
+      {
+       "mon": "clawitzer",
+       "move": "water-gun",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "quaquaval",
+       "move": "aqua-step",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0_2",
+   "label": "Nemona (se o inicial dele for Quaxly)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "sprigatito",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "quaxly",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 44,
+     "winnersAvailable": 146,
+     "candidates": 218,
+     "picks": [
+      {
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0_2",
+   "label": "Nemona (se o inicial dele for Quaxly)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "quaxly",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 41,
+     "winnersAvailable": 144,
+     "candidates": 218,
+     "picks": [
+      {
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_0_0_2",
+   "label": "Nemona (se o inicial dele for Quaxly)",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "quaxly",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "quaxly",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "water-gun"
+     ],
+     "superEffectiveAvailable": 41,
+     "winnersAvailable": 145,
+     "candidates": 217,
+     "picks": [
+      {
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
    "key": "DETONADO_2_0",
    "label": "Nemona",
    "group": "Rival",
@@ -49947,68 +51999,57 @@
    "level": 9,
    "mons": [
     {
-     "opp": "pawmi",
-     "level": 9,
+     "opp": "quaxly",
+     "level": 8,
      "moves": [
+      "pound",
       "growl",
-      "thunder-shock",
-      "quick-attack",
-      "charge"
+      "water-gun",
+      "work-up"
      ],
-     "superEffectiveAvailable": 15,
-     "winnersAvailable": 180,
-     "candidates": 221,
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 174,
+     "candidates": 222,
      "picks": [
       {
-       "mon": "arcanine",
-       "move": "flare-blitz",
-       "eff": 1,
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
        "faster": 1,
-       "theirMove": "thunder-shock"
+       "theirMove": "water-gun"
       },
       {
-       "mon": "flareon",
-       "move": "double-edge",
-       "eff": 1,
+       "mon": "leafeon",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "gallade",
+       "move": "leaf-blade",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "thunder-shock"
-      },
-      {
-       "mon": "garchomp",
-       "move": "sand-tomb",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "quick-attack"
+       "theirMove": "water-gun"
       }
      ],
      "before": []
-    }
-   ]
-  },
-  {
-   "version": "violet",
-   "key": "DETONADO_2_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 0,
-   "starter": "fuecoco",
-   "level": 9,
-   "mons": [
+    },
     {
      "opp": "pawmi",
      "level": 9,
@@ -50065,13 +52106,180 @@
   },
   {
    "version": "violet",
-   "key": "DETONADO_2_0",
+   "key": "DETONADO_2_0_1",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fuecoco",
+   "level": 9,
+   "mons": [
+    {
+     "opp": "sprigatito",
+     "level": 8,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "leafage",
+      "bite"
+     ],
+     "superEffectiveAvailable": 80,
+     "winnersAvailable": 157,
+     "candidates": 222,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "gyarados",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "leafage"
+      },
+      {
+       "mon": "houndoom",
+       "move": "ember",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmi",
+     "level": 9,
+     "moves": [
+      "growl",
+      "thunder-shock",
+      "quick-attack",
+      "charge"
+     ],
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 180,
+     "candidates": 221,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "flareon",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "garchomp",
+       "move": "sand-tomb",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_2_0_2",
    "label": "Nemona",
    "group": "Rival",
    "stage": 0,
    "starter": "quaxly",
    "level": 9,
    "mons": [
+    {
+     "opp": "fuecoco",
+     "level": 8,
+     "moves": [
+      "tackle",
+      "leer",
+      "ember",
+      "round"
+     ],
+     "superEffectiveAvailable": 61,
+     "winnersAvailable": 172,
+     "candidates": 222,
+     "picks": [
+      {
+       "mon": "donphan",
+       "move": "bulldoze",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "ember"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 14,
+       "faster": 1,
+       "theirMove": "ember"
+      },
+      {
+       "mon": "mismagius",
+       "move": "power-gem",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "ember"
+      }
+     ],
+     "before": []
+    },
     {
      "opp": "pawmi",
      "level": 9,
@@ -52293,122 +54501,7 @@
    "group": "Rival",
    "stage": 2,
    "starter": "sprigatito",
-   "level": 21,
-   "mons": [
-    {
-     "opp": "rockruff",
-     "level": 21,
-     "moves": [
-      "double-team",
-      "rock-throw",
-      "howl",
-      "bite"
-     ],
-     "superEffectiveAvailable": 145,
-     "winnersAvailable": 222,
-     "candidates": 302,
-     "picks": [
-      {
-       "mon": "golduck",
-       "move": "water-pulse",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      },
-      {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 14,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      },
-      {
-       "mon": "tauros-paldea-blaze-breed",
-       "move": "double-kick",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pawmi",
-     "level": 21,
-     "moves": [
-      "charge",
-      "nuzzle",
-      "dig",
-      "bite"
-     ],
-     "superEffectiveAvailable": 33,
-     "winnersAvailable": 279,
-     "candidates": 302,
-     "picks": [
-      {
-       "mon": "arcanine",
-       "move": "flare-blitz",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "dig"
-      },
-      {
-       "mon": "cloyster",
-       "move": "icicle-spear",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "nuzzle"
-      },
-      {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 12,
-       "faster": 1,
-       "theirMove": "nuzzle"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "violet",
-   "key": "DETONADO_6_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 2,
-   "starter": "fuecoco",
-   "level": 21,
+   "level": 22,
    "mons": [
     {
      "opp": "rockruff",
@@ -52420,12 +54513,24 @@
       "bite"
      ],
      "superEffectiveAvailable": 142,
-     "winnersAvailable": 220,
+     "winnersAvailable": 237,
      "candidates": 302,
      "picks": [
       {
        "mon": "golduck",
        "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -52446,18 +54551,6 @@
        "theirTurns": 14,
        "faster": 1,
        "theirMove": "rock-throw"
-      },
-      {
-       "mon": "tauros-paldea-blaze-breed",
-       "move": "double-kick",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "rock-throw"
       }
      ],
      "before": []
@@ -52472,9 +54565,21 @@
       "bite"
      ],
      "superEffectiveAvailable": 33,
-     "winnersAvailable": 279,
+     "winnersAvailable": 285,
      "candidates": 302,
      "picks": [
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dig"
+      },
       {
        "mon": "arcanine",
        "move": "flare-blitz",
@@ -52483,7 +54588,7 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "dig"
       },
@@ -52498,18 +54603,58 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "nuzzle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quaxwell",
+     "level": 22,
+     "moves": [
+      "wing-attack",
+      "aqua-jet",
+      "water-pulse",
+      "low-sweep"
+     ],
+     "superEffectiveAvailable": 72,
+     "winnersAvailable": 126,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "luxray",
+       "move": "spark",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "water-pulse"
       },
       {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 1,
+       "mon": "tropius",
+       "move": "leaf-storm",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 12,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "wing-attack"
+      },
+      {
+       "mon": "dragonite",
+       "move": "thunder-punch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "nuzzle"
+       "theirMove": "wing-attack"
       }
      ],
      "before": []
@@ -52518,12 +54663,12 @@
   },
   {
    "version": "violet",
-   "key": "DETONADO_6_0",
+   "key": "DETONADO_6_0_1",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
-   "starter": "quaxly",
-   "level": 21,
+   "starter": "fuecoco",
+   "level": 22,
    "mons": [
     {
      "opp": "rockruff",
@@ -52534,13 +54679,25 @@
       "howl",
       "bite"
      ],
-     "superEffectiveAvailable": 145,
-     "winnersAvailable": 222,
+     "superEffectiveAvailable": 139,
+     "winnersAvailable": 235,
      "candidates": 302,
      "picks": [
       {
        "mon": "golduck",
        "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -52561,16 +54718,171 @@
        "theirTurns": 14,
        "faster": 1,
        "theirMove": "rock-throw"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmi",
+     "level": 21,
+     "moves": [
+      "charge",
+      "nuzzle",
+      "dig",
+      "bite"
+     ],
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 285,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dig"
       },
       {
-       "mon": "tauros-paldea-blaze-breed",
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "dig"
+      },
+      {
+       "mon": "cloyster",
+       "move": "icicle-spear",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "nuzzle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "floragato",
+     "level": 22,
+     "moves": [
+      "hone-claws",
+      "magical-leaf",
+      "quick-attack",
+      "seed-bomb"
+     ],
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 128,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "seed-bomb"
+      },
+      {
+       "mon": "talonflame",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "lokix",
+       "move": "lunge",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "seed-bomb"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_6_0_2",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 2,
+   "starter": "quaxly",
+   "level": 22,
+   "mons": [
+    {
+     "opp": "rockruff",
+     "level": 21,
+     "moves": [
+      "double-team",
+      "rock-throw",
+      "howl",
+      "bite"
+     ],
+     "superEffectiveAvailable": 142,
+     "winnersAvailable": 237,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "golduck",
+       "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      },
+      {
+       "mon": "tauros-paldea-combat-breed",
        "move": "double-kick",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 14,
        "faster": 1,
        "theirMove": "rock-throw"
       }
@@ -52587,9 +54899,21 @@
       "bite"
      ],
      "superEffectiveAvailable": 33,
-     "winnersAvailable": 279,
+     "winnersAvailable": 285,
      "candidates": 302,
      "picks": [
+      {
+       "mon": "mankey",
+       "move": "cross-chop",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dig"
+      },
       {
        "mon": "arcanine",
        "move": "flare-blitz",
@@ -52598,7 +54922,7 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "dig"
       },
@@ -52613,18 +54937,58 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "nuzzle"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "crocalor",
+     "level": 22,
+     "moves": [
+      "round",
+      "bite",
+      "yawn",
+      "incinerate"
+     ],
+     "superEffectiveAvailable": 99,
+     "winnersAvailable": 126,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "waterfall",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "round"
       },
       {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "double-kick",
-       "eff": 1,
+       "mon": "tyranitar",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "incinerate"
+      },
+      {
+       "mon": "garganacl",
+       "move": "rock-blast",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 12,
-       "faster": 1,
-       "theirMove": "nuzzle"
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "incinerate"
       }
      ],
      "before": []
@@ -52638,7 +55002,7 @@
    "group": "Rival",
    "stage": 2,
    "starter": "sprigatito",
-   "level": 36,
+   "level": 37,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -52650,7 +55014,226 @@
       "rock-slide"
      ],
      "superEffectiveAvailable": 151,
-     "winnersAvailable": 86,
+     "winnersAvailable": 94,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "donphan",
+       "move": "stomping-tantrum",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "magnezone",
+       "move": "flash-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "mudsdale",
+       "move": "high-horsepower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "goomy",
+     "level": 36,
+     "moves": [
+      "flail",
+      "water-pulse",
+      "rain-dance",
+      "dragon-pulse"
+     ],
+     "superEffectiveAvailable": 49,
+     "winnersAvailable": 231,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "azumarill",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 20,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dragon-pulse"
+      },
+      {
+       "mon": "perrserker",
+       "move": "iron-head",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dragon-pulse"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmo",
+     "level": 36,
+     "moves": [
+      "bite",
+      "spark",
+      "thunder-wave",
+      "slam"
+     ],
+     "superEffectiveAvailable": 99,
+     "winnersAvailable": 197,
+     "candidates": 302,
+     "picks": [
+      {
+       "mon": "garchomp",
+       "move": "bulldoze",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "sawsbuck",
+       "move": "zen-headbutt",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 37,
+     "moves": [
+      "water-pulse",
+      "aqua-cutter",
+      "air-slash",
+      "focus-energy"
+     ],
+     "superEffectiveAvailable": 161,
+     "winnersAvailable": 66,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "dragonite",
+       "move": "hurricane",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "aqua-cutter"
+      },
+      {
+       "mon": "lilligant",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "sunflora",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "air-slash"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_12_0_1",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 2,
+   "starter": "fuecoco",
+   "level": 37,
+   "mons": [
+    {
+     "opp": "lycanroc-midday",
+     "level": 36,
+     "moves": [
+      "bite",
+      "rock-tomb",
+      "roar",
+      "rock-slide"
+     ],
+     "superEffectiveAvailable": 148,
+     "winnersAvailable": 93,
      "candidates": 302,
      "picks": [
       {
@@ -52702,7 +55285,7 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 48,
-     "winnersAvailable": 224,
+     "winnersAvailable": 230,
      "candidates": 302,
      "picks": [
       {
@@ -52713,9 +55296,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 17,
+       "theirTurns": 20,
        "faster": 1,
        "theirMove": "water-pulse"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dragon-pulse"
       },
       {
        "mon": "perrserker",
@@ -52727,186 +55322,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "water-pulse"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pawmo",
-     "level": 36,
-     "moves": [
-      "bite",
-      "spark",
-      "thunder-wave",
-      "slam"
-     ],
-     "superEffectiveAvailable": 99,
-     "winnersAvailable": 186,
-     "candidates": 302,
-     "picks": [
-      {
-       "mon": "garchomp",
-       "move": "bulldoze",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
-       "mon": "lilligant",
-       "move": "petal-dance",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 0,
-       "theirMove": "slam"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "violet",
-   "key": "DETONADO_12_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 2,
-   "starter": "fuecoco",
-   "level": 36,
-   "mons": [
-    {
-     "opp": "lycanroc-midday",
-     "level": 36,
-     "moves": [
-      "bite",
-      "rock-tomb",
-      "roar",
-      "rock-slide"
-     ],
-     "superEffectiveAvailable": 148,
-     "winnersAvailable": 85,
-     "candidates": 302,
-     "picks": [
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "magnezone",
-       "move": "flash-cannon",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "mudsdale",
-       "move": "high-horsepower",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "bite"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "goomy",
-     "level": 36,
-     "moves": [
-      "flail",
-      "water-pulse",
-      "rain-dance",
-      "dragon-pulse"
-     ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 222,
-     "candidates": 302,
-     "picks": [
-      {
-       "mon": "azumarill",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 17,
-       "faster": 1,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "perrserker",
-       "move": "iron-head",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "water-pulse"
+       "theirMove": "dragon-pulse"
       }
      ],
      "before": []
@@ -52921,7 +55337,7 @@
       "slam"
      ],
      "superEffectiveAvailable": 98,
-     "winnersAvailable": 186,
+     "winnersAvailable": 197,
      "candidates": 302,
      "picks": [
       {
@@ -52934,7 +55350,7 @@
        "myTurns": 1,
        "theirTurns": 9,
        "faster": 1,
-       "theirMove": "slam"
+       "theirMove": "bite"
       },
       {
        "mon": "lilligant",
@@ -52949,16 +55365,68 @@
        "theirMove": "bite"
       },
       {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
+       "mon": "sawsbuck",
+       "move": "zen-headbutt",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 37,
+     "moves": [
+      "seed-bomb",
+      "u-turn",
+      "worry-seed",
+      "slash"
+     ],
+     "superEffectiveAvailable": 174,
+     "winnersAvailable": 93,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "skeledirge",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "slam"
+       "theirMove": "seed-bomb"
+      },
+      {
+       "mon": "corviknight",
+       "move": "drill-peck",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 12,
+       "faster": 0,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "arcanine",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "slash"
       }
      ],
      "before": []
@@ -52967,12 +55435,12 @@
   },
   {
    "version": "violet",
-   "key": "DETONADO_12_0",
+   "key": "DETONADO_12_0_2",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
    "starter": "quaxly",
-   "level": 36,
+   "level": 37,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -52984,7 +55452,7 @@
       "rock-slide"
      ],
      "superEffectiveAvailable": 151,
-     "winnersAvailable": 86,
+     "winnersAvailable": 95,
      "candidates": 302,
      "picks": [
       {
@@ -53035,8 +55503,8 @@
       "rain-dance",
       "dragon-pulse"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 223,
+     "superEffectiveAvailable": 48,
+     "winnersAvailable": 231,
      "candidates": 302,
      "picks": [
       {
@@ -53047,9 +55515,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 17,
+       "theirTurns": 20,
        "faster": 1,
        "theirMove": "water-pulse"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "dragon-pulse"
       },
       {
        "mon": "perrserker",
@@ -53061,19 +55541,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "water-pulse"
+       "theirMove": "dragon-pulse"
       }
      ],
      "before": []
@@ -53088,7 +55556,7 @@
       "slam"
      ],
      "superEffectiveAvailable": 98,
-     "winnersAvailable": 184,
+     "winnersAvailable": 195,
      "candidates": 302,
      "picks": [
       {
@@ -53101,7 +55569,7 @@
        "myTurns": 1,
        "theirTurns": 9,
        "faster": 1,
-       "theirMove": "slam"
+       "theirMove": "bite"
       },
       {
        "mon": "lilligant",
@@ -53116,16 +55584,68 @@
        "theirMove": "bite"
       },
       {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
+       "mon": "sawsbuck",
+       "move": "zen-headbutt",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "skeledirge",
+     "level": 37,
+     "moves": [
+      "incinerate",
+      "snarl",
+      "roar",
+      "flamethrower"
+     ],
+     "superEffectiveAvailable": 197,
+     "winnersAvailable": 63,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "vaporeon",
+       "move": "water-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "slam"
+       "theirMove": "flamethrower"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "flamethrower"
+      },
+      {
+       "mon": "dragonite",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "flamethrower"
       }
      ],
      "before": []
@@ -53139,7 +55659,7 @@
    "group": "Rival",
    "stage": 2,
    "starter": "sprigatito",
-   "level": 42,
+   "level": 43,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -53150,10 +55670,22 @@
       "rock-slide",
       "crunch"
      ],
-     "superEffectiveAvailable": 151,
-     "winnersAvailable": 91,
+     "superEffectiveAvailable": 150,
+     "winnersAvailable": 106,
      "candidates": 302,
      "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
       {
        "mon": "dondozo",
        "move": "aqua-tail",
@@ -53167,23 +55699,11 @@
        "theirMove": "rock-slide"
       },
       {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
+       "mon": "tyranitar",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "breloom",
-       "move": "brick-break",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -53203,11 +55723,23 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 56,
-     "winnersAvailable": 126,
+     "winnersAvailable": 139,
      "candidates": 302,
      "picks": [
       {
        "mon": "klefki",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "dachsbun",
        "move": "play-rough",
        "eff": 2,
        "via": "level-up",
@@ -53226,20 +55758,8 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 13,
+       "theirTurns": 15,
        "faster": 0,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
        "theirMove": "water-pulse"
       }
      ],
@@ -53254,8 +55774,8 @@
       "slam",
       "entrainment"
      ],
-     "superEffectiveAvailable": 103,
-     "winnersAvailable": 126,
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 139,
      "candidates": 303,
      "picks": [
       {
@@ -53271,8 +55791,20 @@
        "theirMove": "slam"
       },
       {
-       "mon": "armarouge",
-       "move": "psyshock",
+       "mon": "mismagius",
+       "move": "mystical-fire",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "arm-thrust"
+      },
+      {
+       "mon": "mudsdale",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -53280,19 +55812,59 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "slam"
+       "theirMove": "arm-thrust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 43,
+     "moves": [
+      "air-slash",
+      "focus-energy",
+      "mega-kick",
+      "acrobatics"
+     ],
+     "superEffectiveAvailable": 164,
+     "winnersAvailable": 110,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "discharge",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "mega-kick"
       },
       {
-       "mon": "gastly",
+       "mon": "gholdengo",
        "move": "shadow-ball",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
-       "theirTurns": null,
+       "theirTurns": 11,
        "faster": 0,
-       "theirMove": "arm-thrust"
+       "theirMove": "air-slash"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "thunder-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "mega-kick"
       }
      ],
      "before": []
@@ -53301,12 +55873,12 @@
   },
   {
    "version": "violet",
-   "key": "DETONADO_14_0",
+   "key": "DETONADO_14_0_1",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
    "starter": "fuecoco",
-   "level": 42,
+   "level": 43,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -53317,10 +55889,22 @@
       "rock-slide",
       "crunch"
      ],
-     "superEffectiveAvailable": 148,
-     "winnersAvailable": 90,
+     "superEffectiveAvailable": 147,
+     "winnersAvailable": 105,
      "candidates": 302,
      "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
       {
        "mon": "dondozo",
        "move": "aqua-tail",
@@ -53334,23 +55918,11 @@
        "theirMove": "rock-slide"
       },
       {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
+       "mon": "tyranitar",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "breloom",
-       "move": "brick-break",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -53370,11 +55942,23 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 54,
-     "winnersAvailable": 124,
+     "winnersAvailable": 137,
      "candidates": 302,
      "picks": [
       {
        "mon": "klefki",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "dachsbun",
        "move": "play-rough",
        "eff": 2,
        "via": "level-up",
@@ -53393,20 +55977,8 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 13,
+       "theirTurns": 15,
        "faster": 0,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
        "theirMove": "water-pulse"
       }
      ],
@@ -53421,8 +55993,8 @@
       "slam",
       "entrainment"
      ],
-     "superEffectiveAvailable": 101,
-     "winnersAvailable": 126,
+     "superEffectiveAvailable": 103,
+     "winnersAvailable": 139,
      "candidates": 303,
      "picks": [
       {
@@ -53438,8 +56010,20 @@
        "theirMove": "slam"
       },
       {
-       "mon": "armarouge",
-       "move": "psyshock",
+       "mon": "mismagius",
+       "move": "mystical-fire",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "arm-thrust"
+      },
+      {
+       "mon": "mudsdale",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -53447,19 +56031,59 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "slam"
+       "theirMove": "arm-thrust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 43,
+     "moves": [
+      "worry-seed",
+      "slash",
+      "night-slash",
+      "energy-ball"
+     ],
+     "superEffectiveAvailable": 178,
+     "winnersAvailable": 81,
+     "candidates": 303,
+     "picks": [
+      {
+       "mon": "breloom",
+       "move": "brick-break",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "slash"
       },
       {
-       "mon": "gastly",
-       "move": "shadow-ball",
-       "eff": 1,
+       "mon": "lokix",
+       "move": "lunge",
+       "eff": 4,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
+       "myTurns": 1,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "arm-thrust"
+       "theirMove": "slash"
+      },
+      {
+       "mon": "talonflame",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "night-slash"
       }
      ],
      "before": []
@@ -53468,12 +56092,12 @@
   },
   {
    "version": "violet",
-   "key": "DETONADO_14_0",
+   "key": "DETONADO_14_0_2",
    "label": "Nemona",
    "group": "Rival",
    "stage": 2,
    "starter": "quaxly",
-   "level": 42,
+   "level": 43,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -53484,10 +56108,22 @@
       "rock-slide",
       "crunch"
      ],
-     "superEffectiveAvailable": 151,
-     "winnersAvailable": 92,
+     "superEffectiveAvailable": 150,
+     "winnersAvailable": 107,
      "candidates": 302,
      "picks": [
+      {
+       "mon": "donphan",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
       {
        "mon": "quaquaval",
        "move": "aqua-step",
@@ -53511,18 +56147,6 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "rock-slide"
-      },
-      {
-       "mon": "donphan",
-       "move": "stomping-tantrum",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "crunch"
       }
      ],
      "before": []
@@ -53537,11 +56161,23 @@
       "dragon-pulse"
      ],
      "superEffectiveAvailable": 54,
-     "winnersAvailable": 124,
+     "winnersAvailable": 137,
      "candidates": 302,
      "picks": [
       {
        "mon": "klefki",
+       "move": "play-rough",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "water-pulse"
+      },
+      {
+       "mon": "dachsbun",
        "move": "play-rough",
        "eff": 2,
        "via": "level-up",
@@ -53560,20 +56196,8 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 13,
+       "theirTurns": 15,
        "faster": 0,
-       "theirMove": "water-pulse"
-      },
-      {
-       "mon": "dachsbun",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
        "theirMove": "water-pulse"
       }
      ],
@@ -53588,8 +56212,8 @@
       "slam",
       "entrainment"
      ],
-     "superEffectiveAvailable": 101,
-     "winnersAvailable": 125,
+     "superEffectiveAvailable": 103,
+     "winnersAvailable": 138,
      "candidates": 303,
      "picks": [
       {
@@ -53605,8 +56229,20 @@
        "theirMove": "slam"
       },
       {
-       "mon": "armarouge",
-       "move": "psyshock",
+       "mon": "mismagius",
+       "move": "mystical-fire",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "arm-thrust"
+      },
+      {
+       "mon": "mudsdale",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -53614,19 +56250,59 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "slam"
-      },
+       "theirMove": "arm-thrust"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "skeledirge",
+     "level": 43,
+     "moves": [
+      "roar",
+      "flamethrower",
+      "shadow-ball",
+      "hyper-voice"
+     ],
+     "superEffectiveAvailable": 195,
+     "winnersAvailable": 32,
+     "candidates": 303,
+     "picks": [
       {
-       "mon": "gastly",
-       "move": "shadow-ball",
-       "eff": 1,
+       "mon": "tyranitar",
+       "move": "crunch",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
-       "theirTurns": null,
+       "theirTurns": 6,
        "faster": 0,
-       "theirMove": "arm-thrust"
+       "theirMove": "flamethrower"
+      },
+      {
+       "mon": "vaporeon",
+       "move": "muddy-water",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "shadow-ball"
+      },
+      {
+       "mon": "golduck",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "shadow-ball"
       }
      ],
      "before": []
@@ -65433,7 +68109,7 @@
    "group": "Campeão",
    "stage": 8,
    "starter": "sprigatito",
-   "level": 65,
+   "level": 66,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -65444,8 +68120,8 @@
       "stealth-rock",
       "stone-edge"
      ],
-     "superEffectiveAvailable": 231,
-     "winnersAvailable": 143,
+     "superEffectiveAvailable": 232,
+     "winnersAvailable": 151,
      "candidates": 432,
      "picks": [
       {
@@ -65473,11 +68149,11 @@
        "theirMove": "stone-edge"
       },
       {
-       "mon": "lucario",
-       "move": "close-combat",
+       "mon": "donphan",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -65497,9 +68173,21 @@
       "muddy-water"
      ],
      "superEffectiveAvailable": 110,
-     "winnersAvailable": 153,
+     "winnersAvailable": 160,
      "candidates": 433,
      "picks": [
+      {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
       {
        "mon": "garchomp",
        "move": "dragon-claw",
@@ -65511,18 +68199,6 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "muddy-water"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
       },
       {
        "mon": "mabosstiff",
@@ -65548,8 +68224,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 46,
-     "winnersAvailable": 72,
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 77,
      "candidates": 432,
      "picks": [
       {
@@ -65574,7 +68250,7 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
-       "theirMove": "boomburst"
+       "theirMove": "double-edge"
       },
       {
        "mon": "iron-hands",
@@ -65601,7 +68277,7 @@
       "shed-tail"
      ],
      "superEffectiveAvailable": 138,
-     "winnersAvailable": 148,
+     "winnersAvailable": 158,
      "candidates": 432,
      "picks": [
       {
@@ -65653,7 +68329,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 138,
-     "winnersAvailable": 57,
+     "winnersAvailable": 60,
      "candidates": 433,
      "picks": [
       {
@@ -65694,17 +68370,69 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 66,
+     "moves": [
+      "liquidation",
+      "feather-dance",
+      "close-combat",
+      "wave-crash"
+     ],
+     "superEffectiveAvailable": 232,
+     "winnersAvailable": 58,
+     "candidates": 433,
+     "picks": [
+      {
+       "mon": "brambleghast",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "wave-crash"
+      },
+      {
+       "mon": "chesnaught",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "corviknight",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "close-combat"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "violet",
-   "key": "DETONADO_29_0",
+   "key": "DETONADO_29_0_1",
    "label": "Nemona",
    "group": "Campeão",
    "stage": 8,
    "starter": "fuecoco",
-   "level": 65,
+   "level": 66,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -65715,8 +68443,8 @@
       "stealth-rock",
       "stone-edge"
      ],
-     "superEffectiveAvailable": 228,
-     "winnersAvailable": 142,
+     "superEffectiveAvailable": 229,
+     "winnersAvailable": 150,
      "candidates": 432,
      "picks": [
       {
@@ -65744,11 +68472,11 @@
        "theirMove": "stone-edge"
       },
       {
-       "mon": "lucario",
-       "move": "close-combat",
+       "mon": "donphan",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -65768,9 +68496,21 @@
       "muddy-water"
      ],
      "superEffectiveAvailable": 107,
-     "winnersAvailable": 151,
+     "winnersAvailable": 158,
      "candidates": 433,
      "picks": [
+      {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
       {
        "mon": "garchomp",
        "move": "dragon-claw",
@@ -65782,18 +68522,6 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "muddy-water"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
       },
       {
        "mon": "mabosstiff",
@@ -65819,8 +68547,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 46,
-     "winnersAvailable": 73,
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 78,
      "candidates": 432,
      "picks": [
       {
@@ -65845,7 +68573,7 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
-       "theirMove": "boomburst"
+       "theirMove": "double-edge"
       },
       {
        "mon": "iron-hands",
@@ -65872,7 +68600,7 @@
       "shed-tail"
      ],
      "superEffectiveAvailable": 141,
-     "winnersAvailable": 149,
+     "winnersAvailable": 159,
      "candidates": 432,
      "picks": [
       {
@@ -65924,7 +68652,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 135,
-     "winnersAvailable": 58,
+     "winnersAvailable": 61,
      "candidates": 433,
      "picks": [
       {
@@ -65965,17 +68693,69 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 66,
+     "moves": [
+      "play-rough",
+      "knock-off",
+      "grassy-terrain",
+      "leaf-storm"
+     ],
+     "superEffectiveAvailable": 269,
+     "winnersAvailable": 136,
+     "candidates": 433,
+     "picks": [
+      {
+       "mon": "forretress",
+       "move": "bug-bite",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "skarmory",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "incineroar",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "violet",
-   "key": "DETONADO_29_0",
+   "key": "DETONADO_29_0_2",
    "label": "Nemona",
    "group": "Campeão",
    "stage": 8,
    "starter": "quaxly",
-   "level": 65,
+   "level": 66,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -65986,8 +68766,8 @@
       "stealth-rock",
       "stone-edge"
      ],
-     "superEffectiveAvailable": 231,
-     "winnersAvailable": 143,
+     "superEffectiveAvailable": 232,
+     "winnersAvailable": 151,
      "candidates": 432,
      "picks": [
       {
@@ -66015,11 +68795,11 @@
        "theirMove": "stone-edge"
       },
       {
-       "mon": "lucario",
-       "move": "close-combat",
+       "mon": "donphan",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -66039,9 +68819,21 @@
       "muddy-water"
      ],
      "superEffectiveAvailable": 107,
-     "winnersAvailable": 152,
+     "winnersAvailable": 159,
      "candidates": 433,
      "picks": [
+      {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
       {
        "mon": "garchomp",
        "move": "dragon-claw",
@@ -66053,18 +68845,6 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "muddy-water"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
       },
       {
        "mon": "mabosstiff",
@@ -66090,8 +68870,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 48,
-     "winnersAvailable": 73,
+     "superEffectiveAvailable": 49,
+     "winnersAvailable": 78,
      "candidates": 432,
      "picks": [
       {
@@ -66116,7 +68896,7 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
-       "theirMove": "boomburst"
+       "theirMove": "double-edge"
       },
       {
        "mon": "iron-hands",
@@ -66143,7 +68923,7 @@
       "shed-tail"
      ],
      "superEffectiveAvailable": 139,
-     "winnersAvailable": 148,
+     "winnersAvailable": 158,
      "candidates": 432,
      "picks": [
       {
@@ -66195,7 +68975,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 135,
-     "winnersAvailable": 57,
+     "winnersAvailable": 60,
      "candidates": 433,
      "picks": [
       {
@@ -66233,6 +69013,58 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "close-combat"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "skeledirge",
+     "level": 66,
+     "moves": [
+      "will-o-wisp",
+      "hex",
+      "fire-blast",
+      "overheat"
+     ],
+     "superEffectiveAvailable": 269,
+     "winnersAvailable": 78,
+     "candidates": 433,
+     "picks": [
+      {
+       "mon": "quaquaval",
+       "move": "wave-crash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "hex"
+      },
+      {
+       "mon": "roaring-moon",
+       "move": "night-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "overheat"
+      },
+      {
+       "mon": "vaporeon",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "hex"
       }
      ],
      "before": []
@@ -74688,7 +77520,7 @@
    "group": "Rival",
    "stage": 9,
    "starter": "sprigatito",
-   "level": 71,
+   "level": 72,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -74700,7 +77532,7 @@
       "stone-edge"
      ],
      "superEffectiveAvailable": 373,
-     "winnersAvailable": 242,
+     "winnersAvailable": 252,
      "candidates": 664,
      "picks": [
       {
@@ -74752,9 +77584,21 @@
       "power-whip"
      ],
      "superEffectiveAvailable": 166,
-     "winnersAvailable": 206,
+     "winnersAvailable": 216,
      "candidates": 664,
      "picks": [
+      {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
       {
        "mon": "garchomp",
        "move": "dragon-claw",
@@ -74778,18 +77622,6 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "body-slam"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -74803,8 +77635,8 @@
       "hurricane",
       "boomburst"
      ],
-     "superEffectiveAvailable": 69,
-     "winnersAvailable": 110,
+     "superEffectiveAvailable": 67,
+     "winnersAvailable": 121,
      "candidates": 664,
      "picks": [
       {
@@ -74827,20 +77659,20 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 3,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "hurricane"
       },
       {
-       "mon": "iron-hands",
+       "mon": "lucario",
        "move": "close-combat",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 4,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "boomburst"
       }
      ],
@@ -74855,8 +77687,8 @@
       "earthquake",
       "shed-tail"
      ],
-     "superEffectiveAvailable": 214,
-     "winnersAvailable": 249,
+     "superEffectiveAvailable": 213,
+     "winnersAvailable": 256,
      "candidates": 664,
      "picks": [
       {
@@ -74867,7 +77699,7 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "iron-tail"
       },
@@ -74908,7 +77740,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 226,
-     "winnersAvailable": 101,
+     "winnersAvailable": 108,
      "candidates": 664,
      "picks": [
       {
@@ -74949,17 +77781,69 @@
       }
      ],
      "before": []
+    },
+    {
+     "opp": "quaquaval",
+     "level": 72,
+     "moves": [
+      "liquidation",
+      "feather-dance",
+      "close-combat",
+      "wave-crash"
+     ],
+     "superEffectiveAvailable": 362,
+     "winnersAvailable": 113,
+     "candidates": 665,
+     "picks": [
+      {
+       "mon": "exeggutor",
+       "move": "leaf-storm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "swanna",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "brambleghast",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "wave-crash"
+      }
+     ],
+     "before": []
     }
    ]
   },
   {
    "version": "violet",
-   "key": "DETONADO_58_0",
+   "key": "DETONADO_58_0_1",
    "label": "Nemona",
    "group": "Rival",
    "stage": 9,
    "starter": "fuecoco",
-   "level": 71,
+   "level": 72,
    "mons": [
     {
      "opp": "lycanroc-midday",
@@ -74971,7 +77855,7 @@
       "stone-edge"
      ],
      "superEffectiveAvailable": 370,
-     "winnersAvailable": 241,
+     "winnersAvailable": 251,
      "candidates": 664,
      "picks": [
       {
@@ -75023,9 +77907,21 @@
       "power-whip"
      ],
      "superEffectiveAvailable": 163,
-     "winnersAvailable": 204,
+     "winnersAvailable": 214,
      "candidates": 664,
      "picks": [
+      {
+       "mon": "dragonite",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
       {
        "mon": "garchomp",
        "move": "dragon-claw",
@@ -75049,7 +77945,294 @@
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "body-slam"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "dudunsparce-two-segment",
+     "level": 71,
+     "moves": [
+      "double-edge",
+      "endeavor",
+      "hurricane",
+      "boomburst"
+     ],
+     "superEffectiveAvailable": 67,
+     "winnersAvailable": 122,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "gholdengo",
+       "move": "make-it-rain",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "hurricane"
       },
+      {
+       "mon": "annihilape",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "hurricane"
+      },
+      {
+       "mon": "lucario",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "boomburst"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "orthworm",
+     "level": 71,
+     "moves": [
+      "iron-defense",
+      "iron-tail",
+      "earthquake",
+      "shed-tail"
+     ],
+     "superEffectiveAvailable": 216,
+     "winnersAvailable": 257,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "charizard",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "ursaluna",
+       "move": "headlong-rush",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "palossand",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pawmot",
+     "level": 71,
+     "moves": [
+      "close-combat",
+      "discharge",
+      "agility",
+      "double-shock"
+     ],
+     "superEffectiveAvailable": 223,
+     "winnersAvailable": 109,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "golurk",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "palossand",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 0,
+       "theirMove": "close-combat"
+      },
+      {
+       "mon": "exeggutor",
+       "move": "extrasensory",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "close-combat"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "meowscarada",
+     "level": 72,
+     "moves": [
+      "play-rough",
+      "knock-off",
+      "grassy-terrain",
+      "leaf-storm"
+     ],
+     "superEffectiveAvailable": 419,
+     "winnersAvailable": 211,
+     "candidates": 665,
+     "picks": [
+      {
+       "mon": "forretress",
+       "move": "bug-bite",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "skarmory",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "incineroar",
+       "move": "flare-blitz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "violet",
+   "key": "DETONADO_58_0_2",
+   "label": "Nemona",
+   "group": "Rival",
+   "stage": 9,
+   "starter": "quaxly",
+   "level": 72,
+   "mons": [
+    {
+     "opp": "lycanroc-midday",
+     "level": 71,
+     "moves": [
+      "crunch",
+      "scary-face",
+      "stealth-rock",
+      "stone-edge"
+     ],
+     "superEffectiveAvailable": 373,
+     "winnersAvailable": 252,
+     "candidates": 664,
+     "picks": [
+      {
+       "mon": "rhydon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "tauros-paldea-combat-breed",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "stone-edge"
+      },
+      {
+       "mon": "tauros-paldea-aqua-breed",
+       "move": "wave-crash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "stone-edge"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "goodra",
+     "level": 71,
+     "moves": [
+      "curse",
+      "body-slam",
+      "muddy-water",
+      "power-whip"
+     ],
+     "superEffectiveAvailable": 163,
+     "winnersAvailable": 215,
+     "candidates": 664,
+     "picks": [
       {
        "mon": "dragonite",
        "move": "outrage",
@@ -75059,7 +78242,31 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0.5,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
+       "mon": "garchomp",
+       "move": "dragon-claw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "power-whip"
+      },
+      {
+       "mon": "hydreigon",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
        "theirMove": "body-slam"
       }
      ],
@@ -75075,7 +78282,7 @@
       "boomburst"
      ],
      "superEffectiveAvailable": 69,
-     "winnersAvailable": 111,
+     "winnersAvailable": 122,
      "candidates": 664,
      "picks": [
       {
@@ -75098,20 +78305,20 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 3,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "hurricane"
       },
       {
-       "mon": "iron-hands",
+       "mon": "lucario",
        "move": "close-combat",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 4,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "boomburst"
       }
      ],
@@ -75126,8 +78333,8 @@
       "earthquake",
       "shed-tail"
      ],
-     "superEffectiveAvailable": 217,
-     "winnersAvailable": 250,
+     "superEffectiveAvailable": 214,
+     "winnersAvailable": 256,
      "candidates": 664,
      "picks": [
       {
@@ -75138,7 +78345,7 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 1,
        "theirMove": "iron-tail"
       },
@@ -75179,7 +78386,7 @@
       "double-shock"
      ],
      "superEffectiveAvailable": 223,
-     "winnersAvailable": 102,
+     "winnersAvailable": 108,
      "candidates": 664,
      "picks": [
       {
@@ -75220,198 +78427,43 @@
       }
      ],
      "before": []
-    }
-   ]
-  },
-  {
-   "version": "violet",
-   "key": "DETONADO_58_0",
-   "label": "Nemona",
-   "group": "Rival",
-   "stage": 9,
-   "starter": "quaxly",
-   "level": 71,
-   "mons": [
+    },
     {
-     "opp": "lycanroc-midday",
-     "level": 71,
+     "opp": "skeledirge",
+     "level": 72,
      "moves": [
-      "crunch",
-      "scary-face",
-      "stealth-rock",
-      "stone-edge"
+      "will-o-wisp",
+      "hex",
+      "fire-blast",
+      "overheat"
      ],
-     "superEffectiveAvailable": 373,
-     "winnersAvailable": 242,
-     "candidates": 664,
+     "superEffectiveAvailable": 414,
+     "winnersAvailable": 142,
+     "candidates": 665,
      "picks": [
       {
-       "mon": "rhydon",
-       "move": "earthquake",
+       "mon": "primarina",
+       "move": "sparkling-aria",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "crunch"
+       "theirMove": "hex"
       },
       {
-       "mon": "tauros-paldea-combat-breed",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "stone-edge"
-      },
-      {
-       "mon": "tauros-paldea-aqua-breed",
-       "move": "wave-crash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "stone-edge"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "goodra",
-     "level": 71,
-     "moves": [
-      "curse",
-      "body-slam",
-      "muddy-water",
-      "power-whip"
-     ],
-     "superEffectiveAvailable": 163,
-     "winnersAvailable": 205,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "garchomp",
-       "move": "dragon-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "power-whip"
-      },
-      {
-       "mon": "hydreigon",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "body-slam"
-      },
-      {
-       "mon": "dragonite",
-       "move": "outrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0.5,
-       "theirMove": "body-slam"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "dudunsparce-two-segment",
-     "level": 71,
-     "moves": [
-      "double-edge",
-      "endeavor",
-      "hurricane",
-      "boomburst"
-     ],
-     "superEffectiveAvailable": 71,
-     "winnersAvailable": 111,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "gholdengo",
-       "move": "make-it-rain",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "hurricane"
-      },
-      {
-       "mon": "annihilape",
-       "move": "close-combat",
+       "mon": "rampardos",
+       "move": "head-smash",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "hurricane"
-      },
-      {
-       "mon": "iron-hands",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
        "faster": 0,
-       "theirMove": "boomburst"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "orthworm",
-     "level": 71,
-     "moves": [
-      "iron-defense",
-      "iron-tail",
-      "earthquake",
-      "shed-tail"
-     ],
-     "superEffectiveAvailable": 215,
-     "winnersAvailable": 249,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "charizard",
-       "move": "flamethrower",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 9,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "iron-tail"
+       "theirMove": "hex"
       },
       {
        "mon": "ursaluna",
@@ -75421,73 +78473,9 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 3,
        "faster": 0,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "palossand",
-       "move": "earth-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "iron-tail"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pawmot",
-     "level": 71,
-     "moves": [
-      "close-combat",
-      "discharge",
-      "agility",
-      "double-shock"
-     ],
-     "superEffectiveAvailable": 223,
-     "winnersAvailable": 101,
-     "candidates": 664,
-     "picks": [
-      {
-       "mon": "golurk",
-       "move": "earthquake",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 0,
-       "theirMove": "close-combat"
-      },
-      {
-       "mon": "palossand",
-       "move": "earth-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 0,
-       "theirMove": "close-combat"
-      },
-      {
-       "mon": "exeggutor",
-       "move": "extrasensory",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 9,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "close-combat"
+       "theirMove": "overheat"
       }
      ],
      "before": []

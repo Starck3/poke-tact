@@ -1,18 +1,18 @@
 {
  "game": "x-y",
  "summary": {
-  "fights": 288,
+  "fights": 294,
   "depois": {
-   "mons": 810,
-   "covered": 810,
-   "wins": 2430,
-   "picks": 2430,
-   "comfy": 2391,
-   "turnsSum": 2822,
-   "turnsN": 2430
+   "mons": 834,
+   "covered": 834,
+   "wins": 2502,
+   "picks": 2502,
+   "comfy": 2463,
+   "turnsSum": 2882,
+   "turnsN": 2502
   },
   "antes": {
-   "mons": 810,
+   "mons": 834,
    "covered": 0,
    "wins": 0,
    "picks": 0,
@@ -356,6 +356,192 @@
        "theirTurns": 4,
        "faster": 1,
        "theirMove": "gust"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "x",
+   "key": "DETONADO_0_0",
+   "label": "Shauna",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "chespin",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "froakie",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "bubble"
+     ],
+     "superEffectiveAvailable": 6,
+     "winnersAvailable": 34,
+     "candidates": 48,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "simisage",
+       "move": "seed-bomb",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "chesnaught",
+       "move": "vine-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0.5,
+       "theirMove": "pound"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "x",
+   "key": "DETONADO_0_0_1",
+   "label": "Shauna",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fennekin",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "chespin",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "growl",
+      "vine-whip"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 25,
+     "candidates": 48,
+     "picks": [
+      {
+       "mon": "pidgeot",
+       "move": "hurricane",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pyroar-male",
+       "move": "hyper-beam",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "simisear",
+       "move": "flame-burst",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "x",
+   "key": "DETONADO_0_0_2",
+   "label": "Shauna",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "froakie",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fennekin",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "ember"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 37,
+     "candidates": 48,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "simipour",
+       "move": "scald",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "talonflame",
+       "move": "brave-bird",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
       }
      ],
      "before": []
@@ -1899,7 +2085,7 @@
    "group": "Rival",
    "stage": 1,
    "starter": "chespin",
-   "level": 35,
+   "level": 37,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -1910,8 +2096,8 @@
       "miracle-eye",
       "reflect"
      ],
-     "superEffectiveAvailable": 86,
-     "winnersAvailable": 65,
+     "superEffectiveAvailable": 93,
+     "winnersAvailable": 83,
      "candidates": 208,
      "picks": [
       {
@@ -1939,13 +2125,13 @@
        "theirMove": "psyshock"
       },
       {
-       "mon": "crawdaunt",
-       "move": "knock-off",
+       "mon": "malamar",
+       "move": "foul-play",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
+       "myTurns": 1,
        "theirTurns": null,
        "faster": 0,
        "theirMove": "psyshock"
@@ -1962,10 +2148,22 @@
       "slash",
       "swords-dance"
      ],
-     "superEffectiveAvailable": 63,
-     "winnersAvailable": 84,
+     "superEffectiveAvailable": 67,
+     "winnersAvailable": 105,
      "candidates": 208,
      "picks": [
+      {
+       "mon": "chesnaught",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "slash"
+      },
       {
        "mon": "rhydon",
        "move": "megahorn",
@@ -1989,18 +2187,58 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "bite"
-      },
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "delphox",
+     "level": 37,
+     "moves": [
+      "lucky-chant",
+      "light-screen",
+      "psyshock",
+      "mystical-fire"
+     ],
+     "superEffectiveAvailable": 123,
+     "winnersAvailable": 31,
+     "candidates": 209,
+     "picks": [
       {
-       "mon": "chesnaught",
-       "move": "hammer-arm",
+       "mon": "sharpedo",
+       "move": "crunch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "slash"
+       "theirMove": "mystical-fire"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "psyshock"
+      },
+      {
+       "mon": "wailord",
+       "move": "water-spout",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "psyshock"
       }
      ],
      "before": []
@@ -2009,12 +2247,12 @@
   },
   {
    "version": "x",
-   "key": "DETONADO_12_0",
+   "key": "DETONADO_12_0_1",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 1,
    "starter": "fennekin",
-   "level": 35,
+   "level": 37,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -2025,8 +2263,8 @@
       "miracle-eye",
       "reflect"
      ],
-     "superEffectiveAvailable": 84,
-     "winnersAvailable": 66,
+     "superEffectiveAvailable": 91,
+     "winnersAvailable": 83,
      "candidates": 208,
      "picks": [
       {
@@ -2054,13 +2292,13 @@
        "theirMove": "psyshock"
       },
       {
-       "mon": "crawdaunt",
-       "move": "knock-off",
+       "mon": "malamar",
+       "move": "foul-play",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
+       "myTurns": 1,
        "theirTurns": null,
        "faster": 0,
        "theirMove": "psyshock"
@@ -2077,8 +2315,8 @@
       "slash",
       "swords-dance"
      ],
-     "superEffectiveAvailable": 60,
-     "winnersAvailable": 82,
+     "superEffectiveAvailable": 64,
+     "winnersAvailable": 104,
      "candidates": 208,
      "picks": [
       {
@@ -2113,9 +2351,61 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "greninja",
+     "level": 37,
+     "moves": [
+      "shadow-sneak",
+      "spikes",
+      "feint-attack",
+      "water-shuriken"
+     ],
+     "superEffectiveAvailable": 93,
+     "winnersAvailable": 82,
+     "candidates": 209,
+     "picks": [
+      {
+       "mon": "scraggy",
+       "move": "high-jump-kick",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "water-shuriken"
+      },
+      {
+       "mon": "florges",
+       "move": "moonblast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "feint-attack"
+      },
+      {
+       "mon": "pangoro",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "water-shuriken"
       }
      ],
      "before": []
@@ -2124,12 +2414,12 @@
   },
   {
    "version": "x",
-   "key": "DETONADO_12_0",
+   "key": "DETONADO_12_0_2",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 1,
    "starter": "froakie",
-   "level": 35,
+   "level": 37,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -2140,8 +2430,8 @@
       "miracle-eye",
       "reflect"
      ],
-     "superEffectiveAvailable": 84,
-     "winnersAvailable": 66,
+     "superEffectiveAvailable": 91,
+     "winnersAvailable": 83,
      "candidates": 208,
      "picks": [
       {
@@ -2192,8 +2482,8 @@
       "slash",
       "swords-dance"
      ],
-     "superEffectiveAvailable": 60,
-     "winnersAvailable": 83,
+     "superEffectiveAvailable": 64,
+     "winnersAvailable": 104,
      "candidates": 208,
      "picks": [
       {
@@ -2228,9 +2518,61 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "chesnaught",
+     "level": 37,
+     "moves": [
+      "needle-arm",
+      "take-down",
+      "seed-bomb",
+      "spiky-shield"
+     ],
+     "superEffectiveAvailable": 101,
+     "winnersAvailable": 60,
+     "candidates": 209,
+     "picks": [
+      {
+       "mon": "vespiquen",
+       "move": "air-slash",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "charizard",
+       "move": "air-slash",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "pidgeot",
+       "move": "hurricane",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "take-down"
       }
      ],
      "before": []
@@ -2745,7 +3087,174 @@
    "group": "Rival",
    "stage": 2,
    "starter": "chespin",
-   "level": 28,
+   "level": 30,
+   "mons": [
+    {
+     "opp": "meowstic-male",
+     "level": 28,
+     "moves": [
+      "fake-out",
+      "disarming-voice",
+      "psyshock",
+      "charm"
+     ],
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 107,
+     "candidates": 262,
+     "picks": [
+      {
+       "mon": "krookodile",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "malamar",
+       "move": "foul-play",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "houndoom",
+       "move": "bite",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "absol",
+     "level": 28,
+     "moves": [
+      "taunt",
+      "bite",
+      "double-team",
+      "slash"
+     ],
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 129,
+     "candidates": 262,
+     "picks": [
+      {
+       "mon": "chesnaught",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "tyrantrum",
+       "move": "head-smash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "rhydon",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "braixen",
+     "level": 30,
+     "moves": [
+      "psybeam",
+      "fire-spin",
+      "lucky-chant",
+      "light-screen"
+     ],
+     "superEffectiveAvailable": 83,
+     "winnersAvailable": 156,
+     "candidates": 263,
+     "picks": [
+      {
+       "mon": "starmie",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "psybeam"
+      },
+      {
+       "mon": "gallade",
+       "move": "close-combat",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "psybeam"
+      },
+      {
+       "mon": "solrock",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "psybeam"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "x",
+   "key": "DETONADO_7_0_1",
+   "label": "Calem/Serena",
+   "group": "Rival",
+   "stage": 2,
+   "starter": "fennekin",
+   "level": 30,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -2757,7 +3266,7 @@
       "charm"
      ],
      "superEffectiveAvailable": 102,
-     "winnersAvailable": 78,
+     "winnersAvailable": 107,
      "candidates": 262,
      "picks": [
       {
@@ -2768,7 +3277,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
@@ -2780,7 +3289,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
@@ -2792,7 +3301,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 9,
        "faster": 0,
        "theirMove": "disarming-voice"
       }
@@ -2808,140 +3317,25 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 71,
-     "winnersAvailable": 96,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 126,
      "candidates": 262,
      "picks": [
+      {
+       "mon": "tyrantrum",
+       "move": "head-smash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
       {
        "mon": "rhydon",
        "move": "megahorn",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "mawile",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "chesnaught",
-       "move": "hammer-arm",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "slash"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "x",
-   "key": "DETONADO_7_0",
-   "label": "Calem/Serena",
-   "group": "Rival",
-   "stage": 2,
-   "starter": "fennekin",
-   "level": 28,
-   "mons": [
-    {
-     "opp": "meowstic-male",
-     "level": 28,
-     "moves": [
-      "fake-out",
-      "disarming-voice",
-      "psyshock",
-      "charm"
-     ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 79,
-     "candidates": 262,
-     "picks": [
-      {
-       "mon": "krookodile",
-       "move": "crunch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "malamar",
-       "move": "foul-play",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "houndoom",
-       "move": "bite",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "disarming-voice"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "absol",
-     "level": 28,
-     "moves": [
-      "taunt",
-      "bite",
-      "double-team",
-      "slash"
-     ],
-     "superEffectiveAvailable": 68,
-     "winnersAvailable": 94,
-     "candidates": 262,
-     "picks": [
-      {
-       "mon": "rhydon",
-       "move": "megahorn",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "mawile",
-       "move": "play-rough",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -2959,9 +3353,61 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "frogadier",
+     "level": 30,
+     "moves": [
+      "water-pulse",
+      "smokescreen",
+      "round",
+      "fling"
+     ],
+     "superEffectiveAvailable": 46,
+     "winnersAvailable": 131,
+     "candidates": 263,
+     "picks": [
+      {
+       "mon": "bellossom",
+       "move": "leaf-storm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "round"
+      },
+      {
+       "mon": "roserade",
+       "move": "magical-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "round"
+      },
+      {
+       "mon": "florges",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "water-pulse"
       }
      ],
      "before": []
@@ -2970,12 +3416,12 @@
   },
   {
    "version": "x",
-   "key": "DETONADO_7_0",
+   "key": "DETONADO_7_0_2",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 2,
    "starter": "froakie",
-   "level": 28,
+   "level": 30,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -2986,8 +3432,8 @@
       "psyshock",
       "charm"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 79,
+     "superEffectiveAvailable": 102,
+     "winnersAvailable": 107,
      "candidates": 262,
      "picks": [
       {
@@ -2998,7 +3444,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
@@ -3010,7 +3456,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
@@ -3022,7 +3468,7 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 9,
        "faster": 0,
        "theirMove": "disarming-voice"
       }
@@ -3038,25 +3484,25 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 68,
-     "winnersAvailable": 95,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 127,
      "candidates": 262,
      "picks": [
       {
-       "mon": "rhydon",
-       "move": "megahorn",
-       "eff": 2,
+       "mon": "tyrantrum",
+       "move": "head-smash",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "bite"
       },
       {
-       "mon": "mawile",
-       "move": "play-rough",
+       "mon": "rhydon",
+       "move": "megahorn",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -3074,9 +3520,61 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quilladin",
+     "level": 30,
+     "moves": [
+      "leech-seed",
+      "pin-missile",
+      "needle-arm",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 117,
+     "candidates": 263,
+     "picks": [
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "yanmega",
+       "move": "bug-buzz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "glaceon",
+       "move": "icy-wind",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "needle-arm"
       }
      ],
      "before": []
@@ -4092,7 +4590,7 @@
    "group": "Rival",
    "stage": 3,
    "starter": "chespin",
-   "level": 31,
+   "level": 33,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -4103,13 +4601,25 @@
       "charm",
       "miracle-eye"
      ],
-     "superEffectiveAvailable": 109,
-     "winnersAvailable": 85,
+     "superEffectiveAvailable": 107,
+     "winnersAvailable": 112,
      "candidates": 279,
      "picks": [
       {
        "mon": "krookodile",
        "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "malamar",
+       "move": "foul-play",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -4127,21 +4637,9 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 9,
        "faster": 0,
        "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "ferrothorn",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "psyshock"
       }
      ],
      "before": []
@@ -4155,34 +4653,10 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 81,
-     "winnersAvailable": 110,
+     "superEffectiveAvailable": 82,
+     "winnersAvailable": 132,
      "candidates": 279,
      "picks": [
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "mawile",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
       {
        "mon": "chesnaught",
        "move": "hammer-arm",
@@ -4191,9 +4665,85 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 6,
        "faster": 0,
        "theirMove": "slash"
+      },
+      {
+       "mon": "lucario",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "rhydon",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "braixen",
+     "level": 33,
+     "moves": [
+      "psybeam",
+      "fire-spin",
+      "lucky-chant",
+      "light-screen"
+     ],
+     "superEffectiveAvailable": 100,
+     "winnersAvailable": 171,
+     "candidates": 280,
+     "picks": [
+      {
+       "mon": "blastoise",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "psybeam"
+      },
+      {
+       "mon": "starmie",
+       "move": "hydro-pump",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "psybeam"
+      },
+      {
+       "mon": "gallade",
+       "move": "close-combat",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "psybeam"
       }
      ],
      "before": []
@@ -4202,12 +4752,12 @@
   },
   {
    "version": "x",
-   "key": "DETONADO_9_0",
+   "key": "DETONADO_9_0_1",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 3,
    "starter": "fennekin",
-   "level": 31,
+   "level": 33,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -4218,13 +4768,25 @@
       "charm",
       "miracle-eye"
      ],
-     "superEffectiveAvailable": 107,
-     "winnersAvailable": 86,
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 112,
      "candidates": 279,
      "picks": [
       {
        "mon": "krookodile",
        "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "malamar",
+       "move": "foul-play",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -4242,21 +4804,9 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 9,
        "faster": 0,
        "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "ferrothorn",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "psyshock"
       }
      ],
      "before": []
@@ -4270,8 +4820,8 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 78,
-     "winnersAvailable": 108,
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 130,
      "candidates": 279,
      "picks": [
       {
@@ -4287,8 +4837,8 @@
        "theirMove": "bite"
       },
       {
-       "mon": "mawile",
-       "move": "play-rough",
+       "mon": "rhydon",
+       "move": "megahorn",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -4299,16 +4849,68 @@
        "theirMove": "bite"
       },
       {
-       "mon": "sawk",
-       "move": "brick-break",
+       "mon": "hariyama",
+       "move": "vital-throw",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
+       "theirTurns": 5,
+       "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "frogadier",
+     "level": 33,
+     "moves": [
+      "smokescreen",
+      "round",
+      "fling",
+      "smack-down"
+     ],
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 195,
+     "candidates": 280,
+     "picks": [
+      {
+       "mon": "heliolisk",
+       "move": "thunder",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "smack-down"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "round"
       }
      ],
      "before": []
@@ -4317,12 +4919,12 @@
   },
   {
    "version": "x",
-   "key": "DETONADO_9_0",
+   "key": "DETONADO_9_0_2",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 3,
    "starter": "froakie",
-   "level": 31,
+   "level": 33,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -4333,13 +4935,25 @@
       "charm",
       "miracle-eye"
      ],
-     "superEffectiveAvailable": 107,
-     "winnersAvailable": 86,
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 112,
      "candidates": 279,
      "picks": [
       {
        "mon": "krookodile",
        "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "malamar",
+       "move": "foul-play",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -4357,21 +4971,9 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 9,
        "faster": 0,
        "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "ferrothorn",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "psyshock"
       }
      ],
      "before": []
@@ -4385,8 +4987,8 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 78,
-     "winnersAvailable": 109,
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 131,
      "candidates": 279,
      "picks": [
       {
@@ -4402,8 +5004,8 @@
        "theirMove": "bite"
       },
       {
-       "mon": "mawile",
-       "move": "play-rough",
+       "mon": "rhydon",
+       "move": "megahorn",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -4414,16 +5016,68 @@
        "theirMove": "bite"
       },
       {
-       "mon": "sawk",
-       "move": "brick-break",
+       "mon": "hariyama",
+       "move": "vital-throw",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
+       "theirTurns": 5,
+       "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quilladin",
+     "level": 33,
+     "moves": [
+      "leech-seed",
+      "pin-missile",
+      "needle-arm",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 130,
+     "candidates": 280,
+     "picks": [
+      {
+       "mon": "yanmega",
+       "move": "bug-buzz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "pinsir",
+       "move": "x-scissor",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "pin-missile"
       }
      ],
      "before": []
@@ -22996,6 +23650,192 @@
   },
   {
    "version": "y",
+   "key": "DETONADO_0_0",
+   "label": "Shauna",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "chespin",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "froakie",
+     "level": 5,
+     "moves": [
+      "pound",
+      "growl",
+      "bubble"
+     ],
+     "superEffectiveAvailable": 6,
+     "winnersAvailable": 34,
+     "candidates": 48,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "simisage",
+       "move": "seed-bomb",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "pound"
+      },
+      {
+       "mon": "chesnaught",
+       "move": "vine-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0.5,
+       "theirMove": "pound"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "y",
+   "key": "DETONADO_0_0_1",
+   "label": "Shauna",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "fennekin",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "chespin",
+     "level": 5,
+     "moves": [
+      "tackle",
+      "growl",
+      "vine-whip"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 25,
+     "candidates": 48,
+     "picks": [
+      {
+       "mon": "pidgeot",
+       "move": "hurricane",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "pyroar-male",
+       "move": "hyper-beam",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "simisear",
+       "move": "flame-burst",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "tackle"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "y",
+   "key": "DETONADO_0_0_2",
+   "label": "Shauna",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "froakie",
+   "level": 5,
+   "mons": [
+    {
+     "opp": "fennekin",
+     "level": 5,
+     "moves": [
+      "scratch",
+      "tail-whip",
+      "ember"
+     ],
+     "superEffectiveAvailable": 13,
+     "winnersAvailable": 37,
+     "candidates": 48,
+     "picks": [
+      {
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "simipour",
+       "move": "scald",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      },
+      {
+       "mon": "talonflame",
+       "move": "brave-bird",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "scratch"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "y",
    "key": "DETONADO_6_0",
    "label": "Grant",
    "group": "Líderes de ginásio",
@@ -24531,7 +25371,7 @@
    "group": "Rival",
    "stage": 1,
    "starter": "chespin",
-   "level": 35,
+   "level": 37,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -24542,8 +25382,8 @@
       "miracle-eye",
       "reflect"
      ],
-     "superEffectiveAvailable": 87,
-     "winnersAvailable": 63,
+     "superEffectiveAvailable": 94,
+     "winnersAvailable": 81,
      "candidates": 208,
      "picks": [
       {
@@ -24571,13 +25411,13 @@
        "theirMove": "psyshock"
       },
       {
-       "mon": "crawdaunt",
-       "move": "knock-off",
+       "mon": "malamar",
+       "move": "foul-play",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
+       "myTurns": 1,
        "theirTurns": null,
        "faster": 0,
        "theirMove": "psyshock"
@@ -24594,10 +25434,22 @@
       "slash",
       "swords-dance"
      ],
-     "superEffectiveAvailable": 62,
-     "winnersAvailable": 84,
+     "superEffectiveAvailable": 66,
+     "winnersAvailable": 104,
      "candidates": 208,
      "picks": [
+      {
+       "mon": "chesnaught",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "slash"
+      },
       {
        "mon": "rhydon",
        "move": "megahorn",
@@ -24621,18 +25473,58 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "bite"
-      },
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "delphox",
+     "level": 37,
+     "moves": [
+      "lucky-chant",
+      "light-screen",
+      "psyshock",
+      "mystical-fire"
+     ],
+     "superEffectiveAvailable": 123,
+     "winnersAvailable": 29,
+     "candidates": 209,
+     "picks": [
       {
-       "mon": "chesnaught",
-       "move": "hammer-arm",
+       "mon": "sharpedo",
+       "move": "crunch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "slash"
+       "theirMove": "mystical-fire"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "psyshock"
+      },
+      {
+       "mon": "wailord",
+       "move": "water-spout",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "psyshock"
       }
      ],
      "before": []
@@ -24641,12 +25533,12 @@
   },
   {
    "version": "y",
-   "key": "DETONADO_12_0",
+   "key": "DETONADO_12_0_1",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 1,
    "starter": "fennekin",
-   "level": 35,
+   "level": 37,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -24657,8 +25549,8 @@
       "miracle-eye",
       "reflect"
      ],
-     "superEffectiveAvailable": 85,
-     "winnersAvailable": 64,
+     "superEffectiveAvailable": 92,
+     "winnersAvailable": 81,
      "candidates": 208,
      "picks": [
       {
@@ -24686,13 +25578,13 @@
        "theirMove": "psyshock"
       },
       {
-       "mon": "crawdaunt",
-       "move": "knock-off",
+       "mon": "malamar",
+       "move": "foul-play",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
+       "myTurns": 1,
        "theirTurns": null,
        "faster": 0,
        "theirMove": "psyshock"
@@ -24709,8 +25601,8 @@
       "slash",
       "swords-dance"
      ],
-     "superEffectiveAvailable": 59,
-     "winnersAvailable": 82,
+     "superEffectiveAvailable": 63,
+     "winnersAvailable": 103,
      "candidates": 208,
      "picks": [
       {
@@ -24745,9 +25637,61 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "greninja",
+     "level": 37,
+     "moves": [
+      "shadow-sneak",
+      "spikes",
+      "feint-attack",
+      "water-shuriken"
+     ],
+     "superEffectiveAvailable": 92,
+     "winnersAvailable": 82,
+     "candidates": 209,
+     "picks": [
+      {
+       "mon": "scraggy",
+       "move": "high-jump-kick",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "water-shuriken"
+      },
+      {
+       "mon": "florges",
+       "move": "moonblast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "feint-attack"
+      },
+      {
+       "mon": "pangoro",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "water-shuriken"
       }
      ],
      "before": []
@@ -24756,12 +25700,12 @@
   },
   {
    "version": "y",
-   "key": "DETONADO_12_0",
+   "key": "DETONADO_12_0_2",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 1,
    "starter": "froakie",
-   "level": 35,
+   "level": 37,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -24772,8 +25716,8 @@
       "miracle-eye",
       "reflect"
      ],
-     "superEffectiveAvailable": 85,
-     "winnersAvailable": 64,
+     "superEffectiveAvailable": 92,
+     "winnersAvailable": 81,
      "candidates": 208,
      "picks": [
       {
@@ -24824,8 +25768,8 @@
       "slash",
       "swords-dance"
      ],
-     "superEffectiveAvailable": 59,
-     "winnersAvailable": 83,
+     "superEffectiveAvailable": 63,
+     "winnersAvailable": 103,
      "candidates": 208,
      "picks": [
       {
@@ -24860,9 +25804,61 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "chesnaught",
+     "level": 37,
+     "moves": [
+      "needle-arm",
+      "take-down",
+      "seed-bomb",
+      "spiky-shield"
+     ],
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 62,
+     "candidates": 209,
+     "picks": [
+      {
+       "mon": "vespiquen",
+       "move": "air-slash",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "charizard",
+       "move": "air-slash",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "pidgeot",
+       "move": "hurricane",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "take-down"
       }
      ],
      "before": []
@@ -25377,7 +26373,7 @@
    "group": "Rival",
    "stage": 2,
    "starter": "chespin",
-   "level": 28,
+   "level": 30,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -25388,8 +26384,8 @@
       "psyshock",
       "charm"
      ],
-     "superEffectiveAvailable": 102,
-     "winnersAvailable": 74,
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 104,
      "candidates": 262,
      "picks": [
       {
@@ -25400,7 +26396,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
@@ -25412,21 +26408,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
       {
-       "mon": "gardevoir",
-       "move": "moonblast",
-       "eff": 1,
+       "mon": "absol",
+       "move": "bite",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
+       "myTurns": 1,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "psyshock"
+       "theirMove": "disarming-voice"
       }
      ],
      "before": []
@@ -25440,10 +26436,34 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 70,
-     "winnersAvailable": 95,
+     "superEffectiveAvailable": 78,
+     "winnersAvailable": 129,
      "candidates": 262,
      "picks": [
+      {
+       "mon": "chesnaught",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "tyrantrum",
+       "move": "head-smash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
       {
        "mon": "rhydon",
        "move": "megahorn",
@@ -25455,30 +26475,58 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "braixen",
+     "level": 30,
+     "moves": [
+      "psybeam",
+      "fire-spin",
+      "lucky-chant",
+      "light-screen"
+     ],
+     "superEffectiveAvailable": 83,
+     "winnersAvailable": 153,
+     "candidates": 263,
+     "picks": [
+      {
+       "mon": "gallade",
+       "move": "close-combat",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "psybeam"
       },
       {
-       "mon": "mawile",
-       "move": "play-rough",
+       "mon": "solrock",
+       "move": "rock-slide",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 8,
        "faster": 0,
-       "theirMove": "bite"
+       "theirMove": "psybeam"
       },
       {
-       "mon": "throh",
-       "move": "vital-throw",
-       "eff": 2,
+       "mon": "haxorus",
+       "move": "outrage",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 2,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "slash"
+       "faster": 1,
+       "theirMove": "psybeam"
       }
      ],
      "before": []
@@ -25487,12 +26535,12 @@
   },
   {
    "version": "y",
-   "key": "DETONADO_7_0",
+   "key": "DETONADO_7_0_1",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 2,
    "starter": "fennekin",
-   "level": 28,
+   "level": 30,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -25503,8 +26551,8 @@
       "psyshock",
       "charm"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 75,
+     "superEffectiveAvailable": 103,
+     "winnersAvailable": 104,
      "candidates": 262,
      "picks": [
       {
@@ -25515,7 +26563,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
@@ -25527,20 +26575,20 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
       {
-       "mon": "gardevoir",
-       "move": "moonblast",
-       "eff": 1,
+       "mon": "delphox",
+       "move": "shadow-ball",
+       "eff": 2,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "psyshock"
       }
      ],
@@ -25555,10 +26603,22 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 67,
-     "winnersAvailable": 93,
+     "superEffectiveAvailable": 75,
+     "winnersAvailable": 126,
      "candidates": 262,
      "picks": [
+      {
+       "mon": "tyrantrum",
+       "move": "head-smash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
       {
        "mon": "rhydon",
        "move": "megahorn",
@@ -25572,19 +26632,7 @@
        "theirMove": "bite"
       },
       {
-       "mon": "mawile",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "throh",
+       "mon": "hariyama",
        "move": "vital-throw",
        "eff": 2,
        "via": "level-up",
@@ -25594,6 +26642,58 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "frogadier",
+     "level": 30,
+     "moves": [
+      "water-pulse",
+      "smokescreen",
+      "round",
+      "fling"
+     ],
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 131,
+     "candidates": 263,
+     "picks": [
+      {
+       "mon": "bellossom",
+       "move": "leaf-storm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "round"
+      },
+      {
+       "mon": "roserade",
+       "move": "magical-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "round"
+      },
+      {
+       "mon": "florges",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "water-pulse"
       }
      ],
      "before": []
@@ -25602,12 +26702,12 @@
   },
   {
    "version": "y",
-   "key": "DETONADO_7_0",
+   "key": "DETONADO_7_0_2",
    "label": "Calem/Serena",
    "group": "Rival",
    "stage": 2,
    "starter": "froakie",
-   "level": 28,
+   "level": 30,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -25618,8 +26718,8 @@
       "psyshock",
       "charm"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 75,
+     "superEffectiveAvailable": 103,
+     "winnersAvailable": 104,
      "candidates": 262,
      "picks": [
       {
@@ -25630,7 +26730,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
@@ -25642,21 +26742,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "disarming-voice"
       },
       {
-       "mon": "gardevoir",
-       "move": "moonblast",
-       "eff": 1,
+       "mon": "absol",
+       "move": "bite",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
+       "myTurns": 1,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "psyshock"
+       "theirMove": "disarming-voice"
       }
      ],
      "before": []
@@ -25670,10 +26770,22 @@
       "double-team",
       "slash"
      ],
-     "superEffectiveAvailable": 67,
-     "winnersAvailable": 94,
+     "superEffectiveAvailable": 75,
+     "winnersAvailable": 127,
      "candidates": 262,
      "picks": [
+      {
+       "mon": "tyrantrum",
+       "move": "head-smash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
       {
        "mon": "rhydon",
        "move": "megahorn",
@@ -25687,19 +26799,7 @@
        "theirMove": "bite"
       },
       {
-       "mon": "mawile",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "throh",
+       "mon": "hariyama",
        "move": "vital-throw",
        "eff": 2,
        "via": "level-up",
@@ -25709,6 +26809,58 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quilladin",
+     "level": 30,
+     "moves": [
+      "leech-seed",
+      "pin-missile",
+      "needle-arm",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 108,
+     "winnersAvailable": 117,
+     "candidates": 263,
+     "picks": [
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "yanmega",
+       "move": "bug-buzz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "glaceon",
+       "move": "icy-wind",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "needle-arm"
       }
      ],
      "before": []
@@ -26724,122 +27876,7 @@
    "group": "Rival",
    "stage": 3,
    "starter": "chespin",
-   "level": 31,
-   "mons": [
-    {
-     "opp": "meowstic-male",
-     "level": 31,
-     "moves": [
-      "disarming-voice",
-      "psyshock",
-      "charm",
-      "miracle-eye"
-     ],
-     "superEffectiveAvailable": 109,
-     "winnersAvailable": 82,
-     "candidates": 279,
-     "picks": [
-      {
-       "mon": "krookodile",
-       "move": "crunch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "ferrothorn",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "psyshock"
-      },
-      {
-       "mon": "gardevoir",
-       "move": "moonblast",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "psyshock"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "absol",
-     "level": 31,
-     "moves": [
-      "taunt",
-      "bite",
-      "double-team",
-      "slash"
-     ],
-     "superEffectiveAvailable": 80,
-     "winnersAvailable": 109,
-     "candidates": 279,
-     "picks": [
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "mawile",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "throh",
-       "move": "vital-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "slash"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "y",
-   "key": "DETONADO_9_0",
-   "label": "Calem/Serena",
-   "group": "Rival",
-   "stage": 3,
-   "starter": "fennekin",
-   "level": 31,
+   "level": 33,
    "mons": [
     {
      "opp": "meowstic-male",
@@ -26851,177 +27888,74 @@
       "miracle-eye"
      ],
      "superEffectiveAvailable": 107,
-     "winnersAvailable": 83,
-     "candidates": 279,
-     "picks": [
-      {
-       "mon": "krookodile",
-       "move": "crunch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "ferrothorn",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "psyshock"
-      },
-      {
-       "mon": "gardevoir",
-       "move": "moonblast",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "psyshock"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "absol",
-     "level": 31,
-     "moves": [
-      "taunt",
-      "bite",
-      "double-team",
-      "slash"
-     ],
-     "superEffectiveAvailable": 77,
-     "winnersAvailable": 107,
-     "candidates": 279,
-     "picks": [
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "mawile",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "bite"
-      },
-      {
-       "mon": "throh",
-       "move": "vital-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "slash"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "y",
-   "key": "DETONADO_9_0",
-   "label": "Calem/Serena",
-   "group": "Rival",
-   "stage": 3,
-   "starter": "froakie",
-   "level": 31,
-   "mons": [
-    {
-     "opp": "meowstic-male",
-     "level": 31,
-     "moves": [
-      "disarming-voice",
-      "psyshock",
-      "charm",
-      "miracle-eye"
-     ],
-     "superEffectiveAvailable": 107,
-     "winnersAvailable": 83,
-     "candidates": 279,
-     "picks": [
-      {
-       "mon": "krookodile",
-       "move": "crunch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "ferrothorn",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "psyshock"
-      },
-      {
-       "mon": "gardevoir",
-       "move": "moonblast",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "psyshock"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "absol",
-     "level": 31,
-     "moves": [
-      "taunt",
-      "bite",
-      "double-team",
-      "slash"
-     ],
-     "superEffectiveAvailable": 77,
      "winnersAvailable": 108,
      "candidates": 279,
      "picks": [
       {
+       "mon": "krookodile",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "malamar",
+       "move": "foul-play",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "ferrothorn",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "psyshock"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "absol",
+     "level": 31,
+     "moves": [
+      "taunt",
+      "bite",
+      "double-team",
+      "slash"
+     ],
+     "superEffectiveAvailable": 81,
+     "winnersAvailable": 131,
+     "candidates": 279,
+     "picks": [
+      {
+       "mon": "chesnaught",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "slash"
+      },
+      {
        "mon": "lucario",
        "move": "close-combat",
        "eff": 2,
@@ -27034,8 +27968,163 @@
        "theirMove": "bite"
       },
       {
-       "mon": "mawile",
-       "move": "play-rough",
+       "mon": "rhydon",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "bite"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "braixen",
+     "level": 33,
+     "moves": [
+      "psybeam",
+      "fire-spin",
+      "lucky-chant",
+      "light-screen"
+     ],
+     "superEffectiveAvailable": 100,
+     "winnersAvailable": 168,
+     "candidates": 280,
+     "picks": [
+      {
+       "mon": "blastoise",
+       "move": "aqua-tail",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "psybeam"
+      },
+      {
+       "mon": "gallade",
+       "move": "close-combat",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "psybeam"
+      },
+      {
+       "mon": "solrock",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "psybeam"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "y",
+   "key": "DETONADO_9_0_1",
+   "label": "Calem/Serena",
+   "group": "Rival",
+   "stage": 3,
+   "starter": "fennekin",
+   "level": 33,
+   "mons": [
+    {
+     "opp": "meowstic-male",
+     "level": 31,
+     "moves": [
+      "disarming-voice",
+      "psyshock",
+      "charm",
+      "miracle-eye"
+     ],
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 108,
+     "candidates": 279,
+     "picks": [
+      {
+       "mon": "krookodile",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "malamar",
+       "move": "foul-play",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "ferrothorn",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "psyshock"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "absol",
+     "level": 31,
+     "moves": [
+      "taunt",
+      "bite",
+      "double-team",
+      "slash"
+     ],
+     "superEffectiveAvailable": 78,
+     "winnersAvailable": 129,
+     "candidates": 279,
+     "picks": [
+      {
+       "mon": "lucario",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "rhydon",
+       "move": "megahorn",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
@@ -27046,7 +28135,7 @@
        "theirMove": "bite"
       },
       {
-       "mon": "throh",
+       "mon": "hariyama",
        "move": "vital-throw",
        "eff": 2,
        "via": "level-up",
@@ -27056,6 +28145,225 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "frogadier",
+     "level": 33,
+     "moves": [
+      "smokescreen",
+      "round",
+      "fling",
+      "smack-down"
+     ],
+     "superEffectiveAvailable": 52,
+     "winnersAvailable": 196,
+     "candidates": 280,
+     "picks": [
+      {
+       "mon": "heliolisk",
+       "move": "thunder",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "smack-down"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ampharos",
+       "move": "zap-cannon",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "round"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "y",
+   "key": "DETONADO_9_0_2",
+   "label": "Calem/Serena",
+   "group": "Rival",
+   "stage": 3,
+   "starter": "froakie",
+   "level": 33,
+   "mons": [
+    {
+     "opp": "meowstic-male",
+     "level": 31,
+     "moves": [
+      "disarming-voice",
+      "psyshock",
+      "charm",
+      "miracle-eye"
+     ],
+     "superEffectiveAvailable": 105,
+     "winnersAvailable": 108,
+     "candidates": 279,
+     "picks": [
+      {
+       "mon": "krookodile",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "malamar",
+       "move": "foul-play",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "ferrothorn",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "psyshock"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "absol",
+     "level": 31,
+     "moves": [
+      "taunt",
+      "bite",
+      "double-team",
+      "slash"
+     ],
+     "superEffectiveAvailable": 78,
+     "winnersAvailable": 130,
+     "candidates": 279,
+     "picks": [
+      {
+       "mon": "lucario",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "rhydon",
+       "move": "megahorn",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "bite"
+      },
+      {
+       "mon": "hariyama",
+       "move": "vital-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "slash"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "quilladin",
+     "level": 33,
+     "moves": [
+      "leech-seed",
+      "pin-missile",
+      "needle-arm",
+      "take-down"
+     ],
+     "superEffectiveAvailable": 114,
+     "winnersAvailable": 131,
+     "candidates": 280,
+     "picks": [
+      {
+       "mon": "yanmega",
+       "move": "bug-buzz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "charizard",
+       "move": "heat-wave",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "take-down"
+      },
+      {
+       "mon": "glaceon",
+       "move": "icy-wind",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "needle-arm"
       }
      ],
      "before": []

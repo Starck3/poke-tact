@@ -29,7 +29,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
 - **Validação**: `sun-moon-acquisition.json` → `progress.stageNames` com a provação do Fairium; nenhum dos presentes.
 - **Se travar**: ❌ com o motivo (o texto não dá pista confiável).
 
-### 3 + 4. Rival/companheiro com "inicial" genérico (Gens 5–9, inclusive Z-A Urbain/Taunie) — ⬜
+### 3 + 4. Rival/companheiro com "inicial" genérico (Gens 5–9, inclusive Z-A Urbain/Taunie) — ✅ 0.17.0
 - **Objetivo**: lutas com "inicial lv.5" / "Chikorita/Tepig/Totodile lv.5" deixam de perder esse Pokémon. Se o texto disser a
   regra (pega o forte/fraco contra o seu), gerar `forStarter`; se não, uma variante por inicial possível com o rótulo
   "(se o inicial dele for X)" — sem inventar a regra.
@@ -72,3 +72,9 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
 - **Etapa 2 — ✅ sem mudança de dados.** O detonado diz que no Sun/Moon a Mina "não tem nenhum trial para lhe oferecer" e
   entrega o Fairium como presente — o progresso atual (7 provações + 4 grandes provações) está certo. Teste de regressão
   registra o motivo. Sem versão nova (só teste + plano).
+- **Etapas 3+4 — ✅ 0.17.0.** "Inicial genérico pulado" = 0 em X/Y, SM, SwSh, BDSP, LA, SV e Z-A. Regra do texto em X/Y
+  (Shauna desvantagem, Calem/Serena vantagem), SwSh (Hop fraqueza), BDSP (Barry vantagem), LA (Rei/Akari desvantagem),
+  SV (Nemona fraqueza), SM (Kukui vantagem); sem regra → variantes rotuladas: Hau (SM), Urbain/Taunie (Z-A), rival do
+  Let's Go, N (BW, Reshiram/Zekrom), Honey (SwSh). Banco de lutas: 36171 → 37872 sugestões, 99% vencem. Tentativas: a 1ª
+  leitura da regra pegava a frase inteira (X/Y: Calem herdava a "desvantagem" da Shauna) e "golpe de vantagem ao inicial
+  de Hop" → corrigido para o trecho com o nome e a forma "… ao seu".

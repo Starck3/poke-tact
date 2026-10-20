@@ -36,7 +36,44 @@
  ],
  "unresolved": [],
  "fuzzy": [],
- "skippedPlaceholders": 7,
+ "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Hau",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Hau",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Hau",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Hau",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Hau",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Professor Kukui",
+   "rule": "strong",
+   "by": "\"inicial de vantagem ao seu\""
+  },
+  {
+   "battle": "Professor Kukui",
+   "rule": "strong",
+   "by": "\"inicial de vantagem ao seu\""
+  }
+ ],
  "withStage": 1684,
  "total": 2014,
  "placesWithoutStage": [

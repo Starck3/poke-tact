@@ -30,18 +30,11 @@
   "Star Badge do tipo lutador←Eri"
  ],
  "unresolved": [
-  "Sprigatito/Fuecoco/Quaxly",
-  "Sprigatito/Fuecoco/Quaxly",
   "Segin Starmobile",
-  "Floragato/Crocalor/Quaxwell",
   "Schedar Starmobile",
   "Navi Starmobile",
-  "Meowscarada/Skeledirge/Quaquaval",
-  "Meowscarada/Skeledirge/Quaquaval",
   "Ruchbah Starmobile",
-  "Caph Starmobile",
-  "Meowscarada/Skeledirge/Quaquaval",
-  "Meowscarada/Skeledirge/Quaquaval"
+  "Caph Starmobile"
  ],
  "fuzzy": [
   "Skovillain → scovillain",
@@ -51,6 +44,43 @@
   "Skovillain → scovillain"
  ],
  "skippedPlaceholders": 0,
+ "placeholderReport": [
+  {
+   "battle": "Nemona",
+   "rule": null,
+   "variants": 3
+  },
+  {
+   "battle": "Nemona",
+   "rule": "weak",
+   "by": "Nemona usa: Sprigatito/Fuecoco/Quaxly lv.5 (inicial com fraqueza ao seu) Após vencê-la"
+  },
+  {
+   "battle": "Nemona",
+   "rule": "weak",
+   "by": "Nemona usa: Sprigatito/Fuecoco/Quaxly lv.8 (inicial com fraqueza ao seu) Pawmi lv.9 (Tera Electric) Nemona vai terastalizar o Pawmi dela"
+  },
+  {
+   "battle": "Nemona",
+   "rule": "weak",
+   "by": "Nemona usa: Lycanroc lv.36 Goomy lv.36 Pawmo lv.36 Meowscarada (Tera Grass)/Skeledirge (Tera Fire)/Quaquaval (Tera Water) lv.37 (inicial com"
+  },
+  {
+   "battle": "Nemona",
+   "rule": "weak",
+   "by": "Nemona usa: Lycanroc lv.42 Sliggoo lv.42 Pawmot lv.42 Meowscarada (Tera Grass)/Skeledirge (Tera Fire)/Quaquaval (Tera Water) lv.43 (inicial "
+  },
+  {
+   "battle": "Nemona",
+   "rule": "weak",
+   "by": "Nemona usa: Lycanroc lv.65 Goodra lv.65 Dudunsparce lv.65 Orthworm lv.65 Pawmot lv.65 Meowscarada (Tera Grass)/Skeledirge (Tera Fire)/Quaqua"
+  },
+  {
+   "battle": "Nemona",
+   "rule": "weak",
+   "by": "Penny usa: Umbreon lv.69 Vaporeon lv.69 Jolteon lv.69 Flareon lv.69 Leafeon lv.69 Sylveon lv.70 (Tera Fairy) Nemona usa: Lycanroc lv.71 Good"
+  }
+ ],
  "withStage": 10610,
  "total": 10864,
  "placesWithoutStage": [

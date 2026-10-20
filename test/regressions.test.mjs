@@ -2071,3 +2071,20 @@ test('Sun/Moon: o Fairium da Mina não é marco do progresso (no SM ela não tem
   const html = existsSync(new URL('../data-sources/pokemythology/detonado-sun-moon.html', import.meta.url)) ? readFileSync(new URL('../data-sources/pokemythology/detonado-sun-moon.html', import.meta.url), 'utf8') : null;
   if (html) assert.match(html.replace(/<[^>]+>/g, ' '), /não tem nenhum trial para lhe oferecer/);
 });
+
+test('regressão: Pokémon "inicial" genérico do rival — regra do texto + triângulo de tipos; sem regra, variantes rotuladas', () => {
+  // Antes esse Pokémon era descartado ("inicial genérico pulado"). Regra = "de vantagem/desvantagem/fraqueza AO SEU" no trecho
+  // da frase com o nome (o X/Y fala de Shauna e Calem na mesma frase; "golpe de vantagem ao inicial de Hop" não conta).
+  const t = (g) => load(`${g}-trainers.json`).trainers;
+  const team = (g, name, starter) => t(g).filter((x) => x.name === name && x.forStarter?.includes(starter)).map((x) => x.party.map((p) => p.species));
+  assert.ok(team('x-y', 'Calem/Serena', 'chespin').some((p) => p.includes('braixen'))); // Fogo > Planta: vantagem ao seu
+  assert.ok(team('x-y', 'Calem/Serena', 'froakie').some((p) => p.includes('quilladin'))); // Planta > Água
+  assert.ok(team('x-y', 'Shauna', 'chespin').some((p) => p.includes('froakie'))); // Shauna: desvantagem ao seu
+  assert.ok(team('sword-shield', 'Hop', 'grookey').every((p) => !p.some((s) => /scorbunny|raboot|cinderace/.test(s)))); // Hop: fraqueza ao seu
+  // sem regra no texto (Hau no Sun/Moon): uma variante por inicial possível, rotulada
+  assert.ok(t('sun-moon').some((x) => x.name === 'Hau' && /se o inicial dele for Rowlet/.test(x.label)));
+  assert.ok(t('legends-za').some((x) => /Urbain/.test(x.name) && x.party.some((p) => p.species === 'chikorita')));
+  for (const g of ['x-y', 'sun-moon', 'sword-shield', 'brilliant-diamond-shining-pearl', 'legends-arceus', 'scarlet-violet', 'legends-za']) {
+    assert.equal(JSON.parse(readFileSync(new URL(`../reports/${g}/detonado-modern.json`, import.meta.url), 'utf8')).skippedPlaceholders, 0, g);
+  }
+});
