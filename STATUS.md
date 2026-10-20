@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.10.0** (main `ca5d358`, publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.11.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -18,15 +18,16 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 | Black 2/White 2 | 5 | decomp (pokebw2) | decomp | sim | decomp | sim | — |
 | Black/White | 5 | PKHeX | PKHeX | sim | detonado (golpes estimados) | sim | — |
 | X/Y, Omega Ruby/Alpha Sapphire | 6 | PKHeX | PKHeX | sim | detonado | sim | Mega Evolução |
-| Sun/Moon | 7 | PKHeX | PKHeX | sim (4 kahunas) | detonado | sim | Mega, golpes Z |
+| Sun/Moon | 7 | PKHeX | PKHeX | sim (provações + grandes provações) | detonado | sim | Mega, golpes Z |
 | **Ultra Sun/Ultra Moon** | 7 | PKHeX | PKHeX | **não** | **não** | **não** | Mega, golpes Z |
 | Let's Go Pikachu/Eevee | 7 | PKHeX | PKHeX | sim | detonado | sim | Mega Evolução |
 | Sword/Shield | 8 | PKHeX | PKHeX | sim | detonado | sim | Dynamax/Gigantamax |
 | Brilliant Diamond/Shining Pearl | 8 | PKHeX | PKHeX | sim | detonado | sim | — |
-| Legends: Arceus | 8 | PKHeX | PKHeX | **não** (sem ginásios) | detonado | sim (sem estágios) | estilos ágil/forte, valores próprios de golpes |
+| Legends: Arceus | 8 | PKHeX | PKHeX | sim (5 nobres) | detonado | sim | estilos ágil/forte, valores próprios de golpes |
 | Scarlet/Violet | 9 | PKHeX | PKHeX | sim | detonado | sim | Terastal |
-| **Legends: Z-A** | 9 | PKHeX (sem PokéAPI) | PKHeX | **não** | **não** | **não** | tempo real, Mega, valores próprios de golpes |
+| Legends: Z-A | 9 | PKHeX (sem PokéAPI) | PKHeX | sim (rank Z → A) | detonado | sim | tempo real, Mega, valores próprios de golpes |
 
+Todos os jogos têm a aba **Onde capturar** (todos os locais de um Pokémon na versão, com o ponto da história).
 Também feito nos jogos sem decomp (Gens 5–9): formas regionais como Pokémon próprios (Alola, Galar, Hisui, Paldea), evoluções
 do próprio jogo (troca, item, forma, impossíveis no jogo), TMs pelas tabelas do jogo e as espécies de Hisui do Legends: Arceus.
 Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Banco de lutas: 20 jogos, 99% das sugestões vencem.
@@ -34,15 +35,14 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
 ## O que falta (do mais importante para o menos)
 
 ### Dá para fazer com as fontes que já temos
-1. **Legends: Z-A — treinadores, progresso e Detonado.** O PokeMythology tem `detonado-legends-z-a` (está no índice, em
-   `data-sources/pokemythology/_detonados.json`), mas a página não foi baixada. Baixar (mesmas regras do download dos outros)
-   e rodar `node scripts/build-detonado-modern.mjs legends-za`; conferir o leitor (`scripts/lib/pokemythology-modern.mjs`) nesse
-   formato de página.
-2. **Legends: Arceus — estágios pelos 5 Pokémon nobres** (Kleavor, Lilligant, Arcanine, Electrode, Avalugg). O detonado só os
-   traz como títulos de seção ("… – ACALMANDO O NOBLE X"). Hoje o jogo não tem progresso.
-3. **Sun/Moon — provações dos capitães** (Ilima, Lana, Kiawe, Mallow, Sophocles, Acerola, Mina) como marcos além dos 4
-   kahunas. Os Z-Crystals do texto dão a ordem, mas misturam presentes (Steelium, Buginium, Poisonium, Eevium); os capitães saem
-   como "outros" e os totens não aparecem como "usa:".
+1. **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
+   pós-jogo; a regra atual ("título vence") marca como pós-jogo lugares que abrem antes: Safari Zone de Hoenn (RSE, citada em
+   Fortree, estágio 6), Power Plant do FRLG (citada em "Agora você tem Surf!", estágio 6), Abandoned Ship, Tin Tower… A lista
+   está em `acq.progress.reviewEarlierMention` de cada jogo (centenas de mapas). Aceitar a citação anterior direto erraria
+   Silver Cave (Crystal) e Viridian City (Gold/Silver). Plano: aceitar só quando um mapa vizinho (conexão/warp do decomp) já
+   está liberado naquele estágio; mexe nos 7 `build-acquisition*` (gen1, gen2, gen3, gen4, dp, hgss, gen5) + testes.
+2. **Sun/Moon — provação da Mina (Fairium)**: não tem totem no texto e ficou fora dos marcos.
+3. **Legends: Z-A — o rival/companheiro (Urbain/Taunie) e as lutas com inicial genérico** ("Chikorita/Tepig/Totodile").
 4. **Rival com "inicial" genérico** ("[chespin][fennekin][froakie] inicial lv.5"): esse Pokémon fica fora do time. Dá para
    montar uma variante por inicial do jogador, mas a regra (o rival pega o forte ou o fraco contra o seu?) muda por jogo e
    precisa vir do texto.

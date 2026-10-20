@@ -8,7 +8,7 @@
    "wins": 2466,
    "picks": 2466,
    "comfy": 2459,
-   "turnsSum": 4085,
+   "turnsSum": 4079,
    "turnsN": 2466
   },
   "antes": {
@@ -7076,9 +7076,9 @@
       "hone-claws",
       "razor-shell"
      ],
-     "superEffectiveAvailable": 109,
-     "winnersAvailable": 98,
-     "candidates": 259,
+     "superEffectiveAvailable": 110,
+     "winnersAvailable": 101,
+     "candidates": 263,
      "picks": [
       {
        "mon": "gourgeist-average",
@@ -7128,9 +7128,9 @@
       "guard-split",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 78,
-     "winnersAvailable": 202,
-     "candidates": 258,
+     "superEffectiveAvailable": 80,
+     "winnersAvailable": 206,
+     "candidates": 262,
      "picks": [
       {
        "mon": "machop",
@@ -7180,9 +7180,9 @@
       "stealth-rock",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 114,
-     "winnersAvailable": 116,
-     "candidates": 259,
+     "superEffectiveAvailable": 116,
+     "winnersAvailable": 119,
+     "candidates": 263,
      "picks": [
       {
        "mon": "stunfisk-galar",
@@ -7197,20 +7197,20 @@
        "theirMove": "stomp"
       },
       {
-       "mon": "whiscash",
-       "move": "muddy-water",
+       "mon": "seismitoad",
+       "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "stomp"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "whiscash",
+       "move": "muddy-water",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -7232,9 +7232,9 @@
       "incinerate",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 97,
-     "winnersAvailable": 79,
-     "candidates": 259,
+     "superEffectiveAvailable": 98,
+     "winnersAvailable": 81,
+     "candidates": 263,
      "picks": [
       {
        "mon": "rhydon",
@@ -7295,9 +7295,9 @@
       "hone-claws",
       "razor-shell"
      ],
-     "superEffectiveAvailable": 109,
-     "winnersAvailable": 95,
-     "candidates": 259,
+     "superEffectiveAvailable": 110,
+     "winnersAvailable": 98,
+     "candidates": 263,
      "picks": [
       {
        "mon": "gourgeist-average",
@@ -7347,9 +7347,9 @@
       "guard-split",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 78,
-     "winnersAvailable": 200,
-     "candidates": 258,
+     "superEffectiveAvailable": 80,
+     "winnersAvailable": 204,
+     "candidates": 262,
      "picks": [
       {
        "mon": "machop",
@@ -7399,9 +7399,9 @@
       "stealth-rock",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 114,
-     "winnersAvailable": 114,
-     "candidates": 259,
+     "superEffectiveAvailable": 116,
+     "winnersAvailable": 117,
+     "candidates": 263,
      "picks": [
       {
        "mon": "stunfisk-galar",
@@ -7416,20 +7416,20 @@
        "theirMove": "stomp"
       },
       {
-       "mon": "whiscash",
-       "move": "muddy-water",
+       "mon": "seismitoad",
+       "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "stomp"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "whiscash",
+       "move": "muddy-water",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -7451,9 +7451,9 @@
       "incinerate",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 79,
-     "candidates": 259,
+     "superEffectiveAvailable": 101,
+     "winnersAvailable": 81,
+     "candidates": 263,
      "picks": [
       {
        "mon": "rhydon",
@@ -7514,9 +7514,9 @@
       "hone-claws",
       "razor-shell"
      ],
-     "superEffectiveAvailable": 106,
-     "winnersAvailable": 96,
-     "candidates": 259,
+     "superEffectiveAvailable": 107,
+     "winnersAvailable": 99,
+     "candidates": 263,
      "picks": [
       {
        "mon": "gourgeist-average",
@@ -7566,9 +7566,9 @@
       "guard-split",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 81,
-     "winnersAvailable": 202,
-     "candidates": 258,
+     "superEffectiveAvailable": 83,
+     "winnersAvailable": 206,
+     "candidates": 262,
      "picks": [
       {
        "mon": "machop",
@@ -7618,9 +7618,9 @@
       "stealth-rock",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 114,
-     "winnersAvailable": 117,
-     "candidates": 259,
+     "superEffectiveAvailable": 116,
+     "winnersAvailable": 120,
+     "candidates": 263,
      "picks": [
       {
        "mon": "stunfisk-galar",
@@ -7635,20 +7635,20 @@
        "theirMove": "stomp"
       },
       {
-       "mon": "whiscash",
-       "move": "muddy-water",
+       "mon": "seismitoad",
+       "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "stomp"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "whiscash",
+       "move": "muddy-water",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -7670,9 +7670,9 @@
       "incinerate",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 82,
-     "candidates": 259,
+     "superEffectiveAvailable": 101,
+     "winnersAvailable": 84,
+     "candidates": 263,
      "picks": [
       {
        "mon": "rhydon",
@@ -7733,9 +7733,9 @@
       "self-destruct",
       "sludge-bomb"
      ],
-     "superEffectiveAvailable": 73,
-     "winnersAvailable": 61,
-     "candidates": 258,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 62,
+     "candidates": 262,
      "picks": [
       {
        "mon": "klinklang",
@@ -7785,9 +7785,9 @@
       "sweet-scent",
       "iron-head"
      ],
-     "superEffectiveAvailable": 49,
-     "winnersAvailable": 112,
-     "candidates": 258,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 114,
+     "candidates": 262,
      "picks": [
       {
        "mon": "torkoal",
@@ -7837,9 +7837,9 @@
       "sweet-kiss",
       "life-dew"
      ],
-     "superEffectiveAvailable": 113,
-     "winnersAvailable": 224,
-     "candidates": 258,
+     "superEffectiveAvailable": 114,
+     "winnersAvailable": 228,
+     "candidates": 262,
      "picks": [
       {
        "mon": "klinklang",
@@ -7889,9 +7889,9 @@
       "acid-armor",
       "dazzling-gleam"
      ],
-     "superEffectiveAvailable": 38,
-     "winnersAvailable": 55,
-     "candidates": 259,
+     "superEffectiveAvailable": 39,
+     "winnersAvailable": 56,
+     "candidates": 263,
      "picks": [
       {
        "mon": "klinklang",
@@ -7906,6 +7906,18 @@
        "theirMove": "dazzling-gleam"
       },
       {
+       "mon": "perrserker",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "dazzling-gleam"
+      },
+      {
        "mon": "corviknight",
        "move": "steel-wing",
        "eff": 2,
@@ -7915,18 +7927,6 @@
        "myTurns": 2,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
-      {
-       "mon": "stunfisk-galar",
-       "move": "metal-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
        "theirMove": "dazzling-gleam"
       }
      ],
@@ -7952,9 +7952,9 @@
       "self-destruct",
       "sludge-bomb"
      ],
-     "superEffectiveAvailable": 73,
-     "winnersAvailable": 61,
-     "candidates": 258,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 62,
+     "candidates": 262,
      "picks": [
       {
        "mon": "klinklang",
@@ -8004,9 +8004,9 @@
       "sweet-scent",
       "iron-head"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 114,
-     "candidates": 258,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 116,
+     "candidates": 262,
      "picks": [
       {
        "mon": "torkoal",
@@ -8056,9 +8056,9 @@
       "sweet-kiss",
       "life-dew"
      ],
-     "superEffectiveAvailable": 113,
-     "winnersAvailable": 224,
-     "candidates": 258,
+     "superEffectiveAvailable": 114,
+     "winnersAvailable": 228,
+     "candidates": 262,
      "picks": [
       {
        "mon": "klinklang",
@@ -8108,9 +8108,9 @@
       "acid-armor",
       "dazzling-gleam"
      ],
-     "superEffectiveAvailable": 38,
-     "winnersAvailable": 56,
-     "candidates": 259,
+     "superEffectiveAvailable": 39,
+     "winnersAvailable": 57,
+     "candidates": 263,
      "picks": [
       {
        "mon": "klinklang",
@@ -8125,6 +8125,18 @@
        "theirMove": "dazzling-gleam"
       },
       {
+       "mon": "perrserker",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "dazzling-gleam"
+      },
+      {
        "mon": "corviknight",
        "move": "steel-wing",
        "eff": 2,
@@ -8134,18 +8146,6 @@
        "myTurns": 2,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
-      {
-       "mon": "stunfisk-galar",
-       "move": "metal-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
        "theirMove": "dazzling-gleam"
       }
      ],
@@ -8171,9 +8171,9 @@
       "self-destruct",
       "sludge-bomb"
      ],
-     "superEffectiveAvailable": 73,
-     "winnersAvailable": 61,
-     "candidates": 258,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 62,
+     "candidates": 262,
      "picks": [
       {
        "mon": "klinklang",
@@ -8223,9 +8223,9 @@
       "sweet-scent",
       "iron-head"
      ],
-     "superEffectiveAvailable": 49,
-     "winnersAvailable": 114,
-     "candidates": 258,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 116,
+     "candidates": 262,
      "picks": [
       {
        "mon": "torkoal",
@@ -8275,9 +8275,9 @@
       "sweet-kiss",
       "life-dew"
      ],
-     "superEffectiveAvailable": 113,
-     "winnersAvailable": 224,
-     "candidates": 258,
+     "superEffectiveAvailable": 114,
+     "winnersAvailable": 228,
+     "candidates": 262,
      "picks": [
       {
        "mon": "klinklang",
@@ -8327,9 +8327,9 @@
       "acid-armor",
       "dazzling-gleam"
      ],
-     "superEffectiveAvailable": 38,
-     "winnersAvailable": 53,
-     "candidates": 259,
+     "superEffectiveAvailable": 39,
+     "winnersAvailable": 54,
+     "candidates": 263,
      "picks": [
       {
        "mon": "klinklang",
@@ -8344,6 +8344,18 @@
        "theirMove": "dazzling-gleam"
       },
       {
+       "mon": "perrserker",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "dazzling-gleam"
+      },
+      {
        "mon": "corviknight",
        "move": "steel-wing",
        "eff": 2,
@@ -8353,18 +8365,6 @@
        "myTurns": 2,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
-      {
-       "mon": "stunfisk-galar",
-       "move": "metal-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
        "theirMove": "dazzling-gleam"
       }
      ],
@@ -8390,9 +8390,9 @@
       "horn-leech",
       "curse"
      ],
-     "superEffectiveAvailable": 162,
-     "winnersAvailable": 108,
-     "candidates": 259,
+     "superEffectiveAvailable": 163,
+     "winnersAvailable": 110,
+     "candidates": 263,
      "picks": [
       {
        "mon": "drapion",
@@ -8442,9 +8442,9 @@
       "slash",
       "bind"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 166,
-     "candidates": 258,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 170,
+     "candidates": 262,
      "picks": [
       {
        "mon": "drednaw",
@@ -8494,9 +8494,9 @@
       "body-slam",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 26,
-     "candidates": 258,
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 28,
+     "candidates": 262,
      "picks": [
       {
        "mon": "rhydon",
@@ -8546,9 +8546,9 @@
       "charm",
       "crunch"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 86,
-     "candidates": 258,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 87,
+     "candidates": 262,
      "picks": [
       {
        "mon": "rhydon",
@@ -8609,9 +8609,9 @@
       "horn-leech",
       "curse"
      ],
-     "superEffectiveAvailable": 162,
-     "winnersAvailable": 108,
-     "candidates": 259,
+     "superEffectiveAvailable": 163,
+     "winnersAvailable": 110,
+     "candidates": 263,
      "picks": [
       {
        "mon": "cinderace",
@@ -8661,9 +8661,9 @@
       "slash",
       "bind"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 166,
-     "candidates": 258,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 170,
+     "candidates": 262,
      "picks": [
       {
        "mon": "drednaw",
@@ -8713,9 +8713,9 @@
       "body-slam",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 29,
-     "winnersAvailable": 25,
-     "candidates": 258,
+     "superEffectiveAvailable": 30,
+     "winnersAvailable": 27,
+     "candidates": 262,
      "picks": [
       {
        "mon": "rhydon",
@@ -8765,9 +8765,9 @@
       "charm",
       "crunch"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 85,
-     "candidates": 258,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 86,
+     "candidates": 262,
      "picks": [
       {
        "mon": "rhydon",
@@ -8828,9 +8828,9 @@
       "horn-leech",
       "curse"
      ],
-     "superEffectiveAvailable": 162,
-     "winnersAvailable": 105,
-     "candidates": 259,
+     "superEffectiveAvailable": 163,
+     "winnersAvailable": 107,
+     "candidates": 263,
      "picks": [
       {
        "mon": "drapion",
@@ -8880,9 +8880,9 @@
       "slash",
       "bind"
      ],
-     "superEffectiveAvailable": 79,
-     "winnersAvailable": 167,
-     "candidates": 258,
+     "superEffectiveAvailable": 80,
+     "winnersAvailable": 171,
+     "candidates": 262,
      "picks": [
       {
        "mon": "drednaw",
@@ -8932,9 +8932,9 @@
       "body-slam",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 25,
-     "candidates": 258,
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 27,
+     "candidates": 262,
      "picks": [
       {
        "mon": "rhydon",
@@ -8984,9 +8984,9 @@
       "charm",
       "crunch"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 85,
-     "candidates": 258,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 86,
+     "candidates": 262,
      "picks": [
       {
        "mon": "rhydon",
@@ -9829,7 +9829,7 @@
        "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -10048,7 +10048,7 @@
        "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -10267,7 +10267,7 @@
        "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -29657,9 +29657,9 @@
       "hone-claws",
       "razor-shell"
      ],
-     "superEffectiveAvailable": 103,
-     "winnersAvailable": 92,
-     "candidates": 255,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 95,
+     "candidates": 259,
      "picks": [
       {
        "mon": "gourgeist-average",
@@ -29709,9 +29709,9 @@
       "guard-split",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 198,
-     "candidates": 254,
+     "superEffectiveAvailable": 78,
+     "winnersAvailable": 202,
+     "candidates": 258,
      "picks": [
       {
        "mon": "machop",
@@ -29761,9 +29761,9 @@
       "stealth-rock",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 104,
-     "winnersAvailable": 117,
-     "candidates": 255,
+     "superEffectiveAvailable": 106,
+     "winnersAvailable": 120,
+     "candidates": 259,
      "picks": [
       {
        "mon": "stunfisk-galar",
@@ -29778,20 +29778,20 @@
        "theirMove": "stomp"
       },
       {
-       "mon": "whiscash",
-       "move": "muddy-water",
+       "mon": "seismitoad",
+       "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "stomp"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "whiscash",
+       "move": "muddy-water",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -29813,9 +29813,9 @@
       "incinerate",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 92,
-     "winnersAvailable": 77,
-     "candidates": 255,
+     "superEffectiveAvailable": 93,
+     "winnersAvailable": 79,
+     "candidates": 259,
      "picks": [
       {
        "mon": "rhydon",
@@ -29876,9 +29876,9 @@
       "hone-claws",
       "razor-shell"
      ],
-     "superEffectiveAvailable": 103,
-     "winnersAvailable": 89,
-     "candidates": 255,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 92,
+     "candidates": 259,
      "picks": [
       {
        "mon": "gourgeist-average",
@@ -29928,9 +29928,9 @@
       "guard-split",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 196,
-     "candidates": 254,
+     "superEffectiveAvailable": 78,
+     "winnersAvailable": 200,
+     "candidates": 258,
      "picks": [
       {
        "mon": "machop",
@@ -29980,9 +29980,9 @@
       "stealth-rock",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 104,
-     "winnersAvailable": 115,
-     "candidates": 255,
+     "superEffectiveAvailable": 106,
+     "winnersAvailable": 118,
+     "candidates": 259,
      "picks": [
       {
        "mon": "stunfisk-galar",
@@ -29997,20 +29997,20 @@
        "theirMove": "stomp"
       },
       {
-       "mon": "whiscash",
-       "move": "muddy-water",
+       "mon": "seismitoad",
+       "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "stomp"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "whiscash",
+       "move": "muddy-water",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -30032,9 +30032,9 @@
       "incinerate",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 95,
-     "winnersAvailable": 77,
-     "candidates": 255,
+     "superEffectiveAvailable": 96,
+     "winnersAvailable": 79,
+     "candidates": 259,
      "picks": [
       {
        "mon": "rhydon",
@@ -30095,9 +30095,9 @@
       "hone-claws",
       "razor-shell"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 90,
-     "candidates": 255,
+     "superEffectiveAvailable": 101,
+     "winnersAvailable": 93,
+     "candidates": 259,
      "picks": [
       {
        "mon": "gourgeist-average",
@@ -30147,9 +30147,9 @@
       "guard-split",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 79,
-     "winnersAvailable": 198,
-     "candidates": 254,
+     "superEffectiveAvailable": 81,
+     "winnersAvailable": 202,
+     "candidates": 258,
      "picks": [
       {
        "mon": "machop",
@@ -30199,9 +30199,9 @@
       "stealth-rock",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 104,
-     "winnersAvailable": 118,
-     "candidates": 255,
+     "superEffectiveAvailable": 106,
+     "winnersAvailable": 121,
+     "candidates": 259,
      "picks": [
       {
        "mon": "stunfisk-galar",
@@ -30216,20 +30216,20 @@
        "theirMove": "stomp"
       },
       {
-       "mon": "whiscash",
-       "move": "muddy-water",
+       "mon": "seismitoad",
+       "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "stomp"
       },
       {
-       "mon": "gastrodon",
-       "move": "earth-power",
+       "mon": "whiscash",
+       "move": "muddy-water",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -30251,9 +30251,9 @@
       "incinerate",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 95,
-     "winnersAvailable": 80,
-     "candidates": 255,
+     "superEffectiveAvailable": 96,
+     "winnersAvailable": 82,
+     "candidates": 259,
      "picks": [
       {
        "mon": "rhydon",
@@ -30314,9 +30314,9 @@
       "self-destruct",
       "sludge-bomb"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 58,
-     "candidates": 254,
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 59,
+     "candidates": 258,
      "picks": [
       {
        "mon": "lunatone",
@@ -30366,9 +30366,9 @@
       "sweet-scent",
       "iron-head"
      ],
-     "superEffectiveAvailable": 46,
-     "winnersAvailable": 105,
-     "candidates": 255,
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 107,
+     "candidates": 259,
      "picks": [
       {
        "mon": "torkoal",
@@ -30418,9 +30418,9 @@
       "sweet-kiss",
       "life-dew"
      ],
-     "superEffectiveAvailable": 111,
-     "winnersAvailable": 219,
-     "candidates": 254,
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 223,
+     "candidates": 258,
      "picks": [
       {
        "mon": "klinklang",
@@ -30470,9 +30470,9 @@
       "acid-armor",
       "dazzling-gleam"
      ],
-     "superEffectiveAvailable": 38,
-     "winnersAvailable": 51,
-     "candidates": 255,
+     "superEffectiveAvailable": 39,
+     "winnersAvailable": 52,
+     "candidates": 259,
      "picks": [
       {
        "mon": "klinklang",
@@ -30487,6 +30487,18 @@
        "theirMove": "dazzling-gleam"
       },
       {
+       "mon": "perrserker",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "dazzling-gleam"
+      },
+      {
        "mon": "corviknight",
        "move": "steel-wing",
        "eff": 2,
@@ -30496,18 +30508,6 @@
        "myTurns": 2,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
-      {
-       "mon": "stunfisk-galar",
-       "move": "metal-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
        "theirMove": "dazzling-gleam"
       }
      ],
@@ -30533,9 +30533,9 @@
       "self-destruct",
       "sludge-bomb"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 58,
-     "candidates": 254,
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 59,
+     "candidates": 258,
      "picks": [
       {
        "mon": "lunatone",
@@ -30585,9 +30585,9 @@
       "sweet-scent",
       "iron-head"
      ],
-     "superEffectiveAvailable": 49,
-     "winnersAvailable": 107,
-     "candidates": 255,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 109,
+     "candidates": 259,
      "picks": [
       {
        "mon": "torkoal",
@@ -30637,9 +30637,9 @@
       "sweet-kiss",
       "life-dew"
      ],
-     "superEffectiveAvailable": 111,
-     "winnersAvailable": 219,
-     "candidates": 254,
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 223,
+     "candidates": 258,
      "picks": [
       {
        "mon": "klinklang",
@@ -30689,9 +30689,9 @@
       "acid-armor",
       "dazzling-gleam"
      ],
-     "superEffectiveAvailable": 38,
-     "winnersAvailable": 52,
-     "candidates": 255,
+     "superEffectiveAvailable": 39,
+     "winnersAvailable": 53,
+     "candidates": 259,
      "picks": [
       {
        "mon": "klinklang",
@@ -30706,6 +30706,18 @@
        "theirMove": "dazzling-gleam"
       },
       {
+       "mon": "perrserker",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "dazzling-gleam"
+      },
+      {
        "mon": "corviknight",
        "move": "steel-wing",
        "eff": 2,
@@ -30715,18 +30727,6 @@
        "myTurns": 2,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
-      {
-       "mon": "stunfisk-galar",
-       "move": "metal-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
        "theirMove": "dazzling-gleam"
       }
      ],
@@ -30752,9 +30752,9 @@
       "self-destruct",
       "sludge-bomb"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 58,
-     "candidates": 254,
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 59,
+     "candidates": 258,
      "picks": [
       {
        "mon": "lunatone",
@@ -30804,9 +30804,9 @@
       "sweet-scent",
       "iron-head"
      ],
-     "superEffectiveAvailable": 46,
-     "winnersAvailable": 107,
-     "candidates": 255,
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 109,
+     "candidates": 259,
      "picks": [
       {
        "mon": "torkoal",
@@ -30856,9 +30856,9 @@
       "sweet-kiss",
       "life-dew"
      ],
-     "superEffectiveAvailable": 111,
-     "winnersAvailable": 219,
-     "candidates": 254,
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 223,
+     "candidates": 258,
      "picks": [
       {
        "mon": "klinklang",
@@ -30908,9 +30908,9 @@
       "acid-armor",
       "dazzling-gleam"
      ],
-     "superEffectiveAvailable": 38,
-     "winnersAvailable": 49,
-     "candidates": 255,
+     "superEffectiveAvailable": 39,
+     "winnersAvailable": 50,
+     "candidates": 259,
      "picks": [
       {
        "mon": "klinklang",
@@ -30925,6 +30925,18 @@
        "theirMove": "dazzling-gleam"
       },
       {
+       "mon": "perrserker",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "dazzling-gleam"
+      },
+      {
        "mon": "corviknight",
        "move": "steel-wing",
        "eff": 2,
@@ -30934,18 +30946,6 @@
        "myTurns": 2,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
-      {
-       "mon": "stunfisk-galar",
-       "move": "metal-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
        "theirMove": "dazzling-gleam"
       }
      ],
@@ -30971,9 +30971,9 @@
       "horn-leech",
       "curse"
      ],
-     "superEffectiveAvailable": 155,
-     "winnersAvailable": 103,
-     "candidates": 255,
+     "superEffectiveAvailable": 156,
+     "winnersAvailable": 105,
+     "candidates": 259,
      "picks": [
       {
        "mon": "drapion",
@@ -31023,9 +31023,9 @@
       "slash",
       "bind"
      ],
-     "superEffectiveAvailable": 75,
-     "winnersAvailable": 163,
-     "candidates": 254,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 167,
+     "candidates": 258,
      "picks": [
       {
        "mon": "drednaw",
@@ -31075,9 +31075,9 @@
       "body-slam",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 25,
-     "candidates": 254,
+     "superEffectiveAvailable": 25,
+     "winnersAvailable": 27,
+     "candidates": 258,
      "picks": [
       {
        "mon": "rhydon",
@@ -31127,9 +31127,9 @@
       "charm",
       "crunch"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 83,
-     "candidates": 254,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 84,
+     "candidates": 258,
      "picks": [
       {
        "mon": "rhydon",
@@ -31190,9 +31190,9 @@
       "horn-leech",
       "curse"
      ],
-     "superEffectiveAvailable": 155,
-     "winnersAvailable": 103,
-     "candidates": 255,
+     "superEffectiveAvailable": 156,
+     "winnersAvailable": 105,
+     "candidates": 259,
      "picks": [
       {
        "mon": "cinderace",
@@ -31242,9 +31242,9 @@
       "slash",
       "bind"
      ],
-     "superEffectiveAvailable": 75,
-     "winnersAvailable": 163,
-     "candidates": 254,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 167,
+     "candidates": 258,
      "picks": [
       {
        "mon": "drednaw",
@@ -31294,9 +31294,9 @@
       "body-slam",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 26,
-     "winnersAvailable": 24,
-     "candidates": 254,
+     "superEffectiveAvailable": 27,
+     "winnersAvailable": 26,
+     "candidates": 258,
      "picks": [
       {
        "mon": "rhydon",
@@ -31346,9 +31346,9 @@
       "charm",
       "crunch"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 82,
-     "candidates": 254,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 83,
+     "candidates": 258,
      "picks": [
       {
        "mon": "rhydon",
@@ -31409,9 +31409,9 @@
       "horn-leech",
       "curse"
      ],
-     "superEffectiveAvailable": 155,
-     "winnersAvailable": 100,
-     "candidates": 255,
+     "superEffectiveAvailable": 156,
+     "winnersAvailable": 102,
+     "candidates": 259,
      "picks": [
       {
        "mon": "drapion",
@@ -31461,9 +31461,9 @@
       "slash",
       "bind"
      ],
-     "superEffectiveAvailable": 78,
-     "winnersAvailable": 164,
-     "candidates": 254,
+     "superEffectiveAvailable": 79,
+     "winnersAvailable": 168,
+     "candidates": 258,
      "picks": [
       {
        "mon": "drednaw",
@@ -31513,9 +31513,9 @@
       "body-slam",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 24,
-     "candidates": 254,
+     "superEffectiveAvailable": 25,
+     "winnersAvailable": 26,
+     "candidates": 258,
      "picks": [
       {
        "mon": "rhydon",
@@ -31565,9 +31565,9 @@
       "charm",
       "crunch"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 82,
-     "candidates": 254,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 83,
+     "candidates": 258,
      "picks": [
       {
        "mon": "rhydon",
@@ -32410,7 +32410,7 @@
        "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -32629,7 +32629,7 @@
        "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -32848,7 +32848,7 @@
        "move": "bubble-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,

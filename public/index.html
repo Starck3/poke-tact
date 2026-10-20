@@ -281,8 +281,22 @@
   <div class="tabs" role="tablist" aria-label="Seções">
     <button type="button" role="tab" id="tabRec" aria-selected="true" aria-controls="recView">Recomendação</button>
     <button type="button" role="tab" id="tabWalk" aria-selected="false" aria-controls="walk">Detonado</button>
+    <button type="button" role="tab" id="tabDex" aria-selected="false" aria-controls="dex">Onde capturar</button>
   </div>
   <div id="walk" role="tabpanel" hidden></div>
+  <!-- onde capturar qualquer Pokémon do jogo na versão escolhida (mesmos dados do "Onde obter" das sugestões) -->
+  <div id="dex" role="tabpanel" hidden>
+    <div class="card stack">
+      <div>
+        <label for="dexQ">Onde capturar o Pokémon</label>
+        <div class="ac">
+          <input type="search" id="dexQ" placeholder="Digite o nome — ex.: pikachu" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="dexList" aria-expanded="false">
+          <ul id="dexList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
+        </div>
+      </div>
+      <div id="dexOut" aria-live="polite"></div>
+    </div>
+  </div>
   <div id="recView" role="tabpanel">
   <div class="card stack">
     <div id="trainerBox">

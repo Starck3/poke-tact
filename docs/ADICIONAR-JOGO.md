@@ -260,6 +260,11 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   último líder (🧪 Leon sai "rival", Ghetsis "campeão"). Estágio dos locais: nome do PKHeX no detonado (placeStage); sem nome
   ("nesta rota encontramos…"), o 1º trecho que cita ≥ 3 espécies comuns do local (sem aparições raras — 🧪 o pós-jogo do Let's Go
   lista todas). Locais sem posição ficam em "Fora do detonado". USUM e Z-A não têm detonado local.
+- **Marcos sem ginásio** (0.11.0): `acq.progress.stageNames`/`post` (o app usa nos rótulos e no pós-jogo). Z-A: seções
+  "PARTIDA DE PROMOÇÃO – RANK Z → RANK Y" (a 1ª luta da seção); Legends: Arceus: "… – ACALMANDO O NOBLE X" (fim da seção);
+  Sun/Moon: carimbos de ilha + Z-Crystal até 2500 caracteres depois de "totem" (🧪 presentes como Steelium/Buginium/Poisonium/
+  Eevium não contam; o Fairium da Mina não tem totem e fica de fora). 🧪 Local sem título no detonado: vale a evidência mais
+  cedo entre o nome no texto e as espécies (o SM só numera a Route 1 depois da 2ª provação); subárea ≤ local-pai.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

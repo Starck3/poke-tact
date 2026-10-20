@@ -2,6 +2,22 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.11.0] — 2026-10-20
+
+### Adicionado
+- **Aba "Onde capturar"** em todos os jogos: digite um Pokémon e veja todos os locais da versão (método, nível, taxa quando o
+  jogo tem, ponto da história), de qual Pokémon evoluir quando ele não aparece direto, se é só por evento e o que existe nas
+  outras versões. Link direto: `#/jogo/<jogo>?capturar=pikachu`.
+- **Legends: Z-A com treinadores, progresso e Detonado** pelo detonado do PokeMythology (baixado agora): o progresso é o rank
+  do Z-A Royale (Z → A, 10 partidas de promoção, categoria "Partidas de promoção").
+- **Legends: Arceus com progresso** pelos 5 Pokémon nobres acalmados.
+- **Sun/Moon com as provações**: além das 4 grandes provações, as provações dos capitães (Z-Crystal recebido depois do totem).
+- Progresso com rótulos próprios por jogo (rank, nobres, provações) e pós-jogo depois do último marco.
+
+### Corrigido
+- Sun/Moon: Route 1/Route 2 apareciam depois da 2ª provação (o detonado só numera a rota mais tarde) — vale a evidência mais
+  cedo entre o nome e o trecho que lista as espécies do local; subárea não fica depois do local-pai.
+
 ## [0.10.0] — 2026-10-20
 
 ### Adicionado
