@@ -400,7 +400,7 @@ function update() {
     row('Resiste', eff.filter((x) => x.m > 0 && x.m < 1).sort((a, b) => a.m - b.m), 'bad') +
     row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
   $('oppInfo').innerHTML = `<div class="opp">${img(opp.id)}
-    <div><strong>#${opp.id} ${humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
+    <div><strong>#${opp.speciesId ?? opp.id} ${humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
     <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : '(definidos pelo jogo)'}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
   const baseOpts = {
@@ -518,7 +518,7 @@ function renderOppWarn() {
     items = data && !findOpponent(data.pokemon, input.value) ? searchOpponents(data.pokemon, input.value) : [];
     sel = Math.min(sel, Math.max(items.length - 1, 0));
     if (!items.length) return close();
-    list.innerHTML = items.map((p, i) => `<li role="option" id="oa${i}" aria-selected="${i === sel}" data-name="${p.name}">${img(p.id)}<strong>${humanize(p.name)}</strong><span class="ac-num">#${p.id}</span><span class="ac-types">${p.types.map(typeBadge).join('')}</span></li>`).join('');
+    list.innerHTML = items.map((p, i) => `<li role="option" id="oa${i}" aria-selected="${i === sel}" data-name="${p.name}">${img(p.id)}<strong>${humanize(p.name)}</strong><span class="ac-num">#${p.speciesId ?? p.id}</span><span class="ac-types">${p.types.map(typeBadge).join('')}</span></li>`).join('');
     list.hidden = false;
     input.setAttribute('aria-expanded', 'true');
     input.setAttribute('aria-activedescendant', 'oa' + sel);

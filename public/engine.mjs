@@ -24,7 +24,13 @@ export function effectiveness(data, atkType, defender) {
 }
 
 // partes vazias são puladas: itens do decomp HGSS "GUARD_SPEC_" / "X_SP__DEF" derrubavam a aba Detonado inteira
-export const humanize = (slug) => String(slug ?? '').split('-').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+const titleWords = (s) => s.split('-').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+// forma regional: "rattata-alola" → "Rattata de Alola"; "tauros-paldea-aqua-breed" → "Tauros de Paldea (Aqua Breed)"
+export const humanize = (slug) => {
+  const s = String(slug ?? '');
+  const m = s.match(/^(.+)-(alola|galar|hisui|paldea)(?:-([a-z]+-breed))?$/);
+  return m ? `${titleWords(m[1])} de ${titleWords(m[2])}${m[3] ? ` (${titleWords(m[3])})` : ''}` : titleWords(s);
+};
 
 // Golpes disponíveis: level-up até o nível informado + TM/HM + tutor. Ovo (breeding) fica de fora.
 export function availableMoves(data, mon, level, { machines = true, machineSources = null, tutorSources = null, stage = null } = {}) {
@@ -243,6 +249,8 @@ export function whereToGet(data, acq, mon, version) {
 const TITLE = (s) => String(s).toLowerCase().split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 export function describeEvolution(evo) {
   if (!evo) return '';
+  // Gens 5–9 (PKHeX): métodos sem equivalente no decomp vêm com o texto pronto (ex.: "nv 20 (à noite)", "girar segurando um doce")
+  if (evo.text) return evo.text;
   // Tyrogue (Gen 2+): nv 20 conforme Ataque × Defesa
   const STAT = { ATK_GT_DEF: ' (Ataque > Defesa)', ATK_LT_DEF: ' (Ataque < Defesa)', ATK_EQ_DEF: ' (Ataque = Defesa)' };
   if (evo.kind.startsWith('LEVEL')) return `nv ${evo.param}${STAT[evo.kind.replace(/^LEVEL_/, '')] ?? ''}`;
@@ -341,7 +349,7 @@ export function reachStage(data, acq, mon, version, seen = new Set()) {
   };
   const itemSt = (w.steps ?? []).filter((x) => /ITEM/.test(x.evo?.kind ?? '')).map((x) => {
     const src = acq.items?.[x.evo.param];
-    return src ? Math.min(...src.map((i) => i.stage ?? 9)) : Infinity;
+    return src ? Math.min(...src.map((i) => i.stage ?? 9)) : acq.items ? Infinity : 0; // sem lista de itens (PKHeX): não bloqueia
   });
   return Math.max(Math.min(...w.direct.map(stageOf)), ...itemSt);
 }

@@ -16,8 +16,9 @@ const known = new Set(ids.values());
 const nh = (l) => [...l].map((x) => x.replace(/-/g, '')).sort().join();
 const report = { stats: [], types: [], abilities: [], levelup: [], order: [], missing: [] };
 for (const mon of data.pokemon) {
-  if (mon.id > 1025) continue;
-  const d = P.species[mon.id];
+  // forma regional (add-pkhex-forms): confere com a entrada da forma no personal
+  if (mon.id > 1025 && !mon.regionalForm) continue;
+  const d = mon.regionalForm ? P.forms[mon.speciesId]?.[mon.form] : P.species[mon.id];
   if (!d) { report.missing.push(mon.name); continue; }
   for (const k of Object.keys(d.stats)) if (mon.stats[k] !== d.stats[k]) report.stats.push({ pokemon: mon.name, field: k, pokeapi: mon.stats[k], pkhex: d.stats[k] });
   if (mon.types.join() !== d.types.join()) report.types.push({ pokemon: mon.name, pokeapi: mon.types.join('/'), pkhex: d.types.join('/') });

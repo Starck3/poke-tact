@@ -11,21 +11,25 @@ const GEN_LAST = [151, 251, 386, 493, 649, 721, 809, 905, 1025];
 /** Geração em que o Pokémon estreou, pelo número da Pokédex nacional. */
 export const generationOfDex = (id) => GEN_LAST.findIndex((last) => id <= last) + 1 || null;
 
+// chaves de um Pokémon: o slug e o nome da tela ("rattata-alola" e "Rattata de Alola")
+const keysOf = (p) => [nameKey(p.name), nameKey(humanize(p.name))];
+
 /** O Pokémon do jogo com esse nome (aceita "Mr. Mime", "mr mime", "mr-mime"), ou undefined. */
 export function findOpponent(pokemon, query) {
   const k = nameKey(query);
-  return k ? pokemon.find((p) => nameKey(p.name) === k) : undefined;
+  return k ? pokemon.find((p) => keysOf(p).includes(k)) : undefined;
 }
 
 /** Sugestões do autocompletar: só Pokémon do jogo; começa com o texto primeiro, depois contém; "25" ou "#25" busca pelo número. */
 export function searchOpponents(pokemon, query, limit = 8) {
   const q = String(query ?? '').trim();
   const num = q.match(/^#?(\d+)$/);
-  if (num) return pokemon.filter((p) => String(p.id).startsWith(num[1])).sort((a, b) => a.id - b.id).slice(0, limit);
+  // forma regional: número da espécie (Rattata de Alola = #19)
+  if (num) return pokemon.filter((p) => String(p.speciesId ?? p.id).startsWith(num[1])).sort((a, b) => (a.speciesId ?? a.id) - (b.speciesId ?? b.id) || a.id - b.id).slice(0, limit);
   const k = nameKey(q);
   if (!k) return [];
   const starts = [], has = [];
-  for (const p of pokemon) { const n = nameKey(p.name); if (n.startsWith(k)) starts.push(p); else if (n.includes(k)) has.push(p); }
+  for (const p of pokemon) { const ns = keysOf(p); if (ns.some((n) => n.startsWith(k))) starts.push(p); else if (ns.some((n) => n.includes(k))) has.push(p); }
   return [...starts.sort((a, b) => a.id - b.id), ...has.sort((a, b) => a.id - b.id)].slice(0, limit);
 }
 

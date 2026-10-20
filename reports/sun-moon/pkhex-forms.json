@@ -1,0 +1,27 @@
+{
+ "added": [
+  "rattata-alola (dark/normal)",
+  "raticate-alola (dark/normal)",
+  "raichu-alola (electric/psychic)",
+  "sandshrew-alola (ice/steel)",
+  "sandslash-alola (ice/steel)",
+  "vulpix-alola (ice)",
+  "ninetales-alola (ice/fairy)",
+  "diglett-alola (ground/steel)",
+  "dugtrio-alola (ground/steel)",
+  "meowth-alola (dark)",
+  "persian-alola (dark)",
+  "geodude-alola (rock/electric)",
+  "graveler-alola (rock/electric)",
+  "golem-alola (rock/electric)",
+  "grimer-alola (poison/dark)",
+  "muk-alola (poison/dark)",
+  "exeggutor-alola (grass/dragon)",
+  "marowak-alola (fire/ghost)"
+ ],
+ "rejected": [],
+ "newMoves": [
+  "dragon-hammer",
+  "shadow-bone"
+ ]
+}

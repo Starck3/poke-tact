@@ -24,9 +24,12 @@ const monById = new Map(data.pokemon.map((p) => [p.id, p]));
 const out = Object.fromEntries(VERSIONS.map((v) => [v, {}]));
 const seen = new Set();
 const unknown = { versions: new Set(), species: new Set(), methods: new Set() };
-const push = (v, id, s) => {
+// forma regional do encontro (Rattata de Alola = espécie 19, forma 1) → entrada da forma (add-pkhex-forms); outras formas
+// (Unown, Vivillon…) ficam na espécie
+const formOf = new Map(data.pokemon.filter((p) => p.regionalForm).map((p) => [`${p.speciesId}-${p.form}`, p]));
+const push = (v, id, s, form = 0) => {
   if (!out[v]) return unknown.versions.add(v);
-  const mon = monById.get(id);
+  const mon = formOf.get(`${id}-${form}`) ?? monById.get(id);
   if (!mon) return unknown.species.add(id);
   const key = `${v}|${mon.name}|${JSON.stringify(s)}`;
   if (seen.has(key)) return;
@@ -44,14 +47,14 @@ for (const e of enc.wild) {
     type: 'wild', where: e.location, method: METHOD_LABEL[method] ?? method, min: e.min, max: e.max,
     // faixa agregada (Let's Go: L3–56 junta aparições raras de momentos diferentes) → não dá para contar com o nível mínimo
     ...(detail && { detail }), ...((RANDOM.has(method) || /agregada/.test(detail ?? '')) && { random: true }),
-  });
+  }, e.form);
 }
 const FIXED_DETAIL = { starter: 'um dos iniciais' };
 for (const e of enc.fixed) {
   const detail = detailText(e.detail) ?? FIXED_DETAIL[e.type];
   const s = { type: e.type, where: e.location ?? NO_PLACE[e.type] ?? '?', level: e.level, ...(detail && { detail }) };
   if (e.type === 'trade' && !s.detail) s.detail = 'troca com NPC';
-  push(e.version, e.species, s);
+  push(e.version, e.species, s, e.form);
 }
 // mesma espécie no mesmo local/método: junta as faixas de nível (o PKHeX repete o slot por horário/clima/área)
 for (const v of VERSIONS) for (const [name, list] of Object.entries(out[v])) {
@@ -92,7 +95,7 @@ writeFileSync(dataFile, JSON.stringify(data));
 const commit = pkhexCommit(root);
 writeFileSync(new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url), JSON.stringify({
   source: `kwsch/PKHeX@${commit?.slice(0, 7) ?? '?'} (tabelas de encontro: local, método e nível; sem taxa)`,
-  encountersOnly: true, notes: [...notes], versions: out, machines: {}, tutors: {}, items: {},
+  encountersOnly: true, notes: [...notes], versions: out, machines: {}, tutors: {}, items: null, // o PKHeX não tem itens: evolução por pedra não fica "impossível"
 }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 writeFileSync(new URL(`../reports/${gameId}/obtainable-changes.json`, import.meta.url), JSON.stringify(changes, null, 1));

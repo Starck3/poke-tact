@@ -1,0 +1,329 @@
+{
+ "diffs": [
+  {
+   "pokemon": "raichu",
+   "removed": [],
+   "added": [
+    "fake-tears"
+   ]
+  },
+  {
+   "pokemon": "raichu-alola",
+   "removed": [],
+   "added": [
+    "fake-tears"
+   ]
+  },
+  {
+   "pokemon": "dugtrio",
+   "removed": [],
+   "added": [
+    "helping-hand"
+   ]
+  },
+  {
+   "pokemon": "growlithe-hisui",
+   "removed": [],
+   "added": [
+    "wild-charge"
+   ]
+  },
+  {
+   "pokemon": "flareon",
+   "removed": [],
+   "added": [
+    "flame-charge"
+   ]
+  },
+  {
+   "pokemon": "typhlosion",
+   "removed": [
+    "night-shade",
+    "confuse-ray",
+    "spite",
+    "calm-mind",
+    "hex",
+    "poltergeist"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "skiploom",
+   "removed": [],
+   "added": [
+    "rain-dance"
+   ]
+  },
+  {
+   "pokemon": "umbreon",
+   "removed": [],
+   "added": [
+    "mud-slap"
+   ]
+  },
+  {
+   "pokemon": "slowking",
+   "removed": [],
+   "added": [
+    "helping-hand"
+   ]
+  },
+  {
+   "pokemon": "slowking-galar",
+   "removed": [],
+   "added": [
+    "snowscape",
+    "helping-hand"
+   ]
+  },
+  {
+   "pokemon": "tropius",
+   "removed": [],
+   "added": [
+    "calm-mind"
+   ]
+  },
+  {
+   "pokemon": "weavile",
+   "removed": [],
+   "added": [
+    "reversal"
+   ]
+  },
+  {
+   "pokemon": "glaceon",
+   "removed": [],
+   "added": [
+    "trailblaze"
+   ]
+  },
+  {
+   "pokemon": "gallade",
+   "removed": [],
+   "added": [
+    "metronome"
+   ]
+  },
+  {
+   "pokemon": "froslass",
+   "removed": [],
+   "added": [
+    "trailblaze"
+   ]
+  },
+  {
+   "pokemon": "samurott",
+   "removed": [
+    "dark-pulse",
+    "snarl",
+    "throat-chop",
+    "lash-out"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "zoroark",
+   "removed": [],
+   "added": [
+    "encore"
+   ]
+  },
+  {
+   "pokemon": "sylveon",
+   "removed": [],
+   "added": [
+    "mud-slap"
+   ]
+  },
+  {
+   "pokemon": "decidueye",
+   "removed": [
+    "reversal",
+    "scary-face",
+    "focus-punch",
+    "taunt",
+    "brick-break",
+    "rock-tomb",
+    "bulk-up",
+    "close-combat",
+    "aura-sphere",
+    "focus-blast",
+    "coaching",
+    "upper-hand"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "salandit",
+   "removed": [],
+   "added": [
+    "flame-charge"
+   ]
+  },
+  {
+   "pokemon": "salazzle",
+   "removed": [],
+   "added": [
+    "flame-charge",
+    "dragon-tail"
+   ]
+  },
+  {
+   "pokemon": "greedent",
+   "removed": [],
+   "added": [
+    "trailblaze"
+   ]
+  },
+  {
+   "pokemon": "drednaw",
+   "removed": [],
+   "added": [
+    "dragon-tail"
+   ]
+  },
+  {
+   "pokemon": "coalossal",
+   "removed": [],
+   "added": [
+    "mud-slap"
+   ]
+  },
+  {
+   "pokemon": "perrserker",
+   "removed": [],
+   "added": [
+    "aerial-ace",
+    "flash-cannon"
+   ]
+  },
+  {
+   "pokemon": "drakloak",
+   "removed": [],
+   "added": [
+    "confuse-ray"
+   ]
+  },
+  {
+   "pokemon": "dragapult",
+   "removed": [],
+   "added": [
+    "confuse-ray"
+   ]
+  },
+  {
+   "pokemon": "kleavor",
+   "removed": [],
+   "added": [
+    "rain-dance"
+   ]
+  },
+  {
+   "pokemon": "ursaluna",
+   "removed": [
+    "vacuum-wave"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "basculegion-male",
+   "removed": [],
+   "added": [
+    "swift",
+    "endure",
+    "zen-headbutt"
+   ]
+  },
+  {
+   "pokemon": "overqwil",
+   "removed": [],
+   "added": [
+    "water-pulse",
+    "acid-spray",
+    "hex",
+    "swift"
+   ]
+  },
+  {
+   "pokemon": "crocalor",
+   "removed": [],
+   "added": [
+    "encore"
+   ]
+  },
+  {
+   "pokemon": "quaxly",
+   "removed": [],
+   "added": [
+    "sleep-talk",
+    "substitute"
+   ]
+  },
+  {
+   "pokemon": "quaxwell",
+   "removed": [],
+   "added": [
+    "sleep-talk",
+    "substitute"
+   ]
+  },
+  {
+   "pokemon": "maushold-family-of-four",
+   "removed": [],
+   "added": [
+    "baton-pass"
+   ]
+  },
+  {
+   "pokemon": "charcadet",
+   "removed": [],
+   "added": [
+    "rest"
+   ]
+  },
+  {
+   "pokemon": "bombirdier",
+   "removed": [],
+   "added": [
+    "rest"
+   ]
+  },
+  {
+   "pokemon": "varoom",
+   "removed": [],
+   "added": [
+    "rest"
+   ]
+  },
+  {
+   "pokemon": "annihilape",
+   "removed": [],
+   "added": [
+    "close-combat",
+    "tera-blast"
+   ]
+  },
+  {
+   "pokemon": "iron-treads",
+   "removed": [],
+   "added": [
+    "sleep-talk"
+   ]
+  },
+  {
+   "pokemon": "iron-thorns",
+   "removed": [],
+   "added": [
+    "sleep-talk"
+   ]
+  },
+  {
+   "pokemon": "walking-wake",
+   "removed": [],
+   "added": [
+    "dragon-tail"
+   ]
+  }
+ ],
+ "newMoves": []
+}

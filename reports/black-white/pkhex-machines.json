@@ -1,0 +1,390 @@
+{
+ "diffs": [
+  {
+   "pokemon": "growlithe",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "arcanine",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "mew",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "umbreon",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "murkrow",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "snubbull",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "granbull",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "sneasel",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "houndour",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "houndoom",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "raikou",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "entei",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "suicune",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "larvitar",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "pupitar",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "tyranitar",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "poochyena",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "mightyena",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "nuzleaf",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "shiftry",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "sableye",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "electrike",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "manectric",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "carvanha",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "sharpedo",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "crawdaunt",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "absol",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "shinx",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "luxio",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "luxray",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "honchkrow",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "stunky",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "skuntank",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "spiritomb",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "drapion",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "weavile",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "darkrai",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "arceus",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "lillipup",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "herdier",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "stoutland",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "purrloin",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "liepard",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "sandile",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "krokorok",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "krookodile",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "scraggy",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "scrafty",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "zorua",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "zoroark",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "druddigon",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "pawniard",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "bisharp",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "vullaby",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  },
+  {
+   "pokemon": "mandibuzz",
+   "removed": [
+    "snarl"
+   ],
+   "added": []
+  }
+ ],
+ "newMoves": []
+}
