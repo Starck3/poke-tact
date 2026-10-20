@@ -2,6 +2,17 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.20.0] — 2026-10-20
+
+### Adicionado
+- **Mapa da região no Black 2/White 2 e no Black/White**: posições pela grade de zonas do mundo do decomp (pokebw2), com
+  cavernas e prédios na posição da entrada — 86/91 locais do B2W2 e 47/54 do BW no mapa. Mapa da região em 15 dos 22 jogos.
+- **FireRed/LeafGreen**: cavernas e florestas (Mt. Moon, Rock Tunnel, Viridian Forest, Power Plant…) passam a aparecer no
+  mapa, na posição da entrada — 140/142 locais (eram 99).
+
+### Corrigido
+- A versão 0.14.0 dizia "mapa da região em 14 dos 22 jogos"; eram 13.
+
 ## [0.19.0] — 2026-10-20
 
 ### Corrigido

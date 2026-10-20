@@ -2118,3 +2118,20 @@ test('Black 2/White 2: Hidden Grottoes conferidas com a tabela do jogo (PKHeX)',
   assert.ok(!(a.versions['black-2'].glaceon ?? []).some((s) => s.source === 'pkhex'));
   assert.ok(r.confirmedOnly.some((x) => /glaceon/.test(x)));
 });
+
+test('mapa da região: cavernas do FRLG pela entrada; Black 2/White 2 pela grade de zonas; Black/White pela mesma Unova', () => {
+  // Etapa 7. FRLG: cavernas/florestas estão em (0, 0) no region_map_sections.json → posição do warp de entrada (map.json);
+  // 🧪 seções de mesmo nome são um ponto só ("Route 4" = rota + Pokémon Center) — antes o Mt. Moon não achava a Route 4.
+  const reach = (g) => { const m = load(`${g}-regionmap.json`), a = load(`${g}-acquisition.json`); const ws = new Set(Object.values(a.versions).flatMap((v) => Object.values(v).flat().map((s) => s.where))); return [...ws].filter((w) => m.placeOf[w]).length; };
+  assert.ok(reach('firered-leafgreen') > 130);
+  const fr = load('firered-leafgreen-regionmap.json').regions[0].points;
+  const P = (n) => fr.find((p) => p.name === n);
+  assert.deepEqual([P('Mt. Moon').x, P('Mt. Moon').y], [P('Route 4').x, P('Route 4').y]);
+  const b2 = load('black-2-white-2-regionmap.json');
+  assert.equal(b2.regions[0].name, 'Unova');
+  assert.ok(reach('black-2-white-2') / 91 > 0.9);
+  const U = (n) => b2.regions[0].points.find((p) => p.name === n);
+  assert.ok(U('Aspertia City').y > U('Opelucid City').y); // Aspertia ao sul, Opelucid ao norte
+  assert.match(load('black-white-regionmap.json').source, /mesma região de black-2-white-2/);
+  assert.equal(load('games.json').games.filter((g) => g.capture?.regionMap).length, 15);
+});

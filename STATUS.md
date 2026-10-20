@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.19.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.20.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -55,7 +55,7 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
    português no detonado, cidades vizinhas, nível dos selvagens comparado aos líderes (seria estimativa — marcar como tal).
 6. ✅ (0.19.0) **Black 2/White 2 — Hidden Grottoes pelo PKHeX** em vez da PokéAPI. O PKHeX tem as espécies, mas não diz em que rota fica
    cada gruta (manteria a rota da PokéAPI).
-7. **Mapa da região**: falta Black/White, Black 2/White 2 (a matriz do mundo do pokebw2 tem só modelos, sem zonas),
+7. ✅ (0.20.0: BW, B2W2 e cavernas do FRLG feitos) **Mapa da região**: falta
    X/Y, Sun/Moon/USUM, Sword/Shield, Legends: Arceus, Scarlet/Violet e Z-A (sem decomp). FRLG: cavernas e florestas sem
    posição no `region_map_sections.json` (99/142).
 8. **Fotos dos lugares** só onde o título do trecho do detonado é o próprio lugar (ex.: X/Y 16/44, SV 15/76, Z-A 3/106).

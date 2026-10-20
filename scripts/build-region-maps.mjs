@@ -16,7 +16,8 @@ const gameId = process.argv[2];
 const game = GAMES[gameId];
 // remakes sem decomp na MESMA região de um jogo que já tem o mapa: reaproveita as posições, casando pelo nome do lugar
 // (BDSP = Sinnoh do Platinum; ORAS = Hoenn do Emerald; Let's Go = Kanto do Red/Blue). A fonte diz de onde vieram.
-const TWIN = { 'brilliant-diamond-shining-pearl': 'platinum', 'omega-ruby-alpha-sapphire': 'emerald', 'lets-go-pikachu-lets-go-eevee': 'red-blue' };
+// Black/White: a mesma Unova do Black 2/White 2 (grade de zonas do pokebw2)
+const TWIN = { 'brilliant-diamond-shining-pearl': 'platinum', 'omega-ruby-alpha-sapphire': 'emerald', 'lets-go-pikachu-lets-go-eevee': 'red-blue', 'black-white': 'black-2-white-2' };
 const twinFile = TWIN[gameId] && new URL(`../public/data/${TWIN[gameId]}-regionmap.json`, import.meta.url);
 const acqTwin = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
 if (twinFile && existsSync(twinFile) && existsSync(acqTwin)) {
@@ -40,7 +41,7 @@ const dir = game?.asmDecomp?.dir ? new URL(`../data-sources/${game.asmDecomp.dir
 const gen3File = dir && new URL('src/data/region_map/region_map_sections.json', dir);
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
 const gen3 = game?.generation === 3 && gen3File && existsSync(gen3File) && JSON.parse(readFileSync(gen3File, 'utf8')).map_sections.filter((m) => m.name && m.x != null);
-if (!dir || !existsSync(dir) || !existsSync(acqFile) || !([1, 2, 4].includes(game.generation) || gen3?.length)) { console.log(`[${gameId}] sem coordenadas de mapa da região no decomp`); process.exit(0); }
+if (!dir || !existsSync(dir) || !existsSync(acqFile) || !([1, 2, 4, 5].includes(game.generation) || gen3?.length)) { console.log(`[${gameId}] sem coordenadas de mapa da região no decomp`); process.exit(0); }
 const read = (p) => readFileSync(new URL(p, dir), 'utf8');
 // "NEW BARK<BSP>TOWN@" → "New Bark Town"; "MT.MOON@" → "Mt. Moon"
 const title = (s) => s.replace(/<BSP>|¯/g, ' ').replace(/@$/, '').replace(/#MON|<PKMN>/g, 'POKéMON').replace(/#/g, 'POKé').toLowerCase().replace(/(^|[\s.])([a-zé])/g, (m, a, b) => a + b.toUpperCase()).replace(/\bMt\.(?=\S)/, 'Mt. ').trim();
@@ -63,6 +64,51 @@ export function parsePoints(src, re, names) {
 //   Diamond/Pearl: files/fielddata/mapmatrix/map_matrix/narc_0000.bin (parseMatrix; nº do cabeçalho → MAP_* do maps.h)
 //   HeartGold/SoulSilver: sem matriz em texto — mesma região do Crystal: posições do mapa do Crystal (landmarks) pelo nome
 //     da seção
+// Black 2/White 2 (pokebw2): res/field/matrices/overworld.json traz a grade de ZONAS do mundo (zones[y][x]); cada zona
+// tem o seu lugar do mapa (acq.progress.maps[].landmark = PLACE_*). Posição do lugar = centro das células das zonas dele;
+// lugares fora da grade (cavernas, prédios) herdam a posição da zona de onde sai o warp de entrada
+// (res/field/events/<zona>.json → warps[].zone).
+if (game.generation === 5) {
+  const { readdirSync } = await import('node:fs');
+  const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
+  const maps = acq.progress?.maps ?? {};
+  const placeName = (lm) => title(String(lm).replace(/^PLACE_/, '').replace(/_/g, ' ')).replace(/\bPokemon\b/g, 'Pokémon').replace(/\bPwt\b/, 'PWT');
+  const skip = (lm) => !lm || /^PLACE_(NONE|NOTHING|MYSTERY)/.test(lm);
+  const grid = JSON.parse(read('res/field/matrices/overworld.json')).zones;
+  const cells = new Map();
+  grid.forEach((row, y) => row.forEach((z, x) => { const lm = maps[z]?.landmark; if (z && !skip(lm)) (cells.get(lm) ?? cells.set(lm, []).get(lm)).push([x + 0.5, y + 0.5]); }));
+  const pos = new Map(cells);
+  const evDir = new URL('res/field/events/', dir);
+  const warpsOf = new Map();
+  for (const z of Object.keys(maps)) {
+    const f = new URL(`${z.replace(/^ZONE_/, '').toLowerCase()}.json`, evDir);
+    if (existsSync(f)) warpsOf.set(z, (JSON.parse(readFileSync(f, 'utf8')).warps ?? []).map((w) => w.zone).filter(Boolean));
+  }
+  for (let pass = 0; pass < 6; pass++) for (const [z, dests] of warpsOf) {
+    const from = pos.get(maps[z]?.landmark);
+    if (!from) continue;
+    for (const d of dests) { const lm = maps[d]?.landmark; if (!skip(lm) && !pos.has(lm)) pos.set(lm, [...from]); }
+  }
+  const avg = (l, k) => l.reduce((a, c) => a + c[k], 0) / l.length;
+  const pts = [...pos].map(([lm, cs]) => ({ name: placeName(lm), x: avg(cs, 0), y: avg(cs, 1) }));
+  const regions5 = [{ name: 'Unova', w: grid[0].length, h: grid.length, points: pts }];
+  const secOfLabel = new Map();
+  for (const m of Object.values(maps)) if (!skip(m.landmark) && !secOfLabel.has(m.label)) secOfLabel.set(m.label, placeName(m.landmark));
+  const placeOf = {};
+  const wheres = new Set();
+  for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) if (s.where) wheres.add(s.where);
+  for (const w of wheres) {
+    const sec = secOfLabel.get(w);
+    let i = sec ? pts.findIndex((p) => p.name === sec) : -1;
+    // nome que não é rótulo de zona ("Route 2 Hidden Grotto", da PokéAPI): o lugar com o maior prefixo do nome
+    if (i < 0) { const ws = w.split(' '); for (let n = ws.length - 1; n >= 1 && i < 0; n--) i = pts.findIndex((p) => p.name === ws.slice(0, n).join(' ')); }
+    if (i >= 0) placeOf[w] = [0, i];
+  }
+  writeFileSync(new URL(`../public/data/${gameId}-regionmap.json`, import.meta.url), JSON.stringify({ source: `${game.asmDecomp.repo} (grade de zonas do mundo + lugar de cada zona)`, regions: regions5, placeOf }));
+  console.log(`[${gameId}] mapa da região: Unova ${pts.length} lugares; locais do onde obter no mapa: ${Object.keys(placeOf).length}/${wheres.size}`);
+  process.exit(0);
+}
+
 if (game.generation === 4) {
   const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
   const maps = acq.progress?.maps ?? {};
@@ -142,9 +188,41 @@ if (game.generation === 3) {
   const groups = gameId === 'firered-leafgreen' ? [['Kanto', (i) => i < sevii], ['Ilhas Sevii', (i) => i >= sevii]] : [['Hoenn', () => true]];
   regions = groups.map(([name, inRegion]) => {
     const secs = all3.map((m, i) => ({ ...m, i })).filter((m) => m.name && m.x != null && (m.x || m.y) && inRegion(m.i));
-    const pts = secs.filter((m, k) => secs.findIndex((x) => x.name === m.name) === k).map((m) => ({ name: title(m.name), x: m.x + (m.width ?? 1) / 2, y: m.y + (m.height ?? 1) / 2, w: m.width ?? 1, h: m.height ?? 1 }));
+    const pts = secs.filter((m, k) => secs.findIndex((x) => x.name === m.name) === k).map((m) => ({ name: title(m.name), id: m.id, x: m.x + (m.width ?? 1) / 2, y: m.y + (m.height ?? 1) / 2, w: m.width ?? 1, h: m.height ?? 1 }));
     return { name, w: Math.max(...secs.map((m) => m.x + (m.width ?? 1))), h: Math.max(...secs.map((m) => m.y + (m.height ?? 1))), points: pts };
   });
+  // seções sem posição (cavernas e florestas do FRLG em (0, 0)): posição da ENTRADA — o mapa do decomp
+  // (data/maps/*/map.json) com warp para um mapa da seção, cuja seção já tem ponto; de dentro para dentro, herda
+  const mapsDir = new URL(`../data-sources/${game.decomp.repo.split('/')[1]}-scripts/data/maps/`, import.meta.url);
+  if (existsSync(mapsDir)) {
+    const { readdirSync } = await import('node:fs');
+    const maps = readdirSync(mapsDir).map((d) => { try { return JSON.parse(readFileSync(new URL(`${d}/map.json`, mapsDir), 'utf8')); } catch { return null; } }).filter(Boolean);
+    const secOfMap = new Map(maps.map((m) => [m.id, m.region_map_section]));
+    // seções de mesmo nome são um ponto só ("ROUTE 4" = a rota e o Pokémon Center dela): todas as ids apontam para ele
+    const pointOf = new Map();
+    regions.forEach((r, ri) => r.points.forEach((p) => { for (const m of all3) if (m.name && title(m.name) === p.name && (m.x || m.y)) pointOf.set(m.id, { ri, p }); pointOf.set(p.id, { ri, p }); }));
+    const named = new Map(all3.filter((m) => m.name).map((m) => [m.id, m]));
+    for (let pass = 0; pass < 6; pass++) {
+      const found = new Map(); // seção sem ponto → [{ ri, x, y }]
+      for (const m of maps) {
+        const from = pointOf.get(m.region_map_section);
+        if (!from) continue;
+        for (const w of m.warp_events ?? []) {
+          const ds = secOfMap.get(w.dest_map);
+          if (!ds || pointOf.has(ds) || !named.has(ds)) continue;
+          (found.get(ds) ?? found.set(ds, []).get(ds)).push({ ri: from.ri, x: from.p.x, y: from.p.y });
+        }
+      }
+      if (!found.size) break;
+      for (const [ds, list] of found) {
+        const ri = list[0].ri, same = list.filter((l) => l.ri === ri);
+        const p = { name: title(named.get(ds).name), id: ds, x: same.reduce((a, l) => a + l.x, 0) / same.length, y: same.reduce((a, l) => a + l.y, 0) / same.length, w: 1, h: 1, byEntrance: true };
+        if (regions[ri].points.some((q) => q.name === p.name)) { pointOf.set(ds, { ri, p: regions[ri].points.find((q) => q.name === p.name) }); continue; }
+        regions[ri].points.push(p);
+        pointOf.set(ds, { ri, p });
+      }
+    }
+  }
 } else if (game.generation === 1) {
   const names = Object.fromEntries([...read('data/maps/names.asm').matchAll(/^(\w+):\s*db\s+"([^"]+)"/gm)].map((m) => [m[1], title(m[2])]));
   const tm = read('data/maps/town_map_entries.asm');
