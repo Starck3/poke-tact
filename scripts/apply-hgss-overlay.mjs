@@ -41,11 +41,15 @@ for (const mon of data.pokemon) {
 }
 const byDex = new Map(data.pokemon.map((p) => [p.id, p]));
 const evoInfo = {};
+// evolução por lugar (Moss Rock, Ice Rock, Mt. Coronet): no HGSS o mapa nunca dá o método — MapHeader_GetMapEvolutionMethod
+// devolve sempre EVO_NONE ("Leftover from D/P/Pl.") → Leafeon, Glaceon, Magnezone e Probopass não evoluem
+const mapEvo = readFileSync(new URL(`../data-sources/${game.asmDecomp.dir}/src/map_header.c`, import.meta.url), 'utf8').match(/MapHeader_GetMapEvolutionMethod\([^)]*\)\s*\{([^}]*)\}/)?.[1] ?? '';
+const noMapEvo = /^\s*(\/\/[^\n]*\n\s*)*return EVO_NONE;\s*$/.test(mapEvo);
 for (const s of Object.values(g.species)) for (const e of s.evo) {
   const to = g.speciesId[e.to];
   if (!to) continue;
   const param = /^LEVEL/.test(e.kind) ? Number(e.param) : typeof e.param === 'string' ? e.param.replace(/^(ITEM|MOVE|SPECIES)_/, '') : e.param == null || e.param === 0 ? null : String(e.param); // sem parâmetro (Umbreon, Magnezone) → null, não "null"
-  evoInfo[to] = { kind: e.kind, param, possible: true, raw: e.raw };
+  evoInfo[to] = { kind: e.kind, param, possible: !(noMapEvo && e.kind === 'LOCATION'), raw: e.raw };
 }
 const minLevel = (mon) => { const parent = byDex.get(mon.evolvesFrom); const own = /^LEVEL/.test(evoInfo[mon.id]?.kind ?? '') ? evoInfo[mon.id].param : 0; return Math.max(parent ? minLevel(parent) : 1, own, 1); };
 for (const mon of data.pokemon) { mon.evo = evoInfo[mon.id] ?? null; mon.minLevel = minLevel(mon); }

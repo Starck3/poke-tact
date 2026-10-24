@@ -236,6 +236,18 @@ const tiers = [...martTxt.split('_020FBF22[] = {')[1].split('};')[0].matchAll(/\
 const TIER_MIN_BADGES = { 1: 0, 2: 1, 3: 3, 4: 5, 5: 7, 6: 8 }; // ScrCmd_MartBuy: 0 → 1; 1–2 → 2; 3–4 → 3; 5–6 → 4; 7 → 5; 8+ → 6
 const arrays = Object.fromEntries([...martTxt.matchAll(/const u16 (_\w+)\[\] = \{([^}]*)\}/g)].map((m) => [m[1], [...m[2].matchAll(/ITEM_\w+/g)].map((x) => x[0])]));
 const special = [...martTxt.split('_0210FA3C[] = {')[1].split('};')[0].matchAll(/(_\w+)/g)].map((m) => arrays[m[1]] ?? []);
+// loja do Pokéathlon (ScrCmd_771): uma lista por dia da semana (RTCDate.week, 0 = domingo) — _0210FA04[dia] antes da
+// Pokédex Nacional e _0210FA04[dia + 7] depois (pós-jogo); é lá que estão a Thunderstone e a Fire Stone do HGSS
+const martItems = Object.fromEntries([...martTxt.matchAll(/const struct MartItem (_\w+)\[\] = \{([^}]*(?:\}[^;][^}]*)*)\};/g)].map((m) => [m[1], [...m[2].matchAll(/(ITEM_\w+),\s*(\d+)/g)].map((x) => x[1])]));
+const athlete = [...martTxt.split('_0210FA04[] = {')[1].split('};')[0].matchAll(/(_\w+)/g)].map((m) => martItems[m[1]] ?? []);
+const DAYS = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+const athleteSrc = (h) => {
+  for (const [half, minBadges] of [[0, 0], [7, 9]]) {
+    const days = {};
+    for (let d = 0; d < 7; d++) for (const it of athlete[half + d] ?? []) (days[it] ??= []).push(DAYS[d]);
+    for (const [it, ds] of Object.entries(days)) addSrc(it, { type: 'mart', where: label(h), map: h, by: `Pokéathlon, paga com pontos — ${ds.length === 7 ? 'todo dia' : ds.join(', ')}${half ? ', depois da Pokédex Nacional' : ''}`, resolved: true, ...(minBadges && { minBadges }) });
+  }
+};
 for (const h of ids) {
   const ev = eventsOf(h);
   for (const o of [...(ev?.objects ?? []), ...(ev?.bgs ?? [])]) {
@@ -263,6 +275,7 @@ for (const h of ids) {
     if (sm && lines.slice(i + 1, i + 3).some((x) => /CallStd std_special_mart/.test(x))) for (const it of special[Number(sm[1])] ?? []) addSrc(it, { type: 'mart', where: label(h), map: h, by: 'loja', resolved: true });
   });
   for (const it of gifts) addSrc(it, { type: 'gift', where: label(h), map: h, by: leader ? `líder ${leader}` : 'NPC', resolved: true, ...(leader && { leader }) });
+  if (lines.some((l) => /^ScrCmd_771\b/.test(l))) athleteSrc(h);
   if (lines.some((l) => /CallStd std_pokemart/.test(l))) for (const c of tiers) addSrc(c.item, { type: 'mart', where: label(h), map: h, by: 'loja', resolved: true, minBadges: TIER_MIN_BADGES[c.tier] });
 }
 

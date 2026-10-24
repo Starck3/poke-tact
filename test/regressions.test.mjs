@@ -2156,3 +2156,38 @@ test('mapa da região: cavernas do FRLG pela entrada; Black 2/White 2 pela grade
   assert.match(load('black-white-regionmap.json').source, /mesma região de black-2-white-2/);
   assert.equal(load('games.json').games.filter((g) => g.capture?.regionMap).length, 15);
 });
+
+test('evoluções na aba Onde capturar (0.22.0): família, método e onde achar o item (decomp ou citação do detonado)', async () => {
+  const { evolutionReport } = await import('../public/engine.mjs');
+  const rep = (g, n, items = null) => { const d = load(`${g}.json`); return evolutionReport(d, load(`${g}-acquisition.json`), d.pokemon.find((p) => p.name === n), items); };
+  const fr = rep('firered-leafgreen', 'pikachu');
+  assert.deepEqual(fr.nodes.map((x) => x.name), ['pichu', 'pikachu', 'raichu']);
+  const rai = fr.nodes.find((x) => x.name === 'raichu');
+  assert.equal(rai.how, 'Thunder Stone');
+  assert.ok(rai.item.sources.some((s) => /Celadon City Department Store 4F — loja/.test(s.text) && s.stage === 3));
+  // Eevee: todos os ramos, na ordem da Pokédex
+  assert.deepEqual(rep('emerald', 'eevee').nodes.map((x) => x.name), ['eevee', 'vaporeon', 'jolteon', 'flareon', 'espeon', 'umbreon']);
+  // sem decomp: frase do detonado com verbo de obter (X/Y: Thunder Stone em Cyllage City)
+  const xy = load('x-y-evoitems.json');
+  assert.ok(rep('x-y', 'raichu', xy).nodes.find((x) => x.name === 'raichu').item.cited.some((c) => /CYLLAGE/.test(c.section)));
+  assert.ok(!(xy.items.UPGRADE ?? []).some((c) => /Mega Ring/.test(c.text))); // "um upgrade no Mega Ring" não é o Up-Grade
+  assert.ok(!(load('legends-arceus-evoitems.json').items.LEAF_STONE ?? []).some((c) => /sem precisar/.test(c.text)));
+  assert.ok(load('omega-ruby-alpha-sapphire-evoitems.json').items.THUNDER_STONE.some((c) => /Shard/.test(c.text))); // "Fire/Water/Thunder Stone"
+  assert.ok(load('black-white-evoitems.json').items.SUN_STONE.some((c) => /Nimbasa/i.test(c.text)));
+  // jogos com itens do decomp não ganham o arquivo de citações
+  assert.ok(!existsSync(new URL('../public/data/firered-leafgreen-evoitems.json', import.meta.url)));
+});
+
+test('HGSS (0.22.0): evolução por lugar não existe (MapHeader_GetMapEvolutionMethod = EVO_NONE) e pedras da loja do Pokéathlon', () => {
+  const d = load('heartgold-soulsilver.json'), a = load('heartgold-soulsilver-acquisition.json');
+  for (const n of ['leafeon', 'glaceon', 'magnezone', 'probopass']) {
+    const m = d.pokemon.find((p) => p.name === n);
+    assert.equal(m.evo.possible, false, n);
+    assert.equal(m.obtainable.heartgold, false, n);
+  }
+  // loja do Pokéathlon: lista por dia da semana (0 = domingo); antes faltavam Thunderstone, Fire Stone e Sun Stone
+  assert.ok(a.items.THUNDERSTONE.some((s) => /Pokeathlon/.test(s.where) && /— quinta$/.test(s.by) && s.stage === 3));
+  assert.ok(a.items.FIRE_STONE.some((s) => /— terça$/.test(s.by)));
+  assert.ok(a.items.SUN_STONE.every((s) => s.stage === 9)); // só depois da Pokédex Nacional
+  assert.ok(d.pokemon.find((p) => p.name === 'jolteon').obtainable.heartgold);
+});

@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.21.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.22.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -71,7 +71,9 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
     só; no BDSP, Poké Radar e surto vêm dentro da grama (o Nidoran da Route 201 aparece como grama); no Scarlet/Violet os
     exclusivos de versão aparecem nas duas versões (há aviso na tela).
 13. **Itens e TMs no Detonado das Gens 5–9** — o PKHeX não tem a posição dos itens; a evolução por pedra não é limitada pelo
-    ponto da história nesses jogos.
+    ponto da história nesses jogos. Desde a 0.22.0 a aba Onde capturar mostra, para os itens de evolução, as frases do
+    detonado que dizem onde achar — mas Sword/Shield (0/28) e Let's Go (0/6) não citam nenhum, e nos outros faltam vários
+    (ver `reports/<jogo>/evo-items.json`).
 14. **Black 2/White 2 — 15 TMs vendidas em lojas** comuns: não estão no decomp em texto.
 
 ### Trabalho grande no motor
