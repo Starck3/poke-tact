@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport } from './engine.mjs';
+import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -51,6 +51,7 @@ let acq = null;
 let trainersFromWalk = false;
 let regionMap = null; // <jogo>-regionmap.json: posições dos lugares no mapa da região (decomp) — Gens 1–3
 let places = null; // <jogo>-places.json: fotos dos lugares de captura (referências ao detonado do PokeMythology)
+let evoItems = null; // <jogo>-evoitems.json: onde o detonado diz que acha os itens de evolução (jogos sem itens do decomp)
 let walk = null; // detonado gerado (carregado ao abrir a aba)
 let known = null; // { moves, item } do Pokémon de treinador selecionado; null quando o usuário digita manualmente
 let teamMode = null; // treinador quando o modo "contra o time inteiro" está ativo
@@ -85,6 +86,7 @@ async function load(gameId) {
   $('gameInfo').textContent = 'Carregando dados…';
   walk = null;
   places = null; // fotos dos lugares (aba Onde capturar) — do jogo novo
+  evoItems = null;
   regionMap = null;
   showTab('rec');
   data = await (await fetch(`data/${gameId}.json`)).json();
@@ -225,9 +227,34 @@ function renderDex() {
   } else html += '<p><strong>Não dá para obter em ' + vLabel + '</strong> — nem capturando, nem evoluindo algo que se captura' + (r.events.length ? '; só por evento: ' + r.events.join('; ') : ' (só trocando com outro jogo)') + '.</p>';
   if (r.others.length) html += '<p class="meta">Nas outras versões: ' + r.others.map((o) => ($('version').querySelector('option[value="' + o.version + '"]')?.textContent ?? o.version) + ' (' + o.count + (o.count > 1 ? ' formas de obter' : ' forma de obter') + ')').join(', ') + '.</p>';
   if (acq.encountersOnly) html += '<p class="note">Locais e níveis das tabelas do jogo (PKHeX), sem taxa de aparição.</p>';
-  out.innerHTML = html + '<div id="dexMap"></div><div id="dexPlaces"></div>';
+  out.innerHTML = html + '<div id="dexEvo"></div><div id="dexMap"></div><div id="dexPlaces"></div>';
+  renderEvolutions(mon, stageTxt);
   renderRegionMap(r.lines.map((l) => l.where));
   renderPlaces(r.lines.map((l) => l.where));
+}
+
+// evoluções da família: método de cada uma e, quando pede item (pedra, Metal Coat…), onde achar o item no jogo
+async function renderEvolutions(mon, stageTxt) {
+  const game = currentGame;
+  if (evoItems === null) {
+    // jogos com decomp: itens em acq.items (sem arquivo) — só os outros têm <jogo>-evoitems.json
+    if (acq?.items && Object.keys(acq.items).length) evoItems = { items: {} };
+    else { try { evoItems = await (await fetch(`data/${game}-evoitems.json`)).json(); } catch { evoItems = { items: {} }; } }
+  }
+  const box = $('dexEvo');
+  if (!box || game !== currentGame) return;
+  const r = evolutionReport(data, acq, mon, evoItems);
+  if (r.nodes.length < 2) { box.innerHTML = '<div class="walk-h">Evoluções</div><p class="meta">' + humanize(mon.name) + ' não evolui nem vem de evolução.</p>'; return; }
+  const link = (n) => (n.name === mon.name ? '<strong>' + humanize(n.name) + '</strong>' : '<a href="#" data-evo="' + n.name + '">' + humanize(n.name) + '</a>');
+  const itemHtml = (it) => {
+    if (it.sources.length) return '<ul class="walk-list">' + it.sources.map((s) => '<li>' + s.text + stageTxt(s.stage) + '</li>').join('') + '</ul>';
+    if (it.cited.length) return '<ul class="walk-list">' + it.cited.slice(0, 4).map((c) => '<li>“' + c.text + '” <span class="meta">— detonado, trecho ' + c.section.toLowerCase().replace(/(^|\s)(\S)/g, (m, a, b) => a + b.toUpperCase()) + '</span></li>').join('') + '</ul><p class="note">Citação do detonado do PokeMythology, não posição conferida no código do jogo.</p>';
+    return '<p class="meta">Onde achar ' + it.label + ': não está nos dados deste jogo nem no detonado.</p>';
+  };
+  box.innerHTML = '<div class="walk-h">Evoluções</div><ul class="evo-tree">' + r.nodes.map((n) => '<li style="margin-left:' + n.depth * 1.4 + 'em">' + (n.depth ? '↳ ' : '') + img(n.id) + link(n) +
+    (n.depth ? ' — ' + (n.how || 'método não informado') + (n.possible ? '' : ' <span class="lozenge warn">não dá neste jogo</span>') : ' <span class="meta">(forma base)</span>') +
+    (n.item && n.possible ? '<div class="evo-item"><span class="meta">Onde achar ' + n.item.label + ':</span>' + itemHtml(n.item) + '</div>' : '') + '</li>').join('') + '</ul>';
+  box.querySelectorAll('[data-evo]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); $('dexQ').value = humanize(a.dataset.evo); renderDex(); }));
 }
 
 // fotos dos lugares: capturas do trecho do detonado do PokeMythology que fala de cada lugar (até 4 lugares, 2 fotos cada)

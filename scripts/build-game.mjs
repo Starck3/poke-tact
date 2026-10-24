@@ -30,9 +30,9 @@ const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-for
 const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
 const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
-// todos os jogos, no fim: fotos dos lugares (detonado) e mapa esquemático da região (decomp, Gens 1–3); saem sem erro
-// quando o jogo não tem a fonte
-const IMAGE_STEPS = ['build-place-images', 'build-region-maps'];
+// todos os jogos, no fim: fotos dos lugares (detonado), mapa esquemático da região (decomp) e onde achar os itens de
+// evolução citados no detonado (só jogos sem lista de itens do decomp); saem sem erro quando o jogo não tem a fonte
+const IMAGE_STEPS = ['build-place-images', 'build-region-maps', 'build-evo-items'];
 for (const id of ids) {
   if (!GAMES[id]) throw new Error(`Jogo desconhecido: ${id}`);
   console.log(`\n===== ${id} =====`);

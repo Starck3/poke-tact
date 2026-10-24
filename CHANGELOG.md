@@ -2,6 +2,22 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.22.0] — 2026-10-20
+
+### Adicionado
+- **Evoluções na aba Onde capturar**: a família inteira do Pokémon (da forma base às finais, com os ramos do Eevee), o
+  método de cada evolução (nível, pedra, troca, amizade, lugar…) e, quando pede item, **onde achar o item**: nos jogos
+  com decomp, os locais do código do jogo (chão, escondido, loja, presente, prêmio) com o ponto da história; nos outros,
+  as frases do detonado que dizem onde achar (Black/White, X/Y, ORAS, Sun/Moon, BDSP, Legends: Arceus, Scarlet/Violet,
+  Z-A), marcadas como citação. Clicar num Pokémon da família abre a busca dele.
+
+### Corrigido
+- **HeartGold/SoulSilver**: Leafeon, Glaceon, Magnezone e Probopass apareciam como obtíveis por evolução — no HGSS a
+  evolução por lugar não existe (o jogo nunca dá o método do mapa). Saíram das sugestões.
+- **HeartGold/SoulSilver**: faltavam Thunderstone, Fire Stone e Sun Stone — elas são vendidas na loja do Pokéathlon, uma
+  lista por dia da semana (ex.: Thunderstone na quinta, Fire Stone na terça; mais opções depois da Pokédex Nacional).
+  Jolteon, Flareon, Arcanine e Ninetales voltaram às sugestões.
+
 ## [0.21.0] — 2026-10-20
 
 ### Adicionado

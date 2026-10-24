@@ -309,6 +309,16 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   icepath; "Mount Mortar 1FInside" → mtmortar); 🧪 nunca uma palavra só ("celadon" é a cidade, não o Game Corner) e número
   no fim não continua em outro dígito ("route4black" é Route 4, não Route 40). No trecho pelo título, sai a foto cujo nome
   cita OUTRO lugar (o trecho de Blackthorn só tinha fotos do Ice Path).
+- **Itens de evolução** (0.22.0, `evolutionReport` + `build-evo-items.mjs`): com decomp, `acq.items[evo.param]` (o
+  parâmetro da evolução e a chave do item são do mesmo jogo: THUNDERSTONE no Gen 4/5, THUNDER_STONE no Gen 3); sem
+  decomp, frases do detonado com o nome em inglês do item E um verbo de obter → `<jogo>-evoitems.json`. 🧪 nome com
+  maiúscula ("um upgrade no Mega Ring" não é o Up-Grade), "Fire/Water/Thunder Stone" expandido (ORAS), "sem precisar da
+  Leaf Stone" fora (LA). Sword/Shield: o detonado não cita pedra nenhuma (0/28).
+- **HGSS — evolução por lugar e loja do Pokéathlon** (0.22.0): `MapHeader_GetMapEvolutionMethod` devolve sempre EVO_NONE
+  ("Leftover from D/P/Pl.") → EVO_ETERNA/ROUTE217/CORONET com `possible: false` (lido do `src/map_header.c`, não fixo).
+  Loja do Pokéathlon = `ScrCmd_771` (Pokeathlon Dome Interior 1F): `_0210FA04[RTCDate.week]` antes da Pokédex Nacional e
+  `[week + 7]` depois (estágio 9); week 0 = domingo (convenção do RTC do NitroSDK, que não está no repositório).
+  🧪 rodar o banco de lutas de UM jogo regrava `_total.json` só com ele — rodar todos antes do teste.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

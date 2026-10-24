@@ -412,3 +412,33 @@ export function catchReport(data, acq, mon, version) {
   const others = Object.keys(acq.versions).filter((v) => v !== version).map((v) => ({ version: v, count: whereToGet(data, acq, mon, v).direct.length })).filter((o) => o.count);
   return { lines, from: w.from ?? null, steps: w.steps, events: w.events.map((s) => formatSources([s], 1)[0] ?? s.where), others, obtainable: !!mon.obtainable?.[version] };
 }
+
+const ITEM_HOW = { ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 'presente', gym: 'prêmio do líder', prize: 'prêmio' };
+/**
+ * Aba "Onde capturar" → evoluções: a família inteira da espécie (da forma base às finais, com ramos — Eevee), o método de
+ * cada evolução e, quando ela pede item (pedra, Metal Coat…), onde achar o item no jogo:
+ *   • jogos com decomp: `acq.items` (chão, escondido, loja, presente…, com o ponto da história)
+ *   • os outros: `evoItems` (<jogo>-evoitems.json) — frases do detonado que dizem onde achar; citação, não posição verificada
+ * Retorna { nodes: [{ name, id, depth, how, possible, item: { param, label, sources: [{ text, stage }], cited: [{ section, text }] } }] }.
+ */
+export function evolutionReport(data, acq, mon, evoItems = null) {
+  const byId = new Map(data.pokemon.map((p) => [p.id, p]));
+  const root = byId.get(family(data, mon)) ?? mon;
+  const itemOf = (param) => {
+    const seen = new Set();
+    // detalhe de quem dá/vende ("loja do Pokéathlon (pontos) — quinta", "500 fichas", "Sailor"); sem os genéricos e sem o
+    // nome do gráfico do NPC no decomp ("Man 5")
+    const detail = (s) => (s.by && !/^(loja|NPC|Clerk|item no chão|escondido)$/.test(s.by) && !/^[A-Z][a-z]+ \d+$/.test(s.by) ? ' (' + s.by + ')' : '');
+    const sources = (acq?.items?.[param] ?? []).map((s) => ({ text: s.where + ' — ' + (ITEM_HOW[s.type] ?? s.type) + detail(s), stage: acq.progress && s.stage != null ? s.stage : null }))
+      .filter((s) => !seen.has(s.text) && seen.add(s.text)).sort((a, b) => (a.stage ?? 99) - (b.stage ?? 99));
+    return { param, label: TITLE(param), sources, cited: evoItems?.items?.[param] ?? [] };
+  };
+  const nodes = [];
+  const walk = (p, depth) => {
+    const e = depth ? p.evo : null;
+    nodes.push({ name: p.name, id: p.id, depth, how: e ? describeEvolution(e) : '', possible: e?.possible !== false, item: e && /ITEM/.test(e.kind ?? '') && typeof e.param === 'string' ? itemOf(e.param) : null });
+    for (const c of data.pokemon.filter((x) => x.evolvesFrom === p.id && x.id !== p.id).sort((a, b) => a.id - b.id)) walk(c, depth + 1);
+  };
+  walk(root, 0);
+  return { nodes };
+}
