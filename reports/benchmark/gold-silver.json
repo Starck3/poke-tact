@@ -2141,8 +2141,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 29,
-     "winnersAvailable": 58,
-     "candidates": 63,
+     "winnersAvailable": 59,
+     "candidates": 64,
      "picks": [
       {
        "mon": "butterfree",
@@ -2221,8 +2221,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 30,
-     "winnersAvailable": 43,
-     "candidates": 64,
+     "winnersAvailable": 44,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -2302,7 +2302,7 @@
      ],
      "superEffectiveAvailable": 30,
      "winnersAvailable": 18,
-     "candidates": 64,
+     "candidates": 65,
      "picks": [
       {
        "mon": "togetic",
@@ -2381,8 +2381,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 28,
-     "winnersAvailable": 35,
-     "candidates": 64,
+     "winnersAvailable": 36,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -2472,8 +2472,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 27,
-     "winnersAvailable": 58,
-     "candidates": 63,
+     "winnersAvailable": 59,
+     "candidates": 64,
      "picks": [
       {
        "mon": "butterfree",
@@ -2552,8 +2552,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 28,
-     "winnersAvailable": 44,
-     "candidates": 64,
+     "winnersAvailable": 45,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -2633,7 +2633,7 @@
      ],
      "superEffectiveAvailable": 28,
      "winnersAvailable": 19,
-     "candidates": 64,
+     "candidates": 65,
      "picks": [
       {
        "mon": "togetic",
@@ -2712,8 +2712,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 26,
-     "winnersAvailable": 37,
-     "candidates": 64,
+     "winnersAvailable": 38,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -2803,8 +2803,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 28,
-     "winnersAvailable": 58,
-     "candidates": 63,
+     "winnersAvailable": 59,
+     "candidates": 64,
      "picks": [
       {
        "mon": "butterfree",
@@ -2883,8 +2883,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 29,
-     "winnersAvailable": 44,
-     "candidates": 64,
+     "winnersAvailable": 45,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -2964,7 +2964,7 @@
      ],
      "superEffectiveAvailable": 28,
      "winnersAvailable": 18,
-     "candidates": 64,
+     "candidates": 65,
      "picks": [
       {
        "mon": "togetic",
@@ -3043,8 +3043,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 26,
-     "winnersAvailable": 37,
-     "candidates": 64,
+     "winnersAvailable": 38,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -3134,8 +3134,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 26,
-     "winnersAvailable": 52,
-     "candidates": 62,
+     "winnersAvailable": 53,
+     "candidates": 63,
      "picks": [
       {
        "mon": "stantler",
@@ -3213,9 +3213,9 @@
       "supersonic",
       "sonic-boom"
      ],
-     "superEffectiveAvailable": 41,
-     "winnersAvailable": 43,
-     "candidates": 61,
+     "superEffectiveAvailable": 42,
+     "winnersAvailable": 44,
+     "candidates": 62,
      "picks": [
       {
        "mon": "machop",
@@ -3294,8 +3294,8 @@
       "confuse-ray"
      ],
      "superEffectiveAvailable": 28,
-     "winnersAvailable": 57,
-     "candidates": 61,
+     "winnersAvailable": 58,
+     "candidates": 62,
      "picks": [
       {
        "mon": "heracross",
@@ -3373,9 +3373,9 @@
       "razor-leaf",
       "poison-powder"
      ],
-     "superEffectiveAvailable": 28,
-     "winnersAvailable": 39,
-     "candidates": 62,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 40,
+     "candidates": 63,
      "picks": [
       {
        "mon": "beedrill",
@@ -3465,8 +3465,8 @@
       "fury-swipes"
      ],
      "superEffectiveAvailable": 16,
-     "winnersAvailable": 46,
-     "candidates": 81,
+     "winnersAvailable": 47,
+     "candidates": 82,
      "picks": [
       {
        "mon": "scyther",
@@ -3544,9 +3544,9 @@
       "surf",
       "dynamic-punch"
      ],
-     "superEffectiveAvailable": 37,
+     "superEffectiveAvailable": 38,
      "winnersAvailable": 9,
-     "candidates": 81,
+     "candidates": 82,
      "picks": [
       {
        "mon": "scyther",
@@ -3624,177 +3624,6 @@
    "group": "Líderes de ginásio",
    "stage": 4,
    "starter": "cyndaquil",
-   "level": 30,
-   "mons": [
-    {
-     "opp": "primeape",
-     "level": 27,
-     "moves": [
-      "leer",
-      "rage",
-      "karate-chop",
-      "fury-swipes"
-     ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 46,
-     "candidates": 81,
-     "picks": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "gastly",
-       "move": "thunder",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "rage"
-      },
-      {
-       "mon": "tentacruel",
-       "move": "surf",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      }
-     ],
-     "before": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "magmar",
-       "move": "fire-blast",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "karate-chop"
-      }
-     ]
-    },
-    {
-     "opp": "poliwrath",
-     "level": 30,
-     "moves": [
-      "hypnosis",
-      "mind-reader",
-      "surf",
-      "dynamic-punch"
-     ],
-     "superEffectiveAvailable": 35,
-     "winnersAvailable": 8,
-     "candidates": 81,
-     "picks": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "sunflora",
-       "move": "razor-leaf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "dynamic-punch"
-      }
-     ],
-     "before": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "magneton",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "surf"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "version": "gold",
-   "key": "CHUCK#CHUCK1",
-   "label": "Leader Chuck",
-   "group": "Líderes de ginásio",
-   "stage": 4,
-   "starter": "totodile",
    "level": 30,
    "mons": [
     {
@@ -3886,9 +3715,180 @@
       "surf",
       "dynamic-punch"
      ],
-     "superEffectiveAvailable": 35,
-     "winnersAvailable": 9,
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 8,
      "candidates": 82,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "sunflora",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "dynamic-punch"
+      }
+     ],
+     "before": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "surf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "gold",
+   "key": "CHUCK#CHUCK1",
+   "label": "Leader Chuck",
+   "group": "Líderes de ginásio",
+   "stage": 4,
+   "starter": "totodile",
+   "level": 30,
+   "mons": [
+    {
+     "opp": "primeape",
+     "level": 27,
+     "moves": [
+      "leer",
+      "rage",
+      "karate-chop",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 48,
+     "candidates": 83,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "gastly",
+       "move": "thunder",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "rage"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      }
+     ],
+     "before": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "karate-chop"
+      }
+     ]
+    },
+    {
+     "opp": "poliwrath",
+     "level": 30,
+     "moves": [
+      "hypnosis",
+      "mind-reader",
+      "surf",
+      "dynamic-punch"
+     ],
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 9,
+     "candidates": 83,
      "picks": [
       {
        "mon": "scyther",
@@ -3977,9 +3977,9 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 49,
-     "candidates": 85,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 50,
+     "candidates": 86,
      "picks": [
       {
        "mon": "quagsire",
@@ -4057,9 +4057,9 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 49,
-     "candidates": 85,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 50,
+     "candidates": 86,
      "picks": [
       {
        "mon": "quagsire",
@@ -4137,9 +4137,9 @@
       "rock-throw",
       "iron-tail"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 28,
-     "candidates": 86,
+     "superEffectiveAvailable": 48,
+     "winnersAvailable": 29,
+     "candidates": 87,
      "picks": [
       {
        "mon": "golduck",
@@ -4228,259 +4228,8 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 48,
-     "candidates": 84,
-     "picks": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "mud-slap",
-       "eff": 4,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "weezing",
-       "move": "fire-blast",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "thunderbolt"
-      }
-     ],
-     "before": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "sandshrew",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      }
-     ]
-    },
-    {
-     "opp": "magnemite",
-     "level": 30,
-     "moves": [
-      "thunderbolt",
-      "supersonic",
-      "sonic-boom",
-      "thunder-wave"
-     ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 48,
-     "candidates": 84,
-     "picks": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "mud-slap",
-       "eff": 4,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "weezing",
-       "move": "fire-blast",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "thunderbolt"
-      }
-     ],
-     "before": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "sandshrew",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      }
-     ]
-    },
-    {
-     "opp": "steelix",
-     "level": 35,
-     "moves": [
-      "screech",
-      "sunny-day",
-      "rock-throw",
-      "iron-tail"
-     ],
-     "superEffectiveAvailable": 49,
-     "winnersAvailable": 29,
-     "candidates": 85,
-     "picks": [
-      {
-       "mon": "golduck",
-       "move": "surf",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "quagsire",
-       "move": "surf",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "magmar",
-       "move": "fire-blast",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      }
-     ],
-     "before": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "golduck",
-       "move": "surf",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "tentacruel",
-       "move": "surf",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "version": "gold",
-   "key": "JASMINE#JASMINE1",
-   "label": "Leader Jasmine",
-   "group": "Líderes de ginásio",
-   "stage": 5,
-   "starter": "totodile",
-   "level": 35,
-   "mons": [
-    {
-     "opp": "magnemite",
-     "level": 30,
-     "moves": [
-      "thunderbolt",
-      "supersonic",
-      "sonic-boom",
-      "thunder-wave"
-     ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 47,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 49,
      "candidates": 85,
      "picks": [
       {
@@ -4559,8 +4308,8 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 47,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 49,
      "candidates": 85,
      "picks": [
       {
@@ -4656,6 +4405,257 @@
        "theirMove": "iron-tail"
       },
       {
+       "mon": "quagsire",
+       "move": "surf",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      }
+     ],
+     "before": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "gold",
+   "key": "JASMINE#JASMINE1",
+   "label": "Leader Jasmine",
+   "group": "Líderes de ginásio",
+   "stage": 5,
+   "starter": "totodile",
+   "level": 35,
+   "mons": [
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 48,
+     "candidates": 86,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "mud-slap",
+       "eff": 4,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "weezing",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "thunderbolt"
+      }
+     ],
+     "before": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 48,
+     "candidates": 86,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "mud-slap",
+       "eff": 4,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "weezing",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "thunderbolt"
+      }
+     ],
+     "before": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "sandshrew",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      }
+     ]
+    },
+    {
+     "opp": "steelix",
+     "level": 35,
+     "moves": [
+      "screech",
+      "sunny-day",
+      "rock-throw",
+      "iron-tail"
+     ],
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 31,
+     "candidates": 87,
+     "picks": [
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
        "mon": "feraligatr",
        "move": "surf",
        "eff": 2,
@@ -4730,9 +4730,260 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 20,
-     "winnersAvailable": 79,
-     "candidates": 91,
+     "superEffectiveAvailable": 21,
+     "winnersAvailable": 80,
+     "candidates": 92,
+     "picks": [
+      {
+       "mon": "magnemite",
+       "move": "thunder",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "aurora-beam"
+      },
+      {
+       "mon": "flaaffy",
+       "move": "thunder",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "headbutt"
+      },
+      {
+       "mon": "forretress",
+       "move": "strength",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 16,
+       "faster": 1,
+       "theirMove": "aurora-beam"
+      }
+     ],
+     "before": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 16,
+       "faster": 1,
+       "theirMove": "aurora-beam"
+      },
+      {
+       "mon": "ampharos",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "headbutt"
+      },
+      {
+       "mon": "girafarig",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "headbutt"
+      }
+     ]
+    },
+    {
+     "opp": "dewgong",
+     "level": 29,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 37,
+     "winnersAvailable": 41,
+     "candidates": 92,
+     "picks": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "aurora-beam"
+      },
+      {
+       "mon": "corsola",
+       "move": "rollout",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "aurora-beam"
+      },
+      {
+       "mon": "ampharos",
+       "move": "thunder",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "aurora-beam"
+      }
+     ],
+     "before": [
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "aurora-beam"
+      },
+      {
+       "mon": "ampharos",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "aurora-beam"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "rock-slide",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "aurora-beam"
+      }
+     ]
+    },
+    {
+     "opp": "piloswine",
+     "level": 31,
+     "moves": [
+      "icy-wind",
+      "fury-attack",
+      "mist",
+      "blizzard"
+     ],
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 33,
+     "candidates": 92,
+     "picks": [
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "fury-attack"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-attack"
+      },
+      {
+       "mon": "corsola",
+       "move": "surf",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "blizzard"
+      }
+     ],
+     "before": [
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "fury-attack"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-attack"
+      },
+      {
+       "mon": "mantine",
+       "move": "surf",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "blizzard"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "gold",
+   "key": "PRYCE#PRYCE1",
+   "label": "Leader Pryce",
+   "group": "Líderes de ginásio",
+   "stage": 6,
+   "starter": "cyndaquil",
+   "level": 31,
+   "mons": [
+    {
+     "opp": "seel",
+     "level": 27,
+     "moves": [
+      "headbutt",
+      "icy-wind",
+      "aurora-beam",
+      "rest"
+     ],
+     "superEffectiveAvailable": 19,
+     "winnersAvailable": 80,
+     "candidates": 92,
      "picks": [
       {
        "mon": "magnemite",
@@ -4811,8 +5062,8 @@
       "rest"
      ],
      "superEffectiveAvailable": 36,
-     "winnersAvailable": 40,
-     "candidates": 91,
+     "winnersAvailable": 43,
+     "candidates": 92,
      "picks": [
       {
        "mon": "magneton",
@@ -4890,260 +5141,9 @@
       "mist",
       "blizzard"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 32,
-     "candidates": 91,
-     "picks": [
-      {
-       "mon": "magmar",
-       "move": "fire-blast",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "tentacruel",
-       "move": "surf",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "corsola",
-       "move": "surf",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "blizzard"
-      }
-     ],
-     "before": [
-      {
-       "mon": "magmar",
-       "move": "fire-blast",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "tentacruel",
-       "move": "surf",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "mantine",
-       "move": "surf",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "blizzard"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "version": "gold",
-   "key": "PRYCE#PRYCE1",
-   "label": "Leader Pryce",
-   "group": "Líderes de ginásio",
-   "stage": 6,
-   "starter": "cyndaquil",
-   "level": 31,
-   "mons": [
-    {
-     "opp": "seel",
-     "level": 27,
-     "moves": [
-      "headbutt",
-      "icy-wind",
-      "aurora-beam",
-      "rest"
-     ],
-     "superEffectiveAvailable": 18,
-     "winnersAvailable": 79,
-     "candidates": 91,
-     "picks": [
-      {
-       "mon": "magnemite",
-       "move": "thunder",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "aurora-beam"
-      },
-      {
-       "mon": "flaaffy",
-       "move": "thunder",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "headbutt"
-      },
-      {
-       "mon": "forretress",
-       "move": "strength",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 16,
-       "faster": 1,
-       "theirMove": "aurora-beam"
-      }
-     ],
-     "before": [
-      {
-       "mon": "magneton",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 16,
-       "faster": 1,
-       "theirMove": "aurora-beam"
-      },
-      {
-       "mon": "ampharos",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 1,
-       "theirMove": "headbutt"
-      },
-      {
-       "mon": "girafarig",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "headbutt"
-      }
-     ]
-    },
-    {
-     "opp": "dewgong",
-     "level": 29,
-     "moves": [
-      "headbutt",
-      "icy-wind",
-      "aurora-beam",
-      "rest"
-     ],
-     "superEffectiveAvailable": 35,
-     "winnersAvailable": 42,
-     "candidates": 91,
-     "picks": [
-      {
-       "mon": "magneton",
-       "move": "thunder",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "aurora-beam"
-      },
-      {
-       "mon": "corsola",
-       "move": "rollout",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      },
-      {
-       "mon": "ampharos",
-       "move": "thunder",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      }
-     ],
-     "before": [
-      {
-       "mon": "magneton",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "aurora-beam"
-      },
-      {
-       "mon": "ampharos",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "rock-slide",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      }
-     ]
-    },
-    {
-     "opp": "piloswine",
-     "level": 31,
-     "moves": [
-      "icy-wind",
-      "fury-attack",
-      "mist",
-      "blizzard"
-     ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 34,
-     "candidates": 91,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 35,
+     "candidates": 92,
      "picks": [
       {
        "mon": "magmar",
@@ -5232,9 +5232,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 18,
-     "winnersAvailable": 80,
-     "candidates": 92,
+     "superEffectiveAvailable": 19,
+     "winnersAvailable": 81,
+     "candidates": 93,
      "picks": [
       {
        "mon": "magnemite",
@@ -5312,9 +5312,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 37,
-     "winnersAvailable": 43,
-     "candidates": 92,
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 44,
+     "candidates": 93,
      "picks": [
       {
        "mon": "magneton",
@@ -5392,9 +5392,9 @@
       "mist",
       "blizzard"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 35,
-     "candidates": 92,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 36,
+     "candidates": 93,
      "picks": [
       {
        "mon": "magmar",
@@ -5483,9 +5483,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 61,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 62,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -5563,9 +5563,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 56,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 57,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -5643,9 +5643,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 54,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 55,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -5725,7 +5725,7 @@
      ],
      "superEffectiveAvailable": 2,
      "winnersAvailable": 4,
-     "candidates": 107,
+     "candidates": 110,
      "picks": [
       {
        "mon": "tentacruel",
@@ -5814,9 +5814,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 60,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 61,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -5894,9 +5894,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 56,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 57,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -5974,9 +5974,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 55,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 56,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -6056,7 +6056,7 @@
      ],
      "superEffectiveAvailable": 2,
      "winnersAvailable": 4,
-     "candidates": 107,
+     "candidates": 110,
      "picks": [
       {
        "mon": "tentacruel",
@@ -6145,9 +6145,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 61,
-     "candidates": 107,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 62,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -6225,9 +6225,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 55,
-     "candidates": 107,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 56,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -6305,9 +6305,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 55,
-     "candidates": 107,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 56,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -6387,7 +6387,7 @@
      ],
      "superEffectiveAvailable": 2,
      "winnersAvailable": 4,
-     "candidates": 107,
+     "candidates": 110,
      "picks": [
       {
        "mon": "tentacruel",
@@ -6476,9 +6476,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 51,
+     "superEffectiveAvailable": 54,
      "winnersAvailable": 41,
-     "candidates": 100,
+     "candidates": 103,
      "picks": [
       {
        "mon": "magneton",
@@ -6556,9 +6556,9 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 62,
-     "winnersAvailable": 76,
-     "candidates": 100,
+     "superEffectiveAvailable": 64,
+     "winnersAvailable": 79,
+     "candidates": 103,
      "picks": [
       {
        "mon": "magmar",
@@ -6636,9 +6636,9 @@
       "curse",
       "shadow-ball"
      ],
-     "superEffectiveAvailable": 49,
-     "winnersAvailable": 72,
-     "candidates": 101,
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 74,
+     "candidates": 104,
      "picks": [
       {
        "mon": "raticate",
@@ -6716,9 +6716,9 @@
       "screech",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 57,
-     "winnersAvailable": 71,
-     "candidates": 101,
+     "superEffectiveAvailable": 60,
+     "winnersAvailable": 72,
+     "candidates": 104,
      "picks": [
       {
        "mon": "feraligatr",
@@ -6796,9 +6796,9 @@
       "poison-powder",
       "body-slam"
      ],
-     "superEffectiveAvailable": 64,
-     "winnersAvailable": 33,
-     "candidates": 101,
+     "superEffectiveAvailable": 67,
+     "winnersAvailable": 34,
+     "candidates": 104,
      "picks": [
       {
        "mon": "forretress",
@@ -6887,9 +6887,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 69,
-     "winnersAvailable": 35,
-     "candidates": 118,
+     "superEffectiveAvailable": 71,
+     "winnersAvailable": 37,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -6967,9 +6967,9 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 51,
+     "superEffectiveAvailable": 54,
      "winnersAvailable": 25,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "slowbro",
@@ -7047,9 +7047,9 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 15,
-     "candidates": 119,
+     "superEffectiveAvailable": 103,
+     "winnersAvailable": 16,
+     "candidates": 122,
      "picks": [
       {
        "mon": "jynx",
@@ -7127,9 +7127,9 @@
       "body-slam",
       "psychic"
      ],
-     "superEffectiveAvailable": 71,
+     "superEffectiveAvailable": 73,
      "winnersAvailable": 20,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -7207,9 +7207,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 71,
-     "winnersAvailable": 24,
-     "candidates": 118,
+     "superEffectiveAvailable": 74,
+     "winnersAvailable": 25,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -7298,9 +7298,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 69,
-     "winnersAvailable": 36,
-     "candidates": 118,
+     "superEffectiveAvailable": 71,
+     "winnersAvailable": 38,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -7378,9 +7378,9 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 51,
+     "superEffectiveAvailable": 54,
      "winnersAvailable": 26,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "slowbro",
@@ -7458,9 +7458,9 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 101,
-     "winnersAvailable": 17,
-     "candidates": 119,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 18,
+     "candidates": 122,
      "picks": [
       {
        "mon": "jynx",
@@ -7538,9 +7538,9 @@
       "body-slam",
       "psychic"
      ],
-     "superEffectiveAvailable": 69,
+     "superEffectiveAvailable": 71,
      "winnersAvailable": 20,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -7618,9 +7618,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 71,
-     "winnersAvailable": 25,
-     "candidates": 118,
+     "superEffectiveAvailable": 74,
+     "winnersAvailable": 26,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -7709,9 +7709,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 72,
-     "winnersAvailable": 36,
-     "candidates": 118,
+     "superEffectiveAvailable": 74,
+     "winnersAvailable": 38,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -7789,9 +7789,9 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 51,
+     "superEffectiveAvailable": 54,
      "winnersAvailable": 26,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "slowbro",
@@ -7869,9 +7869,9 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 101,
-     "winnersAvailable": 16,
-     "candidates": 119,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 17,
+     "candidates": 122,
      "picks": [
       {
        "mon": "jynx",
@@ -7949,9 +7949,9 @@
       "body-slam",
       "psychic"
      ],
-     "superEffectiveAvailable": 71,
+     "superEffectiveAvailable": 73,
      "winnersAvailable": 20,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -8029,9 +8029,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 74,
-     "winnersAvailable": 25,
-     "candidates": 118,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 26,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -8120,9 +8120,9 @@
       "dig",
       "detect"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 105,
-     "candidates": 119,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 107,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -8200,9 +8200,9 @@
       "high-jump-kick",
       "foresight"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 56,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "golbat",
@@ -8280,9 +8280,9 @@
       "fire-punch",
       "mach-punch"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 60,
-     "candidates": 119,
+     "superEffectiveAvailable": 22,
+     "winnersAvailable": 62,
+     "candidates": 122,
      "picks": [
       {
        "mon": "scyther",
@@ -8360,9 +8360,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 86,
-     "winnersAvailable": 79,
-     "candidates": 118,
+     "superEffectiveAvailable": 88,
+     "winnersAvailable": 80,
+     "candidates": 121,
      "picks": [
       {
        "mon": "meganium",
@@ -8440,9 +8440,9 @@
       "vital-throw",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 13,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "slowbro",
@@ -8531,9 +8531,9 @@
       "dig",
       "detect"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 105,
-     "candidates": 119,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 107,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -8611,9 +8611,9 @@
       "high-jump-kick",
       "foresight"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 57,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "golbat",
@@ -8691,9 +8691,9 @@
       "fire-punch",
       "mach-punch"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 62,
-     "candidates": 119,
+     "superEffectiveAvailable": 22,
+     "winnersAvailable": 64,
+     "candidates": 122,
      "picks": [
       {
        "mon": "scyther",
@@ -8771,9 +8771,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 83,
-     "winnersAvailable": 78,
-     "candidates": 118,
+     "superEffectiveAvailable": 85,
+     "winnersAvailable": 79,
+     "candidates": 121,
      "picks": [
       {
        "mon": "miltank",
@@ -8851,9 +8851,9 @@
       "vital-throw",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 14,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "slowbro",
@@ -8942,9 +8942,9 @@
       "dig",
       "detect"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 105,
-     "candidates": 119,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 107,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -9022,9 +9022,9 @@
       "high-jump-kick",
       "foresight"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 56,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "golbat",
@@ -9102,9 +9102,9 @@
       "fire-punch",
       "mach-punch"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 61,
-     "candidates": 119,
+     "superEffectiveAvailable": 22,
+     "winnersAvailable": 63,
+     "candidates": 122,
      "picks": [
       {
        "mon": "scyther",
@@ -9182,9 +9182,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 86,
-     "winnersAvailable": 79,
-     "candidates": 118,
+     "superEffectiveAvailable": 88,
+     "winnersAvailable": 80,
+     "candidates": 121,
      "picks": [
       {
        "mon": "feraligatr",
@@ -9262,9 +9262,9 @@
       "vital-throw",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 14,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "slowbro",
@@ -9355,7 +9355,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 49,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "machoke",
@@ -9433,9 +9433,9 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 60,
-     "winnersAvailable": 63,
-     "candidates": 119,
+     "superEffectiveAvailable": 63,
+     "winnersAvailable": 65,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magmar",
@@ -9513,9 +9513,9 @@
       "curse",
       "destiny-bond"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 112,
-     "candidates": 119,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 115,
+     "candidates": 122,
      "picks": [
       {
        "mon": "tentacruel",
@@ -9593,9 +9593,9 @@
       "pursuit",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 51,
-     "winnersAvailable": 71,
-     "candidates": 119,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 73,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -9673,9 +9673,9 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 45,
+     "superEffectiveAvailable": 48,
      "winnersAvailable": 13,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "machoke",
@@ -9766,7 +9766,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 49,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "machoke",
@@ -9844,9 +9844,9 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 63,
-     "winnersAvailable": 65,
-     "candidates": 119,
+     "superEffectiveAvailable": 66,
+     "winnersAvailable": 67,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magmar",
@@ -9924,9 +9924,9 @@
       "curse",
       "destiny-bond"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 112,
-     "candidates": 119,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 115,
+     "candidates": 122,
      "picks": [
       {
        "mon": "tentacruel",
@@ -10004,9 +10004,9 @@
       "pursuit",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 51,
-     "winnersAvailable": 71,
-     "candidates": 119,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 73,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -10084,9 +10084,9 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 48,
+     "superEffectiveAvailable": 51,
      "winnersAvailable": 14,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "machoke",
@@ -10177,7 +10177,7 @@
      ],
      "superEffectiveAvailable": 16,
      "winnersAvailable": 48,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "machoke",
@@ -10255,9 +10255,9 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 63,
-     "winnersAvailable": 63,
-     "candidates": 119,
+     "superEffectiveAvailable": 66,
+     "winnersAvailable": 65,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magmar",
@@ -10335,9 +10335,9 @@
       "curse",
       "destiny-bond"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 112,
-     "candidates": 119,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 115,
+     "candidates": 122,
      "picks": [
       {
        "mon": "tentacruel",
@@ -10415,9 +10415,9 @@
       "pursuit",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 54,
-     "winnersAvailable": 71,
-     "candidates": 119,
+     "superEffectiveAvailable": 57,
+     "winnersAvailable": 73,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -10495,9 +10495,9 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 48,
+     "superEffectiveAvailable": 51,
      "winnersAvailable": 14,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "machoke",
@@ -10586,9 +10586,9 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 104,
-     "candidates": 119,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 107,
+     "candidates": 122,
      "picks": [
       {
        "mon": "growlithe",
@@ -10666,9 +10666,9 @@
       "psychic",
       "toxic"
      ],
-     "superEffectiveAvailable": 44,
-     "winnersAvailable": 57,
-     "candidates": 118,
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 59,
+     "candidates": 121,
      "picks": [
       {
        "mon": "espeon",
@@ -10746,9 +10746,9 @@
       "explosion",
       "spikes"
      ],
-     "superEffectiveAvailable": 31,
-     "winnersAvailable": 20,
-     "candidates": 118,
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 21,
+     "candidates": 121,
      "picks": [
       {
        "mon": "gastly",
@@ -10826,9 +10826,9 @@
       "sludge-bomb",
       "toxic"
      ],
-     "superEffectiveAvailable": 15,
+     "superEffectiveAvailable": 16,
      "winnersAvailable": 32,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -10906,9 +10906,9 @@
       "wing-attack",
       "toxic"
      ],
-     "superEffectiveAvailable": 63,
+     "superEffectiveAvailable": 66,
      "winnersAvailable": 34,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -10997,9 +10997,9 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 104,
-     "candidates": 119,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 107,
+     "candidates": 122,
      "picks": [
       {
        "mon": "growlithe",
@@ -11077,9 +11077,9 @@
       "psychic",
       "toxic"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 58,
-     "candidates": 118,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 60,
+     "candidates": 121,
      "picks": [
       {
        "mon": "espeon",
@@ -11157,9 +11157,9 @@
       "explosion",
       "spikes"
      ],
-     "superEffectiveAvailable": 34,
-     "winnersAvailable": 23,
-     "candidates": 118,
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 24,
+     "candidates": 121,
      "picks": [
       {
        "mon": "gastly",
@@ -11237,9 +11237,9 @@
       "sludge-bomb",
       "toxic"
      ],
-     "superEffectiveAvailable": 15,
+     "superEffectiveAvailable": 16,
      "winnersAvailable": 33,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -11317,9 +11317,9 @@
       "wing-attack",
       "toxic"
      ],
-     "superEffectiveAvailable": 63,
+     "superEffectiveAvailable": 66,
      "winnersAvailable": 35,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -11408,9 +11408,9 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 103,
-     "candidates": 119,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 106,
+     "candidates": 122,
      "picks": [
       {
        "mon": "growlithe",
@@ -11488,9 +11488,9 @@
       "psychic",
       "toxic"
      ],
-     "superEffectiveAvailable": 44,
-     "winnersAvailable": 57,
-     "candidates": 118,
+     "superEffectiveAvailable": 47,
+     "winnersAvailable": 59,
+     "candidates": 121,
      "picks": [
       {
        "mon": "espeon",
@@ -11568,9 +11568,9 @@
       "explosion",
       "spikes"
      ],
-     "superEffectiveAvailable": 31,
-     "winnersAvailable": 20,
-     "candidates": 118,
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 21,
+     "candidates": 121,
      "picks": [
       {
        "mon": "gastly",
@@ -11648,9 +11648,9 @@
       "sludge-bomb",
       "toxic"
      ],
-     "superEffectiveAvailable": 15,
+     "superEffectiveAvailable": 16,
      "winnersAvailable": 32,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -11728,9 +11728,9 @@
       "wing-attack",
       "toxic"
      ],
-     "superEffectiveAvailable": 66,
+     "superEffectiveAvailable": 69,
      "winnersAvailable": 36,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -11819,9 +11819,9 @@
       "feint-attack",
       "fury-cutter"
      ],
-     "superEffectiveAvailable": 64,
-     "winnersAvailable": 110,
-     "candidates": 119,
+     "superEffectiveAvailable": 67,
+     "winnersAvailable": 113,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -11899,9 +11899,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 66,
+     "superEffectiveAvailable": 68,
      "winnersAvailable": 45,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -11979,9 +11979,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 70,
-     "winnersAvailable": 43,
-     "candidates": 118,
+     "superEffectiveAvailable": 72,
+     "winnersAvailable": 44,
+     "candidates": 121,
      "picks": [
       {
        "mon": "ampharos",
@@ -12059,9 +12059,9 @@
       "shadow-ball",
       "confuse-ray"
      ],
-     "superEffectiveAvailable": 51,
-     "winnersAvailable": 78,
-     "candidates": 119,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 79,
+     "candidates": 122,
      "picks": [
       {
        "mon": "raticate",
@@ -12139,9 +12139,9 @@
       "psychic",
       "reflect"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 26,
-     "candidates": 119,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 27,
+     "candidates": 122,
      "picks": [
       {
        "mon": "umbreon",
@@ -12219,9 +12219,9 @@
       "light-screen",
       "safeguard"
      ],
-     "superEffectiveAvailable": 78,
-     "winnersAvailable": 42,
-     "candidates": 119,
+     "superEffectiveAvailable": 81,
+     "winnersAvailable": 43,
+     "candidates": 122,
      "picks": [
       {
        "mon": "weezing",
@@ -12310,9 +12310,9 @@
       "feint-attack",
       "fury-cutter"
      ],
-     "superEffectiveAvailable": 108,
-     "winnersAvailable": 176,
-     "candidates": 186,
+     "superEffectiveAvailable": 114,
+     "winnersAvailable": 181,
+     "candidates": 192,
      "picks": [
       {
        "mon": "fearow",
@@ -12390,9 +12390,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 110,
-     "winnersAvailable": 124,
-     "candidates": 186,
+     "superEffectiveAvailable": 116,
+     "winnersAvailable": 127,
+     "candidates": 192,
      "picks": [
       {
        "mon": "raichu",
@@ -12470,9 +12470,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 117,
-     "winnersAvailable": 138,
-     "candidates": 186,
+     "superEffectiveAvailable": 122,
+     "winnersAvailable": 142,
+     "candidates": 192,
      "picks": [
       {
        "mon": "sandslash",
@@ -12550,9 +12550,9 @@
       "shadow-ball",
       "confuse-ray"
      ],
-     "superEffectiveAvailable": 106,
-     "winnersAvailable": 131,
-     "candidates": 187,
+     "superEffectiveAvailable": 111,
+     "winnersAvailable": 134,
+     "candidates": 193,
      "picks": [
       {
        "mon": "tauros",
@@ -12630,9 +12630,9 @@
       "future-sight",
       "psychic"
      ],
-     "superEffectiveAvailable": 33,
-     "winnersAvailable": 62,
-     "candidates": 187,
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 63,
+     "candidates": 193,
      "picks": [
       {
        "mon": "sneasel",
@@ -12710,9 +12710,9 @@
       "body-slam",
       "light-screen"
      ],
-     "superEffectiveAvailable": 119,
-     "winnersAvailable": 90,
-     "candidates": 187,
+     "superEffectiveAvailable": 124,
+     "winnersAvailable": 91,
+     "candidates": 193,
      "picks": [
       {
        "mon": "forretress",
@@ -12801,9 +12801,9 @@
       "feint-attack",
       "fury-cutter"
      ],
-     "superEffectiveAvailable": 106,
-     "winnersAvailable": 173,
-     "candidates": 184,
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 178,
+     "candidates": 190,
      "picks": [
       {
        "mon": "fearow",
@@ -12881,9 +12881,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 106,
-     "winnersAvailable": 105,
-     "candidates": 184,
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 107,
+     "candidates": 190,
      "picks": [
       {
        "mon": "raichu",
@@ -12961,9 +12961,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 114,
-     "winnersAvailable": 112,
-     "candidates": 184,
+     "superEffectiveAvailable": 119,
+     "winnersAvailable": 115,
+     "candidates": 190,
      "picks": [
       {
        "mon": "sandslash",
@@ -13041,9 +13041,9 @@
       "shadow-ball",
       "confuse-ray"
      ],
-     "superEffectiveAvailable": 105,
-     "winnersAvailable": 156,
-     "candidates": 184,
+     "superEffectiveAvailable": 110,
+     "winnersAvailable": 160,
+     "candidates": 190,
      "picks": [
       {
        "mon": "raticate",
@@ -13121,9 +13121,9 @@
       "recover",
       "future-sight"
      ],
-     "superEffectiveAvailable": 32,
-     "winnersAvailable": 113,
-     "candidates": 184,
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 115,
+     "candidates": 190,
      "picks": [
       {
        "mon": "espeon",
@@ -13201,9 +13201,9 @@
       "poison-powder",
       "body-slam"
      ],
-     "superEffectiveAvailable": 121,
-     "winnersAvailable": 71,
-     "candidates": 185,
+     "superEffectiveAvailable": 126,
+     "winnersAvailable": 72,
+     "candidates": 191,
      "picks": [
       {
        "mon": "forretress",
@@ -13292,9 +13292,9 @@
       "surf",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 88,
-     "winnersAvailable": 102,
-     "candidates": 186,
+     "superEffectiveAvailable": 93,
+     "winnersAvailable": 103,
+     "candidates": 192,
      "picks": [
       {
        "mon": "lapras",
@@ -13372,9 +13372,9 @@
       "thunder",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 101,
+     "superEffectiveAvailable": 106,
      "winnersAvailable": 76,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "piloswine",
@@ -13452,9 +13452,9 @@
       "blizzard",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 101,
+     "superEffectiveAvailable": 106,
      "winnersAvailable": 75,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "dewgong",
@@ -13532,9 +13532,9 @@
       "rock-slide",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 142,
+     "superEffectiveAvailable": 148,
      "winnersAvailable": 76,
-     "candidates": 186,
+     "candidates": 192,
      "picks": [
       {
        "mon": "magneton",
@@ -13612,9 +13612,9 @@
       "slash",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 99,
-     "winnersAvailable": 71,
-     "candidates": 187,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 72,
+     "candidates": 193,
      "picks": [
       {
        "mon": "magcargo",
@@ -13692,9 +13692,9 @@
       "outrage",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 103,
+     "superEffectiveAvailable": 108,
      "winnersAvailable": 33,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "lapras",
@@ -13783,9 +13783,9 @@
       "surf",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 91,
-     "winnersAvailable": 102,
-     "candidates": 186,
+     "superEffectiveAvailable": 96,
+     "winnersAvailable": 103,
+     "candidates": 192,
      "picks": [
       {
        "mon": "lapras",
@@ -13863,9 +13863,9 @@
       "thunder",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 104,
+     "superEffectiveAvailable": 109,
      "winnersAvailable": 76,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "piloswine",
@@ -13943,9 +13943,9 @@
       "blizzard",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 104,
+     "superEffectiveAvailable": 109,
      "winnersAvailable": 76,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "dewgong",
@@ -14023,9 +14023,9 @@
       "rock-slide",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 142,
+     "superEffectiveAvailable": 148,
      "winnersAvailable": 75,
-     "candidates": 186,
+     "candidates": 192,
      "picks": [
       {
        "mon": "magneton",
@@ -14103,9 +14103,9 @@
       "slash",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 102,
-     "winnersAvailable": 73,
-     "candidates": 187,
+     "superEffectiveAvailable": 107,
+     "winnersAvailable": 74,
+     "candidates": 193,
      "picks": [
       {
        "mon": "magcargo",
@@ -14183,9 +14183,9 @@
       "outrage",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 106,
+     "superEffectiveAvailable": 111,
      "winnersAvailable": 34,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "lapras",
@@ -14274,9 +14274,9 @@
       "surf",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 88,
-     "winnersAvailable": 103,
-     "candidates": 186,
+     "superEffectiveAvailable": 93,
+     "winnersAvailable": 104,
+     "candidates": 192,
      "picks": [
       {
        "mon": "lapras",
@@ -14354,9 +14354,9 @@
       "thunder",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 104,
+     "superEffectiveAvailable": 109,
      "winnersAvailable": 76,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "piloswine",
@@ -14434,9 +14434,9 @@
       "blizzard",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 104,
+     "superEffectiveAvailable": 109,
      "winnersAvailable": 78,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "dewgong",
@@ -14514,9 +14514,9 @@
       "rock-slide",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 142,
+     "superEffectiveAvailable": 148,
      "winnersAvailable": 78,
-     "candidates": 186,
+     "candidates": 192,
      "picks": [
       {
        "mon": "magneton",
@@ -14594,9 +14594,9 @@
       "slash",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 102,
-     "winnersAvailable": 74,
-     "candidates": 187,
+     "superEffectiveAvailable": 107,
+     "winnersAvailable": 75,
+     "candidates": 193,
      "picks": [
       {
        "mon": "magcargo",
@@ -14674,9 +14674,9 @@
       "outrage",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 106,
+     "superEffectiveAvailable": 111,
      "winnersAvailable": 34,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "lapras",
@@ -16865,8 +16865,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 28,
-     "winnersAvailable": 58,
-     "candidates": 63,
+     "winnersAvailable": 59,
+     "candidates": 64,
      "picks": [
       {
        "mon": "butterfree",
@@ -16945,8 +16945,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 29,
-     "winnersAvailable": 43,
-     "candidates": 64,
+     "winnersAvailable": 44,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -17026,7 +17026,7 @@
      ],
      "superEffectiveAvailable": 29,
      "winnersAvailable": 19,
-     "candidates": 64,
+     "candidates": 65,
      "picks": [
       {
        "mon": "togetic",
@@ -17105,8 +17105,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 27,
-     "winnersAvailable": 35,
-     "candidates": 64,
+     "winnersAvailable": 36,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -17196,8 +17196,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 26,
-     "winnersAvailable": 58,
-     "candidates": 63,
+     "winnersAvailable": 59,
+     "candidates": 64,
      "picks": [
       {
        "mon": "butterfree",
@@ -17276,8 +17276,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 27,
-     "winnersAvailable": 44,
-     "candidates": 64,
+     "winnersAvailable": 45,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -17357,7 +17357,7 @@
      ],
      "superEffectiveAvailable": 27,
      "winnersAvailable": 20,
-     "candidates": 64,
+     "candidates": 65,
      "picks": [
       {
        "mon": "togetic",
@@ -17436,8 +17436,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 25,
-     "winnersAvailable": 37,
-     "candidates": 64,
+     "winnersAvailable": 38,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -17527,8 +17527,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 27,
-     "winnersAvailable": 58,
-     "candidates": 63,
+     "winnersAvailable": 59,
+     "candidates": 64,
      "picks": [
       {
        "mon": "butterfree",
@@ -17607,8 +17607,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 28,
-     "winnersAvailable": 44,
-     "candidates": 64,
+     "winnersAvailable": 45,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -17688,7 +17688,7 @@
      ],
      "superEffectiveAvailable": 27,
      "winnersAvailable": 19,
-     "candidates": 64,
+     "candidates": 65,
      "picks": [
       {
        "mon": "togetic",
@@ -17767,8 +17767,8 @@
       "night-shade"
      ],
      "superEffectiveAvailable": 25,
-     "winnersAvailable": 37,
-     "candidates": 64,
+     "winnersAvailable": 38,
+     "candidates": 65,
      "picks": [
       {
        "mon": "raticate",
@@ -17858,8 +17858,8 @@
       "curse"
      ],
      "superEffectiveAvailable": 25,
-     "winnersAvailable": 52,
-     "candidates": 62,
+     "winnersAvailable": 53,
+     "candidates": 63,
      "picks": [
       {
        "mon": "stantler",
@@ -17937,9 +17937,9 @@
       "supersonic",
       "sonic-boom"
      ],
-     "superEffectiveAvailable": 41,
-     "winnersAvailable": 42,
-     "candidates": 61,
+     "superEffectiveAvailable": 42,
+     "winnersAvailable": 43,
+     "candidates": 62,
      "picks": [
       {
        "mon": "sandslash",
@@ -18018,8 +18018,8 @@
       "confuse-ray"
      ],
      "superEffectiveAvailable": 29,
-     "winnersAvailable": 57,
-     "candidates": 61,
+     "winnersAvailable": 58,
+     "candidates": 62,
      "picks": [
       {
        "mon": "heracross",
@@ -18097,9 +18097,9 @@
       "razor-leaf",
       "poison-powder"
      ],
-     "superEffectiveAvailable": 29,
-     "winnersAvailable": 38,
-     "candidates": 62,
+     "superEffectiveAvailable": 30,
+     "winnersAvailable": 39,
+     "candidates": 63,
      "picks": [
       {
        "mon": "beedrill",
@@ -18177,348 +18177,6 @@
    "group": "Líderes de ginásio",
    "stage": 4,
    "starter": "chikorita",
-   "level": 30,
-   "mons": [
-    {
-     "opp": "primeape",
-     "level": 27,
-     "moves": [
-      "leer",
-      "rage",
-      "karate-chop",
-      "fury-swipes"
-     ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 44,
-     "candidates": 81,
-     "picks": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "gastly",
-       "move": "thunder",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "rage"
-      },
-      {
-       "mon": "tentacruel",
-       "move": "surf",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      }
-     ],
-     "before": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "magmar",
-       "move": "fire-blast",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "karate-chop"
-      }
-     ]
-    },
-    {
-     "opp": "poliwrath",
-     "level": 30,
-     "moves": [
-      "hypnosis",
-      "mind-reader",
-      "surf",
-      "dynamic-punch"
-     ],
-     "superEffectiveAvailable": 39,
-     "winnersAvailable": 8,
-     "candidates": 81,
-     "picks": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "sunflora",
-       "move": "razor-leaf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "dynamic-punch"
-      }
-     ],
-     "before": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "magneton",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "surf"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "version": "silver",
-   "key": "CHUCK#CHUCK1",
-   "label": "Leader Chuck",
-   "group": "Líderes de ginásio",
-   "stage": 4,
-   "starter": "cyndaquil",
-   "level": 30,
-   "mons": [
-    {
-     "opp": "primeape",
-     "level": 27,
-     "moves": [
-      "leer",
-      "rage",
-      "karate-chop",
-      "fury-swipes"
-     ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 44,
-     "candidates": 81,
-     "picks": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "gastly",
-       "move": "thunder",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "rage"
-      },
-      {
-       "mon": "tentacruel",
-       "move": "surf",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      }
-     ],
-     "before": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "fury-swipes"
-      },
-      {
-       "mon": "magmar",
-       "move": "fire-blast",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "karate-chop"
-      }
-     ]
-    },
-    {
-     "opp": "poliwrath",
-     "level": 30,
-     "moves": [
-      "hypnosis",
-      "mind-reader",
-      "surf",
-      "dynamic-punch"
-     ],
-     "superEffectiveAvailable": 37,
-     "winnersAvailable": 7,
-     "candidates": 81,
-     "picks": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "sunflora",
-       "move": "razor-leaf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "dynamic-punch"
-      }
-     ],
-     "before": [
-      {
-       "mon": "scyther",
-       "move": "wing-attack",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "espeon",
-       "move": "confusion",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
-       "mon": "magneton",
-       "move": "thunder",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "surf"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "version": "silver",
-   "key": "CHUCK#CHUCK1",
-   "label": "Leader Chuck",
-   "group": "Líderes de ginásio",
-   "stage": 4,
-   "starter": "totodile",
    "level": 30,
    "mons": [
     {
@@ -18610,9 +18268,351 @@
       "surf",
       "dynamic-punch"
      ],
-     "superEffectiveAvailable": 37,
+     "superEffectiveAvailable": 40,
      "winnersAvailable": 8,
      "candidates": 82,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "sunflora",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "dynamic-punch"
+      }
+     ],
+     "before": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "surf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "silver",
+   "key": "CHUCK#CHUCK1",
+   "label": "Leader Chuck",
+   "group": "Líderes de ginásio",
+   "stage": 4,
+   "starter": "cyndaquil",
+   "level": 30,
+   "mons": [
+    {
+     "opp": "primeape",
+     "level": 27,
+     "moves": [
+      "leer",
+      "rage",
+      "karate-chop",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 45,
+     "candidates": 82,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "gastly",
+       "move": "thunder",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "rage"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      }
+     ],
+     "before": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "karate-chop"
+      }
+     ]
+    },
+    {
+     "opp": "poliwrath",
+     "level": 30,
+     "moves": [
+      "hypnosis",
+      "mind-reader",
+      "surf",
+      "dynamic-punch"
+     ],
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 7,
+     "candidates": 82,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "sunflora",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "dynamic-punch"
+      }
+     ],
+     "before": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "magneton",
+       "move": "thunder",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "surf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "silver",
+   "key": "CHUCK#CHUCK1",
+   "label": "Leader Chuck",
+   "group": "Líderes de ginásio",
+   "stage": 4,
+   "starter": "totodile",
+   "level": 30,
+   "mons": [
+    {
+     "opp": "primeape",
+     "level": 27,
+     "moves": [
+      "leer",
+      "rage",
+      "karate-chop",
+      "fury-swipes"
+     ],
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 46,
+     "candidates": 83,
+     "picks": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "gastly",
+       "move": "thunder",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "rage"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      }
+     ],
+     "before": [
+      {
+       "mon": "scyther",
+       "move": "wing-attack",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "fury-swipes"
+      },
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "karate-chop"
+      }
+     ]
+    },
+    {
+     "opp": "poliwrath",
+     "level": 30,
+     "moves": [
+      "hypnosis",
+      "mind-reader",
+      "surf",
+      "dynamic-punch"
+     ],
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 8,
+     "candidates": 83,
      "picks": [
       {
        "mon": "scyther",
@@ -18701,9 +18701,9 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 54,
-     "winnersAvailable": 48,
-     "candidates": 85,
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 49,
+     "candidates": 86,
      "picks": [
       {
        "mon": "quagsire",
@@ -18781,9 +18781,9 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 54,
-     "winnersAvailable": 48,
-     "candidates": 85,
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 49,
+     "candidates": 86,
      "picks": [
       {
        "mon": "quagsire",
@@ -18861,9 +18861,9 @@
       "rock-throw",
       "iron-tail"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 27,
-     "candidates": 86,
+     "superEffectiveAvailable": 48,
+     "winnersAvailable": 28,
+     "candidates": 87,
      "picks": [
       {
        "mon": "golduck",
@@ -18952,259 +18952,8 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 47,
-     "candidates": 84,
-     "picks": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "sandslash",
-       "move": "mud-slap",
-       "eff": 4,
-       "via": "machine",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "mud-slap",
-       "eff": 4,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      }
-     ],
-     "before": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "sandslash",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      }
-     ]
-    },
-    {
-     "opp": "magnemite",
-     "level": 30,
-     "moves": [
-      "thunderbolt",
-      "supersonic",
-      "sonic-boom",
-      "thunder-wave"
-     ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 47,
-     "candidates": 84,
-     "picks": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "sandslash",
-       "move": "mud-slap",
-       "eff": 4,
-       "via": "machine",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "mud-slap",
-       "eff": 4,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      }
-     ],
-     "before": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "sandslash",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "geodude",
-       "move": "dig",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "sonic-boom"
-      }
-     ]
-    },
-    {
-     "opp": "steelix",
-     "level": 35,
-     "moves": [
-      "screech",
-      "sunny-day",
-      "rock-throw",
-      "iron-tail"
-     ],
-     "superEffectiveAvailable": 49,
-     "winnersAvailable": 28,
-     "candidates": 85,
-     "picks": [
-      {
-       "mon": "golduck",
-       "move": "surf",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "quagsire",
-       "move": "surf",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "magmar",
-       "move": "fire-blast",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "rock-throw"
-      }
-     ],
-     "before": [
-      {
-       "mon": "quagsire",
-       "move": "earthquake",
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "golduck",
-       "move": "surf",
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "tentacruel",
-       "move": "surf",
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "iron-tail"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "version": "silver",
-   "key": "JASMINE#JASMINE1",
-   "label": "Leader Jasmine",
-   "group": "Líderes de ginásio",
-   "stage": 5,
-   "starter": "totodile",
-   "level": 35,
-   "mons": [
-    {
-     "opp": "magnemite",
-     "level": 30,
-     "moves": [
-      "thunderbolt",
-      "supersonic",
-      "sonic-boom",
-      "thunder-wave"
-     ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 46,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 48,
      "candidates": 85,
      "picks": [
       {
@@ -19283,8 +19032,8 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 46,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 48,
      "candidates": 85,
      "picks": [
       {
@@ -19380,6 +19129,257 @@
        "theirMove": "iron-tail"
       },
       {
+       "mon": "quagsire",
+       "move": "surf",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "magmar",
+       "move": "fire-blast",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "rock-throw"
+      }
+     ],
+     "before": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 7,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "surf",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "version": "silver",
+   "key": "JASMINE#JASMINE1",
+   "label": "Leader Jasmine",
+   "group": "Líderes de ginásio",
+   "stage": 5,
+   "starter": "totodile",
+   "level": 35,
+   "mons": [
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 47,
+     "candidates": 86,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "sandslash",
+       "move": "mud-slap",
+       "eff": 4,
+       "via": "machine",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "mud-slap",
+       "eff": 4,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      }
+     ],
+     "before": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "sandslash",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      }
+     ]
+    },
+    {
+     "opp": "magnemite",
+     "level": 30,
+     "moves": [
+      "thunderbolt",
+      "supersonic",
+      "sonic-boom",
+      "thunder-wave"
+     ],
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 47,
+     "candidates": 86,
+     "picks": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "sandslash",
+       "move": "mud-slap",
+       "eff": 4,
+       "via": "machine",
+       "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "mud-slap",
+       "eff": 4,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      }
+     ],
+     "before": [
+      {
+       "mon": "quagsire",
+       "move": "earthquake",
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "sandslash",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
+      {
+       "mon": "geodude",
+       "move": "dig",
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sonic-boom"
+      }
+     ]
+    },
+    {
+     "opp": "steelix",
+     "level": 35,
+     "moves": [
+      "screech",
+      "sunny-day",
+      "rock-throw",
+      "iron-tail"
+     ],
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 30,
+     "candidates": 87,
+     "picks": [
+      {
+       "mon": "golduck",
+       "move": "surf",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "iron-tail"
+      },
+      {
        "mon": "feraligatr",
        "move": "surf",
        "eff": 2,
@@ -19454,9 +19454,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 78,
-     "candidates": 90,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 79,
+     "candidates": 91,
      "picks": [
       {
        "mon": "magnemite",
@@ -19534,9 +19534,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 38,
-     "winnersAvailable": 36,
-     "candidates": 90,
+     "superEffectiveAvailable": 39,
+     "winnersAvailable": 37,
+     "candidates": 91,
      "picks": [
       {
        "mon": "magneton",
@@ -19614,9 +19614,9 @@
       "mist",
       "blizzard"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 32,
-     "candidates": 90,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 33,
+     "candidates": 91,
      "picks": [
       {
        "mon": "magmar",
@@ -19705,9 +19705,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 20,
-     "winnersAvailable": 78,
-     "candidates": 90,
+     "superEffectiveAvailable": 21,
+     "winnersAvailable": 79,
+     "candidates": 91,
      "picks": [
       {
        "mon": "magnemite",
@@ -19785,9 +19785,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 37,
-     "winnersAvailable": 38,
-     "candidates": 90,
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 39,
+     "candidates": 91,
      "picks": [
       {
        "mon": "magneton",
@@ -19865,9 +19865,9 @@
       "mist",
       "blizzard"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 34,
-     "candidates": 90,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 35,
+     "candidates": 91,
      "picks": [
       {
        "mon": "magmar",
@@ -19956,9 +19956,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 20,
-     "winnersAvailable": 79,
-     "candidates": 91,
+     "superEffectiveAvailable": 21,
+     "winnersAvailable": 80,
+     "candidates": 92,
      "picks": [
       {
        "mon": "magnemite",
@@ -20036,9 +20036,9 @@
       "aurora-beam",
       "rest"
      ],
-     "superEffectiveAvailable": 39,
-     "winnersAvailable": 39,
-     "candidates": 91,
+     "superEffectiveAvailable": 40,
+     "winnersAvailable": 40,
+     "candidates": 92,
      "picks": [
       {
        "mon": "magneton",
@@ -20116,9 +20116,9 @@
       "mist",
       "blizzard"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 35,
-     "candidates": 91,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 36,
+     "candidates": 92,
      "picks": [
       {
        "mon": "magmar",
@@ -20207,9 +20207,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 59,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 60,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -20287,9 +20287,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 52,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 53,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -20367,9 +20367,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 51,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 52,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -20449,7 +20449,7 @@
      ],
      "superEffectiveAvailable": 1,
      "winnersAvailable": 4,
-     "candidates": 107,
+     "candidates": 110,
      "picks": [
       {
        "mon": "tentacruel",
@@ -20538,9 +20538,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 58,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 59,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -20618,9 +20618,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 52,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 53,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -20698,9 +20698,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 24,
-     "winnersAvailable": 52,
-     "candidates": 107,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 53,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -20780,7 +20780,7 @@
      ],
      "superEffectiveAvailable": 1,
      "winnersAvailable": 4,
-     "candidates": 107,
+     "candidates": 110,
      "picks": [
       {
        "mon": "tentacruel",
@@ -20869,9 +20869,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 59,
-     "candidates": 107,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 60,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -20949,9 +20949,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 51,
-     "candidates": 107,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 52,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -21029,9 +21029,9 @@
       "slam",
       "dragon-breath"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 52,
-     "candidates": 107,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 53,
+     "candidates": 110,
      "picks": [
       {
        "mon": "jynx",
@@ -21111,7 +21111,7 @@
      ],
      "superEffectiveAvailable": 1,
      "winnersAvailable": 4,
-     "candidates": 107,
+     "candidates": 110,
      "picks": [
       {
        "mon": "tentacruel",
@@ -21200,9 +21200,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 53,
+     "superEffectiveAvailable": 56,
      "winnersAvailable": 41,
-     "candidates": 100,
+     "candidates": 103,
      "picks": [
       {
        "mon": "magneton",
@@ -21280,9 +21280,9 @@
       "sonic-boom",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 63,
-     "winnersAvailable": 74,
-     "candidates": 100,
+     "superEffectiveAvailable": 65,
+     "winnersAvailable": 77,
+     "candidates": 103,
      "picks": [
       {
        "mon": "magmar",
@@ -21360,9 +21360,9 @@
       "curse",
       "shadow-ball"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 71,
-     "candidates": 101,
+     "superEffectiveAvailable": 52,
+     "winnersAvailable": 73,
+     "candidates": 104,
      "picks": [
       {
        "mon": "raticate",
@@ -21440,9 +21440,9 @@
       "screech",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 58,
-     "winnersAvailable": 69,
-     "candidates": 101,
+     "superEffectiveAvailable": 61,
+     "winnersAvailable": 70,
+     "candidates": 104,
      "picks": [
       {
        "mon": "feraligatr",
@@ -21520,9 +21520,9 @@
       "poison-powder",
       "body-slam"
      ],
-     "superEffectiveAvailable": 62,
-     "winnersAvailable": 30,
-     "candidates": 101,
+     "superEffectiveAvailable": 65,
+     "winnersAvailable": 31,
+     "candidates": 104,
      "picks": [
       {
        "mon": "forretress",
@@ -21611,9 +21611,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 72,
-     "winnersAvailable": 34,
-     "candidates": 118,
+     "superEffectiveAvailable": 74,
+     "winnersAvailable": 36,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -21691,9 +21691,9 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 51,
+     "superEffectiveAvailable": 54,
      "winnersAvailable": 25,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "slowbro",
@@ -21771,9 +21771,9 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 100,
-     "winnersAvailable": 15,
-     "candidates": 119,
+     "superEffectiveAvailable": 103,
+     "winnersAvailable": 16,
+     "candidates": 122,
      "picks": [
       {
        "mon": "jynx",
@@ -21851,9 +21851,9 @@
       "body-slam",
       "psychic"
      ],
-     "superEffectiveAvailable": 71,
+     "superEffectiveAvailable": 73,
      "winnersAvailable": 20,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -21931,9 +21931,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 74,
-     "winnersAvailable": 23,
-     "candidates": 118,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 24,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -22022,9 +22022,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 72,
-     "winnersAvailable": 35,
-     "candidates": 118,
+     "superEffectiveAvailable": 74,
+     "winnersAvailable": 37,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -22102,9 +22102,9 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 51,
+     "superEffectiveAvailable": 54,
      "winnersAvailable": 26,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "slowbro",
@@ -22182,9 +22182,9 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 101,
-     "winnersAvailable": 17,
-     "candidates": 119,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 18,
+     "candidates": 122,
      "picks": [
       {
        "mon": "jynx",
@@ -22262,9 +22262,9 @@
       "body-slam",
       "psychic"
      ],
-     "superEffectiveAvailable": 69,
+     "superEffectiveAvailable": 71,
      "winnersAvailable": 20,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -22342,9 +22342,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 74,
-     "winnersAvailable": 24,
-     "candidates": 118,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 25,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -22433,9 +22433,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 75,
-     "winnersAvailable": 35,
-     "candidates": 118,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 37,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -22513,9 +22513,9 @@
       "ice-punch",
       "psychic"
      ],
-     "superEffectiveAvailable": 51,
+     "superEffectiveAvailable": 54,
      "winnersAvailable": 26,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "slowbro",
@@ -22593,9 +22593,9 @@
       "egg-bomb",
       "psychic"
      ],
-     "superEffectiveAvailable": 101,
-     "winnersAvailable": 16,
-     "candidates": 119,
+     "superEffectiveAvailable": 104,
+     "winnersAvailable": 17,
+     "candidates": 122,
      "picks": [
       {
        "mon": "jynx",
@@ -22673,9 +22673,9 @@
       "body-slam",
       "psychic"
      ],
-     "superEffectiveAvailable": 71,
+     "superEffectiveAvailable": 73,
      "winnersAvailable": 20,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -22753,9 +22753,9 @@
       "confuse-ray",
       "psychic"
      ],
-     "superEffectiveAvailable": 77,
-     "winnersAvailable": 24,
-     "candidates": 118,
+     "superEffectiveAvailable": 80,
+     "winnersAvailable": 25,
+     "candidates": 121,
      "picks": [
       {
        "mon": "umbreon",
@@ -22844,9 +22844,9 @@
       "dig",
       "detect"
      ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 104,
-     "candidates": 119,
+     "superEffectiveAvailable": 24,
+     "winnersAvailable": 106,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -22924,9 +22924,9 @@
       "high-jump-kick",
       "foresight"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 54,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "golbat",
@@ -23004,9 +23004,9 @@
       "fire-punch",
       "mach-punch"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 61,
-     "candidates": 119,
+     "superEffectiveAvailable": 22,
+     "winnersAvailable": 63,
+     "candidates": 122,
      "picks": [
       {
        "mon": "scyther",
@@ -23084,9 +23084,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 85,
-     "winnersAvailable": 77,
-     "candidates": 118,
+     "superEffectiveAvailable": 87,
+     "winnersAvailable": 78,
+     "candidates": 121,
      "picks": [
       {
        "mon": "meganium",
@@ -23164,9 +23164,9 @@
       "vital-throw",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 24,
+     "superEffectiveAvailable": 25,
      "winnersAvailable": 13,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "slowbro",
@@ -23255,9 +23255,9 @@
       "dig",
       "detect"
      ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 104,
-     "candidates": 119,
+     "superEffectiveAvailable": 24,
+     "winnersAvailable": 106,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -23335,9 +23335,9 @@
       "high-jump-kick",
       "foresight"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 55,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "golbat",
@@ -23415,9 +23415,9 @@
       "fire-punch",
       "mach-punch"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 63,
-     "candidates": 119,
+     "superEffectiveAvailable": 22,
+     "winnersAvailable": 65,
+     "candidates": 122,
      "picks": [
       {
        "mon": "scyther",
@@ -23495,9 +23495,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 82,
-     "winnersAvailable": 76,
-     "candidates": 118,
+     "superEffectiveAvailable": 84,
+     "winnersAvailable": 77,
+     "candidates": 121,
      "picks": [
       {
        "mon": "miltank",
@@ -23575,9 +23575,9 @@
       "vital-throw",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 24,
+     "superEffectiveAvailable": 25,
      "winnersAvailable": 14,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "slowbro",
@@ -23666,9 +23666,9 @@
       "dig",
       "detect"
      ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 104,
-     "candidates": 119,
+     "superEffectiveAvailable": 24,
+     "winnersAvailable": 106,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -23746,9 +23746,9 @@
       "high-jump-kick",
       "foresight"
      ],
-     "superEffectiveAvailable": 23,
+     "superEffectiveAvailable": 24,
      "winnersAvailable": 54,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "golbat",
@@ -23826,9 +23826,9 @@
       "fire-punch",
       "mach-punch"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 62,
-     "candidates": 119,
+     "superEffectiveAvailable": 22,
+     "winnersAvailable": 64,
+     "candidates": 122,
      "picks": [
       {
        "mon": "scyther",
@@ -23906,9 +23906,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 85,
-     "winnersAvailable": 77,
-     "candidates": 118,
+     "superEffectiveAvailable": 87,
+     "winnersAvailable": 78,
+     "candidates": 121,
      "picks": [
       {
        "mon": "feraligatr",
@@ -23986,9 +23986,9 @@
       "vital-throw",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 24,
+     "superEffectiveAvailable": 25,
      "winnersAvailable": 14,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "slowbro",
@@ -24079,7 +24079,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 48,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "machoke",
@@ -24157,9 +24157,9 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 62,
-     "winnersAvailable": 63,
-     "candidates": 119,
+     "superEffectiveAvailable": 65,
+     "winnersAvailable": 65,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magmar",
@@ -24237,9 +24237,9 @@
       "curse",
       "destiny-bond"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 111,
-     "candidates": 119,
+     "superEffectiveAvailable": 52,
+     "winnersAvailable": 114,
+     "candidates": 122,
      "picks": [
       {
        "mon": "tentacruel",
@@ -24317,9 +24317,9 @@
       "pursuit",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 70,
-     "candidates": 119,
+     "superEffectiveAvailable": 56,
+     "winnersAvailable": 72,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -24397,9 +24397,9 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 45,
+     "superEffectiveAvailable": 48,
      "winnersAvailable": 12,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "machoke",
@@ -24490,7 +24490,7 @@
      ],
      "superEffectiveAvailable": 12,
      "winnersAvailable": 48,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "machoke",
@@ -24568,9 +24568,9 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 65,
-     "winnersAvailable": 65,
-     "candidates": 119,
+     "superEffectiveAvailable": 68,
+     "winnersAvailable": 67,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magmar",
@@ -24648,9 +24648,9 @@
       "curse",
       "destiny-bond"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 111,
-     "candidates": 119,
+     "superEffectiveAvailable": 52,
+     "winnersAvailable": 114,
+     "candidates": 122,
      "picks": [
       {
        "mon": "tentacruel",
@@ -24728,9 +24728,9 @@
       "pursuit",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 70,
-     "candidates": 119,
+     "superEffectiveAvailable": 56,
+     "winnersAvailable": 72,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -24808,9 +24808,9 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 48,
+     "superEffectiveAvailable": 51,
      "winnersAvailable": 13,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "machoke",
@@ -24901,7 +24901,7 @@
      ],
      "superEffectiveAvailable": 15,
      "winnersAvailable": 47,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "machoke",
@@ -24979,9 +24979,9 @@
       "moonlight",
       "petal-dance"
      ],
-     "superEffectiveAvailable": 65,
-     "winnersAvailable": 63,
-     "candidates": 119,
+     "superEffectiveAvailable": 68,
+     "winnersAvailable": 65,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magmar",
@@ -25059,9 +25059,9 @@
       "curse",
       "destiny-bond"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 111,
-     "candidates": 119,
+     "superEffectiveAvailable": 52,
+     "winnersAvailable": 114,
+     "candidates": 122,
      "picks": [
       {
        "mon": "tentacruel",
@@ -25139,9 +25139,9 @@
       "pursuit",
       "feint-attack"
      ],
-     "superEffectiveAvailable": 56,
-     "winnersAvailable": 70,
-     "candidates": 119,
+     "superEffectiveAvailable": 59,
+     "winnersAvailable": 72,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -25219,9 +25219,9 @@
       "flamethrower",
       "crunch"
      ],
-     "superEffectiveAvailable": 48,
+     "superEffectiveAvailable": 51,
      "winnersAvailable": 13,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "machoke",
@@ -25310,9 +25310,9 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 104,
-     "candidates": 119,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 107,
+     "candidates": 122,
      "picks": [
       {
        "mon": "ponyta",
@@ -25390,9 +25390,9 @@
       "psychic",
       "toxic"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 55,
-     "candidates": 118,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 57,
+     "candidates": 121,
      "picks": [
       {
        "mon": "espeon",
@@ -25470,9 +25470,9 @@
       "explosion",
       "spikes"
      ],
-     "superEffectiveAvailable": 29,
-     "winnersAvailable": 21,
-     "candidates": 118,
+     "superEffectiveAvailable": 31,
+     "winnersAvailable": 22,
+     "candidates": 121,
      "picks": [
       {
        "mon": "gastly",
@@ -25550,9 +25550,9 @@
       "sludge-bomb",
       "toxic"
      ],
-     "superEffectiveAvailable": 15,
+     "superEffectiveAvailable": 16,
      "winnersAvailable": 32,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -25630,9 +25630,9 @@
       "wing-attack",
       "toxic"
      ],
-     "superEffectiveAvailable": 66,
+     "superEffectiveAvailable": 69,
      "winnersAvailable": 35,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -25721,9 +25721,9 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 104,
-     "candidates": 119,
+     "superEffectiveAvailable": 56,
+     "winnersAvailable": 107,
+     "candidates": 122,
      "picks": [
       {
        "mon": "ponyta",
@@ -25801,9 +25801,9 @@
       "psychic",
       "toxic"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 56,
-     "candidates": 118,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 58,
+     "candidates": 121,
      "picks": [
       {
        "mon": "espeon",
@@ -25881,9 +25881,9 @@
       "explosion",
       "spikes"
      ],
-     "superEffectiveAvailable": 32,
-     "winnersAvailable": 24,
-     "candidates": 118,
+     "superEffectiveAvailable": 34,
+     "winnersAvailable": 25,
+     "candidates": 121,
      "picks": [
       {
        "mon": "gastly",
@@ -25961,9 +25961,9 @@
       "sludge-bomb",
       "toxic"
      ],
-     "superEffectiveAvailable": 15,
+     "superEffectiveAvailable": 16,
      "winnersAvailable": 33,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -26041,9 +26041,9 @@
       "wing-attack",
       "toxic"
      ],
-     "superEffectiveAvailable": 66,
+     "superEffectiveAvailable": 69,
      "winnersAvailable": 36,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -26132,9 +26132,9 @@
       "baton-pass",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 103,
-     "candidates": 119,
+     "superEffectiveAvailable": 53,
+     "winnersAvailable": 106,
+     "candidates": 122,
      "picks": [
       {
        "mon": "ponyta",
@@ -26212,9 +26212,9 @@
       "psychic",
       "toxic"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 55,
-     "candidates": 118,
+     "superEffectiveAvailable": 50,
+     "winnersAvailable": 57,
+     "candidates": 121,
      "picks": [
       {
        "mon": "espeon",
@@ -26292,9 +26292,9 @@
       "explosion",
       "spikes"
      ],
-     "superEffectiveAvailable": 29,
-     "winnersAvailable": 21,
-     "candidates": 118,
+     "superEffectiveAvailable": 31,
+     "winnersAvailable": 22,
+     "candidates": 121,
      "picks": [
       {
        "mon": "gastly",
@@ -26372,9 +26372,9 @@
       "sludge-bomb",
       "toxic"
      ],
-     "superEffectiveAvailable": 15,
+     "superEffectiveAvailable": 16,
      "winnersAvailable": 32,
-     "candidates": 119,
+     "candidates": 122,
      "picks": [
       {
        "mon": "magneton",
@@ -26452,9 +26452,9 @@
       "wing-attack",
       "toxic"
      ],
-     "superEffectiveAvailable": 69,
+     "superEffectiveAvailable": 72,
      "winnersAvailable": 37,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -26543,9 +26543,9 @@
       "feint-attack",
       "fury-cutter"
      ],
-     "superEffectiveAvailable": 64,
-     "winnersAvailable": 110,
-     "candidates": 119,
+     "superEffectiveAvailable": 67,
+     "winnersAvailable": 113,
+     "candidates": 122,
      "picks": [
       {
        "mon": "dodrio",
@@ -26623,9 +26623,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 69,
+     "superEffectiveAvailable": 71,
      "winnersAvailable": 45,
-     "candidates": 118,
+     "candidates": 121,
      "picks": [
       {
        "mon": "magneton",
@@ -26703,9 +26703,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 71,
-     "winnersAvailable": 42,
-     "candidates": 118,
+     "superEffectiveAvailable": 73,
+     "winnersAvailable": 43,
+     "candidates": 121,
      "picks": [
       {
        "mon": "ampharos",
@@ -26783,9 +26783,9 @@
       "shadow-ball",
       "confuse-ray"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 76,
-     "candidates": 119,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 77,
+     "candidates": 122,
      "picks": [
       {
        "mon": "raticate",
@@ -26863,9 +26863,9 @@
       "psychic",
       "reflect"
      ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 26,
-     "candidates": 119,
+     "superEffectiveAvailable": 24,
+     "winnersAvailable": 27,
+     "candidates": 122,
      "picks": [
       {
        "mon": "umbreon",
@@ -26943,9 +26943,9 @@
       "light-screen",
       "safeguard"
      ],
-     "superEffectiveAvailable": 78,
-     "winnersAvailable": 41,
-     "candidates": 119,
+     "superEffectiveAvailable": 81,
+     "winnersAvailable": 42,
+     "candidates": 122,
      "picks": [
       {
        "mon": "weezing",
@@ -27034,9 +27034,9 @@
       "feint-attack",
       "fury-cutter"
      ],
-     "superEffectiveAvailable": 108,
-     "winnersAvailable": 175,
-     "candidates": 186,
+     "superEffectiveAvailable": 114,
+     "winnersAvailable": 180,
+     "candidates": 192,
      "picks": [
       {
        "mon": "fearow",
@@ -27114,9 +27114,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 113,
-     "winnersAvailable": 123,
-     "candidates": 186,
+     "superEffectiveAvailable": 119,
+     "winnersAvailable": 126,
+     "candidates": 192,
      "picks": [
       {
        "mon": "raichu",
@@ -27194,9 +27194,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 119,
-     "winnersAvailable": 134,
-     "candidates": 186,
+     "superEffectiveAvailable": 124,
+     "winnersAvailable": 138,
+     "candidates": 192,
      "picks": [
       {
        "mon": "sandslash",
@@ -27274,9 +27274,9 @@
       "shadow-ball",
       "confuse-ray"
      ],
-     "superEffectiveAvailable": 108,
-     "winnersAvailable": 129,
-     "candidates": 187,
+     "superEffectiveAvailable": 113,
+     "winnersAvailable": 132,
+     "candidates": 193,
      "picks": [
       {
        "mon": "tauros",
@@ -27354,9 +27354,9 @@
       "future-sight",
       "psychic"
      ],
-     "superEffectiveAvailable": 34,
-     "winnersAvailable": 62,
-     "candidates": 187,
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 63,
+     "candidates": 193,
      "picks": [
       {
        "mon": "sneasel",
@@ -27434,9 +27434,9 @@
       "body-slam",
       "light-screen"
      ],
-     "superEffectiveAvailable": 119,
-     "winnersAvailable": 86,
-     "candidates": 187,
+     "superEffectiveAvailable": 124,
+     "winnersAvailable": 87,
+     "candidates": 193,
      "picks": [
       {
        "mon": "forretress",
@@ -27525,9 +27525,9 @@
       "feint-attack",
       "fury-cutter"
      ],
-     "superEffectiveAvailable": 106,
-     "winnersAvailable": 172,
-     "candidates": 184,
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 177,
+     "candidates": 190,
      "picks": [
       {
        "mon": "fearow",
@@ -27605,9 +27605,9 @@
       "confuse-ray",
       "wing-attack"
      ],
-     "superEffectiveAvailable": 108,
-     "winnersAvailable": 107,
-     "candidates": 184,
+     "superEffectiveAvailable": 114,
+     "winnersAvailable": 109,
+     "candidates": 190,
      "picks": [
       {
        "mon": "raichu",
@@ -27685,9 +27685,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 117,
-     "winnersAvailable": 109,
-     "candidates": 184,
+     "superEffectiveAvailable": 122,
+     "winnersAvailable": 112,
+     "candidates": 190,
      "picks": [
       {
        "mon": "sandslash",
@@ -27765,9 +27765,9 @@
       "shadow-ball",
       "confuse-ray"
      ],
-     "superEffectiveAvailable": 107,
-     "winnersAvailable": 156,
-     "candidates": 184,
+     "superEffectiveAvailable": 112,
+     "winnersAvailable": 160,
+     "candidates": 190,
      "picks": [
       {
        "mon": "raticate",
@@ -27845,9 +27845,9 @@
       "recover",
       "future-sight"
      ],
-     "superEffectiveAvailable": 33,
-     "winnersAvailable": 113,
-     "candidates": 184,
+     "superEffectiveAvailable": 36,
+     "winnersAvailable": 115,
+     "candidates": 190,
      "picks": [
       {
        "mon": "espeon",
@@ -27925,9 +27925,9 @@
       "poison-powder",
       "body-slam"
      ],
-     "superEffectiveAvailable": 121,
-     "winnersAvailable": 68,
-     "candidates": 185,
+     "superEffectiveAvailable": 126,
+     "winnersAvailable": 69,
+     "candidates": 191,
      "picks": [
       {
        "mon": "forretress",
@@ -28016,9 +28016,9 @@
       "surf",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 90,
-     "winnersAvailable": 100,
-     "candidates": 186,
+     "superEffectiveAvailable": 95,
+     "winnersAvailable": 101,
+     "candidates": 192,
      "picks": [
       {
        "mon": "lapras",
@@ -28096,9 +28096,9 @@
       "thunder",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 99,
+     "superEffectiveAvailable": 104,
      "winnersAvailable": 75,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "piloswine",
@@ -28176,9 +28176,9 @@
       "blizzard",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 99,
+     "superEffectiveAvailable": 104,
      "winnersAvailable": 73,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "dewgong",
@@ -28256,9 +28256,9 @@
       "rock-slide",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 144,
+     "superEffectiveAvailable": 150,
      "winnersAvailable": 77,
-     "candidates": 186,
+     "candidates": 192,
      "picks": [
       {
        "mon": "magneton",
@@ -28336,9 +28336,9 @@
       "slash",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 102,
-     "winnersAvailable": 69,
-     "candidates": 187,
+     "superEffectiveAvailable": 107,
+     "winnersAvailable": 70,
+     "candidates": 193,
      "picks": [
       {
        "mon": "magcargo",
@@ -28416,9 +28416,9 @@
       "outrage",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 103,
+     "superEffectiveAvailable": 108,
      "winnersAvailable": 30,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "lapras",
@@ -28507,9 +28507,9 @@
       "surf",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 93,
-     "winnersAvailable": 100,
-     "candidates": 186,
+     "superEffectiveAvailable": 98,
+     "winnersAvailable": 101,
+     "candidates": 192,
      "picks": [
       {
        "mon": "lapras",
@@ -28587,9 +28587,9 @@
       "thunder",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 102,
+     "superEffectiveAvailable": 107,
      "winnersAvailable": 75,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "piloswine",
@@ -28667,9 +28667,9 @@
       "blizzard",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 102,
+     "superEffectiveAvailable": 107,
      "winnersAvailable": 74,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "dewgong",
@@ -28747,9 +28747,9 @@
       "rock-slide",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 144,
+     "superEffectiveAvailable": 150,
      "winnersAvailable": 76,
-     "candidates": 186,
+     "candidates": 192,
      "picks": [
       {
        "mon": "magneton",
@@ -28827,9 +28827,9 @@
       "slash",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 105,
-     "winnersAvailable": 71,
-     "candidates": 187,
+     "superEffectiveAvailable": 110,
+     "winnersAvailable": 72,
+     "candidates": 193,
      "picks": [
       {
        "mon": "magcargo",
@@ -28907,9 +28907,9 @@
       "outrage",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 106,
+     "superEffectiveAvailable": 111,
      "winnersAvailable": 31,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "lapras",
@@ -28998,9 +28998,9 @@
       "surf",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 90,
-     "winnersAvailable": 101,
-     "candidates": 186,
+     "superEffectiveAvailable": 95,
+     "winnersAvailable": 102,
+     "candidates": 192,
      "picks": [
       {
        "mon": "lapras",
@@ -29078,9 +29078,9 @@
       "thunder",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 102,
+     "superEffectiveAvailable": 107,
      "winnersAvailable": 75,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "piloswine",
@@ -29158,9 +29158,9 @@
       "blizzard",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 102,
+     "superEffectiveAvailable": 107,
      "winnersAvailable": 76,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "dewgong",
@@ -29238,9 +29238,9 @@
       "rock-slide",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 144,
+     "superEffectiveAvailable": 150,
      "winnersAvailable": 79,
-     "candidates": 186,
+     "candidates": 192,
      "picks": [
       {
        "mon": "magneton",
@@ -29318,9 +29318,9 @@
       "slash",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 105,
-     "winnersAvailable": 72,
-     "candidates": 187,
+     "superEffectiveAvailable": 110,
+     "winnersAvailable": 73,
+     "candidates": 193,
      "picks": [
       {
        "mon": "magcargo",
@@ -29398,9 +29398,9 @@
       "outrage",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 106,
+     "superEffectiveAvailable": 111,
      "winnersAvailable": 31,
-     "candidates": 187,
+     "candidates": 193,
      "picks": [
       {
        "mon": "lapras",

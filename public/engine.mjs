@@ -247,6 +247,7 @@ export function whereToGet(data, acq, mon, version) {
 }
 
 const TITLE = (s) => String(s).toLowerCase().split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+const NAME = (n) => String(n).split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' '); // "mr-mime" → "Mr Mime"
 export function describeEvolution(evo) {
   if (!evo) return '';
   // Gens 5–9 (PKHeX): métodos sem equivalente no decomp vêm com o texto pronto (ex.: "nv 20 (à noite)", "girar segurando um doce")
@@ -279,6 +280,8 @@ const SRC_LABEL = {
   gift: (s) => `Presente — ${s.where}${s.level ? ` (nv ${s.level})` : ''}`,
   static: (s) => `Encontro único — ${s.where} (nv ${s.level})`,
   egg: (s) => `Ovo — ${s.where}`,
+  // ovo da creche (apply-breeding): o pai, o parceiro (Ditto/macho; sem nada = macho da mesma espécie) e o incenso
+  breed: (s) => `Ovo na creche — ${s.where}: deixe ${NAME(s.want)} com ${s.partner ? (s.partner === 'ditto' ? 'Ditto' : `um macho do mesmo grupo de ovo (ex.: ${NAME(s.partner)})`) : 'outro ' + NAME(s.want) + ' do sexo oposto'}${s.item ? `, um dos dois segurando ${TITLE(s.item)}` : ''} (choca no nv ${s.level})`,
   trade: (s) => `Troca no jogo — ${s.where} (${s.detail})`,
   prize: (s) => `${s.where} — ${s.detail}`,
   starter: (s) => `${s.where} — ${s.detail}`,
@@ -307,6 +310,11 @@ export function reachLevel(data, acq, mon, version, seen = new Set()) {
     if (s.type === 'trade' && s.want) {
       const want = data.pokemon.find((p) => p.name === s.want);
       lv = Math.max(lv, want ? reachLevel(data, acq, want, version, seen) : Infinity); // precisa ter o Pokémon pedido
+    }
+    // ovo da creche: precisa ter o pai (e o parceiro: Ditto ou macho de outra espécie)
+    if (s.type === 'breed') for (const n of [s.want, s.partner].filter(Boolean)) {
+      const p = data.pokemon.find((x) => x.name === n);
+      lv = Math.max(lv, p ? reachLevel(data, acq, p, version, new Set(seen)) : Infinity);
     }
     return lv;
   };
@@ -344,6 +352,10 @@ export function reachStage(data, acq, mon, version, seen = new Set()) {
     if (s.type === 'trade' && s.want) {
       const want = data.pokemon.find((p) => p.name === s.want);
       st = Math.max(st, want ? reachStage(data, acq, want, version, seen) : Infinity);
+    }
+    if (s.type === 'breed') for (const n of [s.want, s.partner].filter(Boolean)) {
+      const p = data.pokemon.find((x) => x.name === n);
+      st = Math.max(st, p ? reachStage(data, acq, p, version, new Set(seen)) : Infinity);
     }
     return st;
   };
@@ -406,9 +418,11 @@ export function stageLabel(stage, leaderOrder = [], progress = null) {
 export function catchReport(data, acq, mon, version) {
   const w = whereToGet(data, acq, mon, version);
   const post = acq.progress?.post ?? 9;
-  const order = (s) => [s.stage ?? post, s.type === 'wild' ? 0 : 1, s.min ?? s.level ?? 0];
+  // ovo da creche: o estágio é o da creche ou o de quando dá para ter o pai/parceiro, o que vier depois
+  const stageOf = (s) => (s.type !== 'breed' ? s.stage : Math.max(s.stage, ...[s.want, s.partner].filter(Boolean).map((n) => { const p = data.pokemon.find((x) => x.name === n); return p ? reachStage(data, acq, p, version) : post; })));
+  const order = (s) => [Math.min(stageOf(s) ?? post, post), s.type === 'wild' ? 0 : 1, s.min ?? s.level ?? 0];
   const sorted = [...w.direct].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; });
-  const lines = sorted.map((s) => ({ where: s.where, text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? s.stage : null, random: !!unreliableReason(s) }));
+  const lines = sorted.map((s) => ({ where: s.where, text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? Math.min(stageOf(s), post) : null, random: !!unreliableReason(s) }));
   const others = Object.keys(acq.versions).filter((v) => v !== version).map((v) => ({ version: v, count: whereToGet(data, acq, mon, v).direct.length })).filter((o) => o.count);
   return { lines, from: w.from ?? null, steps: w.steps, events: w.events.map((s) => formatSources([s], 1)[0] ?? s.where), others, obtainable: !!mon.obtainable?.[version] };
 }
@@ -421,7 +435,8 @@ const ITEM_HOW = { ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 
  *   • os outros: `evoItems` (<jogo>-evoitems.json) — frases do detonado que dizem onde achar; citação, não posição verificada
  * `inGame` = a espécie dá para obter na versão (`obtainable`, que já conta evolução); falso no Pichu do FireRed — a tela
  * diz que não é deste jogo e em quais jogos aparece.
- * Retorna { nodes: [{ name, id, depth, how, possible, inGame, item: { param, label, sources: [{ text, stage }], cited: [{ section, text }] } }] }.
+ * `byEgg` = se obtém pelo ovo da creche (Pichu no FireRed, desde 0.23.0).
+ * Retorna { nodes: [{ name, id, depth, how, possible, inGame, byEgg, item: { param, label, sources: [{ text, stage }], cited: [{ section, text }] } }] }.
  */
 export function evolutionReport(data, acq, mon, evoItems = null, version = null) {
   const byId = new Map(data.pokemon.map((p) => [p.id, p]));
@@ -438,7 +453,7 @@ export function evolutionReport(data, acq, mon, evoItems = null, version = null)
   const nodes = [];
   const walk = (p, depth) => {
     const e = depth ? p.evo : null;
-    nodes.push({ name: p.name, id: p.id, depth, how: e ? describeEvolution(e) : '', possible: e?.possible !== false, inGame: version == null || !!p.obtainable?.[version], item: e && /ITEM/.test(e.kind ?? '') && typeof e.param === 'string' ? itemOf(e.param) : null });
+    nodes.push({ name: p.name, id: p.id, depth, how: e ? describeEvolution(e) : '', possible: e?.possible !== false, inGame: version == null || !!p.obtainable?.[version], byEgg: !!version && (acq?.versions?.[version]?.[p.name] ?? []).some((x) => x.type === 'breed'), item: e && /ITEM/.test(e.kind ?? '') && typeof e.param === 'string' ? itemOf(e.param) : null });
     for (const c of data.pokemon.filter((x) => x.evolvesFrom === p.id && x.id !== p.id).sort((a, b) => a.id - b.id)) walk(c, depth + 1);
   };
   walk(root, 0);

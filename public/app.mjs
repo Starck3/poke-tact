@@ -265,7 +265,7 @@ async function renderEvolutions(mon, stageTxt) {
     return '<p class="meta">Onde achar ' + it.label + ': não está nos dados deste jogo nem no detonado.</p>';
   };
   box.innerHTML = '<div class="walk-h">Evoluções</div><ul class="evo-tree">' + r.nodes.map((n) => '<li style="margin-left:' + n.depth * 1.4 + 'em">' + (n.depth ? '↳ ' : '') + img(n.id) + link(n) +
-    (n.depth ? ' — ' + (n.how || 'método não informado') + (n.possible ? '' : ' <span class="lozenge warn">não dá neste jogo</span>') : ' <span class="meta">(forma base)</span>') + (n.inGame ? '' : outside(n)) +
+    (n.depth ? ' — ' + (n.how || 'método não informado') + (n.possible ? '' : ' <span class="lozenge warn">não dá neste jogo</span>') : ' <span class="meta">(forma base)</span>') + (n.inGame ? (n.byEgg ? ' <span class="lozenge info">por ovo na creche</span>' : '') : outside(n)) +
     (n.item && n.possible ? '<div class="evo-item"><span class="meta">Onde achar ' + n.item.label + ':</span>' + itemHtml(n.item) + '</div>' : '') + '</li>').join('') + '</ul>';
   box.querySelectorAll('[data-evo]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); $('dexQ').value = humanize(a.dataset.evo); renderDex(); }));
 }
