@@ -341,6 +341,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Chefe Mega/Tera (0.27.0)**: `parseModernBattles` já devolve `tags` (mega…) e `notes.tera`; o build-detonado-modern
   precisa levar isso ao time (`mega`, `tera`). Mega X/Y pelo sufixo do nome no detonado. Edição pelo shell trocou `\b` por
   backspace de novo — o teste de caractere de controle pegou; use Edit para regex.
+- **Golpes Z/Max (0.28.0, `apply-zmax-powers`)**: regra do `sim/dex-moves.ts` do Showdown (o script para se a tabela mudar)
+  aplicada ao poder do golpe NO JOGO; exceções de `data/moves.ts`. Z-Crystals por frase do detonado com verbo de pegar
+  ("pedestal com", "ficar com" também contam). O banco de lutas ficou mais lento (≈ 11 min) com o Z.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

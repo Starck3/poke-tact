@@ -143,6 +143,11 @@ export function recommend(data, opp, opts) {
   // partir do ponto em que o detonado diz que você o ganha (acq.progress.keyItems.mega); opts.megaEvolution === false desliga
   const megaItem = opts.acq?.progress?.keyItems?.mega ?? null;
   const megaOk = opts.megaEvolution !== false && data.pokemon.some((p) => p.megas?.length) && (!useStage || !megaItem || opts.stage >= megaItem.stage);
+  // golpes Z (Sun/Moon, USUM): com o Z-Ring, um golpe Z por luta nos tipos dos Z-Crystals que você já tem — com o progresso
+  // informado, os recebidos até ali (keyItems.zCrystals do detonado); sem progresso ou sem detonado (USUM), todos
+  const zRing = opts.acq?.progress?.keyItems?.z ?? null, crystals = opts.acq?.progress?.keyItems?.zCrystals ?? null;
+  const zTypes = opts.zMoves === false || !Object.values(data.moves).some((m) => m.zPower) || (useStage && zRing && opts.stage < zRing.stage) ? null
+    : new Set(useStage && crystals ? Object.entries(crystals).filter(([, c]) => c.stage <= opts.stage).map(([t]) => t) : data.types);
   // Inicial informado: as famílias dos outros dois só existem por troca; vagante que depende do inicial idem
   const excluded = new Set();
   if (opts.starter && data.starters?.species?.includes(opts.starter)) {
@@ -182,7 +187,7 @@ export function recommend(data, opp, opts) {
     for (const form of [null, ...(megaOk ? mon.megas ?? [] : [])]) {
       if (form?.primal && !opts.includeLegendary) continue;
       const fm = form ? { ...mon, types: form.types, stats: form.stats, abilities: form.abilities } : mon;
-      const me = { mon: fm, level: opts.level, stats: form ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(form && gen === 6 && { speedTurn1: baseStats.speed }) };
+      const me = { mon: fm, level: opts.level, stats: form ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(form && gen === 6 && { speedTurn1: baseStats.speed }), ...(zTypes && { zTypes }) };
       const d = duel(data, gen, me, oppSide, myMoves, oppMoveNames);
       if (!d.move) continue;
       const mv = data.moves[d.move];
@@ -196,7 +201,8 @@ export function recommend(data, opp, opts) {
       // sem "onde obter" (camada PokéAPI, Diamond/Pearl): marca da PokéAPI de "só surto/Poké Radar" (build-data)
       const score = ((d.win ? 100 : 0) + Math.min(d.margin, 6) * 10 - Math.min(d.myTurns, 20) + (fasterBase ? 2 : 0) - (unreliable ? 20 : 0)) * abilityFactor(fm);
       // Mega só quando ganha da forma normal (empate: a normal, que não pede pedra)
-      if (!best || score > best.score) best = { mon, move, incoming, worst, fasterBase, score, reach, stageNeeded, duel: d, unreliable, mega: form ? { name: form.name, stone: form.stone, spriteId: form.spriteId, types: form.types, primal: !!form.primal, ring: megaItem ?? null } : null };
+      if (!best || score > best.score) best = { mon, move, incoming, worst, fasterBase, score, reach, stageNeeded, duel: d, unreliable, mega: form ? { name: form.name, stone: form.stone, spriteId: form.spriteId, types: form.types, primal: !!form.primal, ring: megaItem ?? null } : null,
+        zMove: d.z ? { ...d.z, crystal: crystals?.[d.z.type] ?? null, ring: zRing } : null };
     }
     if (best) scored.push(best);
   }
