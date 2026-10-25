@@ -143,6 +143,9 @@ export function recommend(data, opp, opts) {
   // partir do ponto em que o detonado diz que você o ganha (acq.progress.keyItems.mega); opts.megaEvolution === false desliga
   const megaItem = opts.acq?.progress?.keyItems?.mega ?? null;
   const megaOk = opts.megaEvolution !== false && data.pokemon.some((p) => p.megas?.length) && (!useStage || !megaItem || opts.stage >= megaItem.stage);
+  // Terastal (Scarlet/Violet): com a Tera Orb (keyItems.tera do detonado; com progresso, só depois de ganhá-la)
+  const teraItem = opts.acq?.progress?.keyItems?.tera ?? null;
+  const teraOk = opts.terastal !== false && gen >= 9 && !!teraItem && (!useStage || opts.stage >= teraItem.stage);
   // golpes Z (Sun/Moon, USUM): com o Z-Ring, um golpe Z por luta nos tipos dos Z-Crystals que você já tem — com o progresso
   // informado, os recebidos até ali (keyItems.zCrystals do detonado); sem progresso ou sem detonado (USUM), todos
   const zRing = opts.acq?.progress?.keyItems?.z ?? null, crystals = opts.acq?.progress?.keyItems?.zCrystals ?? null;
@@ -184,14 +187,17 @@ export function recommend(data, opp, opts) {
     // são os mesmos): fica a que pontua mais. Gen 6: no turno em que evolui, a ordem usa a Velocidade de antes da Mega
     const baseStats = badgeBoost(gen, statsAt(gen, mon, opts.level), opts.acq?.progress, useStage ? opts.stage : null);
     let best = null;
-    for (const form of [null, ...(megaOk ? mon.megas ?? [] : [])]) {
+    // Terastal (Scarlet/Violet): um dos tipos do próprio Pokémon (o Tera padrão de quem você captura)
+    const teraForms = teraOk ? mon.types.map((t) => ({ tera: t })) : [];
+    for (const form of [null, ...(megaOk ? mon.megas ?? [] : []), ...teraForms]) {
       if (form?.primal && !opts.includeLegendary) continue;
-      const fm = form ? { ...mon, types: form.types, stats: form.stats, abilities: form.abilities } : mon;
-      const me = { mon: fm, level: opts.level, stats: form ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(form && gen === 6 && { speedTurn1: baseStats.speed }), ...(zTypes && { zTypes }) };
+      const isMega = form && !form.tera;
+      const fm = form?.tera ? teraForm(mon, form.tera) : form ? { ...mon, types: form.types, stats: form.stats, abilities: form.abilities } : mon;
+      const me = { mon: fm, level: opts.level, stats: isMega ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(isMega && gen === 6 && { speedTurn1: baseStats.speed }), ...(zTypes && { zTypes }) };
       const d = duel(data, gen, me, oppSide, myMoves, oppMoveNames);
       if (!d.move) continue;
       const mv = data.moves[d.move];
-      const move = { name: d.move, ...mv, eff: d.myDmg.typeMul, stab: fm.types.includes(mv.type) ? 1.5 : 1, turns: d.myTurns, via: moveVia(mon, d.move, opts.level, gopts.machineSources, gopts.stage, gopts.tutorSources) };
+      const move = { name: d.move, ...mv, eff: d.myDmg.typeMul, stab: fm.teraType === mv.type && (fm.baseTypes ?? []).includes(mv.type) ? 2 : fm.types.includes(mv.type) || (fm.baseTypes ?? []).includes(mv.type) ? 1.5 : 1, turns: d.myTurns, via: moveVia(mon, d.move, opts.level, gopts.machineSources, gopts.stage, gopts.tutorSources) };
       const incoming = threats.map((t) => ({ type: t, mult: effectiveness(data, t, fm) }));
       const worst = Math.max(...incoming.map((x) => x.mult));
       const fasterBase = d.faster === 1;
@@ -201,7 +207,8 @@ export function recommend(data, opp, opts) {
       // sem "onde obter" (camada PokéAPI, Diamond/Pearl): marca da PokéAPI de "só surto/Poké Radar" (build-data)
       const score = ((d.win ? 100 : 0) + Math.min(d.margin, 6) * 10 - Math.min(d.myTurns, 20) + (fasterBase ? 2 : 0) - (unreliable ? 20 : 0)) * abilityFactor(fm);
       // Mega só quando ganha da forma normal (empate: a normal, que não pede pedra)
-      if (!best || score > best.score) best = { mon, move, incoming, worst, fasterBase, score, reach, stageNeeded, duel: d, unreliable, mega: form ? { name: form.name, stone: form.stone, spriteId: form.spriteId, types: form.types, primal: !!form.primal, ring: megaItem ?? null } : null,
+      if (!best || score > best.score) best = { mon, move, incoming, worst, fasterBase, score, reach, stageNeeded, duel: d, unreliable,
+        tera: form?.tera ? { type: form.tera, orb: teraItem } : null, mega: isMega ? { name: form.name, stone: form.stone, spriteId: form.spriteId, types: form.types, primal: !!form.primal, ring: megaItem ?? null } : null,
         zMove: d.z ? { ...d.z, crystal: crystals?.[d.z.type] ?? null, ring: zRing } : null };
     }
     if (best) scored.push(best);
@@ -234,10 +241,17 @@ export function megaForm(mon, megaName) {
   return f ? { ...mon, types: f.types, stats: f.stats, abilities: f.abilities, megaName: f.name, megaSprite: f.spriteId } : mon;
 }
 
+/** Terastalizado no tipo `tera`: defesa só com o tipo Tera; os tipos de antes ficam em baseTypes (STAB — battle.mjs). */
+export function teraForm(mon, tera) {
+  return tera && mon ? { ...mon, types: [tera], baseTypes: mon.baseTypes ?? mon.types, teraType: tera } : mon;
+}
+/** Pokémon de treinador como luta no jogo: Mega (p.mega) e/ou terastalizado (p.tera), quando o detonado diz. */
+export const battleForm = (mon, p) => teraForm(megaForm(mon, p?.mega), p?.tera);
+
 export function recommendTeam(data, party, opts) {
   const byMon = new Map();
   party.forEach((p, i) => {
-    const opp = megaForm(data.pokemon.find((x) => x.name === p.species), p.mega);
+    const opp = battleForm(data.pokemon.find((x) => x.name === p.species), p);
     const r = recommend(data, opp, { ...opts, oppMoves: p.moves, oppLevel: p.level, oppDvs: p.dvs, oppIv: p.iv });
     for (const c of r.candidates) {
       const e = byMon.get(c.mon.name) ?? byMon.set(c.mon.name, { mon: c.mon, reach: c.reach, stageNeeded: c.stageNeeded, unreliable: c.unreliable, vs: [] }).get(c.mon.name);

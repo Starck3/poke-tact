@@ -2356,3 +2356,29 @@ test('simulador — golpes Z (0.28.0): poder pela tabela do jogo (Showdown), cri
   assert.ok(run(k.zCrystals.electric.stage).some((c) => c.zMove?.type === 'electric'));
   assert.ok(!run(12, false).some((c) => c.zMove));
 });
+
+test('simulador — Terastal (0.29.0): chefe com Tera do detonado defende só no tipo Tera; STAB 2× no tipo original; poder mínimo 60', async () => {
+  const { battleForm, teraForm, effectiveness, recommend } = await import('../public/engine.mjs');
+  const { damage } = await import('../public/battle.mjs');
+  const sv = load('scarlet-violet.json'), sva = load('scarlet-violet-acquisition.json');
+  // Katy: Teddiursa Tera Bug → defende como Bug (Fogo 2×, Lutador ½×)
+  const p = load('scarlet-violet-trainers.json').trainers.find((t) => t.label === 'Katy').party.find((x) => x.species === 'teddiursa');
+  const ted = battleForm(sv.pokemon.find((x) => x.name === 'teddiursa'), p);
+  assert.deepEqual([ted.types, ted.baseTypes, ted.teraType], [['bug'], ['normal'], 'bug']);
+  assert.equal(effectiveness(sv, 'fire', ted), 2);
+  assert.equal(effectiveness(sv, 'fighting', ted), 0.5);
+  // STAB: Tera no tipo original = 2×; Tera noutro tipo mantém 1,5× nos originais e dá 1,5× no Tera
+  const mk = (mon) => ({ mon, level: 50, stats: { hp: 200, attack: 100, defense: 100, 'special-attack': 100, 'special-defense': 100, speed: 100 } });
+  const pika = sv.pokemon.find((x) => x.name === 'pikachu'), target = mk(sv.pokemon.find((x) => x.name === 'snorlax'));
+  const base = damage(sv, 9, mk(pika), target, 'thunderbolt').per, same = damage(sv, 9, mk(teraForm(pika, 'electric')), target, 'thunderbolt').per;
+  assert.ok(Math.abs(same / base - 2 / 1.5) < 0.05);
+  // poder mínimo 60 no tipo Tera (Thunder Shock 40 → 60)
+  const ts = damage(sv, 9, mk(teraForm(pika, 'electric')), target, 'thunder-shock').per, tb = damage(sv, 9, mk(teraForm(pika, 'electric')), target, 'thunderbolt').per;
+  assert.ok(Math.abs(ts / tb - 60 / 90) < 0.06);
+  // antes da Tera Orb não há sugestão com Tera; a opção desliga
+  const orb = sva.progress.keyItems.tera;
+  assert.ok(/Tera Orb/.test(orb.text));
+  const run = (terastal = true) => recommend(sv, ted, { level: 30, oppLevel: 15, version: 'scarlet', onlyObtainable: true, acq: sva, stage: 2, terastal }).candidates;
+  assert.ok(run().some((c) => c.tera));
+  assert.ok(!run(false).some((c) => c.tera));
+});

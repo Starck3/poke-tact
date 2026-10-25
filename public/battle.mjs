@@ -80,10 +80,16 @@ export function damage(data, gen, att, def, name, { zPower = null } = {}) {
   let A = att.stats[phys ? 'attack' : 'special-attack'], D = def.stats[phys ? 'defense' : 'special-defense'];
   if (p.selfKo) D = Math.max(1, Math.floor(D / 2)); // Explosion/Self-Destruct dividem a defesa (Gen 1–3)
   if (gen <= 2 && (A > 255 || D > 255)) { A = Math.max(1, Math.floor(A / 4)); D = Math.max(1, Math.floor(D / 4)); }
-  let dmg = Math.floor(Math.floor(Math.floor((2 * att.level) / 5 + 2) * (zPower ?? mv.power) * A / D) / 50);
+  // terastalizado: golpe do tipo Tera com poder < 60, sem prioridade e de um golpe só, vai a 60 (battle-actions.ts)
+  const power = zPower ?? (att.mon.teraType === mv.type && mv.power < 60 && (mv.priority ?? 0) <= 0 && p.hits === 1 ? 60 : mv.power);
+  let dmg = Math.floor(Math.floor(Math.floor((2 * att.level) / 5 + 2) * power * A / D) / 50);
   if (gen <= 2) dmg = Math.min(dmg, 997);
   dmg += 2;
-  if (att.mon.types.includes(mv.type)) dmg = Math.floor(dmg * 1.5);
+  // STAB; terastalizado (Gen 9, Showdown battle-actions.ts): vale para os tipos originais e o Tera; 2× quando o tipo
+  // Tera é um dos originais
+  const tera = att.mon.teraType, own = att.mon.baseTypes ?? att.mon.types;
+  if (tera && tera === mv.type && own.includes(tera)) dmg = Math.floor(dmg * 2);
+  else if (att.mon.types.includes(mv.type) || own.includes(mv.type)) dmg = Math.floor(dmg * 1.5);
   dmg = Math.floor(dmg * typeMul);
   const per = dmg * rand(gen) * p.hits * (zPower ? 1 : (mv.accuracy ?? 100) / 100);
   return { per, ...p, typeMul };
