@@ -542,7 +542,7 @@ test('regressão: scripts COMPARTILHADOS também entregam itens (TM43 do garoto 
 
 test('regressão: Pokémon de script compartilhado só conta se um mapa chama (Kecleon sim; ovo de Pichu do Mystery Gift não)', () => {
   assert.ok(EM_ACQ.versions.emerald.kecleon.some((s) => s.where === 'Route 119' && s.sharedScript));
-  assert.ok(!(EM_ACQ.versions.emerald.pichu ?? []).length);
+  assert.ok(!(EM_ACQ.versions.emerald.pichu ?? []).filter((s) => s.type !== 'breed').length); // 0.23.0: só o ovo da creche
 });
 
 test('regressão: numeração de TM/HM vem do código de cada jogo e é a mesma na Gen 3 (FRLG × Emerald)', { skip: !haveDecomp }, async () => {
@@ -2178,14 +2178,42 @@ test('evoluções na aba Onde capturar (0.22.0): família, método e onde achar 
   assert.ok(!existsSync(new URL('../public/data/firered-leafgreen-evoitems.json', import.meta.url)));
 });
 
-test('evoluções (0.22.1): espécie da família que não é do jogo (Pichu no FireRed) marcada, com os jogos onde aparece', async () => {
+test('evoluções (0.22.1): espécie da família que não é do jogo marcada, com os jogos onde aparece (Azurill no Emerald)', async () => {
   const { evolutionReport } = await import('../public/engine.mjs');
-  const d = load('firered-leafgreen.json');
-  const r = evolutionReport(d, load('firered-leafgreen-acquisition.json'), d.pokemon.find((p) => p.name === 'pikachu'), null, 'firered');
-  assert.deepEqual(r.nodes.map((x) => [x.name, x.inGame]), [['pichu', false], ['pikachu', true], ['raichu', true]]);
-  // a tela lista os jogos de pokemon-games.json — Pichu não pode aparecer como do FireRed/LeafGreen
-  const where = load('pokemon-games.json').where.pichu;
-  assert.ok(!where['firered-leafgreen'] && where.crystal);
+  const d = load('emerald.json');
+  // Azurill no Emerald: só nasceria com Sea Incense, que não está nos dados do jogo → continua fora
+  const r = evolutionReport(d, load('emerald-acquisition.json'), d.pokemon.find((p) => p.name === 'marill'), null, 'emerald');
+  assert.deepEqual(r.nodes.map((x) => [x.name, x.inGame]), [['azurill', false], ['marill', true], ['azumarill', true]]);
+  const where = load('pokemon-games.json').where.azurill;
+  assert.ok(!where.emerald && where['heartgold-soulsilver']);
+});
+
+test('ovos da creche (0.23.0): bebê que só nasce de ovo vira obtível, com pai, parceiro, incenso e estágio do código do jogo', async () => {
+  const { evolutionReport, catchReport, whereToGet } = await import('../public/engine.mjs');
+  const fr = load('firered-leafgreen.json'), fra = load('firered-leafgreen-acquisition.json');
+  const pichu = fr.pokemon.find((p) => p.name === 'pichu');
+  assert.equal(pichu.obtainable.firered, true);
+  const src = whereToGet(fr, fra, pichu, 'firered').direct;
+  assert.ok(src.every((s) => s.type === 'breed' && s.where === 'Four Island Pokémon Day Care' && s.level === 5)); // EGG_HATCH_LEVEL 5
+  assert.deepEqual(src.map((s) => s.want).sort(), ['pikachu', 'raichu']);
+  const rep = catchReport(fr, fra, pichu, 'firered');
+  assert.ok(/^Ovo na creche — Four Island Pokémon Day Care: deixe Pikachu com outro Pikachu do sexo oposto \(choca no nv 5\)/.test(rep.lines[0].text));
+  assert.equal(rep.lines[0].stage, 9); // Four Island: pós-jogo
+  // o Day Care da Route 5 não faz ovo (só cria um Pokémon): não pode aparecer
+  assert.ok(!Object.values(fra.versions.firered).flat().some((s) => s.type === 'breed' && /Route 5/.test(s.where)));
+  // Tyrogue: Hitmonlee/Hitmonchan só têm macho → só com Ditto
+  assert.ok(fra.versions.firered.tyrogue.every((s) => s.partner === 'ditto'));
+  // árvore de evolução: Pichu agora é do jogo, por ovo
+  const n = evolutionReport(fr, fra, fr.pokemon.find((p) => p.name === 'pikachu'), null, 'firered').nodes[0];
+  assert.deepEqual([n.name, n.inGame, n.byEgg], ['pichu', true, true]);
+  // incenso (Gen 4, tabela sIncenseMons do HGSS): Wynaut pede Lax Incense; sem incenso nos dados (FRLG) não entra
+  const hg = load('heartgold-soulsilver-acquisition.json');
+  assert.ok(hg.versions.heartgold.wynaut.some((s) => s.type === 'breed' && s.item === 'LAX_INCENSE' && s.level === 1));
+  assert.equal(fr.pokemon.find((p) => p.name === 'wynaut').obtainable.firered, false);
+  // Diamond: Koffing só por ovo de Weezing (Solaceon)
+  assert.ok(load('diamond-pearl-acquisition.json').versions.diamond.koffing.some((s) => s.want === 'weezing' && /Solaceon/.test(s.where)));
+  // jogos sem creche no app (Gen 1, Gens 5+) ficam sem a fonte
+  assert.ok(!JSON.stringify(load('red-blue-acquisition.json').versions).includes('"breed"'));
 });
 
 test('HGSS (0.22.0): evolução por lugar não existe (MapHeader_GetMapEvolutionMethod = EVO_NONE) e pedras da loja do Pokéathlon', () => {

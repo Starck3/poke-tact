@@ -322,6 +322,12 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Família de evolução ≠ espécies do jogo (0.22.1)**: os dados do jogo trazem todas as espécies da geração (o FireRed
   tem Pichu), mas `obtainable[versão]` falso quer dizer que não se obtém ali (cruzamento na Day Care não é modelado).
   O bloco Evoluções usa `inGame` do `evolutionReport` e `pokemon-games.json` para dizer em que jogos a espécie aparece.
+- **Ovos da creche (0.23.0, `apply-breeding`)**: roda depois do onde obter nas Gens 2–4 com decomp. Grupos de ovo/sexo
+  de `base_stats/*.asm` (Gen 2), `species_info.h`/`base_stats.h` (Gen 3), `personal.json`/`res/pokemon/*/data.json`
+  (Gen 4); espécie do ovo = forma mais baixa da família (Diamond/Pearl: `pms.json`); incensos de `src/daycare.c` (Gen 3)
+  e `sIncenseMons`/`sIncenseBabyTable` (HGSS/Platinum; DP usa a do Platinum). A creche precisa ser a que faz ovo: no
+  FRLG a da Route 5 só cria (o script do mapa não cita `DAYCARE_EGG`). Gen 2 precisa de `engine/` no sparse checkout.
+  A fonte `breed` tem `want` (pai) e `partner` (Ditto/macho de outra espécie); o motor usa os dois no nível/estágio.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

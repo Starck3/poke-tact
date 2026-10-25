@@ -2,6 +2,20 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.23.0] — 2026-10-25
+
+### Adicionado
+- **Ovos da creche** (Gold/Silver, Crystal, Ruby/Sapphire, Emerald, FireRed/LeafGreen, Diamond/Pearl, Platinum e
+  HeartGold/SoulSilver): a espécie que só se consegue chocando um ovo agora aparece em **Onde capturar** — ex.: Pichu no
+  FireRed, "Ovo na creche — Four Island Pokémon Day Care: deixe Pikachu com outro Pikachu do sexo oposto (choca no nv 5)",
+  pós-jogo. Diz o pai, o parceiro (outro do sexo oposto, um macho do mesmo grupo de ovo ou Ditto), o incenso quando o
+  bebê precisa (Wynaut, Azurill, Mime Jr., Happiny, Munchlax…) e o ponto da história (o da creche ou o de quando dá para
+  ter o pai, o que vier depois). Na árvore de evoluções, o bebê ganha o selo "por ovo na creche".
+  Tudo do código de cada jogo: grupos de ovo e sexo, a regra de qual espécie nasce, a tabela dos incensos, o nível ao
+  chocar (5 nas Gens 2–3, 1 na Gen 4) e o mapa da creche (no FireRed/LeafGreen, a da Four Island — a da Route 5 não faz
+  ovo).
+- Bebê de incenso sem o incenso nos dados do jogo continua fora (ex.: Azurill no Emerald, Wynaut no FireRed).
+
 ## [0.22.1] — 2026-10-24
 
 ### Corrigido

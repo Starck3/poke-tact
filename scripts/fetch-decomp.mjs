@@ -24,7 +24,7 @@ if (game?.asmDecomp) {
   git('remote', 'add', 'origin', `https://github.com/${repo}.git`);
   git('config', 'core.sparseCheckout', 'true');
   // Gen 4 (C + JSON): lista própria em games.mjs (asmDecomp.sparse) — no Git Bash use MSYS_NO_PATHCONV=1 se for mexer à mão
-  await writeFile(`${dir}.git/info/sparse-checkout`, (sparse ?? ['/data/', '/constants/', '/scripts/', '/macros/']).join('\n') + '\n');
+  await writeFile(`${dir}.git/info/sparse-checkout`, (sparse ?? ['/data/', '/constants/', '/scripts/', '/macros/', '/maps/', '/engine/']).join('\n') + '\n');
   git('fetch', '-q', '--depth', '1', '--filter=blob:none', 'origin', commit);
   git('checkout', '-q', 'FETCH_HEAD');
   console.log(`${repo}@${commit.slice(0, 7)} baixado em data-sources/${d}`);
@@ -42,10 +42,10 @@ const FILES = [
   'src/data/pokemon/egg_moves.h', 'src/data/pokemon/evolution.h', 'src/data/pokemon/species_info.h',
   'src/data/trainers.h', 'src/data/trainer_parties.h', 'src/data/wild_encounters.json',
   'src/data/text/move_names.h', 'src/data/text/species_names.h', 'src/data/text/abilities.h',
-  'src/pokemon.c', 'src/battle_main.c', 'src/roamer.c', 'src/trade.c', game.decomp.tradesFile,
+  'src/pokemon.c', 'src/daycare.c', 'include/constants/daycare.h', 'include/daycare.h', 'src/battle_main.c', 'src/roamer.c', 'src/trade.c', game.decomp.tradesFile,
   'src/wild_encounter.c', 'src/starter_choose.c', 'src/battle_setup.c', 'src/party_menu.c', 'include/constants/party_menu.h', 'src/data/party_menu.h', 'include/constants/tms_hms.h', 'src/field_specials.c', 'src/field_control_avatar.c', 'constants/version.inc', 'src/data/region_map/region_map_sections.json', ...(game.decomp.itemBallScripts ? [] : []),
 ];
-const OPTIONAL = new Set(['src/data/region_map/region_map_sections.json', 'constants/version.inc', 'src/starter_choose.c', 'include/constants/tms_hms.h', 'src/data/pokemon/tutor_learnsets.h', 'include/constants/party_menu.h', 'src/data/party_menu.h', 'src/data/text/abilities.h']); // não existe em todos os jogos
+const OPTIONAL = new Set(['include/constants/daycare.h', 'include/daycare.h', 'src/data/region_map/region_map_sections.json', 'constants/version.inc', 'src/starter_choose.c', 'include/constants/tms_hms.h', 'src/data/pokemon/tutor_learnsets.h', 'include/constants/party_menu.h', 'src/data/party_menu.h', 'src/data/text/abilities.h']); // não existe em todos os jogos
 const alias = (p) => game.decomp.aliases?.[p] ?? p;
 const root = new URL(`../data-sources/${name}/${commit}/`, import.meta.url);
 const manifestFile = new URL('manifest.json', root);

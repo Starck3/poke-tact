@@ -7,18 +7,19 @@ import { READERS } from './lib/pkhex-enc.mjs';
 
 const ids = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(GAMES);
 const cwd = fileURLToPath(new URL('..', import.meta.url));
-const STEPS = ['build-data', 'apply-decomp-overlay', 'build-trainers', 'build-acquisition', 'build-walkthrough', 'validate-vs-decomp', 'validate-stats-vs-decomp', 'validate-vs-pokemythology', 'validate-tms-vs-pokemythology'];
+const STEPS = ['build-data', 'apply-decomp-overlay', 'build-trainers', 'build-acquisition', 'apply-breeding', 'build-walkthrough', 'validate-vs-decomp', 'validate-stats-vs-decomp', 'validate-vs-pokemythology', 'validate-tms-vs-pokemythology'];
 // Gen 1/2 (decomp em assembly, game.asmDecomp): a auditoria roda DEPOIS da correção e deve dar 0; o detonado (build-walkthrough-gen1) serve às duas
 const ASM_STEPS = {
   1: ['build-data', 'apply-gen1-overlay', 'validate-gen1-vs-decomp', 'build-trainers-gen1', 'build-acquisition-gen1', 'build-walkthrough-gen1'],
-  2: ['build-data', 'apply-gen2-overlay', 'validate-gen2-vs-decomp', 'build-trainers-gen2', 'build-acquisition-gen2', 'build-walkthrough-gen1'],
-  hgss: ['build-data', 'apply-hgss-overlay', 'validate-hgss-vs-decomp', 'build-trainers-hgss', 'build-acquisition-hgss', 'build-walkthrough-gen1'], // E1: HeartGold/SoulSilver parcial
-  dp: ['build-data', 'apply-dp-overlay', 'validate-dp-vs-decomp', 'validate-dp-scripts', 'build-trainers-dp', 'build-acquisition-dp', 'build-walkthrough-gen1'], // Diamond/Pearl (binários lidos pelo código do jogo)
+  2: ['build-data', 'apply-gen2-overlay', 'validate-gen2-vs-decomp', 'build-trainers-gen2', 'build-acquisition-gen2', 'apply-breeding', 'build-walkthrough-gen1'],
+  hgss: ['build-data', 'apply-hgss-overlay', 'validate-hgss-vs-decomp', 'build-trainers-hgss', 'build-acquisition-hgss', 'apply-breeding', 'build-walkthrough-gen1'], // E1: HeartGold/SoulSilver parcial
+  dp: ['build-data', 'apply-dp-overlay', 'validate-dp-vs-decomp', 'validate-dp-scripts', 'build-trainers-dp', 'build-acquisition-dp', 'apply-breeding', 'build-walkthrough-gen1'], // Diamond/Pearl (binários lidos pelo código do jogo)
   5: ['build-data', 'apply-gen5-overlay', 'validate-gen5-vs-decomp', 'build-trainers-gen5', 'build-acquisition-gen5', 'build-walkthrough-gen1'], // Black 2 / White 2 (fuddlesworth/pokebw2)
-  4: ['build-data', 'apply-gen4-overlay', 'validate-gen4-vs-decomp', 'build-trainers-gen4', 'build-acquisition-gen4', 'build-walkthrough-gen1'], // Platinum (decomp em JSON)
+  4: ['build-data', 'apply-gen4-overlay', 'validate-gen4-vs-decomp', 'build-trainers-gen4', 'build-acquisition-gen4', 'apply-breeding', 'build-walkthrough-gen1'], // Platinum (decomp em JSON)
 };
 // camada PokéAPI (sem decomp): dados + conferência dos golpes com o Showdown (E3; o script ignora gerações fora de 5–8)
 // + iniciais pelo detonado e pela PokéAPI (E4; sem as duas fontes o campo fica escondido)
+// apply-breeding (depois do onde obter): ovos da creche nas Gens 2–4 com decomp — sai sem erro nos outros jogos
 const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-pokeapi'];
 // + núcleo pelas tabelas do jogo extraídas pelo PKHeX (Black/White e Gens 6–9), auditado depois (tem que dar 0)
 // + onde obter pelas tabelas de encontro do PKHeX (Black/White e Gens 6–9: os jogos com leitor em READERS)
