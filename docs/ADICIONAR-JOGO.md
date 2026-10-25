@@ -328,6 +328,12 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   e `sIncenseMons`/`sIncenseBabyTable` (HGSS/Platinum; DP usa a do Platinum). A creche precisa ser a que faz ovo: no
   FRLG a da Route 5 só cria (o script do mapa não cita `DAYCARE_EGG`). Gen 2 precisa de `engine/` no sparse checkout.
   A fonte `breed` tem `want` (pai) e `partner` (Ditto/macho de outra espécie); o motor usa os dois no nível/estágio.
+- **Gen 1 — portões e presentes (0.24.0)**: conexão rota↔cidade atravessada por portão com guarda (`bit
+  BIT_GAVE_SAFFRON_GUARDS_DRINK`) não conta para o estágio (vale o MAIOR dos dois lados); conferência de insígnia dentro de
+  rotina de presente (`EVENT_GOT_…`) não fecha o mapa. **Motor**: `reachStage`/`reachLevel` comparam a fonte direta com a
+  pré-evolução (sem troca); `catchReport().alt` mostra os dois. **Fotos de outra fonte**: só quando o detonado não tem
+  nenhuma, por referência e com `credit`/`page` (tabela EXTRA em build-place-images). **CHANGELOG**: toda versão tem
+  `> resumo` em linguagem simples logo abaixo do título (teste exige).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

@@ -1,6 +1,6 @@
 {
- "withImages": 35,
- "total": 132,
+ "withImages": 36,
+ "total": 133,
  "without": [
   "Sprout Tower 2F",
   "Sprout Tower 3F",
@@ -71,7 +71,6 @@
   "Route 8",
   "New Bark Town",
   "Violet City",
-  "Blackthorn City",
   "Route 21",
   "Pewter Pokecenter 1F",
   "Digletts Cave",
@@ -98,6 +97,7 @@
   "Blackthorn Emys House",
   "Violet Pokecenter 1F",
   "Bill's Familys House",
-  "Elm's Lab — Prof. Elm"
+  "Elm's Lab — Prof. Elm",
+  "Day Care (Route 34)"
  ]
 }

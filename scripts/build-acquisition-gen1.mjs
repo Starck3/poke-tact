@@ -56,6 +56,14 @@ const label = (c) => mapLabel(fileOf[c] ?? c);
 // script do mapa = "<Mapa>.asm" + partes "<Mapa>_2.asm"… (o Yellow divide vários: VermilionCity_2 tem o Squirtle da Officer Jenny)
 const scriptNames = readdirSync(new URL('scripts/', root));
 const scriptFile = (c) => (fileOf[c] ? scriptNames.filter((n) => n === `${fileOf[c]}.asm` || new RegExp(`^${fileOf[c]}_\\d+\\.asm$`).test(n)).map((n) => read(`scripts/${n}`)).join('\n') : '');
+// portão com guarda que barra a passagem até receber a bebida (Route5Gate…Route8Gate: "bit BIT_GAVE_SAFFRON_GUARDS_DRINK"):
+// a rota não chega à cidade por ali — sem cortar, a Route 6 (Vermilion ↔ Saffron) herdava o estágio do Saffron (4) em
+// vez do 2 do Vermilion, já que pelas conexões vale o MAIOR estágio dos dois lados
+for (const [c, ns] of warp) for (const g of ns) {
+  const city = scriptFile(g).match(/bit BIT_GAVE_(\w+?)_GUARDS_DRINK/)?.[1];
+  const target = city && [...(conn.get(c) ?? [])].find((n) => n === `${city}_CITY`);
+  if (target) { conn.get(c).delete(target); conn.get(target).delete(c); }
+}
 
 // ---- 2) selvagens
 const slotPct = [...read('data/wild/probabilities.asm').matchAll(/wild_chance\s+(\d+)/g)].map((m) => Number(m[1]) / 256 * 100);
@@ -227,7 +235,10 @@ const badgeOrder = [...read('constants/ram_constants.asm').matchAll(/const\s+BIT
 for (const c of ids) {
   const s = scriptFile(c);
   if (/set BIT_\w+BADGE/.test(s)) continue;
-  const checked = [...s.matchAll(/bit BIT_(\w+)BADGE|EVENT_PASSED_(\w+)BADGE_CHECK/g)].map((m) => badgeOrder.indexOf(m[1] ?? m[2])).filter((i) => i >= 0);
+  // rotina de presente ("EVENT_GOT_…": a Officer Jenny do Yellow só dá o Squirtle depois da Thunder Badge) não fecha o
+  // mapa — sem isso o Vermilion do Yellow ia para o estágio 3 e levava a Route 6 junto
+  const gates = s.split(/^(?=\w+::?\s*$)/m).filter((r) => !/EVENT_GOT_/.test(r)).join('\n');
+  const checked = [...gates.matchAll(/bit BIT_(\w+)BADGE|EVENT_PASSED_(\w+)BADGE_CHECK/g)].map((m) => badgeOrder.indexOf(m[1] ?? m[2])).filter((i) => i >= 0);
   if (checked.length && !facts[c]) facts[c] = { stage: Math.max(...checked) + 1, why: `script checa a insígnia ${badgeOrder[Math.max(...checked)]}` };
 }
 for (const [id, f] of Object.entries(facts)) { titleKnown.set(id, f.stage); textKnown.delete(id); detail[id] = { stage: f.stage, by: 'código', why: f.why }; }

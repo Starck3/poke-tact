@@ -180,10 +180,8 @@ function renderWhere(mon, reach, stageNeeded) {
   if (!w.direct.length) return '<li class="meta">Onde obter: sem forma direta nesta versão</li>';
   const when = stageNeeded != null ? ' <span class="meta">(disponível: ' + stageLabel(stageNeeded, acq.progress?.leaderOrder, acq.progress) + ')</span>' : Number.isFinite(reach) && reach > 1 ? ' <span class="meta">(estimado: a partir do nv ' + reach + ')</span>' : '';
   let html = '<li><strong>Onde obter</strong>' + when + ': ' + routeHtml(w);
-  // Se a própria espécie é rara na natureza, mostra também o caminho pela pré-evolução
-  const bestPct = Math.max(0, ...w.direct.filter((s) => s.type === 'wild').map((s) => s.pct ?? 100)); // sem taxa (PKHeX): não dá para dizer que é raro
-  const onlyRareWild = !w.from && w.direct.every((s) => s.type === 'wild') && bestPct < 10;
-  const alt = onlyRareWild && preEvolutionRoute(data, acq, mon, version);
+  // os dois caminhos: com fonte direta, mostra também capturar a pré-evolução e evoluir (sem troca: exige outro cartucho)
+  const alt = !w.from && !/^TRADE/.test(mon.evo?.kind ?? '') && preEvolutionRoute(data, acq, mon, version);
   if (alt) html += '<span class="meta">ou </span>' + routeHtml(alt);
   return html + '</li>';
 }
@@ -224,6 +222,9 @@ function renderDex() {
     if (r.from) html += '<p><strong>Não aparece direto em ' + vLabel + '.</strong> Capture ' + humanize(r.from) + ' e evolua: ' + r.steps.map((st) => { const d = describeEvolution(st.evo); return humanize(st.to) + (d ? ' (' + d + ')' : ''); }).join(' → ') + '</p><div class="walk-h">Onde capturar ' + humanize(r.from) + '</div>';
     else html += '<div class="walk-h">Em ' + vLabel + ' (' + r.lines.length + (r.lines.length > 1 ? ' formas de obter' : ' forma de obter') + ')</div>';
     html += '<ul class="walk-list">' + r.lines.map((l) => '<li>' + l.text + (l.random ? ' <span class="meta">(aleatório)</span>' : '') + stageTxt(l.stage) + '</li>').join('') + '</ul>';
+    // os dois caminhos: além da captura direta, capturar a forma anterior e evoluir (às vezes sai bem mais cedo)
+    if (r.alt) html += '<div class="walk-h">Ou pela evolução' + (r.alt.earlier ? ' <span class="lozenge info">mais cedo</span>' : '') + '</div><p>Capture ' + humanize(r.alt.from) + ' e evolua: ' + r.alt.steps.map((st) => { const d = describeEvolution(st.evo); return humanize(st.to) + (d ? ' (' + d + ')' : ''); }).join(' → ') + stageTxt(r.alt.stage) + '</p>' +
+      '<ul class="walk-list">' + r.alt.lines.map((l) => '<li>' + l.text + (l.random ? ' <span class="meta">(aleatório)</span>' : '') + stageTxt(l.stage) + '</li>').join('') + (r.alt.more ? '<li class="meta">+' + r.alt.more + ' outras formas de obter ' + humanize(r.alt.from) + '</li>' : '') + '</ul>';
   } else html += '<p><strong>Não dá para obter em ' + vLabel + '</strong> — nem capturando, nem evoluindo algo que se captura' + (r.events.length ? '; só por evento: ' + r.events.join('; ') : ' (só trocando com outro jogo)') + '.</p>';
   if (r.others.length) html += '<p class="meta">Nas outras versões: ' + r.others.map((o) => ($('version').querySelector('option[value="' + o.version + '"]')?.textContent ?? o.version) + ' (' + o.count + (o.count > 1 ? ' formas de obter' : ' forma de obter') + ')').join(', ') + '.</p>';
   if (acq.encountersOnly) html += '<p class="note">Locais e níveis das tabelas do jogo (PKHeX), sem taxa de aparição.</p>';
@@ -321,7 +322,7 @@ async function renderPlaces(wheres) {
     const p = places.places?.[w] ?? places.places?.[w.replace(/\s*\(.*?\)\s*/g, ' ').trim()];
     if (!p || seen.has(p.section)) continue;
     seen.add(p.section);
-    cards.push('<figure class="place"><div class="place-imgs">' + p.images.slice(0, 2).map((src) => '<a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + w + '" loading="lazy" referrerpolicy="no-referrer"></a>').join('') + '</div><figcaption><strong>' + w + '</strong>' + (p.section.toLowerCase() === w.toLowerCase() ? '' : ' <span class="meta">— trecho do detonado: ' + p.section.toLowerCase().replace(/(^|\s)(\S)/g, (m, a, c) => a + c.toUpperCase()) + '</span>') + '</figcaption></figure>');
+    cards.push('<figure class="place"><div class="place-imgs">' + p.images.slice(0, 2).map((src) => '<a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + w + '" loading="lazy" referrerpolicy="no-referrer"></a>').join('') + '</div><figcaption><strong>' + w + '</strong>' + (p.credit ? ' <span class="meta">— imagem: <a href="' + p.page + '" target="_blank" rel="noopener">' + p.credit + '</a> (o detonado não tem foto deste lugar)</span>' : p.section.toLowerCase() === w.toLowerCase() ? '' : ' <span class="meta">— trecho do detonado: ' + p.section.toLowerCase().replace(/(^|\s)(\S)/g, (m, a, c) => a + c.toUpperCase()) + '</span>') + '</figcaption></figure>');
     if (cards.length === 4) break;
   }
   box.innerHTML = cards.length ? '<div class="walk-h">Como é o lugar</div><div class="places">' + cards.join('') + '</div><p class="note">' + places.credit + ' <a href="' + places.page + '" target="_blank" rel="noopener">Abrir o detonado</a></p>' : '';
@@ -354,7 +355,7 @@ async function renderWalk() {
     if (trainers.length) parts.push('<div class="walk-h">Treinadores</div><ul class="walk-list">' + trainers.map((t) => '<li><strong>' + t.label + '</strong>' + (t.double ? ' (dupla)' : '') + ': ' + mons(t.party) + '</li>').join('') + '</ul>');
     // fotos do lugar (detonado do PokeMythology, por referência) — carregam só quando o local é aberto (loading=lazy)
     const ph = [l.name, ...(l.maps ?? [])].map(placeOfWhere).find(Boolean); // o local do detonado reúne vários mapas ("Mt Moon 1F"…)
-    const photos = ph ? '<div class="loc-photos">' + ph.images.slice(0, 2).map((src) => '<a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + l.name + '" loading="lazy" referrerpolicy="no-referrer"></a>').join('') + '</div>' : '';
+    const photos = ph ? '<div class="loc-photos">' + ph.images.slice(0, 2).map((src) => '<a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + l.name + '" loading="lazy" referrerpolicy="no-referrer"></a>').join('') + (ph.credit ? '<span class="meta">imagem: <a href="' + ph.page + '" target="_blank" rel="noopener">' + ph.credit + '</a></span>' : '') + '</div>' : '';
     return '<details class="loc"' + (q ? ' open' : '') + '><summary>' + l.name + (l.minLevel ? ' <span class="meta">nv ' + l.minLevel + '+</span>' : '') + (ph ? ' <span class="meta" title="tem fotos do lugar">📷</span>' : '') + '</summary>' + photos + parts.join('') + '</details>';
   };
   const match = (l) => !q || l.name.toLowerCase().includes(q) || l.wild.some((w) => w.species.includes(q)) || l.others.some((o) => o.species.includes(q)) || l.trainers.some((t) => t.label.toLowerCase().includes(q));
@@ -622,10 +623,15 @@ function howToGet(s) {
   // a fonte que libera mais cedo (estágio/nível), não a 1ª selvagem: o Machop no HGSS saía "Mt. Mortar" (estágio 6) com a
   // troca da Goldenrod (estágio 2) disponível
   const at = (x) => (s.stageNeeded != null ? Math.max(x.stage ?? (acq.progress?.post ?? 9), x.gate?.stage ?? 0) : Math.max(x.min ?? x.level ?? 1, x.gate?.level ?? 1));
-  const best = [...w.direct].sort((a, b) => at(a) - at(b) || (b.pct ?? 0) - (a.pct ?? 0))[0];
+  const pick = (list) => [...list].sort((a, b) => at(a) - at(b) || (b.pct ?? 0) - (a.pct ?? 0))[0];
+  let best = pick(w.direct), from = w.from;
+  // a captura direta sai depois do que o motor achou (s.stageNeeded / s.reach)? então é pela pré-evolução: mostra essa
+  const need = s.stageNeeded ?? s.reach;
+  const alt = !w.from && at(best) > need && !/^TRADE/.test(s.mon.evo?.kind ?? '') && preEvolutionRoute(data, acq, s.mon, $('version').value);
+  if (alt) { best = pick(alt.direct); from = alt.from; }
   const first = formatSources([best], 1)[0] ?? '';
   const when = s.stageNeeded != null ? stageLabel(s.stageNeeded, acq.progress?.leaderOrder, acq.progress) : Number.isFinite(s.reach) && s.reach > 1 ? `a partir do nv ${s.reach}` : '';
-  return `<div class="kv"><b>Como conseguir${when ? ` · ${when}` : ''}</b>${w.from ? `evolua de ${humanize(w.from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
+  return `<div class="kv"><b>Como conseguir${when ? ` · ${when}` : ''}</b>${from ? `evolua de ${humanize(from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
 }
 
 // modo "contra o time inteiro": as 3 que vencem mais Pokémon do time, com a troca contra cada um
@@ -964,7 +970,9 @@ let openNews = () => {};
   const render = () => {
     const fresh = new Set(unseen().map((v) => v.version));
     $('newsList').innerHTML = versions.map((v, i) => `<details class="news-ver"${i === 0 || fresh.has(v.version) ? ' open' : ''}><summary>Versão ${v.version} <span class="meta">${fmtDate(v.date)}</span>${fresh.has(v.version) ? ' ' + lozenge('info', 'novo') : ''}</summary>` +
-      v.sections.map((s) => `<h3>${s.title}</h3><ul>${s.items.map((x) => `<li>${x}</li>`).join('')}</ul>`).join('') + '</details>').join('');
+      // resumo em linguagem simples primeiro; a lista técnica fica recolhida em "Detalhes"
+      (v.summary ? `<p class="news-sum">${v.summary}</p><details class="news-more"><summary class="meta">Detalhes</summary>` : '') +
+      v.sections.map((s) => `<h3>${s.title}</h3><ul>${s.items.map((x) => `<li>${x}</li>`).join('')}</ul>`).join('') + (v.summary ? '</details>' : '') + '</details>').join('');
   };
   const open = (show) => {
     $('newsPanel').hidden = !show;

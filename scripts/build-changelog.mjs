@@ -1,5 +1,5 @@
 // Novidades do app: CHANGELOG.md → public/data/changelog.json (o sino no canto da tela lê daqui).
-// Formato: [{ version, date, sections: [{ title, items: [html] }] }], da versão mais nova para a mais velha.
+// Formato: [{ version, date, summary?, sections: [{ title, items: [html] }] }], da versão mais nova para a mais velha.
 // Markdown mínimo do CHANGELOG: **negrito**, `código`, [texto](url); itens "- " com continuação indentada.
 // Uso: node scripts/build-changelog.mjs   (roda também no fim do build-catalog)
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -21,6 +21,9 @@ export function parseChangelog(md) {
     const v = line.match(/^## \[([^\]]+)\](?:\s*[—-]\s*(\S+))?/);
     if (v) { ver = { version: v[1], date: v[2] ?? null, sections: [] }; out.push(ver); sec = item = null; continue; }
     if (!ver) continue;
+    // "> resumo" logo abaixo do título: a versão em linguagem simples (o painel mostra primeiro; o resto em "Detalhes")
+    const sm = !ver.sections.length && line.match(/^> (.+)/);
+    if (sm) { ver.summary = inline(sm[1].trim()); continue; }
     const s = line.match(/^### (.+)/);
     if (s) { sec = { title: s[1].trim(), items: [] }; ver.sections.push(sec); item = null; continue; }
     const it = line.match(/^- (.*)/);
