@@ -419,9 +419,11 @@ const ITEM_HOW = { ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 
  * cada evolução e, quando ela pede item (pedra, Metal Coat…), onde achar o item no jogo:
  *   • jogos com decomp: `acq.items` (chão, escondido, loja, presente…, com o ponto da história)
  *   • os outros: `evoItems` (<jogo>-evoitems.json) — frases do detonado que dizem onde achar; citação, não posição verificada
- * Retorna { nodes: [{ name, id, depth, how, possible, item: { param, label, sources: [{ text, stage }], cited: [{ section, text }] } }] }.
+ * `inGame` = a espécie dá para obter na versão (`obtainable`, que já conta evolução); falso no Pichu do FireRed — a tela
+ * diz que não é deste jogo e em quais jogos aparece.
+ * Retorna { nodes: [{ name, id, depth, how, possible, inGame, item: { param, label, sources: [{ text, stage }], cited: [{ section, text }] } }] }.
  */
-export function evolutionReport(data, acq, mon, evoItems = null) {
+export function evolutionReport(data, acq, mon, evoItems = null, version = null) {
   const byId = new Map(data.pokemon.map((p) => [p.id, p]));
   const root = byId.get(family(data, mon)) ?? mon;
   const itemOf = (param) => {
@@ -436,7 +438,7 @@ export function evolutionReport(data, acq, mon, evoItems = null) {
   const nodes = [];
   const walk = (p, depth) => {
     const e = depth ? p.evo : null;
-    nodes.push({ name: p.name, id: p.id, depth, how: e ? describeEvolution(e) : '', possible: e?.possible !== false, item: e && /ITEM/.test(e.kind ?? '') && typeof e.param === 'string' ? itemOf(e.param) : null });
+    nodes.push({ name: p.name, id: p.id, depth, how: e ? describeEvolution(e) : '', possible: e?.possible !== false, inGame: version == null || !!p.obtainable?.[version], item: e && /ITEM/.test(e.kind ?? '') && typeof e.param === 'string' ? itemOf(e.param) : null });
     for (const c of data.pokemon.filter((x) => x.evolvesFrom === p.id && x.id !== p.id).sort((a, b) => a.id - b.id)) walk(c, depth + 1);
   };
   walk(root, 0);
