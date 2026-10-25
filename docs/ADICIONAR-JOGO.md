@@ -319,6 +319,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   Loja do Pokéathlon = `ScrCmd_771` (Pokeathlon Dome Interior 1F): `_0210FA04[RTCDate.week]` antes da Pokédex Nacional e
   `[week + 7]` depois (estágio 9); week 0 = domingo (convenção do RTC do NitroSDK, que não está no repositório).
   🧪 rodar o banco de lutas de UM jogo regrava `_total.json` só com ele — rodar todos antes do teste.
+- **Família de evolução ≠ espécies do jogo (0.22.1)**: os dados do jogo trazem todas as espécies da geração (o FireRed
+  tem Pichu), mas `obtainable[versão]` falso quer dizer que não se obtém ali (cruzamento na Day Care não é modelado).
+  O bloco Evoluções usa `inGame` do `evolutionReport` e `pokemon-games.json` para dizer em que jogos a espécie aparece.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

@@ -241,9 +241,22 @@ async function renderEvolutions(mon, stageTxt) {
     if (acq?.items && Object.keys(acq.items).length) evoItems = { items: {} };
     else { try { evoItems = await (await fetch(`data/${game}-evoitems.json`)).json(); } catch { evoItems = { items: {} }; } }
   }
+  const version = $('version').value;
+  const vLabel = $('version').selectedOptions[0]?.textContent ?? version;
+  const r = evolutionReport(data, acq, mon, evoItems, version);
+  // espécie da família que não é deste jogo (Pichu no FireRed): os jogos onde aparece vêm de pokemon-games.json
+  if (r.nodes.some((n) => !n.inGame)) await loadPokeGames();
   const box = $('dexEvo');
   if (!box || game !== currentGame) return;
-  const r = evolutionReport(data, acq, mon, evoItems);
+  const outside = (n) => {
+    const where = pokeGames?.where?.[n.name] ?? {};
+    const vName = (g, v) => g.versions.find((x) => x.id === v)?.label ?? v;
+    const here = catalog.games.find((g) => g.id === game);
+    if (where[game]?.length && here) return ' <span class="lozenge warn">não se obtém em ' + vLabel + '</span> <span class="meta">— só em ' + where[game].map((v) => vName(here, v)).join(', ') + '</span>';
+    const on = catalog.games.filter((g) => g.status === 'supported' && where[g.id]).sort((a, b) => a.generation - b.generation || a.year - b.year);
+    const chip = (g) => '<a href="#/jogo/' + g.id + '?capturar=' + n.name + '">' + g.label + (where[g.id].length < g.versions.length ? ' (só ' + where[g.id].map((v) => vName(g, v)).join(', ') + ')' : '') + '</a>';
+    return ' <span class="lozenge warn">não é deste jogo</span><div class="meta">' + (on.length ? 'Aparece em: ' + on.map(chip).join(', ') : 'Não dá para obter em nenhum jogo do app sem troca ou evento.') + '</div>';
+  };
   if (r.nodes.length < 2) { box.innerHTML = '<div class="walk-h">Evoluções</div><p class="meta">' + humanize(mon.name) + ' não evolui nem vem de evolução.</p>'; return; }
   const link = (n) => (n.name === mon.name ? '<strong>' + humanize(n.name) + '</strong>' : '<a href="#" data-evo="' + n.name + '">' + humanize(n.name) + '</a>');
   const itemHtml = (it) => {
@@ -252,7 +265,7 @@ async function renderEvolutions(mon, stageTxt) {
     return '<p class="meta">Onde achar ' + it.label + ': não está nos dados deste jogo nem no detonado.</p>';
   };
   box.innerHTML = '<div class="walk-h">Evoluções</div><ul class="evo-tree">' + r.nodes.map((n) => '<li style="margin-left:' + n.depth * 1.4 + 'em">' + (n.depth ? '↳ ' : '') + img(n.id) + link(n) +
-    (n.depth ? ' — ' + (n.how || 'método não informado') + (n.possible ? '' : ' <span class="lozenge warn">não dá neste jogo</span>') : ' <span class="meta">(forma base)</span>') +
+    (n.depth ? ' — ' + (n.how || 'método não informado') + (n.possible ? '' : ' <span class="lozenge warn">não dá neste jogo</span>') : ' <span class="meta">(forma base)</span>') + (n.inGame ? '' : outside(n)) +
     (n.item && n.possible ? '<div class="evo-item"><span class="meta">Onde achar ' + n.item.label + ':</span>' + itemHtml(n.item) + '</div>' : '') + '</li>').join('') + '</ul>';
   box.querySelectorAll('[data-evo]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); $('dexQ').value = humanize(a.dataset.evo); renderDex(); }));
 }

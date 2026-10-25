@@ -2178,6 +2178,16 @@ test('evoluções na aba Onde capturar (0.22.0): família, método e onde achar 
   assert.ok(!existsSync(new URL('../public/data/firered-leafgreen-evoitems.json', import.meta.url)));
 });
 
+test('evoluções (0.22.1): espécie da família que não é do jogo (Pichu no FireRed) marcada, com os jogos onde aparece', async () => {
+  const { evolutionReport } = await import('../public/engine.mjs');
+  const d = load('firered-leafgreen.json');
+  const r = evolutionReport(d, load('firered-leafgreen-acquisition.json'), d.pokemon.find((p) => p.name === 'pikachu'), null, 'firered');
+  assert.deepEqual(r.nodes.map((x) => [x.name, x.inGame]), [['pichu', false], ['pikachu', true], ['raichu', true]]);
+  // a tela lista os jogos de pokemon-games.json — Pichu não pode aparecer como do FireRed/LeafGreen
+  const where = load('pokemon-games.json').where.pichu;
+  assert.ok(!where['firered-leafgreen'] && where.crystal);
+});
+
 test('HGSS (0.22.0): evolução por lugar não existe (MapHeader_GetMapEvolutionMethod = EVO_NONE) e pedras da loja do Pokéathlon', () => {
   const d = load('heartgold-soulsilver.json'), a = load('heartgold-soulsilver-acquisition.json');
   for (const n of ['leafeon', 'glaceon', 'magnezone', 'probopass']) {

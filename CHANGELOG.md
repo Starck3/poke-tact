@@ -2,6 +2,13 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.22.1] — 2026-10-24
+
+### Corrigido
+- **Evoluções na aba Onde capturar**: uma espécie da família que não dá para obter no jogo escolhido (ex.: Pichu ao
+  pesquisar Pikachu no FireRed) aparecia como se fosse do jogo. Agora vem marcada "não é deste jogo", com os jogos do
+  app em que ela aparece (links para a aba Onde capturar de cada um); se for só da outra versão do mesmo jogo, diz qual.
+
 ## [0.22.0] — 2026-10-20
 
 ### Adicionado
