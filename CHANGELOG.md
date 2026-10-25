@@ -2,6 +2,19 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.25.0] — 2026-10-25
+
+> Nova aba "Pokémon por tipo": escolha o jogo e veja todos os Pokémon dele separados por tipo, filtrando por tipo, nome, só os que dá para obter e só formas finais.
+
+### Adicionado
+- **Aba "Pokémon por tipo"** na tela de cada jogo: todos os Pokémon do jogo agrupados por tipo (só os tipos que o jogo
+  tem — sem Fada antes da Gen 6), com a contagem de cada tipo. Filtros: botões de tipo (escolhendo dois, só quem tem os
+  dois — ex.: Fogo + Voador), nome, "só os que dá para obter nesta versão" (ligado de início: no FireRed não aparecem os
+  Pokémon de Hoenn) e "só formas finais". Quem tem dois tipos aparece nos dois grupos. Clicar num Pokémon abre a aba Onde
+  capturar com ele. Link direto: `#/jogo/firered-leafgreen?aba=tipos&tipo=fire`.
+- Próxima etapa anotada no STATUS.md: simulador com Mega Evolução, golpes Z, Dynamax, Terastal e as batalhas do Legends:
+  Arceus e do Z-A; depois, a creche no Black 2/White 2 ou os itens de evolução do Sword/Shield.
+
 ## [0.24.0] — 2026-10-25
 
 > Onde capturar mostra os dois caminhos (capturar direto ou capturar a forma anterior e evoluir), a Route 6 do Yellow está no ponto certo, Blackthorn ganhou foto e cada versão destas Novidades tem um resumo simples.

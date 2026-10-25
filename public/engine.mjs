@@ -454,6 +454,23 @@ export function catchReport(data, acq, mon, version) {
   return { lines, from: w.from ?? null, steps: w.steps, alt, events: w.events.map((s) => formatSources([s], 1)[0] ?? s.where), others, obtainable: !!mon.obtainable?.[version] };
 }
 
+/**
+ * Aba "Pokémon por tipo": os Pokémon do jogo filtrados e agrupados por tipo (só os tipos que o jogo tem — sem Fada antes da
+ * Gen 6). Filtros: `types` (até 2: precisa ter todos), `q` (pedaço do nome), `onlyObtainable` (dá para obter na versão),
+ * `finalOnly` (forma final). Quem tem dois tipos aparece nos dois grupos. Ordem: número da Pokédex.
+ * Retorna { mons, groups: [{ type, mons }], counts: { tipo: n } } — counts com os outros filtros, sem o de tipo.
+ */
+export function typeIndex(data, { version = null, q = '', types = [], onlyObtainable = true, finalOnly = false } = {}) {
+  const fold = (s) => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const t = fold(q);
+  const base = data.pokemon.filter((p) => (!onlyObtainable || !version || p.obtainable?.[version]) && (!finalOnly || p.fullyEvolved) && (!t || fold(p.name).includes(t)))
+    .sort((a, b) => (a.speciesId ?? a.id) - (b.speciesId ?? b.id) || a.id - b.id);
+  const counts = Object.fromEntries(data.types.map((ty) => [ty, base.filter((p) => p.types.includes(ty)).length]));
+  const mons = base.filter((p) => types.every((ty) => p.types.includes(ty)));
+  const groups = data.types.map((ty) => ({ type: ty, mons: mons.filter((p) => p.types.includes(ty)) })).filter((g) => g.mons.length);
+  return { mons, groups, counts };
+}
+
 const ITEM_HOW = { ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 'presente', gym: 'prêmio do líder', prize: 'prêmio' };
 /**
  * Aba "Onde capturar" → evoluções: a família inteira da espécie (da forma base às finais, com ramos — Eevee), o método de
