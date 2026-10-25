@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.24.0** (publicada no GitHub).
+Atualizado em 2026-10-20 · versão **0.25.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas).
 
@@ -37,6 +37,13 @@ do próprio jogo (troca, item, forma, impossíveis no jogo), TMs pelas tabelas d
 Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Banco de lutas: 20 jogos, 99% das sugestões vencem.
 
 ## O que falta (do mais importante para o menos)
+
+### Próxima etapa (anotada pelo usuário em 2026-10-25)
+- **Trabalho grande no simulador de luta** (item 15): Mega Evolução, golpes Z, Dynamax, Terastal e as batalhas diferentes
+  do Legends: Arceus e do Z-A. Hoje o app só avisa que esses jogos têm essas mecânicas.
+- Os 5 pontos que esperavam decisão do usuário já foram resolvidos na 0.24.0. Depois do simulador, o ganho mais visível é
+  a **creche no Black 2/White 2** ou os **itens de evolução do Sword/Shield** (item 13).
+- ✅ (0.25.0) **Pokémon do jogo por tipo**: ao escolher o jogo, ver todos os Pokémon dele separados por tipo e ir filtrando.
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do

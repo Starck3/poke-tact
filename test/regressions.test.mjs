@@ -2259,3 +2259,18 @@ test('Novidades (0.24.0): toda versão tem o resumo em linguagem simples ("> …
   assert.ok(versions.length >= 25);
   for (const v of versions) assert.ok(v.summary && v.summary.length < 260, v.version);
 });
+
+test('Pokémon por tipo (0.25.0): só os tipos e as espécies do jogo/versão; dois tipos = quem tem os dois', async () => {
+  const { typeIndex } = await import('../public/engine.mjs');
+  const fr = load('firered-leafgreen.json');
+  const all = typeIndex(fr, { version: 'firered' });
+  assert.ok(!all.counts.fairy && all.counts.fire > 0); // sem Fada na Gen 3
+  assert.ok(all.mons.every((p) => p.obtainable.firered)); // Treecko (Hoenn) não entra no FireRed
+  assert.ok(!all.mons.some((p) => p.name === 'treecko'));
+  assert.deepEqual(typeIndex(fr, { version: 'firered', types: ['fire', 'flying'] }).mons.map((p) => p.name), ['charizard', 'moltres', 'ho-oh'].filter((n) => fr.pokemon.find((p) => p.name === n)?.obtainable.firered));
+  // quem tem dois tipos aparece nos dois grupos
+  const g = Object.fromEntries(all.groups.map((x) => [x.type, x.mons.map((p) => p.name)]));
+  assert.ok(g.fire.includes('charizard') && g.flying.includes('charizard'));
+  // nome e forma final
+  assert.deepEqual(typeIndex(fr, { version: 'firered', q: 'char', finalOnly: true }).mons.map((p) => p.name), ['charizard']);
+});

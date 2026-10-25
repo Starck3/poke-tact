@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport } from './engine.mjs';
+import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -51,6 +51,7 @@ let acq = null;
 let trainersFromWalk = false;
 let regionMap = null; // <jogo>-regionmap.json: posições dos lugares no mapa da região (decomp) — Gens 1–3
 let places = null; // <jogo>-places.json: fotos dos lugares de captura (referências ao detonado do PokeMythology)
+let typeSel = []; // aba Pokémon por tipo: tipos escolhidos (até 2)
 let evoItems = null; // <jogo>-evoitems.json: onde o detonado diz que acha os itens de evolução (jogos sem itens do decomp)
 let walk = null; // detonado gerado (carregado ao abrir a aba)
 let known = null; // { moves, item } do Pokémon de treinador selecionado; null quando o usuário digita manualmente
@@ -86,6 +87,7 @@ async function load(gameId) {
   $('gameInfo').textContent = 'Carregando dados…';
   walk = null;
   places = null; // fotos dos lugares (aba Onde capturar) — do jogo novo
+  typeSel = []; // filtro de tipo da aba Pokémon por tipo
   evoItems = null;
   regionMap = null;
   showTab('rec');
@@ -186,16 +188,45 @@ function renderWhere(mon, reach, stageNeeded) {
   return html + '</li>';
 }
 
+// ---------------------------------------------------------------- aba Pokémon por tipo
+// todos os Pokémon do jogo separados por tipo; os botões de tipo filtram (2 tipos = quem tem os dois); clicar num Pokémon
+// abre a aba Onde capturar
+function renderTypes() {
+  if (!data) return;
+  const version = $('version').value;
+  const vLabel = $('version').selectedOptions[0]?.textContent ?? version;
+  const r = typeIndex(data, { version, q: $('typesQ').value, types: typeSel, onlyObtainable: $('typesObt').checked, finalOnly: $('typesFinal').checked });
+  $('typesObt').parentElement.lastChild.textContent = ' só os que dá para obter em ' + vLabel;
+  $('typesChips').innerHTML = data.types.map((t) => '<button type="button" data-type="' + t + '" aria-pressed="' + typeSel.includes(t) + '" style="background:' + COLORS[t] + '">' + t + '<span class="n">' + r.counts[t] + '</span></button>').join('') +
+    (typeSel.length ? '<button type="button" class="clear" data-clear>limpar tipos</button>' : '');
+  const card = (p) => '<button type="button" class="mon-card' + (p.obtainable?.[version] ? '' : ' off') + '" data-mon="' + p.name + '" title="' + (p.obtainable?.[version] ? 'Ver onde capturar' : 'Não dá para obter em ' + vLabel) + '">' + img(p.id) +
+    '<span><span class="nm">' + humanize(p.name) + '</span><br><span class="sub">#' + (p.speciesId ?? p.id) + '</span> ' + p.types.map(typeBadge).join('') + '</span></button>';
+  const grid = (list) => '<div class="mon-grid">' + list.map(card).join('') + '</div>';
+  const head = '<p class="meta">' + r.mons.length + ' Pokémon' + (typeSel.length ? ' com o tipo ' + typeSel.map(typeBadge).join(' + ') : '') + (typeSel.length ? '' : ' — quem tem dois tipos aparece nos dois grupos') + '. Clique num Pokémon para ver onde capturar.</p>';
+  $('typesOut').innerHTML = !r.mons.length ? '<p class="meta">Nenhum Pokémon com esses filtros.</p>'
+    : head + (typeSel.length ? grid(r.mons) : r.groups.map((g) => '<section class="types-group"><h3>' + typeBadge(g.type) + '<span class="meta">' + g.mons.length + '</span></h3>' + grid(g.mons) + '</section>').join(''));
+  $('typesChips').querySelectorAll('[data-type]').forEach((b) => b.addEventListener('click', () => {
+    const t = b.dataset.type;
+    typeSel = typeSel.includes(t) ? typeSel.filter((x) => x !== t) : [...typeSel, t].slice(-2);
+    renderTypes();
+  }));
+  $('typesChips').querySelector('[data-clear]')?.addEventListener('click', () => { typeSel = []; renderTypes(); });
+  $('typesOut').querySelectorAll('[data-mon]').forEach((b) => b.addEventListener('click', () => { $('dexQ').value = humanize(b.dataset.mon); showTab('dex'); }));
+}
+
 // ---------------------------------------------------------------- aba Detonado (gerado a partir dos dados do jogo)
 function showTab(which) {
   $('tabRec').setAttribute('aria-selected', String(which === 'rec'));
   $('tabWalk').setAttribute('aria-selected', String(which === 'walk'));
   $('tabDex').setAttribute('aria-selected', String(which === 'dex'));
+  $('tabTypes').setAttribute('aria-selected', String(which === 'types'));
   $('recView').hidden = which !== 'rec';
   $('walk').hidden = which !== 'walk';
   $('dex').hidden = which !== 'dex';
+  $('types').hidden = which !== 'types';
   if (which === 'walk') renderWalk();
   if (which === 'dex') renderDex();
+  if (which === 'types') renderTypes();
 }
 
 // ---------------------------------------------------------------- aba Onde capturar
@@ -933,6 +964,7 @@ function applyGameParams(p) {
   if (p.meu) $('level').value = p.meu;
   if (p.inicial && [...$('starter').options].some((o) => o.value === p.inicial)) { $('starter').value = p.inicial; fillTrainers(); renderStarters(); }
   if (p.aba === 'detonado') showTab('walk');
+  if (p.aba === 'tipos') { if (p.tipo && data.types.includes(p.tipo)) typeSel = [p.tipo]; showTab('types'); }
   // ?capturar=pikachu → aba Onde capturar já preenchida
   if (p.capturar) { $('dexQ').value = p.capturar; showTab('dex'); }
   if (p.insignias != null && [...$('stage').options].some((o) => o.value === p.insignias)) $('stage').value = p.insignias;
@@ -950,6 +982,9 @@ $('version').addEventListener('input', renderStarters); // sprites da pasta da v
 $('tabRec').addEventListener('click', () => showTab('rec'));
 $('tabWalk').addEventListener('click', () => showTab('walk'));
 $('tabDex').addEventListener('click', () => showTab('dex'));
+$('tabTypes').addEventListener('click', () => showTab('types'));
+for (const id of ['typesQ', 'typesObt', 'typesFinal']) $(id).addEventListener('input', () => renderTypes());
+$('version').addEventListener('input', () => { if (!$('types').hidden) renderTypes(); });
 $('dexQ').addEventListener('input', renderDex);
 $('version').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });
 $('stage').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });

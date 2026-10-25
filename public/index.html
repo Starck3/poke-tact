@@ -194,6 +194,24 @@
   .weak-label { min-width:92px; font-weight:600; font-size:var(--fs-xs); text-transform:uppercase; letter-spacing:.04em; }
   .weak-item { display:inline-flex; align-items:center; gap:2px; font-weight:600; }
   .weak-item .type { margin-right:2px; }
+  /* aba Pokémon por tipo */
+  .types-bar { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s4); align-items:center; }
+  .types-bar input[type=search] { flex:1 1 220px; }
+  .types-bar .check { display:flex; align-items:center; gap:6px; font-size:var(--fs-sm); }
+  .type-chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .type-chips button { border:2px solid transparent; border-radius:var(--pill); padding:3px 10px; color:#fff; font-size:var(--fs-xs); font-weight:600; text-transform:capitalize; cursor:pointer; opacity:.55; }
+  .type-chips button[aria-pressed="true"] { opacity:1; border-color:var(--fg); }
+  .type-chips button .n { font-weight:400; opacity:.85; margin-left:4px; }
+  .type-chips .clear { background:transparent; color:var(--muted); border:1px solid var(--line); opacity:1; text-transform:none; }
+  .types-group h3 { display:flex; align-items:center; gap:8px; margin:var(--s4) 0 var(--s2); font-size:var(--fs-sm); }
+  .mon-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:6px; }
+  .mon-card { display:flex; align-items:center; gap:6px; padding:4px 6px; border:1px solid var(--line); border-radius:8px; background:transparent; color:inherit; text-align:left; cursor:pointer; font:inherit; }
+  .mon-card:hover, .mon-card:focus-visible { border-color:var(--accent); }
+  .mon-card img { width:40px; height:40px; image-rendering:pixelated; flex:none; }
+  .mon-card .nm { font-size:var(--fs-sm); font-weight:600; line-height:1.2; }
+  .mon-card .sub { font-size:var(--fs-xs); color:var(--muted); }
+  .mon-card .type { font-size:10px; padding:0 6px; margin-right:2px; }
+  .mon-card.off { opacity:.55; }
   /* categorias de oponente (abas segmentadas) e a escolha dentro delas */
   .seg { display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; padding:3px; background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r2); margin-bottom:var(--s3); }
   .seg button { flex:none; border:0; background:transparent; color:var(--muted); border-radius:var(--r1); padding:6px 12px; font:inherit; font-size:var(--fs-sm); cursor:pointer; white-space:nowrap; }
@@ -349,6 +367,19 @@
     <button type="button" role="tab" id="tabRec" aria-selected="true" aria-controls="recView">Recomendação</button>
     <button type="button" role="tab" id="tabWalk" aria-selected="false" aria-controls="walk">Detonado</button>
     <button type="button" role="tab" id="tabDex" aria-selected="false" aria-controls="dex">Onde capturar</button>
+    <button type="button" role="tab" id="tabTypes" aria-selected="false" aria-controls="types">Pokémon por tipo</button>
+  </div>
+  <!-- todos os Pokémon do jogo separados por tipo, com filtros (tipo, nome, obtível na versão, forma final) -->
+  <div id="types" role="tabpanel" hidden>
+    <div class="card stack">
+      <div class="types-bar">
+        <input type="search" id="typesQ" placeholder="Filtrar pelo nome — ex.: char" autocomplete="off" spellcheck="false" aria-label="Filtrar pelo nome">
+        <label class="check"><input type="checkbox" id="typesObt" checked> só os que dá para obter nesta versão</label>
+        <label class="check"><input type="checkbox" id="typesFinal"> só formas finais</label>
+      </div>
+      <div id="typesChips" class="type-chips" role="group" aria-label="Filtrar por tipo (escolha até 2)"></div>
+      <div id="typesOut" aria-live="polite"></div>
+    </div>
   </div>
   <div id="walk" role="tabpanel" hidden></div>
   <!-- onde capturar qualquer Pokémon do jogo na versão escolhida (mesmos dados do "Onde obter" das sugestões) -->
