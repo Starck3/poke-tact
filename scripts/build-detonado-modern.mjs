@@ -338,6 +338,25 @@ function keyItems() {
       break;
     }
   }
+  // Z-Crystals de tipo (golpes Z): onde o detonado diz que você recebe/pega cada um ("receba de Lana o Waterium Z",
+  // "Pegue o Buginium Z no baú"). Os nomes têm que existir na lista de itens do PKHeX
+  if (out.z) {
+    const items = new Set(readFileSync(new URL('../data-sources/pkhex-src/PKHeX.Core/Resources/text/items/text_Items_en.txt', import.meta.url), 'utf8').split(/\r?\n/).map((s) => s.trim()));
+    const CRYSTAL = { normal: 'Normalium Z', fire: 'Firium Z', water: 'Waterium Z', electric: 'Electrium Z', grass: 'Grassium Z', ice: 'Icium Z', fighting: 'Fightinium Z', poison: 'Poisonium Z', ground: 'Groundium Z', flying: 'Flyinium Z', psychic: 'Psychium Z', bug: 'Buginium Z', rock: 'Rockium Z', ghost: 'Ghostium Z', dragon: 'Dragonium Z', dark: 'Darkinium Z', steel: 'Steelium Z', fairy: 'Fairium Z' };
+    const TAKE = /(^|[^\wÀ-ú])(receb[a-zá-ú]*|peg[a-zá-ú]*|ganh[a-zá-ú]*|dar[áa]|d[áa] (?:a|o|um|uma) |entreg[a-zá-ú]*|encontr[a-zá-ú]*|ach[a-zá-ú]*|consegu[a-zá-ú]*|ficar com|pedestal com)/i; // "pedestal com o Icium Z"; "ficar com o Dragonium Z"
+    out.zCrystals = {};
+    for (const [type, name] of Object.entries(CRYSTAL)) {
+      if (!items.has(name)) throw new Error(`Z-Crystal fora da lista de itens do PKHeX: ${name}`);
+      const g = new RegExp(name.replace(' ', '\\s*'), 'g');
+      for (let m; (m = g.exec(html));) {
+        const before = strip(html.slice(Math.max(0, m.index - 400), m.index).replace(/^[^<]*>/, '')), after = strip(html.slice(m.index, m.index + 300).replace(/<[^>]*$/, ''));
+        const sentence = (before.split(/[.!?]\s/).at(-1) + after.split(/(?<=[.!?])\s/)[0]).replace(/\s+/g, ' ').trim();
+        if (!TAKE.test(sentence) || /\bnão\b/i.test(sentence)) continue;
+        out.zCrystals[type] = { stage: stageAt(m.index), name, text: sentence };
+        break;
+      }
+    }
+  }
   return out;
 }
 let withStage = 0, total = 0;

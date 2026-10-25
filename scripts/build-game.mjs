@@ -25,9 +25,9 @@ const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-
 // + onde obter pelas tabelas de encontro do PKHeX (Black/White e Gens 6–9: os jogos com leitor em READERS)
 // fill-pkhex-species: espécies do jogo que a PokéAPI não tem (Legends: Arceus, formas de Hisui) + loja de golpes;
 // add-pkhex-forms: formas regionais (Alola, Galar, Hisui, Paldea) como entradas próprias; add-pkhex-megas: Megas do jogo
-// (só nos jogos com Mega Evolução)
+// (só nos jogos com Mega Evolução); apply-zmax-powers: poder dos golpes Z/Max (Showdown; só SM/USUM e SwSh)
 // apply-pkhex-machines: TM/HM/TR do jogo; apply-pkhex-evos: método de evolução do jogo (troca, item, forma…)
-const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex'];
+const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'apply-zmax-powers', 'validate-pkhex'];
 // build-detonado-modern: treinadores, progresso por insígnia e aba Detonado a partir do detonado do PokeMythology
 const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX

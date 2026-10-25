@@ -68,9 +68,11 @@ const rand = (gen) => (gen <= 2 ? (217 + 255) / 2 / 255 : 0.925); // média da v
  * Dano médio de UM uso do golpe. att/def: { mon, level, stats }. Retorna null se o golpe não entra no ranking.
  * Tipo: multiplicadores da tabela da geração (produto); STAB 1,5; categoria pelo dataset (Gen ≤ 3: pelo tipo).
  */
-export function damage(data, gen, att, def, name) {
-  const p = moveProfile(data, name);
+// opts.zPower: o golpe Z feito a partir deste golpe — poder do Z, um golpe só, sem carregar/recarregar e sem errar
+export function damage(data, gen, att, def, name, { zPower = null } = {}) {
+  let p = moveProfile(data, name);
   if (!p) return null;
+  if (zPower) { if (p.fixed || p.selfKo) return null; p = { hits: 1, turns: 1 }; }
   const mv = data.moves[name];
   const typeMul = effectiveness(data, mv.type, def.mon);
   if (p.fixed) return { per: typeMul === 0 ? 0 : p.fixed(att.level), ...p, typeMul };
@@ -78,12 +80,12 @@ export function damage(data, gen, att, def, name) {
   let A = att.stats[phys ? 'attack' : 'special-attack'], D = def.stats[phys ? 'defense' : 'special-defense'];
   if (p.selfKo) D = Math.max(1, Math.floor(D / 2)); // Explosion/Self-Destruct dividem a defesa (Gen 1–3)
   if (gen <= 2 && (A > 255 || D > 255)) { A = Math.max(1, Math.floor(A / 4)); D = Math.max(1, Math.floor(D / 4)); }
-  let dmg = Math.floor(Math.floor(Math.floor((2 * att.level) / 5 + 2) * mv.power * A / D) / 50);
+  let dmg = Math.floor(Math.floor(Math.floor((2 * att.level) / 5 + 2) * (zPower ?? mv.power) * A / D) / 50);
   if (gen <= 2) dmg = Math.min(dmg, 997);
   dmg += 2;
   if (att.mon.types.includes(mv.type)) dmg = Math.floor(dmg * 1.5);
   dmg = Math.floor(dmg * typeMul);
-  const per = dmg * rand(gen) * p.hits * ((mv.accuracy ?? 100) / 100);
+  const per = dmg * rand(gen) * p.hits * (zPower ? 1 : (mv.accuracy ?? 100) / 100);
   return { per, ...p, typeMul };
 }
 
@@ -110,6 +112,16 @@ export function bestAgainst(data, gen, att, def, moves) {
     const t = turnsToKo(d, def.stats.hp);
     if (!best || t < best.turns || (t === best.turns && d.per > best.dmg.per)) best = { name, dmg: d, turns: t };
   }
+  // golpe Z (att.zTypes = tipos com Z-Crystal): um por luta — o 1º golpe vira Z e os seguintes são o melhor golpe normal.
+  // Só fica se nocauteia em menos turnos (empate: o normal, que não gasta o Z)
+  if (best && att.zTypes?.size) for (const name of moves) {
+    const mv = data.moves[name];
+    if (!mv?.zPower || !att.zTypes.has(mv.type)) continue;
+    const z = damage(data, gen, att, def, name, { zPower: mv.zPower });
+    if (!z || z.per <= 0) continue;
+    const t = z.per >= def.stats.hp ? 1 : 1 + turnsToKo(best.dmg, def.stats.hp - z.per);
+    if (t < best.turns) best = { ...best, turns: t, z: { name, power: mv.zPower, type: mv.type, dmg: z } };
+  }
   return best;
 }
 
@@ -126,5 +138,5 @@ export function duel(data, gen, me, opp, myMoves, oppMoves) {
   const sp = me.speedTurn1 != null && myT === 1 && theirT === 1 ? me.speedTurn1 : me.stats.speed;
   const faster = sp > opp.stats.speed ? 1 : sp === opp.stats.speed ? 0.5 : 0;
   const win = myT === Infinity ? false : faster === 1 ? myT <= theirT : faster === 0.5 ? myT < theirT || (myT === theirT) : myT < theirT;
-  return { move: mine?.name ?? null, myTurns: myT, theirMove: theirs?.name ?? null, theirTurns: theirT, faster, win, margin: myT === Infinity ? 0 : theirT === Infinity ? 99 : theirT / myT, myDmg: mine?.dmg ?? null, theirDmg: theirs?.dmg ?? null };
+  return { move: mine?.name ?? null, myTurns: myT, theirMove: theirs?.name ?? null, theirTurns: theirT, faster, win, margin: myT === Infinity ? 0 : theirT === Infinity ? 99 : theirT / myT, myDmg: mine?.dmg ?? null, theirDmg: theirs?.dmg ?? null, z: mine?.z ?? null };
 }

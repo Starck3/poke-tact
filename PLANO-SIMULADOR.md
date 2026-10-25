@@ -21,7 +21,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
    - Motor: o seu Pokémon pode lutar Mega (atributos, tipo e habilidade da Mega); na Gen 6 a Velocidade da Mega só vale do
      2º turno. Sugestão aparece como "Charizard (Mega X)" com "segurando Charizardite X".
    - Chefes que usam Mega (Korrina, Diantha, Steven…) lutam Mega quando o detonado diz.
-2. ⬜ **Golpes Z** — Sun/Moon e Ultra Sun/Ultra Moon. Um golpe Z por luta: o primeiro golpe vira Z (poder pela tabela),
+2. ⚠ **Golpes Z** (0.28.0: o seu lado; falta o chefe usar Z — o detonado não marca no time) — Sun/Moon e Ultra Sun/Ultra Moon. Um golpe Z por luta: o primeiro golpe vira Z (poder pela tabela),
    só com o Z-Crystal do tipo e o Z-Ring (provações dão os cristais — o estágio já existe).
 3. ⬜ **Terastal** — Scarlet/Violet. Tipo Tera dos líderes (detonado) muda as fraquezas deles; o seu Pokémon pode
    terastalizar no tipo dele (bônus de STAB 2×) a partir da Tera Orb.
@@ -47,3 +47,9 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   ORAS 17, SM 1, Let's Go 9, Z-A 49 Pokémon de chefe com Mega. Os tipos Tera do detonado já ficam guardados (SV: 103) para a
   fase 3. Banco: vencem 37.697 (igual), folgadas 36.475 → 36.446 (chefes mais fortes). Fica de fora: a Velocidade de antes
   da Mega no 1º turno (Gen 6) só vale para o seu lado.
+- **2026-10-25 — fase 2, golpes Z (0.28.0)**: poder Z e Max de cada golpe pela regra do Showdown (sim/dex-moves.ts + 48
+  exceções; Thunderbolt Z 175, Bullet Seed Z 140, Low Kick Z 160; Max Close Combat 95) gravado em SM/USUM (Z) e SwSh (Max,
+  para a fase 4). Z-Ring (Hala) e os 18 Z-Crystals de tipo pelo detonado (frases "receba de Lana o Waterium Z", "pedestal
+  com o Icium Z"), cada um no estágio em que é recebido. Motor: um golpe Z por luta no 1º turno (não erra, um golpe só),
+  depois o melhor golpe normal; só fica se nocauteia em menos turnos. Sun/Moon: 593 de 888 sugestões usam Z. USUM (sem
+  detonado): todos os tipos, marcado na tela. Fica de fora: cristais de espécie (Pikanium Z…) e o chefe usar Z.

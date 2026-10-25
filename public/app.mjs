@@ -72,9 +72,9 @@ async function load(gameId) {
   $('qualityBadge').innerHTML = qualityBadge(g) + featureTags(g);
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
   // Mega Evolução já entra no cálculo (0.26.0); o aviso fica para as outras mecânicas
-  const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução');
+  const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução' && m !== 'golpes Z');
   $('mechNote').hidden = !outside.length;
-  $('mechNote').textContent = outside.length ? `⚠ Fora do cálculo neste jogo: ${outside.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades${(g.mechanics ?? []).includes('Mega Evolução') ? ' (e a Mega Evolução)' : ''}.` : '';
+  $('mechNote').textContent = outside.length ? `⚠ Fora do cálculo neste jogo: ${outside.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades${(g.mechanics ?? []).includes('Mega Evolução') ? ' (e a Mega Evolução' + ((g.mechanics ?? []).includes('golpes Z') ? ' e os golpes Z' : '') + ')' : ''}.` : '';
   $('tabWalk').hidden = !g.hasWalkthrough; // a aba Onde capturar existe em todos os jogos
   $('validationNote').hidden = !['pokeapi', 'decomp-core', 'pkhex'].includes(g.validation);
   $('onlyObtainable').disabled = false;
@@ -121,6 +121,7 @@ async function load(gameId) {
   $('stageWrap').style.display = acq?.progress ? '' : 'none';
   $('tradeEvos').closest('label').style.display = acq ? '' : 'none';
   $('megaWrap').hidden = !data.pokemon.some((p) => p.megas?.length); // jogos com Mega Evolução
+  $('zWrap').hidden = !Object.values(data.moves).some((m) => m.zPower); // jogos com golpe Z
   $('gameInfo').textContent = `${data.game.label} · ${data.pokemon.length} Pokémon · ${Object.keys(data.moves).length} golpes · ${data.types.length} tipos · fonte: ${data.game.source}` +
     (data.corrections ? ` + correções ${/PKHeX/.test(data.corrections.source) ? 'das tabelas do jogo extraídas pelo' : 'do decomp'} ${data.corrections.source} (${data.corrections.list.length})` : '') +
     (data.moveCrosscheck ? ` + golpes conferidos com ${data.moveCrosscheck.source}: ${data.moveCrosscheck.corrected} corrigidos, ${data.moveCrosscheck.flagged} divergências só sinalizadas` : '');
@@ -611,6 +612,7 @@ function update() {
     starter: $('starter').value || null,
     tradeEvolutions: $('tradeEvos').checked,
     megaEvolution: $('megaEvo').checked,
+    zMoves: $('zMoves').checked,
     acq,
   };
   if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
@@ -633,7 +635,7 @@ function update() {
     const mg = s.mega;
     return `<div class="card pick">
       <div class="pick-head">${img(mg ? mg.spriteId : s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${mg ? megaTitle(mg, s.mon) : humanize(s.mon.name)}</h3><div>${(mg ? mg.types : s.mon.types).map(typeBadge).join('')}</div></div></div>
-      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}
+      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}${s.zMove ? zLine(s.zMove, m) : ''}
       <div class="kv"><b>Golpe</b>${humanize(m.name)} ${typeBadge(m.type)} <strong class="${m.eff > 1 ? 'good' : ''}">${fmtMult(m.eff)}</strong>${m.stab > 1 ? ' <span class="meta">STAB</span>' : ''}<br><span class="meta">${via}</span></div>
       ${howToGet(s)}
       <details class="more"><summary>Detalhes</summary><ul class="why">
@@ -658,6 +660,14 @@ function megaLine(mg) {
   const where = cited.length ? `Onde achar (detonado): “${cited[0].text}” <span class="meta">— trecho ${cited[0].section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())}</span>`
     : `<span class="meta">Onde achar a ${mg.stone}: o detonado não diz — a sugestão vale se você tiver a pedra (desligue em Filtros → Usar Mega Evolução).</span>`;
   return `<div class="kv"><b>${mg.primal ? 'Reversão Primal' : 'Mega Evolução'}</b>segurando ${mg.stone}${ring}<br>${where}</div>`;
+}
+
+// golpe Z na sugestão: de qual golpe sai, o poder, o cristal e quando se ganha (detonado) e o golpe dos turnos seguintes
+function zLine(z, m) {
+  const when = (x) => (x && acq?.progress ? ` (${stageLabel(x.stage, acq.progress.leaderOrder, acq.progress)})` : '');
+  const crystal = z.crystal ? `${z.crystal.name}${when(z.crystal)}` : `o Z-Crystal do tipo ${z.type}`;
+  const after = z.name === m.name || m.turns <= 1 ? '' : `; depois, ${humanize(m.name)}`; // o Z sozinho já nocauteia: sem "depois"
+  return `<div class="kv"><b>Golpe Z no 1º turno</b>${typeBadge(z.type)} a partir de ${humanize(z.name)} (poder ${z.power}, não erra)${after}<br><span class="meta">Precisa do Z-Ring${when(z.ring)} e de ${crystal}.${z.crystal ? '' : ' Onde achar o cristal: não está nos dados deste jogo.'}</span></div>`;
 }
 
 // veredito em selos: vence/perde, quantos golpes, quem age primeiro, aviso de origem aleatória
@@ -707,7 +717,7 @@ function unreliableLine(s) {
   return s.unreliable ? `<li class="bad">⚠ Até aqui só por origem aleatória ou condicionada: ${s.unreliable}.</li>` : '';
 }
 
-for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'stage']) $(id).addEventListener('input', update);
+for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'zMoves', 'stage']) $(id).addEventListener('input', update);
 $('stage').addEventListener('input', () => renderTrainerPicker()); // selo "próximo" acompanha o progresso
 for (const id of CTX_FIELDS) $(id).addEventListener('input', saveCtx);
 // atalho "/" (como no Linear/GitHub): vai para a busca do oponente, fora de campos de texto

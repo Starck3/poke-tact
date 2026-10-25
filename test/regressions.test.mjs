@@ -1695,7 +1695,7 @@ test('leitor do PKHeX: forma regional só quando a forma 0 está ausente; loja d
   // só o LA troca a forma: nos outros jogos a forma 0 ausente continua ausente (BDSP: Darkrai/Arceus de evento)
   for (const [g, c] of Object.entries(PKHEX_GAMES)) if (g !== 'legends-arceus') assert.equal(c.forms, undefined, g);
   const { readFileSync } = await import('node:fs');
-  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex']/);
+  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'apply-zmax-powers', 'validate-pkhex']/);
 });
 
 test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites logo acima do campo do oponente', () => {
@@ -2324,4 +2324,35 @@ test('simulador — chefes que lutam Mega (0.27.0): "Mega Camerupt lv.43" no tim
   assert.equal(m.name, 'camerupt');
   // Tera do detonado guardado para a fase do Terastal (Katy: Teddiursa Tera Bug)
   assert.ok(load('scarlet-violet-trainers.json').trainers.some((t) => t.label === 'Katy' && t.party.some((p) => p.species === 'teddiursa' && p.tera === 'bug')));
+});
+
+test('simulador — golpes Z (0.28.0): poder pela tabela do jogo (Showdown), cristais pelo detonado, um Z por luta no 1º turno', async () => {
+  const { recommend } = await import('../public/engine.mjs');
+  const { damage, bestAgainst } = await import('../public/battle.mjs');
+  const sm = load('sun-moon.json'), sma = load('sun-moon-acquisition.json');
+  // tabela: Thunderbolt 90 → 175; Bullet Seed (2–5 golpes) 25×3 → 140; Low Kick pela exceção do Showdown → 160
+  assert.deepEqual(['thunderbolt', 'bullet-seed', 'low-kick'].map((n) => sm.moves[n].zPower), [175, 140, 160]);
+  // Max no Sword/Shield: Close Combat (Lutador) 120 → 95; Thunderbolt 90 → 130
+  const sw = load('sword-shield.json');
+  assert.deepEqual([sw.moves['close-combat'].maxPower, sw.moves.thunderbolt.maxPower], [95, 130]);
+  assert.ok(!load('x-y.json').moves.thunderbolt.zPower); // X/Y não tem golpe Z
+  // cristais: os 18 de tipo, cada um no ponto em que o detonado diz que você recebe/pega
+  const k = sma.progress.keyItems;
+  assert.equal(Object.keys(k.zCrystals).length, 18);
+  assert.ok(/Hala lhe dará um Z-Ring/.test(k.z.text));
+  assert.ok(/Waterium Z/.test(k.zCrystals.water.text) && k.zCrystals.water.stage < k.zCrystals.ghost.stage);
+  // Z: um golpe só, sem errar, com o poder Z; o melhor plano usa o Z no 1º turno
+  const mk = (types, hp) => ({ mon: { types, abilities: [] }, level: 50, stats: { hp, attack: 100, defense: 100, 'special-attack': 100, 'special-defense': 100, speed: 100 } });
+  const z = damage(sm, 7, mk(['electric'], 200), mk(['water'], 200), 'thunderbolt', { zPower: 175 });
+  const n = damage(sm, 7, mk(['electric'], 200), mk(['water'], 200), 'thunderbolt');
+  assert.ok(z.per > n.per * 1.8);
+  const att = { ...mk(['electric'], 200), zTypes: new Set(['electric']) };
+  const b = bestAgainst(sm, 7, att, mk(['water'], 300), ['thunderbolt']);
+  assert.ok(b.z && b.z.name === 'thunderbolt' && b.turns < bestAgainst(sm, 7, mk(['electric'], 200), mk(['water'], 300), ['thunderbolt']).turns);
+  // sem o cristal do tipo ainda (antes do Electrium Z) não há Z elétrico; desligar a opção tira todos
+  const opp = sm.pokemon.find((p) => p.name === 'gyarados');
+  const run = (stage, zMoves = true) => recommend(sm, opp, { level: 40, oppLevel: 40, version: 'sun', onlyObtainable: true, acq: sma, stage, zMoves }).candidates;
+  assert.ok(!run(k.zCrystals.electric.stage - 1).some((c) => c.zMove?.type === 'electric'));
+  assert.ok(run(k.zCrystals.electric.stage).some((c) => c.zMove?.type === 'electric'));
+  assert.ok(!run(12, false).some((c) => c.zMove));
 });

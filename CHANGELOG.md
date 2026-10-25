@@ -2,6 +2,23 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.28.0] — 2026-10-25
+
+> No Sun/Moon e no Ultra Sun/Ultra Moon as sugestões agora usam o golpe Z: o app diz quando um golpe Z no 1º turno vence mais rápido, de qual golpe ele sai, o poder e em que ponto da história você ganha o Z-Ring e o cristal do tipo.
+
+### Adicionado
+- **Simulador com golpes Z** (2ª fase do `PLANO-SIMULADOR.md`): um golpe Z por luta, no 1º turno — um golpe só, que não
+  erra, com o poder do golpe Z — e depois o melhor golpe normal; a sugestão usa o Z só quando ele nocauteia em menos turnos.
+  O cartão mostra "Golpe Z no 1º turno: a partir de Submission (poder 160)", o Z-Ring e o Z-Crystal com o ponto da história.
+  - Poder do golpe Z pela regra do jogo como o Pokémon Showdown a implementa (ex.: Thunderbolt 175, Bullet Seed 140 —
+    golpe de 2–5 acertos conta ×3 —, Low Kick 160 pela exceção). O poder dos golpes Max do Sword/Shield já fica gravado
+    para a fase do Dynamax.
+  - Z-Ring (Hala) e os 18 Z-Crystals de tipo pelo detonado do Sun/Moon, cada um no ponto em que você o recebe ou pega
+    (Waterium Z com a Lana, Icium Z no pedestal…): com o progresso informado, só os tipos que você já tem.
+  - Ultra Sun/Ultra Moon (sem detonado): todos os tipos, e o cartão avisa que o lugar do cristal não está nos dados.
+  - Opção nova em Filtros: "Usar golpe Z".
+- Banco de lutas: no Sun/Moon a média de turnos para nocautear cai de 1,22 para 1,07; folgadas 36.446 → 36.452.
+
 ## [0.27.0] — 2026-10-25
 
 > Os chefes que usam Mega Evolução no jogo agora lutam como Mega no app (Mega Camerupt do Maxie, Mega Charizard Y do Blue…), com os atributos, tipos e habilidade da Mega.
