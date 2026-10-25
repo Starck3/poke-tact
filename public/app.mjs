@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, megaForm } from './engine.mjs';
+import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -72,7 +72,7 @@ async function load(gameId) {
   $('qualityBadge').innerHTML = qualityBadge(g) + featureTags(g);
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
   // Mega Evolução já entra no cálculo (0.26.0); o aviso fica para as outras mecânicas
-  const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução' && m !== 'golpes Z');
+  const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução' && m !== 'golpes Z' && m !== 'Terastal');
   $('mechNote').hidden = !outside.length;
   $('mechNote').textContent = outside.length ? `⚠ Fora do cálculo neste jogo: ${outside.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades${(g.mechanics ?? []).includes('Mega Evolução') ? ' (e a Mega Evolução' + ((g.mechanics ?? []).includes('golpes Z') ? ' e os golpes Z' : '') + ')' : ''}.` : '';
   $('tabWalk').hidden = !g.hasWalkthrough; // a aba Onde capturar existe em todos os jogos
@@ -122,6 +122,7 @@ async function load(gameId) {
   $('tradeEvos').closest('label').style.display = acq ? '' : 'none';
   $('megaWrap').hidden = !data.pokemon.some((p) => p.megas?.length); // jogos com Mega Evolução
   $('zWrap').hidden = !Object.values(data.moves).some((m) => m.zPower); // jogos com golpe Z
+  $('teraWrap').hidden = !acq?.progress?.keyItems?.tera; // Scarlet/Violet (Tera Orb no detonado)
   $('gameInfo').textContent = `${data.game.label} · ${data.pokemon.length} Pokémon · ${Object.keys(data.moves).length} golpes · ${data.types.length} tipos · fonte: ${data.game.source}` +
     (data.corrections ? ` + correções ${/PKHeX/.test(data.corrections.source) ? 'das tabelas do jogo extraídas pelo' : 'do decomp'} ${data.corrections.source} (${data.corrections.list.length})` : '') +
     (data.moveCrosscheck ? ` + golpes conferidos com ${data.moveCrosscheck.source}: ${data.moveCrosscheck.corrected} corrigidos, ${data.moveCrosscheck.flagged} divergências só sinalizadas` : '');
@@ -536,7 +537,7 @@ function pickTrainerMon(t, i) {
   $('opp').value = p.species;
   $('oppLevel').value = p.level;
   // dvs (Gen 1–2) / iv (Gen 3): atributos reais do Pokémon do treinador no cálculo de dano
-  known = { moves: p.moves, item: p.item, default: p.defaultMoves, dvs: p.dvs ?? null, iv: p.iv ?? null, species: p.species, mega: p.mega ?? null };
+  known = { moves: p.moves, item: p.item, default: p.defaultMoves, dvs: p.dvs ?? null, iv: p.iv ?? null, species: p.species, mega: p.mega ?? null, tera: p.tera ?? null };
   teamMode = null;
   renderTeam(t, i);
   update();
@@ -576,7 +577,7 @@ function duelLine(d) {
 function currentOpp() {
   const mon = findOpponent(data.pokemon, $('opp').value);
   // Pokémon de treinador que luta Mega (detonado): atributos, tipos e habilidade da Mega
-  return mon && known?.mega && known.species === mon.name ? megaForm(mon, known.mega) : mon;
+  return mon && (known?.mega || known?.tera) && known.species === mon.name ? battleForm(mon, known) : mon;
 }
 
 function update() {
@@ -598,7 +599,7 @@ function update() {
     row('Resiste', eff.filter((x) => x.m > 0 && x.m < 1).sort((a, b) => a.m - b.m), 'bad') +
     row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
   $('oppInfo').innerHTML = `<div class="opp">${img(opp.megaSprite ?? opp.id)}
-    <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
+    <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.teraType ? opp.baseTypes.map(typeBadge).join('') + ' → Tera ' + typeBadge(opp.teraType) + ' <span class="lozenge warn">terastaliza (detonado)</span>' : opp.types.map(typeBadge).join('')}
     <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : '(definidos pelo jogo)'}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
   const baseOpts = {
@@ -613,6 +614,7 @@ function update() {
     tradeEvolutions: $('tradeEvos').checked,
     megaEvolution: $('megaEvo').checked,
     zMoves: $('zMoves').checked,
+    terastal: $('terastal').checked,
     acq,
   };
   if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
@@ -635,7 +637,7 @@ function update() {
     const mg = s.mega;
     return `<div class="card pick">
       <div class="pick-head">${img(mg ? mg.spriteId : s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${mg ? megaTitle(mg, s.mon) : humanize(s.mon.name)}</h3><div>${(mg ? mg.types : s.mon.types).map(typeBadge).join('')}</div></div></div>
-      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}${s.zMove ? zLine(s.zMove, m) : ''}
+      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}${s.zMove ? zLine(s.zMove, m) : ''}${s.tera ? teraLine(s.tera) : ''}
       <div class="kv"><b>Golpe</b>${humanize(m.name)} ${typeBadge(m.type)} <strong class="${m.eff > 1 ? 'good' : ''}">${fmtMult(m.eff)}</strong>${m.stab > 1 ? ' <span class="meta">STAB</span>' : ''}<br><span class="meta">${via}</span></div>
       ${howToGet(s)}
       <details class="more"><summary>Detalhes</summary><ul class="why">
@@ -660,6 +662,12 @@ function megaLine(mg) {
   const where = cited.length ? `Onde achar (detonado): “${cited[0].text}” <span class="meta">— trecho ${cited[0].section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())}</span>`
     : `<span class="meta">Onde achar a ${mg.stone}: o detonado não diz — a sugestão vale se você tiver a pedra (desligue em Filtros → Usar Mega Evolução).</span>`;
   return `<div class="kv"><b>${mg.primal ? 'Reversão Primal' : 'Mega Evolução'}</b>segurando ${mg.stone}${ring}<br>${where}</div>`;
+}
+
+// Terastal na sugestão: o tipo Tera (um dos tipos do Pokémon), o efeito e quando se ganha a Tera Orb (detonado)
+function teraLine(t) {
+  const orb = t.orb && acq?.progress ? ` (${stageLabel(t.orb.stage, acq.progress.leaderOrder, acq.progress)})` : '';
+  return `<div class="kv"><b>Terastal</b>tipo Tera ${typeBadge(t.type)}: golpes desse tipo com STAB 2× e defesa só como ${t.type}<br><span class="meta">Precisa da Tera Orb${orb} e que o tipo Tera do seu Pokémon seja ${t.type} (o normal de quem você captura é um dos tipos dele).</span></div>`;
 }
 
 // golpe Z na sugestão: de qual golpe sai, o poder, o cristal e quando se ganha (detonado) e o golpe dos turnos seguintes
@@ -717,7 +725,7 @@ function unreliableLine(s) {
   return s.unreliable ? `<li class="bad">⚠ Até aqui só por origem aleatória ou condicionada: ${s.unreliable}.</li>` : '';
 }
 
-for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'zMoves', 'stage']) $(id).addEventListener('input', update);
+for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'zMoves', 'terastal', 'stage']) $(id).addEventListener('input', update);
 $('stage').addEventListener('input', () => renderTrainerPicker()); // selo "próximo" acompanha o progresso
 for (const id of CTX_FIELDS) $(id).addEventListener('input', saveCtx);
 // atalho "/" (como no Linear/GitHub): vai para a busca do oponente, fora de campos de texto

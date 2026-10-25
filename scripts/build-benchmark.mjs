@@ -6,7 +6,7 @@
 // Uso: node scripts/build-benchmark.mjs [jogo ...]  → reports/benchmark/<jogo>.json e resumo no console
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { GAMES } from './games.mjs';
-import { recommend, effectiveness, availableMoves, megaForm } from '../public/engine.mjs';
+import { recommend, effectiveness, availableMoves, battleForm } from '../public/engine.mjs';
 import { statsAt, badgeBoost, duel } from '../public/battle.mjs';
 
 const load = (f) => JSON.parse(readFileSync(new URL(`../public/data/${f}`, import.meta.url), 'utf8'));
@@ -18,7 +18,7 @@ const IMPORTANT = new Set(['Líderes de ginásio', 'Partidas de promoção', 'El
 /** Reavalia UMA sugestão (Pokémon + golpe) contra o Pokémon do oponente com a fórmula de dano. */
 export function evaluatePick(data, acq, monName, moveName, p, level, stage) {
   const gen = data.game.generation;
-  const mon = data.pokemon.find((x) => x.name === monName), opp = megaForm(data.pokemon.find((x) => x.name === p.species), p.mega);
+  const mon = data.pokemon.find((x) => x.name === monName), opp = battleForm(data.pokemon.find((x) => x.name === p.species), p);
   const me = { mon, level, stats: badgeBoost(gen, statsAt(gen, mon, level), acq?.progress, stage) };
   const them = { mon: opp, level: p.level, stats: statsAt(gen, opp, p.level, { dvs: p.dvs ?? null, iv: p.iv ?? null }) };
   return duel(data, gen, me, them, [moveName], p.moves);
@@ -47,7 +47,7 @@ for (const gameId of ids) {
           const level = Math.max(...t.party.map((p) => p.level)) - DELTA;
           const old = beforeKey.get(`${version}|${key}|${starter}`);
           const mons = t.party.map((p, i) => {
-            const opp = megaForm(data.pokemon.find((x) => x.name === p.species), p.mega); // chefe que luta Mega (detonado)
+            const opp = battleForm(data.pokemon.find((x) => x.name === p.species), p); // chefe que luta Mega (detonado)
             const r = recommend(data, opp, { level, oppMoves: p.moves, oppLevel: p.level, oppDvs: p.dvs, oppIv: p.iv, version, onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false, acq, stage, starter });
             const oldPicks = (old?.mons?.[i]?.picks ?? []).map((k) => ({ mon: k.mon, move: k.move, ...pickOut(evaluatePick(data, acq, k.mon, k.move, p, level, stage)) }));
             return {

@@ -1,4 +1,4 @@
-# Plano — simulador com as mecânicas dos jogos novos
+# Plano — simulador (continua no PLANO-EXECUCAO-2.md, bloco A) com as mecânicas dos jogos novos
 
 Criado em 2026-10-25 (versão 0.25.0), a pedido do usuário ("Vamos para o simulador?"). Hoje o motor (`public/battle.mjs`)
 faz uma troca de golpes 1 contra 1 com a fórmula de dano da geração e só **avisa** que o jogo tem Mega, Z, Dynamax, Tera
@@ -23,7 +23,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
    - Chefes que usam Mega (Korrina, Diantha, Steven…) lutam Mega quando o detonado diz.
 2. ⚠ **Golpes Z** (0.28.0: o seu lado; falta o chefe usar Z — o detonado não marca no time) — Sun/Moon e Ultra Sun/Ultra Moon. Um golpe Z por luta: o primeiro golpe vira Z (poder pela tabela),
    só com o Z-Crystal do tipo e o Z-Ring (provações dão os cristais — o estágio já existe).
-3. ⬜ **Terastal** — Scarlet/Violet. Tipo Tera dos líderes (detonado) muda as fraquezas deles; o seu Pokémon pode
+3. ✅ **Terastal** (0.29.0) — Scarlet/Violet. Tipo Tera dos líderes (detonado) muda as fraquezas deles; o seu Pokémon pode
    terastalizar no tipo dele (bônus de STAB 2×) a partir da Tera Orb.
 4. ⬜ **Dynamax** — Sword/Shield. Só em ginásios e chefes: vida 2× por 3 turnos, golpes Max (poder pela tabela) com o
    efeito de clima/atributo; líderes que dão Gigantamax.

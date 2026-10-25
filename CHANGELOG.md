@@ -2,6 +2,22 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.29.0] — 2026-10-25
+
+> No Scarlet/Violet o app agora simula o Terastal: os chefes que terastalizam no jogo mudam de tipo na luta, e o seu Pokémon pode usar o Tera no próprio tipo para bater mais forte. Também há um plano novo com tudo o que falta fazer.
+
+### Adicionado
+- **Simulador com Terastal** (Scarlet/Violet), com a regra do jogo como o Pokémon Showdown a implementa: terastalizado,
+  o Pokémon defende só com o tipo Tera; o STAB vale nos tipos de antes e no Tera, e vira 2× quando o Tera é um dos tipos
+  dele; golpe do tipo Tera com menos de 60 de poder sobe para 60.
+  - Chefes: os 103 Pokémon de treinador que o detonado marca com Tera ("Teddiursa (Tera Bug)") lutam terastalizados —
+    tipos, fraquezas e golpes; a tela mostra "Normal → Tera Bug".
+  - Você: depois da Tera Orb (Nemona, Mesagoza), o seu Pokémon pode terastalizar num dos próprios tipos quando isso vence
+    melhor; o cartão diz o tipo. Opção nova em Filtros: "Usar Terastal".
+- **Plano de execução 2** (`PLANO-EXECUCAO-2.md`): tudo o que ainda falta, em ordem, com critério de pronto e regras para
+  seguir sozinho quando uma etapa travar.
+- Banco de lutas: vencem 37.697 (igual); folgadas 36.452 → 36.441 (os chefes que terastalizam ficaram mais difíceis).
+
 ## [0.28.0] — 2026-10-25
 
 > No Sun/Moon e no Ultra Sun/Ultra Moon as sugestões agora usam o golpe Z: o app diz quando um golpe Z no 1º turno vence mais rápido, de qual golpe ele sai, o poder e em que ponto da história você ganha o Z-Ring e o cristal do tipo.
