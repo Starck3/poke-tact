@@ -16,7 +16,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   o Mega Ring / Z-Ring / Dynamax Band / Tera Orb e onde se acham as Mega Stones e os Z-Crystals.
 
 ## Fases
-1. ⚠ **Mega Evolução** (0.26.0: o seu lado feito; falta o chefe lutar Mega quando o detonado diz) — XY, ORAS, SM/USUM, Let's Go, Z-A.
+1. ✅ **Mega Evolução** (0.26.0 o seu lado; 0.27.0 os chefes) — XY, ORAS, SM/USUM, Let's Go, Z-A.
    - Dados: formas Mega do jogo (PKHeX) com a Mega Stone; onde ganhar o Mega Ring e onde achar a pedra (detonado).
    - Motor: o seu Pokémon pode lutar Mega (atributos, tipo e habilidade da Mega); na Gen 6 a Velocidade da Mega só vale do
      2º turno. Sugestão aparece como "Charizard (Mega X)" com "segurando Charizardite X".
@@ -42,3 +42,8 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   Tera Orb (SV) para as próximas fases. Onde achar a Mega Stone: frases do detonado (ORAS 36, X/Y 6, Let's Go 3, Z-A 0).
   Banco de lutas: folgadas 36.381 → 36.475. **Falta (1b)**: o chefe lutar Mega — os times do detonado não marcam; precisa
   ler frases como "o Alakazam dele pode mega evoluir".
+- **2026-10-25 — fase 1b (0.27.0)**: chefes lutam Mega quando o detonado diz — "Mega Camerupt lv.43" no time (o leitor já
+  separava o prefixo; faltava levar ao time salvo) ou frase perto da luta ("o Alakazam dele pode mega evoluir"). X/Y 6,
+  ORAS 17, SM 1, Let's Go 9, Z-A 49 Pokémon de chefe com Mega. Os tipos Tera do detonado já ficam guardados (SV: 103) para a
+  fase 3. Banco: vencem 37.697 (igual), folgadas 36.475 → 36.446 (chefes mais fortes). Fica de fora: a Velocidade de antes
+  da Mega no 1º turno (Gen 6) só vale para o seu lado.

@@ -219,10 +219,19 @@ export function recommend(data, opp, opts) {
  * candidato (quem não tem golpe útil contra um deles conta como derrota). Ordem: mais vitórias; depois a soma das folgas.
  * party: [{ species, level, moves, dvs?, iv? }]. Retorna { picks: [{ mon, wins, total, vs: [{ opp, duel, move }] }] }.
  */
+/**
+ * A espécie lutando como a Mega `megaName` (atributos, tipos e habilidade da Mega; id e nome da espécie ficam, para os
+ * sprites e o filtro "não sugerir a própria espécie"). Sem Mega com esse nome, a própria espécie.
+ */
+export function megaForm(mon, megaName) {
+  const f = megaName && mon?.megas?.find((m) => m.name === megaName);
+  return f ? { ...mon, types: f.types, stats: f.stats, abilities: f.abilities, megaName: f.name, megaSprite: f.spriteId } : mon;
+}
+
 export function recommendTeam(data, party, opts) {
   const byMon = new Map();
   party.forEach((p, i) => {
-    const opp = data.pokemon.find((x) => x.name === p.species);
+    const opp = megaForm(data.pokemon.find((x) => x.name === p.species), p.mega);
     const r = recommend(data, opp, { ...opts, oppMoves: p.moves, oppLevel: p.level, oppDvs: p.dvs, oppIv: p.iv });
     for (const c of r.candidates) {
       const e = byMon.get(c.mon.name) ?? byMon.set(c.mon.name, { mon: c.mon, reach: c.reach, stageNeeded: c.stageNeeded, unreliable: c.unreliable, vs: [] }).get(c.mon.name);
