@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex } from './engine.mjs';
+import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, megaForm } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -535,7 +535,7 @@ function pickTrainerMon(t, i) {
   $('opp').value = p.species;
   $('oppLevel').value = p.level;
   // dvs (Gen 1–2) / iv (Gen 3): atributos reais do Pokémon do treinador no cálculo de dano
-  known = { moves: p.moves, item: p.item, default: p.defaultMoves, dvs: p.dvs ?? null, iv: p.iv ?? null };
+  known = { moves: p.moves, item: p.item, default: p.defaultMoves, dvs: p.dvs ?? null, iv: p.iv ?? null, species: p.species, mega: p.mega ?? null };
   teamMode = null;
   renderTeam(t, i);
   update();
@@ -573,7 +573,9 @@ function duelLine(d) {
 }
 
 function currentOpp() {
-  return findOpponent(data.pokemon, $('opp').value);
+  const mon = findOpponent(data.pokemon, $('opp').value);
+  // Pokémon de treinador que luta Mega (detonado): atributos, tipos e habilidade da Mega
+  return mon && known?.mega && known.species === mon.name ? megaForm(mon, known.mega) : mon;
 }
 
 function update() {
@@ -594,8 +596,8 @@ function update() {
     row('Fraco contra', eff.filter((x) => x.m > 1).sort((a, b) => b.m - a.m), 'good') +
     row('Resiste', eff.filter((x) => x.m > 0 && x.m < 1).sort((a, b) => a.m - b.m), 'bad') +
     row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
-  $('oppInfo').innerHTML = `<div class="opp">${img(opp.id)}
-    <div><strong>#${opp.speciesId ?? opp.id} ${humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
+  $('oppInfo').innerHTML = `<div class="opp">${img(opp.megaSprite ?? opp.id)}
+    <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.types.map(typeBadge).join('')}
     <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : '(definidos pelo jogo)'}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
   const baseOpts = {

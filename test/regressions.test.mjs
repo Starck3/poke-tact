@@ -2308,3 +2308,20 @@ test('simulador — Gen 6: no turno em que evolui, a ordem usa a Velocidade de a
   assert.equal(duel(data, 6, me, opp, ['tackle'], ['tackle']).win, false);
   assert.equal(duel(data, 7, mk(120), opp, ['tackle'], ['tackle']).win, true);
 });
+
+test('simulador — chefes que lutam Mega (0.27.0): "Mega Camerupt lv.43" no time ou "o Alakazam dele pode mega evoluir"', async () => {
+  const { megaForm } = await import('../public/engine.mjs');
+  const megaOf = (g, label) => load(`${g}-trainers.json`).trainers.filter((t) => t.label === label).flatMap((t) => t.party.filter((p) => p.mega).map((p) => p.mega));
+  assert.ok(megaOf('omega-ruby-alpha-sapphire', 'Maxie').includes('camerupt-mega'));
+  assert.ok(megaOf('sun-moon', 'Dexio').includes('alakazam-mega')); // pela frase perto da luta
+  // X/Y pelo sufixo do nome no detonado: Blue usa Charizard Y, Lance o X (Let's Go)
+  assert.ok(megaOf('lets-go-pikachu-lets-go-eevee', 'Blue').includes('charizard-mega-y'));
+  assert.ok(megaOf('lets-go-pikachu-lets-go-eevee', 'Lance').includes('charizard-mega-x'));
+  // a forma Mega muda tipos/atributos do oponente (Mega Camerupt: Sp. Atk 145)
+  const d = load('omega-ruby-alpha-sapphire.json');
+  const m = megaForm(d.pokemon.find((p) => p.name === 'camerupt'), 'camerupt-mega');
+  assert.equal(m.stats['special-attack'], 145);
+  assert.equal(m.name, 'camerupt');
+  // Tera do detonado guardado para a fase do Terastal (Katy: Teddiursa Tera Bug)
+  assert.ok(load('scarlet-violet-trainers.json').trainers.some((t) => t.label === 'Katy' && t.party.some((p) => p.species === 'teddiursa' && p.tera === 'bug')));
+});

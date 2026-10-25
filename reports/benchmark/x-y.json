@@ -8,7 +8,7 @@
    "wins": 2502,
    "picks": 2502,
    "comfy": 2499,
-   "turnsSum": 2786,
+   "turnsSum": 2798,
    "turnsN": 2502
   },
   "antes": {
@@ -13969,42 +13969,42 @@
       "captivate",
       "hypnosis"
      ],
-     "superEffectiveAvailable": 73,
+     "superEffectiveAvailable": 74,
      "winnersAvailable": 389,
      "candidates": 389,
      "picks": [
       {
-       "mon": "charizard",
-       "move": "flare-blitz",
+       "mon": "durant",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": null
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
       },
       {
-       "mon": "qwilfish",
-       "move": "poison-jab",
-       "eff": 2,
+       "mon": "scyther",
+       "move": "x-scissor",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": null
-      },
-      {
-       "mon": "toxicroak",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
@@ -14292,42 +14292,42 @@
       "captivate",
       "hypnosis"
      ],
-     "superEffectiveAvailable": 74,
+     "superEffectiveAvailable": 75,
      "winnersAvailable": 389,
      "candidates": 389,
      "picks": [
       {
-       "mon": "charizard",
-       "move": "flare-blitz",
+       "mon": "durant",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": null
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
       },
       {
-       "mon": "qwilfish",
-       "move": "poison-jab",
-       "eff": 2,
+       "mon": "scyther",
+       "move": "x-scissor",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": null
-      },
-      {
-       "mon": "toxicroak",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
@@ -14615,42 +14615,42 @@
       "captivate",
       "hypnosis"
      ],
-     "superEffectiveAvailable": 73,
+     "superEffectiveAvailable": 74,
      "winnersAvailable": 389,
      "candidates": 389,
      "picks": [
       {
-       "mon": "charizard",
-       "move": "flare-blitz",
+       "mon": "durant",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": null
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
       },
       {
-       "mon": "qwilfish",
-       "move": "poison-jab",
-       "eff": 2,
+       "mon": "scyther",
+       "move": "x-scissor",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": null
-      },
-      {
-       "mon": "toxicroak",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
@@ -14939,7 +14939,7 @@
       "perish-song"
      ],
      "superEffectiveAvailable": 125,
-     "winnersAvailable": 187,
+     "winnersAvailable": 128,
      "candidates": 391,
      "picks": [
       {
@@ -14952,7 +14952,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "sucker-punch"
+       "theirMove": "razor-wind"
       },
       {
        "mon": "chesnaught",
@@ -14962,7 +14962,7 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 6,
        "faster": 0,
        "theirMove": "sucker-punch"
       },
@@ -14974,9 +14974,9 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 8,
        "faster": 0,
-       "theirMove": "sucker-punch"
+       "theirMove": "razor-wind"
       }
      ],
      "before": []
@@ -15262,7 +15262,7 @@
       "perish-song"
      ],
      "superEffectiveAvailable": 124,
-     "winnersAvailable": 186,
+     "winnersAvailable": 127,
      "candidates": 391,
      "picks": [
       {
@@ -15275,7 +15275,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "sucker-punch"
+       "theirMove": "razor-wind"
       },
       {
        "mon": "pangoro",
@@ -15285,20 +15285,20 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 8,
        "faster": 0,
-       "theirMove": "sucker-punch"
+       "theirMove": "razor-wind"
       },
       {
-       "mon": "lucario",
+       "mon": "hariyama",
        "move": "close-combat",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 1,
+       "faster": 0,
        "theirMove": "sucker-punch"
       }
      ],
@@ -15585,7 +15585,7 @@
       "perish-song"
      ],
      "superEffectiveAvailable": 124,
-     "winnersAvailable": 187,
+     "winnersAvailable": 128,
      "candidates": 391,
      "picks": [
       {
@@ -15598,7 +15598,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "sucker-punch"
+       "theirMove": "razor-wind"
       },
       {
        "mon": "pangoro",
@@ -15608,20 +15608,20 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 8,
        "faster": 0,
-       "theirMove": "sucker-punch"
+       "theirMove": "razor-wind"
       },
       {
-       "mon": "lucario",
+       "mon": "hariyama",
        "move": "close-combat",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 1,
+       "faster": 0,
        "theirMove": "sucker-punch"
       }
      ],
@@ -22826,40 +22826,40 @@
       "future-sight",
       "captivate"
      ],
-     "superEffectiveAvailable": 75,
-     "winnersAvailable": 98,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 62,
      "candidates": 391,
      "picks": [
-      {
-       "mon": "gyarados",
-       "move": "aqua-tail",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "murkrow",
-       "move": "foul-play",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
       {
        "mon": "houndoom",
        "move": "foul-play",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "absol",
+       "move": "sucker-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "weavile",
+       "move": "night-slash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -23045,40 +23045,40 @@
       "future-sight",
       "captivate"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 99,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 63,
      "candidates": 391,
      "picks": [
-      {
-       "mon": "gyarados",
-       "move": "aqua-tail",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "murkrow",
-       "move": "foul-play",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
       {
        "mon": "houndoom",
        "move": "foul-play",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "absol",
+       "move": "sucker-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "weavile",
+       "move": "night-slash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -23264,40 +23264,40 @@
       "future-sight",
       "captivate"
      ],
-     "superEffectiveAvailable": 75,
-     "winnersAvailable": 99,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 63,
      "candidates": 391,
      "picks": [
-      {
-       "mon": "gyarados",
-       "move": "aqua-tail",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "murkrow",
-       "move": "foul-play",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
       {
        "mon": "houndoom",
        "move": "foul-play",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 2,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "absol",
+       "move": "sucker-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "weavile",
+       "move": "night-slash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -37255,42 +37255,42 @@
       "captivate",
       "hypnosis"
      ],
-     "superEffectiveAvailable": 73,
+     "superEffectiveAvailable": 74,
      "winnersAvailable": 389,
      "candidates": 389,
      "picks": [
       {
-       "mon": "charizard",
-       "move": "flare-blitz",
+       "mon": "durant",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": null
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
       },
       {
-       "mon": "qwilfish",
-       "move": "poison-jab",
-       "eff": 2,
+       "mon": "scyther",
+       "move": "x-scissor",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": null
-      },
-      {
-       "mon": "toxicroak",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
@@ -37578,42 +37578,42 @@
       "captivate",
       "hypnosis"
      ],
-     "superEffectiveAvailable": 74,
+     "superEffectiveAvailable": 75,
      "winnersAvailable": 389,
      "candidates": 389,
      "picks": [
       {
-       "mon": "charizard",
-       "move": "flare-blitz",
+       "mon": "durant",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": null
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
       },
       {
-       "mon": "qwilfish",
-       "move": "poison-jab",
-       "eff": 2,
+       "mon": "scyther",
+       "move": "x-scissor",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": null
-      },
-      {
-       "mon": "toxicroak",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
@@ -37901,42 +37901,42 @@
       "captivate",
       "hypnosis"
      ],
-     "superEffectiveAvailable": 73,
+     "superEffectiveAvailable": 74,
      "winnersAvailable": 389,
      "candidates": 389,
      "picks": [
       {
-       "mon": "charizard",
-       "move": "flare-blitz",
+       "mon": "durant",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": null,
+       "faster": 1,
+       "theirMove": null
+      },
+      {
+       "mon": "dugtrio",
+       "move": "earthquake",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 4,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
       },
       {
-       "mon": "qwilfish",
-       "move": "poison-jab",
-       "eff": 2,
+       "mon": "scyther",
+       "move": "x-scissor",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": null
-      },
-      {
-       "mon": "toxicroak",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": null,
        "faster": 1,
        "theirMove": null
@@ -38225,33 +38225,9 @@
       "perish-song"
      ],
      "superEffectiveAvailable": 125,
-     "winnersAvailable": 187,
+     "winnersAvailable": 129,
      "candidates": 391,
      "picks": [
-      {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sucker-punch"
-      },
-      {
-       "mon": "throh",
-       "move": "vital-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "sucker-punch"
-      },
       {
        "mon": "scraggy",
        "move": "high-jump-kick",
@@ -38262,7 +38238,31 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "chesnaught",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
        "theirMove": "sucker-punch"
+      },
+      {
+       "mon": "pangoro",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "razor-wind"
       }
      ],
      "before": []
@@ -38548,33 +38548,9 @@
       "perish-song"
      ],
      "superEffectiveAvailable": 124,
-     "winnersAvailable": 186,
+     "winnersAvailable": 128,
      "candidates": 391,
      "picks": [
-      {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sucker-punch"
-      },
-      {
-       "mon": "throh",
-       "move": "vital-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "sucker-punch"
-      },
       {
        "mon": "scraggy",
        "move": "high-jump-kick",
@@ -38584,6 +38560,30 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "pangoro",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "heracross",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "sucker-punch"
       }
@@ -38871,33 +38871,9 @@
       "perish-song"
      ],
      "superEffectiveAvailable": 124,
-     "winnersAvailable": 187,
+     "winnersAvailable": 129,
      "candidates": 391,
      "picks": [
-      {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "sucker-punch"
-      },
-      {
-       "mon": "throh",
-       "move": "vital-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "sucker-punch"
-      },
       {
        "mon": "scraggy",
        "move": "high-jump-kick",
@@ -38907,6 +38883,30 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "pangoro",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "razor-wind"
+      },
+      {
+       "mon": "heracross",
+       "move": "close-combat",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "sucker-punch"
       }
@@ -46112,16 +46112,16 @@
       "future-sight",
       "captivate"
      ],
-     "superEffectiveAvailable": 74,
-     "winnersAvailable": 94,
+     "superEffectiveAvailable": 75,
+     "winnersAvailable": 59,
      "candidates": 391,
      "picks": [
       {
-       "mon": "gyarados",
-       "move": "aqua-tail",
+       "mon": "absol",
+       "move": "sucker-punch",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -46129,8 +46129,8 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "murkrow",
-       "move": "foul-play",
+       "mon": "weavile",
+       "move": "night-slash",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 6,
@@ -46141,11 +46141,11 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "sharpedo",
-       "move": "crunch",
+       "mon": "zoroark",
+       "move": "foul-play",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 7,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -46331,16 +46331,16 @@
       "future-sight",
       "captivate"
      ],
-     "superEffectiveAvailable": 75,
-     "winnersAvailable": 95,
+     "superEffectiveAvailable": 76,
+     "winnersAvailable": 60,
      "candidates": 391,
      "picks": [
       {
-       "mon": "gyarados",
-       "move": "aqua-tail",
+       "mon": "absol",
+       "move": "sucker-punch",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -46348,8 +46348,8 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "murkrow",
-       "move": "foul-play",
+       "mon": "weavile",
+       "move": "night-slash",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 6,
@@ -46360,11 +46360,11 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "sharpedo",
-       "move": "crunch",
+       "mon": "zoroark",
+       "move": "foul-play",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 7,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -46550,16 +46550,16 @@
       "future-sight",
       "captivate"
      ],
-     "superEffectiveAvailable": 74,
-     "winnersAvailable": 95,
+     "superEffectiveAvailable": 75,
+     "winnersAvailable": 60,
      "candidates": 391,
      "picks": [
       {
-       "mon": "gyarados",
-       "move": "aqua-tail",
+       "mon": "absol",
+       "move": "sucker-punch",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,
@@ -46567,8 +46567,8 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "murkrow",
-       "move": "foul-play",
+       "mon": "weavile",
+       "move": "night-slash",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 6,
@@ -46579,11 +46579,11 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "sharpedo",
-       "move": "crunch",
+       "mon": "zoroark",
+       "move": "foul-play",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 7,
        "win": true,
        "myTurns": 2,
        "theirTurns": null,

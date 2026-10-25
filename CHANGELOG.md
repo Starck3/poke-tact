@@ -2,6 +2,20 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.27.0] — 2026-10-25
+
+> Os chefes que usam Mega Evolução no jogo agora lutam como Mega no app (Mega Camerupt do Maxie, Mega Charizard Y do Blue…), com os atributos, tipos e habilidade da Mega.
+
+### Adicionado
+- **Chefes com Mega Evolução**: quando o detonado escreve o Pokémon como Mega no time ("Mega Camerupt lv.43",
+  "Mega Charizard X lv.54") ou diz perto da luta que ele pode mega evoluir ("o Alakazam dele pode mega evoluir"), o
+  oponente luta como a Mega — tipos, atributos e habilidade da Mega no cálculo, nas fraquezas e na tela (selo "luta Mega
+  (detonado)"). X/Y 6, Omega Ruby/Alpha Sapphire 17, Sun/Moon 1, Let's Go 9, Z-A 49 Pokémon de chefe.
+- Os tipos Tera que o detonado dá aos treinadores do Scarlet/Violet (103) já ficam guardados para a próxima fase.
+
+### Alterado
+- Banco de lutas com os chefes Mega: vencem 37.697 (igual), folgadas 36.475 → 36.446 das 37.872 sugestões.
+
 ## [0.26.0] — 2026-10-25
 
 > As sugestões agora usam a Mega Evolução nos jogos que têm (X/Y, Omega Ruby/Alpha Sapphire, Sun/Moon, Let's Go e Z-A): o app diz quando a Mega vence melhor, qual pedra segurar, quando se ganha o Mega Ring e, quando o detonado conta, onde achar a pedra.

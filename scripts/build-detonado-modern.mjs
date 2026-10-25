@@ -190,10 +190,10 @@ function expandTeam(b, rawParty0) {
   });
   const ph = rawParty.filter((p) => p.placeholder && p.options?.length);
   const fixed = (pick) => rawParty.flatMap((p) => {
-    if (p.placeholder) { const m = pick(p); return m && p.level ? [[m, p.level]] : []; }
+    if (p.placeholder) { const m = pick(p); return m && p.level ? [[m, p.level, p]] : []; }
     if (!p.level) return [];
     const m = resolve(p);
-    return m ? [[m, p.level]] : [];
+    return m ? [[m, p.level, p]] : [];
   });
   if (!ph.length) return [{ party: fixed(() => null) }];
   const r = ruleFor(b, ph[0]);
@@ -210,11 +210,27 @@ function expandTeam(b, rawParty0) {
   placeholderReport.push({ battle: b.name, rule: null, variants: n });
   return Array.from({ length: n }, (_, k) => ({ party: fixed((p) => opts(p)[k] ?? null), note: `se o inicial dele for ${titleCase((opts(ph[0])[k]?.name ?? '?').replace(/-/g, ' '))}` }));
 }
+// Mega do chefe: a forma Mega do jogo (add-pkhex-megas) quando o time escreve "Mega <espécie>" (X/Y pelo sufixo: "Mega
+// Charizard X") ou quando uma frase perto da luta diz que ele pode mega evoluir ("o Alakazam dele pode mega evoluir"; SM: Dexio)
+const megaSentences = (b) => {
+  const near = strip(html.slice(Math.max(0, b.at - 800), b.at + 2500)).replace(/\s+/g, ' ');
+  return [...near.matchAll(/(?:o|a)\s+([A-Z][a-zé]+)\s+(?:dele|dela)\s+(?:pode|vai|irá)\s+mega\s*evoluir/g)].map((m) => key(m[1]));
+};
+function megaOf(mon, raw, b) {
+  const forms = mon.megas ?? [];
+  if (!forms.length) return null;
+  const tagged = raw?.tags?.includes('mega');
+  if (!tagged && !megaSentences(b).includes(key(mon.name))) return null;
+  const xy = String(raw?.species ?? '').match(/\b([XYZ])\s*$/)?.[1]?.toLowerCase();
+  return (xy && forms.find((f) => f.name.endsWith('-mega-' + xy)))?.name ?? forms[0].name;
+}
 for (const [i, b] of battles.entries()) {
   const teams = b.teams?.length ? b.teams : [{ label: b.variant ?? '', party: b.party }];
   for (const [j, t] of teams.entries()) {
     for (const [k, x] of expandTeam(b, t.party).entries()) {
-      const party = x.party.map(([mon, level]) => ({ species: mon.name, level, item: null, iv: null, moves: likelyMoveset(mon, level), defaultMoves: true }));
+      // Mega ("Mega Camerupt lv.43" ou "o Alakazam dele pode mega evoluir" perto da luta) e tipo Tera ("(Tera Bug)") do detonado
+      const party = x.party.map(([mon, level, raw]) => ({ species: mon.name, level, item: null, iv: null, moves: likelyMoveset(mon, level), defaultMoves: true,
+        ...(megaOf(mon, raw, b) && { mega: megaOf(mon, raw, b) }), ...(raw?.notes?.tera && { tera: raw.notes.tera.toLowerCase() }) }));
       if (!party.length) continue;
       const label = `${t.label ?? ''} ${b.variant ?? ''}`;
       const forStarter = x.forStarter ?? starters.filter((s) => new RegExp(`\\b${s.split('-')[0]}\\b`, 'i').test(label));

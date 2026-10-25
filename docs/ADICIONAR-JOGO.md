@@ -338,6 +338,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   (PKHeX); a forma só entra se existe na tabela pessoal do jogo. Mega Ring/Z-Ring/Dynamax Band/Tera Orb: `progress.keyItems`
   no build-detonado-modern (1ª frase com verbo de RECEBER; "não" fora; regex sem `\b` depois de vogal acentuada — "dará"
   não casava). Mega Stones entram no `build-evo-items` com o nome da pedra como chave.
+- **Chefe Mega/Tera (0.27.0)**: `parseModernBattles` já devolve `tags` (mega…) e `notes.tera`; o build-detonado-modern
+  precisa levar isso ao time (`mega`, `tera`). Mega X/Y pelo sufixo do nome no detonado. Edição pelo shell trocou `\b` por
+  backspace de novo — o teste de caractere de controle pegou; use Edit para regex.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 
