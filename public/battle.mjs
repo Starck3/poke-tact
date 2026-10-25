@@ -121,7 +121,10 @@ export function duel(data, gen, me, opp, myMoves, oppMoves) {
   const mine = bestAgainst(data, gen, me, opp, myMoves);
   const theirs = bestAgainst(data, gen, opp, me, oppMoves);
   const myT = mine?.turns ?? Infinity, theirT = theirs?.turns ?? Infinity;
-  const faster = me.stats.speed > opp.stats.speed ? 1 : me.stats.speed === opp.stats.speed ? 0.5 : 0;
+  // me.speedTurn1 (Mega na Gen 6): no turno em que evolui, a ordem usa a Velocidade de antes — só decide se a troca acaba
+  // no 1º turno para os dois; do 2º turno em diante vale a da Mega
+  const sp = me.speedTurn1 != null && myT === 1 && theirT === 1 ? me.speedTurn1 : me.stats.speed;
+  const faster = sp > opp.stats.speed ? 1 : sp === opp.stats.speed ? 0.5 : 0;
   const win = myT === Infinity ? false : faster === 1 ? myT <= theirT : faster === 0.5 ? myT < theirT || (myT === theirT) : myT < theirT;
   return { move: mine?.name ?? null, myTurns: myT, theirMove: theirs?.name ?? null, theirTurns: theirT, faster, win, margin: myT === Infinity ? 0 : theirT === Infinity ? 99 : theirT / myT, myDmg: mine?.dmg ?? null, theirDmg: theirs?.dmg ?? null };
 }

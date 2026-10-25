@@ -24,13 +24,14 @@ const PLAIN_STEPS = ['build-data', 'crosscheck-moves-showdown', 'build-starters-
 // + núcleo pelas tabelas do jogo extraídas pelo PKHeX (Black/White e Gens 6–9), auditado depois (tem que dar 0)
 // + onde obter pelas tabelas de encontro do PKHeX (Black/White e Gens 6–9: os jogos com leitor em READERS)
 // fill-pkhex-species: espécies do jogo que a PokéAPI não tem (Legends: Arceus, formas de Hisui) + loja de golpes;
-// add-pkhex-forms: formas regionais (Alola, Galar, Hisui, Paldea) como entradas próprias
+// add-pkhex-forms: formas regionais (Alola, Galar, Hisui, Paldea) como entradas próprias; add-pkhex-megas: Megas do jogo
+// (só nos jogos com Mega Evolução)
 // apply-pkhex-machines: TM/HM/TR do jogo; apply-pkhex-evos: método de evolução do jogo (troca, item, forma…)
-const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex'];
+const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex'];
 // build-detonado-modern: treinadores, progresso por insígnia e aba Detonado a partir do detonado do PokeMythology
 const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
-const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
+const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
 // todos os jogos, no fim: fotos dos lugares (detonado), mapa esquemático da região (decomp) e onde achar os itens de
 // evolução citados no detonado (só jogos sem lista de itens do decomp); saem sem erro quando o jogo não tem a fonte
 const IMAGE_STEPS = ['build-place-images', 'build-region-maps', 'build-evo-items'];

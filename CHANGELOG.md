@@ -2,6 +2,27 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.26.0] — 2026-10-25
+
+> As sugestões agora usam a Mega Evolução nos jogos que têm (X/Y, Omega Ruby/Alpha Sapphire, Sun/Moon, Let's Go e Z-A): o app diz quando a Mega vence melhor, qual pedra segurar, quando se ganha o Mega Ring e, quando o detonado conta, onde achar a pedra.
+
+### Adicionado
+- **Simulador com Mega Evolução** (1ª fase do plano em `PLANO-SIMULADOR.md`): cada Pokémon com Mega no jogo também luta
+  como Mega (atributos, tipos e habilidade da Mega; os golpes são os mesmos) e a sugestão fica com a Mega só quando ela
+  vence melhor — ex.: "Mega Charizard X, segurando Charizardite X". Na Gen 6 (X/Y, ORAS), no turno em que evolui, a ordem
+  usa a Velocidade de antes da Mega.
+  - Quais Megas cada jogo tem e a pedra de cada uma: tabelas do próprio jogo (PKHeX) — o X/Y não tem a Mega Altaria, o
+    Sword/Shield não tem Mega. X/Y 30, ORAS 49, Sun/Moon e USUM 49, Let's Go 15, Z-A 97.
+  - Mega Ring: com o progresso informado, só depois do ponto em que o detonado diz que você o ganha (X/Y: Korrina na
+    Tower of Mastery; ORAS: Steven na Southern Island; Sun/Moon: Dexio; Let's Go: Blue; Z-A: missão 9).
+  - Onde achar a pedra: a frase do detonado, quando ele diz (ORAS 36 pedras, X/Y 6, Let's Go 3); quando não diz, o cartão
+    avisa que a sugestão vale se você tiver a pedra. Opção nova em Filtros: "Usar Mega Evolução".
+- O aviso "fora do cálculo" deixa de citar a Mega Evolução nesses jogos.
+
+### Corrigido
+- Let's Go: a Route 5 e as rotas em volta voltam ao ponto certo (usam o estágio do Yellow, corrigido na 0.24.0).
+- Banco de lutas: folgadas 36.381 → 36.475 das 37.872 sugestões.
+
 ## [0.25.0] — 2026-10-25
 
 > Nova aba "Pokémon por tipo": escolha o jogo e veja todos os Pokémon dele separados por tipo, filtrando por tipo, nome, só os que dá para obter e só formas finais.

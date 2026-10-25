@@ -36,7 +36,9 @@ const GET = /\b(ach\w*|encontr\w*|peg\w*|ganh\w*|receb\w*|compr\w*|vend\w*|loja\
 const strip = (h) => h.replace(/<(script|style)[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/&#8217;|&rsquo;/g, '’').replace(/&amp;/g, '&').replace(/&#8211;|&ndash;/g, '–').replace(/\s+/g, ' ').trim();
 const sections = parseModernSections(readFileSync(wt, 'utf8'));
 const items = {};
-for (const param of evoItems(data.pokemon)) {
+// Mega Stones (add-pkhex-megas): a chave é o nome da pedra ("Charizardite X") — o simulador mostra onde achar
+const megaStones = [...new Set(data.pokemon.flatMap((p) => (p.megas ?? []).map((m) => m.stone)))].sort();
+for (const param of [...evoItems(data.pokemon), ...megaStones]) {
   const re = itemRegex(param), seen = new Set();
   for (const s of sections) {
     // frases do trecho que citam o item com um verbo de obter
