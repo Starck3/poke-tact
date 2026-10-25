@@ -2,7 +2,28 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.24.0] — 2026-10-25
+
+> Onde capturar mostra os dois caminhos (capturar direto ou capturar a forma anterior e evoluir), a Route 6 do Yellow está no ponto certo, Blackthorn ganhou foto e cada versão destas Novidades tem um resumo simples.
+
+### Adicionado
+- **Os dois caminhos em Onde capturar**: quando o Pokémon se captura direto, a tela mostra também "Ou pela evolução" —
+  capturar a forma anterior e evoluir —, com o ponto da história de cada um e o selo "mais cedo" quando esse caminho
+  sai antes (ex.: Raticate no Red: direto só depois de 3 insígnias; Rattata na Route 1 e evoluir no nv 20 já no começo).
+  As sugestões de luta também passam a considerar o caminho que sai mais cedo (troca entre cartuchos não conta).
+- **Resumo em linguagem simples** em cada versão do painel Novidades; a lista técnica fica em "Detalhes".
+- **Foto de Blackthorn City** (Gold/Silver e Crystal): o detonado não tem foto da cidade nesses jogos; vem o mapa da
+  cidade da Bulbapedia, por referência e com o crédito na tela.
+
+### Corrigido
+- **Red/Blue e Yellow**: a Route 6 (e a Route 5, os subterrâneos e os portões) estavam depois da 3ª/4ª insígnia; abrem
+  depois da 2ª (Route 5 já depois da 1ª). O portão com o guarda que pede bebida ligava a rota ao Saffron, e no Yellow o
+  presente da Officer Jenny (Squirtle, depois da Thunder Badge) fechava o Vermilion inteiro.
+- Banco de lutas: vencem 37.615 → 37.697 e folgadas 36.186 → 36.381 das 37.872 sugestões.
+
 ## [0.23.0] — 2026-10-25
+
+> Agora o app mostra os Pokémon que só se conseguem chocando um ovo na creche (como o Pichu no FireRed): quem deixar lá, com quem e em que ponto do jogo.
 
 ### Adicionado
 - **Ovos da creche** (Gold/Silver, Crystal, Ruby/Sapphire, Emerald, FireRed/LeafGreen, Diamond/Pearl, Platinum e
@@ -18,12 +39,16 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.22.1] — 2026-10-24
 
+> Na árvore de evoluções, o Pokémon que não existe no jogo escolhido aparece marcado, com a lista dos jogos em que ele aparece.
+
 ### Corrigido
 - **Evoluções na aba Onde capturar**: uma espécie da família que não dá para obter no jogo escolhido (ex.: Pichu ao
   pesquisar Pikachu no FireRed) aparecia como se fosse do jogo. Agora vem marcada "não é deste jogo", com os jogos do
   app em que ela aparece (links para a aba Onde capturar de cada um); se for só da outra versão do mesmo jogo, diz qual.
 
 ## [0.22.0] — 2026-10-20
+
+> Ao pesquisar um Pokémon, você vê em quem ele evolui, como (nível, pedra, troca…) e onde achar a pedra ou o item. No HeartGold/SoulSilver, as pedras da loja do Pokéathlon passaram a contar.
 
 ### Adicionado
 - **Evoluções na aba Onde capturar**: a família inteira do Pokémon (da forma base às finais, com os ramos do Eevee), o
@@ -41,6 +66,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.21.0] — 2026-10-20
 
+> Mais lugares ganharam foto, e fotos que mostravam o lugar errado foram tiradas.
+
 ### Adicionado
 - **Fotos dos lugares**: lugar citado só no texto do detonado ganha a foto cujo nome de arquivo é o lugar (Ice Path,
   Mt. Mortar, Tin Tower, Whirl Islands, Dark Cave, Mt. Moon, Victory Road, Safari Zone…). Red/Blue 19 → 23, Gold/Silver
@@ -51,6 +78,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
   Shoal Cave; Silver Cave o Mt. Mortar; o Dojo de Saffron (FRLG) a Silph Co.
 
 ## [0.20.0] — 2026-10-20
+
+> O mapa da região chegou ao Black/White e ao Black 2/White 2, e as cavernas do FireRed/LeafGreen passaram a aparecer no mapa.
 
 ### Adicionado
 - **Mapa da região no Black 2/White 2 e no Black/White**: posições pela grade de zonas do mundo do decomp (pokebw2), com
@@ -63,12 +92,16 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.19.0] — 2026-10-20
 
+> As grutas escondidas do Black 2/White 2 foram conferidas: toda espécie mostrada existe mesmo lá.
+
 ### Corrigido
 - **Black 2/White 2 — Hidden Grottoes conferidas com a tabela do jogo (PKHeX)**: toda espécie de gruta que o app mostra
   existe no jogo na mesma versão (Beedrill só no Black 2, Butterfree só no White 2). Glameow, Stunky e Togetic — que só
   saem de gruta — passam a aparecer como obtíveis, em "Hidden Grotto (rota não registrada)", marcadas como aleatórias.
 
 ## [0.18.0] — 2026-10-20
+
+> Nos remakes (Brilliant Diamond/Shining Pearl, Let's Go e Omega Ruby/Alpha Sapphire), as rotas aparecem no ponto certo da história.
 
 ### Corrigido
 - **Remakes com as rotas no ponto certo da história**: no Brilliant Diamond/Shining Pearl (o detonado não numera as
@@ -77,6 +110,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
   25 → 1, Let's Go 15 → 0, ORAS 4 → 1; no ORAS a Route 102 deixou de aparecer como "depois da 8ª insígnia".
 
 ## [0.17.0] — 2026-10-20
+
+> Os times dos rivais nos jogos mais novos aparecem completos, com o inicial certo para a sua escolha.
 
 ### Corrigido
 - **Times de rival completos nas Gens 5–9**: o Pokémon que o detonado escreve como "inicial" (ou "Chikorita/Tepig/Totodile")
@@ -87,6 +122,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.16.0] — 2026-10-20
 
+> Lugares que abrem no meio da história, como a Safari Zone de Hoenn, não aparecem mais como se fossem só do fim do jogo.
+
 ### Corrigido
 - **Lugares que abrem no meio da história não aparecem mais como pós-jogo**: a Safari Zone de Hoenn (Ruby/Sapphire e
   Emerald) passa a "depois de Winona", a Power Plant e as Seafoam Islands do FireRed/LeafGreen a "depois de Sabrina", e
@@ -96,11 +133,15 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.15.0] — 2026-10-20
 
+> Chegou este botão de Novidades, que mostra o que mudou em cada versão.
+
 ### Adicionado
 - **Novidades no app**: botão 🔔 no canto inferior direito com o número de versões que você ainda não viu e um painel com
   as mudanças de cada versão (vem deste CHANGELOG). Link direto para mostrar a alguém: `#/?novidades`.
 
 ## [0.14.0] — 2026-10-20
+
+> A aba Detonado ganhou fotos dos lugares e o mapa de cada parte da história, e mais jogos ganharam o mapa da região.
 
 ### Adicionado
 - **Imagens na aba Detonado**: cada local com foto do lugar (📷, carregada ao abrir) e cada etapa da história com
@@ -117,6 +158,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 - Legenda do mapa cortava o nome da fonte (escape perdido no regex).
 
 ## [0.13.0] — 2026-10-20
+
+> Onde capturar passou a mostrar fotos do lugar e o mapa da região dos jogos clássicos.
 
 ### Adicionado
 - **Onde capturar com imagens**:
@@ -135,6 +178,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.12.0] — 2026-10-20
 
+> Na tela inicial, você pesquisa um Pokémon e vê em quais jogos dá para pegá-lo.
+
 ### Adicionado
 - **Busca de Pokémon na tela inicial** (padrão), com um seletor ao lado para trocar para "Líder ou jogo" (a busca antiga
   continua igual). Escolhido o Pokémon, aparecem os jogos em que dá para obtê-lo, por geração (e "só FireRed" quando é
@@ -142,6 +187,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
   `build-pokedex.mjs`), baixado só na 1ª busca. Link direto: `#/?capturar=pikachu`.
 
 ## [0.11.0] — 2026-10-20
+
+> Nova aba Onde capturar: digite um Pokémon e veja todos os lugares, o nível e em que ponto da história ele aparece.
 
 ### Adicionado
 - **Aba "Onde capturar"** em todos os jogos: digite um Pokémon e veja todos os locais da versão (método, nível, taxa quando o
@@ -158,6 +205,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
   cedo entre o nome e o trecho que lista as espécies do local; subárea não fica depois do local-pai.
 
 ## [0.10.0] — 2026-10-20
+
+> Os jogos mais novos (Black/White até Scarlet/Violet) ganharam líderes, rivais, progresso por insígnia e detonado.
 
 ### Adicionado
 - **Treinadores nas Gens 5–9 sem decomp** (BW, XY, ORAS, SM, Let's Go, SwSh, BDSP, Legends: Arceus, SV): líderes, Elite, campeões,
@@ -181,6 +230,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.9.0] — 2026-10-20
 
+> Legends: Arceus ganhou as espécies de Hisui e a loja de golpes, e a escolha do inicial ficou mais fácil.
+
 ### Adicionado
 - **Legends: Arceus com as espécies de Hisui**: 18 espécies que o jogo tem e o dataset não tinha (Typhlosion, Samurott,
   Decidueye, Arcanine, Goodra, Avalugg, Braviary, Lilligant, Zoroark… nas formas de Hisui, mais Giratina e Porygon2), com
@@ -190,6 +241,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
   acima do campo do oponente.
 
 ## [0.8.0] — 2026-10-20
+
+> Os jogos das Gens 6 a 9 passaram a dizer onde capturar cada Pokémon, e o Legends: Z-A entrou no app.
 
 ### Adicionado
 - **Onde obter nas Gens 6–9** (XY, ORAS, SM, USUM, Let's Go, SwSh, BDSP, Legends: Arceus, SV, Z-A) pelas tabelas de encontro
@@ -211,6 +264,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.7.0] — 2026-10-20
 
+> Os dados dos jogos mais novos foram conferidos com as tabelas do próprio jogo e vários erros foram corrigidos.
+
 ### Adicionado
 - **Black/White e Gens 6–9 com o núcleo conferido** (selo "Parcialmente verificado") pelas tabelas do próprio jogo extraídas
   pelo PKHeX (kwsch/PKHeX, GPL-3.0; fica em `data-sources/`): atributos, tipos, habilidades e golpes aprendidos por nível na
@@ -220,6 +275,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
   learnset do Scarlet/Violet (8 espécies).
 
 ## [0.6.0] — 2026-10-20
+
+> Black 2/White 2 passou a ser conferido no código do jogo.
 
 ### Adicionado
 - **Black 2 / White 2 conferidos no código do jogo** (selo "Verificado") pelo decomp fuddlesworth/pokebw2 (GPL-3.0; usado
@@ -238,6 +295,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.5.1] — 2026-10-19
 
+> O número de vitórias da tela inicial passou a contar todos os jogos.
+
 ### Corrigido
 - O número da tela inicial ("das sugestões vencem a troca") passa a contar todos os jogos do banco de lutas (10 jogos,
   12.348 sugestões); antes deixava de fora quem não tinha linha de base, como o Diamond/Pearl. A comparação antes/depois
@@ -245,6 +304,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 - A legenda dos selos mostra só os selos em uso (nenhum jogo é mais "Parcialmente verificado").
 
 ## [0.5.0] — 2026-10-19
+
+> Diamond/Pearl e HeartGold/SoulSilver foram conferidos no código do jogo, e a tela inicial passou a ser organizada por geração.
 
 ### Adicionado
 - **Diamond/Pearl e HeartGold/SoulSilver conferidos no código do jogo** (selo "Verificado"), lendo as partes que no decomp
@@ -272,6 +333,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.4.0] — 2026-10-18
 
+> Ficou mais fácil escolher o adversário (líderes, Elite, rival…), e o app mostra contra o que ele é fraco ou forte.
+
 ### Adicionado
 - Oponente por **categoria** (abas com contagem): Líderes, Líderes de Kanto, Elite dos Quatro, Campeão, Rival, grupos
   próprios do jogo (Equipe Aqua / Magma, Frontier Brains) e Outros treinadores — no lugar de um dropdown único.
@@ -288,6 +351,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 - Nomes em maiúsculas da Gen 3 ("BRENDAN") aparecem como "Brendan"; ¼× nos multiplicadores.
 
 ## [0.3.0] — 2026-10-18
+
+> Tela inicial nova: uma busca que acha jogos e líderes, atalhos para lutas famosas e um botão para continuar de onde você parou.
 
 Tela inicial nova, a partir das páginas de Linear, Vercel, Mobbin, SaaS UI e Atlassian Design (capturadas e analisadas; a
 do Stripe não carregou no tempo limite).
@@ -310,6 +375,8 @@ do Stripe não carregou no tempo limite).
 
 ## [0.2.0] — 2026-10-18
 
+> O app lembra o seu jogo e o seu progresso, mostra o quanto os dados são confiáveis e explica cada sugestão de forma mais clara.
+
 Interface redesenhada (referências: Linear, Vercel, Stripe, Mobbin, SaaSUI, Atlassian Design System). Motor e dados iguais.
 
 ### Adicionado
@@ -331,6 +398,8 @@ Interface redesenhada (referências: Linear, Vercel, Stripe, Mobbin, SaaSUI, Atl
 - Troca com NPC no HGSS: texto para o usuário ("o Pokémon que o NPC pede não está nos dados").
 
 ## [0.1.0] — 2026-10-17
+
+> Primeira versão: escolha o jogo e o adversário e receba 3 Pokémon sugeridos para vencer a luta.
 
 Primeira versão no repositório.
 

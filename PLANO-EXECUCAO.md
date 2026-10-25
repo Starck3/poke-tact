@@ -110,3 +110,8 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feito e validado · ⚠ parcial
   3. Motor: com fonte direta, `whereToGet`/`reachStage` não comparam com o caminho por evolução (achado na etapa 6).
   4. Fotos: Blackthorn (GS/Crystal) agora fica sem foto (o trecho dela só tinha fotos do Ice Path).
 - Nada ficou pela metade em branch: todas as etapas foram mescladas em `main` e publicadas.
+- **Validado pelo usuário em 2026-10-25** (0.24.0): 1. mantido (estágio do jogo original nos remakes); 2. corrigido — o
+  portão do guarda que pede bebida não liga a rota ao Saffron e o presente da Officer Jenny não fecha o Vermilion (Route 6
+  no 2 no Yellow e no Red/Blue); 3. corrigido — o motor compara a captura direta com o caminho pela evolução e a tela mostra
+  os dois; 4. Blackthorn com o mapa da cidade da Bulbapedia (o PokeMythology não tem foto dela nos jogos do GBC); 5. resumo
+  em linguagem simples em cada versão do painel Novidades.

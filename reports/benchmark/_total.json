@@ -9,21 +9,21 @@
   "turnsN": 10812
  },
  "depois": {
-  "wins": 10573,
+  "wins": 10646,
   "picks": 10818,
-  "covered": 3571,
+  "covered": 3588,
   "mons": 3606,
-  "comfy": 9913,
-  "turnsSum": 17105,
+  "comfy": 10066,
+  "turnsSum": 16814,
   "turnsN": 10818
  },
  "atual": {
-  "wins": 37615,
+  "wins": 37697,
   "picks": 37872,
-  "covered": 12589,
+  "covered": 12606,
   "mons": 12624,
-  "comfy": 36186,
-  "turnsSum": 52641,
+  "comfy": 36381,
+  "turnsSum": 51800,
   "turnsN": 37872,
   "games": [
    "red-blue",

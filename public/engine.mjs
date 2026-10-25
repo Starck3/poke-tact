@@ -323,7 +323,18 @@ export function reachLevel(data, acq, mon, version, seen = new Set()) {
     const src = acq.items?.[st.evo.param];
     return src ? Math.min(...src.map((x) => x.level ?? 1)) : acq.items ? Infinity : 1;
   });
-  return Math.max(Math.min(...w.direct.map(levelOf)), mon.minLevel ?? 1, ...itemLv);
+  const direct = Math.max(Math.min(...w.direct.map(levelOf)), mon.minLevel ?? 1, ...itemLv);
+  // com fonte direta, a pré-evolução pode sair mais cedo (capturar e evoluir): fica com o menor
+  const pre = evolutionAlternative(data, acq, mon, w);
+  if (!pre) return direct;
+  const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((x) => x.level ?? 1)) : acq.items ? Infinity : 1) : 1;
+  return Math.min(direct, Math.max(reachLevel(data, acq, pre, version, new Set(seen)), mon.minLevel ?? 1, evoItem));
+}
+
+/** Pré-evolução para comparar com a fonte direta (evolução possível no jogo e sem troca — troca exige outro cartucho). */
+function evolutionAlternative(data, acq, mon, w) {
+  if (!w.direct.length || w.from || !mon.evolvesFrom || mon.evo?.possible === false || /^TRADE/.test(mon.evo?.kind ?? '')) return null;
+  return data.pokemon.find((p) => p.id === mon.evolvesFrom && p.id !== mon.id) ?? null;
 }
 
 /** A rota até a espécie exige evolução por troca (outro cartucho)? Ex.: Steelix, Alakazam, Gengar. */
@@ -363,7 +374,12 @@ export function reachStage(data, acq, mon, version, seen = new Set()) {
     const src = acq.items?.[x.evo.param];
     return src ? Math.min(...src.map((i) => i.stage ?? 9)) : acq.items ? Infinity : 0; // sem lista de itens (PKHeX): não bloqueia
   });
-  return Math.max(Math.min(...w.direct.map(stageOf)), ...itemSt);
+  const direct = Math.max(Math.min(...w.direct.map(stageOf)), ...itemSt);
+  // com fonte direta, a pré-evolução pode sair mais cedo (ex.: capturar a forma anterior e evoluir): fica com o menor
+  const pre = evolutionAlternative(data, acq, mon, w);
+  if (!pre) return direct;
+  const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((i) => i.stage ?? 9)) : acq.items ? Infinity : 0) : 0;
+  return Math.min(direct, Math.max(reachStage(data, acq, pre, version, new Set(seen)), evoItem));
 }
 
 /**
@@ -424,7 +440,18 @@ export function catchReport(data, acq, mon, version) {
   const sorted = [...w.direct].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; });
   const lines = sorted.map((s) => ({ where: s.where, text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? Math.min(stageOf(s), post) : null, random: !!unreliableReason(s) }));
   const others = Object.keys(acq.versions).filter((v) => v !== version).map((v) => ({ version: v, count: whereToGet(data, acq, mon, v).direct.length })).filter((o) => o.count);
-  return { lines, from: w.from ?? null, steps: w.steps, events: w.events.map((s) => formatSources([s], 1)[0] ?? s.where), others, obtainable: !!mon.obtainable?.[version] };
+  // com fonte direta, mostra também o caminho pela evolução (capturar a forma anterior e evoluir) com o estágio dele
+  let alt = null;
+  const pre = evolutionAlternative(data, acq, mon, w);
+  const route = pre && preEvolutionRoute(data, acq, mon, version);
+  if (route) {
+    const parent = catchReport(data, acq, pre, version);
+    const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((i) => i.stage ?? post)) : acq.items ? Infinity : 0) : 0;
+    const stage = acq.progress ? Math.min(Math.max(reachStage(data, acq, pre, version), evoItem), post) : null;
+    const first = lines.length && acq.progress ? Math.min(...lines.map((l) => l.stage ?? post)) : null;
+    alt = { from: route.from, steps: route.steps, stage, earlier: stage != null && first != null && stage < first, lines: parent.lines.slice(0, 3), more: Math.max(parent.lines.length - 3, 0) };
+  }
+  return { lines, from: w.from ?? null, steps: w.steps, alt, events: w.events.map((s) => formatSources([s], 1)[0] ?? s.where), others, obtainable: !!mon.obtainable?.[version] };
 }
 
 const ITEM_HOW = { ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 'presente', gym: 'prêmio do líder', prize: 'prêmio' };

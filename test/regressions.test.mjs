@@ -1982,7 +1982,9 @@ test('fotos dos lugares (0.21.0): lugar só citado no texto ganha a foto cujo NO
   const gs = load('gold-silver-places.json').places;
   assert.match(gs['Ice Path B1F'].images[0], /icepath\d\.png/);
   assert.match(gs['Mount Mortar 1FInside'].images[0], /mtmortar\d\.png/);
-  assert.equal(gs['Blackthorn City'], undefined); // o trecho de Blackthorn só tem fotos do Ice Path
+  // o trecho de Blackthorn só tem fotos do Ice Path: nenhuma foto do detonado; desde 0.24.0 vem da Bulbapedia, com crédito
+  assert.ok(!gs['Blackthorn City'].images.some((u) => /pokemythology/.test(u)));
+  assert.equal(gs['Blackthorn City'].credit, 'Bulbapedia');
   assert.ok(!gs['Silver Cave Outside'].images.some((u) => /mtmortar/.test(u)));
   assert.ok(load('red-blue-places.json').places['Mt. Moon 1F'].images.some((u) => /mtmoon/.test(u)));
   assert.ok(!load('omega-ruby-alpha-sapphire-places.json').places['Mossdeep City'].images.some((u) => /shoalcave/.test(u)));
@@ -2228,4 +2230,32 @@ test('HGSS (0.22.0): evolução por lugar não existe (MapHeader_GetMapEvolution
   assert.ok(a.items.FIRE_STONE.some((s) => /— terça$/.test(s.by)));
   assert.ok(a.items.SUN_STONE.every((s) => s.stage === 9)); // só depois da Pokédex Nacional
   assert.ok(d.pokemon.find((p) => p.name === 'jolteon').obtainable.heartgold);
+});
+
+test('Gen 1 (0.24.0): Route 6 no estágio 2 — portão do guarda que pede bebida não liga a rota ao Saffron; presente da Officer Jenny não fecha o Vermilion', () => {
+  for (const g of ['yellow', 'red-blue']) {
+    const m = load(`${g}-acquisition.json`).progress.maps;
+    assert.equal(m.ROUTE_6.stage, 2, g);
+    assert.equal(m.VERMILION_CITY.stage, 2, g); // Yellow: a Thunder Badge do script só libera o Squirtle (EVENT_GOT_SQUIRTLE…)
+    assert.ok(m.SAFFRON_CITY.stage >= 3, g);
+  }
+});
+
+test('onde obter (0.24.0): com captura direta, compara com o caminho pela evolução e mostra os dois', async () => {
+  const { reachStage, catchReport } = await import('../public/engine.mjs');
+  const d = load('red-blue.json'), a = load('red-blue-acquisition.json');
+  const raticate = d.pokemon.find((p) => p.name === 'raticate');
+  // direto só no estágio 3; Rattata na Route 1 (estágio 0) e evolui no nv 20
+  assert.equal(reachStage(d, a, raticate, 'red'), 0);
+  const r = catchReport(d, a, raticate, 'red');
+  assert.ok(r.lines.length && r.alt && r.alt.from === 'rattata' && r.alt.stage === 0 && r.alt.earlier);
+  // evolução por troca não entra como alternativa (exige outro cartucho)
+  const alakazam = d.pokemon.find((p) => p.name === 'alakazam');
+  assert.equal(catchReport(d, a, alakazam, 'red').alt, null);
+});
+
+test('Novidades (0.24.0): toda versão tem o resumo em linguagem simples ("> …" abaixo do título)', () => {
+  const versions = load('changelog.json');
+  assert.ok(versions.length >= 25);
+  for (const v of versions) assert.ok(v.summary && v.summary.length < 260, v.version);
 });

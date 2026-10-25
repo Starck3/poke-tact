@@ -86,6 +86,12 @@ for (const where of [...all].sort()) {
   places[where] = { section: hit[0].sec.full ?? hit[0].sec.title, by: 'arquivo', images: [...new Set(hit.map((x) => x.u))].slice(0, 4) };
   found++; byFile++;
 }
+// lugar sem nenhuma foto no detonado: imagem de outra fonte, por referência e com crédito (só quando o detonado não tem).
+// Blackthorn (GS/Crystal): o trecho do detonado só tem fotos do Ice Path (tiradas acima) e o PokeMythology não tem foto da
+// cidade nesses jogos — o mapa da cidade da Bulbapedia (Blackthorn_City_GSC.png), conferido a olho: ginásio, lago, Mart, PC
+const BULBA_BLACKTHORN = { section: 'Blackthorn City', by: 'outra fonte', credit: 'Bulbapedia', page: 'https://bulbapedia.bulbagarden.net/wiki/Blackthorn_City', images: ['https://archives.bulbagarden.net/media/upload/f/fa/Blackthorn_City_GSC.png'] };
+const EXTRA = { 'gold-silver': { 'Blackthorn City': BULBA_BLACKTHORN }, crystal: { 'Blackthorn City': BULBA_BLACKTHORN } };
+for (const [where, p] of Object.entries(EXTRA[gameId] ?? {})) if (all.has(where) && !places[where]) { places[where] = p; found++; }
 writeFileSync(new URL(`../public/data/${gameId}-places.json`, import.meta.url), JSON.stringify({
   source: `PokeMythology ${game.walkthrough}`, page: PAGE,
   credit: 'Imagens do detonado do PokeMythology (pokemythology.net), exibidas a partir do site deles.', places,

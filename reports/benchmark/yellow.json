@@ -4,11 +4,11 @@
   "fights": 28,
   "depois": {
    "mons": 120,
-   "covered": 109,
-   "wins": 319,
+   "covered": 118,
+   "wins": 343,
    "picks": 360,
-   "comfy": 301,
-   "turnsSum": 626,
+   "comfy": 307,
+   "turnsSum": 593,
    "turnsN": 360
   },
   "antes": {
@@ -20,7 +20,7 @@
    "turnsSum": 644,
    "turnsN": 360
   },
-  "semVencedorPossivel": 11
+  "semVencedorPossivel": 2
  },
  "fights": [
   {
@@ -379,42 +379,42 @@
       "fury-swipes"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 3,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 3,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "slash"
-      },
-      {
-       "mon": "butterfree",
-       "move": "psybeam",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 4,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "slash"
-      },
-      {
-       "mon": "spearow",
+       "mon": "fearow",
        "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "primeape",
+       "move": "seismic-toss",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "raticate",
+       "move": "hyper-fang",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
        "myTurns": 4,
-       "theirTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "slash"
       }
@@ -458,10 +458,22 @@
       "poison-powder",
       "solar-beam"
      ],
-     "superEffectiveAvailable": 4,
-     "winnersAvailable": 9,
-     "candidates": 11,
+     "superEffectiveAvailable": 5,
+     "winnersAvailable": 14,
+     "candidates": 16,
      "picks": [
+      {
+       "mon": "fearow",
+       "move": "drill-peck",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "solar-beam"
+      },
       {
        "mon": "butterfree",
        "move": "psybeam",
@@ -475,26 +487,14 @@
        "theirMove": "solar-beam"
       },
       {
-       "mon": "spearow",
-       "move": "drill-peck",
-       "eff": 2,
+       "mon": "primeape",
+       "move": "thrash",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
-       "mon": "pidgeot",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 12,
        "faster": 1,
        "theirMove": "solar-beam"
       }
@@ -539,43 +539,43 @@
       "roar"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 1,
-     "candidates": 11,
+     "winnersAvailable": 4,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "pidgeot",
-       "move": "gust",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 4,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "ember"
-      },
-      {
-       "mon": "spearow",
+       "mon": "fearow",
        "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
-       "myTurns": 3,
-       "theirTurns": 3,
-       "faster": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 1,
        "theirMove": "ember"
       },
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
+       "mon": "primeape",
+       "move": "thrash",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
        "myTurns": 3,
-       "theirTurns": 3,
-       "faster": 0,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "ember"
+      },
+      {
+       "mon": "raticate",
+       "move": "hyper-fang",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
+       "faster": 1,
        "theirMove": "ember"
       }
      ],
@@ -618,9 +618,9 @@
       "clamp",
       "aurora-beam"
      ],
-     "superEffectiveAvailable": 4,
-     "winnersAvailable": 1,
-     "candidates": 11,
+     "superEffectiveAvailable": 7,
+     "winnersAvailable": 2,
+     "candidates": 16,
      "picks": [
       {
        "mon": "pikachu",
@@ -635,26 +635,26 @@
        "theirMove": "aurora-beam"
       },
       {
-       "mon": "mankey",
+       "mon": "primeape",
        "move": "seismic-toss",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
        "myTurns": 3,
-       "theirTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
        "theirMove": "aurora-beam"
       },
       {
-       "mon": "butterfree",
-       "move": "psybeam",
-       "eff": 1,
+       "mon": "nidorino",
+       "move": "double-kick",
+       "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
        "myTurns": 4,
-       "theirTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
        "theirMove": "aurora-beam"
       }
@@ -699,42 +699,42 @@
       "reflect"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 1,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "rattata",
+       "mon": "fearow",
+       "move": "drill-peck",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "primeape",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": false,
+       "myTurns": 1,
+       "theirTurns": 1,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "raticate",
        "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
        "myTurns": 2,
-       "theirTurns": 1,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "spearow",
-       "move": "drill-peck",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 2,
-       "theirTurns": 1,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "mankey",
-       "move": "thrash",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 2,
-       "theirTurns": 1,
+       "theirTurns": 2,
        "faster": 0,
        "theirMove": "psychic"
       }
@@ -780,40 +780,40 @@
      ],
      "superEffectiveAvailable": 0,
      "winnersAvailable": 0,
-     "candidates": 11,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 3,
-       "theirTurns": 1,
-       "faster": 0,
-       "theirMove": "thunder"
-      },
-      {
-       "mon": "rattata",
+       "mon": "raticate",
        "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
-       "myTurns": 4,
-       "theirTurns": 1,
+       "myTurns": 3,
+       "theirTurns": 2,
        "faster": 0,
        "theirMove": "thunder"
       },
       {
-       "mon": "pikachu",
-       "move": "slam",
+       "mon": "primeape",
+       "move": "thrash",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
-       "myTurns": 6,
+       "myTurns": 3,
+       "theirTurns": 2,
+       "faster": 0,
+       "theirMove": "thunder"
+      },
+      {
+       "mon": "nidorina",
+       "move": "double-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": false,
+       "myTurns": 5,
        "theirTurns": 2,
        "faster": 0,
        "theirMove": "thunder"
@@ -870,42 +870,42 @@
       "fury-swipes"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 3,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 3,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "slash"
-      },
-      {
-       "mon": "butterfree",
-       "move": "psybeam",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 4,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "slash"
-      },
-      {
-       "mon": "spearow",
+       "mon": "fearow",
        "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "primeape",
+       "move": "seismic-toss",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "raticate",
+       "move": "hyper-fang",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
        "myTurns": 4,
-       "theirTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "slash"
       }
@@ -949,10 +949,22 @@
       "poison-powder",
       "solar-beam"
      ],
-     "superEffectiveAvailable": 4,
-     "winnersAvailable": 9,
-     "candidates": 11,
+     "superEffectiveAvailable": 5,
+     "winnersAvailable": 14,
+     "candidates": 16,
      "picks": [
+      {
+       "mon": "fearow",
+       "move": "drill-peck",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "solar-beam"
+      },
       {
        "mon": "butterfree",
        "move": "psybeam",
@@ -966,26 +978,14 @@
        "theirMove": "solar-beam"
       },
       {
-       "mon": "spearow",
-       "move": "drill-peck",
-       "eff": 2,
+       "mon": "primeape",
+       "move": "thrash",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
-       "mon": "pidgeot",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 12,
        "faster": 1,
        "theirMove": "solar-beam"
       }
@@ -1029,9 +1029,9 @@
       "clamp",
       "aurora-beam"
      ],
-     "superEffectiveAvailable": 4,
-     "winnersAvailable": 1,
-     "candidates": 11,
+     "superEffectiveAvailable": 7,
+     "winnersAvailable": 2,
+     "candidates": 16,
      "picks": [
       {
        "mon": "pikachu",
@@ -1046,26 +1046,26 @@
        "theirMove": "aurora-beam"
       },
       {
-       "mon": "mankey",
+       "mon": "primeape",
        "move": "seismic-toss",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
        "myTurns": 3,
-       "theirTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "aurora-beam"
       },
       {
-       "mon": "butterfree",
-       "move": "psybeam",
+       "mon": "raticate",
+       "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
        "myTurns": 4,
-       "theirTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
        "theirMove": "aurora-beam"
       }
@@ -1110,42 +1110,42 @@
       "swift"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 2,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "mankey",
+       "mon": "primeape",
        "move": "seismic-toss",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
        "myTurns": 3,
-       "theirTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "butterfree",
-       "move": "psybeam",
+       "mon": "raticate",
+       "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
-       "myTurns": 5,
+       "win": true,
+       "myTurns": 3,
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "rattata",
-       "move": "hyper-fang",
+       "mon": "nidorino",
+       "move": "horn-attack",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
-       "myTurns": 4,
-       "theirTurns": 2,
+       "myTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "thunder-shock"
       }
@@ -1190,42 +1190,42 @@
       "reflect"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 1,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "rattata",
+       "mon": "fearow",
+       "move": "drill-peck",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "primeape",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": false,
+       "myTurns": 1,
+       "theirTurns": 1,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "raticate",
        "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
        "myTurns": 2,
-       "theirTurns": 1,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "spearow",
-       "move": "drill-peck",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 2,
-       "theirTurns": 1,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "mankey",
-       "move": "thrash",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 2,
-       "theirTurns": 1,
+       "theirTurns": 2,
        "faster": 0,
        "theirMove": "psychic"
       }
@@ -1270,41 +1270,41 @@
       "flamethrower"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 1,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "spearow",
+       "mon": "fearow",
        "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
-       "myTurns": 3,
-       "theirTurns": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 2,
        "faster": 1,
        "theirMove": "flamethrower"
       },
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
+       "mon": "primeape",
+       "move": "thrash",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
        "myTurns": 3,
-       "theirTurns": 1,
+       "theirTurns": 2,
        "faster": 1,
        "theirMove": "flamethrower"
       },
       {
-       "mon": "rattata",
+       "mon": "raticate",
        "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
-       "myTurns": 4,
+       "myTurns": 3,
        "theirTurns": 1,
        "faster": 1,
        "theirMove": "flamethrower"
@@ -1361,42 +1361,42 @@
       "fury-swipes"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 3,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 3,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "slash"
-      },
-      {
-       "mon": "butterfree",
-       "move": "psybeam",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 4,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "slash"
-      },
-      {
-       "mon": "spearow",
+       "mon": "fearow",
        "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "primeape",
+       "move": "seismic-toss",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "slash"
+      },
+      {
+       "mon": "raticate",
+       "move": "hyper-fang",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
        "myTurns": 4,
-       "theirTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "slash"
       }
@@ -1440,10 +1440,22 @@
       "poison-powder",
       "solar-beam"
      ],
-     "superEffectiveAvailable": 4,
-     "winnersAvailable": 9,
-     "candidates": 11,
+     "superEffectiveAvailable": 5,
+     "winnersAvailable": 14,
+     "candidates": 16,
      "picks": [
+      {
+       "mon": "fearow",
+       "move": "drill-peck",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "solar-beam"
+      },
       {
        "mon": "butterfree",
        "move": "psybeam",
@@ -1457,26 +1469,14 @@
        "theirMove": "solar-beam"
       },
       {
-       "mon": "spearow",
-       "move": "drill-peck",
-       "eff": 2,
+       "mon": "primeape",
+       "move": "thrash",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
-       "mon": "pidgeot",
-       "move": "wing-attack",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 12,
        "faster": 1,
        "theirMove": "solar-beam"
       }
@@ -1521,42 +1521,42 @@
       "thunder-wave"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 3,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "rattata",
-       "move": "hyper-fang",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 3,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "thunder-shock"
-      },
-      {
-       "mon": "mankey",
+       "mon": "primeape",
        "move": "seismic-toss",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
        "myTurns": 3,
-       "theirTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "pikachu",
-       "move": "slam",
+       "mon": "raticate",
+       "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
-       "myTurns": 6,
-       "theirTurns": 5,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "nidorino",
+       "move": "horn-attack",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 4,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "thunder-shock"
       }
@@ -1601,42 +1601,42 @@
       "roar"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 1,
-     "candidates": 11,
+     "winnersAvailable": 4,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "pidgeot",
-       "move": "gust",
+       "mon": "fearow",
+       "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 5,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "ember"
       },
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
+       "mon": "raticate",
+       "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
+       "win": true,
        "myTurns": 3,
-       "theirTurns": 3,
-       "faster": 0,
+       "theirTurns": 4,
+       "faster": 1,
        "theirMove": "ember"
       },
       {
-       "mon": "pikachu",
-       "move": "thunderbolt",
+       "mon": "primeape",
+       "move": "thrash",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
-       "win": false,
-       "myTurns": 4,
-       "theirTurns": 3,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "ember"
       }
@@ -1681,42 +1681,42 @@
       "reflect"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 0,
-     "candidates": 11,
+     "winnersAvailable": 1,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "rattata",
+       "mon": "fearow",
+       "move": "drill-peck",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "primeape",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": false,
+       "myTurns": 1,
+       "theirTurns": 1,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "raticate",
        "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
        "myTurns": 2,
-       "theirTurns": 1,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "spearow",
-       "move": "drill-peck",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 2,
-       "theirTurns": 1,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "mankey",
-       "move": "thrash",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": false,
-       "myTurns": 2,
-       "theirTurns": 1,
+       "theirTurns": 2,
        "faster": 0,
        "theirMove": "psychic"
       }
@@ -1762,35 +1762,35 @@
      ],
      "superEffectiveAvailable": 1,
      "winnersAvailable": 0,
-     "candidates": 11,
+     "candidates": 16,
      "picks": [
       {
-       "mon": "spearow",
+       "mon": "fearow",
        "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
-       "myTurns": 4,
-       "theirTurns": 1,
+       "myTurns": 3,
+       "theirTurns": 2,
        "faster": 1,
        "theirMove": "hydro-pump"
       },
       {
-       "mon": "pikachu",
-       "move": "thunderbolt",
-       "eff": 2,
+       "mon": "primeape",
+       "move": "thrash",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": false,
        "myTurns": 4,
-       "theirTurns": 1,
+       "theirTurns": 2,
        "faster": 1,
        "theirMove": "hydro-pump"
       },
       {
-       "mon": "mankey",
-       "move": "seismic-toss",
+       "mon": "raticate",
+       "move": "hyper-fang",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
@@ -1938,10 +1938,22 @@
       "tackle",
       "water-gun"
      ],
-     "superEffectiveAvailable": 5,
-     "winnersAvailable": 23,
-     "candidates": 29,
+     "superEffectiveAvailable": 7,
+     "winnersAvailable": 30,
+     "candidates": 36,
      "picks": [
+      {
+       "mon": "gyarados",
+       "move": "bite",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 16,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
       {
        "mon": "ivysaur",
        "move": "vine-whip",
@@ -1955,26 +1967,14 @@
        "theirMove": "tackle"
       },
       {
-       "mon": "clefable",
-       "move": "mega-punch",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 0,
-       "theirMove": "water-gun"
-      },
-      {
-       "mon": "bellsprout",
+       "mon": "weepinbell",
        "move": "vine-whip",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 8,
+       "theirTurns": 10,
        "faster": 0,
        "theirMove": "tackle"
       }
@@ -2018,10 +2018,34 @@
       "harden",
       "bubble-beam"
      ],
-     "superEffectiveAvailable": 5,
-     "winnersAvailable": 3,
-     "candidates": 29,
+     "superEffectiveAvailable": 7,
+     "winnersAvailable": 6,
+     "candidates": 36,
      "picks": [
+      {
+       "mon": "weepinbell",
+       "move": "vine-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "bubble-beam"
+      },
+      {
+       "mon": "gyarados",
+       "move": "bite",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 4,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "bubble-beam"
+      },
       {
        "mon": "ivysaur",
        "move": "vine-whip",
@@ -2031,30 +2055,6 @@
        "win": true,
        "myTurns": 4,
        "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "bubble-beam"
-      },
-      {
-       "mon": "clefable",
-       "move": "seismic-toss",
-       "eff": 0.5,
-       "via": "machine",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "bubble-beam"
-      },
-      {
-       "mon": "bellsprout",
-       "move": "vine-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 4,
-       "theirTurns": 5,
        "faster": 0,
        "theirMove": "bubble-beam"
       }
@@ -2110,8 +2110,8 @@
       "fury-attack"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 14,
-     "candidates": 26,
+     "winnersAvailable": 17,
+     "candidates": 30,
      "picks": [
       {
        "mon": "geodude",
@@ -2187,9 +2187,9 @@
       "scratch",
       "sand-attack"
      ],
-     "superEffectiveAvailable": 10,
-     "winnersAvailable": 22,
-     "candidates": 26,
+     "superEffectiveAvailable": 11,
+     "winnersAvailable": 26,
+     "candidates": 30,
      "picks": [
       {
        "mon": "ivysaur",
@@ -2267,9 +2267,9 @@
       "quick-attack",
       "hyper-fang"
      ],
-     "superEffectiveAvailable": 7,
-     "winnersAvailable": 20,
-     "candidates": 26,
+     "superEffectiveAvailable": 8,
+     "winnersAvailable": 24,
+     "candidates": 30,
      "picks": [
       {
        "mon": "nidoqueen",
@@ -2347,9 +2347,9 @@
       "sand-attack",
       "growl"
      ],
-     "superEffectiveAvailable": 8,
-     "winnersAvailable": 23,
-     "candidates": 27,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 27,
+     "candidates": 31,
      "picks": [
       {
        "mon": "geodude",
@@ -2438,31 +2438,31 @@
       "mega-kick",
       "growl"
      ],
-     "superEffectiveAvailable": 2,
-     "winnersAvailable": 5,
-     "candidates": 31,
+     "superEffectiveAvailable": 6,
+     "winnersAvailable": 9,
+     "candidates": 43,
      "picks": [
       {
-       "mon": "geodude",
+       "mon": "graveler",
        "move": "dig",
        "eff": 2,
        "via": "machine",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 6,
+       "theirTurns": 8,
        "faster": 0,
        "theirMove": "mega-kick"
       },
       {
-       "mon": "sandshrew",
+       "mon": "sandslash",
        "move": "dig",
        "eff": 2,
        "via": "machine",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 3,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "mega-kick"
       },
@@ -2530,9 +2530,33 @@
       "fury-attack"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 21,
-     "candidates": 30,
+     "winnersAvailable": 25,
+     "candidates": 35,
      "picks": [
+      {
+       "mon": "wigglytuff",
+       "move": "body-slam",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "fury-attack"
+      },
+      {
+       "mon": "gyarados",
+       "move": "body-slam",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "fury-attack"
+      },
       {
        "mon": "clefable",
        "move": "body-slam",
@@ -2543,30 +2567,6 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "geodude",
-       "move": "rock-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "raticate",
-       "move": "body-slam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
        "theirMove": "fury-attack"
       }
      ],
@@ -2609,9 +2609,9 @@
       "quick-attack",
       "hyper-fang"
      ],
-     "superEffectiveAvailable": 7,
-     "winnersAvailable": 28,
-     "candidates": 30,
+     "superEffectiveAvailable": 8,
+     "winnersAvailable": 33,
+     "candidates": 35,
      "picks": [
       {
        "mon": "nidoqueen",
@@ -2638,15 +2638,15 @@
        "theirMove": "hyper-fang"
       },
       {
-       "mon": "geodude",
-       "move": "body-slam",
+       "mon": "gyarados",
+       "move": "bubble-beam",
        "eff": 1,
        "via": "machine",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
+       "theirTurns": 6,
+       "faster": 1,
        "theirMove": "hyper-fang"
       }
      ],
@@ -2688,9 +2688,9 @@
       "sand-attack",
       "slash"
      ],
-     "superEffectiveAvailable": 12,
-     "winnersAvailable": 22,
-     "candidates": 30,
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 26,
+     "candidates": 35,
      "picks": [
       {
        "mon": "nidoqueen",
@@ -2768,9 +2768,9 @@
       "sand-attack",
       "growl"
      ],
-     "superEffectiveAvailable": 8,
-     "winnersAvailable": 24,
-     "candidates": 31,
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 28,
+     "candidates": 36,
      "picks": [
       {
        "mon": "nidoqueen",
@@ -2859,10 +2859,22 @@
       "mega-drain",
       "vine-whip"
      ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 35,
-     "candidates": 50,
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 46,
+     "candidates": 64,
      "picks": [
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 20,
+       "faster": 1,
+       "theirMove": "mega-drain"
+      },
       {
        "mon": "victreebel",
        "move": "acid",
@@ -2885,18 +2897,6 @@
        "myTurns": 4,
        "theirTurns": 26,
        "faster": 1,
-       "theirMove": "mega-drain"
-      },
-      {
-       "mon": "gloom",
-       "move": "acid",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 18,
-       "faster": 0,
        "theirMove": "mega-drain"
       }
      ],
@@ -2939,43 +2939,43 @@
       "stun-spore",
       "acid"
      ],
-     "superEffectiveAvailable": 18,
-     "winnersAvailable": 28,
-     "candidates": 49,
+     "superEffectiveAvailable": 24,
+     "winnersAvailable": 38,
+     "candidates": 63,
      "picks": [
       {
-       "mon": "doduo",
+       "mon": "dodrio",
        "move": "drill-peck",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "acid"
-      },
-      {
-       "mon": "fearow",
-       "move": "fly",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
        "theirTurns": 5,
        "faster": 1,
        "theirMove": "acid"
       },
       {
-       "mon": "nidoqueen",
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
+       "theirMove": "acid"
+      },
+      {
+       "mon": "gyarados",
        "move": "ice-beam",
        "eff": 2,
        "via": "machine",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 5,
+       "theirTurns": 6,
        "faster": 1,
        "theirMove": "razor-leaf"
       }
@@ -3019,19 +3019,31 @@
       "sleep-powder",
       "acid"
      ],
-     "superEffectiveAvailable": 20,
-     "winnersAvailable": 28,
-     "candidates": 49,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 37,
+     "candidates": 63,
      "picks": [
       {
-       "mon": "doduo",
+       "mon": "dodrio",
        "move": "drill-peck",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 3,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "petal-dance"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "petal-dance"
       },
@@ -3040,19 +3052,7 @@
        "move": "take-down",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "petal-dance"
-      },
-      {
-       "mon": "hypno",
-       "move": "confusion",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
@@ -3108,8 +3108,8 @@
       "flash"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 69,
-     "candidates": 69,
+     "winnersAvailable": 79,
+     "candidates": 79,
      "picks": [
       {
        "mon": "charizard",
@@ -3140,7 +3140,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": null,
@@ -3188,8 +3188,8 @@
       "psywave"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 25,
-     "candidates": 69,
+     "winnersAvailable": 30,
+     "candidates": 79,
      "picks": [
       {
        "mon": "hypno",
@@ -3268,9 +3268,21 @@
       "reflect"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 14,
-     "candidates": 70,
+     "winnersAvailable": 17,
+     "candidates": 80,
      "picks": [
+      {
+       "mon": "gyarados",
+       "move": "hyper-beam",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
       {
        "mon": "snorlax",
        "move": "hyper-beam",
@@ -3292,18 +3304,6 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "pidgeot",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
        "faster": 0,
        "theirMove": "psychic"
       }
@@ -3358,10 +3358,22 @@
       "fury-attack",
       "mirror-move"
      ],
-     "superEffectiveAvailable": 25,
-     "winnersAvailable": 40,
-     "candidates": 62,
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 45,
+     "candidates": 67,
      "picks": [
+      {
+       "mon": "graveler",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "fury-attack"
+      },
       {
        "mon": "haunter",
        "move": "thunderbolt",
@@ -3383,18 +3395,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "snorlax",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
        "faster": 0,
        "theirMove": "fury-attack"
       }
@@ -3438,16 +3438,16 @@
       "supersonic",
       "clamp"
      ],
-     "superEffectiveAvailable": 32,
-     "winnersAvailable": 60,
-     "candidates": 63,
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 64,
+     "candidates": 68,
      "picks": [
       {
        "mon": "raticate",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 8,
@@ -3459,7 +3459,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 10,
@@ -3471,7 +3471,7 @@
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 9,
@@ -3518,14 +3518,26 @@
       "quick-attack",
       "roar"
      ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 58,
-     "candidates": 62,
+     "superEffectiveAvailable": 18,
+     "winnersAvailable": 63,
+     "candidates": 67,
      "picks": [
       {
        "mon": "fearow",
        "move": "hyper-beam",
        "eff": 1,
+       "via": "machine",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "ember"
+      },
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 2,
        "via": "machine",
        "stageNeeded": 1,
        "win": true,
@@ -3543,18 +3555,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "ember"
-      },
-      {
-       "mon": "nidoking",
-       "move": "earthquake",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
        "faster": 1,
        "theirMove": "ember"
       }
@@ -3597,9 +3597,9 @@
       "sand-attack",
       "slash"
      ],
-     "superEffectiveAvailable": 26,
-     "winnersAvailable": 60,
-     "candidates": 62,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 65,
+     "candidates": 67,
      "picks": [
       {
        "mon": "ivysaur",
@@ -3630,7 +3630,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -3678,18 +3678,30 @@
       "quick-attack"
      ],
      "superEffectiveAvailable": 11,
-     "winnersAvailable": 60,
-     "candidates": 62,
+     "winnersAvailable": 65,
+     "candidates": 67,
      "picks": [
       {
        "mon": "fearow",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
        "faster": 1,
        "theirMove": "quick-attack"
       },
@@ -3702,18 +3714,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "pinsir",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 8,
        "faster": 1,
        "theirMove": "quick-attack"
       }
@@ -3768,10 +3768,22 @@
       "fury-attack",
       "mirror-move"
      ],
-     "superEffectiveAvailable": 25,
-     "winnersAvailable": 40,
-     "candidates": 62,
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 45,
+     "candidates": 67,
      "picks": [
+      {
+       "mon": "graveler",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "fury-attack"
+      },
       {
        "mon": "haunter",
        "move": "thunderbolt",
@@ -3793,18 +3805,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "snorlax",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
        "faster": 0,
        "theirMove": "fury-attack"
       }
@@ -3846,16 +3846,16 @@
       "tackle",
       "sonic-boom"
      ],
-     "superEffectiveAvailable": 14,
-     "winnersAvailable": 59,
-     "candidates": 62,
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 64,
+     "candidates": 67,
      "picks": [
       {
        "mon": "wigglytuff",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -3925,9 +3925,9 @@
       "withdraw",
       "supersonic"
      ],
-     "superEffectiveAvailable": 32,
-     "winnersAvailable": 61,
-     "candidates": 63,
+     "superEffectiveAvailable": 35,
+     "winnersAvailable": 66,
+     "candidates": 68,
      "picks": [
       {
        "mon": "ivysaur",
@@ -3946,7 +3946,7 @@
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 9,
@@ -3958,7 +3958,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 11,
@@ -4004,9 +4004,9 @@
       "sand-attack",
       "slash"
      ],
-     "superEffectiveAvailable": 26,
-     "winnersAvailable": 60,
-     "candidates": 62,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 65,
+     "candidates": 67,
      "picks": [
       {
        "mon": "ivysaur",
@@ -4037,7 +4037,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -4085,18 +4085,30 @@
       "quick-attack"
      ],
      "superEffectiveAvailable": 11,
-     "winnersAvailable": 60,
-     "candidates": 62,
+     "winnersAvailable": 65,
+     "candidates": 67,
      "picks": [
       {
        "mon": "fearow",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
        "faster": 1,
        "theirMove": "quick-attack"
       },
@@ -4109,18 +4121,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "pinsir",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 8,
        "faster": 1,
        "theirMove": "quick-attack"
       }
@@ -4175,10 +4175,22 @@
       "fury-attack",
       "mirror-move"
      ],
-     "superEffectiveAvailable": 25,
-     "winnersAvailable": 40,
-     "candidates": 62,
+     "superEffectiveAvailable": 28,
+     "winnersAvailable": 45,
+     "candidates": 67,
      "picks": [
+      {
+       "mon": "graveler",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "fury-attack"
+      },
       {
        "mon": "haunter",
        "move": "thunderbolt",
@@ -4200,18 +4212,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "fury-attack"
-      },
-      {
-       "mon": "snorlax",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
        "faster": 0,
        "theirMove": "fury-attack"
       }
@@ -4255,9 +4255,9 @@
       "quick-attack",
       "roar"
      ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 58,
-     "candidates": 62,
+     "superEffectiveAvailable": 18,
+     "winnersAvailable": 63,
+     "candidates": 67,
      "picks": [
       {
        "mon": "nidoqueen",
@@ -4333,16 +4333,16 @@
       "tackle",
       "sonic-boom"
      ],
-     "superEffectiveAvailable": 15,
-     "winnersAvailable": 60,
-     "candidates": 62,
+     "superEffectiveAvailable": 17,
+     "winnersAvailable": 65,
+     "candidates": 67,
      "picks": [
       {
        "mon": "wigglytuff",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -4412,9 +4412,9 @@
       "sand-attack",
       "slash"
      ],
-     "superEffectiveAvailable": 26,
-     "winnersAvailable": 60,
-     "candidates": 62,
+     "superEffectiveAvailable": 29,
+     "winnersAvailable": 65,
+     "candidates": 67,
      "picks": [
       {
        "mon": "ivysaur",
@@ -4445,7 +4445,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -4493,18 +4493,30 @@
       "quick-attack"
      ],
      "superEffectiveAvailable": 11,
-     "winnersAvailable": 60,
-     "candidates": 62,
+     "winnersAvailable": 65,
+     "candidates": 67,
      "picks": [
       {
        "mon": "fearow",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 1,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 9,
        "faster": 1,
        "theirMove": "quick-attack"
       },
@@ -4517,18 +4529,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "pinsir",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 8,
        "faster": 1,
        "theirMove": "quick-attack"
       }
@@ -4583,10 +4583,22 @@
       "poison-sting",
       "swift"
      ],
-     "superEffectiveAvailable": 29,
-     "winnersAvailable": 50,
-     "candidates": 70,
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 59,
+     "candidates": 79,
      "picks": [
+      {
+       "mon": "gyarados",
+       "move": "bubble-beam",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "slash"
+      },
       {
        "mon": "vaporeon",
        "move": "bubble-beam",
@@ -4610,18 +4622,6 @@
        "theirTurns": 47,
        "faster": 1,
        "theirMove": "poison-sting"
-      },
-      {
-       "mon": "lapras",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "slash"
       }
      ],
      "before": [
@@ -4663,9 +4663,9 @@
       "quick-attack",
       "roar"
      ],
-     "superEffectiveAvailable": 17,
-     "winnersAvailable": 51,
-     "candidates": 69,
+     "superEffectiveAvailable": 23,
+     "winnersAvailable": 60,
+     "candidates": 79,
      "picks": [
       {
        "mon": "charizard",
@@ -4743,9 +4743,9 @@
       "clamp",
       "aurora-beam"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 36,
-     "candidates": 70,
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 40,
+     "candidates": 80,
      "picks": [
       {
        "mon": "lapras",
@@ -4760,7 +4760,7 @@
        "theirMove": "aurora-beam"
       },
       {
-       "mon": "jolteon",
+       "mon": "magneton",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
@@ -4772,14 +4772,14 @@
        "theirMove": "aurora-beam"
       },
       {
-       "mon": "haunter",
+       "mon": "jolteon",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 4,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "aurora-beam"
       }
@@ -4824,8 +4824,8 @@
       "recover"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 46,
-     "candidates": 69,
+     "winnersAvailable": 56,
+     "candidates": 79,
      "picks": [
       {
        "mon": "hypno",
@@ -4852,11 +4852,11 @@
        "theirMove": "psybeam"
       },
       {
-       "mon": "lapras",
+       "mon": "gyarados",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -4903,9 +4903,9 @@
       "double-kick",
       "pin-missile"
      ],
-     "superEffectiveAvailable": 12,
-     "winnersAvailable": 25,
-     "candidates": 69,
+     "superEffectiveAvailable": 17,
+     "winnersAvailable": 33,
+     "candidates": 79,
      "picks": [
       {
        "mon": "sandshrew",
@@ -4932,16 +4932,16 @@
        "theirMove": "pin-missile"
       },
       {
-       "mon": "nidoking",
+       "mon": "marowak",
        "move": "earthquake",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 4,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "pin-missile"
+       "theirMove": "double-kick"
       }
      ],
      "before": [
@@ -4994,10 +4994,22 @@
       "poison-sting",
       "swift"
      ],
-     "superEffectiveAvailable": 29,
-     "winnersAvailable": 50,
-     "candidates": 70,
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 59,
+     "candidates": 79,
      "picks": [
+      {
+       "mon": "gyarados",
+       "move": "bubble-beam",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "slash"
+      },
       {
        "mon": "vaporeon",
        "move": "bubble-beam",
@@ -5021,18 +5033,6 @@
        "theirTurns": 47,
        "faster": 1,
        "theirMove": "poison-sting"
-      },
-      {
-       "mon": "lapras",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "slash"
       }
      ],
      "before": [
@@ -5074,10 +5074,22 @@
       "clamp",
       "aurora-beam"
      ],
-     "superEffectiveAvailable": 47,
-     "winnersAvailable": 38,
-     "candidates": 70,
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 43,
+     "candidates": 80,
      "picks": [
+      {
+       "mon": "gyarados",
+       "move": "thunderbolt",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "aurora-beam"
+      },
       {
        "mon": "lapras",
        "move": "thunderbolt",
@@ -5091,7 +5103,7 @@
        "theirMove": "clamp"
       },
       {
-       "mon": "jolteon",
+       "mon": "magneton",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
@@ -5099,18 +5111,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "aurora-beam"
-      },
-      {
-       "mon": "haunter",
-       "move": "thunderbolt",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
        "faster": 1,
        "theirMove": "aurora-beam"
       }
@@ -5154,10 +5154,22 @@
       "thunder-shock",
       "supersonic"
      ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 51,
-     "candidates": 70,
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 60,
+     "candidates": 79,
      "picks": [
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
       {
        "mon": "nidoqueen",
        "move": "earthquake",
@@ -5181,18 +5193,6 @@
        "theirTurns": 6,
        "faster": 1,
        "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "snorlax",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "thunder-shock"
       }
      ],
      "before": [
@@ -5235,8 +5235,8 @@
       "recover"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 46,
-     "candidates": 69,
+     "winnersAvailable": 56,
+     "candidates": 79,
      "picks": [
       {
        "mon": "hypno",
@@ -5263,11 +5263,11 @@
        "theirMove": "psybeam"
       },
       {
-       "mon": "lapras",
+       "mon": "gyarados",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -5314,9 +5314,9 @@
       "bite",
       "fire-spin"
      ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 39,
-     "candidates": 69,
+     "superEffectiveAvailable": 21,
+     "winnersAvailable": 48,
+     "candidates": 79,
      "picks": [
       {
        "mon": "snorlax",
@@ -5331,19 +5331,19 @@
        "theirMove": "bite"
       },
       {
-       "mon": "nidoqueen",
+       "mon": "graveler",
        "move": "earthquake",
        "eff": 2,
-       "via": "machine",
+       "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
+       "theirTurns": 5,
+       "faster": 0,
        "theirMove": "ember"
       },
       {
-       "mon": "nidoking",
+       "mon": "nidoqueen",
        "move": "earthquake",
        "eff": 2,
        "via": "machine",
@@ -5405,10 +5405,22 @@
       "poison-sting",
       "swift"
      ],
-     "superEffectiveAvailable": 29,
-     "winnersAvailable": 50,
-     "candidates": 70,
+     "superEffectiveAvailable": 33,
+     "winnersAvailable": 59,
+     "candidates": 79,
      "picks": [
+      {
+       "mon": "gyarados",
+       "move": "bubble-beam",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "slash"
+      },
       {
        "mon": "vaporeon",
        "move": "bubble-beam",
@@ -5432,18 +5444,6 @@
        "theirTurns": 47,
        "faster": 1,
        "theirMove": "poison-sting"
-      },
-      {
-       "mon": "lapras",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "slash"
       }
      ],
      "before": [
@@ -5485,10 +5485,22 @@
       "thunder-shock",
       "supersonic"
      ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 55,
-     "candidates": 70,
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 64,
+     "candidates": 79,
      "picks": [
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "sonic-boom"
+      },
       {
        "mon": "nidoqueen",
        "move": "earthquake",
@@ -5512,18 +5524,6 @@
        "theirTurns": 6,
        "faster": 1,
        "theirMove": "sonic-boom"
-      },
-      {
-       "mon": "snorlax",
-       "move": "hyper-beam",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 4,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "thunder-shock"
       }
      ],
      "before": [
@@ -5565,15 +5565,27 @@
       "quick-attack",
       "roar"
      ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 46,
-     "candidates": 69,
+     "superEffectiveAvailable": 21,
+     "winnersAvailable": 54,
+     "candidates": 79,
      "picks": [
       {
        "mon": "nidoqueen",
        "move": "earthquake",
        "eff": 2,
        "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "ember"
+      },
+      {
+       "mon": "graveler",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
@@ -5590,18 +5602,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "ember"
-      },
-      {
-       "mon": "blastoise",
-       "move": "earthquake",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
        "faster": 0,
        "theirMove": "ember"
       }
@@ -5646,8 +5646,8 @@
       "recover"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 46,
-     "candidates": 69,
+     "winnersAvailable": 56,
+     "candidates": 79,
      "picks": [
       {
        "mon": "hypno",
@@ -5674,11 +5674,11 @@
        "theirMove": "psybeam"
       },
       {
-       "mon": "lapras",
+       "mon": "gyarados",
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -5725,9 +5725,9 @@
       "bite",
       "aurora-beam"
      ],
-     "superEffectiveAvailable": 13,
-     "winnersAvailable": 19,
-     "candidates": 69,
+     "superEffectiveAvailable": 14,
+     "winnersAvailable": 25,
+     "candidates": 79,
      "picks": [
       {
        "mon": "lapras",
@@ -5754,7 +5754,7 @@
        "theirMove": "aurora-beam"
       },
       {
-       "mon": "jolteon",
+       "mon": "magneton",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
@@ -5816,9 +5816,9 @@
       "sleep-powder",
       "psychic"
      ],
-     "superEffectiveAvailable": 35,
-     "winnersAvailable": 83,
-     "candidates": 88,
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 91,
+     "candidates": 96,
      "picks": [
       {
        "mon": "charmeleon",
@@ -5896,9 +5896,9 @@
       "supersonic",
       "psychic"
      ],
-     "superEffectiveAvailable": 34,
-     "winnersAvailable": 81,
-     "candidates": 88,
+     "superEffectiveAvailable": 37,
+     "winnersAvailable": 89,
+     "candidates": 96,
      "picks": [
       {
        "mon": "charmeleon",
@@ -5976,9 +5976,9 @@
       "sleep-powder",
       "psychic"
      ],
-     "superEffectiveAvailable": 34,
-     "winnersAvailable": 80,
-     "candidates": 88,
+     "superEffectiveAvailable": 37,
+     "winnersAvailable": 88,
+     "candidates": 96,
      "picks": [
       {
        "mon": "charizard",
@@ -6056,9 +6056,9 @@
       "psychic",
       "toxic"
      ],
-     "superEffectiveAvailable": 25,
-     "winnersAvailable": 35,
-     "candidates": 88,
+     "superEffectiveAvailable": 27,
+     "winnersAvailable": 40,
+     "candidates": 96,
      "picks": [
       {
        "mon": "hypno",
@@ -6089,7 +6089,7 @@
        "move": "drill-peck",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -6147,16 +6147,16 @@
       "quick-attack",
       "confuse-ray"
      ],
-     "superEffectiveAvailable": 52,
-     "winnersAvailable": 64,
-     "candidates": 121,
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 67,
+     "candidates": 124,
      "picks": [
       {
        "mon": "tentacruel",
        "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
@@ -6180,7 +6180,7 @@
        "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 5,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
@@ -6227,9 +6227,9 @@
       "fire-spin",
       "take-down"
      ],
-     "superEffectiveAvailable": 51,
-     "winnersAvailable": 91,
-     "candidates": 121,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 94,
+     "candidates": 124,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -6307,9 +6307,9 @@
       "reflect",
       "take-down"
      ],
-     "superEffectiveAvailable": 56,
-     "winnersAvailable": 42,
-     "candidates": 121,
+     "superEffectiveAvailable": 59,
+     "winnersAvailable": 44,
+     "candidates": 124,
      "picks": [
       {
        "mon": "omastar",
@@ -6328,7 +6328,7 @@
        "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
@@ -6399,8 +6399,8 @@
       "earthquake"
      ],
      "superEffectiveAvailable": 52,
-     "winnersAvailable": 87,
-     "candidates": 122,
+     "winnersAvailable": 90,
+     "candidates": 125,
      "picks": [
       {
        "mon": "charizard",
@@ -6419,7 +6419,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "machine",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": null,
@@ -6478,9 +6478,9 @@
       "fury-swipes",
       "slash"
      ],
-     "superEffectiveAvailable": 15,
-     "winnersAvailable": 89,
-     "candidates": 123,
+     "superEffectiveAvailable": 16,
+     "winnersAvailable": 92,
+     "candidates": 126,
      "picks": [
       {
        "mon": "rhydon",
@@ -6558,9 +6558,9 @@
       "thunder",
       "double-kick"
      ],
-     "superEffectiveAvailable": 72,
-     "winnersAvailable": 58,
-     "candidates": 122,
+     "superEffectiveAvailable": 74,
+     "winnersAvailable": 60,
+     "candidates": 125,
      "picks": [
       {
        "mon": "exeggutor",
@@ -6575,6 +6575,18 @@
        "theirMove": "earthquake"
       },
       {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "earthquake"
+      },
+      {
        "mon": "lapras",
        "move": "blizzard",
        "eff": 2,
@@ -6585,18 +6597,6 @@
        "theirTurns": 4,
        "faster": 0,
        "theirMove": "earthquake"
-      },
-      {
-       "mon": "dragonite",
-       "move": "blizzard",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "thunder"
       }
      ],
      "before": [
@@ -6638,9 +6638,9 @@
       "thunder",
       "double-kick"
      ],
-     "superEffectiveAvailable": 70,
-     "winnersAvailable": 44,
-     "candidates": 122,
+     "superEffectiveAvailable": 72,
+     "winnersAvailable": 46,
+     "candidates": 125,
      "picks": [
       {
        "mon": "exeggutor",
@@ -6718,9 +6718,9 @@
       "horn-drill",
       "earthquake"
      ],
-     "superEffectiveAvailable": 94,
-     "winnersAvailable": 61,
-     "candidates": 122,
+     "superEffectiveAvailable": 97,
+     "winnersAvailable": 62,
+     "candidates": 125,
      "picks": [
       {
        "mon": "poliwrath",
@@ -6809,9 +6809,9 @@
       "slam",
       "dig"
      ],
-     "superEffectiveAvailable": 91,
-     "winnersAvailable": 109,
-     "candidates": 124,
+     "superEffectiveAvailable": 92,
+     "winnersAvailable": 110,
+     "candidates": 125,
      "picks": [
       {
        "mon": "venusaur",
@@ -6838,14 +6838,14 @@
        "theirMove": "rock-slide"
       },
       {
-       "mon": "nidoqueen",
-       "move": "surf",
-       "eff": 4,
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 2,
        "via": "machine",
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 12,
        "faster": 1,
        "theirMove": "dig"
       }
@@ -6890,8 +6890,8 @@
       "double-team"
      ],
      "superEffectiveAvailable": 37,
-     "winnersAvailable": 114,
-     "candidates": 124,
+     "winnersAvailable": 115,
+     "candidates": 125,
      "picks": [
       {
        "mon": "charmeleon",
@@ -6970,8 +6970,8 @@
       "double-team"
      ],
      "superEffectiveAvailable": 34,
-     "winnersAvailable": 85,
-     "candidates": 124,
+     "winnersAvailable": 86,
+     "candidates": 125,
      "picks": [
       {
        "mon": "gastly",
@@ -7049,9 +7049,9 @@
       "slam",
       "earthquake"
      ],
-     "superEffectiveAvailable": 91,
-     "winnersAvailable": 98,
-     "candidates": 124,
+     "superEffectiveAvailable": 92,
+     "winnersAvailable": 99,
+     "candidates": 125,
      "picks": [
       {
        "mon": "blastoise",
@@ -7130,8 +7130,8 @@
       "submission"
      ],
      "superEffectiveAvailable": 33,
-     "winnersAvailable": 57,
-     "candidates": 125,
+     "winnersAvailable": 58,
+     "candidates": 126,
      "picks": [
       {
        "mon": "gastly",
@@ -7301,8 +7301,8 @@
       "reflect"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 57,
-     "candidates": 125,
+     "winnersAvailable": 58,
+     "candidates": 126,
      "picks": [
       {
        "mon": "exeggutor",
@@ -7380,8 +7380,8 @@
       "stomp"
      ],
      "superEffectiveAvailable": 67,
-     "winnersAvailable": 95,
-     "candidates": 124,
+     "winnersAvailable": 96,
+     "candidates": 125,
      "picks": [
       {
        "mon": "omastar",
@@ -7459,16 +7459,16 @@
       "aurora-beam",
       "spike-cannon"
      ],
-     "superEffectiveAvailable": 80,
+     "superEffectiveAvailable": 81,
      "winnersAvailable": 74,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "magneton",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -7539,16 +7539,16 @@
       "quick-attack",
       "roar"
      ],
-     "superEffectiveAvailable": 54,
-     "winnersAvailable": 92,
-     "candidates": 124,
+     "superEffectiveAvailable": 55,
+     "winnersAvailable": 93,
+     "candidates": 125,
      "picks": [
       {
        "mon": "tentacruel",
        "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 9,
@@ -7572,7 +7572,7 @@
        "move": "earthquake",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -7619,9 +7619,9 @@
       "agility",
       "thunder"
      ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 32,
-     "candidates": 124,
+     "superEffectiveAvailable": 24,
+     "winnersAvailable": 33,
+     "candidates": 125,
      "picks": [
       {
        "mon": "dugtrio",
@@ -7791,8 +7791,8 @@
       "reflect"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 57,
-     "candidates": 125,
+     "winnersAvailable": 58,
+     "candidates": 126,
      "picks": [
       {
        "mon": "exeggutor",
@@ -7870,8 +7870,8 @@
       "stomp"
      ],
      "superEffectiveAvailable": 67,
-     "winnersAvailable": 95,
-     "candidates": 124,
+     "winnersAvailable": 96,
+     "candidates": 125,
      "picks": [
       {
        "mon": "omastar",
@@ -7949,10 +7949,22 @@
       "swift",
       "screech"
      ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 118,
-     "candidates": 124,
+     "superEffectiveAvailable": 24,
+     "winnersAvailable": 119,
+     "candidates": 125,
      "picks": [
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "swift"
+      },
       {
        "mon": "nidoqueen",
        "move": "earthquake",
@@ -7974,18 +7986,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "swift"
-      },
-      {
-       "mon": "cloyster",
-       "move": "blizzard",
-       "eff": 1,
-       "via": "machine",
-       "stageNeeded": 5,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 14,
        "faster": 1,
        "theirMove": "swift"
       }
@@ -8029,16 +8029,16 @@
       "aurora-beam",
       "spike-cannon"
      ],
-     "superEffectiveAvailable": 80,
+     "superEffectiveAvailable": 81,
      "winnersAvailable": 68,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "magneton",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -8109,16 +8109,16 @@
       "leer",
       "flamethrower"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 66,
-     "candidates": 124,
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 67,
+     "candidates": 125,
      "picks": [
       {
        "mon": "tentacruel",
        "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 6,
@@ -8281,8 +8281,8 @@
       "reflect"
      ],
      "superEffectiveAvailable": 0,
-     "winnersAvailable": 57,
-     "candidates": 125,
+     "winnersAvailable": 58,
+     "candidates": 126,
      "picks": [
       {
        "mon": "exeggutor",
@@ -8360,8 +8360,8 @@
       "stomp"
      ],
      "superEffectiveAvailable": 67,
-     "winnersAvailable": 95,
-     "candidates": 124,
+     "winnersAvailable": 96,
+     "candidates": 125,
      "picks": [
       {
        "mon": "omastar",
@@ -8439,9 +8439,9 @@
       "quick-attack",
       "roar"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 96,
-     "candidates": 124,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 97,
+     "candidates": 125,
      "picks": [
       {
        "mon": "nidoking",
@@ -8460,7 +8460,7 @@
        "move": "hydro-pump",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 9,
@@ -8519,10 +8519,22 @@
       "swift",
       "screech"
      ],
-     "superEffectiveAvailable": 25,
-     "winnersAvailable": 114,
-     "candidates": 124,
+     "superEffectiveAvailable": 26,
+     "winnersAvailable": 115,
+     "candidates": 125,
      "picks": [
+      {
+       "mon": "sandslash",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "machine",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 11,
+       "faster": 1,
+       "theirMove": "swift"
+      },
       {
        "mon": "nidoqueen",
        "move": "earthquake",
@@ -8544,18 +8556,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "swift"
-      },
-      {
-       "mon": "onix",
-       "move": "earthquake",
-       "eff": 2,
-       "via": "machine",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 22,
        "faster": 1,
        "theirMove": "swift"
       }
@@ -8601,7 +8601,7 @@
      ],
      "superEffectiveAvailable": 27,
      "winnersAvailable": 33,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "lapras",
@@ -8632,7 +8632,7 @@
        "move": "hyper-beam",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 5,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 3,
        "theirTurns": 6,
@@ -8691,8 +8691,8 @@
       "take-down"
      ],
      "superEffectiveAvailable": 67,
-     "winnersAvailable": 59,
-     "candidates": 124,
+     "winnersAvailable": 60,
+     "candidates": 125,
      "picks": [
       {
        "mon": "jolteon",
@@ -8711,7 +8711,7 @@
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
@@ -8770,16 +8770,16 @@
       "ice-beam",
       "spike-cannon"
      ],
-     "superEffectiveAvailable": 80,
+     "superEffectiveAvailable": 81,
      "winnersAvailable": 63,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "magneton",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
@@ -8852,7 +8852,7 @@
      ],
      "superEffectiveAvailable": 52,
      "winnersAvailable": 43,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "exeggutor",
@@ -8883,7 +8883,7 @@
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
@@ -8931,8 +8931,8 @@
       "thrash"
      ],
      "superEffectiveAvailable": 17,
-     "winnersAvailable": 70,
-     "candidates": 125,
+     "winnersAvailable": 71,
+     "candidates": 126,
      "picks": [
       {
        "mon": "cloyster",
@@ -9012,14 +9012,14 @@
      ],
      "superEffectiveAvailable": 68,
      "winnersAvailable": 18,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "magneton",
        "move": "thunderbolt",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 2,
        "theirTurns": 3,
@@ -9101,9 +9101,9 @@
       "lick",
       "mega-drain"
      ],
-     "superEffectiveAvailable": 59,
-     "winnersAvailable": 94,
-     "candidates": 125,
+     "superEffectiveAvailable": 60,
+     "winnersAvailable": 95,
+     "candidates": 126,
      "picks": [
       {
        "mon": "charizard",
@@ -9122,7 +9122,7 @@
        "move": "psychic",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
@@ -9181,16 +9181,16 @@
       "wing-attack",
       "leech-life"
      ],
-     "superEffectiveAvailable": 77,
-     "winnersAvailable": 109,
-     "candidates": 124,
+     "superEffectiveAvailable": 78,
+     "winnersAvailable": 110,
+     "candidates": 125,
      "picks": [
       {
        "mon": "tentacruel",
        "move": "blizzard",
        "eff": 2,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
@@ -9261,9 +9261,9 @@
       "hypnosis",
       "dream-eater"
      ],
-     "superEffectiveAvailable": 59,
-     "winnersAvailable": 118,
-     "candidates": 124,
+     "superEffectiveAvailable": 60,
+     "winnersAvailable": 119,
+     "candidates": 125,
      "picks": [
       {
        "mon": "charizard",
@@ -9294,7 +9294,7 @@
        "move": "drill-peck",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": null,
@@ -9341,9 +9341,9 @@
       "screech",
       "acid"
      ],
-     "superEffectiveAvailable": 43,
-     "winnersAvailable": 112,
-     "candidates": 125,
+     "superEffectiveAvailable": 44,
+     "winnersAvailable": 113,
+     "candidates": 126,
      "picks": [
       {
        "mon": "nidoqueen",
@@ -9421,9 +9421,9 @@
       "hypnosis",
       "dream-eater"
      ],
-     "superEffectiveAvailable": 59,
-     "winnersAvailable": 40,
-     "candidates": 125,
+     "superEffectiveAvailable": 60,
+     "winnersAvailable": 41,
+     "candidates": 126,
      "picks": [
       {
        "mon": "exeggutor",
@@ -9512,9 +9512,9 @@
       "hydro-pump",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 47,
+     "superEffectiveAvailable": 48,
      "winnersAvailable": 44,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "dragonite",
@@ -9545,7 +9545,7 @@
        "move": "thunderbolt",
        "eff": 4,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -9593,8 +9593,8 @@
       "hyper-beam"
      ],
      "superEffectiveAvailable": 43,
-     "winnersAvailable": 103,
-     "candidates": 124,
+     "winnersAvailable": 104,
+     "candidates": 125,
      "picks": [
       {
        "mon": "clefable",
@@ -9673,8 +9673,8 @@
       "hyper-beam"
      ],
      "superEffectiveAvailable": 43,
-     "winnersAvailable": 96,
-     "candidates": 124,
+     "winnersAvailable": 97,
+     "candidates": 125,
      "picks": [
       {
        "mon": "blastoise",
@@ -9752,9 +9752,9 @@
       "fly",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 76,
-     "winnersAvailable": 72,
-     "candidates": 124,
+     "superEffectiveAvailable": 77,
+     "winnersAvailable": 73,
+     "candidates": 125,
      "picks": [
       {
        "mon": "slowbro",
@@ -9832,9 +9832,9 @@
       "thunder",
       "hyper-beam"
      ],
-     "superEffectiveAvailable": 64,
+     "superEffectiveAvailable": 65,
      "winnersAvailable": 33,
-     "candidates": 124,
+     "candidates": 125,
      "picks": [
       {
        "mon": "blastoise",
@@ -9853,7 +9853,7 @@
        "move": "blizzard",
        "eff": 4,
        "via": "machine",
-       "stageNeeded": 6,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
