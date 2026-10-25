@@ -71,8 +71,10 @@ async function load(gameId) {
   $('gameTitle').textContent = 'Pokémon ' + g.label;
   $('qualityBadge').innerHTML = qualityBadge(g) + featureTags(g);
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
-  $('mechNote').hidden = !g.mechanics?.length;
-  $('mechNote').textContent = g.mechanics?.length ? `⚠ Fora do cálculo neste jogo: ${g.mechanics.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades.` : '';
+  // Mega Evolução já entra no cálculo (0.26.0); o aviso fica para as outras mecânicas
+  const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução');
+  $('mechNote').hidden = !outside.length;
+  $('mechNote').textContent = outside.length ? `⚠ Fora do cálculo neste jogo: ${outside.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades${(g.mechanics ?? []).includes('Mega Evolução') ? ' (e a Mega Evolução)' : ''}.` : '';
   $('tabWalk').hidden = !g.hasWalkthrough; // a aba Onde capturar existe em todos os jogos
   $('validationNote').hidden = !['pokeapi', 'decomp-core', 'pkhex'].includes(g.validation);
   $('onlyObtainable').disabled = false;
@@ -118,6 +120,7 @@ async function load(gameId) {
   $('starterWrap').style.display = choosable ? '' : 'none';
   $('stageWrap').style.display = acq?.progress ? '' : 'none';
   $('tradeEvos').closest('label').style.display = acq ? '' : 'none';
+  $('megaWrap').hidden = !data.pokemon.some((p) => p.megas?.length); // jogos com Mega Evolução
   $('gameInfo').textContent = `${data.game.label} · ${data.pokemon.length} Pokémon · ${Object.keys(data.moves).length} golpes · ${data.types.length} tipos · fonte: ${data.game.source}` +
     (data.corrections ? ` + correções ${/PKHeX/.test(data.corrections.source) ? 'das tabelas do jogo extraídas pelo' : 'do decomp'} ${data.corrections.source} (${data.corrections.list.length})` : '') +
     (data.moveCrosscheck ? ` + golpes conferidos com ${data.moveCrosscheck.source}: ${data.moveCrosscheck.corrected} corrigidos, ${data.moveCrosscheck.flagged} divergências só sinalizadas` : '');
@@ -266,13 +269,18 @@ function renderDex() {
 }
 
 // evoluções da família: método de cada uma e, quando pede item (pedra, Metal Coat…), onde achar o item no jogo
-async function renderEvolutions(mon, stageTxt) {
-  const game = currentGame;
+// <jogo>-evoitems.json: onde o detonado diz que acha os itens de evolução e as Mega Stones (baixado na 1ª vez)
+async function loadEvoItems() {
   if (evoItems === null) {
     // jogos com decomp: itens em acq.items (sem arquivo) — só os outros têm <jogo>-evoitems.json
     if (acq?.items && Object.keys(acq.items).length) evoItems = { items: {} };
-    else { try { evoItems = await (await fetch(`data/${game}-evoitems.json`)).json(); } catch { evoItems = { items: {} }; } }
+    else { try { evoItems = await (await fetch(`data/${currentGame}-evoitems.json`)).json(); } catch { evoItems = { items: {} }; } }
   }
+  return evoItems;
+}
+async function renderEvolutions(mon, stageTxt) {
+  const game = currentGame;
+  await loadEvoItems();
   const version = $('version').value;
   const vLabel = $('version').selectedOptions[0]?.textContent ?? version;
   const r = evolutionReport(data, acq, mon, evoItems, version);
@@ -600,6 +608,7 @@ function update() {
     stage: $('stage').value === '' ? null : Number($('stage').value),
     starter: $('starter').value || null,
     tradeEvolutions: $('tradeEvos').checked,
+    megaEvolution: $('megaEvo').checked,
     acq,
   };
   if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
@@ -619,9 +628,10 @@ function update() {
       : m.via.method === 'machine' ? 'TM/HM' + (src ? ` (${src.type === 'gym' ? 'prêmio do ginásio de ' + src.leader : src.type === 'mart' ? 'loja: ' + src.where : src.where}${src.level != null ? `, estimativa nv ${src.level}+` : ''})` : '') /* loja sem selvagens por perto (Goldenrod Dept Store 5F): sem estimativa */
       : 'tutor' + (src ? ` (${src.where}${src.by ? ', ' + src.by : ''})` : '');
     const inc = s.incoming.map((x) => `${typeBadge(x.type)}<span class="${x.mult < 1 ? 'good' : x.mult > 1 ? 'bad' : ''}">${fmtMult(x.mult)}</span>`).join(' ');
+    const mg = s.mega;
     return `<div class="card pick">
-      <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
-      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>
+      <div class="pick-head">${img(mg ? mg.spriteId : s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${mg ? megaTitle(mg, s.mon) : humanize(s.mon.name)}</h3><div>${(mg ? mg.types : s.mon.types).map(typeBadge).join('')}</div></div></div>
+      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}
       <div class="kv"><b>Golpe</b>${humanize(m.name)} ${typeBadge(m.type)} <strong class="${m.eff > 1 ? 'good' : ''}">${fmtMult(m.eff)}</strong>${m.stab > 1 ? ' <span class="meta">STAB</span>' : ''}<br><span class="meta">${via}</span></div>
       ${howToGet(s)}
       <details class="more"><summary>Detalhes</summary><ul class="why">
@@ -634,6 +644,18 @@ function update() {
         <li class="meta">Stats base: HP ${s.mon.stats.hp} · Atq ${s.mon.stats.attack} · Def ${s.mon.stats.defense} · AtqE ${s.mon.stats['special-attack']} · DefE ${s.mon.stats['special-defense']} · Vel ${s.mon.stats.speed}</li>
       </ul></details></div>`;
   }).join('') + '</div>' : '<div class="card empty">Nenhuma sugestão com esses filtros — tente desmarcar algum em <strong>Filtros</strong> ou subir o nível do seu time.</div>');
+}
+
+// Mega Evolução na sugestão: nome da Mega, a pedra e quando se ganha o Mega Ring (detonado)
+const megaTitle = (mg, mon) => (mg.primal ? 'Primal ' : 'Mega ') + humanize(mon.name) + (/-mega-([xyz])$/.test(mg.name) ? ' ' + mg.name.slice(-1).toUpperCase() : '') + ' <span class="meta">(' + humanize(mon.name) + ' + Mega Evolução)</span>';
+function megaLine(mg) {
+  const ring = mg.ring ? ` · ${mg.primal ? 'Reversão Primal' : 'Mega Ring'}: ${mg.ring.section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())} (${stageLabel(mg.ring.stage, acq?.progress?.leaderOrder, acq?.progress)})` : ' · quando se ganha o Mega Ring: não está nos dados deste jogo';
+  // onde achar a pedra: frases do detonado (build-evo-items); baixa o arquivo na 1ª sugestão Mega e redesenha
+  if (evoItems === null) loadEvoItems().then(update);
+  const cited = evoItems?.items?.[mg.stone] ?? [];
+  const where = cited.length ? `Onde achar (detonado): “${cited[0].text}” <span class="meta">— trecho ${cited[0].section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())}</span>`
+    : `<span class="meta">Onde achar a ${mg.stone}: o detonado não diz — a sugestão vale se você tiver a pedra (desligue em Filtros → Usar Mega Evolução).</span>`;
+  return `<div class="kv"><b>${mg.primal ? 'Reversão Primal' : 'Mega Evolução'}</b>segurando ${mg.stone}${ring}<br>${where}</div>`;
 }
 
 // veredito em selos: vence/perde, quantos golpes, quem age primeiro, aviso de origem aleatória
@@ -683,7 +705,7 @@ function unreliableLine(s) {
   return s.unreliable ? `<li class="bad">⚠ Até aqui só por origem aleatória ou condicionada: ${s.unreliable}.</li>` : '';
 }
 
-for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'stage']) $(id).addEventListener('input', update);
+for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'stage']) $(id).addEventListener('input', update);
 $('stage').addEventListener('input', () => renderTrainerPicker()); // selo "próximo" acompanha o progresso
 for (const id of CTX_FIELDS) $(id).addEventListener('input', saveCtx);
 // atalho "/" (como no Linear/GitHub): vai para a busca do oponente, fora de campos de texto

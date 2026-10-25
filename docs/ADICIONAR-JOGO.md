@@ -334,6 +334,10 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   pré-evolução (sem troca); `catchReport().alt` mostra os dois. **Fotos de outra fonte**: só quando o detonado não tem
   nenhuma, por referência e com `credit`/`page` (tabela EXTRA em build-place-images). **CHANGELOG**: toda versão tem
   `> resumo` em linguagem simples logo abaixo do título (teste exige).
+- **Mega Evolução (0.26.0, `add-pkhex-megas`)**: a lista de Megas e pedras vem de `ItemStorage9ZA.GetExpectedMegaStoneOrPrimalOrb`
+  (PKHeX); a forma só entra se existe na tabela pessoal do jogo. Mega Ring/Z-Ring/Dynamax Band/Tera Orb: `progress.keyItems`
+  no build-detonado-modern (1ª frase com verbo de RECEBER; "não" fora; regex sem `\b` depois de vogal acentuada — "dará"
+  não casava). Mega Stones entram no `build-evo-items` com o nome da pedra como chave.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

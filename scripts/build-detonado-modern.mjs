@@ -300,6 +300,30 @@ function twinStage(where) {
   }
   return { stage, section: `${TWIN_STAGE[gameId]} (decomp)`, by: 'jogo original', name: where };
 }
+// itens-chave das mecânicas (simulador): o 1º trecho em que o detonado diz que você GANHA o item — Mega Ring/Mega
+// Bracelet/Key Stone (Mega), Z-Ring (golpes Z), Dynamax Band, Tera Orb. "É necessário que o treinador tenha um Mega Ring"
+// não conta (sem verbo de receber). Retorna { mega: { stage, section, text } … } só com os achados.
+function keyItems() {
+  const KEYS = { mega: /Mega Ring|Mega Bracelet|Key Stone|Mega[- ]Anel/i, z: /Z-?(Power )?Ring/i, dynamax: /Dynamax Band/i, tera: /Tera Orb/i };
+  // sem \b no fim: "á" não é caractere de palavra no regex do JS ("dará" não casava); frase com "não" fica de fora
+  // (ORAS: "não poderia entregar a Key Stone")
+  const GIVE = /(^|[^\wÀ-ú])(receber[áa]?|recebe|ganh[a-zá-ú]*|dar[áa]|d[áa] (?:a|o|um|uma) |entreg[a-zá-ú]*|levar[^.]*até você|consegu[a-zá-ú]*)/i;
+  const out = {};
+  for (const [k, re] of Object.entries(KEYS)) {
+    const g = new RegExp(re.source, 'gi');
+    for (let m; (m = g.exec(html));) {
+      // a frase em volta (sem tags), do ponto anterior ao próximo
+      // corte no meio de uma tag deixava lixo de atributo ("323.png?w=640…>"): descarta até o fim da tag cortada
+      const before = strip(html.slice(Math.max(0, m.index - 400), m.index).replace(/^[^<]*>/, '')), after = strip(html.slice(m.index, m.index + 400).replace(/<[^>]*$/, ''));
+      const sentence = (before.split(/[.!?]\s/).at(-1) + after.split(/(?<=[.!?])\s/)[0]).replace(/\s+/g, ' ').trim();
+      if (!GIVE.test(sentence) || /\bnão\b/i.test(sentence)) continue;
+      const sec = [...sections].reverse().find((s) => s.at <= m.index);
+      out[k] = { stage: stageAt(m.index), section: sec?.title ?? '', text: sentence };
+      break;
+    }
+  }
+  return out;
+}
 let withStage = 0, total = 0;
 for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
   total++;
@@ -312,6 +336,7 @@ if (hasProgress) {
     source: `PokeMythology ${game.walkthrough} (ordem dos líderes) + locais das tabelas do PKHeX`,
     trainerStage: Object.fromEntries(trainers.filter((t) => t.stage != null).map((t) => [t.key, t.stage])),
     placesWithStage: [...stageOfPlace.values()].filter(Boolean).length, placesTotal: stageOfPlace.size,
+    keyItems: keyItems(),
   };
 } else delete acq.progress;
 writeFileSync(acqFile, JSON.stringify(acq));

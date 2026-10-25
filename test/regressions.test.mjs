@@ -1695,7 +1695,7 @@ test('leitor do PKHeX: forma regional só quando a forma 0 está ausente; loja d
   // só o LA troca a forma: nos outros jogos a forma 0 ausente continua ausente (BDSP: Darkrai/Arceus de evento)
   for (const [g, c] of Object.entries(PKHEX_GAMES)) if (g !== 'legends-arceus') assert.equal(c.forms, undefined, g);
   const { readFileSync } = await import('node:fs');
-  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex']/);
+  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'validate-pkhex']/);
 });
 
 test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites logo acima do campo do oponente', () => {
@@ -2273,4 +2273,38 @@ test('Pokémon por tipo (0.25.0): só os tipos e as espécies do jogo/versão; d
   assert.ok(g.fire.includes('charizard') && g.flying.includes('charizard'));
   // nome e forma final
   assert.deepEqual(typeIndex(fr, { version: 'firered', q: 'char', finalOnly: true }).mons.map((p) => p.name), ['charizard']);
+});
+
+test('simulador — Mega Evolução (0.26.0): Megas do jogo pelo PKHeX, Mega Ring pelo detonado, sugestão Mega só quando ganha', async () => {
+  const { recommend } = await import('../public/engine.mjs');
+  const xy = load('x-y.json'), oras = load('omega-ruby-alpha-sapphire.json');
+  const mega = (d, n) => d.pokemon.find((p) => p.name === n)?.megas ?? [];
+  // X/Y tem a Mega Charizard X e Y (Charizardite X/Y), mas não a Mega Altaria (veio no ORAS)
+  assert.deepEqual(mega(xy, 'charizard').map((m) => [m.name, m.stone, m.types.join('/')]), [['charizard-mega-x', 'Charizardite X', 'fire/dragon'], ['charizard-mega-y', 'Charizardite Y', 'fire/flying']]);
+  assert.equal(mega(xy, 'altaria').length, 0);
+  assert.equal(mega(oras, 'altaria')[0].stone, 'Altarianite');
+  assert.ok(!load('sword-shield.json').pokemon.some((p) => p.megas)); // Sword/Shield não tem Mega
+  // Mega Ring: o trecho em que o detonado diz que você o GANHA (X/Y: Korrina, Tower of Mastery); frase com "não" fica fora (ORAS)
+  const ring = load('x-y-acquisition.json').progress.keyItems.mega;
+  assert.ok(/Mega Ring/.test(ring.text) && ring.section === 'TOWER OF MASTERY');
+  assert.ok(/Steven te dará o Mega Bracelet/.test(load('omega-ruby-alpha-sapphire-acquisition.json').progress.keyItems.mega.text));
+  // antes do Mega Ring não há sugestão Mega; depois, há (e desligar a opção tira)
+  const xya = load('x-y-acquisition.json');
+  const opp = xy.pokemon.find((p) => p.name === 'lucario');
+  const run = (stage, megaEvolution = true) => recommend(xy, opp, { level: 60, oppLevel: 60, version: 'x', onlyObtainable: true, acq: xya, stage, megaEvolution }).candidates;
+  assert.ok(!run(ring.stage - 1).some((c) => c.mega));
+  assert.ok(run(9).some((c) => c.mega));
+  assert.ok(!run(9, false).some((c) => c.mega));
+  // a Mega só fica quando pontua mais que a forma normal
+  for (const c of run(9).filter((x) => x.mega)) assert.ok(c.mega.types.length && c.mega.stone);
+});
+
+test('simulador — Gen 6: no turno em que evolui, a ordem usa a Velocidade de antes da Mega', async () => {
+  const { duel } = await import('../public/battle.mjs');
+  const data = { moves: { tackle: { name: 'tackle', type: 'normal', power: 999, accuracy: 100, category: 'physical', effect: '' } }, types: ['normal'], chart: { normal: { normal: 1 } } };
+  const mk = (spe) => ({ mon: { types: ['normal'], abilities: [] }, level: 50, stats: { hp: 10, attack: 100, defense: 100, 'special-attack': 100, 'special-defense': 100, speed: spe } });
+  const me = { ...mk(120), speedTurn1: 80 }, opp = mk(100);
+  // os dois nocauteiam no 1º turno: vale a Velocidade de antes (80 < 100) → perde
+  assert.equal(duel(data, 6, me, opp, ['tackle'], ['tackle']).win, false);
+  assert.equal(duel(data, 7, mk(120), opp, ['tackle'], ['tackle']).win, true);
 });

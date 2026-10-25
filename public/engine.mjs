@@ -139,6 +139,10 @@ export function recommend(data, opp, opts) {
   const oppMoveNames = opts.oppMoves?.length ? opts.oppMoves : likelyMoveset(opp, oppLevel);
   // sem dados de encontro para a versão (PokéAPI: BDSP, Legends: Arceus, Scarlet/Violet) o filtro de obtíveis esvaziaria tudo
   const hasEncounterData = data.pokemon.some((p) => p.obtainable?.[opts.version]);
+  // Mega Evolução (X/Y, ORAS, SM/USUM, Let's Go, Z-A): liberada com o Mega Ring/Key Stone — com o progresso informado, só a
+  // partir do ponto em que o detonado diz que você o ganha (acq.progress.keyItems.mega); opts.megaEvolution === false desliga
+  const megaItem = opts.acq?.progress?.keyItems?.mega ?? null;
+  const megaOk = opts.megaEvolution !== false && data.pokemon.some((p) => p.megas?.length) && (!useStage || !megaItem || opts.stage >= megaItem.stage);
   // Inicial informado: as famílias dos outros dois só existem por troca; vagante que depende do inicial idem
   const excluded = new Set();
   if (opts.starter && data.starters?.species?.includes(opts.starter)) {
@@ -169,22 +173,32 @@ export function recommend(data, opp, opts) {
     // recebido) e o Espeon com Confusion 1× vencia lutadores contra a Miltank da Whitney.
     const gopts = { machines: opts.machines !== false, machineSources: opts.acq?.machines ?? null, tutorSources: opts.acq?.tutors ?? null, stage: useStage ? opts.stage : null };
     const myMoves = availableMoves(data, mon, opts.level, gopts).filter((n) => !UNRELIABLE_MOVES.has(n) || TWO_TURN_OK.has(n));
-    const me = { mon, level: opts.level, stats: badgeBoost(gen, statsAt(gen, mon, opts.level), opts.acq?.progress, useStage ? opts.stage : null) };
-    const d = duel(data, gen, me, oppSide, myMoves, oppMoveNames);
-    if (!d.move) continue;
-    const mv = data.moves[d.move];
-    const move = { name: d.move, ...mv, eff: d.myDmg.typeMul, stab: mon.types.includes(mv.type) ? 1.5 : 1, turns: d.myTurns, via: moveVia(mon, d.move, opts.level, gopts.machineSources, gopts.stage, gopts.tutorSources) };
-    const incoming = threats.map((t) => ({ type: t, mult: effectiveness(data, t, mon) }));
-    const worst = Math.max(...incoming.map((x) => x.mult));
-    const fasterBase = d.faster === 1;
-    // 1º quem vence a troca; depois a folga (turnos dele ÷ meus, até 6); depois menos turnos meus e quem age primeiro
-    // E2: só obtível por fonte aleatória (surto, Poké Radar, árvore de mel, sorteio diário, slot de 1–2%…) perde 20 pontos —
-    // menos que uma vitória (100), mais que duas faixas de folga: entre vencedores parecidos, fica o que dá para ir buscar
-    // sem "onde obter" (camada PokéAPI, Diamond/Pearl): marca da PokéAPI de "só surto/Poké Radar" (build-data)
     const unreliable = opts.acq && mon.obtainable[opts.version] ? unreliableFor(data, opts.acq, mon, opts.version, useStage ? { stage: opts.stage } : { level: opts.level })
       : !opts.acq && hasEncounterData ? mon.randomOnly?.[opts.version] ?? null : null;
-    const score = ((d.win ? 100 : 0) + Math.min(d.margin, 6) * 10 - Math.min(d.myTurns, 20) + (fasterBase ? 2 : 0) - (unreliable ? 20 : 0)) * abilityFactor(mon);
-    scored.push({ mon, move, incoming, worst, fasterBase, score, reach, stageNeeded, duel: d, unreliable });
+    // a forma normal e, com a Mega Evolução liberada, cada Mega da espécie (atributos, tipos e habilidade da Mega; os golpes
+    // são os mesmos): fica a que pontua mais. Gen 6: no turno em que evolui, a ordem usa a Velocidade de antes da Mega
+    const baseStats = badgeBoost(gen, statsAt(gen, mon, opts.level), opts.acq?.progress, useStage ? opts.stage : null);
+    let best = null;
+    for (const form of [null, ...(megaOk ? mon.megas ?? [] : [])]) {
+      if (form?.primal && !opts.includeLegendary) continue;
+      const fm = form ? { ...mon, types: form.types, stats: form.stats, abilities: form.abilities } : mon;
+      const me = { mon: fm, level: opts.level, stats: form ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(form && gen === 6 && { speedTurn1: baseStats.speed }) };
+      const d = duel(data, gen, me, oppSide, myMoves, oppMoveNames);
+      if (!d.move) continue;
+      const mv = data.moves[d.move];
+      const move = { name: d.move, ...mv, eff: d.myDmg.typeMul, stab: fm.types.includes(mv.type) ? 1.5 : 1, turns: d.myTurns, via: moveVia(mon, d.move, opts.level, gopts.machineSources, gopts.stage, gopts.tutorSources) };
+      const incoming = threats.map((t) => ({ type: t, mult: effectiveness(data, t, fm) }));
+      const worst = Math.max(...incoming.map((x) => x.mult));
+      const fasterBase = d.faster === 1;
+      // 1º quem vence a troca; depois a folga (turnos dele ÷ meus, até 6); depois menos turnos meus e quem age primeiro
+      // E2: só obtível por fonte aleatória (surto, Poké Radar, árvore de mel, sorteio diário, slot de 1–2%…) perde 20 pontos —
+      // menos que uma vitória (100), mais que duas faixas de folga: entre vencedores parecidos, fica o que dá para ir buscar
+      // sem "onde obter" (camada PokéAPI, Diamond/Pearl): marca da PokéAPI de "só surto/Poké Radar" (build-data)
+      const score = ((d.win ? 100 : 0) + Math.min(d.margin, 6) * 10 - Math.min(d.myTurns, 20) + (fasterBase ? 2 : 0) - (unreliable ? 20 : 0)) * abilityFactor(fm);
+      // Mega só quando ganha da forma normal (empate: a normal, que não pede pedra)
+      if (!best || score > best.score) best = { mon, move, incoming, worst, fasterBase, score, reach, stageNeeded, duel: d, unreliable, mega: form ? { name: form.name, stone: form.stone, spriteId: form.spriteId, types: form.types, primal: !!form.primal, ring: megaItem ?? null } : null };
+    }
+    if (best) scored.push(best);
   }
   scored.sort((a, b) => b.score - a.score);
 
