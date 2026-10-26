@@ -2382,3 +2382,30 @@ test('simulador — Terastal (0.29.0): chefe com Tera do detonado defende só no
   assert.ok(run().some((c) => c.tera));
   assert.ok(!run(false).some((c) => c.tera));
 });
+
+test('simulador — Dynamax (0.30.0): líder dinamaxiza quando o detonado diz; vida 1,5× e golpe Max por 3 turnos; você só em luta que deixa', async () => {
+  const { recommend, battleForm } = await import('../public/engine.mjs');
+  const { duel, DYNAMAX_HP, DYNAMAX_TURNS } = await import('../public/battle.mjs');
+  assert.deepEqual([DYNAMAX_HP, DYNAMAX_TURNS], [1.5, 3]);
+  if (existsSync(new URL('../data-sources/showdown/', import.meta.url))) {
+    const { SHOWDOWN_COMMIT } = await import('../scripts/fetch-showdown-moves.mjs');
+    const cond = readFileSync(new URL(`../data-sources/showdown/${SHOWDOWN_COMMIT}/data__conditions.ts`, import.meta.url), 'utf8');
+    assert.match(cond, /const ratio = 1\.5 \+ \(pokemon\.dynamaxLevel \* 0\.05\)/); // nível 0 → 1,5×
+  }
+  const sw = load('sword-shield.json'), swa = load('sword-shield-acquisition.json'), tr = load('sword-shield-trainers.json').trainers;
+  const kabu = tr.find((t) => t.label === 'Kabu' && t.party.some((p) => p.dynamax));
+  const p = kabu.party.find((x) => x.dynamax);
+  assert.deepEqual([p.species, p.dynamax], ['centiskorch', 'gigantamax']);
+  assert.ok(tr.filter((t) => t.party.some((x) => x.dynamax)).length >= 20);
+  // a vida maior pesa: o mesmo ataque leva mais turnos contra o dinamaxizado
+  const mk = (mon, extra = {}) => ({ mon, level: 50, stats: { hp: 150, attack: 100, defense: 100, 'special-attack': 100, 'special-defense': 100, speed: 100 }, ...extra });
+  const centi = sw.pokemon.find((x) => x.name === 'centiskorch'), drednaw = sw.pokemon.find((x) => x.name === 'drednaw');
+  const a = duel(sw, 8, mk(drednaw), mk(centi), ['water-gun'], ['ember']), b = duel(sw, 8, mk(drednaw), mk(centi, { dynamax: 'gigantamax' }), ['water-gun'], ['ember']);
+  assert.ok(b.myTurns > a.myTurns);
+  // você: só dinamaxiza em luta que deixa (dynamaxBattle) e com a Dynamax Band
+  const opp = battleForm(centi, p);
+  const run = (dynamaxBattle, dynamax = true) => recommend(sw, opp, { level: 27, oppLevel: 27, version: 'sword', onlyObtainable: true, acq: swa, stage: 2, dynamaxBattle, dynamax }).candidates;
+  assert.ok(run(true).some((c) => c.dynamax));
+  assert.ok(!run(false).some((c) => c.dynamax));
+  assert.ok(!run(true, false).some((c) => c.dynamax));
+});

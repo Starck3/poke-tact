@@ -25,7 +25,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
    só com o Z-Crystal do tipo e o Z-Ring (provações dão os cristais — o estágio já existe).
 3. ✅ **Terastal** (0.29.0) — Scarlet/Violet. Tipo Tera dos líderes (detonado) muda as fraquezas deles; o seu Pokémon pode
    terastalizar no tipo dele (bônus de STAB 2×) a partir da Tera Orb.
-4. ⬜ **Dynamax** — Sword/Shield. Só em ginásios e chefes: vida 2× por 3 turnos, golpes Max (poder pela tabela) com o
+4. ✅ **Dynamax** (0.30.0) — Sword/Shield. Só em ginásios e chefes: vida 2× por 3 turnos, golpes Max (poder pela tabela) com o
    efeito de clima/atributo; líderes que dão Gigantamax.
 5. ⬜ **Legends: Arceus e Z-A** — estilos Ágil/Forte e ordem de ação (LA); batalha em tempo real (Z-A). Provavelmente
    fica como aproximação marcada na tela — o 1 contra 1 por turnos não representa bem.

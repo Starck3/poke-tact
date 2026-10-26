@@ -135,7 +135,7 @@ export function recommend(data, opp, opts) {
   const gen = data.game.generation;
   const oppLevel = opts.oppLevel || opts.level;
   // oponente: DVs (Gen 1–2) / IV (Gen 3) do treinador quando conhecidos; senão valor médio
-  const oppSide = { mon: opp, level: oppLevel, stats: statsAt(gen, opp, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }) };
+  const oppSide = { mon: opp, level: oppLevel, stats: statsAt(gen, opp, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }), ...(opp.dynamax && { dynamax: opp.dynamax }) };
   const oppMoveNames = opts.oppMoves?.length ? opts.oppMoves : likelyMoveset(opp, oppLevel);
   // sem dados de encontro para a versão (PokéAPI: BDSP, Legends: Arceus, Scarlet/Violet) o filtro de obtíveis esvaziaria tudo
   const hasEncounterData = data.pokemon.some((p) => p.obtainable?.[opts.version]);
@@ -143,6 +143,9 @@ export function recommend(data, opp, opts) {
   // partir do ponto em que o detonado diz que você o ganha (acq.progress.keyItems.mega); opts.megaEvolution === false desliga
   const megaItem = opts.acq?.progress?.keyItems?.mega ?? null;
   const megaOk = opts.megaEvolution !== false && data.pokemon.some((p) => p.megas?.length) && (!useStage || !megaItem || opts.stage >= megaItem.stage);
+  // Dynamax: Dynamax Band (keyItems.dynamax do detonado) e luta em que o jogo deixa dinamaxizar (opts.dynamaxBattle)
+  const dynItem = opts.acq?.progress?.keyItems?.dynamax ?? null;
+  const dynOk = opts.dynamax !== false && !!opts.dynamaxBattle && !!dynItem && (!useStage || opts.stage >= dynItem.stage) && Object.values(data.moves).some((m) => m.maxPower);
   // Terastal (Scarlet/Violet): com a Tera Orb (keyItems.tera do detonado; com progresso, só depois de ganhá-la)
   const teraItem = opts.acq?.progress?.keyItems?.tera ?? null;
   const teraOk = opts.terastal !== false && gen >= 9 && !!teraItem && (!useStage || opts.stage >= teraItem.stage);
@@ -189,11 +192,13 @@ export function recommend(data, opp, opts) {
     let best = null;
     // Terastal (Scarlet/Violet): um dos tipos do próprio Pokémon (o Tera padrão de quem você captura)
     const teraForms = teraOk ? mon.types.map((t) => ({ tera: t })) : [];
-    for (const form of [null, ...(megaOk ? mon.megas ?? [] : []), ...teraForms]) {
+    // Dynamax (Sword/Shield): só nas lutas em que o jogo deixa (opts.dynamaxBattle: o chefe dinamaxiza ali) e com a Dynamax Band
+    const dynForms = dynOk ? [{ dynamax: true }] : [];
+    for (const form of [null, ...(megaOk ? mon.megas ?? [] : []), ...teraForms, ...dynForms]) {
       if (form?.primal && !opts.includeLegendary) continue;
-      const isMega = form && !form.tera;
-      const fm = form?.tera ? teraForm(mon, form.tera) : form ? { ...mon, types: form.types, stats: form.stats, abilities: form.abilities } : mon;
-      const me = { mon: fm, level: opts.level, stats: isMega ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(isMega && gen === 6 && { speedTurn1: baseStats.speed }), ...(zTypes && { zTypes }) };
+      const isMega = form && !form.tera && !form.dynamax;
+      const fm = form?.tera ? teraForm(mon, form.tera) : isMega ? { ...mon, types: form.types, stats: form.stats, abilities: form.abilities } : mon;
+      const me = { mon: fm, level: opts.level, stats: isMega ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(isMega && gen === 6 && { speedTurn1: baseStats.speed }), ...(zTypes && { zTypes }), ...(form?.dynamax && { dynamax: true }) };
       const d = duel(data, gen, me, oppSide, myMoves, oppMoveNames);
       if (!d.move) continue;
       const mv = data.moves[d.move];
@@ -208,7 +213,7 @@ export function recommend(data, opp, opts) {
       const score = ((d.win ? 100 : 0) + Math.min(d.margin, 6) * 10 - Math.min(d.myTurns, 20) + (fasterBase ? 2 : 0) - (unreliable ? 20 : 0)) * abilityFactor(fm);
       // Mega só quando ganha da forma normal (empate: a normal, que não pede pedra)
       if (!best || score > best.score) best = { mon, move, incoming, worst, fasterBase, score, reach, stageNeeded, duel: d, unreliable,
-        tera: form?.tera ? { type: form.tera, orb: teraItem } : null, mega: isMega ? { name: form.name, stone: form.stone, spriteId: form.spriteId, types: form.types, primal: !!form.primal, ring: megaItem ?? null } : null,
+        tera: form?.tera ? { type: form.tera, orb: teraItem } : null, dynamax: form?.dynamax && d.dynamax ? { ...d.dynamax, band: dynItem } : null, mega: isMega ? { name: form.name, stone: form.stone, spriteId: form.spriteId, types: form.types, primal: !!form.primal, ring: megaItem ?? null } : null,
         zMove: d.z ? { ...d.z, crystal: crystals?.[d.z.type] ?? null, ring: zRing } : null };
     }
     if (best) scored.push(best);
@@ -246,7 +251,7 @@ export function teraForm(mon, tera) {
   return tera && mon ? { ...mon, types: [tera], baseTypes: mon.baseTypes ?? mon.types, teraType: tera } : mon;
 }
 /** Pokémon de treinador como luta no jogo: Mega (p.mega) e/ou terastalizado (p.tera), quando o detonado diz. */
-export const battleForm = (mon, p) => teraForm(megaForm(mon, p?.mega), p?.tera);
+export const battleForm = (mon, p) => { const m = teraForm(megaForm(mon, p?.mega), p?.tera); return m && p?.dynamax ? { ...m, dynamax: p.dynamax } : m; };
 
 export function recommendTeam(data, party, opts) {
   const byMon = new Map();

@@ -8,7 +8,7 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 
 export const SHOWDOWN_COMMIT = '7244fe8e28fa8bc4d0809ae30d183c608b62bb2b';
-export const SHOWDOWN_FILES = ['data/moves.ts', ...[8, 7, 6, 5, 4].map((g) => `data/mods/gen${g}/moves.ts`), 'sim/dex-moves.ts', 'sim/battle-actions.ts']; // dex-moves: poder dos golpes Z e Max; battle-actions: STAB do Terastal
+export const SHOWDOWN_FILES = ['data/moves.ts', ...[8, 7, 6, 5, 4].map((g) => `data/mods/gen${g}/moves.ts`), 'sim/dex-moves.ts', 'sim/battle-actions.ts', 'data/conditions.ts']; // dex-moves: poder dos golpes Z e Max; battle-actions: STAB do Terastal; conditions: vida do Dynamax
 const DIR = new URL(`../data-sources/showdown/${SHOWDOWN_COMMIT}/`, import.meta.url);
 const UA = 'poke-tact-validation/0.1 (personal project; slow, cached)';
 

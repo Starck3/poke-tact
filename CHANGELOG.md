@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.30.0] — 2026-10-25
+
+> No Sword/Shield o app agora simula o Dynamax: os líderes que dinamaxizam no jogo lutam gigantes, com mais vida e golpes Max, e nas lutas de ginásio o seu Pokémon também pode dinamaxizar.
+
+### Adicionado
+- **Simulador com Dynamax** (Sword/Shield), com a regra do jogo como o Pokémon Showdown a implementa: 3 turnos com a vida
+  multiplicada e golpes Max (poder pela tabela, um golpe só, não erram); depois, a vida volta na mesma proporção.
+  - Chefes: os 45 Pokémon que o detonado escreve como "Dynamax"/"Gigantamax" (o Centiskorch do Kabu, o Charizard do Leon…)
+    lutam dinamaxizados; a tela mostra o selo.
+  - Você: com a Dynamax Band e só nas lutas em que o jogo deixa (as de ginásio e campeonato, em que o chefe dinamaxiza),
+    quando isso vence melhor; o cartão mostra o golpe Max. Opção nova em Filtros: "Usar Dynamax".
+  - A vida usa 1,5× (nível de Dynamax 0, o de quem você captura; no jogo pode chegar a 2×). Os efeitos extras dos golpes
+    Max (clima, atributos) ainda não entram na conta — a tela avisa.
+- Banco de lutas: no Sword/Shield a média de turnos para nocautear cai de 1,66 para 1,39; folgadas 36.441 → 36.445.
+
 ## [0.29.0] — 2026-10-25
 
 > No Scarlet/Violet o app agora simula o Terastal: os chefes que terastalizam no jogo mudam de tipo na luta, e o seu Pokémon pode usar o Tera no próprio tipo para bater mais forte. Também há um plano novo com tudo o que falta fazer.

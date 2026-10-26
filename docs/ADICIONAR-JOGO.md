@@ -346,6 +346,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
   ("pedestal com", "ficar com" também contam). O banco de lutas ficou mais lento (≈ 11 min) com o Z.
 - **Terastal (0.29.0)**: `teraForm` troca `types` pelo tipo Tera e guarda `baseTypes`; o STAB em `battle.mjs` olha os dois.
   Regra conferida no `sim/battle-actions.ts` do Showdown (baixado pelo fetch-showdown-moves).
+- **Dynamax (0.30.0)**: tags `dynamax`/`gigantamax` do leitor do detonado → `party[].dynamax`; `duel` simula turno a turno
+  (`dynamaxTurns`) a fração de vida com o pool 1,5× nos 3 primeiros turnos. Você só com `opts.dynamaxBattle` (a luta do
+  treinador tem Pokémon dinamaxizado).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

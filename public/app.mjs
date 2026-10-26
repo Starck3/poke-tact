@@ -72,7 +72,7 @@ async function load(gameId) {
   $('qualityBadge').innerHTML = qualityBadge(g) + featureTags(g);
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
   // Mega Evolução já entra no cálculo (0.26.0); o aviso fica para as outras mecânicas
-  const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução' && m !== 'golpes Z' && m !== 'Terastal');
+  const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução' && m !== 'golpes Z' && m !== 'Terastal' && m !== 'Dynamax e Gigantamax');
   $('mechNote').hidden = !outside.length;
   $('mechNote').textContent = outside.length ? `⚠ Fora do cálculo neste jogo: ${outside.join('; ')}. As sugestões consideram só tipos, atributos, golpes e habilidades${(g.mechanics ?? []).includes('Mega Evolução') ? ' (e a Mega Evolução' + ((g.mechanics ?? []).includes('golpes Z') ? ' e os golpes Z' : '') + ')' : ''}.` : '';
   $('tabWalk').hidden = !g.hasWalkthrough; // a aba Onde capturar existe em todos os jogos
@@ -123,6 +123,7 @@ async function load(gameId) {
   $('megaWrap').hidden = !data.pokemon.some((p) => p.megas?.length); // jogos com Mega Evolução
   $('zWrap').hidden = !Object.values(data.moves).some((m) => m.zPower); // jogos com golpe Z
   $('teraWrap').hidden = !acq?.progress?.keyItems?.tera; // Scarlet/Violet (Tera Orb no detonado)
+  $('dynWrap').hidden = !acq?.progress?.keyItems?.dynamax; // Sword/Shield (Dynamax Band no detonado)
   $('gameInfo').textContent = `${data.game.label} · ${data.pokemon.length} Pokémon · ${Object.keys(data.moves).length} golpes · ${data.types.length} tipos · fonte: ${data.game.source}` +
     (data.corrections ? ` + correções ${/PKHeX/.test(data.corrections.source) ? 'das tabelas do jogo extraídas pelo' : 'do decomp'} ${data.corrections.source} (${data.corrections.list.length})` : '') +
     (data.moveCrosscheck ? ` + golpes conferidos com ${data.moveCrosscheck.source}: ${data.moveCrosscheck.corrected} corrigidos, ${data.moveCrosscheck.flagged} divergências só sinalizadas` : '');
@@ -537,7 +538,7 @@ function pickTrainerMon(t, i) {
   $('opp').value = p.species;
   $('oppLevel').value = p.level;
   // dvs (Gen 1–2) / iv (Gen 3): atributos reais do Pokémon do treinador no cálculo de dano
-  known = { moves: p.moves, item: p.item, default: p.defaultMoves, dvs: p.dvs ?? null, iv: p.iv ?? null, species: p.species, mega: p.mega ?? null, tera: p.tera ?? null };
+  known = { moves: p.moves, item: p.item, default: p.defaultMoves, dvs: p.dvs ?? null, iv: p.iv ?? null, species: p.species, mega: p.mega ?? null, tera: p.tera ?? null, dynamax: p.dynamax ?? null };
   teamMode = null;
   renderTeam(t, i);
   update();
@@ -577,7 +578,7 @@ function duelLine(d) {
 function currentOpp() {
   const mon = findOpponent(data.pokemon, $('opp').value);
   // Pokémon de treinador que luta Mega (detonado): atributos, tipos e habilidade da Mega
-  return mon && (known?.mega || known?.tera) && known.species === mon.name ? battleForm(mon, known) : mon;
+  return mon && (known?.mega || known?.tera || known?.dynamax) && known.species === mon.name ? battleForm(mon, known) : mon;
 }
 
 function update() {
@@ -599,7 +600,7 @@ function update() {
     row('Resiste', eff.filter((x) => x.m > 0 && x.m < 1).sort((a, b) => a.m - b.m), 'bad') +
     row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
   $('oppInfo').innerHTML = `<div class="opp">${img(opp.megaSprite ?? opp.id)}
-    <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.teraType ? opp.baseTypes.map(typeBadge).join('') + ' → Tera ' + typeBadge(opp.teraType) + ' <span class="lozenge warn">terastaliza (detonado)</span>' : opp.types.map(typeBadge).join('')}
+    <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.teraType ? opp.baseTypes.map(typeBadge).join('') + ' → Tera ' + typeBadge(opp.teraType) + ' <span class="lozenge warn">terastaliza (detonado)</span>' : opp.types.map(typeBadge).join('')}${opp.dynamax ? ` <span class="lozenge warn">${opp.dynamax === 'gigantamax' ? 'Gigantamax' : 'Dynamax'} (detonado): vida 1,5× e golpes Max nos 3 primeiros turnos</span>` : ''}
     <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : '(definidos pelo jogo)'}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
   const baseOpts = {
@@ -615,6 +616,9 @@ function update() {
     megaEvolution: $('megaEvo').checked,
     zMoves: $('zMoves').checked,
     terastal: $('terastal').checked,
+    dynamax: $('dynamax').checked,
+    // luta em que o jogo deixa dinamaxizar: a do treinador escolhido, quando um Pokémon dele dinamaxiza (detonado)
+    dynamaxBattle: !!trainers.find((x) => x.key === $('trainer').value)?.party.some((p) => p.dynamax),
     acq,
   };
   if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
@@ -637,7 +641,7 @@ function update() {
     const mg = s.mega;
     return `<div class="card pick">
       <div class="pick-head">${img(mg ? mg.spriteId : s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${mg ? megaTitle(mg, s.mon) : humanize(s.mon.name)}</h3><div>${(mg ? mg.types : s.mon.types).map(typeBadge).join('')}</div></div></div>
-      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}${s.zMove ? zLine(s.zMove, m) : ''}${s.tera ? teraLine(s.tera) : ''}
+      <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}${s.zMove ? zLine(s.zMove, m) : ''}${s.tera ? teraLine(s.tera) : ''}${s.dynamax ? dynLine(s.dynamax) : ''}
       <div class="kv"><b>Golpe</b>${humanize(m.name)} ${typeBadge(m.type)} <strong class="${m.eff > 1 ? 'good' : ''}">${fmtMult(m.eff)}</strong>${m.stab > 1 ? ' <span class="meta">STAB</span>' : ''}<br><span class="meta">${via}</span></div>
       ${howToGet(s)}
       <details class="more"><summary>Detalhes</summary><ul class="why">
@@ -662,6 +666,12 @@ function megaLine(mg) {
   const where = cited.length ? `Onde achar (detonado): “${cited[0].text}” <span class="meta">— trecho ${cited[0].section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())}</span>`
     : `<span class="meta">Onde achar a ${mg.stone}: o detonado não diz — a sugestão vale se você tiver a pedra (desligue em Filtros → Usar Mega Evolução).</span>`;
   return `<div class="kv"><b>${mg.primal ? 'Reversão Primal' : 'Mega Evolução'}</b>segurando ${mg.stone}${ring}<br>${where}</div>`;
+}
+
+// Dynamax na sugestão: o golpe Max dos 3 primeiros turnos, a vida maior e quando se ganha a Dynamax Band (detonado)
+function dynLine(x) {
+  const band = x.band && acq?.progress ? ` (${stageLabel(x.band.stage, acq.progress.leaderOrder, acq.progress)})` : '';
+  return `<div class="kv"><b>Dynamax</b>golpe Max ${typeBadge(x.type)} a partir de ${humanize(x.name)} (poder ${x.power}, não erra) nos 3 primeiros turnos; vida 1,5×<br><span class="meta">Precisa da Dynamax Band${band}; só em luta de ginásio/campeonato. Vida 1,5× = nível de Dynamax 0 (o de quem você captura); efeitos extras do golpe Max (clima, atributos) não entram na conta.</span></div>`;
 }
 
 // Terastal na sugestão: o tipo Tera (um dos tipos do Pokémon), o efeito e quando se ganha a Tera Orb (detonado)
@@ -725,7 +735,7 @@ function unreliableLine(s) {
   return s.unreliable ? `<li class="bad">⚠ Até aqui só por origem aleatória ou condicionada: ${s.unreliable}.</li>` : '';
 }
 
-for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'zMoves', 'terastal', 'stage']) $(id).addEventListener('input', update);
+for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'zMoves', 'terastal', 'dynamax', 'stage']) $(id).addEventListener('input', update);
 $('stage').addEventListener('input', () => renderTrainerPicker()); // selo "próximo" acompanha o progresso
 for (const id of CTX_FIELDS) $(id).addEventListener('input', saveCtx);
 // atalho "/" (como no Linear/GitHub): vai para a busca do oponente, fora de campos de texto
