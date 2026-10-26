@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.48.0] — 2026-10-26
+
+> Agora o app sabe onde comprar os incensos nos jogos mais novos, então bebês como Munchlax, Bonsly e Budew passam a aparecer como "nasce de ovo na creche" no Black/White, Black 2/White 2, X/Y, Omega Ruby/Alpha Sapphire, Sun/Moon e Sword/Shield.
+
+### Adicionado
+- **Incensos nos jogos novos** pela Bulbapedia: quando a tabela diz só "Market", o app olha para onde o link aponta
+  ("Driftveil City") e casa com o lugar que já conhece. "(post-National Pokédex)" vira pós-jogo. As cidades das lutas
+  com ponto da história também valem como lugar conhecido (Coumarine City no X/Y).
+- Com isso nenhum jogo fica mais com "bebê sem incenso" na creche. No Black 2/White 2 entram 76 Pokémon novos pela creche.
+
+### Alterado
+- Testes antigos que usavam Munchlax/Bonsly como exemplo de "não nasce" agora conferem que nascem com o incenso; o exemplo de
+  família fora do jogo passou a ser Cosmog/Cosmoem no Scarlet.
+- Banco de lutas: vencem 37.687 (igual); folgadas 35.842 → 35.860 (Omega Ruby/Alpha Sapphire +18).
+
 ## [0.47.0] — 2026-10-26
 
 > Os rivais dos jogos mais novos agora também lutam com os golpes de verdade: Hop no Sword/Shield, Barry no Brilliant Diamond/Shining Pearl e Trace no Let's Go. Começa também o plano 4, com o que sobrou.

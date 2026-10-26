@@ -4708,9 +4708,9 @@
       "spark",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 76,
+     "superEffectiveAvailable": 77,
      "winnersAvailable": 111,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "machop",
@@ -4759,9 +4759,9 @@
       "mud-slap",
       "headbutt"
      ],
-     "superEffectiveAvailable": 76,
+     "superEffectiveAvailable": 77,
      "winnersAvailable": 90,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -4809,9 +4809,9 @@
       "bite",
       "rock-throw"
      ],
-     "superEffectiveAvailable": 75,
+     "superEffectiveAvailable": 76,
      "winnersAvailable": 42,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -4871,9 +4871,9 @@
       "spark",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 74,
+     "superEffectiveAvailable": 75,
      "winnersAvailable": 109,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "machop",
@@ -4922,9 +4922,9 @@
       "mud-slap",
       "headbutt"
      ],
-     "superEffectiveAvailable": 74,
+     "superEffectiveAvailable": 75,
      "winnersAvailable": 89,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -4972,9 +4972,9 @@
       "bite",
       "rock-throw"
      ],
-     "superEffectiveAvailable": 73,
+     "superEffectiveAvailable": 74,
      "winnersAvailable": 42,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -5034,9 +5034,9 @@
       "spark",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 76,
+     "superEffectiveAvailable": 77,
      "winnersAvailable": 111,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "machop",
@@ -5085,9 +5085,9 @@
       "mud-slap",
       "headbutt"
      ],
-     "superEffectiveAvailable": 76,
+     "superEffectiveAvailable": 77,
      "winnersAvailable": 91,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -5135,9 +5135,9 @@
       "bite",
       "rock-throw"
      ],
-     "superEffectiveAvailable": 75,
+     "superEffectiveAvailable": 76,
      "winnersAvailable": 44,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -5199,7 +5199,7 @@
      ],
      "superEffectiveAvailable": 91,
      "winnersAvailable": 64,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "raticate-alola",
@@ -5247,9 +5247,9 @@
       "fire-fang",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 57,
+     "superEffectiveAvailable": 58,
      "winnersAvailable": 80,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "poliwrath",
@@ -5299,7 +5299,7 @@
      ],
      "superEffectiveAvailable": 34,
      "winnersAvailable": 92,
-     "candidates": 182,
+     "candidates": 183,
      "picks": [
       {
        "mon": "victreebel",
@@ -5361,7 +5361,7 @@
      ],
      "superEffectiveAvailable": 93,
      "winnersAvailable": 63,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "raticate-alola",
@@ -5411,7 +5411,7 @@
      ],
      "superEffectiveAvailable": 30,
      "winnersAvailable": 61,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "victreebel",
@@ -5461,7 +5461,7 @@
      ],
      "superEffectiveAvailable": 73,
      "winnersAvailable": 84,
-     "candidates": 182,
+     "candidates": 183,
      "picks": [
       {
        "mon": "probopass",
@@ -5523,7 +5523,7 @@
      ],
      "superEffectiveAvailable": 91,
      "winnersAvailable": 64,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "raticate-alola",
@@ -5573,7 +5573,7 @@
      ],
      "superEffectiveAvailable": 73,
      "winnersAvailable": 86,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "arcanine",
@@ -5621,9 +5621,9 @@
       "fire-fang",
       "bite"
      ],
-     "superEffectiveAvailable": 61,
+     "superEffectiveAvailable": 62,
      "winnersAvailable": 98,
-     "candidates": 182,
+     "candidates": 183,
      "picks": [
       {
        "mon": "poliwrath",
@@ -5685,7 +5685,7 @@
      ],
      "superEffectiveAvailable": 17,
      "winnersAvailable": 151,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "vaporeon",
@@ -5735,9 +5735,9 @@
       "swagger",
       "earthquake"
      ],
-     "superEffectiveAvailable": 135,
+     "superEffectiveAvailable": 137,
      "winnersAvailable": 168,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "leafeon",
@@ -5788,7 +5788,7 @@
      ],
      "superEffectiveAvailable": 63,
      "winnersAvailable": 99,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "poliwrath",
@@ -5850,7 +5850,7 @@
      ],
      "superEffectiveAvailable": 17,
      "winnersAvailable": 152,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "vaporeon",
@@ -5900,9 +5900,9 @@
       "swagger",
       "earthquake"
      ],
-     "superEffectiveAvailable": 132,
+     "superEffectiveAvailable": 134,
      "winnersAvailable": 167,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "leafeon",
@@ -5953,7 +5953,7 @@
      ],
      "superEffectiveAvailable": 62,
      "winnersAvailable": 100,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "poliwrath",
@@ -6015,7 +6015,7 @@
      ],
      "superEffectiveAvailable": 18,
      "winnersAvailable": 152,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "vaporeon",
@@ -6065,9 +6065,9 @@
       "swagger",
       "earthquake"
      ],
-     "superEffectiveAvailable": 135,
+     "superEffectiveAvailable": 137,
      "winnersAvailable": 168,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "leafeon",
@@ -6118,7 +6118,7 @@
      ],
      "superEffectiveAvailable": 63,
      "winnersAvailable": 100,
-     "candidates": 249,
+     "candidates": 251,
      "picks": [
       {
        "mon": "poliwrath",
@@ -6179,9 +6179,9 @@
       "sucker-punch",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 138,
+     "superEffectiveAvailable": 139,
      "winnersAvailable": 151,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "golisopod",
@@ -6230,9 +6230,9 @@
       "mud-bomb",
       "recover"
      ],
-     "superEffectiveAvailable": 40,
-     "winnersAvailable": 154,
-     "candidates": 287,
+     "superEffectiveAvailable": 41,
+     "winnersAvailable": 155,
+     "candidates": 289,
      "picks": [
       {
        "mon": "exeggutor-alola",
@@ -6282,7 +6282,7 @@
      ],
      "superEffectiveAvailable": 69,
      "winnersAvailable": 127,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "gyarados",
@@ -6332,9 +6332,9 @@
       "double-kick",
       "counter"
      ],
-     "superEffectiveAvailable": 117,
+     "superEffectiveAvailable": 119,
      "winnersAvailable": 87,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "gyarados",
@@ -6395,9 +6395,9 @@
       "sucker-punch",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 142,
      "winnersAvailable": 149,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "golisopod",
@@ -6446,9 +6446,9 @@
       "mud-bomb",
       "recover"
      ],
-     "superEffectiveAvailable": 37,
-     "winnersAvailable": 152,
-     "candidates": 287,
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 153,
+     "candidates": 289,
      "picks": [
       {
        "mon": "exeggutor-alola",
@@ -6498,7 +6498,7 @@
      ],
      "superEffectiveAvailable": 70,
      "winnersAvailable": 125,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "gyarados",
@@ -6548,9 +6548,9 @@
       "double-kick",
       "counter"
      ],
-     "superEffectiveAvailable": 114,
+     "superEffectiveAvailable": 116,
      "winnersAvailable": 84,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "gyarados",
@@ -6611,9 +6611,9 @@
       "sucker-punch",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 142,
      "winnersAvailable": 151,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "golisopod",
@@ -6662,9 +6662,9 @@
       "mud-bomb",
       "recover"
      ],
-     "superEffectiveAvailable": 37,
-     "winnersAvailable": 154,
-     "candidates": 287,
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 155,
+     "candidates": 289,
      "picks": [
       {
        "mon": "exeggutor-alola",
@@ -6714,7 +6714,7 @@
      ],
      "superEffectiveAvailable": 72,
      "winnersAvailable": 127,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "gyarados",
@@ -6764,9 +6764,9 @@
       "double-kick",
       "counter"
      ],
-     "superEffectiveAvailable": 117,
+     "superEffectiveAvailable": 119,
      "winnersAvailable": 86,
-     "candidates": 287,
+     "candidates": 289,
      "picks": [
       {
        "mon": "gyarados",
@@ -6829,7 +6829,7 @@
      ],
      "superEffectiveAvailable": 155,
      "winnersAvailable": 159,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "goodra",
@@ -6881,7 +6881,7 @@
      ],
      "superEffectiveAvailable": 105,
      "winnersAvailable": 151,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "corsola",
@@ -6933,7 +6933,7 @@
      ],
      "superEffectiveAvailable": 37,
      "winnersAvailable": 153,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "leafeon",
@@ -6982,9 +6982,9 @@
       "moonblast",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 92,
+     "superEffectiveAvailable": 93,
      "winnersAvailable": 85,
-     "candidates": 302,
+     "candidates": 304,
      "picks": [
       {
        "mon": "tentacruel",
@@ -7047,7 +7047,7 @@
      ],
      "superEffectiveAvailable": 153,
      "winnersAvailable": 159,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "goodra",
@@ -7097,9 +7097,9 @@
       "charm",
       "baby-doll-eyes"
      ],
-     "superEffectiveAvailable": 66,
+     "superEffectiveAvailable": 67,
      "winnersAvailable": 132,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "meganium",
@@ -7151,7 +7151,7 @@
      ],
      "superEffectiveAvailable": 37,
      "winnersAvailable": 152,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "leafeon",
@@ -7200,9 +7200,9 @@
       "leaf-blade",
       "smack-down"
      ],
-     "superEffectiveAvailable": 171,
+     "superEffectiveAvailable": 172,
      "winnersAvailable": 132,
-     "candidates": 302,
+     "candidates": 304,
      "picks": [
       {
        "mon": "muk-alola",
@@ -7265,7 +7265,7 @@
      ],
      "superEffectiveAvailable": 152,
      "winnersAvailable": 157,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "goodra",
@@ -7317,7 +7317,7 @@
      ],
      "superEffectiveAvailable": 138,
      "winnersAvailable": 150,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "scyther",
@@ -7369,7 +7369,7 @@
      ],
      "superEffectiveAvailable": 37,
      "winnersAvailable": 151,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "leafeon",
@@ -7418,9 +7418,9 @@
       "flare-blitz",
       "earthquake"
      ],
-     "superEffectiveAvailable": 137,
+     "superEffectiveAvailable": 138,
      "winnersAvailable": 99,
-     "candidates": 302,
+     "candidates": 304,
      "picks": [
       {
        "mon": "poliwrath",
@@ -7482,7 +7482,7 @@
      ],
      "superEffectiveAvailable": 90,
      "winnersAvailable": 139,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "buzzwole",
@@ -7534,7 +7534,7 @@
      ],
      "superEffectiveAvailable": 91,
      "winnersAvailable": 183,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -7584,7 +7584,7 @@
      ],
      "superEffectiveAvailable": 117,
      "winnersAvailable": 156,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -7632,9 +7632,9 @@
       "waterfall",
       "submission"
      ],
-     "superEffectiveAvailable": 149,
+     "superEffectiveAvailable": 150,
      "winnersAvailable": 149,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gyarados",
@@ -7684,7 +7684,7 @@
      ],
      "superEffectiveAvailable": 153,
      "winnersAvailable": 122,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "doublade",
@@ -7746,7 +7746,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 137,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "buzzwole",
@@ -7798,7 +7798,7 @@
      ],
      "superEffectiveAvailable": 88,
      "winnersAvailable": 182,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -7848,7 +7848,7 @@
      ],
      "superEffectiveAvailable": 114,
      "winnersAvailable": 155,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -7896,9 +7896,9 @@
       "waterfall",
       "submission"
      ],
-     "superEffectiveAvailable": 146,
+     "superEffectiveAvailable": 147,
      "winnersAvailable": 146,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gyarados",
@@ -7948,7 +7948,7 @@
      ],
      "superEffectiveAvailable": 153,
      "winnersAvailable": 123,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "doublade",
@@ -8010,7 +8010,7 @@
      ],
      "superEffectiveAvailable": 90,
      "winnersAvailable": 138,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "buzzwole",
@@ -8062,7 +8062,7 @@
      ],
      "superEffectiveAvailable": 91,
      "winnersAvailable": 183,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -8112,7 +8112,7 @@
      ],
      "superEffectiveAvailable": 117,
      "winnersAvailable": 155,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -8160,9 +8160,9 @@
       "waterfall",
       "submission"
      ],
-     "superEffectiveAvailable": 149,
+     "superEffectiveAvailable": 150,
      "winnersAvailable": 148,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gyarados",
@@ -8212,7 +8212,7 @@
      ],
      "superEffectiveAvailable": 153,
      "winnersAvailable": 122,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "doublade",
@@ -8272,9 +8272,9 @@
       "ancient-power",
       "yawn"
      ],
-     "superEffectiveAvailable": 126,
-     "winnersAvailable": 202,
-     "candidates": 304,
+     "superEffectiveAvailable": 127,
+     "winnersAvailable": 203,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -8323,9 +8323,9 @@
       "moonblast",
       "reflect"
      ],
-     "superEffectiveAvailable": 154,
+     "superEffectiveAvailable": 156,
      "winnersAvailable": 167,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "tentacruel",
@@ -8374,9 +8374,9 @@
       "rock-blast",
       "steamroller"
      ],
-     "superEffectiveAvailable": 157,
+     "superEffectiveAvailable": 159,
      "winnersAvailable": 173,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "garchomp",
@@ -8426,9 +8426,9 @@
       "thunder-wave",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 131,
      "winnersAvailable": 146,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -8478,9 +8478,9 @@
       "counter",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 167,
+     "superEffectiveAvailable": 169,
      "winnersAvailable": 77,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "rhydon",
@@ -8540,9 +8540,9 @@
       "ancient-power",
       "yawn"
      ],
-     "superEffectiveAvailable": 123,
-     "winnersAvailable": 200,
-     "candidates": 304,
+     "superEffectiveAvailable": 124,
+     "winnersAvailable": 201,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -8591,9 +8591,9 @@
       "moonblast",
       "reflect"
      ],
-     "superEffectiveAvailable": 151,
+     "superEffectiveAvailable": 153,
      "winnersAvailable": 165,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "tentacruel",
@@ -8642,9 +8642,9 @@
       "rock-blast",
       "steamroller"
      ],
-     "superEffectiveAvailable": 154,
+     "superEffectiveAvailable": 156,
      "winnersAvailable": 171,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "garchomp",
@@ -8694,9 +8694,9 @@
       "thunder-wave",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 131,
      "winnersAvailable": 146,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -8746,9 +8746,9 @@
       "counter",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 164,
+     "superEffectiveAvailable": 166,
      "winnersAvailable": 77,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "rhydon",
@@ -8808,9 +8808,9 @@
       "ancient-power",
       "yawn"
      ],
-     "superEffectiveAvailable": 123,
-     "winnersAvailable": 202,
-     "candidates": 304,
+     "superEffectiveAvailable": 124,
+     "winnersAvailable": 203,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -8859,9 +8859,9 @@
       "moonblast",
       "reflect"
      ],
-     "superEffectiveAvailable": 154,
+     "superEffectiveAvailable": 156,
      "winnersAvailable": 168,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "tentacruel",
@@ -8910,9 +8910,9 @@
       "rock-blast",
       "steamroller"
      ],
-     "superEffectiveAvailable": 157,
+     "superEffectiveAvailable": 159,
      "winnersAvailable": 173,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "garchomp",
@@ -8962,9 +8962,9 @@
       "thunder-wave",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 133,
+     "superEffectiveAvailable": 134,
      "winnersAvailable": 148,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -9014,9 +9014,9 @@
       "counter",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 167,
+     "superEffectiveAvailable": 169,
      "winnersAvailable": 77,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "rhydon",
@@ -9079,7 +9079,7 @@
      ],
      "superEffectiveAvailable": 23,
      "winnersAvailable": 247,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "persian-alola",
@@ -9130,8 +9130,8 @@
       "baton-pass"
      ],
      "superEffectiveAvailable": 172,
-     "winnersAvailable": 221,
-     "candidates": 304,
+     "winnersAvailable": 222,
+     "candidates": 306,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -9181,9 +9181,9 @@
       "energy-ball",
       "whirlpool"
      ],
-     "superEffectiveAvailable": 172,
+     "superEffectiveAvailable": 173,
      "winnersAvailable": 173,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "snorlax",
@@ -9235,7 +9235,7 @@
      ],
      "superEffectiveAvailable": 166,
      "winnersAvailable": 182,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "weavile",
@@ -9285,9 +9285,9 @@
       "giga-drain",
       "iron-defense"
      ],
-     "superEffectiveAvailable": 204,
+     "superEffectiveAvailable": 206,
      "winnersAvailable": 139,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "braviary",
@@ -9350,7 +9350,7 @@
      ],
      "superEffectiveAvailable": 23,
      "winnersAvailable": 247,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "persian-alola",
@@ -9401,8 +9401,8 @@
       "baton-pass"
      ],
      "superEffectiveAvailable": 172,
-     "winnersAvailable": 220,
-     "candidates": 304,
+     "winnersAvailable": 221,
+     "candidates": 306,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -9452,9 +9452,9 @@
       "energy-ball",
       "whirlpool"
      ],
-     "superEffectiveAvailable": 172,
+     "superEffectiveAvailable": 173,
      "winnersAvailable": 173,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "snorlax",
@@ -9506,7 +9506,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 184,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "weavile",
@@ -9556,9 +9556,9 @@
       "giga-drain",
       "iron-defense"
      ],
-     "superEffectiveAvailable": 202,
+     "superEffectiveAvailable": 204,
      "winnersAvailable": 138,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "braviary",
@@ -9621,7 +9621,7 @@
      ],
      "superEffectiveAvailable": 26,
      "winnersAvailable": 247,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "persian-alola",
@@ -9672,8 +9672,8 @@
       "baton-pass"
      ],
      "superEffectiveAvailable": 171,
-     "winnersAvailable": 220,
-     "candidates": 304,
+     "winnersAvailable": 221,
+     "candidates": 306,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -9723,9 +9723,9 @@
       "energy-ball",
       "whirlpool"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 170,
      "winnersAvailable": 171,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "snorlax",
@@ -9777,7 +9777,7 @@
      ],
      "superEffectiveAvailable": 165,
      "winnersAvailable": 183,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "weavile",
@@ -9827,9 +9827,9 @@
       "giga-drain",
       "iron-defense"
      ],
-     "superEffectiveAvailable": 204,
+     "superEffectiveAvailable": 206,
      "winnersAvailable": 140,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "braviary",
@@ -9892,7 +9892,7 @@
      ],
      "superEffectiveAvailable": 58,
      "winnersAvailable": 166,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "golduck",
@@ -9944,7 +9944,7 @@
      ],
      "superEffectiveAvailable": 109,
      "winnersAvailable": 170,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -9994,9 +9994,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 125,
+     "superEffectiveAvailable": 126,
      "winnersAvailable": 178,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -10048,7 +10048,7 @@
      ],
      "superEffectiveAvailable": 110,
      "winnersAvailable": 106,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "cloyster",
@@ -10100,7 +10100,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 88,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "magneton",
@@ -10163,7 +10163,7 @@
      ],
      "superEffectiveAvailable": 61,
      "winnersAvailable": 168,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "golduck",
@@ -10215,7 +10215,7 @@
      ],
      "superEffectiveAvailable": 109,
      "winnersAvailable": 171,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -10265,9 +10265,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 125,
+     "superEffectiveAvailable": 126,
      "winnersAvailable": 178,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -10319,7 +10319,7 @@
      ],
      "superEffectiveAvailable": 110,
      "winnersAvailable": 107,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "cloyster",
@@ -10371,7 +10371,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 89,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "magneton",
@@ -10434,7 +10434,7 @@
      ],
      "superEffectiveAvailable": 58,
      "winnersAvailable": 168,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "golduck",
@@ -10486,7 +10486,7 @@
      ],
      "superEffectiveAvailable": 109,
      "winnersAvailable": 171,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -10536,9 +10536,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 128,
+     "superEffectiveAvailable": 129,
      "winnersAvailable": 180,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -10590,7 +10590,7 @@
      ],
      "superEffectiveAvailable": 113,
      "winnersAvailable": 107,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "cloyster",
@@ -10642,7 +10642,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 89,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "magneton",
@@ -10703,9 +10703,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 171,
      "winnersAvailable": 180,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -10757,7 +10757,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 164,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "arcanine",
@@ -10809,7 +10809,7 @@
      ],
      "superEffectiveAvailable": 88,
      "winnersAvailable": 103,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -10861,7 +10861,7 @@
      ],
      "superEffectiveAvailable": 104,
      "winnersAvailable": 90,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gastrodon",
@@ -10913,7 +10913,7 @@
      ],
      "superEffectiveAvailable": 37,
      "winnersAvailable": 178,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "primeape",
@@ -10963,9 +10963,9 @@
       "outrage",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 139,
+     "superEffectiveAvailable": 140,
      "winnersAvailable": 84,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "poliwrath",
@@ -11026,9 +11026,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 166,
+     "superEffectiveAvailable": 168,
      "winnersAvailable": 179,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -11080,7 +11080,7 @@
      ],
      "superEffectiveAvailable": 105,
      "winnersAvailable": 166,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "arcanine",
@@ -11132,7 +11132,7 @@
      ],
      "superEffectiveAvailable": 88,
      "winnersAvailable": 104,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -11184,7 +11184,7 @@
      ],
      "superEffectiveAvailable": 107,
      "winnersAvailable": 92,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gastrodon",
@@ -11236,7 +11236,7 @@
      ],
      "superEffectiveAvailable": 37,
      "winnersAvailable": 177,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "primeape",
@@ -11286,9 +11286,9 @@
       "aqua-jet",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 92,
+     "superEffectiveAvailable": 93,
      "winnersAvailable": 62,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "tentacruel",
@@ -11349,9 +11349,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 171,
      "winnersAvailable": 181,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -11403,7 +11403,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 165,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "arcanine",
@@ -11455,7 +11455,7 @@
      ],
      "superEffectiveAvailable": 88,
      "winnersAvailable": 104,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -11507,7 +11507,7 @@
      ],
      "superEffectiveAvailable": 104,
      "winnersAvailable": 90,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gastrodon",
@@ -11559,7 +11559,7 @@
      ],
      "superEffectiveAvailable": 37,
      "winnersAvailable": 176,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "primeape",
@@ -11609,9 +11609,9 @@
       "brave-bird",
       "sucker-punch"
      ],
-     "superEffectiveAvailable": 168,
+     "superEffectiveAvailable": 169,
      "winnersAvailable": 108,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "kartana",
@@ -11674,7 +11674,7 @@
      ],
      "superEffectiveAvailable": 25,
      "winnersAvailable": 260,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -11726,7 +11726,7 @@
      ],
      "superEffectiveAvailable": 110,
      "winnersAvailable": 221,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -11778,7 +11778,7 @@
      ],
      "superEffectiveAvailable": 137,
      "winnersAvailable": 197,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "klefki",
@@ -11828,9 +11828,9 @@
       "dragon-claw",
       "earthquake"
      ],
-     "superEffectiveAvailable": 212,
+     "superEffectiveAvailable": 214,
      "winnersAvailable": 140,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -11882,7 +11882,7 @@
      ],
      "superEffectiveAvailable": 109,
      "winnersAvailable": 178,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "muk-alola",
@@ -11945,7 +11945,7 @@
      ],
      "superEffectiveAvailable": 25,
      "winnersAvailable": 261,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -11997,7 +11997,7 @@
      ],
      "superEffectiveAvailable": 109,
      "winnersAvailable": 221,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -12049,7 +12049,7 @@
      ],
      "superEffectiveAvailable": 137,
      "winnersAvailable": 199,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "klefki",
@@ -12099,9 +12099,9 @@
       "dragon-claw",
       "earthquake"
      ],
-     "superEffectiveAvailable": 209,
+     "superEffectiveAvailable": 211,
      "winnersAvailable": 139,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -12153,7 +12153,7 @@
      ],
      "superEffectiveAvailable": 108,
      "winnersAvailable": 178,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "muk-alola",
@@ -12216,7 +12216,7 @@
      ],
      "superEffectiveAvailable": 28,
      "winnersAvailable": 261,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -12268,7 +12268,7 @@
      ],
      "superEffectiveAvailable": 112,
      "winnersAvailable": 222,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -12320,7 +12320,7 @@
      ],
      "superEffectiveAvailable": 140,
      "winnersAvailable": 200,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "klefki",
@@ -12370,9 +12370,9 @@
       "dragon-claw",
       "earthquake"
      ],
-     "superEffectiveAvailable": 212,
+     "superEffectiveAvailable": 214,
      "winnersAvailable": 141,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -12424,7 +12424,7 @@
      ],
      "superEffectiveAvailable": 111,
      "winnersAvailable": 179,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "muk-alola",
@@ -12487,7 +12487,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 138,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -12539,7 +12539,7 @@
      ],
      "superEffectiveAvailable": 101,
      "winnersAvailable": 215,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "whimsicott",
@@ -12591,7 +12591,7 @@
      ],
      "superEffectiveAvailable": 134,
      "winnersAvailable": 155,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "buzzwole",
@@ -12641,9 +12641,9 @@
       "poison-jab",
       "payback"
      ],
-     "superEffectiveAvailable": 172,
+     "superEffectiveAvailable": 173,
      "winnersAvailable": 144,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -12695,7 +12695,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 136,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -12758,7 +12758,7 @@
      ],
      "superEffectiveAvailable": 99,
      "winnersAvailable": 135,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -12810,7 +12810,7 @@
      ],
      "superEffectiveAvailable": 98,
      "winnersAvailable": 214,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "whimsicott",
@@ -12862,7 +12862,7 @@
      ],
      "superEffectiveAvailable": 131,
      "winnersAvailable": 155,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "buzzwole",
@@ -12912,9 +12912,9 @@
       "poison-jab",
       "payback"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 170,
      "winnersAvailable": 142,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -12966,7 +12966,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 137,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -13029,7 +13029,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 137,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -13081,7 +13081,7 @@
      ],
      "superEffectiveAvailable": 101,
      "winnersAvailable": 215,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "whimsicott",
@@ -13133,7 +13133,7 @@
      ],
      "superEffectiveAvailable": 134,
      "winnersAvailable": 155,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "buzzwole",
@@ -13183,9 +13183,9 @@
       "poison-jab",
       "payback"
      ],
-     "superEffectiveAvailable": 172,
+     "superEffectiveAvailable": 173,
      "winnersAvailable": 144,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -13237,7 +13237,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 136,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -13298,9 +13298,9 @@
       "yawn",
       "earthquake"
      ],
-     "superEffectiveAvailable": 151,
-     "winnersAvailable": 133,
-     "candidates": 347,
+     "superEffectiveAvailable": 152,
+     "winnersAvailable": 134,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -13350,9 +13350,9 @@
       "reflect",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 178,
+     "superEffectiveAvailable": 180,
      "winnersAvailable": 188,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "tentacruel",
@@ -13402,9 +13402,9 @@
       "earthquake",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 180,
+     "superEffectiveAvailable": 182,
      "winnersAvailable": 170,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "flygon",
@@ -13454,9 +13454,9 @@
       "dazzling-gleam",
       "flash-cannon"
      ],
-     "superEffectiveAvailable": 150,
+     "superEffectiveAvailable": 151,
      "winnersAvailable": 149,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -13506,9 +13506,9 @@
       "brick-break",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 194,
+     "superEffectiveAvailable": 196,
      "winnersAvailable": 95,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -13569,9 +13569,9 @@
       "yawn",
       "earthquake"
      ],
-     "superEffectiveAvailable": 148,
-     "winnersAvailable": 132,
-     "candidates": 347,
+     "superEffectiveAvailable": 149,
+     "winnersAvailable": 133,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -13621,9 +13621,9 @@
       "reflect",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 175,
+     "superEffectiveAvailable": 177,
      "winnersAvailable": 186,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "tentacruel",
@@ -13673,9 +13673,9 @@
       "earthquake",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 177,
+     "superEffectiveAvailable": 179,
      "winnersAvailable": 169,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "flygon",
@@ -13725,9 +13725,9 @@
       "dazzling-gleam",
       "flash-cannon"
      ],
-     "superEffectiveAvailable": 150,
+     "superEffectiveAvailable": 151,
      "winnersAvailable": 149,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -13777,9 +13777,9 @@
       "brick-break",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 191,
+     "superEffectiveAvailable": 193,
      "winnersAvailable": 95,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -13840,9 +13840,9 @@
       "yawn",
       "earthquake"
      ],
-     "superEffectiveAvailable": 148,
-     "winnersAvailable": 133,
-     "candidates": 347,
+     "superEffectiveAvailable": 149,
+     "winnersAvailable": 134,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -13892,9 +13892,9 @@
       "reflect",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 178,
+     "superEffectiveAvailable": 180,
      "winnersAvailable": 189,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "tentacruel",
@@ -13944,9 +13944,9 @@
       "earthquake",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 180,
+     "superEffectiveAvailable": 182,
      "winnersAvailable": 171,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "flygon",
@@ -13996,9 +13996,9 @@
       "dazzling-gleam",
       "flash-cannon"
      ],
-     "superEffectiveAvailable": 153,
+     "superEffectiveAvailable": 154,
      "winnersAvailable": 151,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -14048,9 +14048,9 @@
       "brick-break",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 194,
+     "superEffectiveAvailable": 196,
      "winnersAvailable": 95,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -14113,7 +14113,7 @@
      ],
      "superEffectiveAvailable": 25,
      "winnersAvailable": 260,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -14165,7 +14165,7 @@
      ],
      "superEffectiveAvailable": 203,
      "winnersAvailable": 187,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -14215,9 +14215,9 @@
       "earthquake",
       "brutal-swing"
      ],
-     "superEffectiveAvailable": 184,
+     "superEffectiveAvailable": 185,
      "winnersAvailable": 195,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -14269,7 +14269,7 @@
      ],
      "superEffectiveAvailable": 197,
      "winnersAvailable": 191,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "snorlax",
@@ -14319,9 +14319,9 @@
       "sludge-bomb",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 229,
+     "superEffectiveAvailable": 231,
      "winnersAvailable": 151,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -14384,7 +14384,7 @@
      ],
      "superEffectiveAvailable": 25,
      "winnersAvailable": 260,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -14436,7 +14436,7 @@
      ],
      "superEffectiveAvailable": 203,
      "winnersAvailable": 187,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -14486,9 +14486,9 @@
       "earthquake",
       "brutal-swing"
      ],
-     "superEffectiveAvailable": 184,
+     "superEffectiveAvailable": 185,
      "winnersAvailable": 195,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -14540,7 +14540,7 @@
      ],
      "superEffectiveAvailable": 199,
      "winnersAvailable": 193,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "snorlax",
@@ -14590,9 +14590,9 @@
       "sludge-bomb",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 227,
+     "superEffectiveAvailable": 229,
      "winnersAvailable": 150,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -14655,7 +14655,7 @@
      ],
      "superEffectiveAvailable": 28,
      "winnersAvailable": 260,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -14707,7 +14707,7 @@
      ],
      "superEffectiveAvailable": 202,
      "winnersAvailable": 186,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -14757,9 +14757,9 @@
       "earthquake",
       "brutal-swing"
      ],
-     "superEffectiveAvailable": 181,
+     "superEffectiveAvailable": 182,
      "winnersAvailable": 193,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -14811,7 +14811,7 @@
      ],
      "superEffectiveAvailable": 196,
      "winnersAvailable": 192,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "snorlax",
@@ -14861,9 +14861,9 @@
       "sludge-bomb",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 229,
+     "superEffectiveAvailable": 231,
      "winnersAvailable": 152,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -14926,7 +14926,7 @@
      ],
      "superEffectiveAvailable": 65,
      "winnersAvailable": 165,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -14978,7 +14978,7 @@
      ],
      "superEffectiveAvailable": 141,
      "winnersAvailable": 183,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -15028,9 +15028,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 160,
+     "superEffectiveAvailable": 161,
      "winnersAvailable": 209,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -15082,7 +15082,7 @@
      ],
      "superEffectiveAvailable": 143,
      "winnersAvailable": 184,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "ninetales-alola",
@@ -15134,7 +15134,7 @@
      ],
      "superEffectiveAvailable": 116,
      "winnersAvailable": 107,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "metagross",
@@ -15197,7 +15197,7 @@
      ],
      "superEffectiveAvailable": 68,
      "winnersAvailable": 167,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -15249,7 +15249,7 @@
      ],
      "superEffectiveAvailable": 141,
      "winnersAvailable": 183,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -15299,9 +15299,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 160,
+     "superEffectiveAvailable": 161,
      "winnersAvailable": 209,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -15353,7 +15353,7 @@
      ],
      "superEffectiveAvailable": 143,
      "winnersAvailable": 186,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "ninetales-alola",
@@ -15405,7 +15405,7 @@
      ],
      "superEffectiveAvailable": 116,
      "winnersAvailable": 108,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "metagross",
@@ -15468,7 +15468,7 @@
      ],
      "superEffectiveAvailable": 65,
      "winnersAvailable": 167,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -15520,7 +15520,7 @@
      ],
      "superEffectiveAvailable": 141,
      "winnersAvailable": 184,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -15570,9 +15570,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 163,
+     "superEffectiveAvailable": 164,
      "winnersAvailable": 211,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -15624,7 +15624,7 @@
      ],
      "superEffectiveAvailable": 146,
      "winnersAvailable": 186,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "ninetales-alola",
@@ -15676,7 +15676,7 @@
      ],
      "superEffectiveAvailable": 116,
      "winnersAvailable": 108,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "metagross",
@@ -15739,7 +15739,7 @@
      ],
      "superEffectiveAvailable": 172,
      "winnersAvailable": 166,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "goodra",
@@ -15791,7 +15791,7 @@
      ],
      "superEffectiveAvailable": 134,
      "winnersAvailable": 175,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kabutops",
@@ -15843,7 +15843,7 @@
      ],
      "superEffectiveAvailable": 46,
      "winnersAvailable": 170,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -15895,7 +15895,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 156,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -15944,9 +15944,9 @@
       "moonblast",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 109,
+     "superEffectiveAvailable": 110,
      "winnersAvailable": 73,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "tentacruel",
@@ -16009,7 +16009,7 @@
      ],
      "superEffectiveAvailable": 170,
      "winnersAvailable": 166,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "goodra",
@@ -16059,9 +16059,9 @@
       "charm",
       "baby-doll-eyes"
      ],
-     "superEffectiveAvailable": 82,
+     "superEffectiveAvailable": 83,
      "winnersAvailable": 140,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -16113,7 +16113,7 @@
      ],
      "superEffectiveAvailable": 46,
      "winnersAvailable": 169,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -16165,7 +16165,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 157,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -16214,9 +16214,9 @@
       "leaf-blade",
       "smack-down"
      ],
-     "superEffectiveAvailable": 186,
+     "superEffectiveAvailable": 187,
      "winnersAvailable": 127,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "buzzwole",
@@ -16279,7 +16279,7 @@
      ],
      "superEffectiveAvailable": 169,
      "winnersAvailable": 165,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "goodra",
@@ -16331,7 +16331,7 @@
      ],
      "superEffectiveAvailable": 154,
      "winnersAvailable": 174,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "scyther",
@@ -16383,7 +16383,7 @@
      ],
      "superEffectiveAvailable": 46,
      "winnersAvailable": 168,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -16435,7 +16435,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 156,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -16484,9 +16484,9 @@
       "flare-blitz",
       "earthquake"
      ],
-     "superEffectiveAvailable": 176,
+     "superEffectiveAvailable": 177,
      "winnersAvailable": 106,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "gyarados",
@@ -16547,9 +16547,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 173,
+     "superEffectiveAvailable": 174,
      "winnersAvailable": 177,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -16599,9 +16599,9 @@
       "sludge-wave",
       "ice-beam"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 171,
-     "candidates": 347,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 172,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -16651,9 +16651,9 @@
       "dragon-claw",
       "aerial-ace"
      ],
-     "superEffectiveAvailable": 212,
+     "superEffectiveAvailable": 214,
      "winnersAvailable": 140,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -16705,7 +16705,7 @@
      ],
      "superEffectiveAvailable": 94,
      "winnersAvailable": 119,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -16755,9 +16755,9 @@
       "payback",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 143,
      "winnersAvailable": 106,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "meganium",
@@ -16818,9 +16818,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 176,
+     "superEffectiveAvailable": 177,
      "winnersAvailable": 176,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -16870,9 +16870,9 @@
       "sludge-wave",
       "ice-beam"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 169,
-     "candidates": 347,
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 170,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -16922,9 +16922,9 @@
       "dragon-claw",
       "aerial-ace"
      ],
-     "superEffectiveAvailable": 209,
+     "superEffectiveAvailable": 211,
      "winnersAvailable": 139,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -16976,7 +16976,7 @@
      ],
      "superEffectiveAvailable": 97,
      "winnersAvailable": 119,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -17026,9 +17026,9 @@
       "payback",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 138,
+     "superEffectiveAvailable": 140,
      "winnersAvailable": 103,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "meganium",
@@ -17089,9 +17089,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 176,
+     "superEffectiveAvailable": 177,
      "winnersAvailable": 178,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -17141,9 +17141,9 @@
       "sludge-wave",
       "ice-beam"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 170,
-     "candidates": 347,
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 171,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -17193,9 +17193,9 @@
       "dragon-claw",
       "aerial-ace"
      ],
-     "superEffectiveAvailable": 212,
+     "superEffectiveAvailable": 214,
      "winnersAvailable": 141,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -17247,7 +17247,7 @@
      ],
      "superEffectiveAvailable": 97,
      "winnersAvailable": 120,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -17297,9 +17297,9 @@
       "payback",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 143,
      "winnersAvailable": 106,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "meganium",
@@ -17360,9 +17360,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 194,
+     "superEffectiveAvailable": 196,
      "winnersAvailable": 202,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "poliwrath",
@@ -17414,7 +17414,7 @@
      ],
      "superEffectiveAvailable": 129,
      "winnersAvailable": 180,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "metagross",
@@ -17466,7 +17466,7 @@
      ],
      "superEffectiveAvailable": 118,
      "winnersAvailable": 114,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -17518,7 +17518,7 @@
      ],
      "superEffectiveAvailable": 118,
      "winnersAvailable": 94,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "whiscash",
@@ -17570,7 +17570,7 @@
      ],
      "superEffectiveAvailable": 45,
      "winnersAvailable": 142,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "buzzwole",
@@ -17620,9 +17620,9 @@
       "outrage",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 173,
+     "superEffectiveAvailable": 174,
      "winnersAvailable": 107,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "poliwrath",
@@ -17683,9 +17683,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 191,
+     "superEffectiveAvailable": 193,
      "winnersAvailable": 202,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "poliwrath",
@@ -17737,7 +17737,7 @@
      ],
      "superEffectiveAvailable": 132,
      "winnersAvailable": 182,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "metagross",
@@ -17789,7 +17789,7 @@
      ],
      "superEffectiveAvailable": 118,
      "winnersAvailable": 115,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -17841,7 +17841,7 @@
      ],
      "superEffectiveAvailable": 121,
      "winnersAvailable": 96,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "whiscash",
@@ -17893,7 +17893,7 @@
      ],
      "superEffectiveAvailable": 45,
      "winnersAvailable": 140,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "buzzwole",
@@ -17943,9 +17943,9 @@
       "aqua-jet",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 106,
+     "superEffectiveAvailable": 107,
      "winnersAvailable": 72,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "tentacruel",
@@ -18006,9 +18006,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 194,
+     "superEffectiveAvailable": 196,
      "winnersAvailable": 204,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "poliwrath",
@@ -18060,7 +18060,7 @@
      ],
      "superEffectiveAvailable": 129,
      "winnersAvailable": 181,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "metagross",
@@ -18112,7 +18112,7 @@
      ],
      "superEffectiveAvailable": 118,
      "winnersAvailable": 115,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -18164,7 +18164,7 @@
      ],
      "superEffectiveAvailable": 118,
      "winnersAvailable": 94,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "whiscash",
@@ -18216,7 +18216,7 @@
      ],
      "superEffectiveAvailable": 45,
      "winnersAvailable": 140,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "buzzwole",
@@ -18266,9 +18266,9 @@
       "brave-bird",
       "sucker-punch"
      ],
-     "superEffectiveAvailable": 183,
+     "superEffectiveAvailable": 184,
      "winnersAvailable": 120,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "salamence",
@@ -22996,9 +22996,9 @@
       "spark",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 75,
+     "superEffectiveAvailable": 76,
      "winnersAvailable": 111,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "machop",
@@ -23047,9 +23047,9 @@
       "mud-slap",
       "headbutt"
      ],
-     "superEffectiveAvailable": 75,
+     "superEffectiveAvailable": 76,
      "winnersAvailable": 90,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23097,9 +23097,9 @@
       "bite",
       "rock-throw"
      ],
-     "superEffectiveAvailable": 74,
+     "superEffectiveAvailable": 75,
      "winnersAvailable": 41,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23159,9 +23159,9 @@
       "spark",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 73,
+     "superEffectiveAvailable": 74,
      "winnersAvailable": 109,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "machop",
@@ -23210,9 +23210,9 @@
       "mud-slap",
       "headbutt"
      ],
-     "superEffectiveAvailable": 73,
+     "superEffectiveAvailable": 74,
      "winnersAvailable": 89,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23260,9 +23260,9 @@
       "bite",
       "rock-throw"
      ],
-     "superEffectiveAvailable": 72,
+     "superEffectiveAvailable": 73,
      "winnersAvailable": 41,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23322,9 +23322,9 @@
       "spark",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 75,
+     "superEffectiveAvailable": 76,
      "winnersAvailable": 111,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "machop",
@@ -23373,9 +23373,9 @@
       "mud-slap",
       "headbutt"
      ],
-     "superEffectiveAvailable": 75,
+     "superEffectiveAvailable": 76,
      "winnersAvailable": 91,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23423,9 +23423,9 @@
       "bite",
       "rock-throw"
      ],
-     "superEffectiveAvailable": 74,
+     "superEffectiveAvailable": 75,
      "winnersAvailable": 43,
-     "candidates": 163,
+     "candidates": 164,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23487,7 +23487,7 @@
      ],
      "superEffectiveAvailable": 93,
      "winnersAvailable": 65,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "raticate-alola",
@@ -23535,9 +23535,9 @@
       "fire-fang",
       "quick-attack"
      ],
-     "superEffectiveAvailable": 57,
+     "superEffectiveAvailable": 58,
      "winnersAvailable": 79,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23587,7 +23587,7 @@
      ],
      "superEffectiveAvailable": 34,
      "winnersAvailable": 91,
-     "candidates": 182,
+     "candidates": 183,
      "picks": [
       {
        "mon": "victreebel",
@@ -23649,7 +23649,7 @@
      ],
      "superEffectiveAvailable": 95,
      "winnersAvailable": 64,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "raticate-alola",
@@ -23699,7 +23699,7 @@
      ],
      "superEffectiveAvailable": 30,
      "winnersAvailable": 60,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "victreebel",
@@ -23749,7 +23749,7 @@
      ],
      "superEffectiveAvailable": 72,
      "winnersAvailable": 84,
-     "candidates": 182,
+     "candidates": 183,
      "picks": [
       {
        "mon": "probopass",
@@ -23811,7 +23811,7 @@
      ],
      "superEffectiveAvailable": 93,
      "winnersAvailable": 65,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "raticate-alola",
@@ -23861,7 +23861,7 @@
      ],
      "superEffectiveAvailable": 72,
      "winnersAvailable": 86,
-     "candidates": 181,
+     "candidates": 182,
      "picks": [
       {
        "mon": "arcanine",
@@ -23909,9 +23909,9 @@
       "fire-fang",
       "bite"
      ],
-     "superEffectiveAvailable": 61,
+     "superEffectiveAvailable": 62,
      "winnersAvailable": 96,
-     "candidates": 182,
+     "candidates": 183,
      "picks": [
       {
        "mon": "poliwrath",
@@ -23973,7 +23973,7 @@
      ],
      "superEffectiveAvailable": 16,
      "winnersAvailable": 152,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "vaporeon",
@@ -24023,9 +24023,9 @@
       "swagger",
       "earthquake"
      ],
-     "superEffectiveAvailable": 133,
+     "superEffectiveAvailable": 135,
      "winnersAvailable": 167,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "leafeon",
@@ -24076,7 +24076,7 @@
      ],
      "superEffectiveAvailable": 61,
      "winnersAvailable": 95,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "poliwrath",
@@ -24138,7 +24138,7 @@
      ],
      "superEffectiveAvailable": 16,
      "winnersAvailable": 153,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "vaporeon",
@@ -24188,9 +24188,9 @@
       "swagger",
       "earthquake"
      ],
-     "superEffectiveAvailable": 130,
+     "superEffectiveAvailable": 132,
      "winnersAvailable": 166,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "leafeon",
@@ -24241,7 +24241,7 @@
      ],
      "superEffectiveAvailable": 60,
      "winnersAvailable": 96,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "poliwrath",
@@ -24303,7 +24303,7 @@
      ],
      "superEffectiveAvailable": 17,
      "winnersAvailable": 153,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "vaporeon",
@@ -24353,9 +24353,9 @@
       "swagger",
       "earthquake"
      ],
-     "superEffectiveAvailable": 133,
+     "superEffectiveAvailable": 135,
      "winnersAvailable": 167,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "leafeon",
@@ -24406,7 +24406,7 @@
      ],
      "superEffectiveAvailable": 61,
      "winnersAvailable": 96,
-     "candidates": 248,
+     "candidates": 250,
      "picks": [
       {
        "mon": "poliwrath",
@@ -24467,9 +24467,9 @@
       "sucker-punch",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 136,
+     "superEffectiveAvailable": 137,
      "winnersAvailable": 152,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "golisopod",
@@ -24518,9 +24518,9 @@
       "mud-bomb",
       "recover"
      ],
-     "superEffectiveAvailable": 40,
-     "winnersAvailable": 153,
-     "candidates": 286,
+     "superEffectiveAvailable": 41,
+     "winnersAvailable": 154,
+     "candidates": 288,
      "picks": [
       {
        "mon": "exeggutor-alola",
@@ -24570,7 +24570,7 @@
      ],
      "superEffectiveAvailable": 68,
      "winnersAvailable": 127,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "gyarados",
@@ -24620,9 +24620,9 @@
       "double-kick",
       "counter"
      ],
-     "superEffectiveAvailable": 117,
+     "superEffectiveAvailable": 119,
      "winnersAvailable": 85,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "gyarados",
@@ -24683,9 +24683,9 @@
       "sucker-punch",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 139,
+     "superEffectiveAvailable": 140,
      "winnersAvailable": 150,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "golisopod",
@@ -24734,9 +24734,9 @@
       "mud-bomb",
       "recover"
      ],
-     "superEffectiveAvailable": 37,
-     "winnersAvailable": 151,
-     "candidates": 286,
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 152,
+     "candidates": 288,
      "picks": [
       {
        "mon": "exeggutor-alola",
@@ -24786,7 +24786,7 @@
      ],
      "superEffectiveAvailable": 69,
      "winnersAvailable": 125,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "gyarados",
@@ -24836,9 +24836,9 @@
       "double-kick",
       "counter"
      ],
-     "superEffectiveAvailable": 114,
+     "superEffectiveAvailable": 116,
      "winnersAvailable": 82,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "gyarados",
@@ -24899,9 +24899,9 @@
       "sucker-punch",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 139,
+     "superEffectiveAvailable": 140,
      "winnersAvailable": 152,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "golisopod",
@@ -24950,9 +24950,9 @@
       "mud-bomb",
       "recover"
      ],
-     "superEffectiveAvailable": 37,
-     "winnersAvailable": 153,
-     "candidates": 286,
+     "superEffectiveAvailable": 38,
+     "winnersAvailable": 154,
+     "candidates": 288,
      "picks": [
       {
        "mon": "exeggutor-alola",
@@ -25002,7 +25002,7 @@
      ],
      "superEffectiveAvailable": 71,
      "winnersAvailable": 127,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "gyarados",
@@ -25052,9 +25052,9 @@
       "double-kick",
       "counter"
      ],
-     "superEffectiveAvailable": 117,
+     "superEffectiveAvailable": 119,
      "winnersAvailable": 84,
-     "candidates": 286,
+     "candidates": 288,
      "picks": [
       {
        "mon": "gyarados",
@@ -25117,7 +25117,7 @@
      ],
      "superEffectiveAvailable": 158,
      "winnersAvailable": 158,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "goodra",
@@ -25169,7 +25169,7 @@
      ],
      "superEffectiveAvailable": 105,
      "winnersAvailable": 150,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "corsola",
@@ -25221,7 +25221,7 @@
      ],
      "superEffectiveAvailable": 36,
      "winnersAvailable": 154,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "leafeon",
@@ -25270,9 +25270,9 @@
       "moonblast",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 92,
+     "superEffectiveAvailable": 93,
      "winnersAvailable": 86,
-     "candidates": 302,
+     "candidates": 304,
      "picks": [
       {
        "mon": "tentacruel",
@@ -25335,7 +25335,7 @@
      ],
      "superEffectiveAvailable": 156,
      "winnersAvailable": 158,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "goodra",
@@ -25385,9 +25385,9 @@
       "charm",
       "baby-doll-eyes"
      ],
-     "superEffectiveAvailable": 66,
+     "superEffectiveAvailable": 67,
      "winnersAvailable": 133,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "meganium",
@@ -25439,7 +25439,7 @@
      ],
      "superEffectiveAvailable": 36,
      "winnersAvailable": 153,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "leafeon",
@@ -25488,9 +25488,9 @@
       "leaf-blade",
       "smack-down"
      ],
-     "superEffectiveAvailable": 168,
+     "superEffectiveAvailable": 169,
      "winnersAvailable": 133,
-     "candidates": 302,
+     "candidates": 304,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -25553,7 +25553,7 @@
      ],
      "superEffectiveAvailable": 155,
      "winnersAvailable": 156,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "goodra",
@@ -25605,7 +25605,7 @@
      ],
      "superEffectiveAvailable": 136,
      "winnersAvailable": 151,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "scyther",
@@ -25657,7 +25657,7 @@
      ],
      "superEffectiveAvailable": 36,
      "winnersAvailable": 152,
-     "candidates": 301,
+     "candidates": 303,
      "picks": [
       {
        "mon": "leafeon",
@@ -25706,9 +25706,9 @@
       "flare-blitz",
       "earthquake"
      ],
-     "superEffectiveAvailable": 136,
+     "superEffectiveAvailable": 137,
      "winnersAvailable": 99,
-     "candidates": 302,
+     "candidates": 304,
      "picks": [
       {
        "mon": "poliwrath",
@@ -25770,7 +25770,7 @@
      ],
      "superEffectiveAvailable": 90,
      "winnersAvailable": 138,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "crobat",
@@ -25822,7 +25822,7 @@
      ],
      "superEffectiveAvailable": 91,
      "winnersAvailable": 182,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -25872,7 +25872,7 @@
      ],
      "superEffectiveAvailable": 115,
      "winnersAvailable": 154,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -25920,9 +25920,9 @@
       "waterfall",
       "submission"
      ],
-     "superEffectiveAvailable": 148,
+     "superEffectiveAvailable": 149,
      "winnersAvailable": 148,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gyarados",
@@ -25972,7 +25972,7 @@
      ],
      "superEffectiveAvailable": 152,
      "winnersAvailable": 120,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "doublade",
@@ -26034,7 +26034,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 136,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "crobat",
@@ -26086,7 +26086,7 @@
      ],
      "superEffectiveAvailable": 88,
      "winnersAvailable": 181,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -26136,7 +26136,7 @@
      ],
      "superEffectiveAvailable": 112,
      "winnersAvailable": 153,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -26184,9 +26184,9 @@
       "waterfall",
       "submission"
      ],
-     "superEffectiveAvailable": 145,
+     "superEffectiveAvailable": 146,
      "winnersAvailable": 145,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gyarados",
@@ -26236,7 +26236,7 @@
      ],
      "superEffectiveAvailable": 152,
      "winnersAvailable": 121,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "doublade",
@@ -26298,7 +26298,7 @@
      ],
      "superEffectiveAvailable": 90,
      "winnersAvailable": 137,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "crobat",
@@ -26350,7 +26350,7 @@
      ],
      "superEffectiveAvailable": 91,
      "winnersAvailable": 182,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -26400,7 +26400,7 @@
      ],
      "superEffectiveAvailable": 115,
      "winnersAvailable": 153,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "ribombee",
@@ -26448,9 +26448,9 @@
       "waterfall",
       "submission"
      ],
-     "superEffectiveAvailable": 148,
+     "superEffectiveAvailable": 149,
      "winnersAvailable": 147,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gyarados",
@@ -26500,7 +26500,7 @@
      ],
      "superEffectiveAvailable": 152,
      "winnersAvailable": 120,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "doublade",
@@ -26560,9 +26560,9 @@
       "ancient-power",
       "yawn"
      ],
-     "superEffectiveAvailable": 125,
-     "winnersAvailable": 202,
-     "candidates": 304,
+     "superEffectiveAvailable": 126,
+     "winnersAvailable": 203,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -26611,9 +26611,9 @@
       "moonblast",
       "reflect"
      ],
-     "superEffectiveAvailable": 158,
+     "superEffectiveAvailable": 160,
      "winnersAvailable": 169,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "tentacruel",
@@ -26662,9 +26662,9 @@
       "rock-blast",
       "steamroller"
      ],
-     "superEffectiveAvailable": 158,
+     "superEffectiveAvailable": 160,
      "winnersAvailable": 175,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "garchomp",
@@ -26714,9 +26714,9 @@
       "thunder-wave",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 129,
+     "superEffectiveAvailable": 130,
      "winnersAvailable": 147,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -26766,9 +26766,9 @@
       "counter",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 170,
+     "superEffectiveAvailable": 172,
      "winnersAvailable": 77,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "rhydon",
@@ -26828,9 +26828,9 @@
       "ancient-power",
       "yawn"
      ],
-     "superEffectiveAvailable": 122,
-     "winnersAvailable": 200,
-     "candidates": 304,
+     "superEffectiveAvailable": 123,
+     "winnersAvailable": 201,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -26879,9 +26879,9 @@
       "moonblast",
       "reflect"
      ],
-     "superEffectiveAvailable": 155,
+     "superEffectiveAvailable": 157,
      "winnersAvailable": 167,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "tentacruel",
@@ -26930,9 +26930,9 @@
       "rock-blast",
       "steamroller"
      ],
-     "superEffectiveAvailable": 155,
+     "superEffectiveAvailable": 157,
      "winnersAvailable": 173,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "garchomp",
@@ -26982,9 +26982,9 @@
       "thunder-wave",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 129,
+     "superEffectiveAvailable": 130,
      "winnersAvailable": 147,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -27034,9 +27034,9 @@
       "counter",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 167,
+     "superEffectiveAvailable": 169,
      "winnersAvailable": 77,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "rhydon",
@@ -27096,9 +27096,9 @@
       "ancient-power",
       "yawn"
      ],
-     "superEffectiveAvailable": 122,
-     "winnersAvailable": 202,
-     "candidates": 304,
+     "superEffectiveAvailable": 123,
+     "winnersAvailable": 203,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -27147,9 +27147,9 @@
       "moonblast",
       "reflect"
      ],
-     "superEffectiveAvailable": 158,
+     "superEffectiveAvailable": 160,
      "winnersAvailable": 170,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "tentacruel",
@@ -27198,9 +27198,9 @@
       "rock-blast",
       "steamroller"
      ],
-     "superEffectiveAvailable": 158,
+     "superEffectiveAvailable": 160,
      "winnersAvailable": 175,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "garchomp",
@@ -27250,9 +27250,9 @@
       "thunder-wave",
       "sandstorm"
      ],
-     "superEffectiveAvailable": 132,
+     "superEffectiveAvailable": 133,
      "winnersAvailable": 149,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -27302,9 +27302,9 @@
       "counter",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 170,
+     "superEffectiveAvailable": 172,
      "winnersAvailable": 77,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "rhydon",
@@ -27367,7 +27367,7 @@
      ],
      "superEffectiveAvailable": 21,
      "winnersAvailable": 248,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -27418,8 +27418,8 @@
       "baton-pass"
      ],
      "superEffectiveAvailable": 172,
-     "winnersAvailable": 220,
-     "candidates": 304,
+     "winnersAvailable": 221,
+     "candidates": 306,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -27469,9 +27469,9 @@
       "energy-ball",
       "whirlpool"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 170,
      "winnersAvailable": 173,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -27523,7 +27523,7 @@
      ],
      "superEffectiveAvailable": 169,
      "winnersAvailable": 185,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "weavile",
@@ -27573,9 +27573,9 @@
       "giga-drain",
       "iron-defense"
      ],
-     "superEffectiveAvailable": 206,
+     "superEffectiveAvailable": 208,
      "winnersAvailable": 139,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -27638,7 +27638,7 @@
      ],
      "superEffectiveAvailable": 21,
      "winnersAvailable": 248,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -27689,8 +27689,8 @@
       "baton-pass"
      ],
      "superEffectiveAvailable": 172,
-     "winnersAvailable": 219,
-     "candidates": 304,
+     "winnersAvailable": 220,
+     "candidates": 306,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -27740,9 +27740,9 @@
       "energy-ball",
       "whirlpool"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 170,
      "winnersAvailable": 173,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -27794,7 +27794,7 @@
      ],
      "superEffectiveAvailable": 171,
      "winnersAvailable": 187,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "weavile",
@@ -27844,9 +27844,9 @@
       "giga-drain",
       "iron-defense"
      ],
-     "superEffectiveAvailable": 204,
+     "superEffectiveAvailable": 206,
      "winnersAvailable": 138,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -27909,7 +27909,7 @@
      ],
      "superEffectiveAvailable": 24,
      "winnersAvailable": 248,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -27960,8 +27960,8 @@
       "baton-pass"
      ],
      "superEffectiveAvailable": 171,
-     "winnersAvailable": 219,
-     "candidates": 304,
+     "winnersAvailable": 220,
+     "candidates": 306,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -28011,9 +28011,9 @@
       "energy-ball",
       "whirlpool"
      ],
-     "superEffectiveAvailable": 166,
+     "superEffectiveAvailable": 167,
      "winnersAvailable": 171,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -28065,7 +28065,7 @@
      ],
      "superEffectiveAvailable": 168,
      "winnersAvailable": 186,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "weavile",
@@ -28115,9 +28115,9 @@
       "giga-drain",
       "iron-defense"
      ],
-     "superEffectiveAvailable": 206,
+     "superEffectiveAvailable": 208,
      "winnersAvailable": 140,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -28180,7 +28180,7 @@
      ],
      "superEffectiveAvailable": 56,
      "winnersAvailable": 168,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "golduck",
@@ -28232,7 +28232,7 @@
      ],
      "superEffectiveAvailable": 110,
      "winnersAvailable": 172,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -28282,9 +28282,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 125,
+     "superEffectiveAvailable": 126,
      "winnersAvailable": 179,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -28336,7 +28336,7 @@
      ],
      "superEffectiveAvailable": 107,
      "winnersAvailable": 102,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "cloyster",
@@ -28388,7 +28388,7 @@
      ],
      "superEffectiveAvailable": 85,
      "winnersAvailable": 87,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "magneton",
@@ -28451,7 +28451,7 @@
      ],
      "superEffectiveAvailable": 59,
      "winnersAvailable": 170,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "golduck",
@@ -28503,7 +28503,7 @@
      ],
      "superEffectiveAvailable": 110,
      "winnersAvailable": 173,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -28553,9 +28553,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 125,
+     "superEffectiveAvailable": 126,
      "winnersAvailable": 179,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -28607,7 +28607,7 @@
      ],
      "superEffectiveAvailable": 107,
      "winnersAvailable": 103,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "cloyster",
@@ -28659,7 +28659,7 @@
      ],
      "superEffectiveAvailable": 85,
      "winnersAvailable": 88,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "magneton",
@@ -28722,7 +28722,7 @@
      ],
      "superEffectiveAvailable": 56,
      "winnersAvailable": 170,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "golduck",
@@ -28774,7 +28774,7 @@
      ],
      "superEffectiveAvailable": 110,
      "winnersAvailable": 173,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -28824,9 +28824,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 128,
+     "superEffectiveAvailable": 129,
      "winnersAvailable": 181,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -28878,7 +28878,7 @@
      ],
      "superEffectiveAvailable": 110,
      "winnersAvailable": 103,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "cloyster",
@@ -28930,7 +28930,7 @@
      ],
      "superEffectiveAvailable": 85,
      "winnersAvailable": 88,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "magneton",
@@ -28991,9 +28991,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 172,
+     "superEffectiveAvailable": 174,
      "winnersAvailable": 183,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -29045,7 +29045,7 @@
      ],
      "superEffectiveAvailable": 104,
      "winnersAvailable": 165,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -29097,7 +29097,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 105,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -29149,7 +29149,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 88,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gastrodon",
@@ -29201,7 +29201,7 @@
      ],
      "superEffectiveAvailable": 35,
      "winnersAvailable": 178,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "primeape",
@@ -29251,9 +29251,9 @@
       "outrage",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 137,
+     "superEffectiveAvailable": 138,
      "winnersAvailable": 82,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "poliwrath",
@@ -29314,9 +29314,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 169,
+     "superEffectiveAvailable": 171,
      "winnersAvailable": 182,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -29368,7 +29368,7 @@
      ],
      "superEffectiveAvailable": 107,
      "winnersAvailable": 167,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -29420,7 +29420,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 106,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -29472,7 +29472,7 @@
      ],
      "superEffectiveAvailable": 105,
      "winnersAvailable": 90,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gastrodon",
@@ -29524,7 +29524,7 @@
      ],
      "superEffectiveAvailable": 35,
      "winnersAvailable": 177,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "primeape",
@@ -29574,9 +29574,9 @@
       "aqua-jet",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 92,
+     "superEffectiveAvailable": 93,
      "winnersAvailable": 62,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "tentacruel",
@@ -29637,9 +29637,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 172,
+     "superEffectiveAvailable": 174,
      "winnersAvailable": 184,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "poliwrath",
@@ -29691,7 +29691,7 @@
      ],
      "superEffectiveAvailable": 104,
      "winnersAvailable": 166,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "sandslash-alola",
@@ -29743,7 +29743,7 @@
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 106,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -29795,7 +29795,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 88,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "gastrodon",
@@ -29847,7 +29847,7 @@
      ],
      "superEffectiveAvailable": 35,
      "winnersAvailable": 176,
-     "candidates": 304,
+     "candidates": 306,
      "picks": [
       {
        "mon": "primeape",
@@ -29897,9 +29897,9 @@
       "brave-bird",
       "sucker-punch"
      ],
-     "superEffectiveAvailable": 165,
+     "superEffectiveAvailable": 166,
      "winnersAvailable": 106,
-     "candidates": 305,
+     "candidates": 307,
      "picks": [
       {
        "mon": "mandibuzz",
@@ -29962,7 +29962,7 @@
      ],
      "superEffectiveAvailable": 23,
      "winnersAvailable": 261,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -30014,7 +30014,7 @@
      ],
      "superEffectiveAvailable": 106,
      "winnersAvailable": 220,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -30066,7 +30066,7 @@
      ],
      "superEffectiveAvailable": 133,
      "winnersAvailable": 196,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "klefki",
@@ -30116,9 +30116,9 @@
       "dragon-claw",
       "earthquake"
      ],
-     "superEffectiveAvailable": 211,
+     "superEffectiveAvailable": 213,
      "winnersAvailable": 141,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -30170,7 +30170,7 @@
      ],
      "superEffectiveAvailable": 105,
      "winnersAvailable": 178,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "muk-alola",
@@ -30233,7 +30233,7 @@
      ],
      "superEffectiveAvailable": 23,
      "winnersAvailable": 262,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -30285,7 +30285,7 @@
      ],
      "superEffectiveAvailable": 105,
      "winnersAvailable": 220,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -30337,7 +30337,7 @@
      ],
      "superEffectiveAvailable": 133,
      "winnersAvailable": 198,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "klefki",
@@ -30387,9 +30387,9 @@
       "dragon-claw",
       "earthquake"
      ],
-     "superEffectiveAvailable": 208,
+     "superEffectiveAvailable": 210,
      "winnersAvailable": 140,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -30441,7 +30441,7 @@
      ],
      "superEffectiveAvailable": 104,
      "winnersAvailable": 178,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "muk-alola",
@@ -30504,7 +30504,7 @@
      ],
      "superEffectiveAvailable": 26,
      "winnersAvailable": 262,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -30556,7 +30556,7 @@
      ],
      "superEffectiveAvailable": 108,
      "winnersAvailable": 221,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -30608,7 +30608,7 @@
      ],
      "superEffectiveAvailable": 136,
      "winnersAvailable": 199,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "klefki",
@@ -30658,9 +30658,9 @@
       "dragon-claw",
       "earthquake"
      ],
-     "superEffectiveAvailable": 211,
+     "superEffectiveAvailable": 213,
      "winnersAvailable": 142,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -30712,7 +30712,7 @@
      ],
      "superEffectiveAvailable": 107,
      "winnersAvailable": 179,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "muk-alola",
@@ -30775,7 +30775,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 137,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -30827,7 +30827,7 @@
      ],
      "superEffectiveAvailable": 101,
      "winnersAvailable": 214,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "ribombee",
@@ -30879,7 +30879,7 @@
      ],
      "superEffectiveAvailable": 132,
      "winnersAvailable": 153,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -30929,9 +30929,9 @@
       "poison-jab",
       "payback"
      ],
-     "superEffectiveAvailable": 171,
+     "superEffectiveAvailable": 172,
      "winnersAvailable": 143,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -30983,7 +30983,7 @@
      ],
      "superEffectiveAvailable": 167,
      "winnersAvailable": 134,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -31046,7 +31046,7 @@
      ],
      "superEffectiveAvailable": 99,
      "winnersAvailable": 134,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -31098,7 +31098,7 @@
      ],
      "superEffectiveAvailable": 98,
      "winnersAvailable": 213,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "ribombee",
@@ -31150,7 +31150,7 @@
      ],
      "superEffectiveAvailable": 129,
      "winnersAvailable": 153,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -31200,9 +31200,9 @@
       "poison-jab",
       "payback"
      ],
-     "superEffectiveAvailable": 168,
+     "superEffectiveAvailable": 169,
      "winnersAvailable": 141,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -31254,7 +31254,7 @@
      ],
      "superEffectiveAvailable": 167,
      "winnersAvailable": 135,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -31317,7 +31317,7 @@
      ],
      "superEffectiveAvailable": 102,
      "winnersAvailable": 136,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -31369,7 +31369,7 @@
      ],
      "superEffectiveAvailable": 101,
      "winnersAvailable": 214,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "ribombee",
@@ -31421,7 +31421,7 @@
      ],
      "superEffectiveAvailable": 132,
      "winnersAvailable": 153,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -31471,9 +31471,9 @@
       "poison-jab",
       "payback"
      ],
-     "superEffectiveAvailable": 171,
+     "superEffectiveAvailable": 172,
      "winnersAvailable": 143,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -31525,7 +31525,7 @@
      ],
      "superEffectiveAvailable": 167,
      "winnersAvailable": 134,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -31586,9 +31586,9 @@
       "yawn",
       "earthquake"
      ],
-     "superEffectiveAvailable": 150,
-     "winnersAvailable": 133,
-     "candidates": 347,
+     "superEffectiveAvailable": 151,
+     "winnersAvailable": 134,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -31638,9 +31638,9 @@
       "reflect",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 182,
+     "superEffectiveAvailable": 184,
      "winnersAvailable": 190,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "tentacruel",
@@ -31690,9 +31690,9 @@
       "earthquake",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 181,
+     "superEffectiveAvailable": 183,
      "winnersAvailable": 172,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "flygon",
@@ -31742,9 +31742,9 @@
       "dazzling-gleam",
       "flash-cannon"
      ],
-     "superEffectiveAvailable": 149,
+     "superEffectiveAvailable": 150,
      "winnersAvailable": 150,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -31794,9 +31794,9 @@
       "brick-break",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 197,
+     "superEffectiveAvailable": 199,
      "winnersAvailable": 95,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -31857,9 +31857,9 @@
       "yawn",
       "earthquake"
      ],
-     "superEffectiveAvailable": 147,
-     "winnersAvailable": 132,
-     "candidates": 347,
+     "superEffectiveAvailable": 148,
+     "winnersAvailable": 133,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -31909,9 +31909,9 @@
       "reflect",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 179,
+     "superEffectiveAvailable": 181,
      "winnersAvailable": 188,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "tentacruel",
@@ -31961,9 +31961,9 @@
       "earthquake",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 178,
+     "superEffectiveAvailable": 180,
      "winnersAvailable": 171,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "flygon",
@@ -32013,9 +32013,9 @@
       "dazzling-gleam",
       "flash-cannon"
      ],
-     "superEffectiveAvailable": 149,
+     "superEffectiveAvailable": 150,
      "winnersAvailable": 150,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -32065,9 +32065,9 @@
       "brick-break",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 194,
+     "superEffectiveAvailable": 196,
      "winnersAvailable": 95,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -32128,9 +32128,9 @@
       "yawn",
       "earthquake"
      ],
-     "superEffectiveAvailable": 147,
-     "winnersAvailable": 133,
-     "candidates": 347,
+     "superEffectiveAvailable": 148,
+     "winnersAvailable": 134,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -32180,9 +32180,9 @@
       "reflect",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 182,
+     "superEffectiveAvailable": 184,
      "winnersAvailable": 191,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "tentacruel",
@@ -32232,9 +32232,9 @@
       "earthquake",
       "heavy-slam"
      ],
-     "superEffectiveAvailable": 181,
+     "superEffectiveAvailable": 183,
      "winnersAvailable": 173,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "flygon",
@@ -32284,9 +32284,9 @@
       "dazzling-gleam",
       "flash-cannon"
      ],
-     "superEffectiveAvailable": 152,
+     "superEffectiveAvailable": 153,
      "winnersAvailable": 152,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -32336,9 +32336,9 @@
       "brick-break",
       "rock-climb"
      ],
-     "superEffectiveAvailable": 197,
+     "superEffectiveAvailable": 199,
      "winnersAvailable": 95,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "garchomp",
@@ -32401,7 +32401,7 @@
      ],
      "superEffectiveAvailable": 23,
      "winnersAvailable": 260,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -32453,7 +32453,7 @@
      ],
      "superEffectiveAvailable": 203,
      "winnersAvailable": 187,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -32503,9 +32503,9 @@
       "earthquake",
       "brutal-swing"
      ],
-     "superEffectiveAvailable": 181,
+     "superEffectiveAvailable": 182,
      "winnersAvailable": 195,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -32557,7 +32557,7 @@
      ],
      "superEffectiveAvailable": 200,
      "winnersAvailable": 194,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "snorlax",
@@ -32607,9 +32607,9 @@
       "sludge-bomb",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 231,
+     "superEffectiveAvailable": 233,
      "winnersAvailable": 152,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -32672,7 +32672,7 @@
      ],
      "superEffectiveAvailable": 23,
      "winnersAvailable": 260,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -32724,7 +32724,7 @@
      ],
      "superEffectiveAvailable": 203,
      "winnersAvailable": 187,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -32774,9 +32774,9 @@
       "earthquake",
       "brutal-swing"
      ],
-     "superEffectiveAvailable": 181,
+     "superEffectiveAvailable": 182,
      "winnersAvailable": 195,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -32828,7 +32828,7 @@
      ],
      "superEffectiveAvailable": 202,
      "winnersAvailable": 196,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "snorlax",
@@ -32878,9 +32878,9 @@
       "sludge-bomb",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 229,
+     "superEffectiveAvailable": 231,
      "winnersAvailable": 151,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -32943,7 +32943,7 @@
      ],
      "superEffectiveAvailable": 26,
      "winnersAvailable": 260,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -32995,7 +32995,7 @@
      ],
      "superEffectiveAvailable": 202,
      "winnersAvailable": 186,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kangaskhan",
@@ -33045,9 +33045,9 @@
       "earthquake",
       "brutal-swing"
      ],
-     "superEffectiveAvailable": 178,
+     "superEffectiveAvailable": 179,
      "winnersAvailable": 193,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -33099,7 +33099,7 @@
      ],
      "superEffectiveAvailable": 199,
      "winnersAvailable": 195,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "snorlax",
@@ -33149,9 +33149,9 @@
       "sludge-bomb",
       "giga-drain"
      ],
-     "superEffectiveAvailable": 231,
+     "superEffectiveAvailable": 233,
      "winnersAvailable": 153,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -33214,7 +33214,7 @@
      ],
      "superEffectiveAvailable": 63,
      "winnersAvailable": 166,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -33266,7 +33266,7 @@
      ],
      "superEffectiveAvailable": 142,
      "winnersAvailable": 185,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -33316,9 +33316,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 160,
+     "superEffectiveAvailable": 161,
      "winnersAvailable": 211,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -33370,7 +33370,7 @@
      ],
      "superEffectiveAvailable": 140,
      "winnersAvailable": 180,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "electabuzz",
@@ -33422,7 +33422,7 @@
      ],
      "superEffectiveAvailable": 114,
      "winnersAvailable": 105,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "metagross",
@@ -33485,7 +33485,7 @@
      ],
      "superEffectiveAvailable": 66,
      "winnersAvailable": 168,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -33537,7 +33537,7 @@
      ],
      "superEffectiveAvailable": 142,
      "winnersAvailable": 185,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -33587,9 +33587,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 160,
+     "superEffectiveAvailable": 161,
      "winnersAvailable": 211,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -33641,7 +33641,7 @@
      ],
      "superEffectiveAvailable": 140,
      "winnersAvailable": 182,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "electabuzz",
@@ -33693,7 +33693,7 @@
      ],
      "superEffectiveAvailable": 114,
      "winnersAvailable": 106,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "metagross",
@@ -33756,7 +33756,7 @@
      ],
      "superEffectiveAvailable": 63,
      "winnersAvailable": 168,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "milotic",
@@ -33808,7 +33808,7 @@
      ],
      "superEffectiveAvailable": 142,
      "winnersAvailable": 186,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -33858,9 +33858,9 @@
       "agility",
       "hurricane"
      ],
-     "superEffectiveAvailable": 163,
+     "superEffectiveAvailable": 164,
      "winnersAvailable": 213,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "aerodactyl",
@@ -33912,7 +33912,7 @@
      ],
      "superEffectiveAvailable": 143,
      "winnersAvailable": 182,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "electabuzz",
@@ -33964,7 +33964,7 @@
      ],
      "superEffectiveAvailable": 114,
      "winnersAvailable": 106,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "metagross",
@@ -34027,7 +34027,7 @@
      ],
      "superEffectiveAvailable": 174,
      "winnersAvailable": 167,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "goodra",
@@ -34079,7 +34079,7 @@
      ],
      "superEffectiveAvailable": 135,
      "winnersAvailable": 173,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "kabutops",
@@ -34131,7 +34131,7 @@
      ],
      "superEffectiveAvailable": 44,
      "winnersAvailable": 170,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -34183,7 +34183,7 @@
      ],
      "superEffectiveAvailable": 167,
      "winnersAvailable": 154,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -34232,9 +34232,9 @@
       "moonblast",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 109,
+     "superEffectiveAvailable": 110,
      "winnersAvailable": 73,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "tentacruel",
@@ -34297,7 +34297,7 @@
      ],
      "superEffectiveAvailable": 172,
      "winnersAvailable": 167,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "goodra",
@@ -34347,9 +34347,9 @@
       "charm",
       "baby-doll-eyes"
      ],
-     "superEffectiveAvailable": 82,
+     "superEffectiveAvailable": 83,
      "winnersAvailable": 141,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -34401,7 +34401,7 @@
      ],
      "superEffectiveAvailable": 44,
      "winnersAvailable": 169,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -34453,7 +34453,7 @@
      ],
      "superEffectiveAvailable": 167,
      "winnersAvailable": 155,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -34502,9 +34502,9 @@
       "leaf-blade",
       "smack-down"
      ],
-     "superEffectiveAvailable": 183,
+     "superEffectiveAvailable": 184,
      "winnersAvailable": 126,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "guzzlord",
@@ -34567,7 +34567,7 @@
      ],
      "superEffectiveAvailable": 171,
      "winnersAvailable": 166,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "goodra",
@@ -34619,7 +34619,7 @@
      ],
      "superEffectiveAvailable": 152,
      "winnersAvailable": 175,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "scyther",
@@ -34671,7 +34671,7 @@
      ],
      "superEffectiveAvailable": 44,
      "winnersAvailable": 168,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "salamence",
@@ -34723,7 +34723,7 @@
      ],
      "superEffectiveAvailable": 167,
      "winnersAvailable": 154,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -34772,9 +34772,9 @@
       "flare-blitz",
       "earthquake"
      ],
-     "superEffectiveAvailable": 174,
+     "superEffectiveAvailable": 175,
      "winnersAvailable": 104,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "gyarados",
@@ -34835,9 +34835,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 171,
+     "superEffectiveAvailable": 172,
      "winnersAvailable": 179,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "celesteela",
@@ -34887,9 +34887,9 @@
       "sludge-wave",
       "ice-beam"
      ],
-     "superEffectiveAvailable": 53,
-     "winnersAvailable": 170,
-     "candidates": 347,
+     "superEffectiveAvailable": 54,
+     "winnersAvailable": 171,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -34939,9 +34939,9 @@
       "dragon-claw",
       "aerial-ace"
      ],
-     "superEffectiveAvailable": 211,
+     "superEffectiveAvailable": 213,
      "winnersAvailable": 141,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -34993,7 +34993,7 @@
      ],
      "superEffectiveAvailable": 92,
      "winnersAvailable": 119,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -35043,9 +35043,9 @@
       "payback",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 143,
      "winnersAvailable": 103,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "meganium",
@@ -35106,9 +35106,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 174,
+     "superEffectiveAvailable": 175,
      "winnersAvailable": 178,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "celesteela",
@@ -35158,9 +35158,9 @@
       "sludge-wave",
       "ice-beam"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 168,
-     "candidates": 347,
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 169,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -35210,9 +35210,9 @@
       "dragon-claw",
       "aerial-ace"
      ],
-     "superEffectiveAvailable": 208,
+     "superEffectiveAvailable": 210,
      "winnersAvailable": 140,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -35264,7 +35264,7 @@
      ],
      "superEffectiveAvailable": 95,
      "winnersAvailable": 119,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -35314,9 +35314,9 @@
       "payback",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 138,
+     "superEffectiveAvailable": 140,
      "winnersAvailable": 100,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "meganium",
@@ -35377,9 +35377,9 @@
       "sandstorm",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 174,
+     "superEffectiveAvailable": 175,
      "winnersAvailable": 180,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "celesteela",
@@ -35429,9 +35429,9 @@
       "sludge-wave",
       "ice-beam"
      ],
-     "superEffectiveAvailable": 50,
-     "winnersAvailable": 169,
-     "candidates": 347,
+     "superEffectiveAvailable": 51,
+     "winnersAvailable": 170,
+     "candidates": 349,
      "picks": [
       {
        "mon": "gyarados",
@@ -35481,9 +35481,9 @@
       "dragon-claw",
       "aerial-ace"
      ],
-     "superEffectiveAvailable": 211,
+     "superEffectiveAvailable": 213,
      "winnersAvailable": 142,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "togekiss",
@@ -35535,7 +35535,7 @@
      ],
      "superEffectiveAvailable": 95,
      "winnersAvailable": 120,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "slowbro",
@@ -35585,9 +35585,9 @@
       "payback",
       "rock-slide"
      ],
-     "superEffectiveAvailable": 141,
+     "superEffectiveAvailable": 143,
      "winnersAvailable": 103,
-     "candidates": 347,
+     "candidates": 349,
      "picks": [
       {
        "mon": "meganium",
@@ -35648,9 +35648,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 197,
+     "superEffectiveAvailable": 199,
      "winnersAvailable": 204,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "poliwrath",
@@ -35702,7 +35702,7 @@
      ],
      "superEffectiveAvailable": 131,
      "winnersAvailable": 182,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "metagross",
@@ -35754,7 +35754,7 @@
      ],
      "superEffectiveAvailable": 117,
      "winnersAvailable": 116,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -35806,7 +35806,7 @@
      ],
      "superEffectiveAvailable": 116,
      "winnersAvailable": 92,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "whiscash",
@@ -35858,7 +35858,7 @@
      ],
      "superEffectiveAvailable": 43,
      "winnersAvailable": 142,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "pinsir",
@@ -35908,9 +35908,9 @@
       "outrage",
       "cross-chop"
      ],
-     "superEffectiveAvailable": 171,
+     "superEffectiveAvailable": 172,
      "winnersAvailable": 105,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "poliwrath",
@@ -35971,9 +35971,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 194,
+     "superEffectiveAvailable": 196,
      "winnersAvailable": 204,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "poliwrath",
@@ -36025,7 +36025,7 @@
      ],
      "superEffectiveAvailable": 134,
      "winnersAvailable": 184,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "metagross",
@@ -36077,7 +36077,7 @@
      ],
      "superEffectiveAvailable": 117,
      "winnersAvailable": 117,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -36129,7 +36129,7 @@
      ],
      "superEffectiveAvailable": 119,
      "winnersAvailable": 94,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "whiscash",
@@ -36181,7 +36181,7 @@
      ],
      "superEffectiveAvailable": 43,
      "winnersAvailable": 140,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "pinsir",
@@ -36231,9 +36231,9 @@
       "aqua-jet",
       "hyper-voice"
      ],
-     "superEffectiveAvailable": 106,
+     "superEffectiveAvailable": 107,
      "winnersAvailable": 72,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "tentacruel",
@@ -36294,9 +36294,9 @@
       "crunch",
       "stealth-rock"
      ],
-     "superEffectiveAvailable": 197,
+     "superEffectiveAvailable": 199,
      "winnersAvailable": 206,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "poliwrath",
@@ -36348,7 +36348,7 @@
      ],
      "superEffectiveAvailable": 131,
      "winnersAvailable": 183,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "metagross",
@@ -36400,7 +36400,7 @@
      ],
      "superEffectiveAvailable": 117,
      "winnersAvailable": 117,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "graveler-alola",
@@ -36452,7 +36452,7 @@
      ],
      "superEffectiveAvailable": 116,
      "winnersAvailable": 92,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "whiscash",
@@ -36504,7 +36504,7 @@
      ],
      "superEffectiveAvailable": 43,
      "winnersAvailable": 140,
-     "candidates": 348,
+     "candidates": 350,
      "picks": [
       {
        "mon": "pinsir",
@@ -36554,9 +36554,9 @@
       "brave-bird",
       "sucker-punch"
      ],
-     "superEffectiveAvailable": 180,
+     "superEffectiveAvailable": 181,
      "winnersAvailable": 119,
-     "candidates": 349,
+     "candidates": 351,
      "picks": [
       {
        "mon": "salamence",

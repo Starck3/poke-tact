@@ -2182,13 +2182,13 @@ test('evoluções na aba Onde capturar (0.22.0): família, método e onde achar 
 
 test('evoluções (0.22.1): espécie da família que não é do jogo marcada, com os jogos onde aparece (Azurill no Emerald)', async () => {
   const { evolutionReport } = await import('../public/engine.mjs');
-  const d = load('x-y.json');
-  // Munchlax no X/Y: só nasceria com Full Incense, que não tem lugar casado nos dados → continua fora (0.40.0: o Azurill do
-  // Emerald, exemplo anterior, passou a nascer com a Sea Incense da Bulbapedia)
-  const r = evolutionReport(d, load('x-y-acquisition.json'), d.pokemon.find((p) => p.name === 'snorlax'), null, 'x');
-  assert.deepEqual(r.nodes.map((x) => [x.name, x.inGame]), [['munchlax', false], ['snorlax', true]]);
-  const where = load('pokemon-games.json').where.munchlax;
-  assert.ok(!where['x-y'] && where['heartgold-soulsilver']);
+  const d = load('scarlet-violet.json');
+  // Cosmoem no Scarlet: Solgaleo se captura, a família anterior não (0.40.0: o Azurill do Emerald, e 0.48.0: o Munchlax do
+  // X/Y, exemplos anteriores, passaram a nascer com o incenso da Bulbapedia)
+  const r = evolutionReport(d, load('scarlet-violet-acquisition.json'), d.pokemon.find((p) => p.name === 'solgaleo'), null, 'scarlet');
+  assert.deepEqual(r.nodes.slice(0, 3).map((x) => [x.name, x.inGame]), [['cosmog', false], ['cosmoem', false], ['solgaleo', true]]);
+  const where = load('pokemon-games.json').where.cosmoem;
+  assert.ok(!where['scarlet-violet'] && where['sun-moon']);
 });
 
 test('ovos da creche (0.23.0): bebê que só nasce de ovo vira obtível, com pai, parceiro, incenso e estágio do código do jogo', async () => {
@@ -2212,8 +2212,8 @@ test('ovos da creche (0.23.0): bebê que só nasce de ovo vira obtível, com pai
   // incenso (Gen 4, tabela sIncenseMons do HGSS): Wynaut pede Lax Incense; sem incenso nos dados (FRLG) não entra
   const hg = load('heartgold-soulsilver-acquisition.json');
   assert.ok(hg.versions.heartgold.wynaut.some((s) => s.type === 'breed' && s.item === 'LAX_INCENSE' && s.level === 1));
-  // 0.40.0: com a Lax Incense da Bulbapedia (Lost Cave), o Wynaut nasce no FireRed; incenso sem lugar casado → fora (Munchlax no X/Y)
-  assert.equal(load('x-y.json').pokemon.find((p) => p.name === 'munchlax').obtainable.x, false);
+  // 0.40.0: com a Lax Incense da Bulbapedia (Lost Cave), o Wynaut nasce no FireRed; 0.48.0: o Munchlax no X/Y também (Full Incense)
+  assert.ok(load('x-y.json').pokemon.find((p) => p.name === 'munchlax').obtainable.x);
   // Diamond: Koffing só por ovo de Weezing (Solaceon)
   assert.ok(load('diamond-pearl-acquisition.json').versions.diamond.koffing.some((s) => s.want === 'weezing' && /Solaceon/.test(s.where)));
   // jogos sem creche no app (Gen 1, Gens 5+) ficam sem a fonte
@@ -2461,8 +2461,8 @@ test('ovos da creche no Black 2/White 2 (0.34.0): bebê pela tabela do jogo, inc
   // Kadabra passa a ser obtível pela evolução do Abra do ovo
   assert.ok(d.pokemon.find((p) => p.name === 'kadabra').obtainable['black-2']);
   assert.deepEqual(a.breeding.evolved['black-2'].includes('kadabra'), true);
-  // bebê de incenso sem o incenso nos dados do B2W2 fica de fora (Bonsly)
-  assert.equal(d.pokemon.find((p) => p.name === 'bonsly').obtainable['black-2'], false);
+  // bebê de incenso (0.48.0: Rock Incense pela Bulbapedia): Bonsly nasce de Sudowoodo, que só aparece no pós-jogo
+  assert.ok(a.versions['black-2'].bonsly.some((s) => s.item === 'ROCK_INCENSE' && s.want === 'sudowoodo' && s.stage === 9));
   // FireRed/LeafGreen: Hitmontop pelo Tyrogue do ovo (Hitmonlee + Ditto)
   assert.ok(load('firered-leafgreen.json').pokemon.find((p) => p.name === 'hitmontop').obtainable.firered);
 });
@@ -2477,8 +2477,8 @@ test('ovos da creche nos jogos do PKHeX (0.35.0): grupos/gênero da tabela do jo
   // Black/White: só a partir do ponto em que o detonado diz que se pode cruzar ("permissão para cruzar pokémons no DayCare")
   const bw = load('black-white-acquisition.json').progress.keyItems.daycare;
   assert.ok(/permiss[ãa]o para cruzar/.test(bw.text));
-  // incenso (Gens 4–8, Breeding.cs): sem o incenso nos dados, o bebê fica fora (Munchlax no X/Y)
-  assert.equal(xy.pokemon.find((p) => p.name === 'munchlax').obtainable.x, false);
+  // incenso (Gens 4–8, Breeding.cs): Munchlax pede Full Incense; 0.48.0: com o lugar da Bulbapedia, nasce no X/Y
+  assert.ok(xya.versions.x.munchlax.every((s) => s.item === 'FULL_INCENSE' && s.want === 'snorlax'));
   // Sun/Moon: evolução do bebê novo também conta (Togepi → Togetic)
   assert.ok(load('sun-moon-acquisition.json').breeding.evolved.sun.includes('togetic'));
   // Scarlet/Violet: piquenique; nada novo (o que sai de ovo já se obtinha)
@@ -2658,4 +2658,15 @@ test('Q1 (0.47.0): golpes reais dos rivais — subpágina de times (Hop), desamb
   assert.ok(real('sword-shield', 'Hop') >= 20); // "For all of Hop's teams … see [[Hop/Sword and Shield]]"
   assert.ok(real('brilliant-diamond-shining-pearl', 'Barry') >= 15); // "Barry" → "Barry (game)"
   assert.ok(real('lets-go-pikachu-lets-go-eevee', 'Seu rival') >= 10); // Trace (game), códigos LGP/LGE
+});
+
+test('Q2 (0.48.0): incenso pelo destino do link da Bulbapedia ("[[Driftveil City#Market|Market]]") libera bebês nos jogos novos', async () => {
+  const { linkPlaces } = await import('../scripts/lib/bulbapedia.mjs');
+  assert.deepEqual(linkPlaces('{{ci|Driftveil}} [[Driftveil City#Market|Market]] (post-[[National Pokédex]])'), ['Driftveil City', 'National Pokédex']);
+  // "(post-National Pokédex)" → pós-jogo (Black/White); sem a ressalva → o estágio da cidade (Black 2/White 2)
+  assert.equal(load('black-white-acquisition.json').items.ROCK_INCENSE[0].stage, 9);
+  assert.ok(load('black-2-white-2-acquisition.json').items.ROCK_INCENSE[0].stage < 9);
+  // bebês de incenso agora obtíveis: Bonsly no B2W2, Munchlax no X/Y
+  assert.ok(load('black-2-white-2.json').pokemon.find((p) => p.name === 'bonsly').obtainable['black-2']);
+  assert.ok(load('x-y.json').pokemon.find((p) => p.name === 'munchlax').obtainable.x);
 });

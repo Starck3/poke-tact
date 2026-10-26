@@ -28,9 +28,24 @@ for (const v of Object.values(acq.versions)) for (const list of Object.values(v)
   const k = s.where.toLowerCase().replace(/\s*\(.*?\)\s*/g, ' ').trim();
   placeStage.set(k, Math.min(placeStage.get(k) ?? 99, s.stage));
 }
+// + lugar das lutas dos treinadores com estágio (a cidade da loja pode não ter encontro: "Coumarine City" no X/Y)
+{
+  const trFile = new URL(`../public/data/${gameId}-trainers.json`, import.meta.url);
+  if (existsSync(trFile)) for (const t of JSON.parse(readFileSync(trFile, 'utf8')).trainers) if (t.stage != null) for (const m of t.map ?? []) {
+    const k = String(m).toLowerCase().replace(/\s*\(.*?\)\s*/g, ' ').trim();
+    placeStage.set(k, Math.min(placeStage.get(k) ?? 99, t.stage));
+  }
+}
 // + mapas do decomp (progress.maps: "Mt Pyre 1F", "Lost Cave Room 1") — o nome da Bulbapedia é o do lugar inteiro ("Mt. Pyre")
 for (const m of Object.values(acq.progress?.maps ?? {})) if (m.label && m.stage != null) { const k = m.label.toLowerCase(); placeStage.set(k, Math.min(placeStage.get(k) ?? 99, m.stage)); }
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+// destino de link (Q2): só nome igual ao do app ou que começa o dele ("Driftveil City" → "Driftveil City Market") — sem o
+// "contido no nome", que fazia link genérico ("Poké Mart", "National Pokédex") casar com qualquer lugar
+const stageOfPlaces = (places) => {
+  const st = [];
+  for (const seg of (places ?? []).map((x) => norm(x)).filter((x) => x.length >= 4)) for (const [k, v] of placeStage) { const nk = norm(k); if (nk === seg || nk.startsWith(seg + ' ')) st.push(v); }
+  return st.length ? Math.min(...st) : null;
+};
 const stageOfText = (txt) => {
   // cada lugar da célula ("Route 9, Route 13; Lumiose City (Stone Emporium)"): o nome antes do parêntese; casa com o lugar
   // do app de mesmo nome ou que começa por ele ("Mt. Pyre" → "Mt Pyre 1F")
@@ -53,8 +68,9 @@ for (const p of params) {
   const rows = acquisition(text ?? '').filter((r) => r.games.some((c) => codes.includes(c)));
   if (!rows.length) continue;
   found++;
-  evo.bulbapedia[p] = rows.flatMap((r) => [r.found && { text: r.found, kind: 'achado', dlc: r.games.filter((c) => !codes.includes(c)) }, r.other && { text: r.other, kind: 'outros', dlc: r.games.filter((c) => !codes.includes(c)) }]).filter(Boolean);
-  const srcs = evo.bulbapedia[p].map((x) => ({ where: x.text, type: x.kind === 'achado' ? 'ground' : 'other', by: 'Bulbapedia', stage: stageOfText(x.text) })).filter((x) => x.stage != null);
+  evo.bulbapedia[p] = rows.flatMap((r) => [r.found && { text: r.found, places: r.foundPlaces, kind: 'achado', dlc: r.games.filter((c) => !codes.includes(c)) }, r.other && { text: r.other, places: r.otherPlaces, kind: 'outros', dlc: r.games.filter((c) => !codes.includes(c)) }]).filter(Boolean);
+  const srcs = evo.bulbapedia[p].map((x) => ({ where: x.text, type: x.kind === 'achado' ? 'ground' : 'other', by: 'Bulbapedia', stage: /post-(National Pokédex|game)|after (the )?Hall of Fame/i.test(x.text) ? (acq.progress?.post ?? 9) /* "(post-National Pokédex)": só no pós-jogo */
+    : stageOfText(x.text) ?? stageOfPlaces(x.places) /* Q2: o destino do link ("Driftveil City") quando o texto é só "Market" */ })).filter((x) => x.stage != null);
   if (srcs.length) { items[p] = srcs; staged++; }
 }
 if (stop) process.exit(2);

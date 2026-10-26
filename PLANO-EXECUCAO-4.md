@@ -11,9 +11,9 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   rival com página de desambiguação ("Barry" → "Barry (game)"), times numa subpágina ("For all of Hop's teams … see
   [[Hop/Sword and Shield]]"), rival do Let's Go com outro nome na wiki ("Seu rival" = Trace). Pronto quando: as três causas
   tratadas; cobertura sobe; banco rodado.
-- **Q2 ⬜ Incensos nos jogos novos**: a tabela da Bulbapedia escreve "Market" mas o link é o lugar inteiro
+- **Q2 ✅ Incensos nos jogos novos**: a tabela da Bulbapedia escreve "Market" mas o link é o lugar inteiro
   ("[[Driftveil Market|Market]]") — casar pelo DESTINO do link, não pelo texto. Com o incenso no ponto da história, os bebês
-  (Munchlax, Bonsly, Budew…) entram pelo apply-breeding. Pronto quando: algum jogo novo ganha bebê de incenso; teste.
+  (Munchlax, Bonsly, Budew…) entram pelo apply-breeding. Pronto quando: algum jogo novo ganha bebê de incenso; teste. (0.48.0)
 - **Q3 ⬜ Ultra Sun/Ultra Moon no banco de lutas**: o banco monta as lutas pela aba Detonado (que o USUM não tem); usar os
   treinadores com estágio direto quando não há detonado. Pronto quando: o USUM aparece no banco.
 - **Q4 ⬜ Taxa de aparição nas Gens 6–9** (opcional, grande): começar por UM jogo (X/Y) para medir o custo real; se o leitor
@@ -28,3 +28,8 @@ Q1 → Q2 → Q3 → Q4 → D1.
   Hop's teams … see [[Hop/Sword and Shield]]"); "Seu rival" = Trace e códigos LGP/LGE no Let's Go; "Melody" = Melony.
   Cobertura: SwSh 48 → 73/96, BDSP 45 → 72/74, LGPE 34 → 50/57. Sobram lutas de DLC com nível diferente (SwSh) e Jessie e
   James (sem time do Let's Go na página). Banco: vencem 37.687 (igual); folgadas 35.852 → 35.842.
+- **2026-10-26 — Q2 (0.48.0)**: lugar do incenso também pelo DESTINO do link ("[[Driftveil City#Market|Market]]",
+  {{ci|…}}, {{rt|…}}), casando só nome igual ou que começa o do app; "(post-National Pokédex)" → pós-jogo; cidades das lutas
+  com estágio entram como lugar conhecido (Coumarine City). Incensos com estágio: BW (pós-jogo), B2W2, X/Y, ORAS, S/M, SwSh.
+  Nenhum jogo fica mais com "bebê sem incenso"; B2W2 +76 Pokémon obtíveis no total da creche. Banco: vencem 37.687 (igual);
+  folgadas 35.842 → 35.860 (ORAS +18).
