@@ -2464,3 +2464,21 @@ test('ovos da creche no Black 2/White 2 (0.34.0): bebê pela tabela do jogo, inc
   // FireRed/LeafGreen: Hitmontop pelo Tyrogue do ovo (Hitmonlee + Ditto)
   assert.ok(load('firered-leafgreen.json').pokemon.find((p) => p.name === 'hitmontop').obtainable.firered);
 });
+
+test('ovos da creche nos jogos do PKHeX (0.35.0): grupos/gênero da tabela do jogo, creche e ponto da história pelo detonado', async () => {
+  const { whereToGet } = await import('../public/engine.mjs');
+  // X/Y: Pichu do ovo de Pikachu/Raichu, nv 1, na creche que o detonado cita
+  const xy = load('x-y.json'), xya = load('x-y-acquisition.json');
+  const src = whereToGet(xy, xya, xy.pokemon.find((p) => p.name === 'pichu'), 'x').direct;
+  assert.ok(src.length && src.every((s) => s.type === 'breed' && s.level === 1 && /Day Care/.test(s.where)));
+  assert.equal(xya.progress.keyItems.daycare.stage, src[0].stage);
+  // Black/White: só a partir do ponto em que o detonado diz que se pode cruzar ("permissão para cruzar pokémons no DayCare")
+  const bw = load('black-white-acquisition.json').progress.keyItems.daycare;
+  assert.ok(/permiss[ãa]o para cruzar/.test(bw.text));
+  // incenso (Gens 4–8, Breeding.cs): sem o incenso nos dados, o bebê fica fora (Munchlax no X/Y)
+  assert.equal(xy.pokemon.find((p) => p.name === 'munchlax').obtainable.x, false);
+  // Sun/Moon: evolução do bebê novo também conta (Togepi → Togetic)
+  assert.ok(load('sun-moon-acquisition.json').breeding.evolved.sun.includes('togetic'));
+  // Scarlet/Violet: piquenique; nada novo (o que sai de ovo já se obtinha)
+  assert.ok(load('scarlet-violet-acquisition.json').progress.keyItems.daycare.picnic);
+});

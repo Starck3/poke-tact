@@ -17,6 +17,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { GAMES } from './games.mjs';
 import { decompPaths } from './lib/decomp.mjs';
+import { loadPkhex } from './lib/pkhex.mjs';
 
 const gameId = process.argv[2];
 const ds = (p) => new URL(`../data-sources/${p}`, import.meta.url);
@@ -33,6 +34,11 @@ const DAYCARE = {
   'heartgold-soulsilver': { gen: 4, map: 'MAP_ROUTE_34_DAYCARE', where: 'Route 34 Daycare' },
   // B2W2 (fuddlesworth/pokebw2): creche na Route 3 (res/field/scripts/route_3.s: placa "Pokémon Day Care" e as falas do ovo)
   'black-2-white-2': { gen: 5, map: 'ZONE_ROUTE_3', where: 'Pokémon Day Care (Route 3)', scripts: 'res/field/scripts/route_3.s' },
+  // jogos sem decomp (PKHeX): grupos de ovo/gênero pela tabela pessoal do jogo; creche e ponto da história pelo detonado
+  // (progress.keyItems.daycare); USUM sem detonado, Let's Go / Legends: Arceus / Z-A sem ovos
+  'black-white': { gen: 'pkhex', genNum: 5 }, 'x-y': { gen: 'pkhex', genNum: 6 }, 'omega-ruby-alpha-sapphire': { gen: 'pkhex', genNum: 6 },
+  'sun-moon': { gen: 'pkhex', genNum: 7 }, 'sword-shield': { gen: 'pkhex', genNum: 8 }, 'brilliant-diamond-shining-pearl': { gen: 'pkhex', genNum: 8 },
+  'scarlet-violet': { gen: 'pkhex', genNum: 9 },
 };
 const cfg = DAYCARE[gameId];
 if (!cfg) { console.log(`[${gameId}] sem creche configurada (Gen 1 não tem ovo; jogos do PKHeX ainda não) — nada a fazer`); process.exit(0); }
@@ -76,6 +82,34 @@ if (cfg.gen === 2) {
   const sc = readFileSync(new URL(`${cfg.scripts}/scripts.inc`, mapsDir), 'utf8');
   if (!/DAYCARE_EGG/.test(sc)) throw new Error(`${cfg.scripts}: script do mapa não fala do ovo da creche`);
   source = `${game.decomp.repo} (species_info, src/daycare.c, data/maps/${cfg.scripts})`;
+} else if (cfg.gen === 'pkhex') {
+  const root = new URL(`../data-sources/${game.pkhex.dir}/`, import.meta.url);
+  const P = loadPkhex(root, gameId);
+  const EGG = ['NONE', 'MONSTER', 'WATER_1', 'BUG', 'FLYING', 'FIELD', 'FAIRY', 'GRASS', 'HUMAN_LIKE', 'WATER_3', 'MINERAL', 'AMORPHOUS', 'WATER_2', 'DITTO', 'DRAGON', 'UNDISCOVERED']; // enum EggGroup
+  for (const p of data.pokemon) {
+    const e = p.form && p.speciesId ? P.forms[p.speciesId]?.[p.form] : P.species[p.speciesId ?? p.id];
+    if (!e?.eggGroups) continue;
+    info.set(key(p.name), { groups: e.eggGroups.map((g) => EGG[g] ?? 'NONE'), gender: e.gender === 0 ? 'male' : e.gender === 254 ? 'female' : e.gender === 255 ? 'none' : 'mixed' });
+  }
+  // bebê de incenso (Legality/Breeding.cs: IsSplitBreedNotBabySpecies4 = Gens 4–8; "Gen9 does not have split-breed");
+  // o incenso de cada um pela tabela da Gen 4 (pokeplatinum sIncenseBabyTable — a mesma lista de espécies)
+  if (cfg.genNum <= 8) {
+    const br = readFileSync(new URL('PKHeX.Core/Legality/Breeding.cs', root), 'utf8');
+    const split = [...br.match(/IsSplitBreedNotBabySpecies4\(ushort species\) => species switch\s*\{([\s\S]*?)\};/)[1].matchAll(/\(int\)(\w+) => true/g)].map((m) => key(m[1]));
+    const tbl = [...readFileSync(ds('pokeplatinum-src/src/overlay005/daycare.c'), 'utf8').matchAll(/\{\s*SPECIES_(\w+),\s*ITEM_(\w+_INCENSE),\s*SPECIES_(\w+)\s*\}/g)].map((m) => ({ baby: key(m[1]), item: m[2], parent: key(m[3]) }));
+    for (const x of tbl) if (split.includes(x.parent)) incense.push(x);
+    if (incense.length !== 9) throw new Error(`incensos (Breeding.cs × tabela da Gen 4): esperava 9, achou ${incense.length}`);
+  }
+  // nível ao chocar: 1 (Legality/Verifiers/Egg/EggStateLegality.cs EggMetLevel = 1; EncounterGenerator8/8b/9 EggLevel = 1)
+  if (!/EggMetLevel = 1;/.test(readFileSync(new URL('PKHeX.Core/Legality/Verifiers/Egg/EggStateLegality.cs', root), 'utf8'))) throw new Error('EggMetLevel ≠ 1');
+  hatch = 1;
+  const dc = acq.progress?.keyItems?.daycare;
+  if (!dc) { console.log(`[${gameId}] o detonado não diz onde fica a creche — nada a fazer`); process.exit(0); }
+  const title = (s) => s.toLowerCase().replace(/(^|\s)(\S)/g, (m, a, b) => a + b.toUpperCase()).replace(/ – .*$/, '');
+  // o trecho do detonado nem sempre é o lugar da creche (SwSh: citada no capítulo de Hulbury) — o nome diz que é o trecho
+  const facility = /nursery/i.test(dc.name) ? 'Pokémon Nursery' : 'Pokémon Day Care';
+  cfg.place = { stage: dc.stage, label: dc.picnic ? 'Piquenique (Picnic, em lugar aberto)' : `${facility} (citada no trecho “${title(dc.place)}” do detonado)` };
+  source = `PKHeX ${game.pkhex.dir} (personal_${P.cfg.personal}: gênero e grupos de ovo; Legality/Breeding.cs) + creche pelo detonado (${dc.section})`;
 } else if (cfg.gen === 5) {
   // B2W2: res/pokemon/*/data.json (gender_ratio, egg_groups, baby_species = tabela ARCID_BABYMONS do getChild em
   // src/ov036/sodateya.c); incensos: incenseHandler (ids numéricos: espécie do bebê, item, espécie sem o incenso); nível 1
@@ -157,7 +191,7 @@ const incenseOf = new Map(incense.map((x) => [x.baby, x]));
 // menor estágio em que o item aparece (chão, loja, presente…)
 const itemStage = (item) => { const s = acq.items?.[item]; return s?.length ? Math.min(...s.map((x) => x.stage ?? acq.progress?.post ?? 9)) : null; };
 
-const place = acq.progress?.maps?.[cfg.map];
+const place = cfg.place ?? acq.progress?.maps?.[cfg.map]; // jogos do PKHeX: a creche do detonado
 if (!place) throw new Error(`${cfg.map} não está nos mapas do jogo`);
 const where = cfg.where ?? place.label.replace('Pokemon', 'Pokémon');
 const added = [], skipped = [], addedBy = {}, evolvedBy = {};

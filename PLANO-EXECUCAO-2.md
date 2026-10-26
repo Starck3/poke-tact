@@ -59,7 +59,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
 - **B1 ✅ Creche no Black 2/White 2** (0.34.0) (decomp pokebw2): achar a zona da creche e a regra do ovo/incenso no código
   (`field_daycare.h` e afins). Pronto quando: bebê que só nasce de ovo vira obtível no B2W2 com a fonte do código.
   Sem a regra no código → ⏸.
-- **B2 ⬜ Ovos nos jogos do PKHeX** (Black/White, X/Y, ORAS, SM, SwSh, BDSP, SV): grupos de ovo e sexo pela tabela
+- **B2 ✅ Ovos nos jogos do PKHeX** (0.35.0) (Black/White, X/Y, ORAS, SM, SwSh, BDSP, SV): grupos de ovo e sexo pela tabela
   pessoal do PKHeX; espécie do ovo pela cadeia de evolução; incensos pela regra da geração (tabela do PKHeX se houver);
   creche: onde o detonado diz (frase com "creche"/"Day Care"/"Nursery"/"Picnic" no SV). Pronto quando: os bebês/pré-
   evoluções que só saem de ovo ganham a fonte `breed` com o ponto da história. Jogo sem creche no detonado → fica fora.
@@ -115,3 +115,8 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   (tabela ARCID_BABYMONS do getChild), incensos pelo `incenseHandler` de sodateya.c (ids → generated/items.txt), nível 1.
   +36 espécies por versão (Abra, Larvitar, Deino…); Bonsly/Budew fora (incenso sem fonte). Novo: a evolução de um bebê
   novo também vira obtível (Kadabra no B2W2; Hitmontop no FRLG pelo Tyrogue). Banco sem mudança (37.694 / 36.370).
+- **2026-10-25 — B2 (0.35.0)**: gênero e grupos de ovo pela tabela pessoal de cada jogo (posições lidas do
+  PersonalInfo*.cs do PKHeX); bebê de incenso pela regra do PKHeX (Breeding.cs: Gens 4–8; Gen 9 sem) com os incensos da
+  tabela da Gen 4; nível 1 (EggMetLevel). Creche e ponto da história pelo detonado (keyItems.daycare: 1ª menção ou a frase
+  de "permissão para cruzar" no BW). BW +54, X/Y +48, ORAS +38, SM +30 (+ evoluções: Togetic…), BDSP +15, SwSh +6, SV 0
+  (piquenique; já se obtinha). USUM sem detonado; Let's Go/LA/Z-A sem ovos. Banco sem mudança.

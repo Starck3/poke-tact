@@ -355,6 +355,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Creche B2W2 (0.34.0)**: `baby_species` em res/pokemon/*/data.json = a tabela ARCID_BABYMONS; o `incenseHandler` usa ids
   numéricos — o nome do item vem de generated/items.txt (linha "ITEM_NONE = 0" e um item por linha). Depois dos bebês, o
   apply-breeding propaga "obtível" para as evoluções (e desfaz numa nova rodada pelo `breeding.evolved`).
+- **Ovos nos jogos do PKHeX (0.35.0)**: `loadPkhex` lê `gender`/`eggGroups` nas posições do PersonalInfo*.cs; a creche vem do
+  `progress.keyItems.daycare` (o apply-breeding roda DEPOIS do build-detonado-modern). O trecho do detonado que cita a creche
+  nem sempre é o lugar dela (SwSh: Hulbury) — a tela diz "citada no trecho … do detonado".
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

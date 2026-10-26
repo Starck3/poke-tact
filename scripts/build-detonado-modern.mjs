@@ -340,6 +340,26 @@ function keyItems() {
       break;
     }
   }
+  // creche (ovos): a 1ª menção ao Day Care/Nursery/Picnic; se o detonado diz que só a partir de um ponto se pode cruzar
+  // ("Agora já podemos … cruzar pokémons no DayCare" — Black/White), vale esse ponto
+  {
+    const re = /Day ?Care|Pok[ée]mon Nursery|Picnic/gi, found = [];
+    for (let m; (m = re.exec(html));) {
+      const before = strip(html.slice(Math.max(0, m.index - 400), m.index).replace(/^[^<]*>/, '')), after = strip(html.slice(m.index, m.index + 400).replace(/<[^>]*$/, ''));
+      const sentence = (before.split(/[.!?]\s/).at(-1) + after.split(/(?<=[.!?])\s/)[0]).replace(/\s+/g, ' ').trim();
+      found.push({ at: m.index, name: m[0], sentence });
+    }
+    const permit = found.find((f) => /(permiss[ãa]o|agora (j[áa] )?pode(mos)?)[^.]*(cruzar|ovos?|breeding)/i.test(f.sentence));
+    const pick = permit ?? found[0];
+    if (pick) {
+      const sec = [...sections].reverse().find((s) => s.at <= pick.at);
+      // o texto da página traz script de anúncio solto ("(adsbygoogle = …).push({});") e entidades HTML
+      const text = pick.sentence.replace(/\(?\w*adsbygoogle[^;]*;\s*/g, '').replace(/&#8211;|&ndash;/g, '–').replace(/&#038;|&amp;/g, '&').trim();
+      // onde fica: o trecho da 1ª menção (Black/White: a permissão é em Nimbasa, a creche está na Route 3)
+      const place = [...sections].reverse().find((s) => s.at <= found[0].at);
+      out.daycare = { stage: stageAt(pick.at), section: sec?.title ?? '', place: place?.title ?? '', name: found[0].name, text, picnic: /picnic/i.test(pick.name) };
+    }
+  }
   // Z-Crystals de tipo (golpes Z): onde o detonado diz que você recebe/pega cada um ("receba de Lana o Waterium Z",
   // "Pegue o Buginium Z no baú"). Os nomes têm que existir na lista de itens do PKHeX
   if (out.z) {
