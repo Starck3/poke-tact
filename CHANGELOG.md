@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.44.0] — 2026-10-26
+
+> No Black 2/White 2, as 15 TMs vendidas em lojas (Sunny Day, Hyper Beam, Blizzard, Thunder…) agora dizem onde comprar e em que ponto da história.
+
+### Adicionado
+- **TMs de loja do Black 2/White 2** pela Bulbapedia (o código do jogo não tem as lojas em texto): Sunny Day, Rain Dance,
+  Hail e Sandstorm em Mistralton; Light Screen, Reflect, Thunder Wave e Gyro Ball em Nimbasa; Blizzard, Thunder e Fire
+  Blast em Lacunosa; Hyper Beam e Giga Impact no Shopping Mall Nine; Calm Mind e Bulk Up em Striaton — com o ponto da
+  história de cada lugar. Agora as 101 TMs/HMs do jogo têm origem.
+
 ## [0.43.0] — 2026-10-26
 
 > O Ultra Sun/Ultra Moon, que não tinha nenhum treinador (não há detonado dele), agora tem 100 lutas para escolher — kahunas, capitães, Elite, rivais e vilões — com os times e golpes de verdade, tirados da Bulbapedia.
