@@ -507,7 +507,7 @@ export function catchReport(data, acq, mon, version) {
   const stageOf = (s) => (s.type !== 'breed' ? s.stage : Math.max(s.stage, ...[s.want, s.partner].filter(Boolean).map((n) => { const p = data.pokemon.find((x) => x.name === n); return p ? reachStage(data, acq, p, version) : post; })));
   const order = (s) => [Math.min(stageOf(s) ?? post, post), s.type === 'wild' ? 0 : 1, s.min ?? s.level ?? 0];
   const sorted = [...w.direct].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; });
-  const lines = sorted.map((s) => ({ where: s.where, text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? Math.min(stageOf(s), post) : null, random: !!unreliableReason(s) }));
+  const lines = sorted.map((s) => ({ where: s.where, text: formatSources([s], 1)[0], stage: acq.progress && s.stage != null ? Math.min(stageOf(s), post) : null, random: !!unreliableReason(s), estimated: !!s.stageEstimated }));
   const others = Object.keys(acq.versions).filter((v) => v !== version).map((v) => ({ version: v, count: whereToGet(data, acq, mon, v).direct.length })).filter((o) => o.count);
   // com fonte direta, mostra também o caminho pela evolução (capturar a forma anterior e evoluir) com o estágio dele
   let alt = null;

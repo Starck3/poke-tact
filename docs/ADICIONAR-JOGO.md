@@ -358,6 +358,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Ovos nos jogos do PKHeX (0.35.0)**: `loadPkhex` lê `gender`/`eggGroups` nas posições do PersonalInfo*.cs; a creche vem do
   `progress.keyItems.daycare` (o apply-breeding roda DEPOIS do build-detonado-modern). O trecho do detonado que cita a creche
   nem sempre é o lugar dela (SwSh: Hulbury) — a tela diz "citada no trecho … do detonado".
+- **Estágio estimado (0.36.0)**: só selvagem em terra (Surf/vara dependem de HM e têm faixas de nível baixas) e a MEDIANA
+  dos níveis mínimos (um encontro fora do padrão não puxa o local). Sempre `stageEstimated` → a tela diz "estimativa".
+  O build-detonado-modern pula as fontes `breed` (o estágio delas é o da creche).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 
