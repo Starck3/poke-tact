@@ -1,8 +1,9 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-25 · versão **0.46.0** (publicada no GitHub).
+Atualizado em 2026-10-26 · versão **0.46.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
-já encontradas) e `PLANO-EXECUCAO-2.md` (o plano autônomo depois da 0.28.0, com o registro de cada etapa).
+já encontradas) `PLANO-EXECUCAO-2.md` e `PLANO-EXECUCAO-3.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
+Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
 
 ## Como está cada jogo
 
@@ -18,20 +19,21 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 | Black 2/White 2 | 5 | decomp (pokebw2) | decomp | sim | decomp | sim | — | — |
 | Black/White | 5 | PKHeX | PKHeX | sim (+ estimativa) | detonado (golpes estimados) | sim | — | — |
 | X/Y, Omega Ruby/Alpha Sapphire | 6 | PKHeX | PKHeX | sim | detonado | sim | Mega (você e chefes) | — |
-| Sun/Moon | 7 | PKHeX | PKHeX | sim (+ estimativa) | detonado | sim | Mega, golpe Z (você) | golpe Z dos chefes |
-| **Ultra Sun/Ultra Moon** | 7 | PKHeX | PKHeX | **não** | **não** | **não** | Mega, golpe Z (todos os tipos) | — |
+| Sun/Moon | 7 | PKHeX | PKHeX | sim (+ estimativa) | detonado + golpes da Bulbapedia | sim | Mega, golpe Z (você e chefes) | — |
+| Ultra Sun/Ultra Moon | 7 | PKHeX | PKHeX | sim (Bulbapedia) | Bulbapedia (golpes reais) | **não** | Mega, golpe Z | — |
 | Let's Go Pikachu/Eevee | 7 | PKHeX | PKHeX | sim | detonado | — (não há) | Mega (você e chefes) | — |
-| Sword/Shield | 8 | PKHeX | PKHeX | sim (+ estimativa) | detonado | sim | Dynamax (você e chefes) | efeitos extras dos golpes Max |
+| Sword/Shield | 8 | PKHeX | PKHeX | sim (+ estimativa) | detonado + golpes da Bulbapedia | sim | Dynamax + efeitos Max (você e chefes) | nível de Dynamax (1,5×) |
 | Brilliant Diamond/Shining Pearl | 8 | PKHeX | PKHeX | sim | detonado | sim | — | — |
-| Legends: Arceus | 8 | PKHeX | PKHeX | sim (5 nobres) | detonado | — (não há) | — | estilos ágil/forte, valores de golpes, ordem de ação |
+| Legends: Arceus | 8 | PKHeX | PKHeX | sim (5 nobres) | detonado + golpes da Bulbapedia | — (não há) | ordem de ação | estilos ágil/forte, valores de golpes |
 | Scarlet/Violet | 9 | PKHeX | PKHeX | sim (+ estimativa) | detonado | sim (piquenique) | Terastal (você e chefes) | — |
 | Legends: Z-A | 9 | PKHeX (sem PokéAPI) | PKHeX | sim (rank Z → A) | detonado | — (não há) | Mega (você e chefes) | tempo real, valores de golpes |
 
 A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
 evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
 "(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
-Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (275 com `data-sources/`, 260 num clone limpo).
-Banco de lutas: 21 jogos, 37.872 sugestões — 37.694 vencem (99,5%), 36.380 com folga; ≈ 6 minutos.
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (285 com `data-sources/`, 270 num clone limpo).
+Banco de lutas: 21 jogos, 37.872 sugestões — 37.687 vencem (99,5%), 35.852 com folga; ≈ 6 minutos. Chefes dos jogos sem decomp com
+golpes reais da Bulbapedia em 635 de 1.098 lutas; onde achar itens de evolução/Mega Stones pela Bulbapedia nos jogos sem decomp.
 
 ## O que falta (do mais importante para o menos)
 
@@ -43,6 +45,13 @@ Banco de lutas: 21 jogos, 37.872 sugestões — 37.694 vencem (99,5%), 36.380 co
 - ⚠ Legends: Arceus e Z-A: sem fonte para os estilos, a ordem de ação e o tempo real — ficam no aviso.
 - ⏸ Golpe Z dos chefes: o detonado não marca em nenhuma luta.
 - **Esperando o usuário**: fonte nova para os itens acima (decisão do projeto: só decomp, PKHeX, Showdown e detonados).
+
+### Plano de execução 3 (concluído em 2026-10-26 — detalhes em `PLANO-EXECUCAO-3.md`)
+- ✅ Bulbapedia como fonte: golpes reais e golpe Z dos chefes (0.38), onde achar itens/Mega Stones (0.39), incensos (0.40),
+  efeitos dos golpes Max (0.41), S.S. Anne no mapa (0.42), USUM com treinadores e progresso (0.43/0.46), TMs de loja do B2W2
+  (0.44), ordem de ação do Legends: Arceus (0.45), estimativas revistas pela ordem da Bulbapedia (0.46).
+- ⚠ Ainda com golpes estimados: lutas que não casaram com a Bulbapedia (SwSh 48/96, LGPE 34/57, BDSP 45/74…).
+- ⏸ Nível de Dynamax dos líderes (a fonte não dá); taxa de aparição nas Gens 6–9 (custo alto — fica para quando pedir).
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
