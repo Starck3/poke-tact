@@ -47,7 +47,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   e progresso existem no USUM com crédito; aba Detonado continua fora (não há detonado).
 - **N7 ⬜ Legends: Arceus — estilos Ágil/Forte e ordem de ação**: só se a página da Bulbapedia trouxer a regra em números
   (poder, ordem). Senão ⚠ e fica no aviso. Z-A (tempo real) fica no aviso (sem regra em números).
-- **N8 ⬜ 15 TMs de loja do Black 2/White 2**: local da loja pela página de cada TM.
+- **N8 ✅ 15 TMs de loja do Black 2/White 2** (0.44.0): local da loja pela página de cada TM.
 
 ## Bloco P — detalhes pequenos (fontes atuais ou novas)
 - **P1 ✅ Efeitos extras dos golpes Max** (0.41.0) (Showdown `data/moves.ts`: clima, atributo): os que mudam a conta da troca (Max
@@ -98,3 +98,6 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
   45 com golpe Z, formas pelo campo "form"; lutas-tutorial fora. Progresso continua sem fonte (não há detonado; a ordem das
   provações viria de outra página — fica para depois) → sem estágio e fora do banco de lutas (que monta as lutas pela aba
   Detonado).
+- **2026-10-26 — N8 (0.44.0)**: `apply-bulbapedia-tms` — número da TM pela tabela do jogo (tmMoves/tmIndex do pokebw2),
+  lugar pela linha "TMtable/row … B2W2" da página TMnn; estágio pelo mapa de mesmo nome ou que começa o nome ("Striaton City
+  Poké Mart"). 15/15 (Mistralton, Nimbasa, Lacunosa, Striaton, Shopping Mall Nine). Banco sem mudança.

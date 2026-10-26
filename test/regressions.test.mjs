@@ -2610,3 +2610,10 @@ test('N6 (0.43.0): Ultra Sun/Ultra Moon ganha treinadores pela Bulbapedia (sem d
   assert.ok(t.trainers.flatMap((x) => x.party).some((p) => /-alola$/.test(p.species)));
   assert.equal(load('games.json').games.find((g) => g.id === 'ultra-sun-ultra-moon').trainerCount, t.trainers.length);
 });
+
+test('N8 (0.44.0): as 15 TMs de loja do Black 2/White 2 pela Bulbapedia (o decomp não tem as lojas em texto)', () => {
+  const m = load('black-2-white-2-acquisition.json').machines;
+  for (const mv of ['sunny-day', 'hyper-beam', 'blizzard', 'thunder', 'calm-mind', 'bulk-up', 'thunder-wave']) assert.ok(m[mv]?.length, mv);
+  assert.ok(m['sunny-day'].some((s) => s.where === 'Mistralton City' && s.source === 'Bulbapedia' && s.stage != null));
+  assert.ok(m['calm-mind'].some((s) => /Striaton City/.test(s.where) && s.stage != null)); // casa pelo começo do nome
+});
