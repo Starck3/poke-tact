@@ -1,49 +1,48 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-20 · versão **0.37.0** (publicada no GitHub).
-Leia junto com `CHANGELOG.md` (o que mudou em cada versão) e `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
-já encontradas).
+Atualizado em 2026-10-25 · versão **0.37.0** (publicada no GitHub).
+Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
+já encontradas) e `PLANO-EXECUCAO-2.md` (o plano autônomo depois da 0.28.0, com o registro de cada etapa).
 
 ## Como está cada jogo
 
 **Selo "Verificado"**: dados conferidos com o código do jogo (decomp). **Selo "Parcial"**: núcleo pelas tabelas do jogo
 extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology.
 
-| Jogo | Ger. | Fonte do núcleo | Onde obter | Progresso por insígnia | Treinadores | Aba Detonado | Fora do cálculo (aviso na tela) |
-|---|---|---|---|---|---|---|---|
-| Red/Blue, Yellow | 1 | decomp (pret) | decomp | sim | decomp (golpes reais) | sim | — |
-| Gold/Silver, Crystal | 2 | decomp (pret) | decomp | sim | decomp | sim | — |
-| Ruby/Sapphire, Emerald, FireRed/LeafGreen | 3 | decomp (pret) | decomp | sim | decomp | sim | — |
-| Diamond/Pearl, Platinum, HeartGold/SoulSilver | 4 | decomp (pret; binários lidos pelo código) | decomp | sim | decomp | sim | — |
-| Black 2/White 2 | 5 | decomp (pokebw2) | decomp | sim | decomp | sim | — |
-| Black/White | 5 | PKHeX | PKHeX | sim | detonado (golpes estimados) | sim | — |
-| X/Y, Omega Ruby/Alpha Sapphire | 6 | PKHeX | PKHeX | sim | detonado | sim | Mega Evolução |
-| Sun/Moon | 7 | PKHeX | PKHeX | sim (provações + grandes provações) | detonado | sim | Mega, golpes Z |
-| **Ultra Sun/Ultra Moon** | 7 | PKHeX | PKHeX | **não** | **não** | **não** | Mega, golpes Z |
-| Let's Go Pikachu/Eevee | 7 | PKHeX | PKHeX | sim | detonado | sim | Mega Evolução |
-| Sword/Shield | 8 | PKHeX | PKHeX | sim | detonado | sim | Dynamax/Gigantamax |
-| Brilliant Diamond/Shining Pearl | 8 | PKHeX | PKHeX | sim | detonado | sim | — |
-| Legends: Arceus | 8 | PKHeX | PKHeX | sim (5 nobres) | detonado | sim | estilos ágil/forte, valores próprios de golpes |
-| Scarlet/Violet | 9 | PKHeX | PKHeX | sim | detonado | sim | Terastal |
-| Legends: Z-A | 9 | PKHeX (sem PokéAPI) | PKHeX | sim (rank Z → A) | detonado | sim | tempo real, Mega, valores próprios de golpes |
+| Jogo | Ger. | Fonte do núcleo | Onde obter | Progresso | Treinadores | Ovos da creche | Mecânica simulada | Fora do cálculo (aviso) |
+|---|---|---|---|---|---|---|---|---|
+| Red/Blue, Yellow | 1 | decomp (pret) | decomp | sim | decomp (golpes reais) | — (não há) | — | — |
+| Gold/Silver, Crystal | 2 | decomp (pret) | decomp | sim | decomp | sim | — | — |
+| Ruby/Sapphire, Emerald, FireRed/LeafGreen | 3 | decomp (pret) | decomp | sim | decomp | sim | — | — |
+| Diamond/Pearl, Platinum, HeartGold/SoulSilver | 4 | decomp (pret) | decomp | sim | decomp | sim | — | — |
+| Black 2/White 2 | 5 | decomp (pokebw2) | decomp | sim | decomp | sim | — | — |
+| Black/White | 5 | PKHeX | PKHeX | sim (+ estimativa) | detonado (golpes estimados) | sim | — | — |
+| X/Y, Omega Ruby/Alpha Sapphire | 6 | PKHeX | PKHeX | sim | detonado | sim | Mega (você e chefes) | — |
+| Sun/Moon | 7 | PKHeX | PKHeX | sim (+ estimativa) | detonado | sim | Mega, golpe Z (você) | golpe Z dos chefes |
+| **Ultra Sun/Ultra Moon** | 7 | PKHeX | PKHeX | **não** | **não** | **não** | Mega, golpe Z (todos os tipos) | — |
+| Let's Go Pikachu/Eevee | 7 | PKHeX | PKHeX | sim | detonado | — (não há) | Mega (você e chefes) | — |
+| Sword/Shield | 8 | PKHeX | PKHeX | sim (+ estimativa) | detonado | sim | Dynamax (você e chefes) | efeitos extras dos golpes Max |
+| Brilliant Diamond/Shining Pearl | 8 | PKHeX | PKHeX | sim | detonado | sim | — | — |
+| Legends: Arceus | 8 | PKHeX | PKHeX | sim (5 nobres) | detonado | — (não há) | — | estilos ágil/forte, valores de golpes, ordem de ação |
+| Scarlet/Violet | 9 | PKHeX | PKHeX | sim (+ estimativa) | detonado | sim (piquenique) | Terastal (você e chefes) | — |
+| Legends: Z-A | 9 | PKHeX (sem PokéAPI) | PKHeX | sim (rank Z → A) | detonado | — (não há) | Mega (você e chefes) | tempo real, valores de golpes |
 
-A tela inicial busca Pokémon (padrão: em que jogos dá para obter) ou líder/jogo (seletor ao lado do campo).
-Todos os jogos têm a aba **Onde capturar** (todos os locais de um Pokémon na versão, com o ponto da história), com fotos do
-lugar (detonado do PokeMythology, por referência) e o mapa esquemático da região com o lugar destacado (14 jogos: Gens 1–4
-com decomp, BDSP, ORAS e Let's Go pela região do original). A aba Detonado também mostra as fotos e o mapa de cada etapa.
-Tags no app: "📖 detonado no app" e "📍 capturas disponíveis". Novidades: botão 🔔 no canto (link `#/?novidades`), lido do CHANGELOG.
-Também feito nos jogos sem decomp (Gens 5–9): formas regionais como Pokémon próprios (Alola, Galar, Hisui, Paldea), evoluções
-do próprio jogo (troca, item, forma, impossíveis no jogo), TMs pelas tabelas do jogo e as espécies de Hisui do Legends: Arceus.
-Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Banco de lutas: 20 jogos, 99% das sugestões vencem.
+A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
+evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
+"(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (275 com `data-sources/`, 260 num clone limpo).
+Banco de lutas: 21 jogos, 37.872 sugestões — 37.694 vencem (99,5%), 36.380 com folga; ≈ 6 minutos.
 
 ## O que falta (do mais importante para o menos)
 
-### Próxima etapa (anotada pelo usuário em 2026-10-25)
-- **Trabalho grande no simulador de luta** (item 15): Mega Evolução, golpes Z, Dynamax, Terastal e as batalhas diferentes
-  do Legends: Arceus e do Z-A. Hoje o app só avisa que esses jogos têm essas mecânicas.
-- Os 5 pontos que esperavam decisão do usuário já foram resolvidos na 0.24.0. Depois do simulador, o ganho mais visível é
-  a **creche no Black 2/White 2** ou os **itens de evolução do Sword/Shield** (item 13).
-- ✅ (0.25.0) **Pokémon do jogo por tipo**: ao escolher o jogo, ver todos os Pokémon dele separados por tipo e ir filtrando.
+### Plano de execução 2 (concluído em 2026-10-25 — detalhes em `PLANO-EXECUCAO-2.md`)
+- ✅ Simulador: Mega (0.26–0.27), golpe Z (0.28), Terastal (0.29), Dynamax (0.30), Velocidade da Mega na Gen 6 (0.31).
+- ✅ Banco de lutas 5–9× mais rápido (0.32); mundo aberto — nível compatível com o time (0.33).
+- ✅ Ovos da creche no B2W2 (0.34) e nos jogos do PKHeX (0.35); estágio estimado pelo nível (0.36); creches no mapa (0.37).
+- ⚠ Itens de evolução/Mega Stones sem citação no detonado do Sword/Shield e do Z-A — só com outra fonte.
+- ⚠ Legends: Arceus e Z-A: sem fonte para os estilos, a ordem de ação e o tempo real — ficam no aviso.
+- ⏸ Golpe Z dos chefes: o detonado não marca em nenhuma luta.
+- **Esperando o usuário**: fonte nova para os itens acima (decisão do projeto: só decomp, PKHeX, Showdown e detonados).
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
@@ -84,8 +83,8 @@ Testes: `npm test` (238 com `data-sources/`, 223 num clone limpo como o CI). Ban
 14. **Black 2/White 2 — 15 TMs vendidas em lojas** comuns: não estão no decomp em texto.
 
 ### Trabalho grande no motor
-15. **Mecânicas não simuladas** (hoje só há aviso): Mega Evolução, golpes Z, Dynamax/Gigantamax, Terastal, estilos e valores
-    próprios de golpes do Legends: Arceus, batalha em tempo real do Z-A.
+15. ✅ (0.26–0.31) **Mecânicas simuladas**: Mega, golpe Z, Terastal e Dynamax. Ficam só no aviso: estilos e valores próprios de
+    golpes do Legends: Arceus, tempo real do Z-A, efeitos extras dos golpes Max e golpe Z dos chefes (sem fonte).
 
 ### Fica como está (correto)
 - BDSP: Darkrai, Arceus, Shaymin, Deoxys e Phione não aparecem — são de evento.

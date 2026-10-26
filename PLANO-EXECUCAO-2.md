@@ -50,7 +50,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   de nv 16. Com o progresso, o motor só olha o estágio. Ideia: no modo estágio também exigir que a fonte tenha nível
   ≤ nível do time + margem (ou marcar "selvagem de nível alto"). Pronto quando: o Pupitar sai/fica marcado nesse caso e
   o banco não perde vitórias sem explicação.
-- **A5 ⬜ Legends: Arceus e Z-A** — avaliar: estilo Ágil/Forte (LA) e tempo real (Z-A). Critério: só implementar o que
+- **A5 ⚠ Legends: Arceus e Z-A** — avaliar: estilo Ágil/Forte (LA) e tempo real (Z-A). Critério: só implementar o que
   tiver regra numa fonte (PKHeX/Showdown/detonado); o resto vira aviso claro na tela. Esperado: ⚠ (aviso melhor).
 - **A6 ✅ Banco de lutas mais rápido** (0.32.0) (hoje ≈ 11 min com o Z): cache de `availableMoves`/`statsAt` por candidato e
   pular formas Mega/Z que não podem ganhar. Pronto quando: mesmos números, tempo menor.
@@ -79,7 +79,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   fonte já disponível passou a cobrir (ex.: PKHeX novo) e registrar; não buscar fonte nova (decisão do usuário).
 
 ### Bloco D — Fechamento
-- **D1 ⬜ Revisão geral:** STATUS.md reescrito com o que mudou; memória atualizada; `PLANO-SIMULADOR.md` marcado;
+- **D1 ✅ Revisão geral:** STATUS.md reescrito com o que mudou; memória atualizada; `PLANO-SIMULADOR.md` marcado;
   resumo final no fim deste arquivo com: feitas, parciais, puladas (com motivo) e o que espera o usuário.
 
 ## Ordem
@@ -131,3 +131,21 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   O resto precisa de outra fonte (decisão do usuário).
 - **2026-10-25 — B5 (0.37.0)**: a B5 já estava feita (0.20.0: FRLG 140/142). Regerando os mapas depois dos ovos, a creche
   entra no mapa (Four Island no FRLG; e nos outros jogos) — FRLG 141/143: faltam o "Ssanne Exterior" e o vagante (sem lugar).
+- **2026-10-25 — A5 ⚠**: o PKHeX só tem PP, tipo e golpes desativados do LA/Z-A (MoveInfo8a/9a) — sem poder/precisão,
+  estilos ou ordem de ação; o Showdown não implementa esses jogos. Comparação dos tipos do Z-A com os do app: 1 diferença
+  em 337 (Growth, golpe de status — não muda dano). Os avisos na tela já dizem o que fica fora. Sem mudança de código.
+- **2026-10-25 — D1**: STATUS.md reescrito (tabela com ovos e mecânicas simuladas por jogo; números atuais), memória
+  atualizada, PLANO-SIMULADOR.md marcado.
+
+## Resumo final (2026-10-25, versão 0.37.0)
+- **Feitas**: A1 Terastal (0.29.0), A2 Dynamax (0.30.0), A4 Velocidade da Mega do chefe na Gen 6 (0.31.0), A6 banco
+  5–9× mais rápido (0.32.0), A7 mundo aberto + minLevel nos jogos do PKHeX (0.33.0), B1 creche do B2W2 (0.34.0), B2 ovos
+  nos jogos do PKHeX (0.35.0), B3 estágio estimado pelo nível (0.36.0), B5 creches no mapa (0.37.0), D1.
+- **Parciais**: B4 (só o Let's Go melhorou — SwSh e Z-A não citam pedras), A5 (sem fonte para LA/Z-A).
+- **Pulada**: A3 (o detonado não marca golpe Z de chefe).
+- **Achados no caminho** (viraram etapa e foram corrigidos): Pupitar/Rhydon de nível alto sugeridos no mundo aberto (A7);
+  `minLevel` faltando nos 11 jogos do PKHeX (A7); regerar o detonado apagava o estágio dos ovos (B3); Kadabra/Hitmontop
+  não ficavam obtíveis pela evolução do bebê do ovo (B1).
+- **Esperando o usuário**: autorizar outra fonte (ex.: Bulbapedia/Serebii) para itens de evolução do SwSh/Z-A, golpe Z dos
+  chefes do SM e as regras do LA/Z-A — hoje o projeto só usa decomp, PKHeX, Showdown e os detonados.
+- Banco de lutas no fim: 37.872 sugestões, 37.694 vencem, 36.380 com folga (começo do plano: 37.697 / 36.452).
