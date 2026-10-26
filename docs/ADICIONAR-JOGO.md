@@ -367,6 +367,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Ordem pela Bulbapedia (0.46.0)**: o índice "Appendix:<jogo> walkthrough" do Scarlet/Violet recomeça "Part 1" em cada
   DLC — identificar a parte pela posição. Rodar o build-detonado-modern sozinho apaga os golpes e itens da Bulbapedia: refazer
   a cadeia (trainers → walkthrough → items → breeding). No USUM a ordem (walkthrough) vem ANTES dos itens.
+- **Lugar pelo destino do link (Bulbapedia)**: na tabela Acquisition, use `linkPlaces(célula)` (destino de `[[X#Y|Z]]`,
+  `{{ci|…}}`, `{{rt|…}}`, `{{tn|…}}`) quando o texto visível é genérico ("Market"); case só nome igual ou prefixo, nunca
+  "contido no nome". Em código, comentário no meio da linha antes de mais código é `/* … */`, nunca `//`.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

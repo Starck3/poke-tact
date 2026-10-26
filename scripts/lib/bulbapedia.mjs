@@ -92,6 +92,17 @@ export function parties(text) {
   return out;
 }
 
+/** Lugares pelo DESTINO dos links da célula (Q2, 0.48.0): "[[Driftveil City#Market|Market]]" → "Driftveil City";
+ *  {{rt|9|Kalos}} → "Route 9"; {{ci|Driftveil}} → "Driftveil City"; {{tn|X}} → "X Town". */
+export function linkPlaces(cell) {
+  const out = [];
+  for (const m of String(cell).matchAll(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|[^\]]*)?\]\]/g)) out.push(m[1].trim());
+  for (const m of String(cell).matchAll(/\{\{rtn?\|([^|}]+)\|[^}]*\}\}/gi)) out.push(`Route ${m[1].trim()}`);
+  for (const m of String(cell).matchAll(/\{\{ci\|([^|}]+)\}\}/gi)) out.push(`${m[1].trim()} City`);
+  for (const m of String(cell).matchAll(/\{\{tn\|([^|}]+)\}\}/gi)) out.push(`${m[1].trim()} Town`);
+  return [...new Set(out)];
+}
+
 /**
  * Tabela "Acquisition" de um item: [{ games: ['SwSh', 'IA'], found: 'Motostoke Riverbank', other: 'Lake of Outrage…' }].
  * Coluna 1 = achado no chão/escondido; coluna 2 = outros (loja, presente, prêmio…), como a predefinição ItemAvailability.
@@ -104,7 +115,7 @@ export function acquisition(text) {
   return rows.map((r) => {
     const cells = r.split(/\n\|[ \t]?/).slice(1).map((c) => c.trim()); // [ \t]: célula vazia ("|" sozinho) não engole a quebra de linha
     const games = [...(cells[0] ?? '').matchAll(/\{\{gameabbrev(?:\d|ss)\|([^}|]+)\}\}/g)].map((m) => m[1]);
-    return { games, found: plain(cells[1] ?? ''), other: plain(cells[2] ?? '') };
+    return { games, found: plain(cells[1] ?? ''), other: plain(cells[2] ?? ''), foundPlaces: linkPlaces(cells[1] ?? ''), otherPlaces: linkPlaces(cells[2] ?? '') };
   }).filter((r) => r.games.length);
 }
 
