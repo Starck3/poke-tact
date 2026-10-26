@@ -45,7 +45,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **N6 ⚠ Ultra Sun/Ultra Moon** (0.43.0: treinadores sim; progresso não): líderes da história (kahunas, capitães/totens, Elite, campeão, rivais) e a ordem das
   provações pelas páginas da Bulbapedia → treinadores e progresso no USUM (hoje não tem). Pronto quando: aba de oponentes
   e progresso existem no USUM com crédito; aba Detonado continua fora (não há detonado).
-- **N7 ⬜ Legends: Arceus — estilos Ágil/Forte e ordem de ação**: só se a página da Bulbapedia trouxer a regra em números
+- **N7 ⚠ Legends: Arceus — estilos Ágil/Forte e ordem de ação** (0.45.0: ordem de ação sim; estilos não): só se a página da Bulbapedia trouxer a regra em números
   (poder, ordem). Senão ⚠ e fica no aviso. Z-A (tempo real) fica no aviso (sem regra em números).
 - **N8 ✅ 15 TMs de loja do Black 2/White 2** (0.44.0): local da loja pela página de cada TM.
 
@@ -101,3 +101,7 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
 - **2026-10-26 — N8 (0.44.0)**: `apply-bulbapedia-tms` — número da TM pela tabela do jogo (tmMoves/tmIndex do pokebw2),
   lugar pela linha "TMtable/row … B2W2" da página TMnn; estágio pelo mapa de mesmo nome ou que começa o nome ("Striaton City
   Poké Mart"). 15/15 (Mistralton, Nimbasa, Lacunosa, Striaton, Shopping Mall Nine). Banco sem mudança.
+- **2026-10-26 — N7 ⚠ (0.45.0)**: a página "Action order" da Bulbapedia tem a tabela Velocidade → tempo de ação (14 … 5) e
+  a regra de empate; o duelo do LA passa a comparar o instante do nocaute (golpes × tempo de ação) — quem é bem mais rápido
+  pode agir 2 vezes. Os estilos Ágil/Forte não têm números (a própria página marca "incomplete") → seguem no aviso, assim
+  como os valores de golpe próprios do LA. Aviso "ordem de ação" saiu da tela. Banco: totais iguais (LA folgadas 88→89%).

@@ -192,6 +192,12 @@ function dynamaxDuel(data, sides) {
   return ko;
 }
 
+// Legends: Arceus (N7, 0.45.0) — ordem de ação pelo "tempo de ação" (Bulbapedia, "Action order"): cada Pokémon age quando
+// o seu tempo chega a zero e volta ao padrão, que depende só da Velocidade (tabela abaixo). Quem é bem mais rápido pode agir
+// duas vezes antes do outro. Empate: a maior Velocidade, depois o seu Pokémon. Estilos Ágil/Forte ficam fora (sem números).
+const LA_ACTION = [[15, 14], [31, 13], [55, 12], [88, 11], [129, 10], [181, 9], [242, 8], [316, 7], [401, 6]];
+export const actionTime = (speed) => (LA_ACTION.find(([max]) => speed <= max) ?? [0, 5])[1];
+
 export function duel(data, gen, me, opp, myMoves, oppMoves) {
   const mine = bestAgainst(data, gen, me, opp, myMoves);
   const theirs = bestAgainst(data, gen, opp, me, oppMoves);
@@ -207,6 +213,13 @@ export function duel(data, gen, me, opp, myMoves, oppMoves) {
   const both1 = myT === 1 && theirT === 1;
   const sp = me.speedTurn1 != null && both1 ? me.speedTurn1 : me.stats.speed, osp = opp.speedTurn1 != null && both1 ? opp.speedTurn1 : opp.stats.speed;
   const faster = sp > osp ? 1 : sp === osp ? 0.5 : 0;
-  const win = myT === Infinity ? false : faster === 1 ? myT <= theirT : faster === 0.5 ? myT < theirT || (myT === theirT) : myT < theirT;
-  return { move: mine?.name ?? null, myTurns: myT, theirMove: theirs?.name ?? null, theirTurns: theirT, faster, win, margin: myT === Infinity ? 0 : theirT === Infinity ? 99 : theirT / myT, myDmg: mine?.dmg ?? null, theirDmg: theirs?.dmg ?? null, z: mine?.z ?? null, dynamax: dyn };
+  let win = myT === Infinity ? false : faster === 1 ? myT <= theirT : faster === 0.5 ? myT < theirT || (myT === theirT) : myT < theirT;
+  let margin = myT === Infinity ? 0 : theirT === Infinity ? 99 : theirT / myT;
+  // Legends: Arceus: o golpe k sai no instante k × tempo de ação — compara os instantes do nocaute, não o nº de golpes
+  if (me.actionOrder && myT !== Infinity) {
+    const mine2 = myT * actionTime(me.stats.speed), theirs2 = theirT === Infinity ? Infinity : theirT * actionTime(opp.stats.speed);
+    win = mine2 < theirs2 || (mine2 === theirs2 && sp >= osp); // empate: maior Velocidade; igual → o seu Pokémon
+    margin = theirs2 === Infinity ? 99 : theirs2 / mine2;
+  }
+  return { move: mine?.name ?? null, myTurns: myT, theirMove: theirs?.name ?? null, theirTurns: theirT, faster, win, margin, myDmg: mine?.dmg ?? null, theirDmg: theirs?.dmg ?? null, z: mine?.z ?? null, dynamax: dyn };
 }
