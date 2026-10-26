@@ -16,7 +16,8 @@ const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta
 const out = new URL(`../public/data/${gameId}-evoitems.json`, import.meta.url);
 if (!game?.walkthrough || !existsSync(wt) || !existsSync(acqFile)) { console.log(`[${gameId}] sem detonado local ou sem onde obter — nada a fazer`); process.exit(0); }
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
-if (acq.items && Object.keys(acq.items).length) { console.log(`[${gameId}] itens já vêm do decomp (acquisition.items) — nada a fazer`); process.exit(0); }
+// itemsPartial: a lista veio da Bulbapedia (0.39.0), não do decomp — continua gerando as citações do detonado
+if (acq.items && !acq.itemsPartial && Object.keys(acq.items).length) { console.log(`[${gameId}] itens já vêm do decomp (acquisition.items) — nada a fazer`); process.exit(0); }
 const data = JSON.parse(readFileSync(new URL(`../public/data/${gameId}.json`, import.meta.url), 'utf8'));
 
 /** Itens de evolução do jogo: o parâmetro dos métodos com item (ITEM, TRADE_ITEM, HELD_ITEM_DAY, ITEM_MALE…). */
@@ -54,9 +55,12 @@ for (const param of [...evoItems(data.pokemon), ...megaStones]) {
     }
   }
 }
+// mantém as linhas da Bulbapedia (apply-bulbapedia-items roda antes, no fluxo do jogo)
+const prev = existsSync(out) ? JSON.parse(readFileSync(out, 'utf8')) : {};
 writeFileSync(out, JSON.stringify({
   source: `PokeMythology ${game.walkthrough}`, page: `https://www.pokemythology.net/detonados/${game.walkthrough}/`,
   note: 'Trechos do detonado que citam onde achar o item — não é posição verificada no jogo.', items,
+  ...(prev.bulbapedia && { bulbapedia: prev.bulbapedia, bulbapediaSource: prev.bulbapediaSource }),
 }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 const all = [...evoItems(data.pokemon), ...megaStones]; // itens de evolução + Mega Stones (a conta "x/y" usa os dois)

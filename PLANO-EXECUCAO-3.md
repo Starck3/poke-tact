@@ -39,7 +39,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   linhas "Acquisition" da página de cada item, por jogo → local; o ponto da história pelo local (estágio do onde obter/
   detonado). Pronto quando: SwSh e Z-A mostram onde achar as pedras com crédito "Bulbapedia"; a evolução por pedra passa a
   ser limitada pelo ponto da história nesses jogos.
-- **N4 ⬜ Incensos** (bebês de incenso fora por falta de onde achar o incenso): onde achar cada incenso pela Bulbapedia nos
+- **N4 ⚠ Incensos** (0.40.0: Gen 3 resolvida; nos jogos novos o lugar do incenso não casa com os locais do app) (bebês de incenso fora por falta de onde achar o incenso): onde achar cada incenso pela Bulbapedia nos
   jogos que não têm (Emerald Sea Incense, FRLG Lax Incense, Gens 5–8…). Com o incenso, o bebê entra pelo apply-breeding.
 - **N5 ⬜ Nível de Dynamax dos líderes** (vida 1,5× → o certo, até 2×), se a página do treinador der o nível de Dynamax.
 - **N6 ⬜ Ultra Sun/Ultra Moon**: líderes da história (kahunas, capitães/totens, Elite, campeão, rivais) e a ordem das
@@ -78,3 +78,9 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
   SV 31/33, BW 23/23. Lugar casado com o onde obter → `acq.items` com estágio e `itemsPartial` (sem casamento não
   bloqueia). Dois HTTP 503 no meio: parou como manda a regra e a 2ª rodada completou. Banco: vencem 37.694 → 37.687 (−7 no
   Let's Go: evolução por pedra só depois de achar a pedra); folgadas 35.915 → 35.864.
+- **2026-10-26 — N4 (0.40.0)**: `apply-bulbapedia-items` também nos jogos com decomp, só para os incensos que faltam
+  (acq.itemsBulbapedia). Lugar da Bulbapedia casado pelo começo do nome ou contido nele, se específico ("Lost Cave" ⊂
+  "Five Island Lost Cave Room 1"; "Market" sozinho não casa). Emerald/RS: Sea/Lax Incense no Mt. Pyre → Azurill (e Wynaut no
+  RS); FRLG: Lost Cave → Azurill/Wynaut. B2W2/BW/XY/ORAS/SM: incenso em "Market"/lojas sem lugar casado → bebês continuam
+  fora. Fluxo: apply-bulbapedia-items antes do apply-breeding; o build-evo-items mantém as linhas da Bulbapedia e não pula
+  mais os jogos com itemsPartial. Banco: vencem 37.687 (igual); folgadas 35.864 → 35.862.

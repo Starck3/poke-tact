@@ -2,6 +2,20 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.40.0] — 2026-10-26
+
+> O app agora sabe onde achar os incensos nos jogos do GBA (pela Bulbapedia), e por isso Azurill e Wynaut passam a aparecer como Pokémon que se conseguem por ovo no Ruby/Sapphire, Emerald e FireRed/LeafGreen.
+
+### Adicionado
+- **Incensos pela Bulbapedia** nos jogos em que o código do jogo não dizia onde achar: Sea Incense e Lax Incense no Mt.
+  Pyre (Ruby/Sapphire, Emerald) e na Lost Cave (FireRed/LeafGreen). Com eles, Azurill (e Wynaut onde não vinha de presente)
+  nascem na creche com o incenso.
+- Nos jogos novos, o incenso é vendido em lojas que o app ainda não liga a um lugar — esses bebês continuam fora.
+
+### Corrigido
+- O gerador das citações do detonado deixava de rodar nos jogos que ganharam a lista de itens da Bulbapedia (0.39.0) e
+  apagaria as linhas da Bulbapedia ao regravar — agora mantém as duas.
+
 ## [0.39.0] — 2026-10-26
 
 > Agora o app diz onde achar as pedras de evolução e as Mega Stones também no Sword/Shield, no Z-A e nos outros jogos mais novos (pela Bulbapedia), e só sugere um Pokémon que evolui por pedra depois do ponto em que dá para achar a pedra.
