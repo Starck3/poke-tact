@@ -52,7 +52,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   o banco não perde vitórias sem explicação.
 - **A5 ⬜ Legends: Arceus e Z-A** — avaliar: estilo Ágil/Forte (LA) e tempo real (Z-A). Critério: só implementar o que
   tiver regra numa fonte (PKHeX/Showdown/detonado); o resto vira aviso claro na tela. Esperado: ⚠ (aviso melhor).
-- **A6 ⬜ Banco de lutas mais rápido** (hoje ≈ 11 min com o Z): cache de `availableMoves`/`statsAt` por candidato e
+- **A6 ✅ Banco de lutas mais rápido** (0.32.0) (hoje ≈ 11 min com o Z): cache de `availableMoves`/`statsAt` por candidato e
   pular formas Mega/Z que não podem ganhar. Pronto quando: mesmos números, tempo menor.
 
 ### Bloco B — Dados que dá para fazer com as fontes que temos
@@ -101,3 +101,7 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   depois: outra fonte com os times dos kahunas (decisão do usuário).
 - **2026-10-25 — A4 (0.31.0)**: `megaForm` guarda `preMegaStats`; o chefe Mega na Gen 6 usa a Velocidade de antes no 1º
   turno (quando a troca acaba no 1º turno para os dois). Banco sem mudança (37.697 / 36.445) — caso raro.
+- **2026-10-25 — A6 (0.32.0)**: perfil de CPU mostrou `whereToGet` com 2,7 s de 4,8 s (remontava o índice de espécies a
+  cada chamada e era chamado várias vezes por candidato). Cache por objeto `acq` (WeakMap) + índice de espécies em cache:
+  recomendação 5–9× mais rápida; banco completo ≈ 11 min → 5,7 min com os mesmos números (37.697 / 36.445, relatórios
+  idênticos).

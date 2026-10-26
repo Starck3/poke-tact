@@ -2422,3 +2422,15 @@ test('simulador — Gen 6: chefe Mega também usa a Velocidade de antes no 1º t
   const d = load('x-y.json'), m = megaForm(d.pokemon.find((p) => p.name === 'gardevoir'), 'gardevoir-mega');
   assert.ok(m.preMegaStats.speed < m.stats.speed);
 });
+
+test('motor (0.32.0): whereToGet em cache por acq — mesmo resultado, objeto novo de dados = cache novo', async () => {
+  const { whereToGet } = await import('../public/engine.mjs');
+  const d = load('firered-leafgreen.json'), a = load('firered-leafgreen-acquisition.json');
+  const rai = d.pokemon.find((p) => p.name === 'raichu');
+  const x = whereToGet(d, a, rai, 'firered');
+  assert.equal(whereToGet(d, a, rai, 'firered'), x); // mesma resposta (do cache)
+  assert.equal(x.from, 'pikachu');
+  // outro objeto de onde obter (ex.: dados regerados) não reaproveita o cache
+  const a2 = structuredClone(a); a2.versions.firered.raichu = [{ type: 'gift', where: 'Teste', level: 5 }];
+  assert.equal(whereToGet(d, a2, rai, 'firered').direct[0].where, 'Teste');
+});
