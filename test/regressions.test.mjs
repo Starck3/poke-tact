@@ -2409,3 +2409,16 @@ test('simulador — Dynamax (0.30.0): líder dinamaxiza quando o detonado diz; v
   assert.ok(!run(false).some((c) => c.dynamax));
   assert.ok(!run(true, false).some((c) => c.dynamax));
 });
+
+test('simulador — Gen 6: chefe Mega também usa a Velocidade de antes no 1º turno (0.31.0)', async () => {
+  const { duel } = await import('../public/battle.mjs');
+  const data = { moves: { tackle: { name: 'tackle', type: 'normal', power: 999, accuracy: 100, category: 'physical', effect: '' } }, types: ['normal'], chart: { normal: { normal: 1 } } };
+  const mk = (spe, extra = {}) => ({ mon: { types: ['normal'], abilities: [] }, level: 50, stats: { hp: 10, attack: 100, defense: 100, 'special-attack': 100, 'special-defense': 100, speed: spe }, ...extra });
+  // chefe Mega com 120 de Velocidade, 80 antes da Mega: no 1º turno você (100) age antes
+  assert.equal(duel(data, 6, mk(100), mk(120, { speedTurn1: 80 }), ['tackle'], ['tackle']).win, true);
+  assert.equal(duel(data, 7, mk(100), mk(120), ['tackle'], ['tackle']).win, false);
+  // o oponente Mega guarda os atributos de antes (megaForm.preMegaStats)
+  const { megaForm } = await import('../public/engine.mjs');
+  const d = load('x-y.json'), m = megaForm(d.pokemon.find((p) => p.name === 'gardevoir'), 'gardevoir-mega');
+  assert.ok(m.preMegaStats.speed < m.stats.speed);
+});

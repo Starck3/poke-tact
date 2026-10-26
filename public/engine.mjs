@@ -135,7 +135,9 @@ export function recommend(data, opp, opts) {
   const gen = data.game.generation;
   const oppLevel = opts.oppLevel || opts.level;
   // oponente: DVs (Gen 1–2) / IV (Gen 3) do treinador quando conhecidos; senão valor médio
-  const oppSide = { mon: opp, level: oppLevel, stats: statsAt(gen, opp, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }), ...(opp.dynamax && { dynamax: opp.dynamax }) };
+  const oppSide = { mon: opp, level: oppLevel, stats: statsAt(gen, opp, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }), ...(opp.dynamax && { dynamax: opp.dynamax }),
+    // chefe Mega na Gen 6: no turno em que evolui, a ordem usa a Velocidade de antes da Mega (como o seu lado)
+    ...(opp.preMegaStats && gen === 6 && { speedTurn1: statsAt(gen, { ...opp, stats: opp.preMegaStats }, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }).speed }) };
   const oppMoveNames = opts.oppMoves?.length ? opts.oppMoves : likelyMoveset(opp, oppLevel);
   // sem dados de encontro para a versão (PokéAPI: BDSP, Legends: Arceus, Scarlet/Violet) o filtro de obtíveis esvaziaria tudo
   const hasEncounterData = data.pokemon.some((p) => p.obtainable?.[opts.version]);
@@ -243,7 +245,7 @@ export function recommend(data, opp, opts) {
  */
 export function megaForm(mon, megaName) {
   const f = megaName && mon?.megas?.find((m) => m.name === megaName);
-  return f ? { ...mon, types: f.types, stats: f.stats, abilities: f.abilities, megaName: f.name, megaSprite: f.spriteId } : mon;
+  return f ? { ...mon, types: f.types, stats: f.stats, abilities: f.abilities, megaName: f.name, megaSprite: f.spriteId, preMegaStats: mon.stats } : mon;
 }
 
 /** Terastalizado no tipo `tera`: defesa só com o tipo Tera; os tipos de antes ficam em baseTypes (STAB — battle.mjs). */

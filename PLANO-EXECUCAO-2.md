@@ -42,9 +42,9 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
     efeitos de clima/atributo dos golpes Max ficam fora na 1ª versão (marcar na tela).
   - Você: com a Dynamax Band (keyItems.dynamax) e na luta de líder: um Dynamax por luta, se pontua mais.
   - Pronto quando: líder com Dynamax luta com HP dobrado nos 3 primeiros turnos; teste da conta; filtro "Usar Dynamax".
-- **A3 ⬜ Chefes com golpe Z** (SM): procurar no detonado frases de golpe Z de chefe (kahunas, capitães). Se não houver
+- **A3 ⏸ Chefes com golpe Z** (SM): procurar no detonado frases de golpe Z de chefe (kahunas, capitães). Se não houver
   marca por luta → ⏸ com o motivo (não inventar).
-- **A4 ⬜ Gen 6: Velocidade de antes da Mega também para o chefe** no 1º turno (hoje só o seu lado).
+- **A4 ✅ Gen 6: Velocidade de antes da Mega também para o chefe** (0.31.0) no 1º turno (hoje só o seu lado).
 - **A7 ⬜ Mundo aberto (SV, LA, Z-A, SwSh Wild Area): nível do selvagem vs. o seu time.** Achado na A1: com progresso
   por insígnia, o SV sugere Pupitar selvagem de nv 42–44 (South Province Area Six, "antes da 1ª insígnia") para um time
   de nv 16. Com o progresso, o motor só olha o estágio. Ideia: no modo estágio também exigir que a fonte tenha nível
@@ -96,3 +96,8 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   dá o nível; golpes Max com o poder gravado na 0.28.0, sem errar. Você dinamaxiza só em luta onde o chefe dinamaxiza e
   depois da Dynamax Band. Efeitos extras dos golpes Max fora (aviso na tela). Banco: SwSh turnos 1,66 → 1,39; vencem
   37.697; folgadas 36.441 → 36.445. Achado de novo o caso da A7 (Rhydon nv 55 sugerido no estágio 0 do SwSh).
+- **2026-10-25 — A3 ⏸**: o detonado do Sun/Moon não tem nenhuma frase de chefe usando golpe Z (busca por "Z-Move",
+  "golpe Z", "usará" + Z perto das lutas: só frases de receber cristal). Sem marca por luta → não inventar. Ideia para
+  depois: outra fonte com os times dos kahunas (decisão do usuário).
+- **2026-10-25 — A4 (0.31.0)**: `megaForm` guarda `preMegaStats`; o chefe Mega na Gen 6 usa a Velocidade de antes no 1º
+  turno (quando a troca acaba no 1º turno para os dois). Banco sem mudança (37.697 / 36.445) — caso raro.
