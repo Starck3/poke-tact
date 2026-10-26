@@ -120,9 +120,10 @@ export function bestAgainst(data, gen, att, def, moves) {
   }
   // golpe Z (att.zTypes = tipos com Z-Crystal): um por luta — o 1º golpe vira Z e os seguintes são o melhor golpe normal.
   // Só fica se nocauteia em menos turnos (empate: o normal, que não gasta o Z)
-  if (best && att.zTypes?.size) for (const name of moves) {
+  // att.zMoveOnly: chefe com golpe Z marcado na Bulbapedia (Hala: Power-Up Punch → All-Out Pummeling) — só esse golpe vira Z
+  if (best && (att.zTypes?.size || att.zMoveOnly)) for (const name of moves) {
     const mv = data.moves[name];
-    if (!mv?.zPower || !att.zTypes.has(mv.type)) continue;
+    if (!mv?.zPower || (att.zMoveOnly ? name !== att.zMoveOnly : !att.zTypes.has(mv.type))) continue;
     const z = damage(data, gen, att, def, name, { zPower: mv.zPower });
     if (!z || z.per <= 0) continue;
     const t = z.per >= def.stats.hp ? 1 : 1 + turnsToKo(best.dmg, def.stats.hp - z.per);

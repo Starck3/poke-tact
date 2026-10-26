@@ -1,0 +1,36 @@
+{
+ "matched": [
+  "DETONADO_32_0 Wikstrom ← Wikstrom () 3/4",
+  "DETONADO_35_0 Diantha ← Diantha () 5/6",
+  "DETONADO_64_0 Wiksttrom ← Wikstrom (Battle Chateau) 2/3",
+  "DETONADO_68_0 Diantha ← Diantha (Battle Chateau - No Writ of Challenge) 3/4"
+ ],
+ "unmatched": [
+  "DETONADO_2_0 Sycamore",
+  "DETONADO_4_0 Tierno",
+  "DETONADO_5_0 Trevor",
+  "DETONADO_21_0 Sycamore",
+  "DETONADO_36_0 AZ",
+  "DETONADO_37_0 Battle Chatelaine Nita",
+  "DETONADO_38_0 Battle Chatelaine Nita",
+  "DETONADO_39_0 Battle Chatelaine Evelyn",
+  "DETONADO_40_0 Battle Chatelaine Evelyn",
+  "DETONADO_41_0 Battle Chatelaine Dana",
+  "DETONADO_42_0 Battle Chatelaine Dana",
+  "DETONADO_43_0 Battle Chatelaine Morgan",
+  "DETONADO_44_0 Battle Chatelaine Morgan"
+ ],
+ "missingMoves": [],
+ "pages": {
+  "Sycamore": "sem time deste jogo",
+  "Tierno": "3 times",
+  "Trevor": "2 times",
+  "Wikstrom": "6 times",
+  "Diantha": "6 times",
+  "AZ": "1 times",
+  "Nita": "2 times",
+  "Evelyn": "2 times",
+  "Dana": "2 times",
+  "Morgan": "2 times"
+ }
+}

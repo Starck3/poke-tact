@@ -361,6 +361,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Estágio estimado (0.36.0)**: só selvagem em terra (Surf/vara dependem de HM e têm faixas de nível baixas) e a MEDIANA
   dos níveis mínimos (um encontro fora do padrão não puxa o local). Sempre `stageEstimated` → a tela diz "estimativa".
   O build-detonado-modern pula as fontes `breed` (o estágio delas é o da creche).
+- **Bulbapedia (0.38.0)**: o `fetch` do Node leva HTTP 403 da proteção do site; o `curl` com o mesmo User-Agent passa —
+  `lib/bulbapedia.mjs` usa o curl. Campo `game` do {{Party}} tem códigos por versão (Sw/Sh, OR/AS, Su/Mo, BD/SP) e códigos
+  que colidem com jogos antigos ("Y" = Yellow, "E" = Emerald). Página de desambiguação ({{disambig}}) é ignorada.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

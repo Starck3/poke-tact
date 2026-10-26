@@ -1846,7 +1846,7 @@ test('Gens 5–9 sem decomp: times do detonado (espécie e nível) com golpes es
     const td = load(`${g}-trainers.json`), d = load(`${g}.json`);
     assert.equal(td.fromWalkthrough, true, g);
     const names = new Set(d.pokemon.map((p) => p.name));
-    for (const t of td.trainers) for (const p of t.party) { assert.ok(names.has(p.species), `${g}: ${t.label} ${p.species}`); assert.equal(p.defaultMoves, true); }
+    for (const t of td.trainers) for (const p of t.party) { assert.ok(names.has(p.species), `${g}: ${t.label} ${p.species}`); assert.ok(p.defaultMoves === true || p.movesSource === 'Bulbapedia'); } // 0.38.0: golpes reais da Bulbapedia quando casam
     assert.ok(load(`${g}-walkthrough.json`).versions);
   }
   const xy = load('x-y-trainers.json').trainers;
@@ -2503,4 +2503,41 @@ test('B4 (0.37.0): "Charizardite X e Y" vale para as duas pedras (Let\'s Go)', a
   // (o build-evo-items é script: importar aqui encerraria o processo de teste — confere pelo dado gerado)
   assert.ok(load('lets-go-pikachu-lets-go-eevee-evoitems.json').items['Charizardite Y'].some((c) => /Charizardite X e Charizardite Y/.test(c.text)));
   assert.ok(load('lets-go-pikachu-lets-go-eevee-evoitems.json').items['Charizardite Y']?.length);
+});
+
+test('Bulbapedia (0.38.0): leitor de wikitext — times ({{Party}} + {{Pokémon}}, golpe Z) e tabela Acquisition por jogo', async () => {
+  const { parties, acquisition, plain } = await import('../scripts/lib/bulbapedia.mjs');
+  // wikitext de exemplo escrito aqui (mesmo formato das predefinições da wiki; não é cópia de página)
+  const t = ['==Pokémon==', '===Sun and Moon===', '{{Party', '| name = Fulano', '| game = SM', '| location = Lugar X', '}}',
+    '{{Pokémon', '| pokemon = Mankey', '| level = 14', '| move1 = Karate Chop | move1type = Fighting', '| move2 = Leer', '}}',
+    '{{Pokémon', '| pokemon = Crabrawler', '| level = 15', '| held = Fightinium Z', '| move1 = Power-Up Punch | z-move1 = All-Out Pummeling', '}}',
+    '{{Party/end}}'].join('\n');
+  const [p] = parties(t);
+  assert.deepEqual([p.name, p.game, p.section.at(-1), p.mons.length], ['Fulano', 'SM', 'Sun and Moon', 2]);
+  assert.deepEqual(p.mons[1].moves, [{ name: 'Power-Up Punch', z: 'All-Out Pummeling' }]);
+  assert.equal(p.mons[1].held, 'Fightinium Z');
+  const a = acquisition(['===Acquisition===', '{{ItemAvailability/head|items}}', '|-', '| {{gameabbrev8|SwSh}}', '| [[Motostoke Riverbank]]', '| Hidden item ([[Lake of Outrage]])', '|-', '| {{gameabbrev8|SwSh}}{{gameabbrev8|CT}}', '|', '| [[Max Raid Battle]]s', '|}'].join('\n'));
+  assert.deepEqual(a.map((r) => [r.games.join('+'), r.found, r.other]), [['SwSh', 'Motostoke Riverbank', 'Hidden item (Lake of Outrage)'], ['SwSh+CT', '', 'Max Raid Battles']]);
+  assert.equal(plain('{{rt|9|Kalos}}, [[Lumiose City|Lumiose]] ({{DL|X|Stone Emporium}})'), 'Route 9, Lumiose (Stone Emporium)');
+});
+
+test('N1/N2 (0.38.0): chefes com golpes reais da Bulbapedia; o Hala usa golpe Z no 1º turno', async () => {
+  const { recommend, battleForm } = await import('../public/engine.mjs');
+  const sm = load('sun-moon.json'), sma = load('sun-moon-acquisition.json'), tr = load('sun-moon-trainers.json').trainers;
+  const hala = tr.find((t) => t.label === 'Hala' && t.party.some((p) => p.species === 'crabrawler'));
+  const crab = hala.party.find((p) => p.species === 'crabrawler');
+  assert.equal(crab.movesSource, 'Bulbapedia');
+  assert.equal(crab.zMove, 'power-up-punch'); // All-Out Pummeling a partir de Power-Up Punch
+  assert.equal(crab.item, 'Fightinium Z');
+  // cobertura: a maioria das lutas dos jogos sem decomp com golpes reais
+  for (const g of ['black-white', 'sun-moon', 'scarlet-violet']) {
+    const t = load(`${g}-trainers.json`).trainers;
+    assert.ok(t.filter((x) => x.movesSource === 'Bulbapedia').length / t.length > 0.7, g);
+  }
+  // o golpe Z do chefe entra na conta: com o Z ele nocauteia em menos turnos (ou igual) que sem
+  const opp = battleForm(sm.pokemon.find((x) => x.name === 'crabrawler'), crab);
+  const noZ = { ...opp }; delete noZ.zMove;
+  const run = (o) => recommend(sm, o, { level: 15, oppLevel: crab.level, oppMoves: crab.moves, version: 'sun', onlyObtainable: true, acq: sma, stage: 0 }).candidates;
+  const sumZ = run(opp).reduce((a, c) => a + c.duel.theirTurns, 0), sumN = run(noZ).reduce((a, c) => a + c.duel.theirTurns, 0);
+  assert.ok(sumZ < sumN);
 });

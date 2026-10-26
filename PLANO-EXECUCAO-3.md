@@ -25,15 +25,15 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 5. Decisão de regra do projeto que não esteja aqui → ⏸ "esperando o usuário".
 
 ## Bloco N — com a fonte nova
-- **N0 ⬜ Infraestrutura**: `scripts/lib/bulbapedia.mjs` (baixar página com as regras acima, cache, manifesto) e um leitor
+- **N0 ✅ Infraestrutura** (0.38.0): `scripts/lib/bulbapedia.mjs` (baixar página com as regras acima, cache, manifesto) e um leitor
   de wikitext para as predefinições usadas: time de treinador (`{{Party/…}}`/`{{Pokémon/…}}` com `move1…4`, `z-move`,
   `level`, `held`), tabela "Acquisition" de item (`{{gameabbrev…}}` + local). Pronto quando: lê o time do Hala (SM) e as
   linhas da Fire Stone por jogo, com teste usando uma cópia pequena do wikitext em `test/fixtures/` (o clone limpo não tem
   `data-sources/`).
-- **N1 ⬜ Golpes reais dos chefes (Gens 5–9 sem decomp)**: para líderes, Elite, campeões e rivais que o app já tem (pelo
+- **N1 ⚠ Golpes reais dos chefes (Gens 5–9 sem decomp)** (0.38.0: 635 de 1.098 lutas; SwSh/LGPE/BDSP abaixo de 65%): para líderes, Elite, campeões e rivais que o app já tem (pelo
   detonado), puxar os golpes da página do treinador na Bulbapedia (mesma espécie e nível ±2) — hoje são estimados pelo nível.
   Pronto quando: cada luta casada troca "golpes estimados" por "golpes da Bulbapedia"; relatório com as não casadas; banco.
-- **N2 ⬜ Golpe Z dos chefes (Sun/Moon)**: marca `z-move` do time (Hala: Crabrawler com All-Out Pummeling) → o chefe usa o
+- **N2 ✅ Golpe Z dos chefes (Sun/Moon)** (0.38.0: 29 Pokémon): marca `z-move` do time (Hala: Crabrawler com All-Out Pummeling) → o chefe usa o
   Z no 1º turno (mesmo cálculo do seu lado). Pronto quando: Hala luta com Z; banco.
 - **N3 ⬜ Onde achar itens de evolução e Mega Stones** (Sword/Shield 0/28, Z-A 0, e os que faltam nos outros jogos do PKHeX):
   linhas "Acquisition" da página de cada item, por jogo → local; o ponto da história pelo local (estágio do onde obter/
@@ -66,3 +66,10 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 → P4 → D1.
 
 ## Registro
+- **2026-10-25 — N0+N1+N2 (0.38.0)**: `scripts/lib/bulbapedia.mjs` (página com cache, ≥ 5 s, para no erro; o fetch do Node
+  levava HTTP 403 da proteção do site — usa o curl com o mesmo User-Agent) e leitor de {{Party}}/{{Pokémon}} e da tabela
+  Acquisition. `apply-bulbapedia-trainers`: luta casada pelo jogo (inclui códigos por versão Sw/Sh, OR/AS, Su/Mo…; "Y" e
+  "E" ficam de fora — Yellow/Emerald) e espécie+nível ±3 (≥ 60% do time). Lutas com golpes reais: BW 69/76, XY 64/77,
+  ORAS 56/74, SM 76/81, LGPE 34/57, SwSh 48/96 (as lutas do Hop antes do pós-jogo não estão na página), BDSP 45/74, LA
+  83/107, SV 110/145, Z-A 50/71. Golpe Z de chefe: 29 (SM). Banco: vencem 37.694 (igual); folgadas 36.380 → 35.915 — os
+  chefes agora usam os golpes de verdade (mais cobertura que os estimados).

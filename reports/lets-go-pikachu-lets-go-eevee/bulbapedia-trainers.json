@@ -1,0 +1,33 @@
+{
+ "matched": [],
+ "unmatched": [
+  "DETONADO_0_0 Seu rival (se o inicial dele for Pikachu)",
+  "DETONADO_0_0_1 Seu rival (se o inicial dele for Eevee)",
+  "DETONADO_1_0 Seu rival (se o inicial dele for Pikachu)",
+  "DETONADO_1_0_1 Seu rival (se o inicial dele for Eevee)",
+  "DETONADO_3_0 Jessie e James",
+  "DETONADO_4_0 Seu rival (se o inicial dele for Pikachu)",
+  "DETONADO_4_0_1 Seu rival (se o inicial dele for Eevee)",
+  "DETONADO_6_0 Seu rival (se o inicial dele for Pikachu)",
+  "DETONADO_6_0_1 Seu rival (se o inicial dele for Eevee)",
+  "DETONADO_9_0 Seu rival (se o inicial dele for Raichu)",
+  "DETONADO_9_0_1 Seu rival (se o inicial dele for Jolteon)",
+  "DETONADO_11_0 Jessie e James",
+  "DETONADO_14_0 Jessie e James",
+  "DETONADO_16_0 Archer",
+  "DETONADO_17_0 Jessie e James",
+  "DETONADO_23_0 Seu rival (se o inicial dele for Raichu)",
+  "DETONADO_23_0_1 Seu rival (se o inicial dele for Jolteon)",
+  "DETONADO_28_0 Seu rival (se o inicial dele for Raichu)",
+  "DETONADO_28_0_1 Seu rival (se o inicial dele for Jolteon)",
+  "DETONADO_30_0 Jessie e James",
+  "DETONADO_32_0 Harjit",
+  "DETONADO_48_0 Seu rival (se o inicial dele for Raichu)",
+  "DETONADO_48_0_1 Seu rival (se o inicial dele for Jolteon)"
+ ],
+ "missingMoves": [],
+ "pages": {
+  "Archer": "2 times",
+  "Harjit": "não existe"
+ }
+}
