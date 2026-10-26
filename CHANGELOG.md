@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.39.0] — 2026-10-26
+
+> Agora o app diz onde achar as pedras de evolução e as Mega Stones também no Sword/Shield, no Z-A e nos outros jogos mais novos (pela Bulbapedia), e só sugere um Pokémon que evolui por pedra depois do ponto em que dá para achar a pedra.
+
+### Adicionado
+- **Onde achar itens de evolução e Mega Stones** nos jogos sem decomp, pela Bulbapedia: Sword/Shield 28 de 28 itens (o
+  detonado não citava nenhum), Z-A 114 de 115 (pedras e Mega Stones), Sun/Moon, Let's Go, BDSP, Legends: Arceus,
+  Scarlet/Violet, X/Y e ORAS. Aparece na árvore de evoluções ("Achado: …", "Loja, presente ou prêmio: …") e no cartão Mega,
+  com o crédito.
+- Quando o lugar da pedra é um local que o app conhece, ele ganha o ponto da história — e a evolução por pedra passa a
+  respeitar esse ponto nas sugestões.
+
+### Alterado
+- Banco de lutas: vencem 37.694 → 37.687 (7 lutas do Let's Go em que a pedra só aparece depois); folgadas 35.915 → 35.864.
+
 ## [0.38.0] — 2026-10-25
 
 > Os chefes dos jogos mais novos (Black/White até Z-A) agora lutam com os golpes de verdade, tirados da Bulbapedia, e não mais com golpes estimados pelo nível. No Sun/Moon, os kahunas e capitães usam o golpe Z deles.

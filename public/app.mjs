@@ -304,6 +304,11 @@ async function renderEvolutions(mon, stageTxt) {
   if (r.nodes.length < 2) { box.innerHTML = '<div class="walk-h">Evoluções</div><p class="meta">' + humanize(mon.name) + ' não evolui nem vem de evolução.</p>'; return; }
   const link = (n) => (n.name === mon.name ? '<strong>' + humanize(n.name) + '</strong>' : '<a href="#" data-evo="' + n.name + '">' + humanize(n.name) + '</a>');
   const itemHtml = (it) => {
+    // jogos sem decomp: linhas da Bulbapedia (achado / loja-presente-prêmio), com o ponto da história quando o lugar casa
+    if (it.bulba?.length) return '<ul class="walk-list">' + it.bulba.map((b) => {
+      const st = it.sources.find((s) => s.text.startsWith(b.text))?.stage ?? null;
+      return '<li>' + (b.kind === 'achado' ? 'Achado: ' : 'Loja, presente ou prêmio: ') + b.text + (b.dlc?.length ? ' <span class="meta">(DLC ' + b.dlc.join('/') + ')</span>' : '') + stageTxt(st) + '</li>';
+    }).join('') + '</ul><p class="note">Fonte: Bulbapedia (nomes dos lugares em inglês).</p>';
     if (it.sources.length) return '<ul class="walk-list">' + it.sources.map((s) => '<li>' + s.text + stageTxt(s.stage) + '</li>').join('') + '</ul>';
     if (it.cited.length) return '<ul class="walk-list">' + it.cited.slice(0, 4).map((c) => '<li>“' + c.text + '” <span class="meta">— detonado, trecho ' + c.section.toLowerCase().replace(/(^|\s)(\S)/g, (m, a, b) => a + b.toUpperCase()) + '</span></li>').join('') + '</ul><p class="note">Citação do detonado do PokeMythology, não posição conferida no código do jogo.</p>';
     return '<p class="meta">Onde achar ' + it.label + ': não está nos dados deste jogo nem no detonado.</p>';
@@ -663,8 +668,9 @@ function megaLine(mg) {
   const ring = mg.ring ? ` · ${mg.primal ? 'Reversão Primal' : 'Mega Ring'}: ${mg.ring.section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())} (${stageLabel(mg.ring.stage, acq?.progress?.leaderOrder, acq?.progress)})` : ' · quando se ganha o Mega Ring: não está nos dados deste jogo';
   // onde achar a pedra: frases do detonado (build-evo-items); baixa o arquivo na 1ª sugestão Mega e redesenha
   if (evoItems === null) loadEvoItems().then(update);
-  const cited = evoItems?.items?.[mg.stone] ?? [];
-  const where = cited.length ? `Onde achar (detonado): “${cited[0].text}” <span class="meta">— trecho ${cited[0].section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())}</span>`
+  const cited = evoItems?.items?.[mg.stone] ?? [], bulba = evoItems?.bulbapedia?.[mg.stone] ?? [];
+  // Bulbapedia (tabela Acquisition da pedra) vem antes da frase do detonado
+  const where = bulba.length ? `Onde achar (Bulbapedia): ${bulba.map((b) => b.text).join('; ')}` : cited.length ? `Onde achar (detonado): “${cited[0].text}” <span class="meta">— trecho ${cited[0].section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())}</span>`
     : `<span class="meta">Onde achar a ${mg.stone}: o detonado não diz — a sugestão vale se você tiver a pedra (desligue em Filtros → Usar Mega Evolução).</span>`;
   return `<div class="kv"><b>${mg.primal ? 'Reversão Primal' : 'Mega Evolução'}</b>segurando ${mg.stone}${ring}<br>${where}</div>`;
 }

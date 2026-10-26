@@ -1,0 +1,17 @@
+{
+ "params": 55,
+ "withRow": 45,
+ "withStage": 28,
+ "missing": [
+  "Aggronite",
+  "Charizardite X",
+  "Charizardite Y",
+  "DUBIOUS_DISC",
+  "Heracronite",
+  "Houndoominite",
+  "Manectite",
+  "Pinsirite",
+  "Tyranitarite",
+  "UPGRADE"
+ ]
+}
