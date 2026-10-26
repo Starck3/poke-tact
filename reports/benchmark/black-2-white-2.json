@@ -3713,9 +3713,9 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 58,
-     "winnersAvailable": 104,
-     "candidates": 176,
+     "superEffectiveAvailable": 57,
+     "winnersAvailable": 103,
+     "candidates": 173,
      "picks": [
       {
        "mon": "jolteon",
@@ -3766,8 +3766,8 @@
       "scald"
      ],
      "superEffectiveAvailable": 64,
-     "winnersAvailable": 92,
-     "candidates": 176,
+     "winnersAvailable": 90,
+     "candidates": 173,
      "picks": [
       {
        "mon": "serperior",
@@ -3817,9 +3817,9 @@
       "heat-crash",
       "assurance"
      ],
-     "superEffectiveAvailable": 120,
-     "winnersAvailable": 91,
-     "candidates": 177,
+     "superEffectiveAvailable": 117,
+     "winnersAvailable": 88,
+     "candidates": 174,
      "picks": [
       {
        "mon": "excadrill",
@@ -3880,9 +3880,9 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 59,
-     "winnersAvailable": 106,
-     "candidates": 176,
+     "superEffectiveAvailable": 58,
+     "winnersAvailable": 105,
+     "candidates": 173,
      "picks": [
       {
        "mon": "jolteon",
@@ -3933,8 +3933,8 @@
       "seed-bomb"
      ],
      "superEffectiveAvailable": 103,
-     "winnersAvailable": 106,
-     "candidates": 176,
+     "winnersAvailable": 104,
+     "candidates": 173,
      "picks": [
       {
        "mon": "scolipede",
@@ -3985,8 +3985,8 @@
       "encore"
      ],
      "superEffectiveAvailable": 61,
-     "winnersAvailable": 62,
-     "candidates": 177,
+     "winnersAvailable": 60,
+     "candidates": 174,
      "picks": [
       {
        "mon": "maractus",
@@ -4047,9 +4047,9 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 58,
-     "winnersAvailable": 107,
-     "candidates": 176,
+     "superEffectiveAvailable": 57,
+     "winnersAvailable": 106,
+     "candidates": 173,
      "picks": [
       {
        "mon": "jolteon",
@@ -4099,9 +4099,9 @@
       "fury-swipes",
       "flame-burst"
      ],
-     "superEffectiveAvailable": 89,
-     "winnersAvailable": 106,
-     "candidates": 176,
+     "superEffectiveAvailable": 86,
+     "winnersAvailable": 103,
+     "candidates": 173,
      "picks": [
       {
        "mon": "starmie",
@@ -4152,8 +4152,8 @@
       "coil"
      ],
      "superEffectiveAvailable": 102,
-     "winnersAvailable": 72,
-     "candidates": 177,
+     "winnersAvailable": 71,
+     "candidates": 174,
      "picks": [
       {
        "mon": "skarmory",
@@ -13610,9 +13610,9 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 58,
-     "winnersAvailable": 103,
-     "candidates": 176,
+     "superEffectiveAvailable": 57,
+     "winnersAvailable": 102,
+     "candidates": 173,
      "picks": [
       {
        "mon": "electabuzz",
@@ -13663,8 +13663,8 @@
       "scald"
      ],
      "superEffectiveAvailable": 65,
-     "winnersAvailable": 91,
-     "candidates": 176,
+     "winnersAvailable": 89,
+     "candidates": 173,
      "picks": [
       {
        "mon": "serperior",
@@ -13714,9 +13714,9 @@
       "heat-crash",
       "assurance"
      ],
-     "superEffectiveAvailable": 120,
-     "winnersAvailable": 93,
-     "candidates": 177,
+     "superEffectiveAvailable": 117,
+     "winnersAvailable": 90,
+     "candidates": 174,
      "picks": [
       {
        "mon": "excadrill",
@@ -13777,9 +13777,9 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 59,
-     "winnersAvailable": 105,
-     "candidates": 176,
+     "superEffectiveAvailable": 58,
+     "winnersAvailable": 104,
+     "candidates": 173,
      "picks": [
       {
        "mon": "electabuzz",
@@ -13830,8 +13830,8 @@
       "seed-bomb"
      ],
      "superEffectiveAvailable": 104,
-     "winnersAvailable": 103,
-     "candidates": 176,
+     "winnersAvailable": 101,
+     "candidates": 173,
      "picks": [
       {
        "mon": "scolipede",
@@ -13882,8 +13882,8 @@
       "encore"
      ],
      "superEffectiveAvailable": 62,
-     "winnersAvailable": 63,
-     "candidates": 177,
+     "winnersAvailable": 61,
+     "candidates": 174,
      "picks": [
       {
        "mon": "maractus",
@@ -13944,9 +13944,9 @@
       "air-slash",
       "razor-wind"
      ],
-     "superEffectiveAvailable": 58,
-     "winnersAvailable": 106,
-     "candidates": 176,
+     "superEffectiveAvailable": 57,
+     "winnersAvailable": 105,
+     "candidates": 173,
      "picks": [
       {
        "mon": "electabuzz",
@@ -13996,9 +13996,9 @@
       "fury-swipes",
       "flame-burst"
      ],
-     "superEffectiveAvailable": 89,
-     "winnersAvailable": 105,
-     "candidates": 176,
+     "superEffectiveAvailable": 86,
+     "winnersAvailable": 102,
+     "candidates": 173,
      "picks": [
       {
        "mon": "starmie",
@@ -14049,8 +14049,8 @@
       "coil"
      ],
      "superEffectiveAvailable": 103,
-     "winnersAvailable": 72,
-     "candidates": 177,
+     "winnersAvailable": 71,
+     "candidates": 174,
      "picks": [
       {
        "mon": "skarmory",

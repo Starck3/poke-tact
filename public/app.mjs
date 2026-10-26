@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm } from './engine.mjs';
+import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -706,7 +706,9 @@ function howToGet(s) {
   // a fonte que libera mais cedo (estágio/nível), não a 1ª selvagem: o Machop no HGSS saía "Mt. Mortar" (estágio 6) com a
   // troca da Goldenrod (estágio 2) disponível
   const at = (x) => (s.stageNeeded != null ? Math.max(x.stage ?? (acq.progress?.post ?? 9), x.gate?.stage ?? 0) : Math.max(x.min ?? x.level ?? 1, x.gate?.level ?? 1));
-  const pick = (list) => [...list].sort((a, b) => at(a) - at(b) || (b.pct ?? 0) - (a.pct ?? 0))[0];
+  // com progresso, prefere a fonte de nível compatível com o time (A7: o motor só conta essas)
+  const lvOk = (x) => s.stageNeeded == null || Math.max(x.min ?? x.level ?? 1, x.area?.level ?? 1, x.gate?.level ?? 1) <= (Number($('level').value) || 100) + LEVEL_MARGIN;
+  const pick = (list) => [...list].sort((a, b) => lvOk(b) - lvOk(a) || at(a) - at(b) || (b.pct ?? 0) - (a.pct ?? 0))[0];
   let best = pick(w.direct), from = w.from;
   // a captura direta sai depois do que o motor achou (s.stageNeeded / s.reach)? então é pela pré-evolução: mostra essa
   const need = s.stageNeeded ?? s.reach;

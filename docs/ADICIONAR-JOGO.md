@@ -349,6 +349,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Dynamax (0.30.0)**: tags `dynamax`/`gigantamax` do leitor do detonado → `party[].dynamax`; `duel` simula turno a turno
   (`dynamaxTurns`) a fração de vida com o pool 1,5× nos 3 primeiros turnos. Você só com `opts.dynamaxBattle` (a luta do
   treinador tem Pokémon dinamaxizado).
+- **minLevel nos jogos do PKHeX (0.33.0)**: o apply-pkhex-evos calcula `minLevel` (maior nível de evolução na cadeia); sem
+  ele, `mon.minLevel > opts.level` é sempre falso. Com progresso, `reachStage(..., maxLevel)` ignora fontes acima de
+  nível do time + `LEVEL_MARGIN`.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

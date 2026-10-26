@@ -117,6 +117,9 @@ export function bestMoveVs(data, mon, opp, level, { machines = true, machineSour
  * Ameaça do oponente: com oppLevel, tipos dos golpes ofensivos do moveset provável;
  * sem ele (ou sem golpes ofensivos), os tipos do próprio oponente (STAB).
  */
+// A7: margem de nível no modo progresso — estimativa (não é regra do jogo): Pokémon que só se consegue 10+ níveis acima
+// do seu time fica de fora (capturar é difícil e ele pode não obedecer)
+export const LEVEL_MARGIN = 10;
 export function recommend(data, opp, opts) {
   let threats;
   let threatSource;
@@ -175,7 +178,8 @@ export function recommend(data, opp, opts) {
     // Progresso: com os dados de obtenção, exige uma forma de obter com nível <= o do seu time (ex.: Eevee é dado no nv 25)
     const reach = opts.acq && mon.obtainable[opts.version] && !useStage ? reachLevel(data, opts.acq, mon, opts.version) : mon.minLevel;
     if (reach > opts.level) continue;
-    const stageNeeded = useStage && mon.obtainable[opts.version] ? reachStage(data, opts.acq, mon, opts.version) : null;
+    // com progresso: o ponto da história E uma fonte de nível compatível com o time (até LEVEL_MARGIN acima)
+    const stageNeeded = useStage && mon.obtainable[opts.version] ? reachStage(data, opts.acq, mon, opts.version, new Set(), opts.level + LEVEL_MARGIN) : null;
     if (useStage && stageNeeded > opts.stage) continue;
     // Evolução por troca exige outro jogo: só entra se o usuário pedir (padrão: não)
     if (opts.acq && !opts.tradeEvolutions && needsTradeEvolution(data, opts.acq, mon, opts.version)) continue;
@@ -415,20 +419,23 @@ export function preEvolutionRoute(data, acq, mon, version) {
 }
 
 /** Menor estágio (0–8 insígnias, 9 = pós-jogo) em que dá para ter a espécie. Estágio desconhecido conta como pós-jogo. */
-export function reachStage(data, acq, mon, version, seen = new Set()) {
+// maxLevel (A7, 0.33.0): só contam fontes com nível até maxLevel — no mundo aberto (SV, SwSh) há selvagens de nível muito
+// acima do time desde o começo; a fonte "liberada" mas de nv 44 não serve para um time de nv 16
+export function reachStage(data, acq, mon, version, seen = new Set(), maxLevel = Infinity) {
   if (seen.has(mon.name)) return Infinity;
   seen.add(mon.name);
   const w = whereToGet(data, acq, mon, version);
   if (!w.direct.length) return Infinity;
   const stageOf = (s) => {
+    if (Math.max(s.min ?? s.level ?? 1, s.area?.level ?? 1, s.gate?.level ?? 1) > maxLevel) return Infinity;
     let st = Math.max(s.stage ?? (acq.progress?.post ?? 9), s.gate?.stage ?? 0);
     if (s.type === 'trade' && s.want) {
       const want = data.pokemon.find((p) => p.name === s.want);
-      st = Math.max(st, want ? reachStage(data, acq, want, version, seen) : Infinity);
+      st = Math.max(st, want ? reachStage(data, acq, want, version, seen, maxLevel) : Infinity);
     }
     if (s.type === 'breed') for (const n of [s.want, s.partner].filter(Boolean)) {
       const p = data.pokemon.find((x) => x.name === n);
-      st = Math.max(st, p ? reachStage(data, acq, p, version, new Set(seen)) : Infinity);
+      st = Math.max(st, p ? reachStage(data, acq, p, version, new Set(seen), maxLevel) : Infinity);
     }
     return st;
   };
@@ -441,7 +448,7 @@ export function reachStage(data, acq, mon, version, seen = new Set()) {
   const pre = evolutionAlternative(data, acq, mon, w);
   if (!pre) return direct;
   const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((i) => i.stage ?? 9)) : acq.items ? Infinity : 0) : 0;
-  return Math.min(direct, Math.max(reachStage(data, acq, pre, version, new Set(seen)), evoItem));
+  return Math.min(direct, Math.max(reachStage(data, acq, pre, version, new Set(seen), maxLevel), evoItem));
 }
 
 /**

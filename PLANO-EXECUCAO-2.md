@@ -45,7 +45,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
 - **A3 ⏸ Chefes com golpe Z** (SM): procurar no detonado frases de golpe Z de chefe (kahunas, capitães). Se não houver
   marca por luta → ⏸ com o motivo (não inventar).
 - **A4 ✅ Gen 6: Velocidade de antes da Mega também para o chefe** (0.31.0) no 1º turno (hoje só o seu lado).
-- **A7 ⬜ Mundo aberto (SV, LA, Z-A, SwSh Wild Area): nível do selvagem vs. o seu time.** Achado na A1: com progresso
+- **A7 ✅ Mundo aberto (SV, LA, Z-A, SwSh Wild Area): nível do selvagem vs. o seu time.** Achado na A1: com progresso
   por insígnia, o SV sugere Pupitar selvagem de nv 42–44 (South Province Area Six, "antes da 1ª insígnia") para um time
   de nv 16. Com o progresso, o motor só olha o estágio. Ideia: no modo estágio também exigir que a fonte tenha nível
   ≤ nível do time + margem (ou marcar "selvagem de nível alto"). Pronto quando: o Pupitar sai/fica marcado nesse caso e
@@ -105,3 +105,9 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   cada chamada e era chamado várias vezes por candidato). Cache por objeto `acq` (WeakMap) + índice de espécies em cache:
   recomendação 5–9× mais rápida; banco completo ≈ 11 min → 5,7 min com os mesmos números (37.697 / 36.445, relatórios
   idênticos).
+- **2026-10-25 — A7 (0.33.0)**: duas causas. (1) Nos 11 jogos do PKHeX faltava `minLevel` (menor nível em que a espécie
+  existe por evolução) — o filtro "ainda não evoluiu no nível do seu time" nunca agia (Pupitar via Larvitar no nv 16);
+  agora o apply-pkhex-evos calcula como nos jogos com decomp. (2) Com progresso, `reachStage` só conta fontes com nível
+  até o do time + 10 (`LEVEL_MARGIN`, estimativa marcada no código e no CHANGELOG). Banco: vencem 37.697 → 37.694 (3 lutas
+  do Let's Go em que só ganhava um Pokémon que você não teria naquele nível); folgadas 36.445 → 36.370 (BW −48, LGPE −10,
+  SV −12…). Explicado.
