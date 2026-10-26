@@ -64,6 +64,12 @@ export function loadPkhex(rootUrl, gameId) {
   }
   // TMs (Legends: Z-A, sem PokéAPI): bits em cfg.tm.offset na ordem de MachineMoves do PersonalInfo<jogo>.cs
   const tmMoves = cfg.tm ? readFileSync(new URL(`PKHeX.Core/PersonalInfo/Info/${cfg.tm.cs}`, rootUrl), 'utf8').match(/MachineMoves\s*=>\s*\[([\s\S]*?)\];/)[1].replace(/\/\/.*$/gm, '').split(',').map((x) => x.trim()).filter(Boolean).map(Number) : null;
+  // gênero e grupos de ovo (ovos da creche): posições lidas do PersonalInfo<jogo>.cs do PKHeX ("Gender { get => Data[0x12]")
+  const CS = { bw: '5BW', b2w2: '5B2W2', xy: '6XY', ao: '6AO', sm: '7', uu: '7', gg: '7GG', swsh: '8SWSH', bdsp: '8BDSP', la: '8LA', sv: '9SV', za: '9ZA' };
+  const csText = readFileSync(new URL(`PKHeX.Core/PersonalInfo/Info/PersonalInfo${CS[cfg.personal]}.cs`, rootUrl), 'utf8');
+  const off = (prop) => Number(csText.match(new RegExp(`\\b${prop}\\s*\\{\\s*get => Data\\[(0x[0-9A-Fa-f]+)\\]`))?.[1]);
+  const at = { gender: off('Gender'), egg1: off('EggGroup1'), egg2: off('EggGroup2') };
+  if (Object.values(at).some(Number.isNaN)) throw new Error(`PersonalInfo${CS[cfg.personal]}.cs: posição de gênero/grupo de ovo não encontrada`);
   const entryAt = (index) => {
     const d = personal.subarray(index * cfg.size, (index + 1) * cfg.size);
     const ab = cfg.abil.map((o) => (cfg.wide ? d.readUInt16LE(o) : d[o]));
@@ -74,6 +80,7 @@ export function loadPkhex(rootUrl, gameId) {
       types: [...new Set([types[d[6]], types[d[7]]])],
       abilities: [...new Set(ab.filter((a) => a > 0).map((a) => abilities[a]))],
       levelOrdered: levelup[index] ? parseLearnset(levelup[index]) : [],
+      gender: d[at.gender], eggGroups: [d[at.egg1], d[at.egg2]], // gênero 0 = só macho, 254 = só fêmea, 255 = sem; grupos: enum EggGroup
       ...(shopMoves && { moveShop: shopMoves.filter((_, i) => (shop >> BigInt(i)) & 1n) }),
       ...(tmMoves && { tm: tmMoves.filter((_, i) => d[cfg.tm.offset + (i >> 3)] & (1 << (i & 7))) }),
     };

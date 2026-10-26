@@ -2,6 +2,17 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.35.0] — 2026-10-25
+
+> Os ovos da creche chegaram aos jogos mais novos: no Black/White, X/Y, Omega Ruby/Alpha Sapphire, Sun/Moon, Sword/Shield e Brilliant Diamond/Shining Pearl, os Pokémon que só se conseguem por ovo aparecem em Onde capturar.
+
+### Adicionado
+- **Ovos da creche nos jogos sem decomp** (tabelas do jogo pelo PKHeX): gênero e grupos de ovo de cada espécie, a regra
+  dos bebês de incenso (até a Gen 8; no Scarlet/Violet não existe) e o nível 1 ao chocar. Onde fica a creche e em que ponto
+  da história ela libera os ovos vêm do detonado (no Black/White, só depois que o detonado diz que se pode cruzar).
+  Black/White +54, X/Y +48, ORAS +38, Sun/Moon +30 (e as evoluções deles, como Togetic), BDSP +15, Sword/Shield +6.
+- Scarlet/Violet: os ovos saem do piquenique; tudo o que nasce de ovo já se obtinha de outro jeito.
+
 ## [0.34.0] — 2026-10-25
 
 > A creche do Black 2/White 2 entrou no app: 36 Pokémon por versão que só se conseguem chocando um ovo (como Abra, Larvitar e Deino) agora aparecem em Onde capturar, com quem deixar na creche e em que ponto do jogo.
