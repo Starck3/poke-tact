@@ -2182,12 +2182,13 @@ test('evoluções na aba Onde capturar (0.22.0): família, método e onde achar 
 
 test('evoluções (0.22.1): espécie da família que não é do jogo marcada, com os jogos onde aparece (Azurill no Emerald)', async () => {
   const { evolutionReport } = await import('../public/engine.mjs');
-  const d = load('emerald.json');
-  // Azurill no Emerald: só nasceria com Sea Incense, que não está nos dados do jogo → continua fora
-  const r = evolutionReport(d, load('emerald-acquisition.json'), d.pokemon.find((p) => p.name === 'marill'), null, 'emerald');
-  assert.deepEqual(r.nodes.map((x) => [x.name, x.inGame]), [['azurill', false], ['marill', true], ['azumarill', true]]);
-  const where = load('pokemon-games.json').where.azurill;
-  assert.ok(!where.emerald && where['heartgold-soulsilver']);
+  const d = load('x-y.json');
+  // Munchlax no X/Y: só nasceria com Full Incense, que não tem lugar casado nos dados → continua fora (0.40.0: o Azurill do
+  // Emerald, exemplo anterior, passou a nascer com a Sea Incense da Bulbapedia)
+  const r = evolutionReport(d, load('x-y-acquisition.json'), d.pokemon.find((p) => p.name === 'snorlax'), null, 'x');
+  assert.deepEqual(r.nodes.map((x) => [x.name, x.inGame]), [['munchlax', false], ['snorlax', true]]);
+  const where = load('pokemon-games.json').where.munchlax;
+  assert.ok(!where['x-y'] && where['heartgold-soulsilver']);
 });
 
 test('ovos da creche (0.23.0): bebê que só nasce de ovo vira obtível, com pai, parceiro, incenso e estágio do código do jogo', async () => {
@@ -2211,7 +2212,8 @@ test('ovos da creche (0.23.0): bebê que só nasce de ovo vira obtível, com pai
   // incenso (Gen 4, tabela sIncenseMons do HGSS): Wynaut pede Lax Incense; sem incenso nos dados (FRLG) não entra
   const hg = load('heartgold-soulsilver-acquisition.json');
   assert.ok(hg.versions.heartgold.wynaut.some((s) => s.type === 'breed' && s.item === 'LAX_INCENSE' && s.level === 1));
-  assert.equal(fr.pokemon.find((p) => p.name === 'wynaut').obtainable.firered, false);
+  // 0.40.0: com a Lax Incense da Bulbapedia (Lost Cave), o Wynaut nasce no FireRed; incenso sem lugar casado → fora (Munchlax no X/Y)
+  assert.equal(load('x-y.json').pokemon.find((p) => p.name === 'munchlax').obtainable.x, false);
   // Diamond: Koffing só por ovo de Weezing (Solaceon)
   assert.ok(load('diamond-pearl-acquisition.json').versions.diamond.koffing.some((s) => s.want === 'weezing' && /Solaceon/.test(s.where)));
   // jogos sem creche no app (Gen 1, Gens 5+) ficam sem a fonte
@@ -2547,7 +2549,7 @@ test('N3 (0.39.0): onde achar itens de evolução e Mega Stones pela Bulbapedia 
   const sw = load('sword-shield.json'), swa = load('sword-shield-acquisition.json'), swe = load('sword-shield-evoitems.json');
   // Sword/Shield: o detonado não citava nenhuma pedra; a Bulbapedia dá a Fire Stone na Motostoke Riverbank
   assert.ok(swe.bulbapedia.FIRE_STONE.some((r) => /Motostoke Riverbank/.test(r.text)));
-  assert.equal(Object.keys(swe.bulbapedia).length, 28);
+  assert.equal(Object.keys(swe.bulbapedia).filter((k) => !/INCENSE/.test(k)).length, 28); // + os incensos (0.40.0)
   // item com lugar casado vira fonte com estágio; item sem casamento não bloqueia (itemsPartial)
   assert.ok(swa.itemsPartial && swa.items.FIRE_STONE?.every((s) => s.stage != null));
   const growlithe = sw.pokemon.find((p) => p.name === 'arcanine');
@@ -2556,4 +2558,16 @@ test('N3 (0.39.0): onde achar itens de evolução e Mega Stones pela Bulbapedia 
   assert.ok(n.item.bulba.length);
   // Z-A: Mega Stones com linha da Bulbapedia
   assert.ok(Object.keys(load('legends-za-evoitems.json').bulbapedia).filter((k) => /ite( [XYZ])?$/.test(k)).length > 60);
+});
+
+test('N4 (0.40.0): incenso pela Bulbapedia libera o bebê de incenso (Azurill/Wynaut no Emerald e no FireRed)', async () => {
+  const em = load('emerald.json'), ema = load('emerald-acquisition.json');
+  assert.ok(ema.items.SEA_INCENSE.some((s) => s.where === 'Mt. Pyre' && s.by === 'Bulbapedia' && s.stage != null));
+  assert.ok(em.pokemon.find((p) => p.name === 'azurill').obtainable.emerald);
+  assert.ok(ema.versions.emerald.azurill.some((s) => s.type === 'breed' && s.item === 'SEA_INCENSE'));
+  // FireRed: Lax Incense na Lost Cave ("Five Island Lost Cave Room 1" no decomp) → Wynaut
+  const fr = load('firered-leafgreen.json'), fra = load('firered-leafgreen-acquisition.json');
+  assert.ok(fra.items.LAX_INCENSE?.length && fr.pokemon.find((p) => p.name === 'wynaut').obtainable.firered);
+  // o resto dos itens do decomp não muda (só os incensos que faltavam)
+  assert.deepEqual(ema.itemsBulbapedia.sort(), ['LAX_INCENSE', 'SEA_INCENSE']);
 });

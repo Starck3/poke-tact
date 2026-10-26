@@ -1,6 +1,16 @@
 {
- "params": 21,
+ "params": 30,
  "withRow": 21,
- "withStage": 15,
- "missing": []
+ "withStage": 16,
+ "missing": [
+  "FULL_INCENSE",
+  "LAX_INCENSE",
+  "LUCK_INCENSE",
+  "ODD_INCENSE",
+  "PURE_INCENSE",
+  "ROCK_INCENSE",
+  "ROSE_INCENSE",
+  "SEA_INCENSE",
+  "WAVE_INCENSE"
+ ]
 }

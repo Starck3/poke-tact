@@ -1,0 +1,14 @@
+{
+ "params": 9,
+ "withRow": 2,
+ "withStage": 2,
+ "missing": [
+  "ROSE_INCENSE",
+  "ODD_INCENSE",
+  "ROCK_INCENSE",
+  "FULL_INCENSE",
+  "WAVE_INCENSE",
+  "LUCK_INCENSE",
+  "PURE_INCENSE"
+ ]
+}
