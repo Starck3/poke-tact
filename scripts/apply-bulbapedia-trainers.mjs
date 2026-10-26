@@ -13,7 +13,7 @@ const gameId = process.argv[2];
 // campo "game" do {{Party}} que vale para cada jogo do app
 // (códigos por versão — Sw/Sh, OR/AS, Su/Mo… — quando o time muda entre as versões; "Y" e "E" ficam de fora: são Yellow e Emerald)
 const CODES = { 'black-white': /^(BW|BWB2W2|B|W)$/, 'x-y': /^(XY|XYORAS|X)$/, 'omega-ruby-alpha-sapphire': /^(ORAS|XYORAS|OR|AS)$/, 'sun-moon': /^(SM|SMUSUM|Su|Mo|SUS|MUM)$/,
-  'ultra-sun-ultra-moon': /^(USUM|SMUSUM|US|UM|SUS|MUM)$/, 'lets-go-pikachu-lets-go-eevee': /^PE$/, 'sword-shield': /^(SwSh|Sw|Sh)$/, 'brilliant-diamond-shining-pearl': /^(BDSP|BD|SP)$/,
+  'ultra-sun-ultra-moon': /^(USUM|SMUSUM|US|UM|SUS|MUM)$/, 'lets-go-pikachu-lets-go-eevee': /^(PE|LGPE|LGP|LGE)$/, 'sword-shield': /^(SwSh|Sw|Sh)$/, 'brilliant-diamond-shining-pearl': /^(BDSP|BD|SP)$/,
   'legends-arceus': /^LA$/, 'scarlet-violet': /^(SV|Sc|V)$/, 'legends-za': /^ZA$/ };
 if (!CODES[gameId]) { console.log(`[${gameId}] sem times na Bulbapedia configurados (jogos com decomp já têm golpes reais) — nada a fazer`); process.exit(0); }
 const offline = process.argv.includes('--offline');
@@ -25,12 +25,13 @@ const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, 
 const base = (n) => n.replace(/-(alola|galar|hisui|paldea)(-.*)?$/, '').replace(/-(male|female|midday|midnight|dusk|.*-breed)$/, '');
 const moveKey = new Map(Object.keys(data.moves).map((n) => [key(n), n]));
 // nomes que não são pessoa ou que a Bulbapedia escreve de outro jeito
-const SKIP = /^(Seu rival|Team (Magma|Aqua) Grunt|Paradise Protection Protocol|Jessie e James)/i;
-const TITLE = { 'Tate e Liza': 'Tate and Liza', 'Professor Kukui': 'Kukui', 'AI Sada': 'Sada', 'AI Turo': 'Turo', 'Illima': 'Ilima', 'Wiksttrom': 'Wikstrom', Red: 'Red (game)', Blue: 'Blue (game)', Green: 'Green (game)', 'Boss Lysandre': 'Lysandre', 'Ingo – but tougher': 'Ingo' };
+const SKIP = /^(Team (Magma|Aqua) Grunt|Paradise Protection Protocol)/i;
+// "Seu rival" do Let's Go = Trace; "Jessie e James" = Jessie and James (Q1, 0.47.0)
+const TITLE = { 'Seu rival': gameId === 'lets-go-pikachu-lets-go-eevee' ? 'Trace' : null, 'Jessie e James': 'Jessie and James', Melody: 'Melony' /* o detonado do SwSh escreve "Melody" */, 'Tate e Liza': 'Tate and Liza', 'Professor Kukui': 'Kukui', 'AI Sada': 'Sada', 'AI Turo': 'Turo', 'Illima': 'Ilima', 'Wiksttrom': 'Wikstrom', Red: 'Red (game)', Blue: 'Blue (game)', Green: 'Green (game)', 'Boss Lysandre': 'Lysandre', 'Ingo – but tougher': 'Ingo' };
 const pagesFor = (label) => {
   const name = label.replace(/\s*\(.*\)\s*$/, '').trim();
   if (SKIP.test(name)) return [];
-  if (TITLE[name]) return [TITLE[name]];
+  if (name in TITLE) return TITLE[name] ? [TITLE[name]] : [];
   return name.split('/').map((n) => n.replace(/^(Battle Chatelaine|Subway Boss|Pro Wrestler|Boss)\s+/, '').trim()).flatMap((n) => (n.includes(' & ') ? n.split(' & ') : [n])).filter(Boolean);
 };
 
@@ -38,8 +39,12 @@ const report = { matched: [], unmatched: [], missingMoves: [], pages: {} };
 const cache = new Map();
 async function partiesOf(title) {
   if (!cache.has(title)) {
-    const text = await page(title, { offline });
-    const ps = text && !/\{\{disambig/i.test(text) ? parties(text).filter((p) => CODES[gameId].test(p.game ?? '')) : [];
+    let text = await page(title, { offline });
+    // Q1 (0.47.0): página de desambiguação → "<nome> (game)" (Barry, Dawn); os times podem estar numa subpágina ("For all
+    // of Hop's teams in Sword and Shield, see [[Hop/Sword and Shield|here]]") — junta o texto dela
+    if (text && /\{\{disambig/i.test(text)) text = (await page(`${title} (game)`, { offline })) ?? '';
+    for (const m of (text ?? '').matchAll(/For all of [^\n]*?teams[^\n]*?see \[\[([^\]|]+)/gi)) text += '\n' + ((await page(m[1].trim(), { offline })) ?? '');
+    const ps = text ? parties(text).filter((p) => CODES[gameId].test(p.game ?? '')) : [];
     report.pages[title] = text == null ? 'sem cache (offline)' : text === '' ? 'não existe' : ps.length ? `${ps.length} times` : 'sem time deste jogo';
     cache.set(title, ps);
   }
