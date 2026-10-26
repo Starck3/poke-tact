@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.43.0] — 2026-10-26
+
+> O Ultra Sun/Ultra Moon, que não tinha nenhum treinador (não há detonado dele), agora tem 100 lutas para escolher — kahunas, capitães, Elite, rivais e vilões — com os times e golpes de verdade, tirados da Bulbapedia.
+
+### Adicionado
+- **Treinadores do Ultra Sun/Ultra Moon** pela Bulbapedia: kahunas (Hala, Olivia, Nanu, Hapu), capitães, Elite (Molayne,
+  Olivia, Acerola, Kahili), Hau, Gladion, Kukui, Equipe Skull, Aether e a Ultra Recon Squad — 100 lutas, 363 Pokémon, com
+  golpes, itens e golpe Z reais (45 Pokémon usam Z) e formas de Alola.
+- Ainda sem a ordem da história nesse jogo: o progresso por provação não aparece no USUM.
+
 ## [0.42.0] — 2026-10-26
 
 > Detalhe no FireRed/LeafGreen: o S.S. Anne agora aparece no mapa da região quando um Pokémon é encontrado lá.

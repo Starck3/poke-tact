@@ -32,7 +32,8 @@ const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-for
 // apply-breeding depois do detonado: a creche e o ponto da história vêm do keyItems.daycare
 // apply-bulbapedia-items: onde achar itens de evolução/Mega Stones (sem decomp) e os incensos que faltam (com decomp) —
 // antes do apply-breeding (bebê de incenso); apply-bulbapedia-trainers: golpes reais, item e golpe Z dos chefes pela Bulbapedia (o time vem do detonado)
-const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern', 'apply-bulbapedia-trainers', 'apply-bulbapedia-items', 'apply-breeding'];
+// build-trainers-bulbapedia: jogo sem detonado (USUM) ganha os treinadores pela Bulbapedia
+const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'build-detonado-modern', 'build-trainers-bulbapedia', 'apply-bulbapedia-trainers', 'apply-bulbapedia-items', 'apply-breeding'];
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
 const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
 // todos os jogos, no fim: fotos dos lugares (detonado), mapa esquemático da região (decomp) e onde achar os itens de

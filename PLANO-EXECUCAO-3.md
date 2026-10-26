@@ -42,7 +42,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **N4 ⚠ Incensos** (0.40.0: Gen 3 resolvida; nos jogos novos o lugar do incenso não casa com os locais do app) (bebês de incenso fora por falta de onde achar o incenso): onde achar cada incenso pela Bulbapedia nos
   jogos que não têm (Emerald Sea Incense, FRLG Lax Incense, Gens 5–8…). Com o incenso, o bebê entra pelo apply-breeding.
 - **N5 ⏸ Nível de Dynamax dos líderes** (vida 1,5× → o certo, até 2×), se a página do treinador der o nível de Dynamax.
-- **N6 ⬜ Ultra Sun/Ultra Moon**: líderes da história (kahunas, capitães/totens, Elite, campeão, rivais) e a ordem das
+- **N6 ⚠ Ultra Sun/Ultra Moon** (0.43.0: treinadores sim; progresso não): líderes da história (kahunas, capitães/totens, Elite, campeão, rivais) e a ordem das
   provações pelas páginas da Bulbapedia → treinadores e progresso no USUM (hoje não tem). Pronto quando: aba de oponentes
   e progresso existem no USUM com crédito; aba Detonado continua fora (não há detonado).
 - **N7 ⬜ Legends: Arceus — estilos Ágil/Forte e ordem de ação**: só se a página da Bulbapedia trouxer a regra em números
@@ -93,3 +93,8 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
 - **2026-10-26 — P2 (0.42.0)**: o ponto do S.S. Anne já existia (warp do Vermilion); faltava casar o nome "Ssanne Exterior"
   (decomp, sem pontos) com "S.S. Anne". FRLG 142/143 no mapa — o que falta é o vagante, que não tem lugar fixo (a tela diz
   "pelo mapa (vagante)").
+- **2026-10-26 — N6 ⚠ (0.43.0)**: `build-trainers-bulbapedia` monta o arquivo de treinadores do USUM pelas páginas (kahunas,
+  capitães, Elite pela classe "Elite Four", Kukui/Hau, Gladion, Skull/Aether/Ultra Recon Squad): 100 lutas, 363 Pokémon,
+  45 com golpe Z, formas pelo campo "form"; lutas-tutorial fora. Progresso continua sem fonte (não há detonado; a ordem das
+  provações viria de outra página — fica para depois) → sem estágio e fora do banco de lutas (que monta as lutas pela aba
+  Detonado).
