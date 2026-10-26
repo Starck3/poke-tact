@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.31.0] — 2026-10-25
+
+> Ajuste fino no X/Y e no Omega Ruby/Alpha Sapphire: o chefe que mega evolui também age na ordem certa no turno em que evolui, como já acontecia com o seu Pokémon.
+
+### Corrigido
+- **Mega na Gen 6 (X/Y, ORAS)**: no turno em que o chefe mega evolui, a ordem de ação usa a Velocidade de antes da Mega
+  (regra do jogo) — antes isso valia só para o seu Pokémon. Banco de lutas sem mudança (caso raro).
+- Plano: a etapa "chefes com golpe Z" ficou pulada — o detonado do Sun/Moon não diz em nenhuma luta que o chefe usa
+  golpe Z, e o app não inventa.
+
 ## [0.30.0] — 2026-10-25
 
 > No Sword/Shield o app agora simula o Dynamax: os líderes que dinamaxizam no jogo lutam gigantes, com mais vida e golpes Max, e nas lutas de ginásio o seu Pokémon também pode dinamaxizar.
