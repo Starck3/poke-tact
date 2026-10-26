@@ -1,0 +1,9 @@
+{
+ "params": 33,
+ "withRow": 31,
+ "withStage": 23,
+ "missing": [
+  "AUSPICIOUS_ARMOR",
+  "MALICIOUS_ARMOR"
+ ]
+}

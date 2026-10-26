@@ -35,7 +35,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   Pronto quando: cada luta casada troca "golpes estimados" por "golpes da Bulbapedia"; relatório com as não casadas; banco.
 - **N2 ✅ Golpe Z dos chefes (Sun/Moon)** (0.38.0: 29 Pokémon): marca `z-move` do time (Hala: Crabrawler com All-Out Pummeling) → o chefe usa o
   Z no 1º turno (mesmo cálculo do seu lado). Pronto quando: Hala luta com Z; banco.
-- **N3 ⬜ Onde achar itens de evolução e Mega Stones** (Sword/Shield 0/28, Z-A 0, e os que faltam nos outros jogos do PKHeX):
+- **N3 ✅ Onde achar itens de evolução e Mega Stones** (0.39.0) (Sword/Shield 0/28, Z-A 0, e os que faltam nos outros jogos do PKHeX):
   linhas "Acquisition" da página de cada item, por jogo → local; o ponto da história pelo local (estágio do onde obter/
   detonado). Pronto quando: SwSh e Z-A mostram onde achar as pedras com crédito "Bulbapedia"; a evolução por pedra passa a
   ser limitada pelo ponto da história nesses jogos.
@@ -73,3 +73,8 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
   ORAS 56/74, SM 76/81, LGPE 34/57, SwSh 48/96 (as lutas do Hop antes do pós-jogo não estão na página), BDSP 45/74, LA
   83/107, SV 110/145, Z-A 50/71. Golpe Z de chefe: 29 (SM). Banco: vencem 37.694 (igual); folgadas 36.380 → 35.915 — os
   chefes agora usam os golpes de verdade (mais cobertura que os estimados).
+- **2026-10-26 — N3 (0.39.0)**: `apply-bulbapedia-items` — tabela Acquisition de 134 páginas (40 itens + 94 Mega Stones).
+  Linha do jogo: SwSh 28/28 (antes 0), Z-A 114/115, XY 45/55, ORAS 66/74, SM/USUM 75/75, LGPE 21/21, BDSP 23/23, LA 23/23,
+  SV 31/33, BW 23/23. Lugar casado com o onde obter → `acq.items` com estágio e `itemsPartial` (sem casamento não
+  bloqueia). Dois HTTP 503 no meio: parou como manda a regra e a 2ª rodada completou. Banco: vencem 37.694 → 37.687 (−7 no
+  Let's Go: evolução por pedra só depois de achar a pedra); folgadas 35.915 → 35.864.

@@ -387,13 +387,13 @@ export function reachLevel(data, acq, mon, version, seen = new Set()) {
   // evolução por item (pedra, Metal Coat…): precisa ter o item → nível estimado de onde ele é obtido
   const itemLv = (w.steps ?? []).filter((st) => /ITEM/.test(st.evo?.kind ?? '')).map((st) => {
     const src = acq.items?.[st.evo.param];
-    return src ? Math.min(...src.map((x) => x.level ?? 1)) : acq.items ? Infinity : 1;
+    return src ? Math.min(...src.map((x) => x.level ?? 1)) : acq.items && !acq.itemsPartial ? Infinity : 1;
   });
   const direct = Math.max(Math.min(...w.direct.map(levelOf)), mon.minLevel ?? 1, ...itemLv);
   // com fonte direta, a pré-evolução pode sair mais cedo (capturar e evoluir): fica com o menor
   const pre = evolutionAlternative(data, acq, mon, w);
   if (!pre) return direct;
-  const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((x) => x.level ?? 1)) : acq.items ? Infinity : 1) : 1;
+  const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((x) => x.level ?? 1)) : acq.items && !acq.itemsPartial ? Infinity : 1) : 1;
   return Math.min(direct, Math.max(reachLevel(data, acq, pre, version, new Set(seen)), mon.minLevel ?? 1, evoItem));
 }
 
@@ -441,13 +441,13 @@ export function reachStage(data, acq, mon, version, seen = new Set(), maxLevel =
   };
   const itemSt = (w.steps ?? []).filter((x) => /ITEM/.test(x.evo?.kind ?? '')).map((x) => {
     const src = acq.items?.[x.evo.param];
-    return src ? Math.min(...src.map((i) => i.stage ?? 9)) : acq.items ? Infinity : 0; // sem lista de itens (PKHeX): não bloqueia
+    return src ? Math.min(...src.map((i) => i.stage ?? 9)) : acq.items && !acq.itemsPartial ? Infinity : 0; // sem lista de itens (PKHeX): não bloqueia
   });
   const direct = Math.max(Math.min(...w.direct.map(stageOf)), ...itemSt);
   // com fonte direta, a pré-evolução pode sair mais cedo (ex.: capturar a forma anterior e evoluir): fica com o menor
   const pre = evolutionAlternative(data, acq, mon, w);
   if (!pre) return direct;
-  const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((i) => i.stage ?? 9)) : acq.items ? Infinity : 0) : 0;
+  const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((i) => i.stage ?? 9)) : acq.items && !acq.itemsPartial ? Infinity : 0) : 0;
   return Math.min(direct, Math.max(reachStage(data, acq, pre, version, new Set(seen), maxLevel), evoItem));
 }
 
@@ -515,7 +515,7 @@ export function catchReport(data, acq, mon, version) {
   const route = pre && preEvolutionRoute(data, acq, mon, version);
   if (route) {
     const parent = catchReport(data, acq, pre, version);
-    const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((i) => i.stage ?? post)) : acq.items ? Infinity : 0) : 0;
+    const evoItem = /ITEM/.test(mon.evo.kind ?? '') ? (acq.items?.[mon.evo.param] ? Math.min(...acq.items[mon.evo.param].map((i) => i.stage ?? post)) : acq.items && !acq.itemsPartial ? Infinity : 0) : 0;
     const stage = acq.progress ? Math.min(Math.max(reachStage(data, acq, pre, version), evoItem), post) : null;
     const first = lines.length && acq.progress ? Math.min(...lines.map((l) => l.stage ?? post)) : null;
     alt = { from: route.from, steps: route.steps, stage, earlier: stage != null && first != null && stage < first, lines: parent.lines.slice(0, 3), more: Math.max(parent.lines.length - 3, 0) };
@@ -540,7 +540,7 @@ export function typeIndex(data, { version = null, q = '', types = [], onlyObtain
   return { mons, groups, counts };
 }
 
-const ITEM_HOW = { ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 'presente', gym: 'prêmio do líder', prize: 'prêmio' };
+const ITEM_HOW = { other: 'loja, presente ou prêmio', ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 'presente', gym: 'prêmio do líder', prize: 'prêmio' };
 /**
  * Aba "Onde capturar" → evoluções: a família inteira da espécie (da forma base às finais, com ramos — Eevee), o método de
  * cada evolução e, quando ela pede item (pedra, Metal Coat…), onde achar o item no jogo:
@@ -561,7 +561,8 @@ export function evolutionReport(data, acq, mon, evoItems = null, version = null)
     const detail = (s) => (s.by && !/^(loja|NPC|Clerk|item no chão|escondido)$/.test(s.by) && !/^[A-Z][a-z]+ \d+$/.test(s.by) ? ' (' + s.by + ')' : '');
     const sources = (acq?.items?.[param] ?? []).map((s) => ({ text: s.where + ' — ' + (ITEM_HOW[s.type] ?? s.type) + detail(s), stage: acq.progress && s.stage != null ? s.stage : null }))
       .filter((s) => !seen.has(s.text) && seen.add(s.text)).sort((a, b) => (a.stage ?? 99) - (b.stage ?? 99));
-    return { param, label: TITLE(param), sources, cited: evoItems?.items?.[param] ?? [] };
+    // bulba: linhas da tabela Acquisition da Bulbapedia (jogos sem decomp — apply-bulbapedia-items)
+    return { param, label: TITLE(param), sources, cited: evoItems?.items?.[param] ?? [], bulba: evoItems?.bulbapedia?.[param] ?? [] };
   };
   const nodes = [];
   const walk = (p, depth) => {

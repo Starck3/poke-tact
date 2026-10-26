@@ -2541,3 +2541,19 @@ test('N1/N2 (0.38.0): chefes com golpes reais da Bulbapedia; o Hala usa golpe Z 
   const sumZ = run(opp).reduce((a, c) => a + c.duel.theirTurns, 0), sumN = run(noZ).reduce((a, c) => a + c.duel.theirTurns, 0);
   assert.ok(sumZ < sumN);
 });
+
+test('N3 (0.39.0): onde achar itens de evolução e Mega Stones pela Bulbapedia nos jogos sem decomp; pedra limita o ponto da história', async () => {
+  const { evolutionReport, reachStage } = await import('../public/engine.mjs');
+  const sw = load('sword-shield.json'), swa = load('sword-shield-acquisition.json'), swe = load('sword-shield-evoitems.json');
+  // Sword/Shield: o detonado não citava nenhuma pedra; a Bulbapedia dá a Fire Stone na Motostoke Riverbank
+  assert.ok(swe.bulbapedia.FIRE_STONE.some((r) => /Motostoke Riverbank/.test(r.text)));
+  assert.equal(Object.keys(swe.bulbapedia).length, 28);
+  // item com lugar casado vira fonte com estágio; item sem casamento não bloqueia (itemsPartial)
+  assert.ok(swa.itemsPartial && swa.items.FIRE_STONE?.every((s) => s.stage != null));
+  const growlithe = sw.pokemon.find((p) => p.name === 'arcanine');
+  assert.ok(reachStage(sw, swa, growlithe, 'sword') >= Math.min(...swa.items.FIRE_STONE.map((s) => s.stage)));
+  const n = evolutionReport(sw, swa, growlithe, swe, 'sword').nodes.find((x) => x.name === 'arcanine');
+  assert.ok(n.item.bulba.length);
+  // Z-A: Mega Stones com linha da Bulbapedia
+  assert.ok(Object.keys(load('legends-za-evoitems.json').bulbapedia).filter((k) => /ite( [XYZ])?$/.test(k)).length > 60);
+});
