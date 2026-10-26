@@ -56,11 +56,11 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **P2 ✅ FRLG: "Ssanne Exterior" no mapa** (0.42.0) (warp do decomp para o Vermilion) e o vagante marcado "anda pelo mapa".
 - **P3 ✅ Estimativas pelo nível revistas** (0.46.0) (Route 9 do SM etc.): quando a Bulbapedia tiver a ordem da rota na história
   (página do local), usar a ordem em vez da estimativa; senão manter a estimativa marcada.
-- **P4 ⬜ Taxa de aparição nas Gens 6–9** (opcional, grande): tabelas de encontro da página de cada rota. Só se N0 tornar
+- **P4 ⏸ Taxa de aparição nas Gens 6–9** (opcional, grande): tabelas de encontro da página de cada rota. Só se N0 tornar
   isso barato; senão ⏸ com o custo estimado.
 
 ## Bloco D — fechamento
-- **D1 ⬜** STATUS.md, memória, resumo final aqui.
+- **D1 ✅** STATUS.md, memória, resumo final aqui.
 
 ## Ordem
 N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 → P4 → D1.
@@ -112,3 +112,21 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
   BW para 4; o maior puxava a Route 16 do SM para o fim); parte de pós-jogo → pós-jogo. SM 7, BW 8, SV 1 lugares (Route 9
   do SM 0 → 5). Armadilhas: o índice do SV recomeça "Part 1" em cada DLC (parte pela POSIÇÃO); rodar o build-detonado-modern
   sozinho apaga os golpes da Bulbapedia — refazer a cadeia toda. Banco: vencem 37.687 (igual); folgadas 35.862 → 35.852.
+- **2026-10-26 — P4 ⏸**: custo estimado — ~500 páginas de rota (XY, ORAS, SM/USUM, SwSh, BDSP, LA, SV) ≈ 40 min de download a
+  5 s/página, um leitor novo das tabelas de encontro ({{catch/…}}) e o casamento com cada método do PKHeX por jogo. Ganho:
+  só a penalidade de "raro" nas sugestões dessas gerações. Fica para quando o usuário pedir.
+- **2026-10-26 — D1**: STATUS.md atualizado, memória atualizada, resumo abaixo.
+
+## Resumo final (2026-10-26, versão 0.46.0)
+- **Feitas**: N0 base da Bulbapedia + N1 golpes reais dos chefes (635 lutas) + N2 golpe Z dos chefes (0.38.0); N3 onde
+  achar itens de evolução e Mega Stones (0.39.0); N4 incensos da Gen 3 (0.40.0); P1 efeitos dos golpes Max (0.41.0); P2
+  S.S. Anne no mapa (0.42.0); N6 treinadores (0.43.0) e progresso (0.46.0) do Ultra Sun/Ultra Moon; N8 TMs de loja do
+  B2W2 (0.44.0); N7 ordem de ação do Legends: Arceus (0.45.0); P3 estimativas revistas pela ordem da Bulbapedia (0.46.0).
+- **Parciais**: N1 (SwSh 48/96, LGPE 34/57 e BDSP 45/74 lutas casadas — o resto segue com golpes estimados); N4 (nos jogos
+  novos o incenso é vendido em lojas sem lugar casado); N7 (estilos Ágil/Forte sem números na fonte).
+- **Puladas**: N5 (a Bulbapedia não dá o nível de Dynamax dos líderes); P4 (custo alto, ganho pequeno).
+- **Achados no caminho**: o fetch do Node leva HTTP 403 da Bulbapedia (o curl passa); códigos de jogo por versão nos times
+  (Sw/Sh, OR/AS…) e colisões ("Y" = Yellow); o índice do SV recomeça a numeração em cada DLC; regerar o detonado sozinho
+  apaga os golpes da Bulbapedia; o build-evo-items pulava os jogos com a lista de itens da Bulbapedia.
+- Banco de lutas no fim: 37.872 sugestões, 37.687 vencem, 35.852 com folga (início do plano: 37.694 / 36.380 — a queda das
+  folgadas vem dos chefes com golpes reais, mais duros; as 7 vitórias a menos são do Let's Go, por pedra achada depois).
