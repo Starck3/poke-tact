@@ -2,6 +2,26 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.49.0] — 2026-10-26
+
+> O Ultra Sun/Ultra Moon entrou no banco de lutas que mede as recomendações. Com isso, a luta contra o Hau agora mostra o time certo para a inicial que você escolheu, e algumas lutas desse jogo foram para o ponto certo da história.
+
+### Adicionado
+- **Ultra Sun/Ultra Moon no banco de lutas**: sem detonado, as lutas vêm dos treinadores que já têm ponto da história
+  (174 lutas, 2.106 sugestões).
+- **Time do rival pela inicial** no USUM: a Bulbapedia marca qual inicial o jogador escolheu (Hau e Gladion); antes os três
+  times apareciam juntos.
+
+### Corrigido
+- Lutas da provação da Mina (capitães, nível 51) estavam no começo do jogo (lugar de origem do capitão); agora ficam na
+  provação da Mina.
+- Lutas em lugares que o jogador revisita: o Hala nível 63 em Iki Town ia para o começo (agora pós-jogo); Faba, Guzma, Dulse
+  e Soliera nível 43–47 iam para o pós-jogo (agora antes de Poni). Esse ponto é estimado pelo nível e fica marcado.
+- Lutas em que o Hau, o Gladion ou o Guzma lutam ao seu lado não contam mais como luta contra você.
+
+### Alterado
+- Banco de lutas: 22 jogos; vencem 37.687 → 39.793 (todas as novas são do USUM; os outros jogos ficaram iguais).
+
 ## [0.48.0] — 2026-10-26
 
 > Agora o app sabe onde comprar os incensos nos jogos mais novos, então bebês como Munchlax, Bonsly e Budew passam a aparecer como "nasce de ovo na creche" no Black/White, Black 2/White 2, X/Y, Omega Ruby/Alpha Sapphire, Sun/Moon e Sword/Shield.

@@ -50,8 +50,12 @@ for (const [group, titles] of Object.entries(cfg.pages)) for (const title of tit
     // classe "Elite Four" no {{Party}} (Acerola/Molayne na Liga) ou seção da Liga → Elite dos Quatro
     const g = (/Elite Four/i.test(p.class ?? '') || /Pokémon League|Elite Four/i.test(p.section.join(' '))) && group !== 'Campeão' ? 'Elite dos Quatro' : group;
     const name = title.replace(/ \(game\)$/, '');
+    // Q3 (0.49.0): time por inicial do jogador ({{PlayerChoice}}) → forStarter, como nos jogos com decomp; luta em que o
+    // treinador é PARCEIRO (Multi Battle ao lado do jogador) → partner, fica fora do banco de lutas
+    const starter = p.playerChoice && data.starters?.species?.find((s) => key(s) === key(p.playerChoice));
     trainers.push({ key: `BULBA_${key(name)}_${i}`, name, label: `${name}${section && !/^Pokémon (Ultra )?Sun and/.test(section) ? ` (${section})` : ''}`, class: p.class ?? name, group: g, double: false,
-      map: p.location ? [p.location] : [], party, stage: null, source: 'Bulbapedia', movesSource: 'Bulbapedia' });
+      map: p.location ? [p.location] : [], party, stage: null, source: 'Bulbapedia', movesSource: 'Bulbapedia',
+      ...(starter && { forStarter: [starter] }), ...(/partner|Multi Battle with/i.test(section) && { partner: true }) });
     report.trainers++; report.mons += party.length;
   });
 }

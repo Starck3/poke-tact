@@ -252,7 +252,8 @@ test('regressão: sprites do Gold/Silver vêm das pastas gold/silver (não exist
 
 test('regressão: o número da tela inicial (banco de lutas) conta TODOS os jogos com detonado — o DP ficava de fora', () => {
   const b = load('games.json').benchmark;
-  const games = load('games.json').games.filter((g) => g.hasWalkthrough).map((g) => g.id);
+  // 0.49.0: + jogos sem detonado com treinadores no ponto da história (Ultra Sun/Ultra Moon)
+  const games = [...load('games.json').games.filter((g) => g.hasWalkthrough).map((g) => g.id), 'ultra-sun-ultra-moon'];
   const report = (g) => JSON.parse(readFileSync(new URL(`../reports/benchmark/${g}.json`, import.meta.url), 'utf8')).summary.depois;
   assert.equal(b.games, games.length);
   assert.equal(b.picks, games.reduce((a, g) => a + report(g).picks, 0));
@@ -2669,4 +2670,22 @@ test('Q2 (0.48.0): incenso pelo destino do link da Bulbapedia ("[[Driftveil City
   // bebês de incenso agora obtíveis: Bonsly no B2W2, Munchlax no X/Y
   assert.ok(load('black-2-white-2.json').pokemon.find((p) => p.name === 'bonsly').obtainable['black-2']);
   assert.ok(load('x-y.json').pokemon.find((p) => p.name === 'munchlax').obtainable.x);
+});
+
+test('Q3 (0.49.0): Ultra Sun/Ultra Moon no banco de lutas — time do rival pela inicial, parceiro fora, estágio conferido pelo nível', async () => {
+  const { parties } = await import('../scripts/lib/bulbapedia.mjs');
+  const p = parties(['{{Party', '| caption = {{PlayerChoice|0722|Rowlet}}', '| name = Hau', '| game = USUM', '}}', '{{Pokémon', '| pokemon = Popplio', '| level = 5', '}}', '{{Party/end}}'].join('\n'));
+  assert.equal(p[0].playerChoice, 'Rowlet');
+  const tr = load('ultra-sun-ultra-moon-trainers.json').trainers;
+  const t = (label) => tr.filter((x) => x.label === label);
+  // o Hau pega a inicial fraca contra a do jogador: jogador com Rowlet enfrenta o Popplio dele
+  assert.deepEqual(t('Hau (First battle)').map((x) => [x.forStarter[0], x.party[0].species]).sort(), [['litten', 'rowlet'], ['popplio', 'litten'], ['rowlet', 'popplio']]);
+  assert.ok(t('Hau (First Multi Battle partner)').every((x) => x.partner));
+  // provação da Mina (capitães, nv 51) no marco dela; Hala nv 63 em Iki Town (lugar do início) → pós-jogo, estimado
+  const post = load('ultra-sun-ultra-moon-acquisition.json').progress.post;
+  assert.ok(t("Kiawe (Mina's trial)").every((x) => x.stage === 10));
+  assert.ok(t('Hala (Second battle)').every((x) => x.stage === post && x.stageEstimated));
+  const b = JSON.parse(readFileSync(new URL('../reports/benchmark/ultra-sun-ultra-moon.json', import.meta.url), 'utf8'));
+  assert.ok(b.summary.fights > 100 && !b.fights.some((f) => /partner/.test(f.label)));
+  assert.ok(b.fights.filter((f) => f.label === 'Hau (First battle)').every((f) => tr.find((x) => x.label === f.label && x.forStarter[0] === f.starter)));
 });

@@ -87,7 +87,9 @@ export function parties(text) {
         // "| max = Gigantamax" / "| max = Dynamax" (Sword/Shield): o Pokémon que dinamaxiza na luta
         ...(f.max ? { dynamax: /giga/i.test(f.max) ? 'gigantamax' : 'dynamax' } : f.dynamax || /dynamax|gigantamax/i.test(f.icon ?? '') ? { dynamax: f.dynamax ?? f.icon } : {}), ...(f.tera ? { tera: plain(f.tera) } : {}) };
     });
-    out.push({ section: sectionAt(m.index), game: p.game ?? null, location: p.location ? plain(p.location) : null, name: plain(p.name), class: p.class ? plain(p.class) : null, mons });
+    // "| caption = {{PlayerChoice|0722|Rowlet}}": o time vale quando o jogador escolheu essa inicial (rival)
+    const choice = (p.caption ?? '').match(/\{\{PlayerChoice\|\d*\|([^|}]+)/i);
+    out.push({ section: sectionAt(m.index), game: p.game ?? null, location: p.location ? plain(p.location) : null, name: plain(p.name), class: p.class ? plain(p.class) : null, ...(choice ? { playerChoice: choice[1].trim() } : {}), mons });
   }
   return out;
 }

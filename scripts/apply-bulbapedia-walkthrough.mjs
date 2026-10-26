@@ -86,9 +86,28 @@ if (!acq.progress) {
     for (const t of tr.trainers) {
       const k = /Grand trial/i.test(t.label) ? kahunas.indexOf(t.name) : -1;
       const st = k >= 0 && grand[k] != null ? grand[k] : /Title Defense|Post-?game|Post–Hall|Rematch|Round 2|Battle Tree/i.test(t.label) ? 'post' : (t.map ?? []).map((m) => lookup(m, firstStage)).find((x) => x != null);
-      t.stage = st == null ? null : st === 'post' ? POST : st;
-      if (t.stage != null) trainerStage[t.key] = t.stage;
+      // "Mina's trial" (USUM: os capitães e um kahuna lutam na provação da Mina) → o marco dela, não o lugar do treinador
+      const mina = milestones.findIndex((m) => m.label === 'provação da Mina');
+      t.stage = /Mina's trial/i.test(t.label) && mina >= 0 ? mina : st == null ? null : st === 'post' ? POST : st;
+      delete t.stageEstimated;
     }
+    // Q3 (0.49.0): o lugar do treinador pode ser um lugar revisitado (Iki Town, Aether Paradise) — conferência pelo nível do
+    // ás contra as âncoras (grandes provações e a luta pelo título de Campeão): mais forte que o Campeão → pós-jogo; estágio
+    // incoerente com o nível → o estágio logo depois da última âncora mais fraca (estimado, marcado em stageEstimated)
+    const ace = (t) => Math.max(0, ...t.party.map((p) => p.level ?? 0));
+    const anchors = tr.trainers.filter((t) => t.stage != null && (/Grand trial/i.test(t.label) || /^Champion battle/i.test(t.label.replace(/^.*\(/, '')))).map((t) => ({ stage: t.stage, ace: ace(t) }));
+    const champ = Math.max(0, ...anchors.filter((a) => a.stage < POST).map((a) => a.ace));
+    for (const t of tr.trainers) {
+      const a = ace(t);
+      if (!champ || !a || t.stage == null || anchors.some((x) => x.stage === t.stage && x.ace === a) || /Grand trial|Mina's trial/i.test(t.label)) continue;
+      const postLabel = /Title Defense|Post-?game|Post–Hall|Rematch|Round 2|Battle Tree/i.test(t.label);
+      const next = anchors.filter((x) => x.stage >= t.stage).sort((x, y) => x.stage - y.stage)[0];
+      let st = t.stage;
+      if (a > champ) st = POST;
+      else if (!postLabel && ((t.stage === POST && a < champ - 5) || (t.stage < POST && next && a > next.ace + 5))) st = 1 + Math.max(-1, ...anchors.filter((x) => x.ace < a && x.stage < POST).map((x) => x.stage));
+      if (st !== t.stage) { report.estimated = [...(report.estimated ?? []), `${t.label} nv ${a}: ${t.stage} → ${st}`]; t.stage = st; t.stageEstimated = 'pelo nível do time (lugar revisitado)'; }
+    }
+    for (const t of tr.trainers) if (t.stage != null) trainerStage[t.key] = t.stage;
     acq.progress.trainerStage = trainerStage;
     writeFileSync(trFile, JSON.stringify(tr));
     writeFileSync(acqFile, JSON.stringify(acq));
