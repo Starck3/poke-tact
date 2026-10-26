@@ -30,7 +30,9 @@ export function itemRegex(param) {
   return new RegExp('\\b' + letters.map((c, i) => (i ? '[' + c + c.toUpperCase() + ']' : c.toUpperCase())).join("[\\s\\-'’]?") + 's?\\b');
 }
 /** "Fire/Water/Thunder Stone" → "Fire Stone/Water Stone/Thunder Stone" (ORAS: a troca de Shards). */
-export const expandSlashes = (t) => t.replace(/\b((?:[A-Z][a-z]+\/)+[A-Z][a-z]+) (Stone|Shard)s?\b/g, (m, list, noun) => list.split('/').map((w) => w + ' ' + noun).join('/'));
+// "Charizardite X e Y" (Let's Go) → "Charizardite X e Charizardite Y": sem isso a Charizardite Y não tinha citação
+export const expandSlashes = (t) => t.replace(/\b((?:[A-Z][a-z]+\/)+[A-Z][a-z]+) (Stone|Shard)s?\b/g, (m, list, noun) => list.split('/').map((w) => w + ' ' + noun).join('/'))
+  .replace(/\b([A-Z][a-z]+ite) ([XYZ]) e ([XYZ])\b/g, (m, stone, a, b) => `${stone} ${a} e ${stone} ${b}`);
 const GET = /\b(ach\w*|encontr\w*|peg\w*|ganh\w*|receb\w*|compr\w*|vend\w*|loja\w*|ch[ãa]o|escondid\w*|presente\w*|pr[êe]mio\w*|d[áa]|dar[áa]|entrega\w*|troca\w* (?:por|pel)\w*|coletar|obt\w*)/i;
 
 const strip = (h) => h.replace(/<(script|style)[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/&#8217;|&rsquo;/g, '’').replace(/&amp;/g, '&').replace(/&#8211;|&ndash;/g, '–').replace(/\s+/g, ' ').trim();
@@ -57,6 +59,6 @@ writeFileSync(out, JSON.stringify({
   note: 'Trechos do detonado que citam onde achar o item — não é posição verificada no jogo.', items,
 }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
-const all = evoItems(data.pokemon);
+const all = [...evoItems(data.pokemon), ...megaStones]; // itens de evolução + Mega Stones (a conta "x/y" usa os dois)
 writeFileSync(new URL(`../reports/${gameId}/evo-items.json`, import.meta.url), JSON.stringify({ withMentions: Object.keys(items).length, total: all.length, without: all.filter((p) => !items[p]) }, null, 1));
 console.log(`[${gameId}] itens de evolução citados no detonado: ${Object.keys(items).length}/${all.length}`);

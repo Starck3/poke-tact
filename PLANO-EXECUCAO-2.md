@@ -66,10 +66,10 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
 - **B3 ✅ Locais "fora do detonado"** (0.36.0) (BW 14, SwSh 19, SM 9, SV 4, Z-A 7): estimativa pelo nível dos selvagens
   comparado aos times dos líderes, **marcada "estimativa"** na tela. Pronto quando: cada local ganha estágio estimado
   com o motivo; nenhum local muda de estágio quando já tinha estágio do detonado.
-- **B4 ⬜ Itens de evolução e Mega Stones sem citação** (SwSh 0/28, Let's Go 0/6, Z-A 0 pedras): tentar frases com o
+- **B4 ⚠ Itens de evolução e Mega Stones sem citação** (0.37.0: só o Let's Go melhorou) (SwSh 0/28, Let's Go 0/6, Z-A 0 pedras): tentar frases com o
   nome em português ou genérico ("Pedra do Trovão", "loja de pedras", "Wild Area"). Só com frase que cite o item. Sem
   achado → ⏸ (sem outra fonte permitida).
-- **B5 ⬜ FRLG — cavernas e florestas sem posição no mapa** (99/142): conferir as que faltam pela entrada (warp) como foi
+- **B5 ✅ FRLG — cavernas e florestas sem posição no mapa** (já feito na 0.20.0; 0.37.0 põe as creches no mapa) (99/142): conferir as que faltam pela entrada (warp) como foi
   feito no 0.20.0. Pronto quando: sobe o número sem ponto errado (teste de alguns lugares conhecidos).
 
 ### Bloco C — Dependem de fonte que não temos (ficam registradas; não executar sem fonte nova)
@@ -125,3 +125,9 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   estágio. Duas armadilhas achadas: Surf/vara puxavam para o estágio 0 (Route 17 do BW, só água → sem estimativa) e um
   encontro fora do padrão (Pikipek nv 2–3 na Route 10 do SM) → mediana. BW 11 locais, SwSh 19, SM 8, SV 2, Z-A 1.
   Também: o build-detonado-modern deixa as fontes de ovo (`breed`) em paz. Banco: folgadas 36.370 → 36.380 (BW +10).
+- **2026-10-25 — B4 ⚠ (0.37.0)**: busca por nomes de item em inglês/português, listas ("X e Y") e verbos: o detonado do
+  SwSh e o do Z-A não citam onde achar nenhuma pedra de evolução nem Mega Stone (0). Melhora só no Let's Go: "Charizardite
+  X e Y" passa a valer para a Y (3 → 4). O relatório "x/y" agora conta itens + Mega Stones nos dois lados (antes "41/25").
+  O resto precisa de outra fonte (decisão do usuário).
+- **2026-10-25 — B5 (0.37.0)**: a B5 já estava feita (0.20.0: FRLG 140/142). Regerando os mapas depois dos ovos, a creche
+  entra no mapa (Four Island no FRLG; e nos outros jogos) — FRLG 141/143: faltam o "Ssanne Exterior" e o vagante (sem lugar).

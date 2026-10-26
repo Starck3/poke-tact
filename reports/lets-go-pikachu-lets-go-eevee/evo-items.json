@@ -1,12 +1,23 @@
 {
- "withMentions": 3,
- "total": 6,
+ "withMentions": 4,
+ "total": 21,
  "without": [
   "FIRE_STONE",
   "ICE_STONE",
   "LEAF_STONE",
   "MOON_STONE",
   "THUNDER_STONE",
-  "WATER_STONE"
+  "WATER_STONE",
+  "Aerodactylite",
+  "Alakazite",
+  "Beedrillite",
+  "Gengarite",
+  "Gyaradosite",
+  "Kangaskhanite",
+  "Mewtwonite X",
+  "Mewtwonite Y",
+  "Pidgeotite",
+  "Pinsirite",
+  "Slowbronite"
  ]
 }

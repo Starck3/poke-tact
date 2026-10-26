@@ -2498,3 +2498,9 @@ test('B3 (0.36.0): local que o detonado não cita ganha estágio ESTIMADO pelo n
   const mon = d.pokemon.find((p) => (a.versions.black[p.name] ?? []).some((s) => s.stageEstimated));
   assert.ok(catchReport(d, a, mon, 'black').lines.some((l) => l.estimated));
 });
+
+test('B4 (0.37.0): "Charizardite X e Y" vale para as duas pedras (Let\'s Go)', async () => {
+  // (o build-evo-items é script: importar aqui encerraria o processo de teste — confere pelo dado gerado)
+  assert.ok(load('lets-go-pikachu-lets-go-eevee-evoitems.json').items['Charizardite Y'].some((c) => /Charizardite X e Charizardite Y/.test(c.text)));
+  assert.ok(load('lets-go-pikachu-lets-go-eevee-evoitems.json').items['Charizardite Y']?.length);
+});
