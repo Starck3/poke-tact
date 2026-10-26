@@ -1,6 +1,6 @@
 {
  "withMentions": 41,
- "total": 25,
+ "total": 74,
  "without": [
   "DEEP_SEA_SCALE",
   "DEEP_SEA_TOOTH",
@@ -21,6 +21,19 @@
   "SHINY_STONE",
   "SUN_STONE",
   "UPGRADE",
-  "WHIPPED_DREAM"
+  "WHIPPED_DREAM",
+  "Aerodactylite",
+  "Alakazite",
+  "Blazikenite",
+  "Diancite",
+  "Gyaradosite",
+  "Houndoominite",
+  "Manectite",
+  "Medichamite",
+  "Metagrossite",
+  "Pinsirite",
+  "Salamencite",
+  "Sceptilite",
+  "Swampertite"
  ]
 }

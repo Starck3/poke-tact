@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.37.0] — 2026-10-25
+
+> Pequenos ajustes: no Let's Go o app agora sabe onde se ganha a Charizardite Y, e as creches aparecem no mapa da região.
+
+### Corrigido
+- **Let's Go**: o detonado diz "você receberá … Charizardite X e Y" — antes só a X contava; agora as duas mostram onde achar.
+- **Mapa da região**: a creche (onde nascem os ovos) aparece no mapa — ex.: Four Island no FireRed/LeafGreen.
+- O relatório de itens citados conta os itens de evolução e as Mega Stones juntos (mostrava números como "41/25").
+- Fica registrado: o detonado do Sword/Shield e o do Z-A não dizem onde achar nenhuma pedra de evolução ou Mega Stone.
+
 ## [0.36.0] — 2026-10-25
 
 > Locais que o detonado não cita (como várias rotas do Black/White e a Wild Area do Sword/Shield) agora ganham um ponto da história estimado pelo nível dos Pokémon selvagens, sempre marcado como estimativa.

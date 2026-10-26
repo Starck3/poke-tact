@@ -1,6 +1,6 @@
 {
  "withMentions": 14,
- "total": 25,
+ "total": 55,
  "without": [
   "DAWN_STONE",
   "DEEP_SEA_SCALE",
@@ -18,6 +18,30 @@
   "REAPER_CLOTH",
   "SACHET",
   "UPGRADE",
-  "WHIPPED_DREAM"
+  "WHIPPED_DREAM",
+  "Absolite",
+  "Aggronite",
+  "Alakazite",
+  "Banettite",
+  "Blastoisinite",
+  "Blazikenite",
+  "Charizardite X",
+  "Charizardite Y",
+  "Garchompite",
+  "Gardevoirite",
+  "Gyaradosite",
+  "Heracronite",
+  "Houndoominite",
+  "Kangaskhanite",
+  "Latiasite",
+  "Latiosite",
+  "Lucarionite",
+  "Manectite",
+  "Mawilite",
+  "Medichamite",
+  "Pinsirite",
+  "Scizorite",
+  "Tyranitarite",
+  "Venusaurite"
  ]
 }
