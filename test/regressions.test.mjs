@@ -2588,3 +2588,9 @@ test('P1 (0.41.0): efeitos extras dos golpes Max (Showdown) — atributo, clima 
   const com = duel(sw, 8, me, opp, ['karate-chop'], ['tackle']).myTurns;
   assert.ok(com <= sem);
 });
+
+test('P2 (0.42.0): "Ssanne Exterior" (FRLG) no ponto do S.S. Anne no mapa da região (entrada pelo Vermilion)', () => {
+  const r = load('firered-leafgreen-regionmap.json');
+  const at = r.placeOf['Ssanne Exterior'];
+  assert.ok(at && r.regions[at[0]].points[at[1]].name === 'S.S. Anne');
+});

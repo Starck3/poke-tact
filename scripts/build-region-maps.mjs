@@ -241,7 +241,8 @@ if (game.generation === 3) {
 }
 
 // nomes do mapa da região × nomes dos mapas do decomp: "Mt. Mortar" = "Mount Mortar", "Whirl Islands" = "Whirl Island"
-const norm = (s) => words(s).map((w) => (w === 'mount' ? 'mt' : w.length > 4 ? w.replace(/s$/, '') : w));
+// "S.S. Anne" (mapa da região) = "Ssanne Exterior" (nome do mapa no decomp, sem os pontos) — P2, 0.42.0
+const norm = (s) => words(String(s).replace(/\bS\.\s?S\.\s?Anne\b/gi, 'Ssanne')).map((w) => (w === 'mount' ? 'mt' : w.length > 4 ? w.replace(/s$/, '') : w));
 // lugar do "onde obter" → ponto: o ponto cujas palavras estão todas no nome do lugar (o mais específico)
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
 const placeOf = {};

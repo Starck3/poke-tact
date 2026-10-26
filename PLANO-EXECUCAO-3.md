@@ -53,7 +53,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **P1 ✅ Efeitos extras dos golpes Max** (0.41.0) (Showdown `data/moves.ts`: clima, atributo): os que mudam a conta da troca (Max
   Airstream +Vel, Max Knuckle +Atq, Max Steelspike +Def…, e clima que muda dano: Max Flare/Geyser 1,5×) aplicados nos 3
   turnos do Dynamax. Pronto quando: teste do bônus; banco do SwSh.
-- **P2 ⬜ FRLG: "Ssanne Exterior" no mapa** (warp do decomp para o Vermilion) e o vagante marcado "anda pelo mapa".
+- **P2 ✅ FRLG: "Ssanne Exterior" no mapa** (0.42.0) (warp do decomp para o Vermilion) e o vagante marcado "anda pelo mapa".
 - **P3 ⬜ Estimativas pelo nível revistas** (Route 9 do SM etc.): quando a Bulbapedia tiver a ordem da rota na história
   (página do local), usar a ordem em vez da estimativa; senão manter a estimativa marcada.
 - **P4 ⬜ Taxa de aparição nas Gens 6–9** (opcional, grande): tabelas de encontro da página de cada rota. Só se N0 tornar
@@ -90,3 +90,6 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
   `setWeather`, `setTerrain`) → `data.maxEffects`; o duelo com Dynamax simula os dois lados turno a turno com estágio de
   atributo, sol/chuva 1,5×/0,5× e terreno 1,3× (Névoa: Dragão 0,5×) por 5 turnos. Fora: Velocidade, dano de areia/granizo,
   efeitos G-Max. Banco: SwSh turnos 1,40 → 1,32; vencem/folgadas iguais (37.687 / 35.862).
+- **2026-10-26 — P2 (0.42.0)**: o ponto do S.S. Anne já existia (warp do Vermilion); faltava casar o nome "Ssanne Exterior"
+  (decomp, sem pontos) com "S.S. Anne". FRLG 142/143 no mapa — o que falta é o vagante, que não tem lugar fixo (a tela diz
+  "pelo mapa (vagante)").
