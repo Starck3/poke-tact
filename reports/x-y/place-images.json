@@ -1,6 +1,6 @@
 {
  "withImages": 16,
- "total": 44,
+ "total": 45,
  "without": [
   "Route 2 (Avance Trail)",
   "Route 3 (Ouvert Way)",
@@ -29,6 +29,7 @@
   "Route 20 (Winding Woods)",
   "Route 17 (Mamoswine Road)",
   "Unknown Dungeon",
-  "Sea Spirit’s Den"
+  "Sea Spirit’s Den",
+  "Pokémon Day Care (citada no trecho “Parfum Palace” do detonado)"
  ]
 }

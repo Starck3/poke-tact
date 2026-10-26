@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.50.0] — 2026-10-26
+
+> No X/Y, a tela "Onde capturar" agora mostra com que frequência cada Pokémon aparece (ex.: "Santalune Forest — Grama, nv 3–4 (6%)") e como ele é encontrado (grama, surf, vara boa, teto da caverna…). Um Pokémon que quase nunca aparece deixa de ser sugerido.
+
+### Adicionado
+- **Taxa de aparição no X/Y** pela Bulbapedia (tabela de captura da página de cada lugar): 666 de 708 encontros
+  selvagens. Casada por lugar, espécie, forma e faixa de nível; quando duas linhas servem com taxas diferentes, fica sem taxa.
+  Taxa aproximada na tabela ("~80%") aparece com "~".
+- O jeito de encontrar vem da mesma tabela (Grama, Flores amarelas, Surf, Vara velha/boa, Super vara, Teto da caverna…), no
+  lugar do "Selvagem" genérico.
+
+### Alterado
+- Banco de lutas: vencem igual; folgadas no X/Y 2.451 → 2.445 (o Abomasnow da Route 17 aparece 1% das vezes e agora conta
+  como raro).
+
 ## [0.49.0] — 2026-10-26
 
 > O Ultra Sun/Ultra Moon entrou no banco de lutas que mede as recomendações. Com isso, a luta contra o Hau agora mostra o time certo para a inicial que você escolheu, e algumas lutas desse jogo foram para o ponto certo da história.

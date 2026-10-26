@@ -359,7 +359,7 @@ export function formatSources(sources, maxWild = 3) {
   // Gens 6–9 (encontros do PKHeX): sem taxa (pct) → ordena pelo menor nível
   const wild = sources.filter((s) => s.type === 'wild').sort((a, b) => (a.stage ?? 9) - (b.stage ?? 9) || (b.pct ?? 0) - (a.pct ?? 0) || a.min - b.min);
   // Gen 2: horário (manhã/dia/noite) e enxame/concurso aparecem junto do método
-  const lines = wild.slice(0, maxWild).map((s) => `${s.where} — ${s.method}${s.times ? ` (${s.times.join('/')})` : ''}${s.detail ? ` [${s.detail}]` : ''}, nv ${s.min === s.max ? s.min : `${s.min}–${s.max}`}${s.pct != null ? ` (${s.pct}%)` : ''}` + (s.gate ? ` — exige ${s.gate.badge ? `HM de ${s.method} + insígnia ${s.gate.badge} (${s.gate.leader})` : (s.gateAs ?? s.method)}; estimativa: nv ${s.gate.level}+` : ''));
+  const lines = wild.slice(0, maxWild).map((s) => `${s.where} — ${s.method}${s.times ? ` (${s.times.join('/')})` : ''}${s.detail ? ` [${s.detail}]` : ''}, nv ${s.min === s.max ? s.min : `${s.min}–${s.max}`}${s.pct != null ? ` (${s.pctApprox ? '~' : ''}${s.pct}%)` : ''}` + (s.gate ? ` — exige ${s.gate.badge ? `HM de ${s.method} + insígnia ${s.gate.badge} (${s.gate.leader})` : (s.gateAs ?? s.method)}; estimativa: nv ${s.gate.level}+` : ''));
   if (wild.length > maxWild) lines.push(`+${wild.length - maxWild} outros locais`);
   for (const s of sources) if (s.type !== 'wild' && SRC_LABEL[s.type]) lines.push(SRC_LABEL[s.type](s) + (s.area ? ` — estimativa: área de selvagens nv ${s.area.level}+ (${s.area.near})` : ''));
   return lines;

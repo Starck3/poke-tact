@@ -7,8 +7,8 @@
    "covered": 834,
    "wins": 2502,
    "picks": 2502,
-   "comfy": 2451,
-   "turnsSum": 2867,
+   "comfy": 2445,
+   "turnsSum": 2870,
    "turnsN": 2502
   },
   "antes": {
@@ -8063,18 +8063,6 @@
      "candidates": 356,
      "picks": [
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      },
-      {
        "mon": "ferrothorn",
        "move": "power-whip",
        "eff": 2,
@@ -8097,6 +8085,18 @@
        "theirTurns": 9,
        "faster": 1,
        "theirMove": "muddy-water"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "aurora-beam"
       }
      ],
      "before": []
@@ -9251,16 +9251,16 @@
        "theirMove": "dragon-pulse"
       },
       {
-       "mon": "abomasnow",
-       "move": "ice-punch",
-       "eff": 2,
+       "mon": "snorlax",
+       "move": "body-slam",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
-       "theirMove": "sludge-wave"
+       "theirMove": "earthquake"
       }
      ],
      "before": []
@@ -9417,16 +9417,16 @@
        "theirMove": "dragon-pulse"
       },
       {
-       "mon": "abomasnow",
-       "move": "ice-punch",
-       "eff": 2,
+       "mon": "snorlax",
+       "move": "body-slam",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
-       "theirMove": "sludge-wave"
+       "theirMove": "earthquake"
       }
      ],
      "before": []
@@ -9583,16 +9583,16 @@
        "theirMove": "dragon-pulse"
       },
       {
-       "mon": "abomasnow",
-       "move": "ice-punch",
-       "eff": 2,
+       "mon": "snorlax",
+       "move": "body-slam",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
-       "theirMove": "sludge-wave"
+       "theirMove": "earthquake"
       }
      ],
      "before": []
@@ -10861,18 +10861,6 @@
      "candidates": 412,
      "picks": [
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0.5,
-       "theirMove": "aurora-beam"
-      },
-      {
        "mon": "ferrothorn",
        "move": "power-whip",
        "eff": 2,
@@ -10895,6 +10883,18 @@
        "theirTurns": 10,
        "faster": 1,
        "theirMove": "muddy-water"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "aurora-beam"
       }
      ],
      "before": []
@@ -13062,18 +13062,6 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "ice-fang"
-      },
-      {
        "mon": "aerodactyl",
        "move": "thunder-fang",
        "eff": 4,
@@ -13084,6 +13072,18 @@
        "theirTurns": 2,
        "faster": 1,
        "theirMove": "waterfall"
+      },
+      {
+       "mon": "dragonite",
+       "move": "thunder-punch",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "ice-fang"
       }
      ],
      "before": []
@@ -13281,18 +13281,6 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "ice-fang"
-      },
-      {
        "mon": "aerodactyl",
        "move": "thunder-fang",
        "eff": 4,
@@ -13303,6 +13291,18 @@
        "theirTurns": 2,
        "faster": 1,
        "theirMove": "waterfall"
+      },
+      {
+       "mon": "dragonite",
+       "move": "thunder-punch",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "ice-fang"
       }
      ],
      "before": []
@@ -13500,18 +13500,6 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "ice-fang"
-      },
-      {
        "mon": "aerodactyl",
        "move": "thunder-fang",
        "eff": 4,
@@ -13522,6 +13510,18 @@
        "theirTurns": 2,
        "faster": 1,
        "theirMove": "waterfall"
+      },
+      {
+       "mon": "dragonite",
+       "move": "thunder-punch",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "ice-fang"
       }
      ],
      "before": []
@@ -14955,18 +14955,6 @@
        "theirMove": "hydro-pump"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "dark-pulse"
-      },
-      {
        "mon": "ferrothorn",
        "move": "power-whip",
        "eff": 2,
@@ -14977,6 +14965,18 @@
        "theirTurns": 4,
        "faster": 0,
        "theirMove": "dark-pulse"
+      },
+      {
+       "mon": "florges",
+       "move": "moonblast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "hydro-pump"
       }
      ],
      "before": []
@@ -15417,18 +15417,6 @@
      "candidates": 417,
      "picks": [
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      },
-      {
        "mon": "gyarados",
        "move": "thrash",
        "eff": 1,
@@ -15439,6 +15427,18 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "hydro-pump"
+      },
+      {
+       "mon": "abomasnow",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "aurora-beam"
       },
       {
        "mon": "exeggutor",
@@ -18646,18 +18646,6 @@
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "abomasnow",
-       "move": "blizzard",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "dragon-claw"
-      },
-      {
        "mon": "glaceon",
        "move": "blizzard",
        "eff": 2,
@@ -18666,6 +18654,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "dragon-claw"
+      },
+      {
+       "mon": "avalugg",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "dragon-claw"
       }
@@ -18761,18 +18761,6 @@
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "abomasnow",
-       "move": "blizzard",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "dragon-claw"
-      },
-      {
        "mon": "glaceon",
        "move": "blizzard",
        "eff": 2,
@@ -18781,6 +18769,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "dragon-claw"
+      },
+      {
+       "mon": "avalugg",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "dragon-claw"
       }
@@ -18876,18 +18876,6 @@
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "abomasnow",
-       "move": "blizzard",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "dragon-claw"
-      },
-      {
        "mon": "glaceon",
        "move": "blizzard",
        "eff": 2,
@@ -18896,6 +18884,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "dragon-claw"
+      },
+      {
+       "mon": "avalugg",
+       "move": "ice-fang",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "dragon-claw"
       }
@@ -19348,15 +19348,15 @@
        "theirMove": "leaf-storm"
       },
       {
-       "mon": "abomasnow",
-       "move": "ice-punch",
+       "mon": "altaria",
+       "move": "sky-attack",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
        "theirMove": "leaf-storm"
       }
      ],
@@ -19463,15 +19463,15 @@
        "theirMove": "leaf-storm"
       },
       {
-       "mon": "abomasnow",
-       "move": "ice-punch",
+       "mon": "altaria",
+       "move": "sky-attack",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
        "theirMove": "leaf-storm"
       }
      ],
@@ -19578,15 +19578,15 @@
        "theirMove": "leaf-storm"
       },
       {
-       "mon": "abomasnow",
-       "move": "ice-punch",
+       "mon": "altaria",
+       "move": "sky-attack",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 8,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
        "theirMove": "leaf-storm"
       }
      ],
@@ -31226,18 +31226,6 @@
      "candidates": 355,
      "picks": [
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      },
-      {
        "mon": "ferrothorn",
        "move": "power-whip",
        "eff": 2,
@@ -31260,6 +31248,18 @@
        "theirTurns": 9,
        "faster": 1,
        "theirMove": "muddy-water"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "aurora-beam"
       }
      ],
      "before": []
@@ -34024,18 +34024,6 @@
      "candidates": 412,
      "picks": [
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0.5,
-       "theirMove": "aurora-beam"
-      },
-      {
        "mon": "ferrothorn",
        "move": "power-whip",
        "eff": 2,
@@ -34058,6 +34046,18 @@
        "theirTurns": 10,
        "faster": 1,
        "theirMove": "muddy-water"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "aurora-beam"
       }
      ],
      "before": []
@@ -36237,16 +36237,16 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 1,
+       "mon": "aerodactyl",
+       "move": "thunder-fang",
+       "eff": 4,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "ice-fang"
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "waterfall"
       }
      ],
      "before": []
@@ -36456,16 +36456,16 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 1,
+       "mon": "aerodactyl",
+       "move": "thunder-fang",
+       "eff": 4,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "ice-fang"
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "waterfall"
       }
      ],
      "before": []
@@ -36675,16 +36675,16 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 1,
+       "mon": "aerodactyl",
+       "move": "thunder-fang",
+       "eff": 4,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "ice-fang"
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "waterfall"
       }
      ],
      "before": []
@@ -38118,18 +38118,6 @@
        "theirMove": "hydro-pump"
       },
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "dark-pulse"
-      },
-      {
        "mon": "ferrothorn",
        "move": "power-whip",
        "eff": 2,
@@ -38140,6 +38128,18 @@
        "theirTurns": 4,
        "faster": 0,
        "theirMove": "dark-pulse"
+      },
+      {
+       "mon": "florges",
+       "move": "moonblast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "hydro-pump"
       }
      ],
      "before": []
@@ -38580,18 +38580,6 @@
      "candidates": 417,
      "picks": [
       {
-       "mon": "abomasnow",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "aurora-beam"
-      },
-      {
        "mon": "gyarados",
        "move": "thrash",
        "eff": 1,
@@ -38602,6 +38590,18 @@
        "theirTurns": 8,
        "faster": 1,
        "theirMove": "hydro-pump"
+      },
+      {
+       "mon": "abomasnow",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "aurora-beam"
       },
       {
        "mon": "heracross",
@@ -41821,11 +41821,11 @@
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "abomasnow",
+       "mon": "glaceon",
        "move": "blizzard",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -41936,11 +41936,11 @@
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "abomasnow",
+       "mon": "glaceon",
        "move": "blizzard",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -42051,11 +42051,11 @@
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "abomasnow",
+       "mon": "glaceon",
        "move": "blizzard",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
