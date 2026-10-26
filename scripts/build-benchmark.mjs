@@ -11,7 +11,9 @@ import { statsAt, badgeBoost, duel } from '../public/battle.mjs';
 
 const load = (f) => JSON.parse(readFileSync(new URL(`../public/data/${f}`, import.meta.url), 'utf8'));
 const has = (f) => existsSync(new URL(`../public/data/${f}`, import.meta.url));
-const ids = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(GAMES).filter((g) => has(`${g}-walkthrough.json`));
+// jogo sem detonado (Ultra Sun/Ultra Moon) entra pelos treinadores com estágio (Q3, 0.49.0)
+const staged = (g) => has(`${g}-trainers.json`) && load(`${g}-trainers.json`).trainers.some((t) => t.stage != null);
+const ids = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(GAMES).filter((g) => has(`${g}-walkthrough.json`) || staged(g));
 const DELTA = Number(process.env.BENCH_DELTA ?? 0); // níveis abaixo do ás do oponente
 const IMPORTANT = new Set(['Líderes de ginásio', 'Partidas de promoção', 'Elite dos Quatro', 'Campeão', 'Rival']);
 
@@ -29,8 +31,11 @@ mkdirSync(new URL('../reports/benchmark/', import.meta.url), { recursive: true }
 const zero = () => ({ wins: 0, picks: 0, covered: 0, mons: 0, comfy: 0, turnsSum: 0, turnsN: 0 });
 const total = { antes: zero(), depois: zero(), atual: { ...zero(), games: [] } };
 for (const gameId of ids) {
-  const data = load(`${gameId}.json`), acq = load(`${gameId}-acquisition.json`), walk = load(`${gameId}-walkthrough.json`);
+  const data = load(`${gameId}.json`), acq = load(`${gameId}-acquisition.json`);
   const trainers = new Map(load(`${gameId}-trainers.json`).trainers.map((t) => [t.key, t]));
+  // sem detonado: cada versão com os treinadores importantes no estágio deles (sem as lutas em que o treinador é parceiro)
+  const walk = has(`${gameId}-walkthrough.json`) ? load(`${gameId}-walkthrough.json`) : { versions: Object.fromEntries(data.game.versions.map((v) => [v, { stages: [...new Set([...trainers.values()].filter((t) => t.stage != null).map((t) => t.stage))].sort((a, b) => a - b)
+    .map((stage) => ({ stage, locations: [{ trainers: [...trainers.values()].filter((t) => t.stage === stage && !t.partner && t.party.every((p) => p.level > 0)) }] })) }])) };
   const starters = data.starters?.species?.length > 1 ? data.starters.species : [null];
   const beforeFile = new URL(`../reports/benchmark/antes/${gameId}.json`, import.meta.url);
   const before = existsSync(beforeFile) ? JSON.parse(readFileSync(beforeFile, 'utf8')) : null;
