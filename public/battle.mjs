@@ -135,14 +135,48 @@ export function bestAgainst(data, gen, att, def, moves) {
  * Troca de golpes (1 contra 1): quantos turnos cada lado precisa e quem age primeiro (Velocidade; empate = 50%).
  * win: eu nocauteio antes de ser nocauteado. margin: turnos dele ÷ meus (quanto maior, mais folgado).
  */
+// Dynamax (Sword/Shield; Showdown data/conditions.ts): 3 turnos; vida × (1,5 + 0,05 × nível de Dynamax) — o detonado não dá
+// o nível, então vale o 0 (1,5×, o de quem você captura); ao acabar, a vida volta na mesma proporção. Golpes viram Max
+// (poder maxPower, um golpe só, não erram — mesma conta do golpe Z em damage()); efeitos de clima/atributo ficam fora
+export const DYNAMAX_TURNS = 3, DYNAMAX_HP = 1.5;
+/** Melhor golpe Max (maior dano) de `moves` contra `def`. */
+function bestMax(data, gen, att, def, moves) {
+  let best = null;
+  for (const name of moves) {
+    const mv = data.moves[name];
+    if (!mv?.maxPower) continue;
+    const d = damage(data, gen, att, def, name, { zPower: mv.maxPower });
+    if (d && d.per > 0 && (!best || d.per > best.dmg.per)) best = { name, power: mv.maxPower, dmg: d };
+  }
+  return best;
+}
+/** Turnos para nocautear com Dynamax de um lado ou dos dois: turno a turno, a fração de vida que cada golpe tira. */
+function dynamaxTurns(reg, max, hp, attDyn, defDyn) {
+  let left = 1;
+  for (let t = 1; t <= 60; t++) {
+    const d = attDyn && t <= DYNAMAX_TURNS && max ? max.dmg : reg?.dmg;
+    const per = d ? d.per / (d.turns ?? 1) : 0;
+    left -= per / (defDyn && t <= DYNAMAX_TURNS ? hp * DYNAMAX_HP : hp);
+    if (left <= 1e-9) return t;
+  }
+  return Infinity;
+}
+
 export function duel(data, gen, me, opp, myMoves, oppMoves) {
   const mine = bestAgainst(data, gen, me, opp, myMoves);
   const theirs = bestAgainst(data, gen, opp, me, oppMoves);
-  const myT = mine?.turns ?? Infinity, theirT = theirs?.turns ?? Infinity;
+  let myT = mine?.turns ?? Infinity, theirT = theirs?.turns ?? Infinity;
+  let dyn = null;
+  if (me.dynamax || opp.dynamax) {
+    const myMax = me.dynamax ? bestMax(data, gen, me, opp, myMoves) : null, theirMax = opp.dynamax ? bestMax(data, gen, opp, me, oppMoves) : null;
+    myT = dynamaxTurns(mine, myMax, opp.stats.hp, !!me.dynamax, !!opp.dynamax);
+    theirT = dynamaxTurns(theirs, theirMax, me.stats.hp, !!opp.dynamax, !!me.dynamax);
+    if (myMax) dyn = { name: myMax.name, power: myMax.power, type: data.moves[myMax.name].type };
+  }
   // me.speedTurn1 (Mega na Gen 6): no turno em que evolui, a ordem usa a Velocidade de antes — só decide se a troca acaba
   // no 1º turno para os dois; do 2º turno em diante vale a da Mega
   const sp = me.speedTurn1 != null && myT === 1 && theirT === 1 ? me.speedTurn1 : me.stats.speed;
   const faster = sp > opp.stats.speed ? 1 : sp === opp.stats.speed ? 0.5 : 0;
   const win = myT === Infinity ? false : faster === 1 ? myT <= theirT : faster === 0.5 ? myT < theirT || (myT === theirT) : myT < theirT;
-  return { move: mine?.name ?? null, myTurns: myT, theirMove: theirs?.name ?? null, theirTurns: theirT, faster, win, margin: myT === Infinity ? 0 : theirT === Infinity ? 99 : theirT / myT, myDmg: mine?.dmg ?? null, theirDmg: theirs?.dmg ?? null, z: mine?.z ?? null };
+  return { move: mine?.name ?? null, myTurns: myT, theirMove: theirs?.name ?? null, theirTurns: theirT, faster, win, margin: myT === Infinity ? 0 : theirT === Infinity ? 99 : theirT / myT, myDmg: mine?.dmg ?? null, theirDmg: theirs?.dmg ?? null, z: mine?.z ?? null, dynamax: dyn };
 }

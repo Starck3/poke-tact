@@ -230,7 +230,9 @@ for (const [i, b] of battles.entries()) {
     for (const [k, x] of expandTeam(b, t.party).entries()) {
       // Mega ("Mega Camerupt lv.43" ou "o Alakazam dele pode mega evoluir" perto da luta) e tipo Tera ("(Tera Bug)") do detonado
       const party = x.party.map(([mon, level, raw]) => ({ species: mon.name, level, item: null, iv: null, moves: likelyMoveset(mon, level), defaultMoves: true,
-        ...(megaOf(mon, raw, b) && { mega: megaOf(mon, raw, b) }), ...(raw?.notes?.tera && { tera: raw.notes.tera.toLowerCase() }) }));
+        ...(megaOf(mon, raw, b) && { mega: megaOf(mon, raw, b) }), ...(raw?.notes?.tera && { tera: raw.notes.tera.toLowerCase() }),
+        // Sword/Shield: "Dynamax Eldegoss lv.19" / "Gigantamax Centiskorch lv.25" — o Pokémon do líder que dinamaxiza
+        ...(raw?.tags?.includes('gigantamax') ? { dynamax: 'gigantamax' } : raw?.tags?.includes('dynamax') ? { dynamax: 'dynamax' } : {}) }));
       if (!party.length) continue;
       const label = `${t.label ?? ''} ${b.variant ?? ''}`;
       const forStarter = x.forStarter ?? starters.filter((s) => new RegExp(`\\b${s.split('-')[0]}\\b`, 'i').test(label));

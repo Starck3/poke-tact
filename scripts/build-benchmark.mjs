@@ -48,7 +48,7 @@ for (const gameId of ids) {
           const old = beforeKey.get(`${version}|${key}|${starter}`);
           const mons = t.party.map((p, i) => {
             const opp = battleForm(data.pokemon.find((x) => x.name === p.species), p); // chefe que luta Mega (detonado)
-            const r = recommend(data, opp, { level, oppMoves: p.moves, oppLevel: p.level, oppDvs: p.dvs, oppIv: p.iv, version, onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false, acq, stage, starter });
+            const r = recommend(data, opp, { level, oppMoves: p.moves, oppLevel: p.level, oppDvs: p.dvs, oppIv: p.iv, version, onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false, acq, stage, starter, dynamaxBattle: t.party.some((x) => x.dynamax) });
             const oldPicks = (old?.mons?.[i]?.picks ?? []).map((k) => ({ mon: k.mon, move: k.move, ...pickOut(evaluatePick(data, acq, k.mon, k.move, p, level, stage)) }));
             return {
               opp: p.species, level: p.level, moves: p.moves,

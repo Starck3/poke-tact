@@ -35,7 +35,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   - Fonte da regra: Showdown (`sim/battle-actions.ts`/`data/conditions.ts` — baixar fixado no mesmo commit).
   - Pronto quando: Katy com o Teddiursa Tera Bug luta como Bug; teste da regra do STAB; filtro "Usar Terastal";
     banco SV rodado; cartão diz o tipo Tera.
-- **A2 ⬜ Dynamax (Sword/Shield).**
+- **A2 ✅ Dynamax (Sword/Shield).** (0.30.0)
   - Só onde o jogo deixa (ginásios e lutas de campeonato): no detonado, lutas de líder/campeão; o último Pokémon do
     líder dynamaxa/gigantamaxa (tags `dynamax`/`gigantamax` do leitor; frase "o último pokémon dele vai dinamaxizar").
   - Regra: 3 turnos; HP × 2 (Gen 8: vida e máxima dobram); golpes viram Max com `maxPower` (já gravado) e não erram;
@@ -91,3 +91,8 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   tipos originais e no Tera, 2× quando o Tera é um dos originais; poder mínimo 60 no tipo Tera. 103 Pokémon de treinador
   com Tera do detonado lutam terastalizados; o seu pode terastalizar num dos próprios tipos depois da Tera Orb (Mesagoza).
   Banco: vencem 37.697 (igual), folgadas 36.452 → 36.441 (chefes mais difíceis). Achado anotado como A7 (Pupitar nv 42).
+- **2026-10-25 — A2 Dynamax (0.30.0)**: 45 Pokémon de chefe com "Dynamax"/"Gigantamax" no detonado lutam dinamaxizados;
+  regra do Showdown (data/conditions.ts): 3 turnos, vida × (1,5 + 0,05 × nível) — nível 0 (1,5×) porque o detonado não
+  dá o nível; golpes Max com o poder gravado na 0.28.0, sem errar. Você dinamaxiza só em luta onde o chefe dinamaxiza e
+  depois da Dynamax Band. Efeitos extras dos golpes Max fora (aviso na tela). Banco: SwSh turnos 1,66 → 1,39; vencem
+  37.697; folgadas 36.441 → 36.445. Achado de novo o caso da A7 (Rhydon nv 55 sugerido no estágio 0 do SwSh).
