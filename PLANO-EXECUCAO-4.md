@@ -16,7 +16,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   (Munchlax, Bonsly, Budew…) entram pelo apply-breeding. Pronto quando: algum jogo novo ganha bebê de incenso; teste. (0.48.0)
 - **Q3 ✅ Ultra Sun/Ultra Moon no banco de lutas**: o banco monta as lutas pela aba Detonado (que o USUM não tem); usar os
   treinadores com estágio direto quando não há detonado. Pronto quando: o USUM aparece no banco. (0.49.0)
-- **Q4 ⬜ Taxa de aparição nas Gens 6–9** (opcional, grande): começar por UM jogo (X/Y) para medir o custo real; se o leitor
+- **Q4 🔄 Taxa de aparição nas Gens 6–9** (opcional, grande): começar por UM jogo (X/Y) para medir o custo real; se o leitor
   das tabelas de encontro ficar confiável, estender; senão ⏸ com o que foi medido.
 - **D1 ⬜** STATUS.md, memória, resumo final.
 
@@ -39,3 +39,9 @@ Q1 → Q2 → Q3 → Q4 → D1.
   conferência pelo nível do ás (lugar revisitado: Hala nv 63 em Iki Town → pós-jogo; Faba/Guzma/Dulse nv 43–47 que tinham
   ido para o pós-jogo → antes da Poni), marcado stageEstimated. Sobra: 273 de 2.369 fontes do onde obter do USUM sem estágio
   (ex.: Poni Grove) ficam liberadas desde o início, como no app. Banco: 22 jogos, vencem 37.687 → 39.793 (só o USUM novo).
+- **2026-10-26 — Q4, X/Y (0.50.0)**: custo medido: 37 páginas de lugar (≈ 3 min a 5 s/página); leitor das linhas
+  {{Catch/entry6}} confiável. Casa por lugar + espécie (+ forma, "form=Red-Striped"/"Average&nbsp;Size") + faixa de nível:
+  666/708 selvagens com taxa (94%); 29 ambíguos (o PKHeX junta Vara boa nv 25 e Super vara nv 35 numa faixa só, ou
+  Caverna 20% × Rock Smash 95%) e 13 sem linha (Rivière Walk) ficam sem taxa. O método genérico do PKHeX ("Selvagem",
+  "Grama" até no teto da caverna) vira o da Bulbapedia (Grama, Teto da caverna, Vara boa…). Banco: vencem igual; folgadas
+  X/Y 2.451 → 2.445 (Abomasnow da Route 17 tem 1% → raro, sai das sugestões). Próximo: estender aos outros jogos.

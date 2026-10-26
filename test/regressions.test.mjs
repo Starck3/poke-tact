@@ -1624,7 +1624,8 @@ test('onde obter nas Gens 6–9 (PKHeX): versões separadas, sem taxa, eventos f
     const a = load(`${g}-acquisition.json`);
     assert.equal(a.encountersOnly, true, g); assert.match(a.source, /PKHeX/, g);
     for (const v of Object.values(a.versions)) for (const list of Object.values(v)) for (const s of list) {
-      assert.equal(s.pct, undefined, g); // o PKHeX não tem taxa — nada inventado
+      // o PKHeX não tem taxa — nada inventado; Q4 (0.50.0): taxa só da Bulbapedia, com a fonte marcada
+      if (s.pct !== undefined) assert.equal(s.pctSource, 'Bulbapedia', g);
       assert.ok(s.where && s.where !== '?', `${g}: ${JSON.stringify(s)}`);
       assert.ok(!/PKHeX/.test(s.detail ?? ''), `${g}: nota técnica na tela: ${s.detail}`);
     }
@@ -1880,9 +1881,11 @@ test('aba Onde capturar: todos os locais da versão, rota por evolução, evento
   // exclusivo de versão: aparece nas outras versões
   const ekans = r('firered-leafgreen', 'leafgreen', 'ekans');
   assert.equal(ekans.lines.length, 0); assert.ok(ekans.others.some((o) => o.version === 'firered'));
-  // jogos sem decomp também (PKHeX): sem taxa
+  // jogos sem decomp também (PKHeX): sem taxa (Sun/Moon); 0.50.0: X/Y com a taxa da Bulbapedia
+  const sm = r('sun-moon', 'sun', 'pikachu');
+  assert.ok(sm.lines.length && sm.lines.every((l) => !/%/.test(l.text)));
   const xy = r('x-y', 'x', 'pikachu');
-  assert.ok(xy.lines.length && xy.lines.every((l) => !/%/.test(l.text)));
+  assert.ok(xy.lines.some((l) => /Santalune Forest — Grama, nv \d+(–\d+)? \(\d+%\)/.test(l.text)));
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
   assert.match(html, /id="tabDex"/); assert.match(html, /id="dexQ"/);
 });
@@ -2688,4 +2691,20 @@ test('Q3 (0.49.0): Ultra Sun/Ultra Moon no banco de lutas — time do rival pela
   const b = JSON.parse(readFileSync(new URL('../reports/benchmark/ultra-sun-ultra-moon.json', import.meta.url), 'utf8'));
   assert.ok(b.summary.fights > 100 && !b.fights.some((f) => /partner/.test(f.label)));
   assert.ok(b.fights.filter((f) => f.label === 'Hau (First battle)').every((f) => tr.find((x) => x.label === f.label && x.forStarter[0] === f.starter)));
+});
+
+test('Q4 (0.50.0): taxa de aparição do X/Y pela tabela de captura da Bulbapedia — casada por lugar, espécie e nível', () => {
+  const a = load('x-y-acquisition.json');
+  assert.match(a.ratesSource, /Bulbapedia/);
+  // Route 2: Weedle (só X) 11%, Fletchling 20% na grama (Bulbapedia, Kalos Route 2)
+  const r2 = (v, sp) => a.versions[v][sp].find((s) => /^Route 2 /.test(s.where));
+  assert.deepEqual([r2('x', 'weedle').pct, r2('x', 'weedle').method, r2('x', 'fletchling').pct], [11, 'Grama', 20]);
+  // forma: Basculin (red-striped) casa com "Basculin" da tabela
+  assert.ok(a.versions.x['basculin-red-striped'].some((s) => s.pctSource === 'Bulbapedia'));
+  // "~80%" (Woobat no teto da Reflection Cave) fica marcado como aproximado
+  assert.ok(a.versions.x.woobat.some((s) => /Reflection Cave/.test(s.where) && s.pctApprox));
+  // ambíguo (Graveler: Cave 20% e Rock Smash 95% na mesma faixa) fica sem taxa — nada escolhido no chute
+  assert.ok(a.versions.x.graveler.filter((s) => /Terminus Cave/.test(s.where)).every((s) => s.pct == null));
+  const rep = JSON.parse(readFileSync(new URL('../reports/x-y/bulbapedia-rates.json', import.meta.url), 'utf8'));
+  assert.ok(rep.matched / rep.wild > 0.85);
 });

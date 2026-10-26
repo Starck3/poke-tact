@@ -370,6 +370,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Lugar pelo destino do link (Bulbapedia)**: na tabela Acquisition, use `linkPlaces(célula)` (destino de `[[X#Y|Z]]`,
   `{{ci|…}}`, `{{rt|…}}`, `{{tn|…}}`) quando o texto visível é genérico ("Market"); case só nome igual ou prefixo, nunca
   "contido no nome". Em código, comentário no meio da linha antes de mais código é `/* … */`, nunca `//`.
+- **Taxa de aparição (Bulbapedia)**: `scripts/apply-bulbapedia-rates.mjs <jogo>` (logo depois do build-acquisition-pkhex,
+  antes do detonado, para o walkthrough levar a taxa). Para um jogo novo: em `CFG`, a predefinição (`entry6`…), o nome da
+  região no título das rotas ("Kalos Route 2") e as colunas de versão. Linha ambígua fica sem taxa; nunca escolher no chute.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 
