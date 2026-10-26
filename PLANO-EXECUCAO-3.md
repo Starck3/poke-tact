@@ -42,7 +42,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **N4 ⚠ Incensos** (0.40.0: Gen 3 resolvida; nos jogos novos o lugar do incenso não casa com os locais do app) (bebês de incenso fora por falta de onde achar o incenso): onde achar cada incenso pela Bulbapedia nos
   jogos que não têm (Emerald Sea Incense, FRLG Lax Incense, Gens 5–8…). Com o incenso, o bebê entra pelo apply-breeding.
 - **N5 ⏸ Nível de Dynamax dos líderes** (vida 1,5× → o certo, até 2×), se a página do treinador der o nível de Dynamax.
-- **N6 ⚠ Ultra Sun/Ultra Moon** (0.43.0: treinadores sim; progresso não): líderes da história (kahunas, capitães/totens, Elite, campeão, rivais) e a ordem das
+- **N6 ✅ Ultra Sun/Ultra Moon** (0.43.0 treinadores; 0.46.0 progresso): líderes da história (kahunas, capitães/totens, Elite, campeão, rivais) e a ordem das
   provações pelas páginas da Bulbapedia → treinadores e progresso no USUM (hoje não tem). Pronto quando: aba de oponentes
   e progresso existem no USUM com crédito; aba Detonado continua fora (não há detonado).
 - **N7 ⚠ Legends: Arceus — estilos Ágil/Forte e ordem de ação** (0.45.0: ordem de ação sim; estilos não): só se a página da Bulbapedia trouxer a regra em números
@@ -54,7 +54,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   Airstream +Vel, Max Knuckle +Atq, Max Steelspike +Def…, e clima que muda dano: Max Flare/Geyser 1,5×) aplicados nos 3
   turnos do Dynamax. Pronto quando: teste do bônus; banco do SwSh.
 - **P2 ✅ FRLG: "Ssanne Exterior" no mapa** (0.42.0) (warp do decomp para o Vermilion) e o vagante marcado "anda pelo mapa".
-- **P3 ⬜ Estimativas pelo nível revistas** (Route 9 do SM etc.): quando a Bulbapedia tiver a ordem da rota na história
+- **P3 ✅ Estimativas pelo nível revistas** (0.46.0) (Route 9 do SM etc.): quando a Bulbapedia tiver a ordem da rota na história
   (página do local), usar a ordem em vez da estimativa; senão manter a estimativa marcada.
 - **P4 ⬜ Taxa de aparição nas Gens 6–9** (opcional, grande): tabelas de encontro da página de cada rota. Só se N0 tornar
   isso barato; senão ⏸ com o custo estimado.
@@ -105,3 +105,10 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
   a regra de empate; o duelo do LA passa a comparar o instante do nocaute (golpes × tempo de ação) — quem é bem mais rápido
   pode agir 2 vezes. Os estilos Ágil/Forte não têm números (a própria página marca "incomplete") → seguem no aviso, assim
   como os valores de golpe próprios do LA. Aviso "ordem de ação" saiu da tela. Banco: totais iguais (LA folgadas 88→89%).
+- **2026-10-26 — P3 + N6 (0.46.0)**: `apply-bulbapedia-walkthrough` lê o índice "Appendix:<jogo> walkthrough" (partes em
+  ordem com os lugares; ilhas/regiões; pós-jogo). USUM: 12 marcos (8 provações + 4 grandes, com a da Mina) → progress,
+  onde obter 2.096/2.369 com estágio, 98/100 treinadores (grande provação pelo marco; revanche/defesa de título → pós-jogo).
+  Outros: o lugar estimado pelo nível ganha a MEDIANA dos estágios conhecidos da mesma parte (o menor puxava a Route 15 do
+  BW para 4; o maior puxava a Route 16 do SM para o fim); parte de pós-jogo → pós-jogo. SM 7, BW 8, SV 1 lugares (Route 9
+  do SM 0 → 5). Armadilhas: o índice do SV recomeça "Part 1" em cada DLC (parte pela POSIÇÃO); rodar o build-detonado-modern
+  sozinho apaga os golpes da Bulbapedia — refazer a cadeia toda. Banco: vencem 37.687 (igual); folgadas 35.862 → 35.852.

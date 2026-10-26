@@ -2,6 +2,20 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.46.0] — 2026-10-26
+
+> O Ultra Sun/Ultra Moon agora tem progresso pelas provações, como o Sun/Moon: os locais e os treinadores ganham o ponto da história. E os lugares que antes tinham só um ponto estimado pelo nível passam a usar a ordem do detonado da Bulbapedia.
+
+### Adicionado
+- **Progresso no Ultra Sun/Ultra Moon** pela ordem do detonado da Bulbapedia: as 8 provações e as 4 grandes provações (com
+  a da Mina), na ordem. Os lugares de captura (2.096 fontes) e 98 das 100 lutas ganham o ponto da história; a escolha de
+  progresso aparece nesse jogo.
+- **Lugares que tinham ponto estimado pelo nível** (Sun/Moon, Black/White, Scarlet/Violet) agora usam a parte do detonado
+  da Bulbapedia em que aparecem — ex.: a Route 9 do Sun/Moon sai do começo e vai para depois da 5ª provação.
+
+### Alterado
+- Banco de lutas: vencem 37.687 (igual); folgadas 35.862 → 35.852.
+
 ## [0.45.0] — 2026-10-26
 
 > No Legends: Arceus, a luta agora segue a ordem de ação do jogo: um Pokémon bem mais rápido pode atacar duas vezes antes do outro, e o app leva isso em conta.
