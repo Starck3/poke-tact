@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-25 · versão **0.42.0** (publicada no GitHub).
+Atualizado em 2026-10-25 · versão **0.43.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas) e `PLANO-EXECUCAO-2.md` (o plano autônomo depois da 0.28.0, com o registro de cada etapa).
 

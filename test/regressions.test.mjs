@@ -2594,3 +2594,19 @@ test('P2 (0.42.0): "Ssanne Exterior" (FRLG) no ponto do S.S. Anne no mapa da reg
   const at = r.placeOf['Ssanne Exterior'];
   assert.ok(at && r.regions[at[0]].points[at[1]].name === 'S.S. Anne');
 });
+
+test('N6 (0.43.0): Ultra Sun/Ultra Moon ganha treinadores pela Bulbapedia (sem detonado): kahunas, Elite, rivais, vilões', async () => {
+  const t = load('ultra-sun-ultra-moon-trainers.json');
+  assert.ok(t.trainers.length >= 90);
+  const by = (g) => t.trainers.filter((x) => x.group === g).map((x) => x.name);
+  assert.ok(['Hala', 'Olivia', 'Nanu', 'Hapu'].every((n) => by('Líderes de ginásio').includes(n)));
+  assert.ok(['Acerola', 'Molayne', 'Kahili'].every((n) => by('Elite dos Quatro').includes(n)));
+  assert.ok(!t.trainers.some((x) => /tutorial/i.test(x.label))); // lutas-tutorial do Kukui fora
+  // golpes reais e golpe Z (Hala: Crabrawler com Fightinium Z)
+  const hala = t.trainers.find((x) => x.label === 'Hala (Grand trial battle)');
+  assert.ok(hala.party.every((p) => p.movesSource === 'Bulbapedia'));
+  assert.ok(hala.party.some((p) => p.zMove));
+  // forma regional pelo campo "form" da Bulbapedia (Alola)
+  assert.ok(t.trainers.flatMap((x) => x.party).some((p) => /-alola$/.test(p.species)));
+  assert.equal(load('games.json').games.find((g) => g.id === 'ultra-sun-ultra-moon').trainerCount, t.trainers.length);
+});
