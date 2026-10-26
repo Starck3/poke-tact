@@ -8,7 +8,7 @@
    "wins": 252,
    "picks": 252,
    "comfy": 222,
-   "turnsSum": 323,
+   "turnsSum": 354,
    "turnsN": 252
   },
   "antes": {
@@ -41,44 +41,44 @@
       "iron-defense",
       "zen-headbutt"
      ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 86,
-     "candidates": 101,
+     "superEffectiveAvailable": 5,
+     "winnersAvailable": 54,
+     "candidates": 69,
      "picks": [
       {
-       "mon": "qwilfish",
-       "move": "barb-barrage",
-       "eff": 2,
+       "mon": "umbreon",
+       "move": "snarl",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 3,
        "theirTurns": null,
        "faster": 1,
        "theirMove": "confusion"
       },
       {
-       "mon": "luxray",
-       "move": "thunder-fang",
+       "mon": "scizor",
+       "move": "double-hit",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 11,
        "faster": 1,
        "theirMove": "confusion"
       },
       {
-       "mon": "goodra",
-       "move": "acid-spray",
-       "eff": 2,
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 16,
-       "faster": 1,
+       "theirTurns": 9,
+       "faster": 0,
        "theirMove": "zen-headbutt"
       }
      ],
@@ -93,9 +93,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 81,
-     "candidates": 101,
+     "superEffectiveAvailable": 8,
+     "winnersAvailable": 49,
+     "candidates": 69,
      "picks": [
       {
        "mon": "snorlax",
@@ -110,26 +110,26 @@
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "heracross",
-       "move": "pin-missile",
+       "mon": "espeon",
+       "move": "confusion",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 8,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "ursaluna",
+       "mon": "steelix",
        "move": "bulldoze",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 14,
        "faster": 0,
        "theirMove": "swift"
       }
@@ -156,45 +156,45 @@
       "iron-defense",
       "zen-headbutt"
      ],
-     "superEffectiveAvailable": 17,
-     "winnersAvailable": 86,
-     "candidates": 101,
+     "superEffectiveAvailable": 5,
+     "winnersAvailable": 54,
+     "candidates": 69,
      "picks": [
       {
-       "mon": "typhlosion",
-       "move": "hex",
-       "eff": 2,
+       "mon": "umbreon",
+       "move": "snarl",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "confusion"
-      },
-      {
-       "mon": "qwilfish",
-       "move": "barb-barrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
+       "myTurns": 3,
        "theirTurns": null,
        "faster": 1,
        "theirMove": "confusion"
       },
       {
-       "mon": "luxray",
-       "move": "thunder-fang",
+       "mon": "scizor",
+       "move": "double-hit",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 11,
        "faster": 1,
        "theirMove": "confusion"
+      },
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "zen-headbutt"
       }
      ],
      "before": []
@@ -208,9 +208,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 81,
-     "candidates": 101,
+     "superEffectiveAvailable": 8,
+     "winnersAvailable": 49,
+     "candidates": 69,
      "picks": [
       {
        "mon": "snorlax",
@@ -225,26 +225,26 @@
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "heracross",
-       "move": "pin-missile",
+       "mon": "espeon",
+       "move": "confusion",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 8,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "ursaluna",
+       "mon": "steelix",
        "move": "bulldoze",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 14,
        "faster": 0,
        "theirMove": "swift"
       }
@@ -271,45 +271,45 @@
       "iron-defense",
       "zen-headbutt"
      ],
-     "superEffectiveAvailable": 16,
-     "winnersAvailable": 86,
-     "candidates": 101,
+     "superEffectiveAvailable": 5,
+     "winnersAvailable": 54,
+     "candidates": 69,
      "picks": [
       {
-       "mon": "qwilfish",
-       "move": "barb-barrage",
-       "eff": 2,
+       "mon": "umbreon",
+       "move": "snarl",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 3,
        "theirTurns": null,
        "faster": 1,
        "theirMove": "confusion"
       },
       {
-       "mon": "luxray",
-       "move": "thunder-fang",
+       "mon": "scizor",
+       "move": "double-hit",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 11,
        "faster": 1,
        "theirMove": "confusion"
       },
       {
-       "mon": "samurott",
-       "move": "night-slash",
+       "mon": "snorlax",
+       "move": "tackle",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "confusion"
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "zen-headbutt"
       }
      ],
      "before": []
@@ -323,9 +323,9 @@
       "thunder-wave",
       "swift"
      ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 80,
-     "candidates": 101,
+     "superEffectiveAvailable": 8,
+     "winnersAvailable": 48,
+     "candidates": 69,
      "picks": [
       {
        "mon": "snorlax",
@@ -340,26 +340,26 @@
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "heracross",
-       "move": "pin-missile",
+       "mon": "espeon",
+       "move": "confusion",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 8,
-       "faster": 0,
+       "faster": 1,
        "theirMove": "thunder-shock"
       },
       {
-       "mon": "ursaluna",
+       "mon": "steelix",
        "move": "bulldoze",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 14,
        "faster": 0,
        "theirMove": "swift"
       }
@@ -386,9 +386,9 @@
       "calm-mind",
       "dazzling-gleam"
      ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 44,
-     "candidates": 101,
+     "superEffectiveAvailable": 21,
+     "winnersAvailable": 43,
+     "candidates": 99,
      "picks": [
       {
        "mon": "snorlax",
@@ -415,16 +415,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "goodra",
-       "move": "iron-head",
-       "eff": 2,
+       "mon": "ursaluna",
+       "move": "double-edge",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "dazzling-gleam"
+       "theirMove": "psychic"
       }
      ],
      "before": []
@@ -439,21 +439,9 @@
       "brave-bird"
      ],
      "superEffectiveAvailable": 20,
-     "winnersAvailable": 60,
-     "candidates": 101,
+     "winnersAvailable": 58,
+     "candidates": 99,
      "picks": [
-      {
-       "mon": "goodra",
-       "move": "dragon-pulse",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "double-edge"
-      },
       {
        "mon": "graveler",
        "move": "rock-slide",
@@ -477,339 +465,17 @@
        "theirTurns": 4,
        "faster": 0,
        "theirMove": "double-edge"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pikachu",
-     "level": 47,
-     "moves": [
-      "spark",
-      "thunderbolt",
-      "iron-tail",
-      "thunder"
-     ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 75,
-     "candidates": 101,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "high-horsepower",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "spark"
       },
       {
-       "mon": "cherrim",
-       "move": "petal-dance",
+       "mon": "staraptor",
+       "move": "giga-impact",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "gastrodon",
-       "move": "earth-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 15,
-       "faster": 0,
-       "theirMove": "iron-tail"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "legends-arceus",
-   "key": "DETONADO_19_0",
-   "label": "Rei/Akari",
-   "group": "Rival",
-   "stage": 0,
-   "starter": "cyndaquil",
-   "level": 47,
-   "mons": [
-    {
-     "opp": "mr-mime",
-     "level": 46,
-     "moves": [
-      "mimic",
-      "psychic",
-      "calm-mind",
-      "dazzling-gleam"
-     ],
-     "superEffectiveAvailable": 23,
-     "winnersAvailable": 45,
-     "candidates": 101,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "double-edge",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "scizor",
-       "move": "iron-head",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "goodra",
-       "move": "iron-head",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "dazzling-gleam"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "staravia",
-     "level": 46,
-     "moves": [
-      "air-slash",
-      "roost",
-      "double-edge",
-      "brave-bird"
-     ],
-     "superEffectiveAvailable": 20,
-     "winnersAvailable": 62,
-     "candidates": 101,
-     "picks": [
-      {
-       "mon": "goodra",
-       "move": "dragon-pulse",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "double-edge"
-      },
-      {
-       "mon": "graveler",
-       "move": "rock-slide",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "double-edge"
-      },
-      {
-       "mon": "ursaluna",
-       "move": "double-edge",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "double-edge"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "pikachu",
-     "level": 47,
-     "moves": [
-      "spark",
-      "thunderbolt",
-      "iron-tail",
-      "thunder"
-     ],
-     "superEffectiveAvailable": 11,
-     "winnersAvailable": 74,
-     "candidates": 101,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "high-horsepower",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "spark"
-      },
-      {
-       "mon": "cherrim",
-       "move": "petal-dance",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "iron-tail"
-      },
-      {
-       "mon": "gastrodon",
-       "move": "earth-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 15,
-       "faster": 0,
-       "theirMove": "iron-tail"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "legends-arceus",
-   "key": "DETONADO_19_0",
-   "label": "Rei/Akari",
-   "group": "Rival",
-   "stage": 0,
-   "starter": "oshawott",
-   "level": 47,
-   "mons": [
-    {
-     "opp": "mr-mime",
-     "level": 46,
-     "moves": [
-      "mimic",
-      "psychic",
-      "calm-mind",
-      "dazzling-gleam"
-     ],
-     "superEffectiveAvailable": 22,
-     "winnersAvailable": 44,
-     "candidates": 101,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "double-edge",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "scizor",
-       "move": "iron-head",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
-       "mon": "goodra",
-       "move": "iron-head",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "dazzling-gleam"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "staravia",
-     "level": 46,
-     "moves": [
-      "air-slash",
-      "roost",
-      "double-edge",
-      "brave-bird"
-     ],
-     "superEffectiveAvailable": 20,
-     "winnersAvailable": 61,
-     "candidates": 101,
-     "picks": [
-      {
-       "mon": "goodra",
-       "move": "dragon-pulse",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "double-edge"
-      },
-      {
-       "mon": "graveler",
-       "move": "rock-slide",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "double-edge"
-      },
-      {
-       "mon": "ursaluna",
-       "move": "double-edge",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
+       "theirTurns": 3,
+       "faster": 1,
        "theirMove": "double-edge"
       }
      ],
@@ -826,7 +492,341 @@
      ],
      "superEffectiveAvailable": 11,
      "winnersAvailable": 73,
-     "candidates": 101,
+     "candidates": 99,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "high-horsepower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "spark"
+      },
+      {
+       "mon": "cherrim",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "gastrodon",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 15,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-arceus",
+   "key": "DETONADO_19_0",
+   "label": "Rei/Akari",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "cyndaquil",
+   "level": 47,
+   "mons": [
+    {
+     "opp": "mr-mime",
+     "level": 46,
+     "moves": [
+      "mimic",
+      "psychic",
+      "calm-mind",
+      "dazzling-gleam"
+     ],
+     "superEffectiveAvailable": 22,
+     "winnersAvailable": 44,
+     "candidates": 99,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "scizor",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "ursaluna",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "psychic"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "staravia",
+     "level": 46,
+     "moves": [
+      "air-slash",
+      "roost",
+      "double-edge",
+      "brave-bird"
+     ],
+     "superEffectiveAvailable": 20,
+     "winnersAvailable": 60,
+     "candidates": 99,
+     "picks": [
+      {
+       "mon": "graveler",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "ursaluna",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "typhlosion",
+       "move": "flamethrower",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "brave-bird"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 47,
+     "moves": [
+      "spark",
+      "thunderbolt",
+      "iron-tail",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 11,
+     "winnersAvailable": 72,
+     "candidates": 99,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "high-horsepower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "spark"
+      },
+      {
+       "mon": "cherrim",
+       "move": "petal-dance",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      },
+      {
+       "mon": "gastrodon",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 15,
+       "faster": 0,
+       "theirMove": "iron-tail"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "legends-arceus",
+   "key": "DETONADO_19_0",
+   "label": "Rei/Akari",
+   "group": "Rival",
+   "stage": 0,
+   "starter": "oshawott",
+   "level": 47,
+   "mons": [
+    {
+     "opp": "mr-mime",
+     "level": 46,
+     "moves": [
+      "mimic",
+      "psychic",
+      "calm-mind",
+      "dazzling-gleam"
+     ],
+     "superEffectiveAvailable": 21,
+     "winnersAvailable": 43,
+     "candidates": 99,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "scizor",
+       "move": "iron-head",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "ursaluna",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "psychic"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "staravia",
+     "level": 46,
+     "moves": [
+      "air-slash",
+      "roost",
+      "double-edge",
+      "brave-bird"
+     ],
+     "superEffectiveAvailable": 20,
+     "winnersAvailable": 59,
+     "candidates": 99,
+     "picks": [
+      {
+       "mon": "graveler",
+       "move": "rock-slide",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "ursaluna",
+       "move": "double-edge",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "double-edge"
+      },
+      {
+       "mon": "staraptor",
+       "move": "giga-impact",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "double-edge"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "pikachu",
+     "level": 47,
+     "moves": [
+      "spark",
+      "thunderbolt",
+      "iron-tail",
+      "thunder"
+     ],
+     "superEffectiveAvailable": 11,
+     "winnersAvailable": 71,
+     "candidates": 99,
      "picks": [
       {
        "mon": "snorlax",
@@ -884,22 +884,10 @@
      "moves": [
       "tackle"
      ],
-     "superEffectiveAvailable": 7,
-     "winnersAvailable": 100,
-     "candidates": 101,
+     "superEffectiveAvailable": 1,
+     "winnersAvailable": 44,
+     "candidates": 45,
      "picks": [
-      {
-       "mon": "graveler",
-       "move": "rollout",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 23,
-       "faster": 1,
-       "theirMove": "tackle"
-      },
       {
        "mon": "scizor",
        "move": "quick-attack",
@@ -913,13 +901,25 @@
        "theirMove": "tackle"
       },
       {
-       "mon": "drifblim",
+       "mon": "geodude",
+       "move": "rollout",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 21,
+       "faster": 0.5,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drifloon",
        "move": "confusion",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 4,
+       "myTurns": 5,
        "theirTurns": null,
        "faster": 1,
        "theirMove": "tackle"
@@ -944,34 +944,10 @@
      "moves": [
       "tackle"
      ],
-     "superEffectiveAvailable": 7,
-     "winnersAvailable": 100,
-     "candidates": 101,
+     "superEffectiveAvailable": 1,
+     "winnersAvailable": 44,
+     "candidates": 45,
      "picks": [
-      {
-       "mon": "typhlosion",
-       "move": "hex",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "tackle"
-      },
-      {
-       "mon": "graveler",
-       "move": "rollout",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 23,
-       "faster": 1,
-       "theirMove": "tackle"
-      },
       {
        "mon": "scizor",
        "move": "quick-attack",
@@ -981,6 +957,30 @@
        "win": true,
        "myTurns": 4,
        "theirTurns": 24,
+       "faster": 1,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "geodude",
+       "move": "rollout",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 21,
+       "faster": 0.5,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drifloon",
+       "move": "confusion",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 5,
+       "theirTurns": null,
        "faster": 1,
        "theirMove": "tackle"
       }
@@ -1004,22 +1004,10 @@
      "moves": [
       "tackle"
      ],
-     "superEffectiveAvailable": 7,
-     "winnersAvailable": 100,
-     "candidates": 101,
+     "superEffectiveAvailable": 1,
+     "winnersAvailable": 44,
+     "candidates": 45,
      "picks": [
-      {
-       "mon": "graveler",
-       "move": "rollout",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 23,
-       "faster": 1,
-       "theirMove": "tackle"
-      },
       {
        "mon": "scizor",
        "move": "quick-attack",
@@ -1033,13 +1021,25 @@
        "theirMove": "tackle"
       },
       {
-       "mon": "drifblim",
+       "mon": "geodude",
+       "move": "rollout",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 21,
+       "faster": 0.5,
+       "theirMove": "tackle"
+      },
+      {
+       "mon": "drifloon",
        "move": "confusion",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 4,
+       "myTurns": 5,
        "theirTurns": null,
        "faster": 1,
        "theirMove": "tackle"
@@ -2035,45 +2035,45 @@
       "quick-attack",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 1,
-     "winnersAvailable": 72,
-     "candidates": 101,
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 29,
+     "candidates": 46,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "pin-missile",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "thunder-shock"
-      },
-      {
-       "mon": "ursaluna",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "graveler",
+       "mon": "geodude",
        "move": "rollout",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 3,
-       "theirTurns": 17,
+       "theirTurns": 15,
        "faster": 0,
        "theirMove": "quick-attack"
+      },
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "thunder-shock"
       }
      ],
      "before": []
@@ -2097,45 +2097,45 @@
       "quick-attack",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 1,
-     "winnersAvailable": 72,
-     "candidates": 101,
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 29,
+     "candidates": 46,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "pin-missile",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "thunder-shock"
-      },
-      {
-       "mon": "ursaluna",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "graveler",
+       "mon": "geodude",
        "move": "rollout",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 3,
-       "theirTurns": 17,
+       "theirTurns": 15,
        "faster": 0,
        "theirMove": "quick-attack"
+      },
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "thunder-shock"
       }
      ],
      "before": []
@@ -2159,45 +2159,45 @@
       "quick-attack",
       "thunder-wave"
      ],
-     "superEffectiveAvailable": 1,
-     "winnersAvailable": 71,
-     "candidates": 101,
+     "superEffectiveAvailable": 0,
+     "winnersAvailable": 29,
+     "candidates": 46,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "pin-missile",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "thunder-shock"
-      },
-      {
-       "mon": "ursaluna",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "graveler",
+       "mon": "geodude",
        "move": "rollout",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 3,
-       "theirTurns": 17,
+       "theirTurns": 15,
        "faster": 0,
        "theirMove": "quick-attack"
+      },
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 0,
+       "theirMove": "thunder-shock"
+      },
+      {
+       "mon": "espeon",
+       "move": "confusion",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "thunder-shock"
       }
      ],
      "before": []
@@ -3536,9 +3536,9 @@
       "draining-kiss",
       "calm-mind"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 138,
-     "candidates": 150,
+     "superEffectiveAvailable": 14,
+     "winnersAvailable": 95,
+     "candidates": 107,
      "picks": [
       {
        "mon": "gastly",
@@ -3553,28 +3553,28 @@
        "theirMove": "draining-kiss"
       },
       {
-       "mon": "overqwil",
-       "move": "barb-barrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "draining-kiss"
-      },
-      {
-       "mon": "rapidash",
-       "move": "flame-wheel",
+       "mon": "scizor",
+       "move": "double-hit",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 14,
+       "myTurns": 3,
+       "theirTurns": 15,
        "faster": 1,
-       "theirMove": "tackle"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "togekiss",
+       "move": "air-cutter",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "draining-kiss"
       }
      ],
      "before": []
@@ -3588,16 +3588,16 @@
       "slash",
       "dragon-claw"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 81,
-     "candidates": 151,
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 49,
+     "candidates": 107,
      "picks": [
       {
        "mon": "togekiss",
        "move": "draining-kiss",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
@@ -3605,28 +3605,28 @@
        "theirMove": "slash"
       },
       {
-       "mon": "walrein",
+       "mon": "glaceon",
        "move": "powder-snow",
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "gardevoir",
-       "move": "dazzling-gleam",
-       "eff": 2,
+       "mon": "gyarados",
+       "move": "crunch",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "bulldoze"
+       "theirMove": "dragon-claw"
       }
      ],
      "before": []
@@ -3651,9 +3651,9 @@
       "draining-kiss",
       "calm-mind"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 138,
-     "candidates": 150,
+     "superEffectiveAvailable": 14,
+     "winnersAvailable": 95,
+     "candidates": 107,
      "picks": [
       {
        "mon": "gastly",
@@ -3668,28 +3668,28 @@
        "theirMove": "draining-kiss"
       },
       {
-       "mon": "overqwil",
-       "move": "barb-barrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "draining-kiss"
-      },
-      {
-       "mon": "rapidash",
-       "move": "flame-wheel",
+       "mon": "scizor",
+       "move": "double-hit",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 14,
+       "myTurns": 3,
+       "theirTurns": 15,
        "faster": 1,
-       "theirMove": "tackle"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "togekiss",
+       "move": "air-cutter",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "draining-kiss"
       }
      ],
      "before": []
@@ -3703,16 +3703,16 @@
       "slash",
       "dragon-claw"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 79,
-     "candidates": 151,
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 47,
+     "candidates": 107,
      "picks": [
       {
        "mon": "togekiss",
        "move": "draining-kiss",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
@@ -3720,28 +3720,28 @@
        "theirMove": "slash"
       },
       {
-       "mon": "walrein",
+       "mon": "glaceon",
        "move": "powder-snow",
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "gardevoir",
-       "move": "dazzling-gleam",
-       "eff": 2,
+       "mon": "gyarados",
+       "move": "crunch",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "bulldoze"
+       "theirMove": "dragon-claw"
       }
      ],
      "before": []
@@ -3766,9 +3766,9 @@
       "draining-kiss",
       "calm-mind"
      ],
-     "superEffectiveAvailable": 27,
-     "winnersAvailable": 138,
-     "candidates": 150,
+     "superEffectiveAvailable": 14,
+     "winnersAvailable": 95,
+     "candidates": 107,
      "picks": [
       {
        "mon": "gastly",
@@ -3783,28 +3783,28 @@
        "theirMove": "draining-kiss"
       },
       {
-       "mon": "overqwil",
-       "move": "barb-barrage",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "draining-kiss"
-      },
-      {
-       "mon": "rapidash",
-       "move": "flame-wheel",
+       "mon": "scizor",
+       "move": "double-hit",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 14,
+       "myTurns": 3,
+       "theirTurns": 15,
        "faster": 1,
-       "theirMove": "tackle"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "togekiss",
+       "move": "air-cutter",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "draining-kiss"
       }
      ],
      "before": []
@@ -3818,16 +3818,16 @@
       "slash",
       "dragon-claw"
      ],
-     "superEffectiveAvailable": 21,
-     "winnersAvailable": 80,
-     "candidates": 151,
+     "superEffectiveAvailable": 15,
+     "winnersAvailable": 48,
+     "candidates": 107,
      "picks": [
       {
        "mon": "togekiss",
        "move": "draining-kiss",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
@@ -3835,28 +3835,28 @@
        "theirMove": "slash"
       },
       {
-       "mon": "walrein",
+       "mon": "glaceon",
        "move": "powder-snow",
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "dragon-claw"
       },
       {
-       "mon": "gardevoir",
-       "move": "dazzling-gleam",
-       "eff": 2,
+       "mon": "gyarados",
+       "move": "crunch",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
+       "myTurns": 2,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "bulldoze"
+       "theirMove": "dragon-claw"
       }
      ],
      "before": []

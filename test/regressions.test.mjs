@@ -2434,3 +2434,18 @@ test('motor (0.32.0): whereToGet em cache por acq — mesmo resultado, objeto no
   const a2 = structuredClone(a); a2.versions.firered.raichu = [{ type: 'gift', where: 'Teste', level: 5 }];
   assert.equal(whereToGet(d, a2, rai, 'firered').direct[0].where, 'Teste');
 });
+
+test('A7 (0.33.0): mundo aberto — com progresso, só fontes de nível compatível com o time; minLevel nos jogos do PKHeX', async () => {
+  const { recommend, battleForm, reachStage, LEVEL_MARGIN } = await import('../public/engine.mjs');
+  assert.equal(LEVEL_MARGIN, 10);
+  const sv = load('scarlet-violet.json'), sva = load('scarlet-violet-acquisition.json');
+  // minLevel nos jogos do PKHeX (faltava): Pupitar só existe por evolução a partir do nv 30
+  assert.deepEqual(['pupitar', 'tyranitar'].map((n) => sv.pokemon.find((p) => p.name === n).minLevel), [30, 55]);
+  // Katy (Teddiursa Tera Bug) com time de nv 16: sem Pupitar (selvagem nv 42–44 na South Province)
+  const katy = load('scarlet-violet-trainers.json').trainers.find((t) => t.key === 'DETONADO_3_0'), p = katy.party[2];
+  const picks = recommend(sv, battleForm(sv.pokemon.find((x) => x.name === p.species), p), { level: 16, oppLevel: p.level, oppMoves: p.moves, version: 'scarlet', onlyObtainable: true, acq: sva, stage: 0 }).picks;
+  assert.ok(!picks.some((s) => s.mon.name === 'pupitar'));
+  // reachStage com teto de nível: a fonte de nv 42 não conta para quem está no nv 20
+  const larvitar = sv.pokemon.find((x) => x.name === 'larvitar');
+  assert.ok(reachStage(sv, sva, larvitar, 'scarlet', new Set(), 20) >= reachStage(sv, sva, larvitar, 'scarlet'));
+});

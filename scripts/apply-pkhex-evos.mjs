@@ -53,6 +53,17 @@ for (const mon of data.pokemon) {
   if (before !== after) changes.push(`${mon.name}: ${before} → ${after}`);
 }
 for (const x of data.pokemon) x.fullyEvolved = !data.pokemon.some((y) => y.evolvesFrom === x.id);
+// menor nível em que a espécie existe por evolução (o maior nível de evolução na cadeia), como nos jogos com decomp —
+// faltava nos jogos do PKHeX e o filtro "ainda não evoluiu no nível do seu time" não agia (Pupitar sugerido no nv 16)
+const byIdEvo = new Map(data.pokemon.map((p) => [p.id, p]));
+const minLevel = (mon, seen = new Set()) => {
+  if (seen.has(mon.id)) return 1;
+  seen.add(mon.id);
+  const parent = mon.evolvesFrom !== mon.id ? byIdEvo.get(mon.evolvesFrom) : null;
+  const own = /^LEVEL/.test(mon.evo?.kind ?? '') && Number(mon.evo.param) > 0 ? Number(mon.evo.param) : 0;
+  return Math.max(parent ? minLevel(parent, seen) : 1, own, 1);
+};
+for (const x of data.pokemon) x.minLevel = minLevel(x);
 writeFileSync(file, JSON.stringify(data));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 writeFileSync(new URL(`../reports/${gameId}/pkhex-evos.json`, import.meta.url), JSON.stringify(changes, null, 1));

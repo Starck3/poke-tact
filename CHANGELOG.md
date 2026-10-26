@@ -2,6 +2,19 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.33.0] — 2026-10-25
+
+> As sugestões deixaram de indicar Pokémon que você ainda não teria no nível do seu time — como um Pupitar de nível 42 para um time de nível 16 no Scarlet/Violet ou um Rhydon de nível 55 no Sword/Shield.
+
+### Corrigido
+- **Jogos do Black/White ao Z-A**: faltava o "menor nível em que a espécie existe por evolução" (ex.: Pupitar a partir do
+  nv 30) — o filtro que tira Pokémon ainda não evoluídos no nível do seu time não agia nesses jogos.
+- **Mundo aberto com progresso informado** (Scarlet/Violet, Wild Area do Sword/Shield…): além do ponto da história, a
+  sugestão exige uma forma de obter com nível até 10 acima do seu time (margem estimada: Pokémon muito acima é difícil de
+  capturar e pode não obedecer). "Como conseguir" mostra essa forma.
+- Banco de lutas: vencem 37.697 → 37.694 (3 lutas do Let's Go em que só ganhava um Pokémon que você não teria naquele
+  nível); folgadas 36.445 → 36.370.
+
 ## [0.32.0] — 2026-10-25
 
 > O app ficou bem mais rápido para calcular as sugestões (de 5 a 9 vezes), sem mudar nenhum resultado.
