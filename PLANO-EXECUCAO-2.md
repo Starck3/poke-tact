@@ -56,7 +56,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   pular formas Mega/Z que não podem ganhar. Pronto quando: mesmos números, tempo menor.
 
 ### Bloco B — Dados que dá para fazer com as fontes que temos
-- **B1 ⬜ Creche no Black 2/White 2** (decomp pokebw2): achar a zona da creche e a regra do ovo/incenso no código
+- **B1 ✅ Creche no Black 2/White 2** (0.34.0) (decomp pokebw2): achar a zona da creche e a regra do ovo/incenso no código
   (`field_daycare.h` e afins). Pronto quando: bebê que só nasce de ovo vira obtível no B2W2 com a fonte do código.
   Sem a regra no código → ⏸.
 - **B2 ⬜ Ovos nos jogos do PKHeX** (Black/White, X/Y, ORAS, SM, SwSh, BDSP, SV): grupos de ovo e sexo pela tabela
@@ -111,3 +111,7 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   até o do time + 10 (`LEVEL_MARGIN`, estimativa marcada no código e no CHANGELOG). Banco: vencem 37.697 → 37.694 (3 lutas
   do Let's Go em que só ganhava um Pokémon que você não teria naquele nível); folgadas 36.445 → 36.370 (BW −48, LGPE −10,
   SV −12…). Explicado.
+- **2026-10-25 — B1 (0.34.0)**: creche do B2W2 na Route 3 (route_3.s); bebê pelo `baby_species` de res/pokemon/*/data.json
+  (tabela ARCID_BABYMONS do getChild), incensos pelo `incenseHandler` de sodateya.c (ids → generated/items.txt), nível 1.
+  +36 espécies por versão (Abra, Larvitar, Deino…); Bonsly/Budew fora (incenso sem fonte). Novo: a evolução de um bebê
+  novo também vira obtível (Kadabra no B2W2; Hitmontop no FRLG pelo Tyrogue). Banco sem mudança (37.694 / 36.370).

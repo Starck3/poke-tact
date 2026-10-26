@@ -14,7 +14,7 @@ const ASM_STEPS = {
   2: ['build-data', 'apply-gen2-overlay', 'validate-gen2-vs-decomp', 'build-trainers-gen2', 'build-acquisition-gen2', 'apply-breeding', 'build-walkthrough-gen1'],
   hgss: ['build-data', 'apply-hgss-overlay', 'validate-hgss-vs-decomp', 'build-trainers-hgss', 'build-acquisition-hgss', 'apply-breeding', 'build-walkthrough-gen1'], // E1: HeartGold/SoulSilver parcial
   dp: ['build-data', 'apply-dp-overlay', 'validate-dp-vs-decomp', 'validate-dp-scripts', 'build-trainers-dp', 'build-acquisition-dp', 'apply-breeding', 'build-walkthrough-gen1'], // Diamond/Pearl (binários lidos pelo código do jogo)
-  5: ['build-data', 'apply-gen5-overlay', 'validate-gen5-vs-decomp', 'build-trainers-gen5', 'build-acquisition-gen5', 'build-walkthrough-gen1'], // Black 2 / White 2 (fuddlesworth/pokebw2)
+  5: ['build-data', 'apply-gen5-overlay', 'validate-gen5-vs-decomp', 'build-trainers-gen5', 'build-acquisition-gen5', 'apply-breeding', 'build-walkthrough-gen1'], // Black 2 / White 2 (fuddlesworth/pokebw2)
   4: ['build-data', 'apply-gen4-overlay', 'validate-gen4-vs-decomp', 'build-trainers-gen4', 'build-acquisition-gen4', 'apply-breeding', 'build-walkthrough-gen1'], // Platinum (decomp em JSON)
 };
 // camada PokéAPI (sem decomp): dados + conferência dos golpes com o Showdown (E3; o script ignora gerações fora de 5–8)
