@@ -2482,3 +2482,19 @@ test('ovos da creche nos jogos do PKHeX (0.35.0): grupos/gênero da tabela do jo
   // Scarlet/Violet: piquenique; nada novo (o que sai de ovo já se obtinha)
   assert.ok(load('scarlet-violet-acquisition.json').progress.keyItems.daycare.picnic);
 });
+
+test('B3 (0.36.0): local que o detonado não cita ganha estágio ESTIMADO pelo nível dos selvagens em terra (marcado)', async () => {
+  const { catchReport } = await import('../public/engine.mjs');
+  const a = load('black-white-acquisition.json');
+  const est = new Map();
+  for (const v of Object.values(a.versions)) for (const l of Object.values(v)) for (const s of l) if (s.stageEstimated) est.set(s.where, s.stage);
+  assert.equal(est.get('Route 1'), 0);
+  assert.ok(est.get('Route 10') >= 5); // selvagens de nível alto → depois
+  assert.ok(!est.has('Route 17')); // só água (Surf/vara): sem estimativa
+  // nenhum local com estágio do detonado vira estimativa
+  for (const v of Object.values(a.versions)) for (const l of Object.values(v)) for (const s of l) if (s.stageEstimated) assert.ok(load('../../reports/black-white/detonado-modern.json').placesWithoutStage.includes(s.where), s.where);
+  // a tela marca: catchReport().lines[].estimated
+  const d = load('black-white.json');
+  const mon = d.pokemon.find((p) => (a.versions.black[p.name] ?? []).some((s) => s.stageEstimated));
+  assert.ok(catchReport(d, a, mon, 'black').lines.some((l) => l.estimated));
+});

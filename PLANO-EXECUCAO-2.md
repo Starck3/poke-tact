@@ -63,7 +63,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
   pessoal do PKHeX; espécie do ovo pela cadeia de evolução; incensos pela regra da geração (tabela do PKHeX se houver);
   creche: onde o detonado diz (frase com "creche"/"Day Care"/"Nursery"/"Picnic" no SV). Pronto quando: os bebês/pré-
   evoluções que só saem de ovo ganham a fonte `breed` com o ponto da história. Jogo sem creche no detonado → fica fora.
-- **B3 ⬜ Locais "fora do detonado"** (BW 14, SwSh 19, SM 9, SV 4, Z-A 7): estimativa pelo nível dos selvagens
+- **B3 ✅ Locais "fora do detonado"** (0.36.0) (BW 14, SwSh 19, SM 9, SV 4, Z-A 7): estimativa pelo nível dos selvagens
   comparado aos times dos líderes, **marcada "estimativa"** na tela. Pronto quando: cada local ganha estágio estimado
   com o motivo; nenhum local muda de estágio quando já tinha estágio do detonado.
 - **B4 ⬜ Itens de evolução e Mega Stones sem citação** (SwSh 0/28, Let's Go 0/6, Z-A 0 pedras): tentar frases com o
@@ -120,3 +120,8 @@ A1 → A2 → A3 → A4 → A6 → A7 → B1 → B2 → B3 → B4 → B5 → A5 
   tabela da Gen 4; nível 1 (EggMetLevel). Creche e ponto da história pelo detonado (keyItems.daycare: 1ª menção ou a frase
   de "permissão para cruzar" no BW). BW +54, X/Y +48, ORAS +38, SM +30 (+ evoluções: Togetic…), BDSP +15, SwSh +6, SV 0
   (piquenique; já se obtinha). USUM sem detonado; Let's Go/LA/Z-A sem ovos. Banco sem mudança.
+- **2026-10-25 — B3 (0.36.0)**: estágio ESTIMADO (marcado `stageEstimated`; a tela diz "estimativa pelo nível") para local
+  que o detonado não cita: mediana dos níveis mínimos dos selvagens em terra × o nível mais alto dos treinadores de cada
+  estágio. Duas armadilhas achadas: Surf/vara puxavam para o estágio 0 (Route 17 do BW, só água → sem estimativa) e um
+  encontro fora do padrão (Pikipek nv 2–3 na Route 10 do SM) → mediana. BW 11 locais, SwSh 19, SM 8, SV 2, Z-A 1.
+  Também: o build-detonado-modern deixa as fontes de ovo (`breed`) em paz. Banco: folgadas 36.370 → 36.380 (BW +10).

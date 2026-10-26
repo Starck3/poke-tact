@@ -382,9 +382,33 @@ function keyItems() {
   return out;
 }
 let withStage = 0, total = 0;
+// B3 (0.36.0) — local que o detonado não cita: ESTIMATIVA pelo nível — o menor nível dos selvagens comuns do local comparado
+// ao nível mais alto dos treinadores de cada estágio: entra no 1º estágio em que os treinadores já chegam a esse nível.
+// Marcada (stageEstimated) — a tela diz "estimativa pelo nível".
+const stageTop = [];
+for (const t of trainers) if (t.stage != null) stageTop[t.stage] = Math.max(stageTop[t.stage] ?? 0, ...t.party.map((p) => p.level ?? 0));
+const wildMin = new Map();
+// só encontro em terra: Surf e vara dependem de HM/item e as faixas de nível deles puxavam a Route 17 do BW (só água,
+// "Surf nv 5–15") para o estágio 0; local só de água fica sem estimativa
+const LAND = (s) => !/surf|rod|vara|pesca|fish/i.test(s.method ?? '');
+for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) if (s.type === 'wild' && !s.random && s.min && LAND(s)) (wildMin.get(s.where) ?? wildMin.set(s.where, []).get(s.where)).push(s.min);
+// mediana dos níveis mínimos do local: um encontro fora do padrão (SM Route 10: Pikipek nv 2–3 entre selvagens nv 24+)
+// não puxa o local para o começo
+const median = (xs) => { const a = [...xs].sort((x, y) => x - y); return a.length ? a[Math.floor((a.length - 1) / 2)] : null; };
+const estimateOf = (where) => {
+  const L = median(wildMin.get(where) ?? []);
+  if (!L || !stageTop.length) return null;
+  let st = stageTop.findIndex((top) => (top ?? 0) >= L);
+  if (st < 0) st = POST;
+  return { stage: st, section: 'estimativa pelo nível', by: 'estimativa', name: `selvagens a partir do nv ${L}` };
+};
+let estimated = 0;
 for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
+  if (s.type === 'breed') continue; // ovo da creche (apply-breeding): o estágio é o da creche, não o de um local
   total++;
-  const r = placeOf(s.where);
+  let r = placeOf(s.where);
+  delete s.stageEstimated;
+  if (!r && hasProgress) { r = estimateOf(s.where); if (r) { s.stageEstimated = true; estimated++; } }
   if (r && hasProgress) { s.stage = r.stage; withStage++; } else delete s.stage;
 }
 if (hasProgress) {
@@ -447,4 +471,4 @@ writeFileSync(new URL(`../reports/${gameId}/detonado-modern.json`, import.meta.u
 const g = trainers.reduce((a, t) => ((a[t.group] = (a[t.group] ?? 0) + 1), a), {});
 console.log(`[${gameId}] detonado: ${sections.length} seções, ${battles.length} lutas → ${trainers.length} treinadores ${JSON.stringify(g)}; líderes: ${leaderOrder.join(' > ') || '—'}${champ && hasProgress ? `; campeão ${champ.name}` : ''}`);
 console.log(`  espécies não reconhecidas ${unresolved.length}${unresolved.length ? ` (${[...new Set(unresolved)].slice(0, 12).join(', ')})` : ''}; por aproximação ${fuzzy.length}${fuzzy.length ? ` (${[...new Set(fuzzy)].slice(0, 8).join('; ')})` : ''}; inicial genérico pulado ${skippedPlaceholders}`);
-console.log(`  fontes do onde obter com estágio: ${withStage}/${total}; locais sem seção no detonado: ${[...stageOfPlace].filter(([, r]) => !r).length}/${stageOfPlace.size}`);
+console.log(`  fontes do onde obter com estágio: ${withStage}/${total} (${estimated} por estimativa de nível); locais sem seção no detonado: ${[...stageOfPlace].filter(([, r]) => !r).length}/${stageOfPlace.size}`);

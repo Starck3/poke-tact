@@ -2,6 +2,20 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.36.0] — 2026-10-25
+
+> Locais que o detonado não cita (como várias rotas do Black/White e a Wild Area do Sword/Shield) agora ganham um ponto da história estimado pelo nível dos Pokémon selvagens, sempre marcado como estimativa.
+
+### Adicionado
+- **Ponto da história estimado** para os locais que o detonado não cita (Black/White, Sword/Shield, Sun/Moon,
+  Scarlet/Violet, Z-A): o nível dos Pokémon selvagens em terra do local comparado ao nível dos treinadores de cada parte da
+  história. Aparece como "(estimativa pelo nível)" na aba Onde capturar. Locais só de água (Surf/vara) ficam sem
+  estimativa.
+- Banco de lutas: folgadas 36.370 → 36.380 (Black/White).
+
+### Corrigido
+- Regerar o detonado dos jogos novos apagava o ponto da história dos ovos da creche; agora não mexe neles.
+
 ## [0.35.0] — 2026-10-25
 
 > Os ovos da creche chegaram aos jogos mais novos: no Black/White, X/Y, Omega Ruby/Alpha Sapphire, Sun/Moon, Sword/Shield e Brilliant Diamond/Shining Pearl, os Pokémon que só se conseguem por ovo aparecem em Onde capturar.
