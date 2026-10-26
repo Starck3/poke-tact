@@ -281,8 +281,20 @@ export function recommendTeam(data, party, opts) {
  * Retorna { direct: fontes diretas, from?: espécie capturável, steps: [{to, evo}] (evoluções a fazer), events }.
  * Se a espécie não é obtível diretamente, sobe pela cadeia evolutiva até achar uma forma obtível.
  */
+// cache (A6, 0.32.0): o banco de lutas chamava isto milhares de vezes para a mesma espécie e remontava o índice das
+// espécies a cada chamada (2,7 s de 4,8 s no Scarlet/Violet). Guardado no próprio objeto `acq` (WeakMap): dado novo =
+// cache novo. Os dados não mudam depois de carregados (app e banco de lutas).
+const WHERE_CACHE = new WeakMap(), ID_INDEX = new WeakMap();
+const idIndex = (data) => { let m = ID_INDEX.get(data.pokemon); if (!m) ID_INDEX.set(data.pokemon, (m = new Map(data.pokemon.map((p) => [p.id, p])))); return m; };
 export function whereToGet(data, acq, mon, version) {
-  const byId = new Map(data.pokemon.map((p) => [p.id, p]));
+  let cache = WHERE_CACHE.get(acq);
+  if (!cache) WHERE_CACHE.set(acq, (cache = new Map()));
+  const key = `${version}|${mon.id}|${mon.name}`;
+  if (!cache.has(key)) cache.set(key, whereToGetUncached(data, acq, mon, version));
+  return cache.get(key);
+}
+function whereToGetUncached(data, acq, mon, version) {
+  const byId = idIndex(data);
   const all = (n) => acq.versions[version][n] ?? [];
   const usable = (n) => all(n).filter((s) => s.type !== 'event');
   if (usable(mon.name).length) return { direct: usable(mon.name), steps: [], events: [] };

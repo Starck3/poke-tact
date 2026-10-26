@@ -2,6 +2,15 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.32.0] — 2026-10-25
+
+> O app ficou bem mais rápido para calcular as sugestões (de 5 a 9 vezes), sem mudar nenhum resultado.
+
+### Alterado
+- **Sugestões mais rápidas**: a busca de "onde obter" de cada Pokémon era refeita muitas vezes na mesma conta; agora fica
+  guardada. Cada sugestão sai de 5 a 9 vezes mais rápido (Scarlet/Violet: 155 → 18 ms) e o banco de lutas completo cai de
+  ≈ 11 para ≈ 6 minutos, com os mesmos números (37.697 vencem; 36.445 folgadas).
+
 ## [0.31.0] — 2026-10-25
 
 > Ajuste fino no X/Y e no Omega Ruby/Alpha Sapphire: o chefe que mega evolui também age na ordem certa no turno em que evolui, como já acontecia com o seu Pokémon.
