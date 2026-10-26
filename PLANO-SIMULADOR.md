@@ -21,13 +21,13 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial (ver nota)
    - Motor: o seu Pokémon pode lutar Mega (atributos, tipo e habilidade da Mega); na Gen 6 a Velocidade da Mega só vale do
      2º turno. Sugestão aparece como "Charizard (Mega X)" com "segurando Charizardite X".
    - Chefes que usam Mega (Korrina, Diantha, Steven…) lutam Mega quando o detonado diz.
-2. ⚠ **Golpes Z** (0.28.0: o seu lado; falta o chefe usar Z — o detonado não marca no time) — Sun/Moon e Ultra Sun/Ultra Moon. Um golpe Z por luta: o primeiro golpe vira Z (poder pela tabela),
+2. ✅ **Golpes Z** (0.28.0: o seu lado; o chefe usar Z ficou ⏸ — o detonado não marca) — Sun/Moon e Ultra Sun/Ultra Moon. Um golpe Z por luta: o primeiro golpe vira Z (poder pela tabela),
    só com o Z-Crystal do tipo e o Z-Ring (provações dão os cristais — o estágio já existe).
 3. ✅ **Terastal** (0.29.0) — Scarlet/Violet. Tipo Tera dos líderes (detonado) muda as fraquezas deles; o seu Pokémon pode
    terastalizar no tipo dele (bônus de STAB 2×) a partir da Tera Orb.
 4. ✅ **Dynamax** (0.30.0) — Sword/Shield. Só em ginásios e chefes: vida 2× por 3 turnos, golpes Max (poder pela tabela) com o
    efeito de clima/atributo; líderes que dão Gigantamax.
-5. ⬜ **Legends: Arceus e Z-A** — estilos Ágil/Forte e ordem de ação (LA); batalha em tempo real (Z-A). Provavelmente
+5. ⚠ **Legends: Arceus e Z-A** (sem fonte — ficam no aviso; ver PLANO-EXECUCAO-2 A5) — estilos Ágil/Forte e ordem de ação (LA); batalha em tempo real (Z-A). Provavelmente
    fica como aproximação marcada na tela — o 1 contra 1 por turnos não representa bem.
 
 ## Decisões padrão (dá para mudar)
