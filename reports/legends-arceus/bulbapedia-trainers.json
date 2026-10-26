@@ -1,0 +1,40 @@
+{
+ "matched": [],
+ "unmatched": [
+  "DETONADO_7_0 Coin",
+  "DETONADO_9_0 Clover",
+  "DETONADO_10_0 Coin",
+  "DETONADO_11_0 Charm",
+  "DETONADO_16_0 Wenton",
+  "DETONADO_17_0 Bren",
+  "DETONADO_22_0 Rye",
+  "DETONADO_25_0 Charm",
+  "DETONADO_39_0 Ingo – using alphas",
+  "DETONADO_88_0 Ingo",
+  "DETONADO_89_0 Ingo",
+  "DETONADO_90_0 Ingo",
+  "DETONADO_91_0 Ingo",
+  "DETONADO_92_0 Ingo",
+  "DETONADO_93_0 Ingo",
+  "DETONADO_94_0 Ingo",
+  "DETONADO_95_0 Ingo",
+  "DETONADO_96_0 Ingo",
+  "DETONADO_97_0 Ingo",
+  "DETONADO_98_0 Ingo",
+  "DETONADO_99_0 Ingo",
+  "DETONADO_100_0 Ingo",
+  "DETONADO_101_0 Ingo",
+  "DETONADO_102_0 Ingo"
+ ],
+ "missingMoves": [],
+ "pages": {
+  "Coin": "sem time deste jogo",
+  "Clover": "sem time deste jogo",
+  "Charm": "sem time deste jogo",
+  "Wenton": "não existe",
+  "Bren": "não existe",
+  "Rye": "sem time deste jogo",
+  "Ingo – using alphas": "não existe",
+  "Ingo": "4 times"
+ }
+}

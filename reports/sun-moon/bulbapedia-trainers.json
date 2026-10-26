@@ -1,0 +1,46 @@
+{
+ "matched": [
+  "DETONADO_6_0 Dexio ← Dexio (First possible battle) 2/2",
+  "DETONADO_16_0 Kiawe ← Kiawe (Pokémon Sun) 3/3",
+  "DETONADO_39_0 Kahili ← Kahili (Initial battle) 4/5",
+  "DETONADO_40_0 Professor Kukui ← Kukui (Champion battle) 6/6",
+  "DETONADO_40_0_1 Professor Kukui ← Kukui (Champion battle) 6/6",
+  "DETONADO_40_0_2 Professor Kukui ← Kukui (Champion battle) 6/6",
+  "DETONADO_49_0 Red ← Red (game) (Pokémon Sun and Moon) 6/6",
+  "DETONADO_51_0 Hala ← Hala (Pokémon League rematch) 5/5",
+  "DETONADO_54_0 Kahili ← Kahili (Rematch) 4/5",
+  "DETONADO_66_0 Professor Kukui ← Kukui (Title Defense battle) 6/6",
+  "DETONADO_66_0_1 Professor Kukui ← Kukui (Title Defense battle) 6/6",
+  "DETONADO_66_0_2 Professor Kukui ← Kukui (Title Defense battle) 6/6"
+ ],
+ "unmatched": [
+  "DETONADO_7_0 Sina",
+  "DETONADO_17_0 Mallow",
+  "DETONADO_31_0 Lusamine",
+  "DETONADO_50_0 Blue",
+  "DETONADO_65_0 Tristan"
+ ],
+ "missingMoves": [
+  "Professor Kukui snorlax: Body Slam, Crunch, Heavy Slam, High&nbsp;Horsepower",
+  "Professor Kukui snorlax: Body Slam, Crunch, Heavy Slam, High&nbsp;Horsepower",
+  "Professor Kukui snorlax: Body Slam, Crunch, Heavy Slam, High&nbsp;Horsepower",
+  "Red snorlax: Crunch, Heavy Slam, High&nbsp;Horsepower, Body Slam",
+  "Hala primeape: Cross Chop, Rock Slide, Punishment, Stomping&nbsp;Tantrum",
+  "Professor Kukui snorlax: Body Slam, Crunch, Heavy Slam, High&nbsp;Horsepower",
+  "Professor Kukui snorlax: Body Slam, Crunch, Heavy Slam, High&nbsp;Horsepower",
+  "Professor Kukui snorlax: Body Slam, Crunch, Heavy Slam, High&nbsp;Horsepower"
+ ],
+ "pages": {
+  "Dexio": "3 times",
+  "Sina": "1 times",
+  "Kiawe": "2 times",
+  "Mallow": "1 times",
+  "Lusamine": "2 times",
+  "Kahili": "2 times",
+  "Kukui": "10 times",
+  "Red (game)": "3 times",
+  "Blue (game)": "3 times",
+  "Hala": "3 times",
+  "Tristan": "não existe"
+ }
+}

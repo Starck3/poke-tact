@@ -1,0 +1,44 @@
+{
+ "matched": [
+  "DETONADO_41_0 Byron ← Byron (Rematch) 5/6"
+ ],
+ "unmatched": [
+  "DETONADO_0_0 Barry",
+  "DETONADO_0_0_1 Barry",
+  "DETONADO_0_0_2 Barry",
+  "DETONADO_5_0 Barry",
+  "DETONADO_6_0 Barry",
+  "DETONADO_7_0 Barry",
+  "DETONADO_10_0 Barry",
+  "DETONADO_11_0 Barry",
+  "DETONADO_12_0 Barry",
+  "DETONADO_14_0 Barry",
+  "DETONADO_15_0 Barry",
+  "DETONADO_16_0 Barry",
+  "DETONADO_23_0 Jupiter",
+  "DETONADO_24_0 Mars",
+  "DETONADO_27_0 Barry",
+  "DETONADO_28_0 Barry",
+  "DETONADO_29_0 Barry",
+  "DETONADO_49_0 Barry",
+  "DETONADO_50_0 Barry",
+  "DETONADO_51_0 Barry",
+  "DETONADO_52_0 Dawn",
+  "DETONADO_53_0 Dawn",
+  "DETONADO_54_0 Dawn",
+  "DETONADO_63_0 Dawn",
+  "DETONADO_64_0 Dawn",
+  "DETONADO_65_0 Dawn",
+  "DETONADO_69_0 Barry",
+  "DETONADO_70_0 Barry",
+  "DETONADO_71_0 Barry"
+ ],
+ "missingMoves": [],
+ "pages": {
+  "Barry": "sem time deste jogo",
+  "Jupiter": "1 times",
+  "Mars": "2 times",
+  "Byron": "3 times",
+  "Dawn": "sem time deste jogo"
+ }
+}

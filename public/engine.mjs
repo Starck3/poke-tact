@@ -138,7 +138,7 @@ export function recommend(data, opp, opts) {
   const gen = data.game.generation;
   const oppLevel = opts.oppLevel || opts.level;
   // oponente: DVs (Gen 1–2) / IV (Gen 3) do treinador quando conhecidos; senão valor médio
-  const oppSide = { mon: opp, level: oppLevel, stats: statsAt(gen, opp, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }), ...(opp.dynamax && { dynamax: opp.dynamax }),
+  const oppSide = { mon: opp, level: oppLevel, stats: statsAt(gen, opp, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }), ...(opp.dynamax && { dynamax: opp.dynamax }), ...(opp.zMove && { zMoveOnly: opp.zMove }), // golpe Z do chefe (Bulbapedia)
     // chefe Mega na Gen 6: no turno em que evolui, a ordem usa a Velocidade de antes da Mega (como o seu lado)
     ...(opp.preMegaStats && gen === 6 && { speedTurn1: statsAt(gen, { ...opp, stats: opp.preMegaStats }, oppLevel, { dvs: opts.oppDvs ?? null, iv: opts.oppIv ?? null }).speed }) };
   const oppMoveNames = opts.oppMoves?.length ? opts.oppMoves : likelyMoveset(opp, oppLevel);
@@ -257,7 +257,7 @@ export function teraForm(mon, tera) {
   return tera && mon ? { ...mon, types: [tera], baseTypes: mon.baseTypes ?? mon.types, teraType: tera } : mon;
 }
 /** Pokémon de treinador como luta no jogo: Mega (p.mega) e/ou terastalizado (p.tera), quando o detonado diz. */
-export const battleForm = (mon, p) => { const m = teraForm(megaForm(mon, p?.mega), p?.tera); return m && p?.dynamax ? { ...m, dynamax: p.dynamax } : m; };
+export const battleForm = (mon, p) => { const m = teraForm(megaForm(mon, p?.mega), p?.tera); return m && (p?.dynamax || p?.zMove) ? { ...m, ...(p.dynamax && { dynamax: p.dynamax }), ...(p.zMove && { zMove: p.zMove }) } : m; };
 
 export function recommendTeam(data, party, opts) {
   const byMon = new Map();

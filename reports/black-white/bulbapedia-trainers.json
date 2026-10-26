@@ -1,0 +1,35 @@
+{
+ "matched": [
+  "DETONADO_11_0 Burgh ← Burgh () 3/3",
+  "DETONADO_14_0 N ← N (Third battle) 4/4",
+  "DETONADO_24_0 Drayden/Iris ← Iris () 3/3",
+  "DETONADO_30_0 N (se o inicial dele for Reshiram) ← N () 6/6",
+  "DETONADO_30_0_1 N (se o inicial dele for Zekrom) ← N () 5/6",
+  "DETONADO_45_0 Marshal ← Marshal (Rematch (post-National Pokédex)) 6/6"
+ ],
+ "unmatched": [
+  "DETONADO_32_0 Subway Boss Ingo",
+  "DETONADO_33_0 Subway Boss Ingo",
+  "DETONADO_34_0 Subway Boss Emmet",
+  "DETONADO_35_0 Subway Boss Emmet",
+  "DETONADO_36_0 Subway Boss Ingo & Subway Boss Emmet",
+  "DETONADO_37_0 Subway Boss Ingo & Subway Boss Emmet",
+  "DETONADO_40_0 Cynthia"
+ ],
+ "missingMoves": [
+  "Burgh dwebble: Sand-Attack, Faint Attack, Smack Down, Struggle Bug",
+  "N scraggy: Swagger, Brick Break, Headbutt, Faint Attack",
+  "Marshal mienshao: U-turn, Fake Out, Acrobatics, Hi Jump Kick"
+ ],
+ "pages": {
+  "Burgh": "1 times",
+  "N": "5 times",
+  "Drayden": "sem time deste jogo",
+  "Iris": "1 times",
+  "Ingo": "2 times",
+  "Emmet": "2 times",
+  "Subway Boss Emmet": "2 times",
+  "Cynthia": "sem time deste jogo",
+  "Marshal": "2 times"
+ }
+}

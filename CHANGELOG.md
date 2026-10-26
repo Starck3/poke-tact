@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.38.0] — 2026-10-25
+
+> Os chefes dos jogos mais novos (Black/White até Z-A) agora lutam com os golpes de verdade, tirados da Bulbapedia, e não mais com golpes estimados pelo nível. No Sun/Moon, os kahunas e capitães usam o golpe Z deles.
+
+### Adicionado
+- **Fonte nova: Bulbapedia** (liberada pelo usuário). Baixada devagar (5 s por página), guardada só no computador e usada
+  para completar o que o código do jogo e o PKHeX não têm; a tela dá o crédito.
+- **Golpes reais dos chefes** (líderes, Elite, campeões, rivais, vilões) nos jogos sem decomp: 635 das 1.098 lutas — ex.:
+  Black/White 69 de 76, Sun/Moon 76 de 81, Scarlet/Violet 110 de 145. Nas outras, os golpes continuam estimados pelo nível.
+- **Golpe Z dos chefes** (Sun/Moon): 29 Pokémon, como o Crabrawler do Hala com All-Out Pummeling no 1º turno.
+- A tela diz de onde vêm os golpes do oponente ("do time na Bulbapedia").
+
+### Alterado
+- Banco de lutas: vencem 37.694 (igual); folgadas 36.380 → 35.915 — com os golpes de verdade, os chefes ficaram mais duros.
+
 ## [0.37.0] — 2026-10-25
 
 > Pequenos ajustes: no Let's Go o app agora sabe onde se ganha a Charizardite Y, e as creches aparecem no mapa da região.
