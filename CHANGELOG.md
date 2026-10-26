@@ -2,6 +2,19 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.47.0] — 2026-10-26
+
+> Os rivais dos jogos mais novos agora também lutam com os golpes de verdade: Hop no Sword/Shield, Barry no Brilliant Diamond/Shining Pearl e Trace no Let's Go. Começa também o plano 4, com o que sobrou.
+
+### Adicionado
+- **Golpes reais dos rivais** pela Bulbapedia: o app agora segue a subpágina com todos os times (Hop) e a página certa
+  quando o nome é ambíguo (Barry, Dawn, Trace). Lutas com golpes reais: Sword/Shield 48 → 73 de 96, Brilliant Diamond/Shining
+  Pearl 45 → 72 de 74, Let's Go 34 → 50 de 57.
+- **Plano de execução 4** (`PLANO-EXECUCAO-4.md`) com o que sobrou do plano 3.
+
+### Alterado
+- Banco de lutas: vencem 37.687 (igual); folgadas 35.852 → 35.842.
+
 ## [0.46.0] — 2026-10-26
 
 > O Ultra Sun/Ultra Moon agora tem progresso pelas provações, como o Sun/Moon: os locais e os treinadores ganham o ponto da história. E os lugares que antes tinham só um ponto estimado pelo nível passam a usar a ordem do detonado da Bulbapedia.

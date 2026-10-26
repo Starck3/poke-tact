@@ -2652,3 +2652,10 @@ test('P3/N6 (0.46.0): ordem da história pelo índice do detonado da Bulbapedia 
   const sv = load('scarlet-violet-acquisition.json');
   assert.ok(Object.values(sv.versions.scarlet).flat().filter((s) => s.where === 'Chilling Waterhead').every((s) => s.stage >= 3));
 });
+
+test('Q1 (0.47.0): golpes reais dos rivais — subpágina de times (Hop), desambiguação (Barry), Trace no Let\'s Go', () => {
+  const real = (g, name) => load(`${g}-trainers.json`).trainers.filter((t) => t.label.startsWith(name)).filter((t) => t.movesSource === 'Bulbapedia').length;
+  assert.ok(real('sword-shield', 'Hop') >= 20); // "For all of Hop's teams … see [[Hop/Sword and Shield]]"
+  assert.ok(real('brilliant-diamond-shining-pearl', 'Barry') >= 15); // "Barry" → "Barry (game)"
+  assert.ok(real('lets-go-pikachu-lets-go-eevee', 'Seu rival') >= 10); // Trace (game), códigos LGP/LGE
+});
