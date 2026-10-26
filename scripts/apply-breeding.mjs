@@ -31,9 +31,11 @@ const DAYCARE = {
   'diamond-pearl': { gen: 4, map: 'MAP_SOLACEON_DAYCARE', where: 'Solaceon Daycare' },
   platinum: { gen: 4, map: 'MAP_HEADER_POKEMON_DAY_CARE', where: 'Pokémon Day Care (Solaceon Town)' },
   'heartgold-soulsilver': { gen: 4, map: 'MAP_ROUTE_34_DAYCARE', where: 'Route 34 Daycare' },
+  // B2W2 (fuddlesworth/pokebw2): creche na Route 3 (res/field/scripts/route_3.s: placa "Pokémon Day Care" e as falas do ovo)
+  'black-2-white-2': { gen: 5, map: 'ZONE_ROUTE_3', where: 'Pokémon Day Care (Route 3)', scripts: 'res/field/scripts/route_3.s' },
 };
 const cfg = DAYCARE[gameId];
-if (!cfg) { console.log(`[${gameId}] sem creche configurada (Gen 1 não tem ovo; Gens 5+ ainda não) — nada a fazer`); process.exit(0); }
+if (!cfg) { console.log(`[${gameId}] sem creche configurada (Gen 1 não tem ovo; jogos do PKHeX ainda não) — nada a fazer`); process.exit(0); }
 const game = GAMES[gameId];
 const dataFile = new URL(`../public/data/${gameId}.json`, import.meta.url);
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
@@ -74,6 +76,39 @@ if (cfg.gen === 2) {
   const sc = readFileSync(new URL(`${cfg.scripts}/scripts.inc`, mapsDir), 'utf8');
   if (!/DAYCARE_EGG/.test(sc)) throw new Error(`${cfg.scripts}: script do mapa não fala do ovo da creche`);
   source = `${game.decomp.repo} (species_info, src/daycare.c, data/maps/${cfg.scripts})`;
+} else if (cfg.gen === 5) {
+  // B2W2: res/pokemon/*/data.json (gender_ratio, egg_groups, baby_species = tabela ARCID_BABYMONS do getChild em
+  // src/ov036/sodateya.c); incensos: incenseHandler (ids numéricos: espécie do bebê, item, espécie sem o incenso); nível 1
+  const dir = game.asmDecomp.dir;
+  const babyOf = new Map();
+  for (const f of readdirSync(ds(`${dir}/res/pokemon/`))) {
+    const file = ds(`${dir}/res/pokemon/${f}/data.json`);
+    if (!existsSync(file)) continue;
+    const j = JSON.parse(readFileSync(file, 'utf8'));
+    if (!j.egg_groups || j.gender_ratio == null) continue;
+    const g = j.gender_ratio;
+    const gender = g === 'GENDER_RATIO_MALE_ONLY' || g === 0 ? 'male' : g === 'GENDER_RATIO_FEMALE_ONLY' || g === 254 ? 'female' : g === 'GENDER_RATIO_GENDERLESS' || g === 255 ? 'none' : 'mixed';
+    info.set(key(f), { groups: j.egg_groups.map((x) => x.replace(/^EGG_GROUP_/, '')), gender });
+    if (j.baby_species) babyOf.set(key(f), key(j.baby_species.replace(/^SPECIES_/, '')));
+  }
+  cfg.babyOf = babyOf;
+  const dc = readFileSync(ds(`${dir}/src/ov036/sodateya.c`), 'utf8');
+  if (!/egg->level = 1;/.test(dc) || !/ARCID_BABYMONS/.test(dc)) throw new Error('sodateya.c: nível do ovo / tabela de bebês não encontrados');
+  // item numérico → nome: generated/items.txt (linha "ITEM_NONE = 0" e depois um por linha, na ordem dos ids)
+  const itemLines = readFileSync(ds(`${dir}/generated/items.txt`), 'utf8').split(/\r?\n/).map((l) => l.trim()).filter((l) => /^ITEM_/.test(l));
+  const itemName = (id) => itemLines[id]?.replace(/^ITEM_/, '').replace(/ = \d+$/, '');
+  const byIdNum = new Map(data.pokemon.map((p) => [p.id, p]));
+  const tbl = dc.match(/u32 incenses\[\d+\]\[3\] = \{([\s\S]*?)\};/)[1];
+  for (const m of tbl.matchAll(/\{\s*0x([0-9a-f]+),\s*0x([0-9a-f]+),\s*0x([0-9a-f]+)\s*\}/gi)) {
+    const baby = byIdNum.get(parseInt(m[1], 16)), parent = byIdNum.get(parseInt(m[3], 16)), item = itemName(parseInt(m[2], 16));
+    if (!baby || !parent || !/INCENSE$/.test(item ?? '')) throw new Error(`incenseHandler: linha sem espécie/incenso (${m[0]})`);
+    incense.push({ baby: key(baby.name), item, parent: key(parent.name) });
+  }
+  if (incense.length !== 9) throw new Error(`incenseHandler: esperava 9, achou ${incense.length}`);
+  const sc = readFileSync(ds(`${dir}/${cfg.scripts}`), 'utf8');
+  if (!/DayCare/.test(sc) || !/Egg/.test(sc)) throw new Error(`${cfg.scripts}: sem a creche/ovo`);
+  hatch = 1;
+  source = `${game.asmDecomp.repo} (res/pokemon/*/data.json, src/ov036/sodateya.c, ${cfg.scripts})`;
 } else {
   const dir = game.asmDecomp.dir;
   const groups = (a) => a.map((x) => x.replace(/^EGG_GROUP_/, ''));
@@ -111,6 +146,7 @@ const byKey = new Map(data.pokemon.map((p) => [key(p.name), p]));
 const infoOf = (p) => info.get(key(p.name)) ?? info.get(key(p.name.split('-')[0]));
 const lowest = (p) => { let c = p; while (c.evolvesFrom && byId.has(c.evolvesFrom)) c = byId.get(c.evolvesFrom); return c; };
 let eggOf = lowest;
+if (cfg.babyOf) eggOf = (p) => byKey.get(cfg.babyOf.get(key(p.name)) ?? '') ?? lowest(p); // B2W2: baby_species do jogo
 if (gameId === 'diamond-pearl') {
   const pms = JSON.parse(readFileSync(ds('pokediamond-src/files/poketool/personal/pms.json'), 'utf8')).pms;
   eggOf = (p) => byKey.get(key(pms[p.id] ?? '')) ?? lowest(p);
@@ -124,7 +160,9 @@ const itemStage = (item) => { const s = acq.items?.[item]; return s?.length ? Ma
 const place = acq.progress?.maps?.[cfg.map];
 if (!place) throw new Error(`${cfg.map} não está nos mapas do jogo`);
 const where = cfg.where ?? place.label.replace('Pokemon', 'Pokémon');
-const added = [], skipped = [], addedBy = {};
+const added = [], skipped = [], addedBy = {}, evolvedBy = {};
+// desfaz as evoluções marcadas por uma rodada anterior (voltam a ser recalculadas abaixo)
+for (const [v, names] of Object.entries(acq.breeding?.evolved ?? {})) for (const n of names) { const mon = data.pokemon.find((x) => x.name === n); if (mon) mon.obtainable[v] = false; }
 // idempotente: desfaz o que uma rodada anterior acrescentou antes de recalcular
 for (const [v, names] of Object.entries(acq.breeding?.added ?? {})) for (const n of names) {
   const list = (acq.versions[v][n] ?? []).filter((s) => s.type !== 'breed');
@@ -173,8 +211,21 @@ for (const v of data.game.versions) {
     (addedBy[v] ??= []).push(baby);
     added.push(`${v}: ${baby} (de ${opts.map((o) => o.p.name).join('/')})`);
   }
+  // a evolução de um bebê novo também passa a ser obtível (mesma regra do build-acquisition: pré-evolução obtível e
+  // evolução possível) — B2W2: Abra pelo ovo do Alakazam → Kadabra
+  for (let changed = true; changed;) {
+    changed = false;
+    for (const mon of data.pokemon) {
+      if (mon.obtainable[v]) continue;
+      const parent = data.pokemon.find((p) => p.id === mon.evolvesFrom && p.id !== mon.id);
+      if (!parent?.obtainable[v] || mon.evo?.possible === false || !(addedBy[v] ?? []).length) continue;
+      mon.obtainable[v] = true;
+      (evolvedBy[v] ??= []).push(mon.name);
+      changed = true;
+    }
+  }
 }
-acq.breeding = { source, daycare: where, hatchLevel: hatch, added: addedBy };
+acq.breeding = { source, daycare: where, hatchLevel: hatch, added: addedBy, evolved: evolvedBy };
 writeFileSync(acqFile, JSON.stringify(acq));
 writeFileSync(dataFile, JSON.stringify(data));
 console.log(`[${gameId}] ovos da creche (${where}, nv ${hatch}): +${added.length}${added.length ? ' — ' + added.join('; ') : ''}${skipped.length ? `\n  sem incenso: ${[...new Set(skipped)].join('; ')}` : ''}`);

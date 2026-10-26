@@ -2,6 +2,17 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.34.0] — 2026-10-25
+
+> A creche do Black 2/White 2 entrou no app: 36 Pokémon por versão que só se conseguem chocando um ovo (como Abra, Larvitar e Deino) agora aparecem em Onde capturar, com quem deixar na creche e em que ponto do jogo.
+
+### Adicionado
+- **Ovos da creche no Black 2/White 2** (Route 3): qual bebê nasce de cada Pokémon pela tabela do próprio jogo, a regra
+  dos incensos e o nível 1 ao chocar, tudo do código do jogo (decomp pokebw2). +36 espécies por versão.
+- A evolução de um bebê que passou a ser obtível também conta como obtível: Kadabra no Black 2/White 2 (pelo Abra do ovo)
+  e Hitmontop no FireRed/LeafGreen (pelo Tyrogue do ovo do Hitmonlee com Ditto).
+- Bonsly e Budew continuam fora no B2W2: precisam de incenso, e onde achar o incenso não está nos dados do jogo.
+
 ## [0.33.0] — 2026-10-25
 
 > As sugestões deixaram de indicar Pokémon que você ainda não teria no nível do seu time — como um Pupitar de nível 42 para um time de nível 16 no Scarlet/Violet ou um Rhydon de nível 55 no Sword/Shield.

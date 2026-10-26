@@ -2449,3 +2449,18 @@ test('A7 (0.33.0): mundo aberto — com progresso, só fontes de nível compatí
   const larvitar = sv.pokemon.find((x) => x.name === 'larvitar');
   assert.ok(reachStage(sv, sva, larvitar, 'scarlet', new Set(), 20) >= reachStage(sv, sva, larvitar, 'scarlet'));
 });
+
+test('ovos da creche no Black 2/White 2 (0.34.0): bebê pela tabela do jogo, incenso pelo incenseHandler, evolução do bebê obtível', async () => {
+  const { whereToGet } = await import('../public/engine.mjs');
+  const d = load('black-2-white-2.json'), a = load('black-2-white-2-acquisition.json');
+  const abra = d.pokemon.find((p) => p.name === 'abra');
+  const src = whereToGet(d, a, abra, 'black-2').direct;
+  assert.ok(src.some((s) => s.type === 'breed' && s.want === 'alakazam' && s.level === 1 && /Route 3/.test(s.where)));
+  // Kadabra passa a ser obtível pela evolução do Abra do ovo
+  assert.ok(d.pokemon.find((p) => p.name === 'kadabra').obtainable['black-2']);
+  assert.deepEqual(a.breeding.evolved['black-2'].includes('kadabra'), true);
+  // bebê de incenso sem o incenso nos dados do B2W2 fica de fora (Bonsly)
+  assert.equal(d.pokemon.find((p) => p.name === 'bonsly').obtainable['black-2'], false);
+  // FireRed/LeafGreen: Hitmontop pelo Tyrogue do ovo (Hitmonlee + Ditto)
+  assert.ok(load('firered-leafgreen.json').pokemon.find((p) => p.name === 'hitmontop').obtainable.firered);
+});

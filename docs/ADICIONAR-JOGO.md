@@ -352,6 +352,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **minLevel nos jogos do PKHeX (0.33.0)**: o apply-pkhex-evos calcula `minLevel` (maior nível de evolução na cadeia); sem
   ele, `mon.minLevel > opts.level` é sempre falso. Com progresso, `reachStage(..., maxLevel)` ignora fontes acima de
   nível do time + `LEVEL_MARGIN`.
+- **Creche B2W2 (0.34.0)**: `baby_species` em res/pokemon/*/data.json = a tabela ARCID_BABYMONS; o `incenseHandler` usa ids
+  numéricos — o nome do item vem de generated/items.txt (linha "ITEM_NONE = 0" e um item por linha). Depois dos bebês, o
+  apply-breeding propaga "obtível" para as evoluções (e desfaz numa nova rodada pelo `breeding.evolved`).
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 
