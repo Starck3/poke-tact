@@ -204,7 +204,7 @@ export function recommend(data, opp, opts) {
       if (form?.primal && !opts.includeLegendary) continue;
       const isMega = form && !form.tera && !form.dynamax;
       const fm = form?.tera ? teraForm(mon, form.tera) : isMega ? { ...mon, types: form.types, stats: form.stats, abilities: form.abilities } : mon;
-      const me = { mon: fm, level: opts.level, stats: isMega ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(isMega && gen === 6 && { speedTurn1: baseStats.speed }), ...(zTypes && { zTypes }), ...(form?.dynamax && { dynamax: true }) };
+      const me = { mon: fm, level: opts.level, stats: isMega ? badgeBoost(gen, statsAt(gen, fm, opts.level), opts.acq?.progress, useStage ? opts.stage : null) : baseStats, ...(isMega && gen === 6 && { speedTurn1: baseStats.speed }), ...(zTypes && { zTypes }), ...(form?.dynamax && { dynamax: true }), ...(data.game.id === 'legends-arceus' && { actionOrder: true }) }; // ordem de ação do LA (battle.mjs)
       const d = duel(data, gen, me, oppSide, myMoves, oppMoveNames);
       if (!d.move) continue;
       const mv = data.moves[d.move];

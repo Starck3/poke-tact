@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.45.0] — 2026-10-26
+
+> No Legends: Arceus, a luta agora segue a ordem de ação do jogo: um Pokémon bem mais rápido pode atacar duas vezes antes do outro, e o app leva isso em conta.
+
+### Adicionado
+- **Ordem de ação do Legends: Arceus** (regra da Bulbapedia, página "Action order"): cada Pokémon age quando o seu "tempo
+  de ação" acaba, e esse tempo depende da Velocidade (de 14 para os mais lentos a 5 para os mais rápidos). O cálculo da luta
+  compara quando cada um nocauteia o outro. O aviso "ordem de ação" saiu da tela.
+- Continuam fora (sem a regra em números): os estilos Ágil e Forte e os valores de golpe próprios do jogo.
+
 ## [0.44.0] — 2026-10-26
 
 > No Black 2/White 2, as 15 TMs vendidas em lojas (Sunny Day, Hyper Beam, Blizzard, Thunder…) agora dizem onde comprar e em que ponto da história.

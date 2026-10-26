@@ -2617,3 +2617,20 @@ test('N8 (0.44.0): as 15 TMs de loja do Black 2/White 2 pela Bulbapedia (o decom
   assert.ok(m['sunny-day'].some((s) => s.where === 'Mistralton City' && s.source === 'Bulbapedia' && s.stage != null));
   assert.ok(m['calm-mind'].some((s) => /Striaton City/.test(s.where) && s.stage != null)); // casa pelo começo do nome
 });
+
+test('N7 (0.45.0): Legends: Arceus — ordem de ação pelo tempo de ação da Velocidade (Bulbapedia "Action order")', async () => {
+  const { duel, actionTime } = await import('../public/battle.mjs');
+  assert.deepEqual([15, 16, 100, 130, 402].map(actionTime), [14, 13, 10, 9, 5]);
+  const data = { moves: { tackle: { name: 'tackle', type: 'normal', power: 50, accuracy: 100, category: 'physical', effect: '' } }, types: ['normal'], chart: { normal: { normal: 1 } } };
+  const mk = (spe, hp, extra = {}) => ({ mon: { types: ['normal'], abilities: [] }, level: 50, stats: { hp, attack: 100, defense: 100, 'special-attack': 100, 'special-defense': 100, speed: spe }, ...extra });
+  // os dois com o mesmo golpe e atributos (só a Velocidade muda): HP que precisa de n golpes
+  const base = duel(data, 8, mk(100, 1000), mk(100, 1000), ['tackle'], ['tackle']);
+  const hpFor = (n) => Math.floor(base.myDmg.per * (n - 0.5));
+  const run = (mySpe, oppSpe, iNeed, heNeeds, la) => duel(data, 8, mk(mySpe, hpFor(heNeeds), la ? { actionOrder: true } : {}), mk(oppSpe, hpFor(iNeed)), ['tackle'], ['tackle']).win;
+  // rápido (Vel 140 → tempo 9) contra lento (Vel 50 → 12): eu preciso de 4 golpes, ele de 3
+  assert.equal(run(140, 50, 4, 3, false), false); // por turnos: 4 > 3, perco
+  assert.equal(run(140, 50, 4, 3, true), true); // por tempo: 4×9 = 36 = 3×12 → empate, maior Velocidade (eu)
+  // lento contra rápido: eu preciso de 3, ele de 4
+  assert.equal(run(50, 140, 3, 4, false), true); // por turnos: 3 < 4, venço
+  assert.equal(run(50, 140, 3, 4, true), false); // por tempo: 36 = 36 → empate, maior Velocidade (ele)
+});
