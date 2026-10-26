@@ -364,6 +364,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Bulbapedia (0.38.0)**: o `fetch` do Node leva HTTP 403 da proteção do site; o `curl` com o mesmo User-Agent passa —
   `lib/bulbapedia.mjs` usa o curl. Campo `game` do {{Party}} tem códigos por versão (Sw/Sh, OR/AS, Su/Mo, BD/SP) e códigos
   que colidem com jogos antigos ("Y" = Yellow, "E" = Emerald). Página de desambiguação ({{disambig}}) é ignorada.
+- **Ordem pela Bulbapedia (0.46.0)**: o índice "Appendix:<jogo> walkthrough" do Scarlet/Violet recomeça "Part 1" em cada
+  DLC — identificar a parte pela posição. Rodar o build-detonado-modern sozinho apaga os golpes e itens da Bulbapedia: refazer
+  a cadeia (trainers → walkthrough → items → breeding). No USUM a ordem (walkthrough) vem ANTES dos itens.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

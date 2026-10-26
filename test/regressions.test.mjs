@@ -2490,8 +2490,10 @@ test('B3 (0.36.0): local que o detonado não cita ganha estágio ESTIMADO pelo n
   const a = load('black-white-acquisition.json');
   const est = new Map();
   for (const v of Object.values(a.versions)) for (const l of Object.values(v)) for (const s of l) if (s.stageEstimated) est.set(s.where, s.stage);
-  assert.equal(est.get('Route 1'), 0);
-  assert.ok(est.get('Route 10') >= 5); // selvagens de nível alto → depois
+  // Route 1: estágio 0 (desde 0.46.0 pela parte do detonado da Bulbapedia, antes pela estimativa)
+  assert.ok(Object.values(a.versions.black).flat().filter((s) => s.where === 'Route 1').every((s) => s.stage === 0));
+  // Route 10: selvagens de nível alto → depois (desde 0.46.0 pela parte do detonado da Bulbapedia, não mais estimada)
+  assert.ok(Object.values(a.versions.black).flat().filter((s) => s.where === 'Route 10').every((s) => s.stage >= 5));
   assert.ok(!est.has('Route 17')); // só água (Surf/vara): sem estimativa
   // nenhum local com estágio do detonado vira estimativa
   for (const v of Object.values(a.versions)) for (const l of Object.values(v)) for (const s of l) if (s.stageEstimated) assert.ok(load('../../reports/black-white/detonado-modern.json').placesWithoutStage.includes(s.where), s.where);
@@ -2633,4 +2635,20 @@ test('N7 (0.45.0): Legends: Arceus — ordem de ação pelo tempo de ação da V
   // lento contra rápido: eu preciso de 3, ele de 4
   assert.equal(run(50, 140, 3, 4, false), true); // por turnos: 3 < 4, venço
   assert.equal(run(50, 140, 3, 4, true), false); // por tempo: 36 = 36 → empate, maior Velocidade (ele)
+});
+
+test('P3/N6 (0.46.0): ordem da história pelo índice do detonado da Bulbapedia — progresso do USUM e estimativas revistas', () => {
+  const a = load('ultra-sun-ultra-moon-acquisition.json');
+  assert.equal(a.progress.leaderOrder.length, 12); // 8 provações + 4 grandes provações (com a da Mina)
+  assert.ok(a.progress.leaderOrder.includes('provação da Mina') && a.progress.leaderOrder.at(-1) === 'grande provação de Poni');
+  const tr = load('ultra-sun-ultra-moon-trainers.json').trainers;
+  assert.ok(tr.filter((t) => t.stage != null).length >= 95);
+  assert.equal(tr.find((t) => t.label === 'Hala (Grand trial battle)').stage, 1); // depois da provação de Verdant Cavern
+  // Sun/Moon: a Route 9 (estimada no estágio 0 pelo nível) vai para a parte 11 do detonado da Bulbapedia
+  const sm = load('sun-moon-acquisition.json');
+  const r9 = Object.values(sm.versions.sun).flat().filter((s) => s.where === 'Route 9');
+  assert.ok(r9.length && r9.every((s) => s.stage >= 5 && !s.stageEstimated));
+  // Scarlet/Violet: parte de DLC não se mistura com a da história (o índice recomeça "Part 1" em cada DLC)
+  const sv = load('scarlet-violet-acquisition.json');
+  assert.ok(Object.values(sv.versions.scarlet).flat().filter((s) => s.where === 'Chilling Waterhead').every((s) => s.stage >= 3));
 });
