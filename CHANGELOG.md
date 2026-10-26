@@ -2,6 +2,18 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.41.0] — 2026-10-26
+
+> No Sword/Shield, os golpes Max agora também trazem os efeitos extras que têm no jogo — subir o Ataque, baixar a Defesa do adversário, chamar sol, chuva ou terreno — e isso entra na conta da luta.
+
+### Adicionado
+- **Efeitos extras dos golpes Max** (Sword/Shield), lidos do Pokémon Showdown: Max Knuckle (+1 Ataque), Max Ooze (+1 Ataque
+  Especial), Max Phantasm (−1 Defesa do alvo), Max Flare (sol: Fogo mais forte, Água mais fraca), Max Geyser (chuva), Max
+  Lightning/Overgrowth/Mindstorm (terreno: o tipo bate 1,3×) e os outros. Valem nos turnos seguintes, para os dois lados.
+- Fica fora da conta: Velocidade, dano de areia/granizo e os efeitos próprios dos golpes G-Max.
+- Banco de lutas: no Sword/Shield a média de turnos para nocautear cai de 1,40 para 1,32.
+- O nível de Dynamax dos líderes não está na Bulbapedia: a vida dinamaxizada segue 1,5× (marcado na tela).
+
 ## [0.40.0] — 2026-10-26
 
 > O app agora sabe onde achar os incensos nos jogos do GBA (pela Bulbapedia), e por isso Azurill e Wynaut passam a aparecer como Pokémon que se conseguem por ovo no Ruby/Sapphire, Emerald e FireRed/LeafGreen.

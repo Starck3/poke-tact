@@ -59,6 +59,27 @@ for (const [name, mv] of Object.entries(data.moves)) {
   if (wantZ) { mv.zPower = s.z ?? zPower(bp, s.multiRange); nz++; if (s.z) overrides++; }
   if (wantMax) { mv.maxPower = s.max ?? maxPower(bp, mv.type); nm++; if (s.max) overrides++; }
 }
+// P1 (0.41.0) — efeito extra de cada golpe Max por tipo (data/moves.ts, isMax): aumento/queda de atributo, clima, terreno.
+// Ex.: Max Knuckle (Lutador) "this.boost({ atk: 1 }…)" no próprio lado; Max Phantasm (Fantasma) def −1 no alvo; Max Flare
+// (Fogo) setWeather('sunnyday'); Max Lightning (Elétrico) setTerrain('electricterrain'). G-Max fica de fora (efeito próprio).
+if (wantMax) {
+  const text = readFileSync(file('data/moves.ts'), 'utf8');
+  const effects = {};
+  for (const m of text.matchAll(/^\t(max[a-z]+): \{\n([\s\S]*?)\n\t\},/gm)) {
+    const body = m[2];
+    if (!/isMax: true/.test(body) || /maxguard/.test(m[1])) continue;
+    const type = body.match(/\btype: "(\w+)"/)?.[1]?.toLowerCase();
+    const boost = body.match(/this\.boost\(\{ (\w+): (-?\d) \}/);
+    const e = {
+      ...(boost && (/source\.alliesAndSelf|self: \{/.test(body.slice(0, body.indexOf(boost[0]))) && !/source\.foes\(\)|foes\(\)/.test(body.slice(Math.max(0, body.indexOf(boost[0]) - 200), body.indexOf(boost[0])))
+        ? { self: { [boost[1]]: Number(boost[2]) } } : boost ? { foe: { [boost[1]]: Number(boost[2]) } } : {})),
+      ...(body.match(/setWeather\('(\w+)'\)/) && { weather: body.match(/setWeather\('(\w+)'\)/)[1] }),
+      ...(body.match(/setTerrain\('(\w+)'\)/) && { terrain: body.match(/setTerrain\('(\w+)'\)/)[1] }),
+    };
+    if (type && Object.keys(e).length) effects[type] = { move: m[1], ...e };
+  }
+  data.maxEffects = effects;
+}
 data.zmaxSource = `Pokémon Showdown ${SHOWDOWN_COMMIT.slice(0, 7)} (sim/dex-moves.ts + exceções de data/moves.ts)`;
 writeFileSync(dataFile, JSON.stringify(data));
 console.log(`[${gameId}] golpes Z: ${nz}, golpes Max: ${nm} (${overrides} pelas exceções do Showdown)`);

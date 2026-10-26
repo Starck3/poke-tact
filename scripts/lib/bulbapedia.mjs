@@ -84,7 +84,8 @@ export function parties(text) {
       const f = fields(x[1]);
       const moves = [1, 2, 3, 4].map((i) => (f[`move${i}`] ? { name: plain(f[`move${i}`]), z: f[`z-move${i}`] ? plain(f[`z-move${i}`]) : null } : null)).filter(Boolean);
       return { species: plain(f.pokemon), level: Number(f.level) || null, held: f.held ? plain(f.held) : null, ability: f.ability ? plain(f.ability) : null, moves, zPower: /z-power/i.test(f.icon ?? '') || moves.some((mv) => mv.z),
-        ...(f.dynamax || /dynamax|gigantamax/i.test(f.icon ?? '') ? { dynamax: f.dynamax ?? f.icon } : {}), ...(f.tera ? { tera: plain(f.tera) } : {}) };
+        // "| max = Gigantamax" / "| max = Dynamax" (Sword/Shield): o Pokémon que dinamaxiza na luta
+        ...(f.max ? { dynamax: /giga/i.test(f.max) ? 'gigantamax' : 'dynamax' } : f.dynamax || /dynamax|gigantamax/i.test(f.icon ?? '') ? { dynamax: f.dynamax ?? f.icon } : {}), ...(f.tera ? { tera: plain(f.tera) } : {}) };
     });
     out.push({ section: sectionAt(m.index), game: p.game ?? null, location: p.location ? plain(p.location) : null, name: plain(p.name), class: p.class ? plain(p.class) : null, mons });
   }

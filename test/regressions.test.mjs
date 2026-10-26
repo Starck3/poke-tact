@@ -2571,3 +2571,20 @@ test('N4 (0.40.0): incenso pela Bulbapedia libera o bebê de incenso (Azurill/Wy
   // o resto dos itens do decomp não muda (só os incensos que faltavam)
   assert.deepEqual(ema.itemsBulbapedia.sort(), ['LAX_INCENSE', 'SEA_INCENSE']);
 });
+
+test('P1 (0.41.0): efeitos extras dos golpes Max (Showdown) — atributo, clima e terreno nos turnos seguintes', async () => {
+  const { duel } = await import('../public/battle.mjs');
+  const sw = load('sword-shield.json');
+  // os 18 tipos têm efeito lido do data/moves.ts do Showdown
+  assert.deepEqual(sw.maxEffects.fighting, { move: 'maxknuckle', self: { atk: 1 } });
+  assert.deepEqual(sw.maxEffects.fire, { move: 'maxflare', weather: 'sunnyday' });
+  assert.deepEqual(sw.maxEffects.ghost, { move: 'maxphantasm', foe: { def: -1 } });
+  assert.equal(Object.keys(sw.maxEffects).length, 18);
+  // Max Knuckle (+1 Ataque) faz o golpe físico seguinte bater mais: menos turnos que sem o efeito
+  const data = { ...sw, maxEffects: {} };
+  const mk = (types, hp, extra = {}) => ({ mon: { types, abilities: [] }, level: 50, stats: { hp, attack: 100, defense: 100, 'special-attack': 100, 'special-defense': 100, speed: 100 }, ...extra });
+  const me = mk(['fighting'], 300, { dynamax: true }), opp = mk(['normal'], 900);
+  const sem = duel(data, 8, me, opp, ['karate-chop'], ['tackle']).myTurns;
+  const com = duel(sw, 8, me, opp, ['karate-chop'], ['tackle']).myTurns;
+  assert.ok(com <= sem);
+});

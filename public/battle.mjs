@@ -152,15 +152,44 @@ function bestMax(data, gen, att, def, moves) {
   return best;
 }
 /** Turnos para nocautear com Dynamax de um lado ou dos dois: turno a turno, a fração de vida que cada golpe tira. */
-function dynamaxTurns(reg, max, hp, attDyn, defDyn) {
-  let left = 1;
-  for (let t = 1; t <= 60; t++) {
-    const d = attDyn && t <= DYNAMAX_TURNS && max ? max.dmg : reg?.dmg;
-    const per = d ? d.per / (d.turns ?? 1) : 0;
-    left -= per / (defDyn && t <= DYNAMAX_TURNS ? hp * DYNAMAX_HP : hp);
-    if (left <= 1e-9) return t;
+// efeito extra dos golpes Max (data.maxEffects, do Showdown — P1, 0.41.0): estágio de atributo (+1 → ×1,5; −1 → ×2/3…),
+// clima (sol: Fogo 1,5×, Água 0,5×; chuva: o contrário) e terreno (Elétrico/Planta/Psíquico 1,3× no tipo; Névoa: Dragão
+// 0,5×) por 5 turnos a partir do turno seguinte. Velocidade e dano de areia/granizo ficam fora.
+const stageMul = (n) => (n >= 0 ? (2 + n) / 2 : 2 / (2 - n));
+const WEATHER = { sunnyday: { fire: 1.5, water: 0.5 }, raindance: { water: 1.5, fire: 0.5 } };
+const TERRAIN = { electricterrain: { electric: 1.3 }, grassyterrain: { grass: 1.3 }, psychicterrain: { psychic: 1.3 }, mistyterrain: { dragon: 0.5 } };
+/** Turnos para nocautear dos dois lados com Dynamax (um ou os dois), turno a turno, com a vida maior e os efeitos Max. */
+function dynamaxDuel(data, sides) {
+  const st = sides.map(() => ({ atk: 0, def: 0, spa: 0, spd: 0 }));
+  let weather = null, terrain = null, wUntil = 0, tUntil = 0;
+  const left = [1, 1], ko = [Infinity, Infinity];
+  for (let t = 1; t <= 60 && (ko[0] === Infinity || ko[1] === Infinity); t++) {
+    const effects = [];
+    for (let i = 0; i < 2; i++) {
+      const s = sides[i], o = sides[1 - i];
+      const useMax = s.dyn && t <= DYNAMAX_TURNS && s.max;
+      const pick = useMax ? s.max : s.reg;
+      if (!pick?.dmg) continue;
+      const mv = data.moves[pick.name];
+      const phys = mv?.category === 'physical';
+      let mul = stageMul(st[i][phys ? 'atk' : 'spa']) / stageMul(st[1 - i][phys ? 'def' : 'spd']);
+      if (weather && t <= wUntil) mul *= WEATHER[weather]?.[mv?.type] ?? 1;
+      if (terrain && t <= tUntil) mul *= TERRAIN[terrain]?.[mv?.type] ?? 1;
+      if (ko[i] === Infinity) {
+        left[1 - i] -= (pick.dmg.per / (pick.dmg.turns ?? 1)) * mul / (o.dyn && t <= DYNAMAX_TURNS ? o.hp * DYNAMAX_HP : o.hp);
+        if (left[1 - i] <= 1e-9) ko[i] = t;
+      }
+      if (useMax) effects.push([i, data.maxEffects?.[mv?.type]]);
+    }
+    for (const [i, e] of effects) {
+      if (!e) continue;
+      for (const [k, v] of Object.entries(e.self ?? {})) if (k in st[i]) st[i][k] = Math.max(-6, Math.min(6, st[i][k] + v));
+      for (const [k, v] of Object.entries(e.foe ?? {})) if (k in st[1 - i]) st[1 - i][k] = Math.max(-6, Math.min(6, st[1 - i][k] + v));
+      if (e.weather) { weather = e.weather; wUntil = t + 5; }
+      if (e.terrain) { terrain = e.terrain; tUntil = t + 5; }
+    }
   }
-  return Infinity;
+  return ko;
 }
 
 export function duel(data, gen, me, opp, myMoves, oppMoves) {
@@ -170,8 +199,7 @@ export function duel(data, gen, me, opp, myMoves, oppMoves) {
   let dyn = null;
   if (me.dynamax || opp.dynamax) {
     const myMax = me.dynamax ? bestMax(data, gen, me, opp, myMoves) : null, theirMax = opp.dynamax ? bestMax(data, gen, opp, me, oppMoves) : null;
-    myT = dynamaxTurns(mine, myMax, opp.stats.hp, !!me.dynamax, !!opp.dynamax);
-    theirT = dynamaxTurns(theirs, theirMax, me.stats.hp, !!opp.dynamax, !!me.dynamax);
+    [myT, theirT] = dynamaxDuel(data, [{ reg: mine, max: myMax, dyn: !!me.dynamax, hp: me.stats.hp }, { reg: theirs, max: theirMax, dyn: !!opp.dynamax, hp: opp.stats.hp }]);
     if (myMax) dyn = { name: myMax.name, power: myMax.power, type: data.moves[myMax.name].type };
   }
   // me.speedTurn1 (Mega na Gen 6): no turno em que evolui, a ordem usa a Velocidade de antes — só decide se a troca acaba

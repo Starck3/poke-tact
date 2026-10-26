@@ -41,7 +41,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   ser limitada pelo ponto da história nesses jogos.
 - **N4 ⚠ Incensos** (0.40.0: Gen 3 resolvida; nos jogos novos o lugar do incenso não casa com os locais do app) (bebês de incenso fora por falta de onde achar o incenso): onde achar cada incenso pela Bulbapedia nos
   jogos que não têm (Emerald Sea Incense, FRLG Lax Incense, Gens 5–8…). Com o incenso, o bebê entra pelo apply-breeding.
-- **N5 ⬜ Nível de Dynamax dos líderes** (vida 1,5× → o certo, até 2×), se a página do treinador der o nível de Dynamax.
+- **N5 ⏸ Nível de Dynamax dos líderes** (vida 1,5× → o certo, até 2×), se a página do treinador der o nível de Dynamax.
 - **N6 ⬜ Ultra Sun/Ultra Moon**: líderes da história (kahunas, capitães/totens, Elite, campeão, rivais) e a ordem das
   provações pelas páginas da Bulbapedia → treinadores e progresso no USUM (hoje não tem). Pronto quando: aba de oponentes
   e progresso existem no USUM com crédito; aba Detonado continua fora (não há detonado).
@@ -50,7 +50,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **N8 ⬜ 15 TMs de loja do Black 2/White 2**: local da loja pela página de cada TM.
 
 ## Bloco P — detalhes pequenos (fontes atuais ou novas)
-- **P1 ⬜ Efeitos extras dos golpes Max** (Showdown `data/moves.ts`: clima, atributo): os que mudam a conta da troca (Max
+- **P1 ✅ Efeitos extras dos golpes Max** (0.41.0) (Showdown `data/moves.ts`: clima, atributo): os que mudam a conta da troca (Max
   Airstream +Vel, Max Knuckle +Atq, Max Steelspike +Def…, e clima que muda dano: Max Flare/Geyser 1,5×) aplicados nos 3
   turnos do Dynamax. Pronto quando: teste do bônus; banco do SwSh.
 - **P2 ⬜ FRLG: "Ssanne Exterior" no mapa** (warp do decomp para o Vermilion) e o vagante marcado "anda pelo mapa".
@@ -84,3 +84,9 @@ N0 → N1 → N2 → N3 → N4 → N5 → P1 → P2 → N6 → N8 → N7 → P3 
   RS); FRLG: Lost Cave → Azurill/Wynaut. B2W2/BW/XY/ORAS/SM: incenso em "Market"/lojas sem lugar casado → bebês continuam
   fora. Fluxo: apply-bulbapedia-items antes do apply-breeding; o build-evo-items mantém as linhas da Bulbapedia e não pula
   mais os jogos com itemsPartial. Banco: vencem 37.687 (igual); folgadas 35.864 → 35.862.
+- **2026-10-26 — N5 ⏸**: as páginas da Bulbapedia não dão o nível de Dynamax dos treinadores (só `| max = Gigantamax`,
+  qual Pokémon dinamaxiza — o leitor passou a ler, mas o detonado já marcava os 45). A vida segue 1,5× (nível 0), marcada.
+- **2026-10-26 — P1 (0.41.0)**: efeito extra de cada golpe Max lido do data/moves.ts do Showdown (18 tipos: `this.boost`,
+  `setWeather`, `setTerrain`) → `data.maxEffects`; o duelo com Dynamax simula os dois lados turno a turno com estágio de
+  atributo, sol/chuva 1,5×/0,5× e terreno 1,3× (Névoa: Dragão 0,5×) por 5 turnos. Fora: Velocidade, dano de areia/granizo,
+  efeitos G-Max. Banco: SwSh turnos 1,40 → 1,32; vencem/folgadas iguais (37.687 / 35.862).

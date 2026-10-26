@@ -47,7 +47,7 @@ async function partiesOf(title) {
 }
 let changedMons = 0;
 for (const t of tr.trainers) {
-  if (!t.party?.some((p) => p.defaultMoves)) continue; // só times com golpes estimados
+  if (!t.party?.some((p) => p.defaultMoves || p.movesSource === 'Bulbapedia')) continue; // golpes estimados ou já da Bulbapedia (refaz igual)
   let best = null;
   for (const title of pagesFor(t.label)) {
     let ps;
@@ -75,6 +75,8 @@ for (const t of tr.trainers) {
     if (m.held) p.item = m.held;
     const z = m.moves.find((mv) => mv.z);
     if (z) p.zMove = moveKey.get(key(z.name)); else delete p.zMove;
+    // Dynamax/Gigantamax marcado na Bulbapedia completa o detonado (que marca pelo nome: "Gigantamax Centiskorch")
+    if (m.dynamax && !p.dynamax) { p.dynamax = m.dynamax; p.dynamaxSource = 'Bulbapedia'; }
     changedMons++;
   });
   t.movesSource = 'Bulbapedia';
