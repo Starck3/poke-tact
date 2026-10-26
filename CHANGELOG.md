@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.42.0] — 2026-10-26
+
+> Detalhe no FireRed/LeafGreen: o S.S. Anne agora aparece no mapa da região quando um Pokémon é encontrado lá.
+
+### Corrigido
+- **Mapa da região (FireRed/LeafGreen)**: "Ssanne Exterior" (o convés do S.S. Anne) não casava com o ponto "S.S. Anne" do
+  mapa. Agora 142 de 143 locais têm ponto; o único sem é o Pokémon que anda pelo mapa, que não tem lugar fixo.
+
 ## [0.41.0] — 2026-10-26
 
 > No Sword/Shield, os golpes Max agora também trazem os efeitos extras que têm no jogo — subir o Ataque, baixar a Defesa do adversário, chamar sol, chuva ou terreno — e isso entra na conta da luta.
