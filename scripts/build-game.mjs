@@ -35,7 +35,8 @@ const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-for
 // build-trainers-bulbapedia: jogo sem detonado (USUM) ganha os treinadores pela Bulbapedia
 const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'apply-bulbapedia-rates', 'build-detonado-modern', 'build-trainers-bulbapedia', 'apply-bulbapedia-trainers', 'apply-bulbapedia-walkthrough', 'apply-bulbapedia-items', 'apply-breeding']; // a ordem da história (walkthrough) antes dos itens: no USUM ela dá os estágios
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
-const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-evos', 'validate-pkhex', 'build-acquisition-pkhex'];
+// (o detonado e as etapas da Bulbapedia também: sem elas a reconstrução perdia a ordem da história e os golpes reais)
+const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-evos', 'validate-pkhex', ...PKHEX_ACQ_STEPS];
 // todos os jogos, no fim: fotos dos lugares (detonado), mapa esquemático da região (decomp) e onde achar os itens de
 // evolução citados no detonado (só jogos sem lista de itens do decomp); saem sem erro quando o jogo não tem a fonte
 const IMAGE_STEPS = ['build-place-images', 'build-region-maps', 'build-evo-items'];

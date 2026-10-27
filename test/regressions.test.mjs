@@ -2760,3 +2760,26 @@ test('0.52.0: taxa do BDSP (manhã/dia/noite); "Grama" do PKHeX não pega a taxa
     }
   }
 });
+
+test('0.53.0: golpes reais em mais lutas — forma no nome, time sem nível, luta em dupla, nível mais perto', async () => {
+  const { parties, plain } = await import('../scripts/lib/bulbapedia.mjs');
+  // {{Party/2}} (luta em dupla): um time só com os Pokémon dos dois; "|move1type=" não gruda no golpe; &nbsp; vira espaço
+  const wt = ['{{Party/2', '| game = LGPE', '| name = {{color2|000|Jessie}}', '| name2 = {{color2|000|James}}', '}}',
+    '{{Pokémon', '| pokemon = Ekans', '| level = 12', '| move1 = Wrap |move1type=Normal |move1cat=Physical', '| move2 = Poison&nbsp;Sting', '}}',
+    '{{Pokémon', '| pokemon = Koffing', '| level = 12', '| move1 = Tackle', '}}', '{{Party/end}}'].join('\n');
+  const [p] = parties(wt);
+  assert.equal(p.name, 'Jessie & James');
+  assert.deepEqual(p.mons.map((m) => m.moves.map((mv) => mv.name)), [['Wrap', 'Poison Sting'], ['Tackle']]);
+  assert.equal(plain('Revelation&nbsp;Dance'), 'Revelation Dance');
+  const rep = (g) => JSON.parse(readFileSync(new URL(`../reports/${g}/bulbapedia-trainers.json`, import.meta.url), 'utf8'));
+  const m = (g, re) => rep(g).matched.filter((x) => re.test(x));
+  // nível mais perto vence: Jessie e James nv 34 = "Third battle" (nv 34), não a 2ª (nv 32)
+  assert.ok(m('lets-go-pikachu-lets-go-eevee', /^DETONADO_14_0 .*\(Third battle\)/).length);
+  // torneio do SwSh (nível acompanha o jogador): casa pela espécie do time inteiro; "aegislash-shield" = Aegislash
+  assert.ok(m('sword-shield', /^DETONADO_46_0 Leon ← Leon \(Champion tournaments\) 5\/5 \(sem nível\)/).length);
+  // time com nível vence time sem nível: a 1ª luta do Gwynn no Z-A continua a 1ª
+  assert.ok(m('legends-za', /^DETONADO_20_0 Gwynn ← Gwynn \(First battle\)/).length);
+  for (const g of ['sword-shield', 'scarlet-violet', 'legends-za', 'lets-go-pikachu-lets-go-eevee']) assert.ok(rep(g).unmatched.length <= 15, g);
+  // o Z-A reconstrói o detonado e as etapas da Bulbapedia (antes o build-game parava no onde obter)
+  assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_ONLY_STEPS = \[[^\]]*\.\.\.PKHEX_ACQ_STEPS\]/);
+});

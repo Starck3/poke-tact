@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-26 · versão **0.52.0** (publicada no GitHub).
+Atualizado em 2026-10-26 · versão **0.53.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas) `PLANO-EXECUCAO-2.md`, `PLANO-EXECUCAO-3.md` e `PLANO-EXECUCAO-4.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
 Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
@@ -31,9 +31,9 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
 evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
 "(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
-Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (291 com `data-sources/`, 276 num clone limpo).
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (292 com `data-sources/`, 277 num clone limpo).
 Banco de lutas: 22 jogos (o USUM entra pelos treinadores com estágio), 39.978 sugestões — 39.793 vencem (99,5%), 37.960 com
-folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 803 de 958 lutas (USUM 100/100); onde achar
+folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 878 de 960 lutas (USUM 102/102); onde achar
 itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no X/Y, ORAS,
 Sun/Moon, USUM, Let's Go e BDSP (dia/noite em Alola; manhã/dia/noite no BDSP).
 
@@ -61,7 +61,9 @@ Sun/Moon, USUM, Let's Go e BDSP (dia/noite em Alola; manhã/dia/noite no BDSP).
 - ⚠ Taxa de aparição (0.50–0.52): X/Y, ORAS, Sun/Moon, USUM, Let's Go, BDSP. Sem tabela simples: SwSh, LA, SV, Z-A.
 - ✅ Depois do plano (0.52): creche do USUM (Paniola Ranch, pela Bulbapedia); USUM com pós-jogo — sem estágio 273 → 66 (só
   Poké Pelago, trocas e ovos de presente); creche na aba Detonado em toda reconstrução.
-- Sobra: lutas ainda com golpes estimados (DLC do SwSh com nível diferente, Jessie e James no Let's Go…).
+- ✅ Golpes reais em mais lutas (0.53): 803 → 878 de 960 (forma no nome, time sem nível, luta em dupla, nível mais perto).
+- Sobra: 82 lutas com golpes estimados — Battle Maison/Subway (time sorteado), recrutas sem página, personagens do Legends:
+  Arceus sem página (Coin, Charm, Wenton…), treinos diários do Ingo.
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do

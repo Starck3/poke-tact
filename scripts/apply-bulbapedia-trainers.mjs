@@ -12,7 +12,7 @@ import { page, parties } from './lib/bulbapedia.mjs';
 const gameId = process.argv[2];
 // campo "game" do {{Party}} que vale para cada jogo do app
 // (códigos por versão — Sw/Sh, OR/AS, Su/Mo… — quando o time muda entre as versões; "Y" e "E" ficam de fora: são Yellow e Emerald)
-const CODES = { 'black-white': /^(BW|BWB2W2|B|W)$/, 'x-y': /^(XY|XYORAS|X)$/, 'omega-ruby-alpha-sapphire': /^(ORAS|XYORAS|OR|AS)$/, 'sun-moon': /^(SM|SMUSUM|Su|Mo|SUS|MUM)$/,
+const CODES = { 'black-white': /^(BW|BWB2W2|B|W)$/, 'x-y': /^(XY|XYORAS|X)$/, 'omega-ruby-alpha-sapphire': /^(ORAS|XYORAS|OR|AS)$/, 'sun-moon': /^(SM|SMUSUM|Su|Mo|S|M|SUS|MUM)$/,
   'ultra-sun-ultra-moon': /^(USUM|SMUSUM|US|UM|SUS|MUM)$/, 'lets-go-pikachu-lets-go-eevee': /^(PE|LGPE|LGP|LGE)$/, 'sword-shield': /^(SwSh|Sw|Sh)$/, 'brilliant-diamond-shining-pearl': /^(BDSP|BD|SP)$/,
   'legends-arceus': /^LA$/, 'scarlet-violet': /^(SV|Sc|V)$/, 'legends-za': /^ZA$/ };
 if (!CODES[gameId]) { console.log(`[${gameId}] sem times na Bulbapedia configurados (jogos com decomp já têm golpes reais) — nada a fazer`); process.exit(0); }
@@ -27,7 +27,7 @@ const moveKey = new Map(Object.keys(data.moves).map((n) => [key(n), n]));
 // nomes que não são pessoa ou que a Bulbapedia escreve de outro jeito
 const SKIP = /^(Team (Magma|Aqua) Grunt|Paradise Protection Protocol)/i;
 // "Seu rival" do Let's Go = Trace; "Jessie e James" = Jessie and James (Q1, 0.47.0)
-const TITLE = { 'Seu rival': gameId === 'lets-go-pikachu-lets-go-eevee' ? 'Trace' : null, 'Jessie e James': 'Jessie and James', Melody: 'Melony' /* o detonado do SwSh escreve "Melody" */, 'Tate e Liza': 'Tate and Liza', 'Professor Kukui': 'Kukui', 'AI Sada': 'Sada', 'AI Turo': 'Turo', 'Illima': 'Ilima', 'Wiksttrom': 'Wikstrom', Red: 'Red (game)', Blue: 'Blue (game)', Green: 'Green (game)', 'Boss Lysandre': 'Lysandre', 'Ingo – but tougher': 'Ingo' };
+const TITLE = { 'Seu rival': gameId === 'lets-go-pikachu-lets-go-eevee' ? 'Trace' : null, 'Jessie e James': 'Jessie and James', Melody: 'Melony' /* o detonado do SwSh escreve "Melody" */, 'Tate e Liza': 'Tate and Liza', 'Professor Kukui': 'Kukui', 'AI Sada': 'Sada', 'AI Turo': 'Turo', 'Illima': 'Ilima', 'Wiksttrom': 'Wikstrom', Red: 'Red (game)', Blue: 'Blue (game)', Green: 'Green (game)', 'Boss Lysandre': 'Lysandre', 'Ingo – but tougher': 'Ingo', 'Ingo – using alphas': 'Ingo' };
 const pagesFor = (label) => {
   const name = label.replace(/\s*\(.*\)\s*$/, '').trim();
   if (SKIP.test(name)) return [];
@@ -59,18 +59,32 @@ for (const t of tr.trainers) {
     try { ps = await partiesOf(title); } catch (e) { console.log(String(e.message)); process.exitCode = 2; break; }
     for (const party of ps) {
       const used = new Set();
+      // nível em branco na Bulbapedia (torneios do SwSh: o nível acompanha o jogador) → casa só pela espécie
+      const scaled = party.mons.length && party.mons.every((m) => m.level == null);
       const pairs = t.party.map((p) => {
-        const i = party.mons.findIndex((m, k) => !used.has(k) && key(m.species) === key(base(p.species)) && Math.abs((m.level ?? 0) - p.level) <= 3);
+        // forma no nome do app ("morpeko-full-belly", "aegislash-shield") → a espécie da Bulbapedia ("Morpeko")
+        const i = party.mons.findIndex((m, k) => !used.has(k) && [key(base(p.species)), key(p.species.split('-')[0])].includes(key(m.species)) && (scaled || Math.abs((m.level ?? 0) - p.level) <= 3));
         if (i >= 0) used.add(i);
         return i >= 0 ? party.mons[i] : null;
       });
       const hits = pairs.filter(Boolean).length;
-      if (hits >= Math.max(1, Math.ceil(t.party.length * 0.6)) && (!best || hits > best.hits)) best = { hits, pairs, title, party };
+      // time sem nível: precisa casar o time inteiro do app (sem o nível, casar só uma parte é fraco demais)
+      if (scaled && hits < t.party.length) continue;
+      // distância de nível: no empate vence o time de nível mais perto (Jessie e James no Let's Go: lutas nv 32, 34 e 36)
+      const dist = scaled ? 0 : t.party.reduce((s, p, i) => s + (pairs[i] ? Math.abs(pairs[i].level - p.level) : 0), 0);
+      const cand = { hits, pairs, title, party, scaled, dist };
+      if (hits < Math.max(1, Math.ceil(t.party.length * 0.6))) continue;
+      // empate entre times sem nível com golpes diferentes (Mustard: duas lutas com as mesmas espécies) → não escolhe no chute
+      const sig = (c) => JSON.stringify(c.pairs.map((m) => m?.moves.map((mv) => mv.name)));
+      if (best && hits === best.hits && scaled && best.scaled && sig(cand) !== sig(best)) best.tied = true;
+      // time com nível que casa vence qualquer time sem nível (Gwynn no Z-A: a 1ª luta, não a revanche da missão)
+      if (!best || (best.scaled && !scaled) || (best.scaled === scaled && (hits > best.hits || (hits === best.hits && dist < best.dist)))) best = cand;
     }
   }
   if (process.exitCode === 2) break;
+  if (best?.tied) { report.unmatched.push(`${t.key} ${t.label} (times sem nível empatados com golpes diferentes)`); continue; }
   if (!best) { report.unmatched.push(`${t.key} ${t.label}`); continue; }
-  report.matched.push(`${t.key} ${t.label} ← ${best.title} (${best.party.section.at(-1) ?? ''}) ${best.hits}/${t.party.length}`);
+  report.matched.push(`${t.key} ${t.label} ← ${best.title} (${best.party.section.at(-1) ?? ''}) ${best.hits}/${t.party.length}${best.scaled ? ' (sem nível)' : ''}`);
   t.party.forEach((p, i) => {
     const m = best.pairs[i];
     if (!m) return;
