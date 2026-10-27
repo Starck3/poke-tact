@@ -2,7 +2,7 @@
 
 Atualizado em 2026-10-26 · versão **0.51.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
-já encontradas) `PLANO-EXECUCAO-2.md` e `PLANO-EXECUCAO-3.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
+já encontradas) `PLANO-EXECUCAO-2.md`, `PLANO-EXECUCAO-3.md` e `PLANO-EXECUCAO-4.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
 Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
 
 ## Como está cada jogo
@@ -31,9 +31,11 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
 evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
 "(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
-Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (285 com `data-sources/`, 270 num clone limpo).
-Banco de lutas: 21 jogos, 37.872 sugestões — 37.687 vencem (99,5%), 35.852 com folga; ≈ 6 minutos. Chefes dos jogos sem decomp com
-golpes reais da Bulbapedia em 635 de 1.098 lutas; onde achar itens de evolução/Mega Stones pela Bulbapedia nos jogos sem decomp.
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (290 com `data-sources/`, 275 num clone limpo).
+Banco de lutas: 22 jogos (o USUM entra pelos treinadores com estágio), 39.978 sugestões — 39.793 vencem (99,5%), 37.960 com
+folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 803 de 958 lutas (USUM 100/100); onde achar
+itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no X/Y, ORAS,
+Sun/Moon, USUM e Let's Go (dia/noite em Alola).
 
 ## O que falta (do mais importante para o menos)
 
@@ -50,8 +52,16 @@ golpes reais da Bulbapedia em 635 de 1.098 lutas; onde achar itens de evolução
 - ✅ Bulbapedia como fonte: golpes reais e golpe Z dos chefes (0.38), onde achar itens/Mega Stones (0.39), incensos (0.40),
   efeitos dos golpes Max (0.41), S.S. Anne no mapa (0.42), USUM com treinadores e progresso (0.43/0.46), TMs de loja do B2W2
   (0.44), ordem de ação do Legends: Arceus (0.45), estimativas revistas pela ordem da Bulbapedia (0.46).
-- ⚠ Ainda com golpes estimados: lutas que não casaram com a Bulbapedia (SwSh 48/96, LGPE 34/57, BDSP 45/74…).
-- ⏸ Nível de Dynamax dos líderes (a fonte não dá); taxa de aparição nas Gens 6–9 (custo alto — fica para quando pedir).
+- ⏸ Nível de Dynamax dos líderes (a fonte não dá).
+
+### Plano de execução 4 (concluído em 2026-10-26 — detalhes em `PLANO-EXECUCAO-4.md`)
+- ✅ Golpes reais dos rivais (0.47): SwSh 73/96, BDSP 72/74, LGPE 50/57.
+- ✅ Incensos nos jogos novos pelo destino do link (0.48): bebês de incenso nascem em todos os jogos com creche.
+- ✅ USUM no banco de lutas (0.49), com time do rival pela inicial e estágio conferido pelo nível.
+- ⚠ Taxa de aparição (0.50–0.51): X/Y, ORAS, Sun/Moon, USUM, Let's Go. ⏸ BDSP (código pronto; a Bulbapedia deu erro — rodar
+  `node scripts/build-game.mjs brilliant-diamond-shining-pearl`). Sem tabela simples: SwSh, LA, SV, Z-A.
+- Sobra: lutas ainda com golpes estimados (DLC do SwSh com nível diferente, Jessie e James no Let's Go…); 273 fontes do USUM
+  sem estágio; creche do USUM (Paniola Ranch) sem configuração no apply-breeding.
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
