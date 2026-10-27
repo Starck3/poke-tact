@@ -16,7 +16,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   (Munchlax, Bonsly, Budew…) entram pelo apply-breeding. Pronto quando: algum jogo novo ganha bebê de incenso; teste. (0.48.0)
 - **Q3 ✅ Ultra Sun/Ultra Moon no banco de lutas**: o banco monta as lutas pela aba Detonado (que o USUM não tem); usar os
   treinadores com estágio direto quando não há detonado. Pronto quando: o USUM aparece no banco. (0.49.0)
-- **Q4 🔄 Taxa de aparição nas Gens 6–9** (opcional, grande): começar por UM jogo (X/Y) para medir o custo real; se o leitor
+- **Q4 ⚠ Taxa de aparição nas Gens 6–9** (opcional, grande): começar por UM jogo (X/Y) para medir o custo real; se o leitor
   das tabelas de encontro ficar confiável, estender; senão ⏸ com o que foi medido.
 - **D1 ⬜** STATUS.md, memória, resumo final.
 
@@ -45,3 +45,12 @@ Q1 → Q2 → Q3 → Q4 → D1.
   Caverna 20% × Rock Smash 95%) e 13 sem linha (Rivière Walk) ficam sem taxa. O método genérico do PKHeX ("Selvagem",
   "Grama" até no teto da caverna) vira o da Bulbapedia (Grama, Teto da caverna, Vara boa…). Banco: vencem igual; folgadas
   X/Y 2.451 → 2.445 (Abomasnow da Route 17 tem 1% → raro, sai das sugestões). Próximo: estender aos outros jogos.
+- **2026-10-26 — Q4, mais jogos (0.51.0)**: o mesmo leitor com a predefinição de cada jogo (entryoras, entry7,
+  entryusum, entrype), as colunas de versão na ordem do jogo e a taxa por período (Alola: dia|noite, "-" = não aparece;
+  "all="). Selvagens com taxa: ORAS 552/1.208 (DexNav "??%" e Surf+pesca na mesma faixa do PKHeX ficam sem), Sun/Moon
+  607/878, USUM 730/948, Let's Go 604/1.016 (os raros que aparecem em qualquer rota não têm taxa). Chamado SOS e horda ficam
+  sem taxa. Achado: "Berry Fields" → #REDIRECT "Berry fields" caía no mesmo arquivo do cache (Windows não diferencia
+  maiúsculas) e o redirecionamento não terminava — o destino ganha nome próprio. ⏸ BDSP (manhã|dia|noite, método do PKHeX
+  casado com a linha): HTTP 503 em Lake Verity e, na 2ª tentativa, falha de rede em Old Chateau — parado pela regra; o
+  código está pronto (CFG), basta rodar de novo. SwSh, LA, SV, Z-A: não configurados (símbolos no mapa, clima da Wild
+  Area, surtos — tabela diferente). Banco: vencem igual; folgadas Let's Go 1.018 → 1.021.

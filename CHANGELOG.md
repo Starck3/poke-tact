@@ -2,6 +2,24 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.51.0] — 2026-10-26
+
+> A frequência com que cada Pokémon aparece agora também está no Omega Ruby/Alpha Sapphire, no Sun/Moon, no Ultra Sun/Ultra Moon e no Let's Go. Nos jogos de Alola ela vem separada por dia e noite (ex.: "Route 1 — Grama, nv 2–13 (só de noite 30%)").
+
+### Adicionado
+- **Taxa de aparição** pela Bulbapedia em mais quatro jogos: Omega Ruby/Alpha Sapphire (552 de 1.208 encontros), Sun/Moon
+  (607 de 878), Ultra Sun/Ultra Moon (730 de 948) e Let's Go (604 de 1.016). Encontro escondido do DexNav, chamado SOS, horda
+  e os raros que aparecem em qualquer rota do Let's Go ficam sem taxa (a tabela não dá um número para eles).
+- Em Alola, a taxa mostra o período: "dia 20% / noite 10%" ou "só de noite 30%".
+
+### Corrigido
+- Página da Bulbapedia que redireciona para o mesmo nome com outra caixa ("Berry Fields" → "Berry fields") travava o
+  programa no Windows; agora o destino é guardado à parte.
+
+### Alterado
+- Banco de lutas: vencem igual; folgadas no Let's Go 1.018 → 1.021. O Brilliant Diamond/Shining Pearl ficou para depois (o
+  site da Bulbapedia respondeu com erro e o programa parou, como manda a regra).
+
 ## [0.50.0] — 2026-10-26
 
 > No X/Y, a tela "Onde capturar" agora mostra com que frequência cada Pokémon aparece (ex.: "Santalune Forest — Grama, nv 3–4 (6%)") e como ele é encontrado (grama, surf, vara boa, teto da caverna…). Um Pokémon que quase nunca aparece deixa de ser sugerido.

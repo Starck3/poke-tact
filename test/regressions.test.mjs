@@ -1881,8 +1881,8 @@ test('aba Onde capturar: todos os locais da versão, rota por evolução, evento
   // exclusivo de versão: aparece nas outras versões
   const ekans = r('firered-leafgreen', 'leafgreen', 'ekans');
   assert.equal(ekans.lines.length, 0); assert.ok(ekans.others.some((o) => o.version === 'firered'));
-  // jogos sem decomp também (PKHeX): sem taxa (Sun/Moon); 0.50.0: X/Y com a taxa da Bulbapedia
-  const sm = r('sun-moon', 'sun', 'pikachu');
+  // jogos sem decomp também (PKHeX): sem taxa (Sword/Shield); 0.50.0: X/Y com a taxa da Bulbapedia
+  const sm = r('sword-shield', 'sword', 'pikachu');
   assert.ok(sm.lines.length && sm.lines.every((l) => !/%/.test(l.text)));
   const xy = r('x-y', 'x', 'pikachu');
   assert.ok(xy.lines.some((l) => /Santalune Forest — Grama, nv \d+(–\d+)? \(\d+%\)/.test(l.text)));
@@ -2707,4 +2707,23 @@ test('Q4 (0.50.0): taxa de aparição do X/Y pela tabela de captura da Bulbapedi
   assert.ok(a.versions.x.graveler.filter((s) => /Terminus Cave/.test(s.where)).every((s) => s.pct == null));
   const rep = JSON.parse(readFileSync(new URL('../reports/x-y/bulbapedia-rates.json', import.meta.url), 'utf8'));
   assert.ok(rep.matched / rep.wild > 0.85);
+});
+
+test('Q4 (0.51.0): taxa de aparição também no ORAS, Sun/Moon e USUM — dia/noite de Alola, forma regional, redirecionamento sem fim', async () => {
+  const { pctText, catchReport } = await import('../public/engine.mjs');
+  assert.equal(pctText({ pct: 30, pctTimes: { noite: 30 } }), 'só de noite 30%');
+  assert.equal(pctText({ pct: 20, pctTimes: { dia: 20, noite: 10 } }), 'dia 20% / noite 10%');
+  assert.equal(pctText({ pct: 80, pctApprox: true }), '~80%');
+  // Sun: Rattata de Alola só de noite na Route 1 (Bulbapedia: "-|30%"); a linha "form=Alolan Form" não vale para outra forma
+  const sm = load('sun-moon.json'), sma = load('sun-moon-acquisition.json');
+  assert.ok(sma.versions.sun['rattata-alola'].some((s) => s.where === 'Route 1' && s.pctTimes?.noite === 30 && !s.pctTimes.dia));
+  assert.match(catchReport(sm, sma, sm.pokemon.find((p) => p.name === 'rattata-alola'), 'sun').lines[0].text, /só de noite \d+%/);
+  // chamado SOS e horda ficam sem taxa (a conta é outra)
+  for (const g of ['sun-moon', 'omega-ruby-alpha-sapphire']) for (const v of Object.values(load(`${g}-acquisition.json`).versions)) for (const l of Object.values(v)) for (const s of l)
+    if (/^(Chamado SOS|Horda)$/.test(s.method)) assert.equal(s.pct, undefined, `${g} ${s.method}`);
+  for (const g of ['omega-ruby-alpha-sapphire', 'sun-moon', 'ultra-sun-ultra-moon']) assert.match(load(`${g}-acquisition.json`).ratesSource, /Bulbapedia/, g);
+  // "Berry Fields" → #REDIRECT "Berry fields": no Windows é o mesmo arquivo; o destino ganha nome próprio (sem laço)
+  const { page } = await import('../scripts/lib/bulbapedia.mjs');
+  const t = await page('Berry Fields', { offline: true });
+  assert.ok(t == null || !/^#REDIRECT/i.test(t));
 });

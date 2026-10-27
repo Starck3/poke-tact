@@ -7,8 +7,8 @@
    "covered": 395,
    "wins": 1178,
    "picks": 1188,
-   "comfy": 1018,
-   "turnsSum": 1779,
+   "comfy": 1021,
+   "turnsSum": 1790,
    "turnsN": 1188
   },
   "antes": {
@@ -723,18 +723,6 @@
      "candidates": 29,
      "picks": [
       {
-       "mon": "onix",
-       "move": "rock-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 10,
-       "faster": 1,
-       "theirMove": "gust"
-      },
-      {
        "mon": "geodude",
        "move": "rock-throw",
        "eff": 2,
@@ -744,6 +732,18 @@
        "myTurns": 2,
        "theirTurns": 8,
        "faster": 0,
+       "theirMove": "gust"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
        "theirMove": "gust"
       },
       {
@@ -837,18 +837,6 @@
        "theirMove": "quick-attack"
       },
       {
-       "mon": "onix",
-       "move": "rock-throw",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 4,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
        "mon": "beedrill",
        "move": "twineedle",
        "eff": 1,
@@ -857,6 +845,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 4,
+       "theirTurns": 19,
        "faster": 0,
        "theirMove": "quick-attack"
       }
@@ -887,18 +887,6 @@
      "candidates": 29,
      "picks": [
       {
-       "mon": "onix",
-       "move": "rock-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 10,
-       "faster": 1,
-       "theirMove": "gust"
-      },
-      {
        "mon": "geodude",
        "move": "rock-throw",
        "eff": 2,
@@ -908,6 +896,18 @@
        "myTurns": 2,
        "theirTurns": 8,
        "faster": 0,
+       "theirMove": "gust"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
        "theirMove": "gust"
       },
       {
@@ -1350,14 +1350,14 @@
        "theirMove": "wing-attack"
       },
       {
-       "mon": "onix",
-       "move": "rock-throw",
-       "eff": 2,
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "wing-attack"
       }
@@ -1514,14 +1514,14 @@
        "theirMove": "wing-attack"
       },
       {
-       "mon": "onix",
-       "move": "rock-throw",
-       "eff": 2,
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "wing-attack"
       }
@@ -1817,18 +1817,6 @@
      "candidates": 87,
      "picks": [
       {
-       "mon": "butterfree",
-       "move": "bug-buzz",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 1,
-       "theirMove": "mega-drain"
-      },
-      {
        "mon": "venusaur",
        "move": "petal-dance",
        "eff": 0.5,
@@ -1850,6 +1838,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 0,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "beedrill",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 1,
        "theirMove": "mega-drain"
       }
      ],
@@ -2307,18 +2307,6 @@
      "candidates": 87,
      "picks": [
       {
-       "mon": "butterfree",
-       "move": "bug-buzz",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 1,
-       "theirMove": "mega-drain"
-      },
-      {
        "mon": "venusaur",
        "move": "petal-dance",
        "eff": 0.5,
@@ -2340,6 +2328,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 0,
+       "theirMove": "mega-drain"
+      },
+      {
+       "mon": "beedrill",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 1,
        "theirMove": "mega-drain"
       }
      ],
@@ -2546,8 +2546,8 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "butterfree",
-       "move": "bug-buzz",
+       "mon": "beedrill",
+       "move": "pin-missile",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -2597,11 +2597,11 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -2799,18 +2799,6 @@
      "candidates": 100,
      "picks": [
       {
-       "mon": "butterfree",
-       "move": "bug-buzz",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "paras",
        "move": "leech-life",
        "eff": 4,
@@ -2823,14 +2811,26 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
        "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "power-whip"
+      },
+      {
+       "mon": "sandslash-alola",
+       "move": "ice-shard",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "psychic"
       }
@@ -3154,8 +3154,8 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "butterfree",
-       "move": "bug-buzz",
+       "mon": "beedrill",
+       "move": "pin-missile",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
@@ -3205,11 +3205,11 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -3410,18 +3410,6 @@
        "theirMove": "leech-life"
       },
       {
-       "mon": "arcanine",
-       "move": "double-edge",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "fly"
-      },
-      {
        "mon": "rhydon",
        "move": "rock-throw",
        "eff": 2,
@@ -3432,6 +3420,18 @@
        "theirTurns": 8,
        "faster": 0,
        "theirMove": "leech-life"
+      },
+      {
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "fly"
       }
      ],
      "before": []
@@ -3629,18 +3629,6 @@
        "theirMove": "leech-life"
       },
       {
-       "mon": "arcanine",
-       "move": "double-edge",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 8,
-       "faster": 1,
-       "theirMove": "fly"
-      },
-      {
        "mon": "rhydon",
        "move": "rock-throw",
        "eff": 2,
@@ -3651,6 +3639,18 @@
        "theirTurns": 8,
        "faster": 0,
        "theirMove": "leech-life"
+      },
+      {
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 0,
+       "theirMove": "fly"
       }
      ],
      "before": []
@@ -4235,16 +4235,16 @@
        "theirMove": "drill-run"
       },
       {
-       "mon": "cloyster",
-       "move": "water-gun",
+       "mon": "kingler",
+       "move": "bubble-beam",
        "eff": 4,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "rock-throw"
+       "theirMove": "drill-run"
       }
      ],
      "before": []
@@ -5215,16 +5215,16 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "cloyster",
-       "move": "water-gun",
+       "mon": "gyarados",
+       "move": "hydro-pump",
        "eff": 4,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 18,
        "faster": 1,
-       "theirMove": "earthquake"
+       "theirMove": "iron-tail"
       }
      ],
      "before": []
@@ -5317,16 +5317,16 @@
        "theirMove": "ice-punch"
       },
       {
-       "mon": "kangaskhan",
-       "move": "outrage",
+       "mon": "flareon",
+       "move": "flare-blitz",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 5,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fire-punch"
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "thunder-punch"
       }
      ],
      "before": []
@@ -5368,14 +5368,14 @@
        "theirMove": "body-slam"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
+       "mon": "exeggcute",
+       "move": "solar-beam",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 8,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 0,
        "theirMove": "superpower"
       }
@@ -5419,16 +5419,16 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "exeggutor",
-       "move": "confusion",
+       "mon": "hypno",
+       "move": "psychic",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 0.5,
-       "theirMove": "superpower"
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "earthquake"
       }
      ],
      "before": []
@@ -5532,11 +5532,11 @@
        "theirMove": "shadow-ball"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -5747,14 +5747,14 @@
        "theirMove": "hyper-beam"
       },
       {
-       "mon": "vileplume",
-       "move": "petal-dance",
-       "eff": 2,
+       "mon": "gyarados",
+       "move": "crunch",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
+       "myTurns": 2,
+       "theirTurns": 7,
        "faster": 0,
        "theirMove": "dragon-pulse"
       }
@@ -6052,18 +6052,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -6072,6 +6060,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "beedrill",
+       "move": "poison-jab",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -6205,18 +6205,6 @@
        "theirMove": "surf"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "venusaur",
        "move": "petal-dance",
        "eff": 2,
@@ -6227,6 +6215,18 @@
        "theirTurns": 2,
        "faster": 1,
        "theirMove": "psychic"
+      },
+      {
+       "mon": "muk-alola",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "surf"
       }
      ],
      "before": []
@@ -6369,18 +6369,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -6389,6 +6377,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "beedrill",
+       "move": "poison-jab",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -6522,18 +6522,6 @@
        "theirMove": "surf"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "venusaur",
        "move": "petal-dance",
        "eff": 2,
@@ -6544,6 +6532,18 @@
        "theirTurns": 2,
        "faster": 1,
        "theirMove": "psychic"
+      },
+      {
+       "mon": "muk-alola",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "surf"
       }
      ],
      "before": []
@@ -6804,16 +6804,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "vileplume",
-       "move": "petal-dance",
+       "mon": "muk-alola",
+       "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 6,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "psychic"
+       "theirMove": "surf"
       }
      ],
      "before": []
@@ -7075,16 +7075,16 @@
        "theirMove": "ice-punch"
       },
       {
-       "mon": "kangaskhan",
-       "move": "outrage",
+       "mon": "flareon",
+       "move": "flare-blitz",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 5,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fire-punch"
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "thunder-punch"
       }
      ],
      "before": []
@@ -7179,16 +7179,16 @@
        "theirMove": "superpower"
       },
       {
-       "mon": "vileplume",
-       "move": "petal-dance",
-       "eff": 2,
+       "mon": "marowak",
+       "move": "bonemerang",
+       "eff": 4,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
-       "theirMove": "rock-slide"
+       "theirMove": "superpower"
       }
      ],
      "before": []
@@ -7980,18 +7980,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -8000,6 +7988,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "beedrill",
+       "move": "poison-jab",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -8148,16 +8148,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "vileplume",
-       "move": "petal-dance",
+       "mon": "muk-alola",
+       "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 6,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "psychic"
+       "theirMove": "surf"
       }
      ],
      "before": []
@@ -8303,18 +8303,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -8323,6 +8311,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "beedrill",
+       "move": "poison-jab",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -8471,16 +8471,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "vileplume",
-       "move": "petal-dance",
+       "mon": "muk-alola",
+       "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 6,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "psychic"
+       "theirMove": "surf"
       }
      ],
      "before": []
@@ -8937,18 +8937,6 @@
      "candidates": 139,
      "picks": [
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "dazzling-gleam"
-      },
-      {
        "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
@@ -8970,6 +8958,18 @@
        "myTurns": 2,
        "theirTurns": 5,
        "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "beedrill",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
        "theirMove": "psychic"
       }
      ],
@@ -9451,16 +9451,16 @@
        "theirMove": "solar-beam"
       },
       {
-       "mon": "scyther",
-       "move": "wing-attack",
+       "mon": "charizard",
+       "move": "flamethrower",
        "eff": 4,
        "via": "level-up",
-       "stageNeeded": 5,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 9,
        "faster": 1,
-       "theirMove": "leech-life"
+       "theirMove": "brick-break"
       }
      ],
      "before": []
@@ -9555,11 +9555,11 @@
        "theirMove": "hyper-beam"
       },
       {
-       "mon": "butterfree",
-       "move": "bug-buzz",
+       "mon": "rapidash",
+       "move": "megahorn",
        "eff": 4,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
@@ -9826,16 +9826,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "vileplume",
-       "move": "petal-dance",
+       "mon": "muk-alola",
+       "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 6,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "psychic"
+       "theirMove": "scald"
       }
      ],
      "before": []
@@ -9866,18 +9866,6 @@
        "theirMove": "dazzling-gleam"
       },
       {
-       "mon": "kangaskhan",
-       "move": "crunch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
@@ -9887,6 +9875,18 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "aerodactyl",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
        "theirMove": "psychic"
       }
      ],
@@ -9929,18 +9929,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kangaskhan",
-       "move": "outrage",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "sludge-bomb"
-      },
-      {
        "mon": "venusaur",
        "move": "power-whip",
        "eff": 1,
@@ -9951,6 +9939,18 @@
        "theirTurns": 4,
        "faster": 0,
        "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "muk-alola",
+       "move": "crunch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "hydro-pump"
       }
      ],
      "before": []
@@ -10627,18 +10627,6 @@
        "theirMove": "dazzling-gleam"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "dazzling-gleam"
-      },
-      {
        "mon": "snorlax",
        "move": "crunch",
        "eff": 2,
@@ -10648,6 +10636,18 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "aerodactyl",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
        "theirMove": "psychic"
       }
      ],
@@ -10691,11 +10691,11 @@
        "theirMove": "power-whip"
       },
       {
-       "mon": "butterfree",
-       "move": "bug-buzz",
+       "mon": "rapidash",
+       "move": "megahorn",
        "eff": 4,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
@@ -11459,18 +11459,6 @@
      "candidates": 31,
      "picks": [
       {
-       "mon": "onix",
-       "move": "rock-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 10,
-       "faster": 1,
-       "theirMove": "gust"
-      },
-      {
        "mon": "vaporeon",
        "move": "water-gun",
        "eff": 1,
@@ -11492,6 +11480,18 @@
        "myTurns": 2,
        "theirTurns": 8,
        "faster": 0,
+       "theirMove": "gust"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
        "theirMove": "gust"
       }
      ],
@@ -11585,14 +11585,14 @@
        "theirMove": "quick-attack"
       },
       {
-       "mon": "beedrill",
-       "move": "twineedle",
+       "mon": "bulbasaur",
+       "move": "vine-whip",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
+       "myTurns": 3,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "quick-attack"
       }
@@ -11623,18 +11623,6 @@
      "candidates": 31,
      "picks": [
       {
-       "mon": "onix",
-       "move": "rock-throw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 10,
-       "faster": 1,
-       "theirMove": "gust"
-      },
-      {
        "mon": "vaporeon",
        "move": "water-gun",
        "eff": 1,
@@ -11656,6 +11644,18 @@
        "myTurns": 2,
        "theirTurns": 8,
        "faster": 0,
+       "theirMove": "gust"
+      },
+      {
+       "mon": "onix",
+       "move": "rock-throw",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 10,
+       "faster": 1,
        "theirMove": "gust"
       }
      ],
@@ -12024,11 +12024,11 @@
        "theirMove": "thunderbolt"
       },
       {
-       "mon": "beedrill",
-       "move": "poison-jab",
+       "mon": "arcanine",
+       "move": "double-edge",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
        "theirTurns": 3,
@@ -12086,15 +12086,15 @@
        "theirMove": "wing-attack"
       },
       {
-       "mon": "onix",
-       "move": "rock-throw",
+       "mon": "vaporeon",
+       "move": "aurora-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
-       "faster": 1,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 0,
        "theirMove": "wing-attack"
       }
      ],
@@ -12112,18 +12112,6 @@
      "winnersAvailable": 28,
      "candidates": 49,
      "picks": [
-      {
-       "mon": "beedrill",
-       "move": "twineedle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "acid"
-      },
       {
        "mon": "gyarados",
        "move": "thrash",
@@ -12147,6 +12135,18 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "zubat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "acid"
       }
      ],
      "before": []
@@ -12250,15 +12250,15 @@
        "theirMove": "wing-attack"
       },
       {
-       "mon": "onix",
-       "move": "rock-throw",
+       "mon": "vaporeon",
+       "move": "aurora-beam",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 1,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
-       "faster": 1,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 0,
        "theirMove": "wing-attack"
       }
      ],
@@ -12276,18 +12276,6 @@
      "winnersAvailable": 28,
      "candidates": 49,
      "picks": [
-      {
-       "mon": "beedrill",
-       "move": "twineedle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "acid"
-      },
       {
        "mon": "gyarados",
        "move": "thrash",
@@ -12311,6 +12299,18 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "zubat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "acid"
       }
      ],
      "before": []
@@ -12515,11 +12515,11 @@
        "theirMove": "thunderbolt"
       },
       {
-       "mon": "beedrill",
-       "move": "poison-jab",
+       "mon": "arcanine",
+       "move": "double-edge",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 2,
        "theirTurns": 3,
@@ -12677,11 +12677,11 @@
        "theirMove": "moonblast"
       },
       {
-       "mon": "beedrill",
-       "move": "poison-jab",
-       "eff": 1,
+       "mon": "venomoth",
+       "move": "psybeam",
+       "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 3,
        "theirTurns": 6,
@@ -12766,18 +12766,6 @@
      "candidates": 83,
      "picks": [
       {
-       "mon": "beedrill",
-       "move": "pin-missile",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "acid"
-      },
-      {
        "mon": "golbat",
        "move": "wing-attack",
        "eff": 2,
@@ -12799,6 +12787,18 @@
        "myTurns": 2,
        "theirTurns": 9,
        "faster": 1,
+       "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "snorlax",
+       "move": "headbutt",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "razor-leaf"
       }
      ],
@@ -12930,18 +12930,6 @@
      "candidates": 83,
      "picks": [
       {
-       "mon": "beedrill",
-       "move": "pin-missile",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "acid"
-      },
-      {
        "mon": "golbat",
        "move": "wing-attack",
        "eff": 2,
@@ -12963,6 +12951,18 @@
        "myTurns": 2,
        "theirTurns": 9,
        "faster": 1,
+       "theirMove": "razor-leaf"
+      },
+      {
+       "mon": "snorlax",
+       "move": "headbutt",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "razor-leaf"
       }
      ],
@@ -13167,11 +13167,11 @@
        "theirMove": "moonblast"
       },
       {
-       "mon": "beedrill",
-       "move": "poison-jab",
-       "eff": 1,
+       "mon": "venomoth",
+       "move": "psybeam",
+       "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 3,
        "theirTurns": 6,
@@ -13333,11 +13333,11 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -13941,11 +13941,11 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -14919,15 +14919,15 @@
        "theirMove": "slash"
       },
       {
-       "mon": "pinsir",
-       "move": "brick-break",
-       "eff": 2,
+       "mon": "aerodactyl",
+       "move": "wing-attack",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 5,
+       "stageNeeded": 6,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
        "theirMove": "slash"
       }
      ],
@@ -14971,16 +14971,16 @@
        "theirMove": "drill-run"
       },
       {
-       "mon": "cloyster",
-       "move": "water-gun",
+       "mon": "kingler",
+       "move": "bubble-beam",
        "eff": 4,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "rock-throw"
+       "theirMove": "drill-run"
       }
      ],
      "before": []
@@ -15021,23 +15021,23 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "pinsir",
-       "move": "x-scissor",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 5,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 0,
-       "theirMove": "slash"
-      },
-      {
        "mon": "slowbro",
        "move": "surf",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "earthquake"
+      },
+      {
+       "mon": "exeggutor-alola",
+       "move": "power-whip",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -15623,16 +15623,16 @@
        "theirMove": "double-kick"
       },
       {
-       "mon": "nidoking",
-       "move": "thrash",
-       "eff": 1,
+       "mon": "graveler",
+       "move": "earthquake",
+       "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 10,
+       "myTurns": 1,
+       "theirTurns": 4,
        "faster": 0,
-       "theirMove": "quick-attack"
+       "theirMove": "double-kick"
       }
      ],
      "before": []
@@ -15736,16 +15736,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "raticate-alola",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "psychic"
+       "faster": 0,
+       "theirMove": "blizzard"
       }
      ],
      "before": []
@@ -15951,16 +15951,16 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "cloyster",
-       "move": "water-gun",
+       "mon": "gyarados",
+       "move": "hydro-pump",
        "eff": 4,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 18,
        "faster": 1,
-       "theirMove": "earthquake"
+       "theirMove": "iron-tail"
       }
      ],
      "before": []
@@ -15990,18 +15990,6 @@
        "theirMove": "rock-slide"
       },
       {
-       "mon": "victreebel",
-       "move": "power-whip",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "rock-slide"
-      },
-      {
        "mon": "aerodactyl",
        "move": "wing-attack",
        "eff": 2,
@@ -16012,6 +16000,18 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "rock-slide"
+      },
+      {
+       "mon": "kingler",
+       "move": "crabhammer",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "brick-break"
       }
      ],
      "before": []
@@ -16053,16 +16053,16 @@
        "theirMove": "ice-punch"
       },
       {
-       "mon": "kangaskhan",
-       "move": "outrage",
+       "mon": "flareon",
+       "move": "flare-blitz",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 3,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fire-punch"
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "thunder-punch"
       }
      ],
      "before": []
@@ -16104,14 +16104,14 @@
        "theirMove": "body-slam"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
+       "mon": "exeggcute",
+       "move": "solar-beam",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 8,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 0,
        "theirMove": "superpower"
       }
@@ -16155,16 +16155,16 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "exeggutor",
-       "move": "confusion",
+       "mon": "hypno",
+       "move": "psychic",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 0.5,
-       "theirMove": "superpower"
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "earthquake"
       }
      ],
      "before": []
@@ -16256,11 +16256,11 @@
        "theirMove": "shadow-ball"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -16268,11 +16268,11 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "gyarados",
-       "move": "crunch",
-       "eff": 2,
+       "mon": "flareon",
+       "move": "flare-blitz",
+       "eff": 1,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -16483,14 +16483,14 @@
        "theirMove": "hyper-beam"
       },
       {
-       "mon": "victreebel",
-       "move": "power-whip",
-       "eff": 2,
+       "mon": "gyarados",
+       "move": "crunch",
+       "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
+       "myTurns": 2,
+       "theirTurns": 7,
        "faster": 0,
        "theirMove": "dragon-pulse"
       }
@@ -16788,18 +16788,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -16808,6 +16796,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -16941,18 +16941,6 @@
        "theirMove": "surf"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "venusaur",
        "move": "petal-dance",
        "eff": 2,
@@ -16961,6 +16949,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "exeggcute",
+       "move": "solar-beam",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
        "theirMove": "psychic"
       }
@@ -17105,18 +17105,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -17125,6 +17113,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -17258,18 +17258,6 @@
        "theirMove": "surf"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "venusaur",
        "move": "petal-dance",
        "eff": 2,
@@ -17278,6 +17266,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "exeggcute",
+       "move": "solar-beam",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
        "theirMove": "psychic"
       }
@@ -17436,16 +17436,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "raticate-alola",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "psychic"
+       "faster": 0,
+       "theirMove": "blizzard"
       }
      ],
      "before": []
@@ -17811,16 +17811,16 @@
        "theirMove": "ice-punch"
       },
       {
-       "mon": "kangaskhan",
-       "move": "outrage",
+       "mon": "flareon",
+       "move": "flare-blitz",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 3,
        "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "fire-punch"
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "thunder-punch"
       }
      ],
      "before": []
@@ -17863,14 +17863,14 @@
        "theirMove": "earthquake"
       },
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
+       "mon": "exeggcute",
+       "move": "solar-beam",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 8,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 0,
        "theirMove": "superpower"
       }
@@ -18497,18 +18497,6 @@
        "theirMove": "hyper-beam"
       },
       {
-       "mon": "beedrill",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "vulpix-alola",
        "move": "ice-beam",
        "eff": 4,
@@ -18519,6 +18507,18 @@
        "theirTurns": 2,
        "faster": 1,
        "theirMove": "dragon-pulse"
+      },
+      {
+       "mon": "dewgong",
+       "move": "ice-beam",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "mega-drain"
       }
      ],
      "before": []
@@ -18716,18 +18716,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -18736,6 +18724,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -19039,18 +19039,6 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kadabra",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "solar-beam"
-      },
-      {
        "mon": "ponyta",
        "move": "flare-blitz",
        "eff": 2,
@@ -19059,6 +19047,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "golbat",
+       "move": "wing-attack",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "sludge-bomb"
       }
@@ -19362,18 +19362,6 @@
        "theirMove": "rock-slide"
       },
       {
-       "mon": "victreebel",
-       "move": "power-whip",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "rock-slide"
-      },
-      {
        "mon": "tangela",
        "move": "mega-drain",
        "eff": 4,
@@ -19384,6 +19372,18 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "x-scissor"
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "brick-break"
       }
      ],
      "before": []
@@ -19673,18 +19673,6 @@
      "candidates": 139,
      "picks": [
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "dazzling-gleam"
-      },
-      {
        "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
@@ -19705,6 +19693,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "venusaur",
+       "move": "petal-dance",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
        "faster": 0,
        "theirMove": "psychic"
       }
@@ -19737,18 +19737,6 @@
        "theirMove": "hydro-pump"
       },
       {
-       "mon": "victreebel",
-       "move": "power-whip",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "blizzard"
-      },
-      {
        "mon": "venusaur",
        "move": "power-whip",
        "eff": 2,
@@ -19759,6 +19747,18 @@
        "theirTurns": 3,
        "faster": 1,
        "theirMove": "blizzard"
+      },
+      {
+       "mon": "hitmonlee",
+       "move": "high-jump-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "hydro-pump"
       }
      ],
      "before": []
@@ -20187,16 +20187,16 @@
        "theirMove": "solar-beam"
       },
       {
-       "mon": "pinsir",
-       "move": "x-scissor",
-       "eff": 2,
+       "mon": "charizard",
+       "move": "flamethrower",
+       "eff": 4,
        "via": "level-up",
-       "stageNeeded": 5,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 9,
        "faster": 1,
-       "theirMove": "leech-life"
+       "theirMove": "brick-break"
       }
      ],
      "before": []
@@ -20343,11 +20343,11 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "beedrill",
-       "move": "poison-jab",
-       "eff": 1,
+       "mon": "venomoth",
+       "move": "psychic",
+       "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
        "theirTurns": 4,
@@ -20382,18 +20382,6 @@
      "candidates": 139,
      "picks": [
       {
-       "mon": "pinsir",
-       "move": "x-scissor",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 5,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "gyarados",
        "move": "thrash",
        "eff": 1,
@@ -20414,6 +20402,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "snorlax",
+       "move": "body-slam",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
        "theirMove": "psychic"
       }
@@ -20458,16 +20458,16 @@
        "theirMove": "psychic"
       },
       {
-       "mon": "kangaskhan",
+       "mon": "raticate-alola",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 3,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "psychic"
+       "faster": 0,
+       "theirMove": "blizzard"
       }
      ],
      "before": []
@@ -20510,11 +20510,11 @@
        "theirMove": "fire-punch"
       },
       {
-       "mon": "pinsir",
-       "move": "x-scissor",
+       "mon": "gyarados",
+       "move": "crunch",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 5,
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
@@ -20590,18 +20590,6 @@
      "candidates": 140,
      "picks": [
       {
-       "mon": "kangaskhan",
-       "move": "crunch",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "gyarados",
        "move": "crunch",
        "eff": 2,
@@ -20624,6 +20612,18 @@
        "theirTurns": 2,
        "faster": 1,
        "theirMove": "psychic"
+      },
+      {
+       "mon": "raticate-alola",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 0,
+       "theirMove": "dazzling-gleam"
       }
      ],
      "before": []
@@ -20665,23 +20665,23 @@
        "theirMove": "sludge-bomb"
       },
       {
-       "mon": "kangaskhan",
-       "move": "outrage",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "sludge-bomb"
-      },
-      {
        "mon": "venusaur",
        "move": "power-whip",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "sludge-bomb"
+      },
+      {
+       "mon": "hypno",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 3,
        "win": true,
        "myTurns": 2,
        "theirTurns": 4,
@@ -20861,18 +20861,6 @@
      "candidates": 140,
      "picks": [
       {
-       "mon": "beedrill",
-       "move": "outrage",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 1,
-       "theirMove": "dark-pulse"
-      },
-      {
        "mon": "snorlax",
        "move": "body-slam",
        "eff": 1,
@@ -20895,6 +20883,18 @@
        "theirTurns": 4,
        "faster": 1,
        "theirMove": "dark-pulse"
+      },
+      {
+       "mon": "gyarados",
+       "move": "thrash",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "moonblast"
       }
      ],
      "before": []
@@ -21271,7 +21271,7 @@
        "theirMove": "waterfall"
       },
       {
-       "mon": "pinsir",
+       "mon": "tauros",
        "move": "thrash",
        "eff": 1,
        "via": "level-up",
@@ -21351,18 +21351,6 @@
      "candidates": 140,
      "picks": [
       {
-       "mon": "exeggutor",
-       "move": "power-whip",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "dazzling-gleam"
-      },
-      {
        "mon": "snorlax",
        "move": "crunch",
        "eff": 2,
@@ -21384,6 +21372,18 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "dugtrio-alola",
+       "move": "earthquake",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
        "theirMove": "psychic"
       }
      ],
