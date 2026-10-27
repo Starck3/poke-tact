@@ -535,8 +535,25 @@ function selectTrainer(key) {
   $('trainer').value = key;
   const t = trainers.find((x) => x.key === key);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; renderTrainerPicker(); update(); return; }
+  setLevelFor(t);
   pickTrainerMon(t, 0);
   renderTrainerPicker();
+}
+// nível do seu time = o do Pokémon mais forte do treinador (como no banco de lutas): com o padrão 30, o Brock (nv 12–14)
+// recebia sugestões de nível 30. O usuário pode mudar o campo depois.
+// Progresso = o ponto da história da luta: líder pela ordem das insígnias (Brock = 0 insígnias); outro treinador pelo
+// estágio dele nos dados. Sem isso, TMs e Pokémon de bem depois (Giga Drain, Surf) entravam na conta.
+function setLevelFor(t) {
+  const ace = Math.max(0, ...t.party.map((p) => p.level ?? 0));
+  if (ace > 0) $('level').value = ace;
+  if (!t.rematch && acq?.progress) {
+    const order = acq.progress.leaderOrder ?? [];
+    const key = (s) => fold(String(s ?? '')).replace(/[^a-z]/g, '');
+    const li = /Líderes/.test(t.group ?? '') ? order.findIndex((n) => String(n).split('/').some((x) => key(x) === key(t.name))) : -1;
+    const st = li >= 0 ? li : Number.isInteger(t.stage) ? t.stage : null;
+    if (st != null && [...$('stage').options].some((o) => o.value === String(st))) { $('stage').value = String(st); renderTrainerPicker(); }
+  }
+  saveCtx();
 }
 
 function pickTrainerMon(t, i) {
@@ -795,6 +812,7 @@ bindPokemonAc('dexQ', 'dexList', 'da');
 $('trainer').addEventListener('change', () => {
   const t = trainers.find((x) => x.key === $('trainer').value);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; update(); return; }
+  setLevelFor(t);
   pickTrainerMon(t, 0);
 });
 

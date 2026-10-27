@@ -2783,3 +2783,19 @@ test('0.53.0: golpes reais em mais lutas — forma no nome, time sem nível, lut
   // o Z-A reconstrói o detonado e as etapas da Bulbapedia (antes o build-game parava no onde obter)
   assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_ONLY_STEPS = \[[^\]]*\.\.\.PKHEX_ACQ_STEPS\]/);
 });
+
+test('0.53.1: escolher o treinador ajusta o nível do time (ás dele) e o progresso — Brock no FireRed sem Giga Drain/Surf', async () => {
+  const { recommend } = await import('../public/engine.mjs');
+  const d = load('firered-leafgreen.json'), a = load('firered-leafgreen-acquisition.json');
+  const brock = load('firered-leafgreen-trainers.json').trainers.find((t) => t.key === 'TRAINER_LEADER_BROCK');
+  for (const p of brock.party) {
+    const opp = d.pokemon.find((x) => x.name === p.species);
+    const r = recommend(d, opp, { level: 14, version: 'firered', onlyObtainable: true, machines: true, starter: 'squirtle', acq: a, stage: 0, oppLevel: p.level, oppMoves: p.moves });
+    assert.ok(!r.picks.some((s) => ['giga-drain', 'surf', 'bullet-seed', 'ice-beam'].includes(s.move.name)), `${p.species}: ${r.picks.map((s) => s.move.name)}`);
+    assert.ok(!r.picks.some((s) => s.mon.name === 'beedrill'));
+  }
+  // a tela chama setLevelFor ao escolher o treinador (antes ficava o nível 30 padrão)
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.equal((app.match(/setLevelFor\(t\);/g) ?? []).length, 2);
+  assert.match(app, /function setLevelFor\(t\)[\s\S]*leaderOrder[\s\S]*\$\('stage'\)\.value = String\(st\)/);
+});
