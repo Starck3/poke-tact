@@ -2,6 +2,32 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.52.0] — 2026-10-26
+
+> A frequência com que cada Pokémon aparece agora também está no Brilliant Diamond/Shining Pearl, separada por manhã, dia e noite. O Ultra Sun/Ultra Moon ganhou a creche (Pokémon Nursery do Paniola Ranch) e passou a saber quais lugares são do pós-jogo. A creche também aparece na aba Detonado de mais jogos.
+
+### Adicionado
+- **Taxa de aparição no Brilliant Diamond/Shining Pearl** pela Bulbapedia: 1.435 de 1.575 encontros, com manhã/dia/noite
+  ("manhã 50% / dia 50% / noite 40%"). O Grand Underground e a árvore de mel ficam sem taxa (a conta é outra).
+- **Creche no Ultra Sun/Ultra Moon**: a página do Paniola Ranch na Bulbapedia diz que a Pokémon Nursery fica lá; 75 Pokémon
+  passam a ser obtidos por ovo (ex.: Treecko de um Grovyle do Island Scan).
+- Ultra Sun/Ultra Moon: lugares do pós-jogo pelo índice do detonado da Bulbapedia (Poni Grove, Ruins of Conflict, Lake of
+  the Sunne no Ultra Sun), pela página do Episode RR (castelo da Equipe Rocket) e, como estimativa marcada, Ultra Space
+  (viagem livre só depois do Campeão) e Poni Meadow/Resolution Cave (pós-jogo no Sun/Moon). Sem ponto da história ficaram
+  só a Poké Pelago (muda com o avanço), trocas e ovos de presente: 273 → 66.
+- Aba Detonado: a creche aparece no ponto da história dos ovos também no X/Y, Omega Ruby/Alpha Sapphire e Sun/Moon.
+
+### Corrigido
+- Encontro "Grama" do PKHeX no mesmo lugar de um encontro de Surf ou vara não pega mais a taxa do Surf (Wingull na Route 213
+  do BDSP: grama 20%, surf 30%) — antes ficava ambíguo, sem taxa.
+- O índice do detonado da Bulbapedia separa "Altar of the Sunne / Altar of the Moone" e respeita a versão de cada um; rótulo
+  de missão em negrito ("Guardians of Alola:") não esconde mais o lugar.
+- Black/White: a linha da creche no Detonado vinha no trecho do Dreamyard, antes da permissão para cruzar (Nimbasa); agora
+  fica no mesmo ponto dos ovos. A linha também não some mais quando o jogo é reconstruído do zero.
+
+### Alterado
+- Banco de lutas: vitórias e folgadas iguais em todos os jogos.
+
 ## [0.51.0] — 2026-10-26
 
 > A frequência com que cada Pokémon aparece agora também está no Omega Ruby/Alpha Sapphire, no Sun/Moon, no Ultra Sun/Ultra Moon e no Let's Go. Nos jogos de Alola ela vem separada por dia e noite (ex.: "Route 1 — Grama, nv 2–13 (só de noite 30%)").

@@ -88,7 +88,10 @@ for (const [version, v] of Object.entries(acq.versions)) {
     const spKey = rows.some((r) => r.species === key(sp)) ? key(sp) : key(sp.split('-')[0]);
     // linha de outra forma ("form=Blue-Striped", "form=Alolan Form") não vale para basculin-red-striped nem para o rattata de Kanto
     const formOk = (r) => !r.form || (spKey === key(sp) ? !REGIONAL.has(r.form) : key(sp).endsWith(r.form));
-    const methodOk = (r) => !METHOD_ROWS[s.methodPkhex ?? s.method] || METHOD_ROWS[s.methodPkhex ?? s.method].test(r.method);
+    // genérico ("Grama") no lugar onde o PKHeX já tem a entrada própria de Surf/vara: a linha de Surf/vara é daquela
+    // (Wingull na Route 213 do BDSP: Grama nv 20 e Surf nv 20–30 — a de Grama não pode pegar o 30% do Surf)
+    const own = new Set(list.filter((o) => o !== s && o.where === s.where && METHOD_ROWS[o.methodPkhex ?? o.method]).map((o) => o.methodPkhex ?? o.method));
+    const methodOk = (r) => (METHOD_ROWS[s.methodPkhex ?? s.method] ? METHOD_ROWS[s.methodPkhex ?? s.method].test(r.method) : ![...own].some((m) => METHOD_ROWS[m].test(r.method)));
     const cands = rows.filter((r) => r.species === spKey && formOk(r) && methodOk(r) && r.versions[col] !== false && overlap(s, r) >= 0);
     if (!cands.length) { report.unmatched.push(`${version} ${sp} ${s.where} nv ${s.min}-${s.max}`); continue; }
     const best = Math.max(...cands.map((r) => overlap(s, r)));
