@@ -2727,3 +2727,36 @@ test('Q4 (0.51.0): taxa de aparição também no ORAS, Sun/Moon e USUM — dia/n
   const t = await page('Berry Fields', { offline: true });
   assert.ok(t == null || !/^#REDIRECT/i.test(t));
 });
+
+test('0.52.0: taxa do BDSP (manhã/dia/noite); "Grama" do PKHeX não pega a taxa do Surf; creche do USUM no Paniola Ranch', () => {
+  const a = load('brilliant-diamond-shining-pearl-acquisition.json');
+  assert.match(a.ratesSource, /Bulbapedia/);
+  // Starly na Route 201: 50% de manhã e de dia, 40% à noite (Bulbapedia, Sinnoh Route 201)
+  const st = a.versions['brilliant-diamond'].starly.find((s) => s.where === 'Route 201');
+  assert.deepEqual(st.pctTimes, { 'manhã': 50, dia: 50, noite: 40 });
+  // Wingull na Route 213: o PKHeX tem "Grama" nv 20 e "Surf" nv 20–30 — a de Grama fica com a linha de grama (20%), não a do Surf
+  const w = a.versions['brilliant-diamond'].wingull.filter((s) => s.where === 'Route 213');
+  assert.equal(w.find((s) => s.method === 'Surf').pct, 30);
+  assert.equal(w.find((s) => s.method !== 'Surf').pct, 20);
+  // USUM: creche pela página da Bulbapedia (Paniola Ranch), no ponto da história do lugar
+  const u = load('ultra-sun-ultra-moon-acquisition.json');
+  assert.equal(u.breeding.daycare, 'Pokémon Nursery (Paniola Ranch)');
+  assert.ok(u.versions['ultra-sun'].treecko.some((s) => s.type === 'breed' && s.want === 'grovyle' && s.stage === 2));
+  // USUM: lugares que o índice só cita no pós-jogo ("'''Guardians of Alola:''' Ruins of Conflict", "Lake of the Sunne{{sup/7|US}}")
+  // e os de fonte própria (Episode RR; Ultra Warp Ride, estimado); o Ultra Sun passa pelo Lake of the Moone na história,
+  // mas o Cosmog do Lake of the Sunne é do pós-jogo
+  const at = (v, sp, w) => u.versions[v][sp].find((s) => s.where === w);
+  assert.equal(at('ultra-sun', 'cosmog', 'Lake of the Sunne').stage, u.progress.post);
+  assert.equal(at('ultra-sun', 'tapu-koko', 'Ruins of Conflict').stage, u.progress.post);
+  assert.ok(Object.values(u.versions['ultra-sun']).flat().filter((s) => /^Ultra (Space Wilds|Deep Sea)$/.test(s.where)).every((s) => s.stage === u.progress.post && s.stageEstimated));
+  assert.ok(Object.values(u.versions['ultra-sun']).flat().filter((s) => s.stage == null).every((s) => /Poké Pelago|Link Trade|Nursery helpers/.test(s.where)));
+  // aba Detonado: a creche aparece como local no estágio dos ovos mesmo numa reconstrução do zero
+  for (const g of ['black-white', 'x-y', 'sun-moon', 'sword-shield', 'brilliant-diamond-shining-pearl']) {
+    const wt = load(`${g}-walkthrough.json`), ac = load(`${g}-acquisition.json`);
+    for (const [v, vw] of Object.entries(wt.versions)) {
+      const st = vw.stages.filter((s) => s.locations.some((l) => l.name === ac.breeding.daycare));
+      const breedStage = Math.min(...Object.values(ac.versions[v]).flat().filter((s) => s.type === 'breed').map((s) => s.stage));
+      assert.deepEqual(st.map((s) => s.stage), [breedStage], `${g} ${v}`);
+    }
+  }
+});

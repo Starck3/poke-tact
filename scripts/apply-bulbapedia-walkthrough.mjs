@@ -31,19 +31,34 @@ for (const l of text.split('\n')) {
   // a parte é identificada pela POSIÇÃO no índice: o do Scarlet/Violet recomeça "Part 1, 2, 3…" em cada DLC
   if (p) parts.push({ part: parts.length + 1, number: Number(p[1]), header, items: [] });
   const loc = l.match(/^\| style="padding: 0\.5em;" \| ''(.+)''/);
-  if (loc && parts.length) parts.at(-1).items = plain(loc[1]).split(/,\s*/).map((x) => x.replace(/^(Optional|Introduction):?\s*/i, '').trim()).filter(Boolean);
+  // "'''Guardians of Alola:''' Ruins of Conflict, …" (rótulo da missão em negrito) e "Altar of the Sunne / Altar of the Moone"
+  // (um por versão): cada lugar vira um item; "{{sup/7|US}}" = o lugar só vale nessa versão (cur.ver)
+  if (loc && parts.length) {
+    const cur = parts.at(-1);
+    for (const raw of loc[1].replace(/'''[^']+?:'''\s*/g, '').split(/,\s*|\s+\/\s+/)) {
+      const it = plain(raw).replace(/^(Optional|Introduction):?\s*/i, '').trim();
+      if (!it) continue;
+      cur.items.push(it);
+      const v = raw.match(/\{\{sup\/\d\|(\w+)\}\}/);
+      if (v) (cur.ver ??= {})[it] = v[1];
+    }
+  }
 }
+// "ultra-sun" → "US", "scarlet" → "S" (a sigla do {{sup/N|…}})
+const verCode = (v) => v.split('-').map((w) => w[0]).join('').toUpperCase();
 const norm = (s) => s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
 const isPost = (h) => /post-?game/i.test(h);
 // marco = provação / grande provação (USUM); stage do lugar = marcos antes da 1ª menção
 const milestones = [];
-const firstStage = new Map(), partOf = new Map();
+const firstStage = new Map(), partOf = new Map(), verStage = {};
 for (const p of parts) for (const it of p.items) {
   // "Trial 1: Verdant Cavern", "Mina's Trial" (USUM), "Poni Grand Trial"
   const trial = it.match(/^Trial \d+:\s*(.+)$/i) ?? it.match(/^(\w+'s) Trial$/i), grand = it.match(/^(\w[\w' ]*?) Grand Trial$/i);
   const where = trial ? trial[1] : it;
   const k = norm(where);
-  if (!firstStage.has(k)) firstStage.set(k, isPost(p.header) ? 'post' : milestones.length);
+  // lugar de uma versão só (Ultra Sun passa pelo Lake of the Moone na história; o Lake of the Sunne é do pós-jogo)
+  const stageMap = p.ver?.[it] ? (verStage[p.ver[it]] ??= new Map()) : firstStage;
+  if (!stageMap.has(k)) stageMap.set(k, isPost(p.header) ? 'post' : milestones.length);
   if (!partOf.has(k)) partOf.set(k, p.part);
   if (trial) milestones.push({ label: /^The Captainless Trial$/i.test(trial[1]) ? 'provação sem capitão' : /'s$/.test(trial[1]) ? `provação da ${trial[1].replace(/'s$/, '')}` : `provação de ${trial[1]}` });
   if (grand) milestones.push({ label: `grande provação de ${grand[1]}` });
@@ -66,12 +81,31 @@ if (!acq.progress) {
   // ---- USUM: progresso pelo índice
   const POST = milestones.length + 1;
   const stageNames = ['antes da 1ª provação', ...milestones.map((m, i) => `${i + 1} provaç${i ? 'ões' : 'ão'} (depois da ${m.label})`)];
+  // lugares que o índice (incompleto) não cita → pós-jogo, cada um com a sua fonte:
+  //   • castelo do Episode RR: a página da missão diz que ela vem depois da 1ª vitória na Liga
+  //   • Ultra Space: antes do Campeão o Ultra Warp Ride só serve para chegar à Ultra Megalopolis (as viagens livres são da
+  //     parte de pós-jogo do índice) — estimado
+  //   • lugar que no Sun/Moon é do pós-jogo pelo detonado (Poni Meadow, Resolution Cave) — estimado
+  const extra = new Map();
+  const rr = await page('Episode RR');
+  if (/following the \{\{player\}\}'s first completion of the \[\[Alola League\]\]/.test(rr ?? '')) extra.set('Team Rocket’s Castle', {});
+  const uwr = await page('Ultra Warp Ride');
+  if (/white warp holes will lead there rather than to Ultra Beast homeworlds/.test(uwr ?? '')) for (const w of ['Ultra Space Wilds', 'Ultra Deep Sea', 'Ultra Plant', 'Ultra Ruin', 'Ultra Jungle', 'Ultra Forest', 'Ultra Desert', 'Ultra Crater'])
+    extra.set(w, { estimated: 'Ultra Warp Ride livre só no pós-jogo (antes leva à Ultra Megalopolis)' });
+  const sm = JSON.parse(readFileSync(new URL('../public/data/sun-moon-acquisition.json', import.meta.url), 'utf8'));
+  const smStages = new Map();
+  for (const v of Object.values(sm.versions)) for (const list of Object.values(v)) for (const s of list) if (s.stage != null && !s.stageEstimated) smStages.set(s.where, [...(smStages.get(s.where) ?? []), s.stage]);
+  for (const [w, st] of smStages) if (st.every((x) => x === sm.progress.post) && !extra.has(w)) extra.set(w, { estimated: 'pós-jogo como no Sun/Moon (mesmo lugar)' });
   let withStage = 0, total = 0;
-  for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
+  for (const [ver, v] of Object.entries(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
     if (s.type === 'breed') continue;
     total++;
-    const st = lookup(s.where, firstStage);
-    if (st == null) continue;
+    const st = lookup(s.where, verStage[verCode(ver)] ?? new Map()) ?? lookup(s.where, firstStage);
+    if (st == null) {
+      const x = extra.get(s.where);
+      if (x) { s.stage = POST; s.stageSource = 'Bulbapedia'; if (x.estimated) s.stageEstimated = x.estimated; withStage++; }
+      continue;
+    }
     s.stage = st === 'post' ? POST : st; s.stageSource = 'Bulbapedia'; withStage++;
   }
   acq.progress = { leaderOrder: milestones.map((m) => m.label), stageNames, post: POST, source: `Bulbapedia (${TITLE[gameId]}: ordem das partes, provações e grandes provações)`, placesWithStage: withStage, placesTotal: total };
@@ -79,13 +113,15 @@ if (!acq.progress) {
   if (existsSync(trFile)) {
     const tr = JSON.parse(readFileSync(trFile, 'utf8'));
     const trainerStage = {};
+    // treinador não tem versão: lugar de uma versão só vale pelo estágio mais cedo entre as versões
+    const minVer = (m) => { const st = Object.values(verStage).map((map) => lookup(m, map)).filter((x) => x != null); return !st.length ? undefined : st.every((x) => x === 'post') ? 'post' : Math.min(...st.filter((x) => x !== 'post')); };
     // grande provação: o estágio é o do marco dela (o lugar, ex.: Iki Town, aparece antes na história) — kahunas na ordem
     // das grandes provações do índice
     const grand = milestones.map((m, i) => (/^grande provação/.test(m.label) ? i : null)).filter((x) => x != null);
     const kahunas = [...new Set(tr.trainers.filter((t) => t.group === 'Líderes de ginásio' && /Grand trial/i.test(t.label)).map((t) => t.name))];
     for (const t of tr.trainers) {
       const k = /Grand trial/i.test(t.label) ? kahunas.indexOf(t.name) : -1;
-      const st = k >= 0 && grand[k] != null ? grand[k] : /Title Defense|Post-?game|Post–Hall|Rematch|Round 2|Battle Tree/i.test(t.label) ? 'post' : (t.map ?? []).map((m) => lookup(m, firstStage)).find((x) => x != null);
+      const st = k >= 0 && grand[k] != null ? grand[k] : /Title Defense|Post-?game|Post–Hall|Rematch|Round 2|Battle Tree/i.test(t.label) ? 'post' : (t.map ?? []).map((m) => lookup(m, firstStage) ?? minVer(m)).find((x) => x != null);
       // "Mina's trial" (USUM: os capitães e um kahuna lutam na provação da Mina) → o marco dela, não o lugar do treinador
       const mina = milestones.findIndex((m) => m.label === 'provação da Mina');
       t.stage = /Mina's trial/i.test(t.label) && mina >= 0 ? mina : st == null ? null : st === 'post' ? POST : st;

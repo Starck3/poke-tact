@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-26 · versão **0.51.0** (publicada no GitHub).
+Atualizado em 2026-10-26 · versão **0.52.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas) `PLANO-EXECUCAO-2.md`, `PLANO-EXECUCAO-3.md` e `PLANO-EXECUCAO-4.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
 Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
@@ -31,11 +31,11 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
 evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
 "(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
-Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (290 com `data-sources/`, 275 num clone limpo).
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (291 com `data-sources/`, 276 num clone limpo).
 Banco de lutas: 22 jogos (o USUM entra pelos treinadores com estágio), 39.978 sugestões — 39.793 vencem (99,5%), 37.960 com
 folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 803 de 958 lutas (USUM 100/100); onde achar
 itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no X/Y, ORAS,
-Sun/Moon, USUM e Let's Go (dia/noite em Alola).
+Sun/Moon, USUM, Let's Go e BDSP (dia/noite em Alola; manhã/dia/noite no BDSP).
 
 ## O que falta (do mais importante para o menos)
 
@@ -58,10 +58,10 @@ Sun/Moon, USUM e Let's Go (dia/noite em Alola).
 - ✅ Golpes reais dos rivais (0.47): SwSh 73/96, BDSP 72/74, LGPE 50/57.
 - ✅ Incensos nos jogos novos pelo destino do link (0.48): bebês de incenso nascem em todos os jogos com creche.
 - ✅ USUM no banco de lutas (0.49), com time do rival pela inicial e estágio conferido pelo nível.
-- ⚠ Taxa de aparição (0.50–0.51): X/Y, ORAS, Sun/Moon, USUM, Let's Go. ⏸ BDSP (código pronto; a Bulbapedia deu erro — rodar
-  `node scripts/build-game.mjs brilliant-diamond-shining-pearl`). Sem tabela simples: SwSh, LA, SV, Z-A.
-- Sobra: lutas ainda com golpes estimados (DLC do SwSh com nível diferente, Jessie e James no Let's Go…); 273 fontes do USUM
-  sem estágio; creche do USUM (Paniola Ranch) sem configuração no apply-breeding.
+- ⚠ Taxa de aparição (0.50–0.52): X/Y, ORAS, Sun/Moon, USUM, Let's Go, BDSP. Sem tabela simples: SwSh, LA, SV, Z-A.
+- ✅ Depois do plano (0.52): creche do USUM (Paniola Ranch, pela Bulbapedia); USUM com pós-jogo — sem estágio 273 → 66 (só
+  Poké Pelago, trocas e ovos de presente); creche na aba Detonado em toda reconstrução.
+- Sobra: lutas ainda com golpes estimados (DLC do SwSh com nível diferente, Jessie e James no Let's Go…).
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do

@@ -35,9 +35,9 @@ const DAYCARE = {
   // B2W2 (fuddlesworth/pokebw2): creche na Route 3 (res/field/scripts/route_3.s: placa "Pokémon Day Care" e as falas do ovo)
   'black-2-white-2': { gen: 5, map: 'ZONE_ROUTE_3', where: 'Pokémon Day Care (Route 3)', scripts: 'res/field/scripts/route_3.s' },
   // jogos sem decomp (PKHeX): grupos de ovo/gênero pela tabela pessoal do jogo; creche e ponto da história pelo detonado
-  // (progress.keyItems.daycare); USUM sem detonado, Let's Go / Legends: Arceus / Z-A sem ovos
+  // (progress.keyItems.daycare); USUM sem detonado: creche pela página do lugar na Bulbapedia; Let's Go / Legends: Arceus / Z-A sem ovos
   'black-white': { gen: 'pkhex', genNum: 5 }, 'x-y': { gen: 'pkhex', genNum: 6 }, 'omega-ruby-alpha-sapphire': { gen: 'pkhex', genNum: 6 },
-  'sun-moon': { gen: 'pkhex', genNum: 7 }, 'sword-shield': { gen: 'pkhex', genNum: 8 }, 'brilliant-diamond-shining-pearl': { gen: 'pkhex', genNum: 8 },
+  'sun-moon': { gen: 'pkhex', genNum: 7 }, 'ultra-sun-ultra-moon': { gen: 'pkhex', genNum: 7, bulbapedia: 'Paniola Ranch' }, 'sword-shield': { gen: 'pkhex', genNum: 8 }, 'brilliant-diamond-shining-pearl': { gen: 'pkhex', genNum: 8 },
   'scarlet-violet': { gen: 'pkhex', genNum: 9 },
 };
 const cfg = DAYCARE[gameId];
@@ -103,13 +103,23 @@ if (cfg.gen === 2) {
   // nível ao chocar: 1 (Legality/Verifiers/Egg/EggStateLegality.cs EggMetLevel = 1; EncounterGenerator8/8b/9 EggLevel = 1)
   if (!/EggMetLevel = 1;/.test(readFileSync(new URL('PKHeX.Core/Legality/Verifiers/Egg/EggStateLegality.cs', root), 'utf8'))) throw new Error('EggMetLevel ≠ 1');
   hatch = 1;
-  const dc = acq.progress?.keyItems?.daycare;
+  let dc = acq.progress?.keyItems?.daycare;
+  if (!dc && cfg.bulbapedia) {
+    // USUM (sem detonado): a página do lugar na Bulbapedia diz que a creche fica lá; o ponto da história é o dos
+    // encontros do próprio lugar (o mais cedo)
+    const { page } = await import('./lib/bulbapedia.mjs');
+    const text = await page(cfg.bulbapedia, { offline: true });
+    if (!text || !/The \[\[Pokémon Nursery\]\] is located here/.test(text)) throw new Error(`Bulbapedia ${cfg.bulbapedia}: não diz que a Pokémon Nursery fica lá`);
+    const stages = Object.values(acq.versions).flatMap((v) => Object.values(v).flat()).filter((s) => s.where === cfg.bulbapedia && Number.isInteger(s.stage)).map((s) => s.stage);
+    if (!stages.length) throw new Error(`${cfg.bulbapedia}: nenhum encontro com ponto da história`);
+    dc = { stage: Math.min(...stages), section: cfg.bulbapedia, place: cfg.bulbapedia, name: 'Pokémon Nursery', picnic: false };
+  }
   if (!dc) { console.log(`[${gameId}] o detonado não diz onde fica a creche — nada a fazer`); process.exit(0); }
   const title = (s) => s.toLowerCase().replace(/(^|\s)(\S)/g, (m, a, b) => a + b.toUpperCase()).replace(/ – .*$/, '');
   // o trecho do detonado nem sempre é o lugar da creche (SwSh: citada no capítulo de Hulbury) — o nome diz que é o trecho
   const facility = /nursery/i.test(dc.name) ? 'Pokémon Nursery' : 'Pokémon Day Care';
-  cfg.place = { stage: dc.stage, label: dc.picnic ? 'Piquenique (Picnic, em lugar aberto)' : `${facility} (citada no trecho “${title(dc.place)}” do detonado)` };
-  source = `PKHeX ${game.pkhex.dir} (personal_${P.cfg.personal}: gênero e grupos de ovo; Legality/Breeding.cs) + creche pelo detonado (${dc.section})`;
+  cfg.place = { stage: dc.stage, section: dc.section, label: dc.picnic ? 'Piquenique (Picnic, em lugar aberto)' : cfg.bulbapedia ? `${facility} (${cfg.bulbapedia})` : `${facility} (citada no trecho “${title(dc.place)}” do detonado)` };
+  source = `PKHeX ${game.pkhex.dir} (personal_${P.cfg.personal}: gênero e grupos de ovo; Legality/Breeding.cs) + creche ${cfg.bulbapedia ? 'pela Bulbapedia' : 'pelo detonado'} (${dc.section})`;
 } else if (cfg.gen === 5) {
   // B2W2: res/pokemon/*/data.json (gender_ratio, egg_groups, baby_species = tabela ARCID_BABYMONS do getChild em
   // src/ov036/sodateya.c); incensos: incenseHandler (ids numéricos: espécie do bebê, item, espécie sem o incenso); nível 1
@@ -262,4 +272,28 @@ for (const v of data.game.versions) {
 acq.breeding = { source, daycare: where, hatchLevel: hatch, added: addedBy, evolved: evolvedBy };
 writeFileSync(acqFile, JSON.stringify(acq));
 writeFileSync(dataFile, JSON.stringify(data));
+// aba Detonado dos jogos do PKHeX: o build-detonado-modern roda antes desta etapa, então a creche entra aqui como um local
+// no estágio dela (antes só aparecia quando o detonado era refeito sobre os ovos de uma rodada anterior)
+const wtFile = new URL(`../public/data/${gameId}-walkthrough.json`, import.meta.url);
+if (cfg.gen === 'pkhex' && existsSync(wtFile)) {
+  const wt = JSON.parse(readFileSync(wtFile, 'utf8'));
+  for (const [v, byMon] of Object.entries(acq.versions)) {
+    const vw = wt.versions[v];
+    if (!vw) continue;
+    for (const st of vw.stages) st.locations = st.locations.filter((l) => l.name !== where); // idempotente
+    vw.stages = vw.stages.filter((st) => st.locations.length || st.leader);
+    const others = Object.entries(byMon).flatMap(([species, list]) => list.filter((s) => s.type === 'breed').map((s) => ({ species, type: 'breed', level: s.level, where: s.where })));
+    if (!others.length || place.stage == null) continue;
+    let st = vw.stages.find((s) => s.stage === place.stage);
+    if (!st) { st = { stage: place.stage, leader: null, locations: [] }; vw.stages.push(st); vw.stages.sort((a, b) => a.stage - b.stage); }
+    const loc = { section: place.section ?? where, name: where, stage: place.stage, maps: [where], wild: [], others, items: [], tutors: [], trainers: [], minLevel: hatch };
+    // logo depois do último local do mesmo trecho do detonado (Hulbury → a creche citada no trecho de Hulbury); sem local
+    // desse trecho, antes do 1º local com o mesmo nome de cidade (BDSP: trecho "Solaceon Town" → antes de Solaceon Ruins)
+    const at = st.locations.findLastIndex((l) => l.section === loc.section);
+    const town = (place.section ?? '').split(/[\s,]+/)[0].toLowerCase();
+    const near = town ? st.locations.findIndex((l) => l.name.toLowerCase().startsWith(town + ' ')) : -1;
+    st.locations.splice(at >= 0 ? at + 1 : near >= 0 ? near : st.locations.length, 0, loc);
+  }
+  writeFileSync(wtFile, JSON.stringify(wt));
+}
 console.log(`[${gameId}] ovos da creche (${where}, nv ${hatch}): +${added.length}${added.length ? ' — ' + added.join('; ') : ''}${skipped.length ? `\n  sem incenso: ${[...new Set(skipped)].join('; ')}` : ''}`);

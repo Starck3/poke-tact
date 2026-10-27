@@ -8,7 +8,7 @@
    "wins": 3870,
    "picks": 3870,
    "comfy": 3735,
-   "turnsSum": 4362,
+   "turnsSum": 4366,
    "turnsN": 3870
   },
   "antes": {
@@ -17305,14 +17305,14 @@
        "theirMove": "giga-drain"
       },
       {
-       "mon": "swellow",
-       "move": "brave-bird",
+       "mon": "scyther",
+       "move": "wing-attack",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 21,
        "faster": 1,
        "theirMove": "giga-drain"
       }
@@ -17625,14 +17625,14 @@
        "theirMove": "giga-drain"
       },
       {
-       "mon": "swellow",
-       "move": "brave-bird",
+       "mon": "infernape",
+       "move": "flare-blitz",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
        "theirMove": "giga-drain"
       }
@@ -17945,14 +17945,14 @@
        "theirMove": "giga-drain"
       },
       {
-       "mon": "swellow",
-       "move": "brave-bird",
+       "mon": "scyther",
+       "move": "wing-attack",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 21,
        "faster": 1,
        "theirMove": "giga-drain"
       }
@@ -52318,14 +52318,14 @@
        "theirMove": "giga-drain"
       },
       {
-       "mon": "swellow",
-       "move": "brave-bird",
+       "mon": "crobat",
+       "move": "cross-poison",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 24,
        "faster": 1,
        "theirMove": "giga-drain"
       }
@@ -52638,14 +52638,14 @@
        "theirMove": "giga-drain"
       },
       {
-       "mon": "swellow",
-       "move": "brave-bird",
+       "mon": "infernape",
+       "move": "flare-blitz",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
        "theirMove": "giga-drain"
       }
@@ -52958,14 +52958,14 @@
        "theirMove": "giga-drain"
       },
       {
-       "mon": "swellow",
-       "move": "brave-bird",
+       "mon": "crobat",
+       "move": "cross-poison",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 4,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
+       "myTurns": 2,
+       "theirTurns": 24,
        "faster": 1,
        "theirMove": "giga-drain"
       }
