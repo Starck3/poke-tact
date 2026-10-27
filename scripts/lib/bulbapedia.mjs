@@ -12,12 +12,14 @@ const UA = 'poke-tact-validation/0.1 (personal project; slow resumable fetch; re
 const DIR = new URL('../../data-sources/bulbapedia/pages/', import.meta.url);
 const MANIFEST = new URL('../../data-sources/bulbapedia/pages-manifest.json', import.meta.url);
 let last = 0;
-const fileOf = (title) => new URL(encodeURIComponent(title.replace(/ /g, '_')).replace(/%/g, '_') + '.txt', DIR);
+// alt: nome com o hash do título — "Berry Fields" redireciona para "Berry fields", que no Windows (sem diferença de
+// maiúsculas no nome do arquivo) cairia no mesmo arquivo e o redirecionamento não teria fim
+const fileOf = (title, alt = false) => new URL(encodeURIComponent(title.replace(/ /g, '_')).replace(/%/g, '_') + (alt ? `~${createHash('sha1').update(title).digest('hex').slice(0, 8)}` : '') + '.txt', DIR);
 
 /** Wikitext da página (cache em disco; segue #REDIRECT). Sem rede e sem cache → null. */
-export async function page(title, { offline = false } = {}) {
+export async function page(title, { offline = false, alt = false, depth = 0 } = {}) {
   mkdirSync(DIR, { recursive: true });
-  const f = fileOf(title);
+  const f = fileOf(title, alt);
   let text;
   if (existsSync(f)) text = readFileSync(f, 'utf8');
   else {
@@ -38,7 +40,9 @@ export async function page(title, { offline = false } = {}) {
     writeFileSync(MANIFEST, JSON.stringify(man, null, 1));
   }
   const red = text.match(/^#REDIRECT\s*\[\[([^\]#|]+)/i);
-  return red ? page(red[1].trim(), { offline }) : text;
+  if (!red || depth >= 5) return red ? '' : text;
+  const to = red[1].trim();
+  return page(to, { offline, depth: depth + 1, alt: fileOf(to).href.toLowerCase() === fileOf(title).href.toLowerCase() });
 }
 
 /** Wikitext de um trecho → texto simples ([[a|b]] → b, {{rt|9|Kalos}} → Route 9, {{p|X}} → X…). */

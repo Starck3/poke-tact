@@ -7,41 +7,66 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { page } from './lib/bulbapedia.mjs';
 
 const gameId = process.argv[2];
-// título da página por lugar do app e colunas de versão da predefinição de cada jogo
+// predefinição de cada jogo e região no título das rotas ("Kalos Route 2"); as colunas de versão seguem a ordem das versões
+// do jogo; times: taxa por período em colunas ("20%|-" em Alola, ou "all=20%"; manhã|dia|noite no BDSP)
 const CFG = {
-  'x-y': { entry: 'entry6', region: 'Kalos', cols: ['x', 'y'] },
+  'x-y': { entry: 'entry6', region: 'Kalos' },
+  'omega-ruby-alpha-sapphire': { entry: 'entryoras', region: 'Hoenn' },
+  'sun-moon': { entry: 'entry7', region: 'Alola', times: ['dia', 'noite'] },
+  'ultra-sun-ultra-moon': { entry: 'entryusum', region: 'Alola', times: ['dia', 'noite'] },
+  'brilliant-diamond-shining-pearl': { entry: 'entrybdsp', region: 'Sinnoh', times: ['manhã', 'dia', 'noite'] },
+  'lets-go-pikachu-lets-go-eevee': { entry: 'entrype', region: 'Kanto' },
 };
+// método já específico no PKHeX → só as linhas desse método na tabela (BDSP)
+const METHOD_ROWS = { Surf: /^Surf/i, 'Old Rod': /^Fish Old/i, 'Good Rod': /^Fish Good/i, 'Super Rod': /^Fish Super/i };
 const cfg = CFG[gameId];
 if (!cfg) { console.log(`[${gameId}] taxa de aparição pela Bulbapedia não configurada — nada a fazer`); process.exit(0); }
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
+const versions = Object.keys(acq.versions);
 const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
 const placeOf = (where) => where.replace(/\s*\(.*$/, '').trim();
 const METHOD_PT = { grass: 'Grama', 'tall grass': 'Grama alta', 'yellow flowers': 'Flores amarelas', 'purple flowers': 'Flores roxas', 'red flowers': 'Flores vermelhas', cave: 'Caverna',
   surf: 'Surf', 'fish old': 'Vara velha', 'fish good': 'Vara boa', 'fish super': 'Super vara', 'rock smash': 'Rock Smash', swamp: 'Pântano', ceiling: 'Teto da caverna',
   snow: 'Neve', terrain: 'Terreno', dirt: 'Terra', sky: 'Céu', 'rustling bush': 'Arbusto que mexe', 'shaking trash cans': 'Lixeira que mexe', 'horde encounter': 'Horda' };
 
-/** Linhas de captura da página: [{ species, versions: {x: true…}, method, min, max, rate }]. */
+// forma da tabela → sufixo do nome no app ("Alolan Form" → alola, "Average&nbsp;Size" → average)
+const formKey = (f) => key(f.replace(/&nbsp;/g, ' ').replace(/\s+(Size|Form)$/i, '').replace(/^Alolan$/i, 'alola').replace(/^Galarian$/i, 'galar').replace(/^Hisuian$/i, 'hisui').replace(/^Paldean$/i, 'paldea'));
+const REGIONAL = new Set(['alola', 'galar', 'hisui', 'paldea']);
+const pctOf = (t) => { const m = String(t ?? '').trim().match(/^(~?)(\d+(?:\.\d+)?)%$/); return m ? { rate: Number(m[2]), approx: !!m[1] } : null; };
+
+/** Linhas de captura da página: [{ species, versions: [true, false], method, min, max, rate, approx, times?, form? }]. */
 function catchRows(text) {
   const out = [];
   for (const m of text.matchAll(new RegExp(`\\{\\{Catch/${cfg.entry}\\|([^\\n]*)\\}\\}`, 'gi'))) {
-    const f = m[1].split('|').filter((x) => !/^\w+=/.test(x));
-    const form = m[1].match(/\|form=([^|]+)/)?.[1]?.replace(/&nbsp;/g, ' ').replace(/\s+Size$/i, ''); // "Average&nbsp;Size" → Average
-    const [, species, ...rest] = f;
-    const flags = rest.slice(0, cfg.cols.length), [method, levels, rate] = rest.slice(cfg.cols.length);
-    const lv = String(levels ?? '').match(/(\d+)(?:\s*[-–]\s*(\d+))?/), pct = String(rate ?? '').match(/^(~?)(\d+(?:\.\d+)?)%$/);
-    if (!lv || !pct) continue;
-    out.push({ species: key(species), versions: Object.fromEntries(cfg.cols.map((c, i) => [c, flags[i] === 'yes'])), method: method.trim(), min: Number(lv[1]), max: Number(lv[2] ?? lv[1]), rate: Number(pct[2]), approx: !!pct[1], ...(form && { form: key(form) }) });
+    const parts = m[1].split('|');
+    const named = Object.fromEntries(parts.filter((x) => /^\w+=/.test(x)).map((x) => [x.slice(0, x.indexOf('=')), x.slice(x.indexOf('=') + 1)]));
+    const [, species, ...rest] = parts.filter((x) => !/^\w+=/.test(x));
+    const flags = rest.slice(0, versions.length), [method, levels, ...rates] = rest.slice(versions.length);
+    const lv = String(levels ?? '').match(/(\d+)(?:\s*[-–]\s*(\d+))?/);
+    // taxa: uma coluna; ou uma por período ("-"/"0%" = não aparece nesse período); ou all=
+    let r = named.all ? pctOf(named.all) : pctOf(rates[0]), times = null;
+    if (cfg.times && !named.all) {
+      const ps = cfg.times.map((_, i) => pctOf(rates[i]));
+      const nums = ps.map((p) => p?.rate ?? 0);
+      r = ps.some(Boolean) ? { rate: Math.max(...nums), approx: ps.some((p) => p?.approx) } : null;
+      if (r && new Set(nums).size > 1) times = Object.fromEntries(cfg.times.map((t, i) => [t, nums[i]])); // { dia: 0, noite: 30 }
+    }
+    if (!lv || !r || !method) continue;
+    out.push({ species: key(species), versions: flags.map((x) => x === 'yes'), method: method.trim(), min: Number(lv[1]), max: Number(lv[2] ?? lv[1]), rate: r.rate, approx: r.approx, ...(times && { times }), ...(named.form && { form: formKey(named.form) }) });
   }
   return out;
 }
 
 const report = { pages: {}, matched: 0, wild: 0, ambiguous: [], unmatched: [] };
 const rowsOf = new Map();
-const places = [...new Set(Object.values(acq.versions).flatMap((v) => Object.values(v).flat().filter((s) => s.type === 'wild').map((s) => placeOf(s.where))))];
+// horda (5 de uma vez) e chamado SOS têm conta própria; Grand Underground e árvore de mel não estão na tabela do lugar
+const rated = (s) => s.type === 'wild' && !/^(Horda|Chamado SOS|Grand Underground|Árvore de mel)$/.test(s.method);
+const places = [...new Set(Object.values(acq.versions).flatMap((v) => Object.values(v).flat().filter(rated).map((s) => placeOf(s.where))))];
 for (const place of places) {
   let rows = [];
-  for (const title of /^Route \d+$/.test(place) ? [`${cfg.region} ${place}`] : [place, `${place} (${cfg.region})`]) {
+  const t = place.replace(/’/g, "'"); // "Hau’oli City" no app; a página é "Hau'oli City"
+  for (const title of /^Route \d+$/.test(t) ? [`${cfg.region} ${t}`] : [t, `${t} (${cfg.region})`]) {
     let text;
     try { text = await page(title); } catch (e) { console.log(e.message); process.exit(2); }
     if (text && /\{\{disambig/i.test(text)) continue;
@@ -53,26 +78,29 @@ for (const place of places) {
 }
 const overlap = (s, r) => Math.min(s.max, r.max) - Math.max(s.min, r.min);
 for (const [version, v] of Object.entries(acq.versions)) {
-  const col = cfg.cols.find((c) => version.startsWith(c) || version === c) ?? version;
+  const col = versions.indexOf(version);
   for (const [sp, list] of Object.entries(v)) for (const s of list) {
-    if (s.type !== 'wild' || s.method === 'Horda') continue; // horda (5 de uma vez) tem tabela própria; fica sem taxa
+    if (!rated(s)) continue;
     report.wild++;
-    delete s.pct; delete s.pctSource; delete s.pctApprox; delete s.methodDetail;
-    // forma (basculin-red-striped, pumpkaboo-average): a tabela da Bulbapedia escreve só a espécie
+    delete s.pct; delete s.pctSource; delete s.pctApprox; delete s.pctTimes; delete s.methodDetail;
+    // forma (basculin-red-striped, rattata-alola): a tabela da Bulbapedia escreve só a espécie, com form=
     const rows = rowsOf.get(placeOf(s.where)) ?? [];
     const spKey = rows.some((r) => r.species === key(sp)) ? key(sp) : key(sp.split('-')[0]);
-    // linha de outra forma ("form=Blue-Striped") não vale para basculin-red-striped
-    const cands = rows.filter((r) => r.species === spKey && (!r.form || spKey === key(sp) || key(sp).endsWith(r.form)) && r.versions[col] !== false && overlap(s, r) >= 0);
+    // linha de outra forma ("form=Blue-Striped", "form=Alolan Form") não vale para basculin-red-striped nem para o rattata de Kanto
+    const formOk = (r) => !r.form || (spKey === key(sp) ? !REGIONAL.has(r.form) : key(sp).endsWith(r.form));
+    const methodOk = (r) => !METHOD_ROWS[s.methodPkhex ?? s.method] || METHOD_ROWS[s.methodPkhex ?? s.method].test(r.method);
+    const cands = rows.filter((r) => r.species === spKey && formOk(r) && methodOk(r) && r.versions[col] !== false && overlap(s, r) >= 0);
     if (!cands.length) { report.unmatched.push(`${version} ${sp} ${s.where} nv ${s.min}-${s.max}`); continue; }
     const best = Math.max(...cands.map((r) => overlap(s, r)));
     const top = cands.filter((r) => overlap(s, r) === best);
     // mesma taxa em todas as linhas empatadas (Grass e Yellow Flowers com o mesmo %) → vale; senão fica sem
-    if (new Set(top.map((r) => r.rate)).size > 1) { report.ambiguous.push(`${version} ${sp} ${s.where}: ${top.map((r) => `${r.method} ${r.rate}%`).join(', ')}`); continue; }
+    if (new Set(top.map((r) => `${r.rate}|${JSON.stringify(r.times ?? null)}`)).size > 1) { report.ambiguous.push(`${version} ${sp} ${s.where}: ${top.map((r) => `${r.method} ${r.rate}%`).join(', ')}`); continue; }
     s.pct = top[0].rate; s.pctSource = 'Bulbapedia'; s.methodDetail = [...new Set(top.map((r) => r.method))].join('/');
     const pt = [...new Set(top.map((r) => METHOD_PT[r.method.toLowerCase()] ?? r.method))].join('/');
     // "Selvagem"/"Grama" do PKHeX (genérico: até o teto da caverna vem como grama) → como se encontra (Teto da caverna, Surf…)
     if (/^(Selvagem|Grama)$/.test(s.methodPkhex ?? s.method) && pt !== s.method) { s.methodPkhex ??= s.method; s.method = pt; }
     if (top.some((r) => r.approx)) s.pctApprox = true; // "~80%" na tabela
+    if (top[0].times) s.pctTimes = top[0].times; // { dia: 0, noite: 30 } (Alola), { manhã, dia, noite } (BDSP)
     report.matched++;
   }
 }

@@ -438,7 +438,7 @@ for (const [v, byMon] of Object.entries(acq.versions)) {
   };
   for (const [species, list] of Object.entries(byMon)) for (const s of list) {
     const l = locOf(s.where, placeOf(s.where));
-    if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }), ...(s.pct != null && { pct: s.pct }), ...(s.pctApprox && { pctApprox: true }) });
+    if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }), ...(s.pct != null && { pct: s.pct }), ...(s.pctApprox && { pctApprox: true }), ...(s.pctTimes && { pctTimes: s.pctTimes }) });
     else l.others.push({ species, type: s.type, level: s.level, where: s.where, ...(s.detail && { detail: s.detail }) });
   }
   // treinadores: no local cujo nome está no título da seção da luta; senão um local com o nome da seção
