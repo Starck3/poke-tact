@@ -18,7 +18,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   treinadores com estágio direto quando não há detonado. Pronto quando: o USUM aparece no banco. (0.49.0)
 - **Q4 ⚠ Taxa de aparição nas Gens 6–9** (opcional, grande): começar por UM jogo (X/Y) para medir o custo real; se o leitor
   das tabelas de encontro ficar confiável, estender; senão ⏸ com o que foi medido.
-- **D1 ⬜** STATUS.md, memória, resumo final.
+- **D1 ✅** STATUS.md, memória, resumo final.
 
 ## Ordem
 Q1 → Q2 → Q3 → Q4 → D1.
@@ -54,3 +54,19 @@ Q1 → Q2 → Q3 → Q4 → D1.
   casado com a linha): HTTP 503 em Lake Verity e, na 2ª tentativa, falha de rede em Old Chateau — parado pela regra; o
   código está pronto (CFG), basta rodar de novo. SwSh, LA, SV, Z-A: não configurados (símbolos no mapa, clima da Wild
   Area, surtos — tabela diferente). Banco: vencem igual; folgadas Let's Go 1.018 → 1.021.
+- **2026-10-26 — D1**: STATUS.md e memória atualizados; resumo final abaixo.
+
+## Resumo final (2026-10-26, versão 0.51.0)
+- ✅ Q1 (0.47.0) golpes reais dos rivais — SwSh 73/96, BDSP 72/74, LGPE 50/57.
+- ✅ Q2 (0.48.0) incensos pelo destino do link — nenhum jogo fica com "bebê sem incenso".
+- ✅ Q3 (0.49.0) Ultra Sun/Ultra Moon no banco de lutas (174 lutas), time do rival pela inicial, provação da Mina e
+  lugares revisitados conferidos pelo nível.
+- ⚠ Q4 (0.50.0–0.51.0) taxa de aparição: X/Y 666/708, ORAS 552/1.208, Sun/Moon 607/878, USUM 730/948, Let's Go 604/1.016.
+  ⏸ BDSP: código pronto, a Bulbapedia deu HTTP 503 e depois falha de rede — rodar
+  `node scripts/build-game.mjs brilliant-diamond-shining-pearl` quando o site responder. SwSh, LA, SV e Z-A não têm a
+  tabela simples (símbolos no mapa, clima, surtos).
+- Banco de lutas: 21 → 22 jogos; 37.872 → 39.978 sugestões; vencem 37.687 → 39.793 (99,5%); folgadas 35.842 → 37.960.
+- Achados que viraram regra: comentário no meio da linha antes de código é `/* */`; regex e template literal em heredoc
+  perdem as barras (usar Edit); Windows não diferencia maiúsculas no nome do arquivo do cache (redirecionamento em laço).
+- O que sobra: lutas ainda com golpes estimados (DLC do SwSh, Jessie e James no Let's Go), 273 fontes do USUM sem estágio,
+  creche do USUM sem configuração, taxa do BDSP (rodar de novo) e dos jogos sem tabela simples.
