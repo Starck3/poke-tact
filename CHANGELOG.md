@@ -4,7 +4,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões e
 
 ## [0.52.0] — 2026-10-26
 
-> A frequência com que cada Pokémon aparece agora também está no Brilliant Diamond/Shining Pearl, separada por manhã, dia e noite. O Ultra Sun/Ultra Moon ganhou a creche (Pokémon Nursery do Paniola Ranch) e passou a saber quais lugares são do pós-jogo. A creche também aparece na aba Detonado de mais jogos.
+> O Brilliant Diamond/Shining Pearl agora mostra a frequência de cada Pokémon (manhã, dia e noite). O Ultra Sun/Ultra Moon ganhou a creche do Paniola Ranch e sabe quais lugares são do pós-jogo.
 
 ### Adicionado
 - **Taxa de aparição no Brilliant Diamond/Shining Pearl** pela Bulbapedia: 1.435 de 1.575 encontros, com manhã/dia/noite
