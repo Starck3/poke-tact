@@ -2,6 +2,15 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.53.1] — 2026-10-26
+
+> Ao escolher um treinador, o nível do seu time e o progresso passam a ser os da luta (Brock: nível 14, nenhuma insígnia). Antes ficava o nível 30 e o app sugeria Pokémon e golpes que só se conseguem bem depois.
+
+### Corrigido
+- Escolher um treinador agora preenche "Nível do seu time" com o nível do Pokémon mais forte dele e o "Progresso" com o
+  ponto da história da luta (líder pela ordem das insígnias). Com o padrão (nível 30, sem progresso), o Brock no FireRed
+  recebia Butterfree e Beedrill com Giga Drain e Squirtle com Surf. Os dois campos continuam editáveis depois.
+
 ## [0.53.0] — 2026-10-26
 
 > Mais chefes lutam com os golpes de verdade (Leon e Marnie nos torneios, Jessie e James no Let's Go, Geeta, Klara, Avery e outros): 878 de 960 lutas dos jogos novos, antes 803.
