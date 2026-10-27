@@ -57,13 +57,14 @@ export function plain(s) {
       .replace(/\{\{OBP\|([^|}]+)\|[^}]*\}\}/gi, '$1')
       .replace(/\[\[(?:[^\]|]*\|)?([^\]]+)\]\]/g, '$1');
   }
-  return t.replace(/\{\{[^{}]*\}\}/g, '').replace(/<br\s*\/?>/gi, '; ').replace(/'''?/g, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  return t.replace(/\{\{[^{}]*\}\}/g, '').replace(/&nbsp;/g, ' ').replace(/<br\s*\/?>/gi, '; ').replace(/'''?/g, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 }
 
-/** Campos "| chave = valor" de uma predefinição (várias por linha, separadas por " | "). */
+/** Campos "| chave = valor" de uma predefinição (várias por linha, separadas por " | " ou " |chave=": "| move1 = Light
+ *  Screen |move1type=Psychic" — Lacey no Scarlet/Violet). O "|" de dentro de {{m|X}} não tem espaço antes e fica. */
 function fields(body) {
   const out = {};
-  for (const part of body.split(/\n\s*\||\s\|\s/)) {
+  for (const part of body.split(/\n\s*\||\s\|\s|\s\|(?=[\w-]+\s*=)/)) {
     const m = part.match(/^\s*\|?\s*([\w-]+)\s*=\s*([\s\S]*?)\s*$/);
     if (m) out[m[1].toLowerCase()] = m[2].trim();
   }
@@ -82,8 +83,11 @@ export function parties(text) {
     for (const h of heads) { if (h.at > at) break; while (path.length && path.at(-1).level >= h.level) path.pop(); path.push(h); }
     return path.map((h) => h.title);
   };
-  for (const m of text.matchAll(/\{\{Party\s*\n([\s\S]*?)\n\}\}([\s\S]*?)\{\{Party\/end\}\}/g)) {
+  // {{Party/2}}: luta em dupla (Jessie e James no Let's Go) — os Pokémon dos dois vêm em sequência, como um time só
+  for (const m of text.matchAll(/\{\{Party(?:\/2)?\s*\n([\s\S]*?)\n\}\}([\s\S]*?)\{\{Party\/end\}\}/g)) {
     const p = fields(m[1]);
+    const nm = (s) => plain(String(s ?? '').replace(/\{\{color2\|[^|}]*\|([^|}]+)\}\}/gi, '$1'));
+    if (p.name2) p.name = `${nm(p.name)} & ${nm(p.name2)}`;
     const mons = [...m[2].matchAll(/\{\{Pokémon(?:\/\d+)?\s*\n([\s\S]*?)\n\}\}/g)].map((x) => {
       const f = fields(x[1]);
       const moves = [1, 2, 3, 4].map((i) => (f[`move${i}`] ? { name: plain(f[`move${i}`]), z: f[`z-move${i}`] ? plain(f[`z-move${i}`]) : null } : null)).filter(Boolean);
@@ -93,7 +97,7 @@ export function parties(text) {
     });
     // "| caption = {{PlayerChoice|0722|Rowlet}}": o time vale quando o jogador escolheu essa inicial (rival)
     const choice = (p.caption ?? '').match(/\{\{PlayerChoice\|\d*\|([^|}]+)/i);
-    out.push({ section: sectionAt(m.index), game: p.game ?? null, location: p.location ? plain(p.location) : null, name: plain(p.name), class: p.class ? plain(p.class) : null, ...(choice ? { playerChoice: choice[1].trim() } : {}), mons });
+    out.push({ section: sectionAt(m.index), game: p.game ?? null, location: p.location ? plain(p.location) : null, name: p.name2 ? p.name : plain(p.name), class: p.class ? plain(p.class) : null, ...(choice ? { playerChoice: choice[1].trim() } : {}), mons });
   }
   return out;
 }

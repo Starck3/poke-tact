@@ -2,6 +2,31 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.53.0] — 2026-10-26
+
+> Mais chefes lutam com os golpes de verdade (Leon e Marnie nos torneios, Jessie e James no Let's Go, Geeta, Klara, Avery e outros): 878 de 960 lutas dos jogos novos, antes 803.
+
+### Adicionado
+- Golpes reais pela Bulbapedia em mais 75 lutas (803 → 878 de 960):
+  - forma no nome do app ("morpeko-full-belly", "aegislash-shield", "darmanitan-standard") casa com a espécie da página;
+  - lutas em que o nível acompanha o jogador (torneios do Sword/Shield, revanches do Scarlet/Violet e do Z-A): a página
+    deixa o nível em branco, e o time casa quando todas as espécies batem — se dois times assim tiverem golpes diferentes,
+    a luta fica com os golpes estimados;
+  - lutas em dupla ({{Party/2}}): Jessie e James no Let's Go, Jupiter e Mars no BDSP, Tierno e Trevor no X/Y;
+  - Sun/Moon: times marcados só com a letra da versão ("S"/"M"); Legends: Arceus: o time de Alfas do Ingo.
+- Ultra Sun/Ultra Moon: duas lutas do Faba no Episode RR (pós-jogo).
+
+### Corrigido
+- Entre dois times da página que servem, vence o de nível mais perto (Calem nv 31/33 pegava a 1ª luta, nv 28/30; agora a
+  2ª). Time com nível vence time sem nível (Gwynn no Z-A continua com a 1ª luta).
+- Leitor da Bulbapedia: "&nbsp;" no meio do golpe ("Revelation&nbsp;Dance") e campos colados ("| move1 = Light Screen
+  |move1type=Psychic").
+- Legends: Z-A: `build-game` agora refaz o detonado e as etapas da Bulbapedia (antes uma reconstrução perdia a ordem da
+  história). Jogos com decomp da Gen 3 e o Black 2/White 2 mostram a creche na aba Detonado depois de reconstruídos.
+
+### Alterado
+- Banco de lutas: vitórias iguais; folgadas no Scarlet/Violet 5.530 → 5.536 e no Z-A 830 → 831.
+
 ## [0.52.0] — 2026-10-26
 
 > O Brilliant Diamond/Shining Pearl agora mostra a frequência de cada Pokémon (manhã, dia e noite). O Ultra Sun/Ultra Moon ganhou a creche do Paniola Ranch e sabe quais lugares são do pós-jogo.

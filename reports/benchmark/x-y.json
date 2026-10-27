@@ -8,7 +8,7 @@
    "wins": 2502,
    "picks": 2502,
    "comfy": 2445,
-   "turnsSum": 2870,
+   "turnsSum": 2864,
    "turnsN": 2502
   },
   "antes": {
@@ -4542,10 +4542,10 @@
      "opp": "meowstic-male",
      "level": 31,
      "moves": [
-      "fake-out",
-      "light-screen",
       "psybeam",
-      "disarming-voice"
+      "fake-out",
+      "disarming-voice",
+      "light-screen"
      ],
      "superEffectiveAvailable": 89,
      "winnersAvailable": 103,
@@ -4594,8 +4594,8 @@
      "opp": "absol",
      "level": 31,
      "moves": [
-      "bite",
       "slash",
+      "bite",
       "quick-attack"
      ],
      "superEffectiveAvailable": 71,
@@ -4706,10 +4706,10 @@
      "opp": "meowstic-male",
      "level": 31,
      "moves": [
-      "fake-out",
-      "light-screen",
       "psybeam",
-      "disarming-voice"
+      "fake-out",
+      "disarming-voice",
+      "light-screen"
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 102,
@@ -4758,8 +4758,8 @@
      "opp": "absol",
      "level": 31,
      "moves": [
-      "bite",
       "slash",
+      "bite",
       "quick-attack"
      ],
      "superEffectiveAvailable": 69,
@@ -4870,10 +4870,10 @@
      "opp": "meowstic-male",
      "level": 31,
      "moves": [
-      "fake-out",
-      "light-screen",
       "psybeam",
-      "disarming-voice"
+      "fake-out",
+      "disarming-voice",
+      "light-screen"
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 102,
@@ -4922,8 +4922,8 @@
      "opp": "absol",
      "level": 31,
      "moves": [
-      "bite",
       "slash",
+      "bite",
       "quick-attack"
      ],
      "superEffectiveAvailable": 69,
@@ -4973,8 +4973,8 @@
      "opp": "quilladin",
      "level": 33,
      "moves": [
-      "bite",
-      "needle-arm"
+      "needle-arm",
+      "bite"
      ],
      "superEffectiveAvailable": 96,
      "winnersAvailable": 114,
@@ -11778,13 +11778,13 @@
      "opp": "aegislash-shield",
      "level": 65,
      "moves": [
-      "swords-dance",
-      "aerial-ace",
       "kings-shield",
-      "sacred-sword"
+      "sacred-sword",
+      "shadow-claw",
+      "iron-head"
      ],
      "superEffectiveAvailable": 223,
-     "winnersAvailable": 175,
+     "winnersAvailable": 134,
      "candidates": 413,
      "picks": [
       {
@@ -11795,21 +11795,9 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "sacred-sword"
-      },
-      {
-       "mon": "doublade",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "aerial-ace"
+       "theirMove": "shadow-claw"
       },
       {
        "mon": "flareon",
@@ -11819,9 +11807,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "sacred-sword"
+       "theirMove": "shadow-claw"
+      },
+      {
+       "mon": "garchomp",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "iron-head"
       }
      ],
      "before": []
@@ -11997,13 +11997,13 @@
      "opp": "aegislash-shield",
      "level": 65,
      "moves": [
-      "swords-dance",
-      "aerial-ace",
       "kings-shield",
-      "sacred-sword"
+      "sacred-sword",
+      "shadow-claw",
+      "iron-head"
      ],
      "superEffectiveAvailable": 223,
-     "winnersAvailable": 177,
+     "winnersAvailable": 136,
      "candidates": 413,
      "picks": [
       {
@@ -12014,21 +12014,9 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "sacred-sword"
-      },
-      {
-       "mon": "doublade",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "aerial-ace"
+       "theirMove": "shadow-claw"
       },
       {
        "mon": "flareon",
@@ -12038,9 +12026,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "sacred-sword"
+       "theirMove": "shadow-claw"
+      },
+      {
+       "mon": "garchomp",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "iron-head"
       }
      ],
      "before": []
@@ -12216,13 +12216,13 @@
      "opp": "aegislash-shield",
      "level": 65,
      "moves": [
-      "swords-dance",
-      "aerial-ace",
       "kings-shield",
-      "sacred-sword"
+      "sacred-sword",
+      "shadow-claw",
+      "iron-head"
      ],
      "superEffectiveAvailable": 221,
-     "winnersAvailable": 176,
+     "winnersAvailable": 134,
      "candidates": 413,
      "picks": [
       {
@@ -12233,21 +12233,9 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "sacred-sword"
-      },
-      {
-       "mon": "doublade",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "aerial-ace"
+       "theirMove": "shadow-claw"
       },
       {
        "mon": "flareon",
@@ -12257,9 +12245,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "sacred-sword"
+       "theirMove": "shadow-claw"
+      },
+      {
+       "mon": "garchomp",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "iron-head"
       }
      ],
      "before": []
@@ -17247,14 +17247,39 @@
      "opp": "mawile",
      "level": 40,
      "moves": [
-      "feint-attack",
+      "play-rough",
       "crunch",
-      "iron-defense"
+      "iron-defense",
+      "iron-head"
      ],
      "superEffectiveAvailable": 70,
-     "winnersAvailable": 201,
+     "winnersAvailable": 112,
      "candidates": 393,
      "picks": [
+      {
+       "mon": "torkoal",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "hippowdon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -17263,31 +17288,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "houndoom",
-       "move": "inferno",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "crunch"
       }
@@ -17298,27 +17299,15 @@
      "opp": "sylveon",
      "level": 40,
      "moves": [
-      "dazzling-gleam",
+      "attract",
+      "draining-kiss",
       "quick-attack",
-      "swift",
       "charm"
      ],
      "superEffectiveAvailable": 50,
-     "winnersAvailable": 70,
+     "winnersAvailable": 139,
      "candidates": 393,
      "picks": [
-      {
-       "mon": "tentacruel",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
       {
        "mon": "aegislash-shield",
        "move": "iron-head",
@@ -17327,9 +17316,9 @@
        "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 7,
+       "theirTurns": 11,
        "faster": 0.5,
-       "theirMove": "dazzling-gleam"
+       "theirMove": "draining-kiss"
       },
       {
        "mon": "charizard",
@@ -17339,9 +17328,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
-       "theirMove": "swift"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "poison-jab",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -17361,14 +17362,39 @@
      "opp": "mawile",
      "level": 40,
      "moves": [
-      "feint-attack",
+      "play-rough",
       "crunch",
-      "iron-defense"
+      "iron-defense",
+      "iron-head"
      ],
      "superEffectiveAvailable": 71,
-     "winnersAvailable": 202,
+     "winnersAvailable": 113,
      "candidates": 393,
      "picks": [
+      {
+       "mon": "torkoal",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "hippowdon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -17377,31 +17403,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "houndoom",
-       "move": "inferno",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "crunch"
       }
@@ -17412,27 +17414,15 @@
      "opp": "sylveon",
      "level": 40,
      "moves": [
-      "dazzling-gleam",
+      "attract",
+      "draining-kiss",
       "quick-attack",
-      "swift",
       "charm"
      ],
      "superEffectiveAvailable": 50,
-     "winnersAvailable": 71,
+     "winnersAvailable": 141,
      "candidates": 393,
      "picks": [
-      {
-       "mon": "tentacruel",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
       {
        "mon": "aegislash-shield",
        "move": "iron-head",
@@ -17441,9 +17431,9 @@
        "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 7,
+       "theirTurns": 11,
        "faster": 0.5,
-       "theirMove": "dazzling-gleam"
+       "theirMove": "draining-kiss"
       },
       {
        "mon": "charizard",
@@ -17453,9 +17443,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
-       "theirMove": "swift"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "poison-jab",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -17475,14 +17477,39 @@
      "opp": "mawile",
      "level": 40,
      "moves": [
-      "feint-attack",
+      "play-rough",
       "crunch",
-      "iron-defense"
+      "iron-defense",
+      "iron-head"
      ],
      "superEffectiveAvailable": 68,
-     "winnersAvailable": 201,
+     "winnersAvailable": 111,
      "candidates": 393,
      "picks": [
+      {
+       "mon": "torkoal",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "hippowdon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -17491,31 +17518,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "houndoom",
-       "move": "inferno",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 2,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "crunch"
       }
@@ -17526,27 +17529,15 @@
      "opp": "sylveon",
      "level": 40,
      "moves": [
-      "dazzling-gleam",
+      "attract",
+      "draining-kiss",
       "quick-attack",
-      "swift",
       "charm"
      ],
      "superEffectiveAvailable": 50,
-     "winnersAvailable": 70,
+     "winnersAvailable": 139,
      "candidates": 393,
      "picks": [
-      {
-       "mon": "tentacruel",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
       {
        "mon": "aegislash-shield",
        "move": "iron-head",
@@ -17555,9 +17546,9 @@
        "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 7,
+       "theirTurns": 11,
        "faster": 0.5,
-       "theirMove": "dazzling-gleam"
+       "theirMove": "draining-kiss"
       },
       {
        "mon": "charizard",
@@ -17567,9 +17558,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
-       "theirMove": "swift"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "poison-jab",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -27705,10 +27708,10 @@
      "opp": "meowstic-male",
      "level": 31,
      "moves": [
-      "fake-out",
-      "light-screen",
       "psybeam",
-      "disarming-voice"
+      "fake-out",
+      "disarming-voice",
+      "light-screen"
      ],
      "superEffectiveAvailable": 89,
      "winnersAvailable": 102,
@@ -27757,8 +27760,8 @@
      "opp": "absol",
      "level": 31,
      "moves": [
-      "bite",
       "slash",
+      "bite",
       "quick-attack"
      ],
      "superEffectiveAvailable": 71,
@@ -27869,10 +27872,10 @@
      "opp": "meowstic-male",
      "level": 31,
      "moves": [
-      "fake-out",
-      "light-screen",
       "psybeam",
-      "disarming-voice"
+      "fake-out",
+      "disarming-voice",
+      "light-screen"
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 101,
@@ -27921,8 +27924,8 @@
      "opp": "absol",
      "level": 31,
      "moves": [
-      "bite",
       "slash",
+      "bite",
       "quick-attack"
      ],
      "superEffectiveAvailable": 69,
@@ -28033,10 +28036,10 @@
      "opp": "meowstic-male",
      "level": 31,
      "moves": [
-      "fake-out",
-      "light-screen",
       "psybeam",
-      "disarming-voice"
+      "fake-out",
+      "disarming-voice",
+      "light-screen"
      ],
      "superEffectiveAvailable": 87,
      "winnersAvailable": 101,
@@ -28085,8 +28088,8 @@
      "opp": "absol",
      "level": 31,
      "moves": [
-      "bite",
       "slash",
+      "bite",
       "quick-attack"
      ],
      "superEffectiveAvailable": 69,
@@ -28136,8 +28139,8 @@
      "opp": "quilladin",
      "level": 33,
      "moves": [
-      "bite",
-      "needle-arm"
+      "needle-arm",
+      "bite"
      ],
      "superEffectiveAvailable": 97,
      "winnersAvailable": 115,
@@ -34941,13 +34944,13 @@
      "opp": "aegislash-shield",
      "level": 65,
      "moves": [
-      "swords-dance",
-      "aerial-ace",
       "kings-shield",
-      "sacred-sword"
+      "sacred-sword",
+      "shadow-claw",
+      "iron-head"
      ],
      "superEffectiveAvailable": 223,
-     "winnersAvailable": 175,
+     "winnersAvailable": 133,
      "candidates": 413,
      "picks": [
       {
@@ -34958,21 +34961,9 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "sacred-sword"
-      },
-      {
-       "mon": "doublade",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "aerial-ace"
+       "theirMove": "shadow-claw"
       },
       {
        "mon": "flareon",
@@ -34982,9 +34973,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "sacred-sword"
+       "theirMove": "shadow-claw"
+      },
+      {
+       "mon": "garchomp",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "iron-head"
       }
      ],
      "before": []
@@ -35160,13 +35163,13 @@
      "opp": "aegislash-shield",
      "level": 65,
      "moves": [
-      "swords-dance",
-      "aerial-ace",
       "kings-shield",
-      "sacred-sword"
+      "sacred-sword",
+      "shadow-claw",
+      "iron-head"
      ],
      "superEffectiveAvailable": 223,
-     "winnersAvailable": 177,
+     "winnersAvailable": 135,
      "candidates": 413,
      "picks": [
       {
@@ -35177,21 +35180,9 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "sacred-sword"
-      },
-      {
-       "mon": "doublade",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "aerial-ace"
+       "theirMove": "shadow-claw"
       },
       {
        "mon": "flareon",
@@ -35201,9 +35192,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "sacred-sword"
+       "theirMove": "shadow-claw"
+      },
+      {
+       "mon": "garchomp",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "iron-head"
       }
      ],
      "before": []
@@ -35379,13 +35382,13 @@
      "opp": "aegislash-shield",
      "level": 65,
      "moves": [
-      "swords-dance",
-      "aerial-ace",
       "kings-shield",
-      "sacred-sword"
+      "sacred-sword",
+      "shadow-claw",
+      "iron-head"
      ],
      "superEffectiveAvailable": 221,
-     "winnersAvailable": 176,
+     "winnersAvailable": 133,
      "candidates": 413,
      "picks": [
       {
@@ -35396,21 +35399,9 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 7,
        "faster": 1,
-       "theirMove": "sacred-sword"
-      },
-      {
-       "mon": "doublade",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "aerial-ace"
+       "theirMove": "shadow-claw"
       },
       {
        "mon": "flareon",
@@ -35420,9 +35411,21 @@
        "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "sacred-sword"
+       "theirMove": "shadow-claw"
+      },
+      {
+       "mon": "garchomp",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 4,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "iron-head"
       }
      ],
      "before": []
@@ -40410,14 +40413,39 @@
      "opp": "mawile",
      "level": 40,
      "moves": [
-      "feint-attack",
+      "play-rough",
       "crunch",
-      "iron-defense"
+      "iron-defense",
+      "iron-head"
      ],
      "superEffectiveAvailable": 69,
-     "winnersAvailable": 197,
+     "winnersAvailable": 109,
      "candidates": 392,
      "picks": [
+      {
+       "mon": "torkoal",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "hippowdon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -40426,31 +40454,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "crunch"
       }
@@ -40461,27 +40465,15 @@
      "opp": "sylveon",
      "level": 40,
      "moves": [
-      "dazzling-gleam",
+      "attract",
+      "draining-kiss",
       "quick-attack",
-      "swift",
       "charm"
      ],
      "superEffectiveAvailable": 49,
-     "winnersAvailable": 68,
+     "winnersAvailable": 136,
      "candidates": 392,
      "picks": [
-      {
-       "mon": "tentacruel",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
       {
        "mon": "aegislash-shield",
        "move": "iron-head",
@@ -40490,9 +40482,9 @@
        "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 7,
+       "theirTurns": 11,
        "faster": 0.5,
-       "theirMove": "dazzling-gleam"
+       "theirMove": "draining-kiss"
       },
       {
        "mon": "charizard",
@@ -40502,9 +40494,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
-       "theirMove": "swift"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "poison-jab",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -40524,14 +40528,39 @@
      "opp": "mawile",
      "level": 40,
      "moves": [
-      "feint-attack",
+      "play-rough",
       "crunch",
-      "iron-defense"
+      "iron-defense",
+      "iron-head"
      ],
      "superEffectiveAvailable": 70,
-     "winnersAvailable": 198,
+     "winnersAvailable": 110,
      "candidates": 392,
      "picks": [
+      {
+       "mon": "torkoal",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "hippowdon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -40540,31 +40569,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "crunch"
       }
@@ -40575,27 +40580,15 @@
      "opp": "sylveon",
      "level": 40,
      "moves": [
-      "dazzling-gleam",
+      "attract",
+      "draining-kiss",
       "quick-attack",
-      "swift",
       "charm"
      ],
      "superEffectiveAvailable": 49,
-     "winnersAvailable": 69,
+     "winnersAvailable": 138,
      "candidates": 392,
      "picks": [
-      {
-       "mon": "tentacruel",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
       {
        "mon": "aegislash-shield",
        "move": "iron-head",
@@ -40604,9 +40597,9 @@
        "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 7,
+       "theirTurns": 11,
        "faster": 0.5,
-       "theirMove": "dazzling-gleam"
+       "theirMove": "draining-kiss"
       },
       {
        "mon": "charizard",
@@ -40616,9 +40609,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
-       "theirMove": "swift"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "poison-jab",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -40638,14 +40643,39 @@
      "opp": "mawile",
      "level": 40,
      "moves": [
-      "feint-attack",
+      "play-rough",
       "crunch",
-      "iron-defense"
+      "iron-defense",
+      "iron-head"
      ],
      "superEffectiveAvailable": 67,
-     "winnersAvailable": 197,
+     "winnersAvailable": 108,
      "candidates": 392,
      "picks": [
+      {
+       "mon": "torkoal",
+       "move": "flamethrower",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 7,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "crunch"
+      },
+      {
+       "mon": "hippowdon",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "play-rough"
+      },
       {
        "mon": "charizard",
        "move": "heat-wave",
@@ -40654,31 +40684,7 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 11,
-       "faster": 1,
-       "theirMove": "crunch"
-      },
-      {
-       "mon": "lucario",
-       "move": "close-combat",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "crunch"
       }
@@ -40689,27 +40695,15 @@
      "opp": "sylveon",
      "level": 40,
      "moves": [
-      "dazzling-gleam",
+      "attract",
+      "draining-kiss",
       "quick-attack",
-      "swift",
       "charm"
      ],
      "superEffectiveAvailable": 49,
-     "winnersAvailable": 68,
+     "winnersAvailable": 136,
      "candidates": 392,
      "picks": [
-      {
-       "mon": "tentacruel",
-       "move": "poison-jab",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 1,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "dazzling-gleam"
-      },
       {
        "mon": "aegislash-shield",
        "move": "iron-head",
@@ -40718,9 +40712,9 @@
        "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 7,
+       "theirTurns": 11,
        "faster": 0.5,
-       "theirMove": "dazzling-gleam"
+       "theirMove": "draining-kiss"
       },
       {
        "mon": "charizard",
@@ -40730,9 +40724,21 @@
        "stageNeeded": 1,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 6,
+       "theirTurns": 10,
        "faster": 1,
-       "theirMove": "swift"
+       "theirMove": "draining-kiss"
+      },
+      {
+       "mon": "tentacruel",
+       "move": "poison-jab",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 9,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []

@@ -8976,12 +8976,12 @@
      "level": 56,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 164,
-     "winnersAvailable": 238,
+     "winnersAvailable": 244,
      "candidates": 389,
      "picks": [
       {
@@ -8994,7 +8994,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -9006,7 +9006,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -9247,12 +9247,12 @@
      "level": 56,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 164,
-     "winnersAvailable": 238,
+     "winnersAvailable": 244,
      "candidates": 389,
      "picks": [
       {
@@ -9265,7 +9265,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -9277,7 +9277,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -9518,12 +9518,12 @@
      "level": 56,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 167,
-     "winnersAvailable": 240,
+     "winnersAvailable": 246,
      "candidates": 389,
      "picks": [
       {
@@ -9536,7 +9536,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -9548,7 +9548,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -15465,12 +15465,12 @@
      "level": 66,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 211,
-     "winnersAvailable": 283,
+     "winnersAvailable": 291,
      "candidates": 467,
      "picks": [
       {
@@ -15481,9 +15481,9 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -15495,7 +15495,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -15736,12 +15736,12 @@
      "level": 66,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 211,
-     "winnersAvailable": 283,
+     "winnersAvailable": 291,
      "candidates": 467,
      "picks": [
       {
@@ -15752,9 +15752,9 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -15766,7 +15766,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -16007,12 +16007,12 @@
      "level": 66,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 214,
-     "winnersAvailable": 285,
+     "winnersAvailable": 293,
      "candidates": 467,
      "picks": [
       {
@@ -16023,9 +16023,9 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -16037,7 +16037,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -18316,50 +18316,50 @@
      "opp": "snorlax",
      "level": 68,
      "moves": [
-      "belly-drum",
+      "body-slam",
       "crunch",
       "heavy-slam",
       "high-horsepower"
      ],
      "superEffectiveAvailable": 63,
-     "winnersAvailable": 196,
+     "winnersAvailable": 154,
      "candidates": 467,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "close-combat",
+       "mon": "buzzwole",
+       "move": "hammer-arm",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 13,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "body-slam"
       },
       {
-       "mon": "garchomp",
-       "move": "dragon-claw",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "high-horsepower"
-      },
-      {
-       "mon": "chesnaught",
-       "move": "hammer-arm",
+       "mon": "kartana",
+       "move": "sacred-sword",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 9,
+       "stageNeeded": 13,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "high-horsepower"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -18639,50 +18639,50 @@
      "opp": "snorlax",
      "level": 68,
      "moves": [
-      "belly-drum",
+      "body-slam",
       "crunch",
       "heavy-slam",
       "high-horsepower"
      ],
      "superEffectiveAvailable": 63,
-     "winnersAvailable": 194,
+     "winnersAvailable": 153,
      "candidates": 467,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "close-combat",
+       "mon": "buzzwole",
+       "move": "hammer-arm",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 13,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "body-slam"
       },
       {
-       "mon": "garchomp",
-       "move": "dragon-claw",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "high-horsepower"
-      },
-      {
-       "mon": "chesnaught",
-       "move": "hammer-arm",
+       "mon": "kartana",
+       "move": "sacred-sword",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 9,
+       "stageNeeded": 13,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "high-horsepower"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -18962,50 +18962,50 @@
      "opp": "snorlax",
      "level": 68,
      "moves": [
-      "belly-drum",
+      "body-slam",
       "crunch",
       "heavy-slam",
       "high-horsepower"
      ],
      "superEffectiveAvailable": 63,
-     "winnersAvailable": 194,
+     "winnersAvailable": 153,
      "candidates": 467,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "close-combat",
+       "mon": "buzzwole",
+       "move": "hammer-arm",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 13,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "body-slam"
       },
       {
-       "mon": "garchomp",
-       "move": "dragon-claw",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 8,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "high-horsepower"
-      },
-      {
-       "mon": "chesnaught",
-       "move": "hammer-arm",
+       "mon": "kartana",
+       "move": "sacred-sword",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 9,
+       "stageNeeded": 13,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "high-horsepower"
+      },
+      {
+       "mon": "gyarados",
+       "move": "aqua-tail",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 1,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -28017,12 +28017,12 @@
      "level": 56,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 165,
-     "winnersAvailable": 238,
+     "winnersAvailable": 244,
      "candidates": 390,
      "picks": [
       {
@@ -28035,7 +28035,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -28047,7 +28047,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -28288,12 +28288,12 @@
      "level": 56,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 165,
-     "winnersAvailable": 238,
+     "winnersAvailable": 244,
      "candidates": 390,
      "picks": [
       {
@@ -28306,7 +28306,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -28318,7 +28318,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -28559,12 +28559,12 @@
      "level": 56,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 168,
-     "winnersAvailable": 240,
+     "winnersAvailable": 246,
      "candidates": 390,
      "picks": [
       {
@@ -28577,7 +28577,7 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -28589,7 +28589,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -34506,12 +34506,12 @@
      "level": 66,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 214,
-     "winnersAvailable": 286,
+     "winnersAvailable": 294,
      "candidates": 468,
      "picks": [
       {
@@ -34522,9 +34522,9 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -34536,7 +34536,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -34777,12 +34777,12 @@
      "level": 66,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 214,
-     "winnersAvailable": 286,
+     "winnersAvailable": 294,
      "candidates": 468,
      "picks": [
       {
@@ -34793,9 +34793,9 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -34807,7 +34807,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -35048,12 +35048,12 @@
      "level": 66,
      "moves": [
       "revelation-dance",
-      "mirror-move",
-      "agility",
-      "hurricane"
+      "teeter-dance",
+      "air-slash",
+      "feather-dance"
      ],
      "superEffectiveAvailable": 217,
-     "winnersAvailable": 288,
+     "winnersAvailable": 296,
      "candidates": 468,
      "picks": [
       {
@@ -35064,9 +35064,9 @@
        "stageNeeded": 9,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "metagross",
@@ -35078,7 +35078,7 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 1,
-       "theirMove": "hurricane"
+       "theirMove": "air-slash"
       },
       {
        "mon": "togedemaru",
@@ -37357,50 +37357,50 @@
      "opp": "snorlax",
      "level": 68,
      "moves": [
-      "belly-drum",
+      "body-slam",
       "crunch",
       "heavy-slam",
       "high-horsepower"
      ],
      "superEffectiveAvailable": 58,
-     "winnersAvailable": 194,
+     "winnersAvailable": 151,
      "candidates": 468,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 13,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "high-horsepower"
-      },
-      {
-       "mon": "garchomp",
-       "move": "dragon-claw",
+       "mon": "gyarados",
+       "move": "aqua-tail",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "crunch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "high-horsepower"
       },
       {
-       "mon": "chesnaught",
+       "mon": "swampert",
        "move": "hammer-arm",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 9,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -37680,50 +37680,50 @@
      "opp": "snorlax",
      "level": 68,
      "moves": [
-      "belly-drum",
+      "body-slam",
       "crunch",
       "heavy-slam",
       "high-horsepower"
      ],
      "superEffectiveAvailable": 58,
-     "winnersAvailable": 192,
+     "winnersAvailable": 150,
      "candidates": 468,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 13,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "high-horsepower"
-      },
-      {
-       "mon": "garchomp",
-       "move": "dragon-claw",
+       "mon": "gyarados",
+       "move": "aqua-tail",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "crunch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "high-horsepower"
       },
       {
-       "mon": "chesnaught",
+       "mon": "swampert",
        "move": "hammer-arm",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 9,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "body-slam"
       }
      ],
      "before": []
@@ -38003,50 +38003,50 @@
      "opp": "snorlax",
      "level": 68,
      "moves": [
-      "belly-drum",
+      "body-slam",
       "crunch",
       "heavy-slam",
       "high-horsepower"
      ],
      "superEffectiveAvailable": 58,
-     "winnersAvailable": 192,
+     "winnersAvailable": 150,
      "candidates": 468,
      "picks": [
       {
-       "mon": "heracross",
-       "move": "close-combat",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 13,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "high-horsepower"
-      },
-      {
-       "mon": "garchomp",
-       "move": "dragon-claw",
+       "mon": "gyarados",
+       "move": "aqua-tail",
        "eff": 1,
        "via": "level-up",
-       "stageNeeded": 8,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "body-slam"
+      },
+      {
+       "mon": "tyranitar",
+       "move": "crunch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
        "faster": 1,
        "theirMove": "high-horsepower"
       },
       {
-       "mon": "chesnaught",
+       "mon": "swampert",
        "move": "hammer-arm",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 9,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 10,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "body-slam"
       }
      ],
      "before": []

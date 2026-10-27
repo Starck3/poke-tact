@@ -7,8 +7,8 @@
    "covered": 288,
    "wins": 864,
    "picks": 864,
-   "comfy": 830,
-   "turnsSum": 1125,
+   "comfy": 831,
+   "turnsSum": 1124,
    "turnsN": 864
   },
   "antes": {
@@ -13902,29 +13902,41 @@
      "opp": "meowstic-male",
      "level": 62,
      "moves": [
-      "psyshock",
+      "light-screen",
+      "reflect",
       "psychic",
-      "heal-block",
-      "wish"
+      "thunderbolt"
      ],
      "superEffectiveAvailable": 152,
-     "winnersAvailable": 172,
+     "winnersAvailable": 161,
      "candidates": 347,
      "picks": [
       {
-       "mon": "houndoom",
-       "move": "dark-pulse",
+       "mon": "excadrill",
+       "move": "megahorn",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": null,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "psyshock"
+       "theirMove": "psychic"
       },
       {
-       "mon": "sharpedo",
+       "mon": "tyranitar",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      },
+      {
+       "mon": "krookodile",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
@@ -13932,20 +13944,8 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psyshock"
-      },
-      {
-       "mon": "absol",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psyshock"
+       "faster": 0,
+       "theirMove": "psychic"
       }
      ],
      "before": []
@@ -13954,48 +13954,48 @@
      "opp": "avalugg",
      "level": 62,
      "moves": [
-      "take-down",
       "icicle-crash",
-      "double-edge",
-      "blizzard"
+      "crunch",
+      "stone-edge",
+      "protect"
      ],
      "superEffectiveAvailable": 130,
-     "winnersAvailable": 171,
+     "winnersAvailable": 162,
      "candidates": 347,
      "picks": [
       {
-       "mon": "metagross",
+       "mon": "blastoise",
        "move": "flash-cannon",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "double-edge"
+       "theirMove": "crunch"
       },
       {
-       "mon": "chandelure",
-       "move": "flamethrower",
+       "mon": "lucario",
+       "move": "aura-sphere",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "icicle-crash"
       },
       {
-       "mon": "gholdengo",
-       "move": "make-it-rain",
+       "mon": "klefki",
+       "move": "flash-cannon",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "icicle-crash"
       }
@@ -14006,50 +14006,50 @@
      "opp": "goodra",
      "level": 62,
      "moves": [
-      "curse",
-      "body-slam",
       "surf",
-      "power-whip"
+      "toxic",
+      "draco-meteor",
+      "blizzard"
      ],
-     "superEffectiveAvailable": 111,
-     "winnersAvailable": 140,
+     "superEffectiveAvailable": 110,
+     "winnersAvailable": 95,
      "candidates": 347,
      "picks": [
       {
-       "mon": "dragonite",
+       "mon": "kangaskhan",
        "move": "outrage",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "draco-meteor"
       },
       {
-       "mon": "salamence",
+       "mon": "gallade",
+       "move": "close-combat",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "draco-meteor"
+      },
+      {
+       "mon": "annihilape",
        "move": "outrage",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "body-slam"
-      },
-      {
-       "mon": "baxcalibur",
-       "move": "glaive-rush",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "draco-meteor"
       }
      ],
      "before": []
@@ -14058,30 +14058,18 @@
      "opp": "manectric",
      "level": 63,
      "moves": [
-      "charge",
-      "thunderbolt",
-      "wild-charge",
-      "thunder"
+      "snarl",
+      "thunder",
+      "overheat",
+      "protect"
      ],
      "superEffectiveAvailable": 46,
-     "winnersAvailable": 162,
+     "winnersAvailable": 142,
      "candidates": 347,
      "picks": [
       {
-       "mon": "sceptile",
-       "move": "leaf-storm",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "thunderbolt"
-      },
-      {
-       "mon": "victreebel",
-       "move": "leaf-storm",
+       "mon": "charizard",
+       "move": "flare-blitz",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
@@ -14089,19 +14077,31 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunder"
       },
       {
-       "mon": "marowak",
-       "move": "bonemerang",
+       "mon": "swampert",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": null,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "overheat"
+      },
+      {
+       "mon": "camerupt",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "overheat"
       }
      ],
      "before": []
@@ -14110,17 +14110,17 @@
      "opp": "feraligatr",
      "level": 63,
      "moves": [
-      "screech",
+      "breaking-swipe",
       "liquidation",
-      "hydro-pump",
-      "outrage"
+      "ice-fang",
+      "bulldoze"
      ],
      "superEffectiveAvailable": 76,
-     "winnersAvailable": 103,
+     "winnersAvailable": 115,
      "candidates": 348,
      "picks": [
       {
-       "mon": "meganium",
+       "mon": "abomasnow",
        "move": "leaf-storm",
        "eff": 2,
        "via": "level-up",
@@ -14128,8 +14128,20 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 7,
-       "faster": 1,
-       "theirMove": "liquidation"
+       "faster": 0,
+       "theirMove": "ice-fang"
+      },
+      {
+       "mon": "slowbro",
+       "move": "psychic",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "breaking-swipe"
       },
       {
        "mon": "chesnaught",
@@ -14139,21 +14151,9 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 0,
-       "theirMove": "outrage"
-      },
-      {
-       "mon": "abomasnow",
-       "move": "leaf-storm",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
-       "theirMove": "outrage"
+       "theirMove": "ice-fang"
       }
      ],
      "before": []
@@ -14162,38 +14162,38 @@
      "opp": "emboar",
      "level": 64,
      "moves": [
-      "bulk-up",
-      "close-combat",
       "flare-blitz",
-      "head-smash"
+      "stone-edge",
+      "thunder-punch",
+      "bulk-up"
      ],
      "superEffectiveAvailable": 165,
-     "winnersAvailable": 34,
+     "winnersAvailable": 54,
      "candidates": 348,
      "picks": [
       {
-       "mon": "slowbro",
-       "move": "surf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "head-smash"
-      },
-      {
-       "mon": "starmie",
-       "move": "liquidation",
+       "mon": "swampert",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "flare-blitz"
+      },
+      {
+       "mon": "gyarados",
+       "move": "waterfall",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "head-smash"
+       "theirMove": "thunder-punch"
       },
       {
        "mon": "blaziken",
@@ -14203,9 +14203,9 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 2,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "close-combat"
+       "theirMove": "flare-blitz"
       }
      ],
      "before": []
@@ -14225,29 +14225,41 @@
      "opp": "meowstic-male",
      "level": 62,
      "moves": [
-      "psyshock",
+      "light-screen",
+      "reflect",
       "psychic",
-      "heal-block",
-      "wish"
+      "thunderbolt"
      ],
      "superEffectiveAvailable": 152,
-     "winnersAvailable": 172,
+     "winnersAvailable": 161,
      "candidates": 347,
      "picks": [
       {
-       "mon": "houndoom",
-       "move": "dark-pulse",
+       "mon": "excadrill",
+       "move": "megahorn",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": null,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "psyshock"
+       "theirMove": "psychic"
       },
       {
-       "mon": "sharpedo",
+       "mon": "tyranitar",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      },
+      {
+       "mon": "krookodile",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
@@ -14255,20 +14267,8 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psyshock"
-      },
-      {
-       "mon": "absol",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psyshock"
+       "faster": 0,
+       "theirMove": "psychic"
       }
      ],
      "before": []
@@ -14277,48 +14277,48 @@
      "opp": "avalugg",
      "level": 62,
      "moves": [
-      "take-down",
       "icicle-crash",
-      "double-edge",
-      "blizzard"
+      "crunch",
+      "stone-edge",
+      "protect"
      ],
      "superEffectiveAvailable": 133,
-     "winnersAvailable": 172,
+     "winnersAvailable": 162,
      "candidates": 347,
      "picks": [
       {
-       "mon": "metagross",
+       "mon": "blastoise",
        "move": "flash-cannon",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "double-edge"
+       "theirMove": "crunch"
       },
       {
-       "mon": "chandelure",
-       "move": "flamethrower",
+       "mon": "lucario",
+       "move": "aura-sphere",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "icicle-crash"
       },
       {
-       "mon": "gholdengo",
-       "move": "make-it-rain",
+       "mon": "klefki",
+       "move": "flash-cannon",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "icicle-crash"
       }
@@ -14329,50 +14329,50 @@
      "opp": "goodra",
      "level": 62,
      "moves": [
-      "curse",
-      "body-slam",
       "surf",
-      "power-whip"
+      "toxic",
+      "draco-meteor",
+      "blizzard"
      ],
      "superEffectiveAvailable": 110,
-     "winnersAvailable": 140,
+     "winnersAvailable": 96,
      "candidates": 347,
      "picks": [
       {
-       "mon": "dragonite",
+       "mon": "kangaskhan",
        "move": "outrage",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "draco-meteor"
       },
       {
-       "mon": "salamence",
+       "mon": "gallade",
+       "move": "close-combat",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "draco-meteor"
+      },
+      {
+       "mon": "annihilape",
        "move": "outrage",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "body-slam"
-      },
-      {
-       "mon": "baxcalibur",
-       "move": "glaive-rush",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "draco-meteor"
       }
      ],
      "before": []
@@ -14381,30 +14381,18 @@
      "opp": "manectric",
      "level": 63,
      "moves": [
-      "charge",
-      "thunderbolt",
-      "wild-charge",
-      "thunder"
+      "snarl",
+      "thunder",
+      "overheat",
+      "protect"
      ],
      "superEffectiveAvailable": 46,
-     "winnersAvailable": 161,
+     "winnersAvailable": 142,
      "candidates": 347,
      "picks": [
       {
-       "mon": "sceptile",
-       "move": "leaf-storm",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "thunderbolt"
-      },
-      {
-       "mon": "victreebel",
-       "move": "leaf-storm",
+       "mon": "charizard",
+       "move": "flare-blitz",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
@@ -14412,19 +14400,31 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunder"
       },
       {
-       "mon": "marowak",
-       "move": "bonemerang",
+       "mon": "swampert",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": null,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "overheat"
+      },
+      {
+       "mon": "camerupt",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "overheat"
       }
      ],
      "before": []
@@ -14433,38 +14433,26 @@
      "opp": "meganium",
      "level": 63,
      "moves": [
-      "synthesis",
-      "solar-beam",
-      "light-screen",
-      "leaf-storm"
+      "leech-seed",
+      "earth-power",
+      "dazzling-gleam",
+      "giga-drain"
      ],
      "superEffectiveAvailable": 168,
-     "winnersAvailable": 152,
+     "winnersAvailable": 135,
      "candidates": 348,
      "picks": [
       {
        "mon": "charizard",
-       "move": "flare-blitz",
+       "move": "fire-blast",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 9,
+       "theirTurns": 13,
        "faster": 1,
-       "theirMove": "leaf-storm"
-      },
-      {
-       "mon": "pinsir",
-       "move": "x-scissor",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "leaf-storm"
+       "theirMove": "dazzling-gleam"
       },
       {
        "mon": "skarmory",
@@ -14476,7 +14464,19 @@
        "myTurns": 1,
        "theirTurns": 10,
        "faster": 1,
-       "theirMove": "leaf-storm"
+       "theirMove": "dazzling-gleam"
+      },
+      {
+       "mon": "golisopod",
+       "move": "first-impression",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "earth-power"
       }
      ],
      "before": []
@@ -14485,13 +14485,13 @@
      "opp": "feraligatr",
      "level": 64,
      "moves": [
-      "screech",
+      "breaking-swipe",
       "liquidation",
-      "hydro-pump",
-      "outrage"
+      "ice-fang",
+      "bulldoze"
      ],
      "superEffectiveAvailable": 94,
-     "winnersAvailable": 22,
+     "winnersAvailable": 49,
      "candidates": 348,
      "picks": [
       {
@@ -14507,6 +14507,18 @@
        "theirMove": "liquidation"
       },
       {
+       "mon": "salamence",
+       "move": "outrage",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "ice-fang"
+      },
+      {
        "mon": "floette",
        "move": "moonblast",
        "eff": 2,
@@ -14515,18 +14527,6 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "liquidation"
-      },
-      {
-       "mon": "altaria",
-       "move": "moonblast",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 4,
        "faster": 1,
        "theirMove": "liquidation"
       }
@@ -14548,29 +14548,41 @@
      "opp": "meowstic-male",
      "level": 62,
      "moves": [
-      "psyshock",
+      "light-screen",
+      "reflect",
       "psychic",
-      "heal-block",
-      "wish"
+      "thunderbolt"
      ],
      "superEffectiveAvailable": 152,
-     "winnersAvailable": 172,
+     "winnersAvailable": 161,
      "candidates": 347,
      "picks": [
       {
-       "mon": "houndoom",
-       "move": "dark-pulse",
+       "mon": "excadrill",
+       "move": "megahorn",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": null,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "psyshock"
+       "theirMove": "psychic"
       },
       {
-       "mon": "sharpedo",
+       "mon": "tyranitar",
+       "move": "crunch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "thunderbolt"
+      },
+      {
+       "mon": "krookodile",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
@@ -14578,20 +14590,8 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psyshock"
-      },
-      {
-       "mon": "absol",
-       "move": "night-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": null,
-       "faster": 1,
-       "theirMove": "psyshock"
+       "faster": 0,
+       "theirMove": "psychic"
       }
      ],
      "before": []
@@ -14600,48 +14600,48 @@
      "opp": "avalugg",
      "level": 62,
      "moves": [
-      "take-down",
       "icicle-crash",
-      "double-edge",
-      "blizzard"
+      "crunch",
+      "stone-edge",
+      "protect"
      ],
      "superEffectiveAvailable": 130,
-     "winnersAvailable": 171,
+     "winnersAvailable": 163,
      "candidates": 347,
      "picks": [
       {
-       "mon": "metagross",
+       "mon": "blastoise",
        "move": "flash-cannon",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 8,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "double-edge"
+       "theirMove": "crunch"
       },
       {
-       "mon": "chandelure",
-       "move": "flamethrower",
+       "mon": "lucario",
+       "move": "aura-sphere",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "icicle-crash"
       },
       {
-       "mon": "gholdengo",
-       "move": "make-it-rain",
+       "mon": "klefki",
+       "move": "flash-cannon",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
        "theirMove": "icicle-crash"
       }
@@ -14652,50 +14652,50 @@
      "opp": "goodra",
      "level": 62,
      "moves": [
-      "curse",
-      "body-slam",
       "surf",
-      "power-whip"
+      "toxic",
+      "draco-meteor",
+      "blizzard"
      ],
      "superEffectiveAvailable": 113,
-     "winnersAvailable": 140,
+     "winnersAvailable": 96,
      "candidates": 347,
      "picks": [
       {
-       "mon": "dragonite",
+       "mon": "kangaskhan",
        "move": "outrage",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "draco-meteor"
       },
       {
-       "mon": "salamence",
+       "mon": "gallade",
+       "move": "close-combat",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 1,
+       "theirMove": "draco-meteor"
+      },
+      {
+       "mon": "annihilape",
        "move": "outrage",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 3,
        "faster": 1,
-       "theirMove": "body-slam"
-      },
-      {
-       "mon": "baxcalibur",
-       "move": "glaive-rush",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "draco-meteor"
       }
      ],
      "before": []
@@ -14704,30 +14704,18 @@
      "opp": "manectric",
      "level": 63,
      "moves": [
-      "charge",
-      "thunderbolt",
-      "wild-charge",
-      "thunder"
+      "snarl",
+      "thunder",
+      "overheat",
+      "protect"
      ],
      "superEffectiveAvailable": 46,
-     "winnersAvailable": 161,
+     "winnersAvailable": 142,
      "candidates": 347,
      "picks": [
       {
-       "mon": "sceptile",
-       "move": "leaf-storm",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "thunderbolt"
-      },
-      {
-       "mon": "victreebel",
-       "move": "leaf-storm",
+       "mon": "charizard",
+       "move": "flare-blitz",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
@@ -14735,19 +14723,31 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunder"
       },
       {
-       "mon": "marowak",
-       "move": "bonemerang",
+       "mon": "swampert",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": null,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "overheat"
+      },
+      {
+       "mon": "camerupt",
+       "move": "earth-power",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "overheat"
       }
      ],
      "before": []
@@ -14756,38 +14756,26 @@
      "opp": "emboar",
      "level": 63,
      "moves": [
-      "bulk-up",
-      "close-combat",
       "flare-blitz",
-      "head-smash"
+      "stone-edge",
+      "thunder-punch",
+      "bulk-up"
      ],
      "superEffectiveAvailable": 172,
-     "winnersAvailable": 84,
+     "winnersAvailable": 103,
      "candidates": 348,
      "picks": [
       {
-       "mon": "slowbro",
-       "move": "surf",
+       "mon": "tyranitar",
+       "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "head-smash"
-      },
-      {
-       "mon": "starmie",
-       "move": "liquidation",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
+       "theirTurns": 6,
        "faster": 1,
-       "theirMove": "head-smash"
+       "theirMove": "flare-blitz"
       },
       {
        "mon": "feraligatr",
@@ -14797,9 +14785,21 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 3,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "close-combat"
+       "theirMove": "stone-edge"
+      },
+      {
+       "mon": "swampert",
+       "move": "earthquake",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "flare-blitz"
       }
      ],
      "before": []
@@ -14808,26 +14808,26 @@
      "opp": "meganium",
      "level": 64,
      "moves": [
-      "synthesis",
-      "solar-beam",
-      "light-screen",
-      "leaf-storm"
+      "leech-seed",
+      "earth-power",
+      "dazzling-gleam",
+      "giga-drain"
      ],
      "superEffectiveAvailable": 183,
-     "winnersAvailable": 89,
+     "winnersAvailable": 70,
      "candidates": 348,
      "picks": [
       {
        "mon": "charizard",
-       "move": "flare-blitz",
+       "move": "fire-blast",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 5,
        "faster": 1,
-       "theirMove": "leaf-storm"
+       "theirMove": "dazzling-gleam"
       },
       {
        "mon": "skarmory",
@@ -14837,9 +14837,9 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "leaf-storm"
+       "theirMove": "dazzling-gleam"
       },
       {
        "mon": "venusaur",
@@ -14849,9 +14849,9 @@
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 7,
+       "theirTurns": 4,
        "faster": 0.5,
-       "theirMove": "leaf-storm"
+       "theirMove": "earth-power"
       }
      ],
      "before": []
