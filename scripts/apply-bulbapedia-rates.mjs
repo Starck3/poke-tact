@@ -10,6 +10,9 @@ const gameId = process.argv[2];
 // predefinição de cada jogo e região no título das rotas ("Kalos Route 2"); as colunas de versão seguem a ordem das versões
 // do jogo; times: taxa por período em colunas ("20%|-" em Alola, ou "all=20%"; manhã|dia|noite no BDSP)
 const CFG = {
+  // Black/White: 3 colunas de versão (a 3ª fica "no"); grama que mexe, poeira, sombra e água agitada são fenômenos raros e
+  // a seção "Swarm" é a aparição em massa — essas linhas ficam fora (o PKHeX lista o fenômeno como grama comum)
+  'black-white': { entry: 'entry5', region: 'Unova', flags: 3, skipRows: /^(Rustling|Dust|Shadow|Rippling)$/i, skipDiv: /Swarm/i, titleSuffix: 'Black and White' },
   'x-y': { entry: 'entry6', region: 'Kalos' },
   'omega-ruby-alpha-sapphire': { entry: 'entryoras', region: 'Hoenn' },
   'sun-moon': { entry: 'entry7', region: 'Alola', times: ['dia', 'noite'] },
@@ -18,7 +21,7 @@ const CFG = {
   'lets-go-pikachu-lets-go-eevee': { entry: 'entrype', region: 'Kanto' },
 };
 // método já específico no PKHeX → só as linhas desse método na tabela (BDSP)
-const METHOD_ROWS = { Surf: /^Surf/i, 'Old Rod': /^Fish Old/i, 'Good Rod': /^Fish Good/i, 'Super Rod': /^Fish Super/i };
+const METHOD_ROWS = { Surf: /^Surf/i, 'Old Rod': /^Fish Old/i, 'Good Rod': /^Fish Good/i, 'Super Rod': /^(Fish Super|Fishing)$/i }; // "Fishing": Black/White (uma vara só)
 const cfg = CFG[gameId];
 if (!cfg) { console.log(`[${gameId}] taxa de aparição pela Bulbapedia não configurada — nada a fazer`); process.exit(0); }
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
@@ -28,7 +31,7 @@ const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, 
 const placeOf = (where) => where.replace(/\s*\(.*$/, '').trim();
 const METHOD_PT = { grass: 'Grama', 'tall grass': 'Grama alta', 'yellow flowers': 'Flores amarelas', 'purple flowers': 'Flores roxas', 'red flowers': 'Flores vermelhas', cave: 'Caverna',
   surf: 'Surf', 'fish old': 'Vara velha', 'fish good': 'Vara boa', 'fish super': 'Super vara', 'rock smash': 'Rock Smash', swamp: 'Pântano', ceiling: 'Teto da caverna',
-  snow: 'Neve', terrain: 'Terreno', dirt: 'Terra', sky: 'Céu', 'rustling bush': 'Arbusto que mexe', 'shaking trash cans': 'Lixeira que mexe', 'horde encounter': 'Horda' };
+  dark: 'Grama escura', snow: 'Neve', terrain: 'Terreno', dirt: 'Terra', sky: 'Céu', 'rustling bush': 'Arbusto que mexe', 'shaking trash cans': 'Lixeira que mexe', 'horde encounter': 'Horda' };
 
 // forma da tabela → sufixo do nome no app ("Alolan Form" → alola, "Average&nbsp;Size" → average)
 const formKey = (f) => key(f.replace(/&nbsp;/g, ' ').replace(/\s+(Size|Form)$/i, '').replace(/^Alolan$/i, 'alola').replace(/^Galarian$/i, 'galar').replace(/^Hisuian$/i, 'hisui').replace(/^Paldean$/i, 'paldea'));
@@ -38,11 +41,16 @@ const pctOf = (t) => { const m = String(t ?? '').trim().match(/^(~?)(\d+(?:\.\d+
 /** Linhas de captura da página: [{ species, versions: [true, false], method, min, max, rate, approx, times?, form? }]. */
 function catchRows(text) {
   const out = [];
-  for (const m of text.matchAll(new RegExp(`\\{\\{Catch/${cfg.entry}\\|([^\\n]*)\\}\\}`, 'gi'))) {
-    const parts = m[1].split('|');
+  // seção atual ({{catch/div|land|Swarm}}): linhas de uma seção pulada (cfg.skipDiv) ficam fora
+  let div = '';
+  for (const m of text.matchAll(new RegExp(`\\{\\{catch/div\\|[^|}]*\\|([^|}]*)\\}\\}|\\{\\{catch/header|\\{\\{Catch/${cfg.entry}\\|([^\\n]*)\\}\\}`, 'gi'))) {
+    if (m[2] == null) { div = m[1] ?? ''; continue; }
+    if (cfg.skipDiv?.test(div)) continue;
+    const parts = m[2].split('|');
     const named = Object.fromEntries(parts.filter((x) => /^\w+=/.test(x)).map((x) => [x.slice(0, x.indexOf('=')), x.slice(x.indexOf('=') + 1)]));
     const [, species, ...rest] = parts.filter((x) => !/^\w+=/.test(x));
-    const flags = rest.slice(0, versions.length), [method, levels, ...rates] = rest.slice(versions.length);
+    const flags = rest.slice(0, versions.length), [method, levels, ...rates] = rest.slice(cfg.flags ?? versions.length);
+    if (cfg.skipRows?.test(String(method ?? '').trim())) continue;
     const lv = String(levels ?? '').match(/(\d+)(?:\s*[-–]\s*(\d+))?/);
     // taxa: uma coluna; ou uma por período ("-"/"0%" = não aparece nesse período); ou all=
     let r = named.all ? pctOf(named.all) : pctOf(rates[0]), times = null;
@@ -61,12 +69,12 @@ function catchRows(text) {
 const report = { pages: {}, matched: 0, wild: 0, ambiguous: [], unmatched: [] };
 const rowsOf = new Map();
 // horda (5 de uma vez) e chamado SOS têm conta própria; Grand Underground e árvore de mel não estão na tabela do lugar
-const rated = (s) => s.type === 'wild' && !/^(Horda|Chamado SOS|Grand Underground|Árvore de mel)$/.test(s.method);
+const rated = (s) => s.type === 'wild' && !/^(Horda|Chamado SOS|Grand Underground|Árvore de mel|Surto)$/.test(s.method);
 const places = [...new Set(Object.values(acq.versions).flatMap((v) => Object.values(v).flat().filter(rated).map((s) => placeOf(s.where))))];
 for (const place of places) {
   let rows = [];
   const t = place.replace(/’/g, "'"); // "Hau’oli City" no app; a página é "Hau'oli City"
-  for (const title of /^Route \d+$/.test(t) ? [`${cfg.region} ${t}`] : [t, `${t} (${cfg.region})`]) {
+  for (const title of /^Route \d+$/.test(t) ? [`${cfg.region} ${t}`] : [t, `${t} (${cfg.region})`, ...(cfg.titleSuffix ? [`${t} (${cfg.titleSuffix})`] : [])]) {
     let text;
     try { text = await page(title); } catch (e) { console.log(e.message); process.exit(2); }
     if (text && /\{\{disambig/i.test(text)) continue;

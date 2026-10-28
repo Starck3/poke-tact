@@ -2799,3 +2799,23 @@ test('0.53.1: escolher o treinador ajusta o nível do time (ás dele) e o progre
   assert.equal((app.match(/setLevelFor\(t\);/g) ?? []).length, 2);
   assert.match(app, /function setLevelFor\(t\)[\s\S]*leaderOrder[\s\S]*\$\('stage'\)\.value = String\(st\)/);
 });
+
+test('R1/R2 (0.54.0): taxa no Black/White; exclusivos de versão do Scarlet/Violet pela Bulbapedia', () => {
+  // R1: Patrat na Route 1 50% (Bulbapedia, {{catch/entry5}} com 3 colunas de versão); grama que mexe (Audino) e aparição em
+  // massa (Swarm) ficam sem taxa
+  const bw = load('black-white-acquisition.json');
+  assert.match(bw.ratesSource, /Bulbapedia/);
+  assert.equal(bw.versions.black.patrat.find((s) => s.where === 'Route 1').pct, 50);
+  assert.ok((bw.versions.black.audino ?? []).every((s) => s.pct == null));
+  assert.ok(Object.values(bw.versions.black).flat().filter((s) => s.method === 'Surto').every((s) => s.pct == null));
+  // R2: o PKHeX não separa Scarlet × Violet; a lista da Bulbapedia tira o exclusivo da outra versão
+  const sv = load('scarlet-violet-acquisition.json'), d = load('scarlet-violet.json');
+  const ob = (n, v) => d.pokemon.find((p) => p.name === n).obtainable[v];
+  assert.deepEqual([ob('larvitar', 'scarlet'), ob('larvitar', 'violet'), ob('bagon', 'scarlet'), ob('bagon', 'violet')], [true, false, false, true]);
+  assert.deepEqual([ob('great-tusk', 'violet'), ob('iron-treads', 'scarlet')], [false, false]);
+  // lista da DLC só nas fontes da DLC: lendário do Snacksworth (bloco "Sudachi 2") — Raikou só no Scarlet, Lugia só no Violet
+  assert.deepEqual([!!sv.versions.scarlet.raikou, !!sv.versions.violet.raikou, !!sv.versions.scarlet.lugia, !!sv.versions.violet.lugia], [true, false, false, true]);
+  // raid Tera já vem separada pelo PKHeX e fica (Salamence nas raids do Violet)
+  assert.ok(sv.versions.violet.salamence.some((s) => /★/.test(s.detail ?? '')));
+  assert.ok(sv.notes.some((n) => /Version-exclusive/.test(n)) && !sv.notes.some((n) => /não separa as versões —/.test(n)));
+});

@@ -7,8 +7,8 @@
    "covered": 882,
    "wins": 2646,
    "picks": 2646,
-   "comfy": 2344,
-   "turnsSum": 4132,
+   "comfy": 2356,
+   "turnsSum": 4150,
    "turnsN": 2646
   },
   "antes": {
@@ -11767,16 +11767,16 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "milotic",
+       "move": "twister",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "dragon-tail"
+       "theirMove": "dragon-rage"
       }
      ],
      "before": []
@@ -11859,18 +11859,6 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "dragon-tail"
-      },
-      {
        "mon": "durant",
        "move": "iron-head",
        "eff": 1,
@@ -11880,6 +11868,18 @@
        "myTurns": 3,
        "theirTurns": 6,
        "faster": 1,
+       "theirMove": "dragon-tail"
+      },
+      {
+       "mon": "scrafty",
+       "move": "high-jump-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
        "theirMove": "dragon-tail"
       }
      ],
@@ -11934,16 +11934,16 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "milotic",
+       "move": "twister",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "dragon-tail"
+       "theirMove": "dragon-rage"
       }
      ],
      "before": []
@@ -12026,18 +12026,6 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "dragon-tail"
-      },
-      {
        "mon": "durant",
        "move": "iron-head",
        "eff": 1,
@@ -12047,6 +12035,18 @@
        "myTurns": 3,
        "theirTurns": 6,
        "faster": 1,
+       "theirMove": "dragon-tail"
+      },
+      {
+       "mon": "scrafty",
+       "move": "high-jump-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
        "theirMove": "dragon-tail"
       }
      ],
@@ -12101,16 +12101,16 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "milotic",
+       "move": "twister",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "dragon-tail"
+       "theirMove": "dragon-rage"
       }
      ],
      "before": []
@@ -12193,18 +12193,6 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "dragon-tail"
-      },
-      {
        "mon": "durant",
        "move": "iron-head",
        "eff": 1,
@@ -12214,6 +12202,18 @@
        "myTurns": 3,
        "theirTurns": 6,
        "faster": 1,
+       "theirMove": "dragon-tail"
+      },
+      {
+       "mon": "scrafty",
+       "move": "high-jump-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
        "theirMove": "dragon-tail"
       }
      ],
@@ -12268,15 +12268,15 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "omastar",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "air-slash"
       }
      ],
@@ -12487,15 +12487,15 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "omastar",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "air-slash"
       }
      ],
@@ -12706,15 +12706,15 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "omastar",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "air-slash"
       }
      ],
@@ -14267,18 +14267,6 @@
      "candidates": 195,
      "picks": [
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "vanilluxe",
        "move": "ice-beam",
        "eff": 2,
@@ -14296,6 +14284,18 @@
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "klinklang",
+       "move": "gear-grind",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
@@ -14486,18 +14486,6 @@
      "candidates": 195,
      "picks": [
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "vanilluxe",
        "move": "ice-beam",
        "eff": 2,
@@ -14515,6 +14503,18 @@
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "klinklang",
+       "move": "gear-grind",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
@@ -14705,18 +14705,6 @@
      "candidates": 195,
      "picks": [
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "vanilluxe",
        "move": "ice-beam",
        "eff": 2,
@@ -14734,6 +14722,18 @@
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "klinklang",
+       "move": "gear-grind",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
@@ -21407,23 +21407,23 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "flash-cannon"
-      },
-      {
        "mon": "tyranitar",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "flash-cannon"
+      },
+      {
+       "mon": "vanilluxe",
+       "move": "ice-beam",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -21730,23 +21730,23 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "flash-cannon"
-      },
-      {
        "mon": "tyranitar",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "flash-cannon"
+      },
+      {
+       "mon": "vanilluxe",
+       "move": "ice-beam",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -22053,23 +22053,23 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 1,
-       "theirMove": "flash-cannon"
-      },
-      {
        "mon": "tyranitar",
        "move": "crunch",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 9,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "flash-cannon"
+      },
+      {
+       "mon": "vanilluxe",
+       "move": "ice-beam",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
        "win": true,
        "myTurns": 1,
        "theirTurns": 3,
@@ -35971,16 +35971,16 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "milotic",
+       "move": "twister",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "dragon-tail"
+       "theirMove": "dragon-rage"
       }
      ],
      "before": []
@@ -36063,18 +36063,6 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "dragon-tail"
-      },
-      {
        "mon": "durant",
        "move": "iron-head",
        "eff": 1,
@@ -36084,6 +36072,18 @@
        "myTurns": 3,
        "theirTurns": 6,
        "faster": 1,
+       "theirMove": "dragon-tail"
+      },
+      {
+       "mon": "scrafty",
+       "move": "high-jump-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
        "theirMove": "dragon-tail"
       }
      ],
@@ -36138,16 +36138,16 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "milotic",
+       "move": "twister",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "dragon-tail"
+       "theirMove": "dragon-rage"
       }
      ],
      "before": []
@@ -36230,18 +36230,6 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "dragon-tail"
-      },
-      {
        "mon": "durant",
        "move": "iron-head",
        "eff": 1,
@@ -36251,6 +36239,18 @@
        "myTurns": 3,
        "theirTurns": 6,
        "faster": 1,
+       "theirMove": "dragon-tail"
+      },
+      {
+       "mon": "scrafty",
+       "move": "high-jump-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
        "theirMove": "dragon-tail"
       }
      ],
@@ -36305,16 +36305,16 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "milotic",
+       "move": "twister",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
+       "myTurns": 2,
+       "theirTurns": 4,
        "faster": 1,
-       "theirMove": "dragon-tail"
+       "theirMove": "dragon-rage"
       }
      ],
      "before": []
@@ -36397,18 +36397,6 @@
        "theirMove": "dragon-tail"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 2,
-       "faster": 1,
-       "theirMove": "dragon-tail"
-      },
-      {
        "mon": "durant",
        "move": "iron-head",
        "eff": 1,
@@ -36418,6 +36406,18 @@
        "myTurns": 3,
        "theirTurns": 6,
        "faster": 1,
+       "theirMove": "dragon-tail"
+      },
+      {
+       "mon": "scrafty",
+       "move": "high-jump-kick",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 0,
        "theirMove": "dragon-tail"
       }
      ],
@@ -36472,15 +36472,15 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "omastar",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "air-slash"
       }
      ],
@@ -36691,15 +36691,15 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "omastar",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "air-slash"
       }
      ],
@@ -36910,15 +36910,15 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
+       "mon": "omastar",
+       "move": "ancient-power",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 6,
+       "stageNeeded": 1,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
+       "theirTurns": 8,
+       "faster": 0,
        "theirMove": "air-slash"
       }
      ],
@@ -38471,18 +38471,6 @@
      "candidates": 195,
      "picks": [
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "vanilluxe",
        "move": "ice-beam",
        "eff": 2,
@@ -38500,6 +38488,18 @@
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "klinklang",
+       "move": "gear-grind",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
@@ -38690,18 +38690,6 @@
      "candidates": 195,
      "picks": [
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "vanilluxe",
        "move": "ice-beam",
        "eff": 2,
@@ -38719,6 +38707,18 @@
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "klinklang",
+       "move": "gear-grind",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
@@ -38909,18 +38909,6 @@
      "candidates": 195,
      "picks": [
       {
-       "mon": "cryogonal",
-       "move": "ice-beam",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 6,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 1,
-       "theirMove": "psychic"
-      },
-      {
        "mon": "vanilluxe",
        "move": "ice-beam",
        "eff": 2,
@@ -38938,6 +38926,18 @@
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "psychic"
+      },
+      {
+       "mon": "klinklang",
+       "move": "gear-grind",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 5,
        "win": true,
        "myTurns": 2,
        "theirTurns": 5,
