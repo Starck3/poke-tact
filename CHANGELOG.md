@@ -2,6 +2,22 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.60.0] — 2026-10-28
+
+> As sugestões agora dizem com que nível e progresso foram calculadas, com um atalho para mudar. No Sword/Shield o clima não aparece mais repetido em inglês. E o app ganhou um teste automático da tela num navegador.
+
+### Adicionado
+- Linha acima das sugestões: "Calculado com o seu time no nv 14 · antes da 1ª insígnia — mudar" (o app ajusta os dois ao
+  escolher a luta, e o campo fica longe).
+- **Teste da tela** (`npm run test:ui`): abre o app num Chrome/Edge headless, sem instalar nada, e confere o Brock pelo
+  seletor e pelo link, o aviso de treino do Mankey, a 1ª luta da Nemona, o ovo na creche, as abas, o celular e que não há
+  erro de JavaScript nem arquivo faltando. Sem navegador instalado, é pulado.
+- Ícone da aba do navegador.
+
+### Corrigido
+- Sword/Shield: o "[clima: Overcast]" das tabelas do jogo repetia em inglês o que a taxa por clima já diz.
+- Jogo sem mapa da região não pede mais o arquivo do mapa (dava "não encontrado" no navegador).
+
 ## [0.59.0] — 2026-10-28
 
 > O banco de lutas agora também mede as sugestões que dependem de algo que o app não sabe quando fica disponível. Item de evolução e TM sem lugar: zero em todos os jogos. Ainda há Pokémon só com estágio estimado (DLCs do Sword/Shield).

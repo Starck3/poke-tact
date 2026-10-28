@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm, pctText } from './engine.mjs';
+import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm, pctText, shownDetail } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -323,7 +323,9 @@ async function renderEvolutions(mon, stageTxt) {
 // mapa esquemático da região (desenho nosso com as posições do decomp): todos os lugares em cinza, os de captura destacados
 // arquivos de imagens do jogo aberto (baixados na 1ª vez que uma aba precisa deles)
 async function loadRegionMap() {
-  if (regionMap === null) { try { regionMap = await (await fetch(`data/${currentGame}-regionmap.json`)).json(); } catch { regionMap = { regions: [], placeOf: {} }; } }
+  // o catálogo já diz se o jogo tem mapa (capture.regionMap): sem mapa, nem pede o arquivo (era um 404 a cada jogo novo)
+  const hasMap = catalog?.games.find((g) => g.id === currentGame)?.capture?.regionMap !== false;
+  if (regionMap === null) { try { if (!hasMap) throw 0; regionMap = await (await fetch(`data/${currentGame}-regionmap.json`)).json(); } catch { regionMap = { regions: [], placeOf: {} }; } }
   return regionMap;
 }
 async function loadPlaces() {
@@ -396,7 +398,7 @@ async function renderWalk() {
     const bySp = {};
     for (const w of l.wild) (bySp[w.species] ??= []).push(w);
     const parts = [];
-    if (l.wild.length) parts.push('<div class="walk-h">Pokémon selvagens</div><ul class="walk-list">' + Object.entries(bySp).map(([sp, ws]) => '<li>' + humanize(sp) + ' — ' + ws.map((w) => w.method + (w.times ? ' (' + w.times.join('/') + ')' : '') + (w.detail ? ' [' + w.detail + ']' : '') + (w.gate ? ' [exige ' + (w.gate.leader ? 'HM + insígnia de ' + humanize(w.gate.leader.toLowerCase()) : w.method) + ']' : '') + ' nv ' + (w.min === w.max ? w.min : w.min + '–' + w.max) + (w.pct != null || l.maps.length > 1 ? ' (' + [w.pct != null && pctText(w),l.maps.length > 1 && w.where].filter(Boolean).join(', ') + ')' : '')).join('; ') + '</li>').join('') + '</ul>');
+    if (l.wild.length) parts.push('<div class="walk-h">Pokémon selvagens</div><ul class="walk-list">' + Object.entries(bySp).map(([sp, ws]) => '<li>' + humanize(sp) + ' — ' + ws.map((w) => w.method + (w.times ? ' (' + w.times.join('/') + ')' : '') + (shownDetail(w) ? ' [' + shownDetail(w) + ']' : '') + (w.gate ? ' [exige ' + (w.gate.leader ? 'HM + insígnia de ' + humanize(w.gate.leader.toLowerCase()) : w.method) + ']' : '') + ' nv ' + (w.min === w.max ? w.min : w.min + '–' + w.max) + (w.pct != null || l.maps.length > 1 ? ' (' + [w.pct != null && pctText(w),l.maps.length > 1 && w.where].filter(Boolean).join(', ') + ')' : '')).join('; ') + '</li>').join('') + '</ul>');
     if (l.others.length) parts.push('<div class="walk-h">Presentes, trocas e encontros</div><ul class="walk-list">' + l.others.map((o) => '<li>' + humanize(o.species) + ' — ' + ({ gift: 'presente', static: 'encontro único', egg: 'ovo de presente', breed: 'ovo na creche', trade: 'troca', prize: 'prêmio', event: 'evento', starter: 'inicial', roamer: 'errante' }[o.type] ?? o.type) + (o.level ? ' nv ' + o.level : '') + ' (' + o.where + ')' + (o.detail ? ' — ' + o.detail : '') + '</li>').join('') + '</ul>');
     if (l.items.length) parts.push('<div class="walk-h">Itens e TMs</div><ul class="walk-list">' + l.items.map((i) => '<li>' + (i.kind === 'TM/HM' ? 'TM/HM ' + humanize(i.move) : humanize(i.item.toLowerCase().replace(/_/g, '-'))) + ' — ' + ({ gym: 'prêmio do líder', gift: 'presente', mart: 'loja', ground: 'no chão', hidden: 'escondido' }[i.type] ?? i.type) + ' em ' + i.where + (i.x != null ? ' (' + i.x + ',' + i.y + ')' : '') + (i.by && i.type !== 'ground' && i.type !== 'hidden' ? ' — ' + i.by : '') + '</li>').join('') + '</ul>');
     if (l.tutors.length) parts.push('<div class="walk-h">Tutores</div><ul class="walk-list">' + l.tutors.map((t) => '<li>' + humanize(t.move) + ' — ' + t.where + (t.x != null ? ' (' + t.x + ',' + t.y + ')' : '') + (t.detail ? ' — ' + t.detail : '') + '</li>').join('') + '</ul>');
@@ -589,6 +591,19 @@ function renderTeam(t, active) {
   }
 }
 
+// S3 (0.60.0): com que nível e progresso a conta foi feita — o app ajusta os dois ao escolher a luta e o campo fica longe
+// ("Calculado com o seu time no nv 14 · antes da 1ª insígnia — mudar")
+function ctxLine() {
+  const st = $('stage').value === '' ? '' : ' · ' + ($('stage').selectedOptions[0]?.textContent ?? '');
+  return `<p class="note ctx">Calculado com o seu time no <strong>nv ${$('level').value || '—'}</strong>${st} — <a href="#" data-ctx-edit>mudar</a></p>`;
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('[data-ctx-edit]')) return;
+  e.preventDefault();
+  $('level').scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  $('level').focus(); $('level').select();
+});
+
 // "nocauteia em 2 golpes; aguenta 4 (Stomp); age primeiro → vence"
 function duelLine(d) {
   if (!d) return 'sem golpe útil contra ele';
@@ -654,7 +669,7 @@ function update() {
       ? `Ele deve atacar com (golpes prováveis no nível): ${threats.map(typeBadge).join('')}`
       : `Ele deve atacar com golpes dos próprios tipos (sem nível informado): ${threats.map(typeBadge).join('')}`;
 
-  out.innerHTML = `<p class="note threat">${threatLine}</p>` + (picks.length ? '<div class="picks">' + picks.map((s, i) => {
+  out.innerHTML = ctxLine() + `<p class="note threat">${threatLine}</p>` + (picks.length ? '<div class="picks">' + picks.map((s, i) => {
     const m = s.move;
     const src = m.via.source;
     const via = m.via.method === 'level-up' ? `aprende no nv ${m.via.level}`
@@ -762,7 +777,7 @@ function trainLine(s, src, from) {
 // modo "contra o time inteiro": as 3 que vencem mais Pokémon do time, com a troca contra cada um
 function renderTeamResults(t, opts, out) {
   const { picks } = recommendTeam(data, t.party, opts);
-  out.innerHTML = `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` +
+  out.innerHTML = ctxLine() + `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` +
     (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
       <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
       <div class="verdict">${lozenge(s.wins === s.total ? 'ok' : s.wins ? 'warn' : 'bad', `vence ${s.wins} de ${s.total}`)}${s.unreliable ? lozenge('warn', '⚠ origem aleatória', s.unreliable) : ''}</div>
