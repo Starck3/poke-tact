@@ -4,7 +4,7 @@
 // com a mesma sobreposição → fica sem taxa (relatório). Grava pct, pctSource: 'Bulbapedia' e methodDetail (Grass, Surfing…).
 // Uso: node scripts/apply-bulbapedia-rates.mjs <jogo>   (≥ 5 s por página nova; para no 1º erro HTTP)
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { page } from './lib/bulbapedia.mjs';
+import { page, plain } from './lib/bulbapedia.mjs';
 
 const gameId = process.argv[2];
 // predefinição de cada jogo e região no título das rotas ("Kalos Route 2"); as colunas de versão seguem a ordem das versões
@@ -19,9 +19,16 @@ const CFG = {
   'ultra-sun-ultra-moon': { entry: 'entryusum', region: 'Alola', times: ['dia', 'noite'] },
   'brilliant-diamond-shining-pearl': { entry: 'entrybdsp', region: 'Sinnoh', times: ['manhã', 'dia', 'noite'] },
   'lets-go-pikachu-lets-go-eevee': { entry: 'entrype', region: 'Kanto' },
+  // Sword/Shield (R5, PLANO-EXECUCAO-5): taxa por clima ("cloudy=40%"); a seção da página diz o tipo de encontro — "Hidden
+  // encounters" = grama/água escondidos, "Visible encounters" = no mapa; curry, raid e Dynamax Adventure ficam fora
+  'sword-shield': { entry: 'entry8', region: 'Galar', weather: true,
+    sections: { 'Grama (escondido)': /Hidden/i, Surf: /Hidden/i, Pesca: /Hidden/i, 'No mapa': /Visible|Symbol/i }, skipSection: /Curry|Raid|Dynamax|Berry/i },
 };
+// clima da tabela da Bulbapedia → rótulo; e o nome do clima no PKHeX ("clima: Overcast, Raining") → chave da tabela
+const WEATHER = { clear: 'tempo limpo', cloudy: 'nublado', rain: 'chuva', thunderstorm: 'tempestade', snow: 'neve', blizzard: 'nevasca', sun: 'sol forte', sandstorm: 'tempestade de areia', fog: 'neblina' };
+const PKHEX_WEATHER = { Normal: 'clear', Overcast: 'cloudy', Raining: 'rain', Thunderstorm: 'thunderstorm', 'Intense Sun': 'sun', Snowing: 'snow', Snowstorm: 'blizzard', Sandstorm: 'sandstorm', 'Heavy Fog': 'fog' };
 // método já específico no PKHeX → só as linhas desse método na tabela (BDSP)
-const METHOD_ROWS = { Surf: /^Surf/i, 'Old Rod': /^Fish Old/i, 'Good Rod': /^Fish Good/i, 'Super Rod': /^(Fish Super|Fishing)$/i }; // "Fishing": Black/White (uma vara só)
+const METHOD_ROWS = { Surf: /^Surf/i, 'Old Rod': /^Fish Old/i, 'Good Rod': /^Fish Good/i, 'Super Rod': /^(Fish Super|Fishing)$/i, Pesca: /^Fish/i }; // "Fishing": Black/White (uma vara só); Pesca: Sword/Shield
 const cfg = CFG[gameId];
 if (!cfg) { console.log(`[${gameId}] taxa de aparição pela Bulbapedia não configurada — nada a fazer`); process.exit(0); }
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
@@ -42,11 +49,13 @@ const pctOf = (t) => { const m = String(t ?? '').trim().match(/^(~?)(\d+(?:\.\d+
 function catchRows(text) {
   const out = [];
   // seção atual ({{catch/div|land|Swarm}}): linhas de uma seção pulada (cfg.skipDiv) ficam fora
-  let div = '';
-  for (const m of text.matchAll(new RegExp(`\\{\\{catch/div\\|[^|}]*\\|([^|}]*)\\}\\}|\\{\\{catch/header|\\{\\{Catch/${cfg.entry}\\|([^\\n]*)\\}\\}`, 'gi'))) {
-    if (m[2] == null) { div = m[1] ?? ''; continue; }
-    if (cfg.skipDiv?.test(div)) continue;
-    const parts = m[2].split('|');
+  // e a seção da página (===[[Hidden encounter]]s===): tipo de encontro no Sword/Shield (cfg.sections)
+  let div = '', section = '';
+  for (const m of text.matchAll(new RegExp(`^={2,4}([^=\\n]+)={2,4}\\s*$|\\{\\{catch/div\\|[^|}]*\\|([^|}]*)\\}\\}|\\{\\{catch/header|\\{\\{Catch/${cfg.entry}\\|([^\\n]*)\\}\\}`, 'gim'))) {
+    if (m[1] != null) { section = plain(m[1]); div = ''; continue; }
+    if (m[3] == null) { div = m[2] ?? ''; continue; }
+    if (cfg.skipDiv?.test(div) || cfg.skipSection?.test(section)) continue;
+    const parts = m[3].split('|');
     const named = Object.fromEntries(parts.filter((x) => /^\w+=/.test(x)).map((x) => [x.slice(0, x.indexOf('=')), x.slice(x.indexOf('=') + 1)]));
     const [, species, ...rest] = parts.filter((x) => !/^\w+=/.test(x));
     const flags = rest.slice(0, versions.length), [method, levels, ...rates] = rest.slice(cfg.flags ?? versions.length);
@@ -60,8 +69,14 @@ function catchRows(text) {
       r = ps.some(Boolean) ? { rate: Math.max(...nums), approx: ps.some((p) => p?.approx) } : null;
       if (r && new Set(nums).size > 1) times = Object.fromEntries(cfg.times.map((t, i) => [t, nums[i]])); // { dia: 0, noite: 30 }
     }
+    // clima (Sword/Shield): "cloudy=40%|rain=5%" — a taxa de cada clima em que aparece (os outros: não aparece)
+    let weather = null;
+    if (cfg.weather) {
+      const ws = Object.keys(WEATHER).filter((w) => pctOf(named[w]));
+      if (ws.length) { weather = Object.fromEntries(ws.map((w) => [w, pctOf(named[w]).rate])); r = { rate: Math.max(...Object.values(weather)), approx: ws.some((w) => pctOf(named[w]).approx) }; }
+    }
     if (!lv || !r || !method) continue;
-    out.push({ species: key(species), versions: flags.map((x) => x === 'yes'), method: method.trim(), min: Number(lv[1]), max: Number(lv[2] ?? lv[1]), rate: r.rate, approx: r.approx, ...(times && { times }), ...(named.form && { form: formKey(named.form) }) });
+    out.push({ species: key(species), versions: flags.map((x) => x === 'yes'), method: method.trim(), min: Number(lv[1]), max: Number(lv[2] ?? lv[1]), rate: r.rate, approx: r.approx, section, ...(times && { times }), ...(weather && { weather }), ...(named.form && { form: formKey(named.form) }) });
   }
   return out;
 }
@@ -69,7 +84,7 @@ function catchRows(text) {
 const report = { pages: {}, matched: 0, wild: 0, ambiguous: [], unmatched: [] };
 const rowsOf = new Map();
 // horda (5 de uma vez) e chamado SOS têm conta própria; Grand Underground e árvore de mel não estão na tabela do lugar
-const rated = (s) => s.type === 'wild' && !/^(Horda|Chamado SOS|Grand Underground|Árvore de mel|Surto)$/.test(s.method);
+const rated = (s) => s.type === 'wild' && !/^(Horda|Chamado SOS|Grand Underground|Árvore de mel|Surto|Max Raid|Dynamax Adventure|Curry\/pesca|Árvore \(sacudir\))$/.test(s.method);
 const places = [...new Set(Object.values(acq.versions).flatMap((v) => Object.values(v).flat().filter(rated).map((s) => placeOf(s.where))))];
 for (const place of places) {
   let rows = [];
@@ -90,7 +105,7 @@ for (const [version, v] of Object.entries(acq.versions)) {
   for (const [sp, list] of Object.entries(v)) for (const s of list) {
     if (!rated(s)) continue;
     report.wild++;
-    delete s.pct; delete s.pctSource; delete s.pctApprox; delete s.pctTimes; delete s.methodDetail;
+    delete s.pct; delete s.pctSource; delete s.pctApprox; delete s.pctTimes; delete s.pctWeather; delete s.methodDetail;
     // forma (basculin-red-striped, rattata-alola): a tabela da Bulbapedia escreve só a espécie, com form=
     const rows = rowsOf.get(placeOf(s.where)) ?? [];
     const spKey = rows.some((r) => r.species === key(sp)) ? key(sp) : key(sp.split('-')[0]);
@@ -100,18 +115,26 @@ for (const [version, v] of Object.entries(acq.versions)) {
     // (Wingull na Route 213 do BDSP: Grama nv 20 e Surf nv 20–30 — a de Grama não pode pegar o 30% do Surf)
     const own = new Set(list.filter((o) => o !== s && o.where === s.where && METHOD_ROWS[o.methodPkhex ?? o.method]).map((o) => o.methodPkhex ?? o.method));
     const methodOk = (r) => (METHOD_ROWS[s.methodPkhex ?? s.method] ? METHOD_ROWS[s.methodPkhex ?? s.method].test(r.method) : ![...own].some((m) => METHOD_ROWS[m].test(r.method)));
-    const cands = rows.filter((r) => r.species === spKey && formOk(r) && methodOk(r) && r.versions[col] !== false && overlap(s, r) >= 0);
+    // Sword/Shield: a seção da página tem de ser a do tipo de encontro (escondido × no mapa) e o clima da linha tem de cruzar
+    // o do encontro do PKHeX ("clima: Overcast, Raining" → só esses climas da linha contam)
+    const sectionOk = (r) => !cfg.sections || (cfg.sections[s.method]?.test(r.section) ?? false);
+    const srcWeather = cfg.weather && /clima:/.test(s.detail ?? '') ? new Set(s.detail.replace(/^.*clima:\s*/, '').split(/,\s*/).map((w) => PKHEX_WEATHER[w.trim()]).filter(Boolean)) : null;
+    const weatherOf = (r) => (r.weather && srcWeather ? Object.fromEntries(Object.entries(r.weather).filter(([w]) => srcWeather.has(w))) : r.weather);
+    const cands = rows.filter((r) => r.species === spKey && formOk(r) && methodOk(r) && sectionOk(r) && r.versions[col] !== false && overlap(s, r) >= 0 && (!r.weather || Object.keys(weatherOf(r)).length));
     if (!cands.length) { report.unmatched.push(`${version} ${sp} ${s.where} nv ${s.min}-${s.max}`); continue; }
     const best = Math.max(...cands.map((r) => overlap(s, r)));
     const top = cands.filter((r) => overlap(s, r) === best);
     // mesma taxa em todas as linhas empatadas (Grass e Yellow Flowers com o mesmo %) → vale; senão fica sem
-    if (new Set(top.map((r) => `${r.rate}|${JSON.stringify(r.times ?? null)}`)).size > 1) { report.ambiguous.push(`${version} ${sp} ${s.where}: ${top.map((r) => `${r.method} ${r.rate}%`).join(', ')}`); continue; }
+    if (new Set(top.map((r) => `${r.rate}|${JSON.stringify(r.times ?? null)}|${JSON.stringify(weatherOf(r) ?? null)}`)).size > 1) { report.ambiguous.push(`${version} ${sp} ${s.where}: ${top.map((r) => `${r.method} ${r.rate}%`).join(', ')}`); continue; }
     s.pct = top[0].rate; s.pctSource = 'Bulbapedia'; s.methodDetail = [...new Set(top.map((r) => r.method))].join('/');
     const pt = [...new Set(top.map((r) => METHOD_PT[r.method.toLowerCase()] ?? r.method))].join('/');
     // "Selvagem"/"Grama" do PKHeX (genérico: até o teto da caverna vem como grama) → como se encontra (Teto da caverna, Surf…)
     if (/^(Selvagem|Grama)$/.test(s.methodPkhex ?? s.method) && pt !== s.method) { s.methodPkhex ??= s.method; s.method = pt; }
     if (top.some((r) => r.approx)) s.pctApprox = true; // "~80%" na tabela
     if (top[0].times) s.pctTimes = top[0].times; // { dia: 0, noite: 30 } (Alola), { manhã, dia, noite } (BDSP)
+    // clima (Sword/Shield): { nublado: 40 } — só os climas em que aparece; pct = o maior
+    const w = weatherOf(top[0]);
+    if (w) { s.pctWeather = Object.fromEntries(Object.entries(w).map(([k, x]) => [WEATHER[k], x])); s.pct = Math.max(...Object.values(w)); }
     report.matched++;
   }
 }

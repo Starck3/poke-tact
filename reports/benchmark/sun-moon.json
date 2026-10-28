@@ -1617,8 +1617,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -1670,7 +1670,7 @@
      ],
      "superEffectiveAvailable": 16,
      "winnersAvailable": 26,
-     "candidates": 49,
+     "candidates": 50,
      "picks": [
       {
        "mon": "crabominable",
@@ -1732,8 +1732,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -1785,7 +1785,7 @@
      ],
      "superEffectiveAvailable": 17,
      "winnersAvailable": 27,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "crabominable",
@@ -1847,8 +1847,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -1900,7 +1900,7 @@
      ],
      "superEffectiveAvailable": 16,
      "winnersAvailable": 26,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "crabominable",
@@ -1962,8 +1962,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -2015,7 +2015,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 34,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "snorlax",
@@ -2077,8 +2077,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -2130,7 +2130,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 34,
-     "candidates": 49,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -2192,8 +2192,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -2245,7 +2245,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 35,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "snorlax",
@@ -2307,8 +2307,238 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 25,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "crabominable",
+       "move": "ice-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "popplio",
+     "level": 14,
+     "moves": [
+      "water-gun",
+      "growl",
+      "disarming-voice",
+      "baby-doll-eyes"
+     ],
+     "superEffectiveAvailable": 10,
+     "winnersAvailable": 31,
+     "candidates": 51,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "chikorita",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "sun",
+   "key": "DETONADO_3_0_2",
+   "label": "Hau (se o inicial dele for Popplio)",
+   "group": "Rival",
+   "stage": 1,
+   "starter": "litten",
+   "level": 14,
+   "mons": [
+    {
+     "opp": "pikachu",
+     "level": 13,
+     "moves": [
+      "growl",
+      "play-nice",
+      "quick-attack",
+      "electro-ball"
+     ],
+     "superEffectiveAvailable": 2,
+     "winnersAvailable": 47,
+     "candidates": 50,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 25,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "crabominable",
+       "move": "ice-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "popplio",
+     "level": 14,
+     "moves": [
+      "water-gun",
+      "growl",
+      "disarming-voice",
+      "baby-doll-eyes"
+     ],
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 30,
+     "candidates": 51,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "chikorita",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "sun",
+   "key": "DETONADO_3_0_2",
+   "label": "Hau (se o inicial dele for Popplio)",
+   "group": "Rival",
+   "stage": 1,
+   "starter": "popplio",
+   "level": 14,
+   "mons": [
+    {
+     "opp": "pikachu",
+     "level": 13,
+     "moves": [
+      "growl",
+      "play-nice",
+      "quick-attack",
+      "electro-ball"
+     ],
+     "superEffectiveAvailable": 2,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -2405,236 +2635,6 @@
   },
   {
    "version": "sun",
-   "key": "DETONADO_3_0_2",
-   "label": "Hau (se o inicial dele for Popplio)",
-   "group": "Rival",
-   "stage": 1,
-   "starter": "litten",
-   "level": 14,
-   "mons": [
-    {
-     "opp": "pikachu",
-     "level": 13,
-     "moves": [
-      "growl",
-      "play-nice",
-      "quick-attack",
-      "electro-ball"
-     ],
-     "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 13,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "crabominable",
-       "move": "ice-punch",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "popplio",
-     "level": 14,
-     "moves": [
-      "water-gun",
-      "growl",
-      "disarming-voice",
-      "baby-doll-eyes"
-     ],
-     "superEffectiveAvailable": 8,
-     "winnersAvailable": 29,
-     "candidates": 50,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 0,
-       "theirMove": "water-gun"
-      },
-      {
-       "mon": "chikorita",
-       "move": "razor-leaf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "water-gun"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "sun",
-   "key": "DETONADO_3_0_2",
-   "label": "Hau (se o inicial dele for Popplio)",
-   "group": "Rival",
-   "stage": 1,
-   "starter": "popplio",
-   "level": 14,
-   "mons": [
-    {
-     "opp": "pikachu",
-     "level": 13,
-     "moves": [
-      "growl",
-      "play-nice",
-      "quick-attack",
-      "electro-ball"
-     ],
-     "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 13,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "crabominable",
-       "move": "ice-punch",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "popplio",
-     "level": 14,
-     "moves": [
-      "water-gun",
-      "growl",
-      "disarming-voice",
-      "baby-doll-eyes"
-     ],
-     "superEffectiveAvailable": 8,
-     "winnersAvailable": 29,
-     "candidates": 49,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 0,
-       "theirMove": "water-gun"
-      },
-      {
-       "mon": "chikorita",
-       "move": "razor-leaf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "water-gun"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "sun",
    "key": "DETONADO_4_0",
    "label": "Hala",
    "group": "Líderes de ginásio",
@@ -2652,7 +2652,7 @@
      ],
      "superEffectiveAvailable": 15,
      "winnersAvailable": 35,
-     "candidates": 51,
+     "candidates": 52,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -2703,7 +2703,7 @@
      ],
      "superEffectiveAvailable": 15,
      "winnersAvailable": 40,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -2754,7 +2754,7 @@
      ],
      "superEffectiveAvailable": 15,
      "winnersAvailable": 12,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -2816,7 +2816,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 35,
-     "candidates": 51,
+     "candidates": 52,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -2867,7 +2867,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 40,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -2918,7 +2918,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 11,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -2980,7 +2980,7 @@
      ],
      "superEffectiveAvailable": 15,
      "winnersAvailable": 35,
-     "candidates": 51,
+     "candidates": 52,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -3031,7 +3031,7 @@
      ],
      "superEffectiveAvailable": 15,
      "winnersAvailable": 40,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -3082,7 +3082,7 @@
      ],
      "superEffectiveAvailable": 15,
      "winnersAvailable": 11,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -19905,8 +19905,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -19958,7 +19958,7 @@
      ],
      "superEffectiveAvailable": 16,
      "winnersAvailable": 26,
-     "candidates": 49,
+     "candidates": 50,
      "picks": [
       {
        "mon": "crabominable",
@@ -20020,8 +20020,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -20073,7 +20073,7 @@
      ],
      "superEffectiveAvailable": 17,
      "winnersAvailable": 27,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "crabominable",
@@ -20135,8 +20135,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -20188,7 +20188,7 @@
      ],
      "superEffectiveAvailable": 16,
      "winnersAvailable": 26,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "crabominable",
@@ -20250,8 +20250,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -20303,7 +20303,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 34,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "snorlax",
@@ -20365,8 +20365,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -20418,7 +20418,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 34,
-     "candidates": 49,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -20480,8 +20480,8 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -20533,7 +20533,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 35,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "snorlax",
@@ -20595,8 +20595,238 @@
       "electro-ball"
      ],
      "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
+     "winnersAvailable": 47,
+     "candidates": 50,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 25,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "crabominable",
+       "move": "ice-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "popplio",
+     "level": 14,
+     "moves": [
+      "water-gun",
+      "growl",
+      "disarming-voice",
+      "baby-doll-eyes"
+     ],
+     "superEffectiveAvailable": 10,
+     "winnersAvailable": 31,
+     "candidates": 51,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "chikorita",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "moon",
+   "key": "DETONADO_3_0_2",
+   "label": "Hau (se o inicial dele for Popplio)",
+   "group": "Rival",
+   "stage": 1,
+   "starter": "litten",
+   "level": 14,
+   "mons": [
+    {
+     "opp": "pikachu",
+     "level": 13,
+     "moves": [
+      "growl",
+      "play-nice",
+      "quick-attack",
+      "electro-ball"
+     ],
+     "superEffectiveAvailable": 2,
+     "winnersAvailable": 47,
+     "candidates": 50,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 13,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 25,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      },
+      {
+       "mon": "crabominable",
+       "move": "ice-punch",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 10,
+       "faster": 0,
+       "theirMove": "quick-attack"
+      }
+     ],
+     "before": []
+    },
+    {
+     "opp": "popplio",
+     "level": 14,
+     "moves": [
+      "water-gun",
+      "growl",
+      "disarming-voice",
+      "baby-doll-eyes"
+     ],
+     "superEffectiveAvailable": 9,
+     "winnersAvailable": 30,
+     "candidates": 51,
+     "picks": [
+      {
+       "mon": "snorlax",
+       "move": "tackle",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "water-gun"
+      },
+      {
+       "mon": "chikorita",
+       "move": "razor-leaf",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 6,
+       "faster": 1,
+       "theirMove": "disarming-voice"
+      },
+      {
+       "mon": "sudowoodo",
+       "move": "wood-hammer",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 3,
+       "faster": 0,
+       "theirMove": "water-gun"
+      }
+     ],
+     "before": []
+    }
+   ]
+  },
+  {
+   "version": "moon",
+   "key": "DETONADO_3_0_2",
+   "label": "Hau (se o inicial dele for Popplio)",
+   "group": "Rival",
+   "stage": 1,
+   "starter": "popplio",
+   "level": 14,
+   "mons": [
+    {
+     "opp": "pikachu",
+     "level": 13,
+     "moves": [
+      "growl",
+      "play-nice",
+      "quick-attack",
+      "electro-ball"
+     ],
+     "superEffectiveAvailable": 2,
+     "winnersAvailable": 47,
+     "candidates": 50,
      "picks": [
       {
        "mon": "snorlax",
@@ -20693,236 +20923,6 @@
   },
   {
    "version": "moon",
-   "key": "DETONADO_3_0_2",
-   "label": "Hau (se o inicial dele for Popplio)",
-   "group": "Rival",
-   "stage": 1,
-   "starter": "litten",
-   "level": 14,
-   "mons": [
-    {
-     "opp": "pikachu",
-     "level": 13,
-     "moves": [
-      "growl",
-      "play-nice",
-      "quick-attack",
-      "electro-ball"
-     ],
-     "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 13,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "crabominable",
-       "move": "ice-punch",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "popplio",
-     "level": 14,
-     "moves": [
-      "water-gun",
-      "growl",
-      "disarming-voice",
-      "baby-doll-eyes"
-     ],
-     "superEffectiveAvailable": 8,
-     "winnersAvailable": 29,
-     "candidates": 50,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 0,
-       "theirMove": "water-gun"
-      },
-      {
-       "mon": "chikorita",
-       "move": "razor-leaf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "water-gun"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "moon",
-   "key": "DETONADO_3_0_2",
-   "label": "Hau (se o inicial dele for Popplio)",
-   "group": "Rival",
-   "stage": 1,
-   "starter": "popplio",
-   "level": 14,
-   "mons": [
-    {
-     "opp": "pikachu",
-     "level": 13,
-     "moves": [
-      "growl",
-      "play-nice",
-      "quick-attack",
-      "electro-ball"
-     ],
-     "superEffectiveAvailable": 2,
-     "winnersAvailable": 46,
-     "candidates": 49,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 13,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 25,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      },
-      {
-       "mon": "crabominable",
-       "move": "ice-punch",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "quick-attack"
-      }
-     ],
-     "before": []
-    },
-    {
-     "opp": "popplio",
-     "level": 14,
-     "moves": [
-      "water-gun",
-      "growl",
-      "disarming-voice",
-      "baby-doll-eyes"
-     ],
-     "superEffectiveAvailable": 8,
-     "winnersAvailable": 29,
-     "candidates": 49,
-     "picks": [
-      {
-       "mon": "snorlax",
-       "move": "tackle",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 11,
-       "faster": 0,
-       "theirMove": "water-gun"
-      },
-      {
-       "mon": "chikorita",
-       "move": "razor-leaf",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "disarming-voice"
-      },
-      {
-       "mon": "sudowoodo",
-       "move": "wood-hammer",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "water-gun"
-      }
-     ],
-     "before": []
-    }
-   ]
-  },
-  {
-   "version": "moon",
    "key": "DETONADO_4_0",
    "label": "Hala",
    "group": "Líderes de ginásio",
@@ -20940,7 +20940,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 34,
-     "candidates": 51,
+     "candidates": 52,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -20991,7 +20991,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 40,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -21042,7 +21042,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 11,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -21104,7 +21104,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 34,
-     "candidates": 51,
+     "candidates": 52,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -21155,7 +21155,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 40,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -21206,7 +21206,7 @@
      ],
      "superEffectiveAvailable": 13,
      "winnersAvailable": 10,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -21268,7 +21268,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 34,
-     "candidates": 51,
+     "candidates": 52,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -21319,7 +21319,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 40,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",
@@ -21370,7 +21370,7 @@
      ],
      "superEffectiveAvailable": 14,
      "winnersAvailable": 10,
-     "candidates": 50,
+     "candidates": 51,
      "picks": [
       {
        "mon": "oricorio-baile",

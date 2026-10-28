@@ -1881,8 +1881,8 @@ test('aba Onde capturar: todos os locais da versão, rota por evolução, evento
   // exclusivo de versão: aparece nas outras versões
   const ekans = r('firered-leafgreen', 'leafgreen', 'ekans');
   assert.equal(ekans.lines.length, 0); assert.ok(ekans.others.some((o) => o.version === 'firered'));
-  // jogos sem decomp também (PKHeX): sem taxa (Sword/Shield); 0.50.0: X/Y com a taxa da Bulbapedia
-  const sm = r('sword-shield', 'sword', 'pikachu');
+  // jogos sem decomp também (PKHeX): sem taxa (Scarlet/Violet); 0.50.0: X/Y com a taxa da Bulbapedia (0.57.0: SwSh também tem)
+  const sm = r('scarlet-violet', 'scarlet', 'pikachu');
   assert.ok(sm.lines.length && sm.lines.every((l) => !/%/.test(l.text)));
   const xy = r('x-y', 'x', 'pikachu');
   assert.ok(xy.lines.some((l) => /Santalune Forest — Grama, nv \d+(–\d+)? \(\d+%\)/.test(l.text)));
@@ -2796,7 +2796,7 @@ test('0.53.1: escolher o treinador ajusta o nível do time (ás dele) e o progre
   }
   // a tela chama setLevelFor ao escolher o treinador (antes ficava o nível 30 padrão)
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
-  assert.equal((app.match(/setLevelFor\(t\);/g) ?? []).length, 2);
+  assert.ok((app.match(/setLevelFor\(t\);/g) ?? []).length >= 2); // seletor e lista; 0.57.0: também o link ?treinador=
   assert.match(app, /function setLevelFor\(t\)[\s\S]*leaderOrder[\s\S]*\$\('stage'\)\.value = String\(st\)/);
 });
 
@@ -2850,4 +2850,35 @@ test('R4 (0.56.0): trocas dentro do jogo com lugar e ponto da história pela Bul
   assert.ok(club.every((s) => Number.isInteger(s.stage)));
   assert.equal(at('scarlet-violet', 'scarlet', 'haunter').where, 'Levincia');
   assert.ok(!Object.values(sv.versions.scarlet).flat().some((s) => s.where === 'a Link Trade'));
+});
+
+test('R5/C1 (0.57.0): clima no Sword/Shield; Detonado igual ao onde obter; item citado limita a evolução; link da luta ajusta o nível', async () => {
+  const { pctText } = await import('../public/engine.mjs');
+  // R5: taxa por clima (Bulbapedia "cloudy=40%"), só os climas do encontro do PKHeX
+  assert.equal(pctText({ pct: 40, pctWeather: { nublado: 40 } }), 'só com nublado 40%');
+  assert.equal(pctText({ pct: 45, pctWeather: { 'tempo limpo': 45, nublado: 30, chuva: 30 } }), 'só com tempo limpo 45% · nublado/chuva 30%');
+  const sw = load('sword-shield-acquisition.json');
+  assert.deepEqual(sw.versions.sword.oddish.find((s) => s.where === 'Rolling Fields').pctWeather, { nublado: 40 });
+  // C1: a aba Detonado é remontada depois das etapas da Bulbapedia — o estágio de cada selvagem e o lugar das trocas batem
+  for (const g of ['sword-shield', 'x-y', 'scarlet-violet']) {
+    const a = load(`${g}-acquisition.json`), w = load(`${g}-walkthrough.json`);
+    const v = Object.keys(a.versions)[0];
+    const at = new Map();
+    for (const st of w.versions[v].stages) for (const l of st.locations) for (const x of l.wild) at.set(`${x.species}|${x.where}|${x.min}|${x.method}`, st.stage);
+    let diff = 0;
+    for (const [sp, list] of Object.entries(a.versions[v])) for (const s of list) { const k = `${sp}|${s.where}|${s.min}|${s.method}`; if (s.type === 'wild' && at.has(k) && at.get(k) !== s.stage) diff++; }
+    assert.equal(diff, 0, g);
+    // troca sem linha na tabela da Bulbapedia (Ralts no X/Y) continua "a Link Trade" — sem lugar inventado
+    assert.ok(g === 'x-y' || !JSON.stringify(w).includes('a Link Trade'), g);
+  }
+  // item de evolução sem linha na Bulbapedia mas citado no detonado: estágio do trecho (Auspicious Armor em Zapapico) —
+  // o Armarouge não é mais sugerido na 1ª luta contra a Nemona
+  const sv = load('scarlet-violet-acquisition.json');
+  assert.ok(sv.items.AUSPICIOUS_ARMOR?.every((x) => x.type === 'cited' && x.stage > 0));
+  const { recommend } = await import('../public/engine.mjs');
+  const d = load('scarlet-violet.json');
+  const r = recommend(d, d.pokemon.find((p) => p.name === 'sprigatito'), { level: 5, version: 'scarlet', onlyObtainable: true, machines: true, acq: sv, stage: 0, oppLevel: 5 });
+  assert.ok(!r.picks.some((s) => s.mon.name === 'armarouge'));
+  // link da luta (?treinador=) também ajusta nível e progresso (antes só o seletor)
+  assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /\$\('trainer'\)\.value = t\.key; setLevelFor\(t\);/);
 });

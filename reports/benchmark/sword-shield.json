@@ -8,7 +8,7 @@
    "wins": 3240,
    "picks": 3240,
    "comfy": 3231,
-   "turnsSum": 4261,
+   "turnsSum": 4257,
    "turnsN": 3240
   },
   "antes": {
@@ -96,18 +96,6 @@
      "candidates": 258,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -128,6 +116,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "durant",
+       "move": "bug-bite",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "round"
       }
@@ -209,18 +209,6 @@
      "candidates": 258,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -241,6 +229,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "durant",
+       "move": "bug-bite",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "round"
       }
@@ -322,18 +322,6 @@
      "candidates": 258,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -354,6 +342,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "durant",
+       "move": "bug-bite",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "round"
       }
@@ -1213,18 +1213,6 @@
        "theirMove": "quick-attack"
       },
       {
-       "mon": "basculin-red-striped",
-       "move": "aqua-jet",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "quick-attack"
-      },
-      {
        "mon": "lycanroc-midday",
        "move": "rock-tomb",
        "eff": 2,
@@ -1235,6 +1223,18 @@
        "theirTurns": 11,
        "faster": 1,
        "theirMove": "ember"
+      },
+      {
+       "mon": "barraskewda",
+       "move": "dive",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -1380,18 +1380,6 @@
        "theirMove": "quick-attack"
       },
       {
-       "mon": "basculin-red-striped",
-       "move": "aqua-jet",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "quick-attack"
-      },
-      {
        "mon": "lycanroc-midday",
        "move": "rock-tomb",
        "eff": 2,
@@ -1402,6 +1390,18 @@
        "theirTurns": 11,
        "faster": 1,
        "theirMove": "ember"
+      },
+      {
+       "mon": "barraskewda",
+       "move": "dive",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -1547,18 +1547,6 @@
        "theirMove": "quick-attack"
       },
       {
-       "mon": "basculin-red-striped",
-       "move": "aqua-jet",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 9,
-       "faster": 1,
-       "theirMove": "quick-attack"
-      },
-      {
        "mon": "lycanroc-midday",
        "move": "rock-tomb",
        "eff": 2,
@@ -1569,6 +1557,18 @@
        "theirTurns": 11,
        "faster": 1,
        "theirMove": "ember"
+      },
+      {
+       "mon": "barraskewda",
+       "move": "dive",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "quick-attack"
       }
      ],
      "before": []
@@ -1977,18 +1977,6 @@
        "theirMove": "scratch"
       },
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 14,
-       "faster": 0,
-       "theirMove": "scratch"
-      },
-      {
        "mon": "sandshrew-alola",
        "move": "fury-cutter",
        "eff": 2,
@@ -1998,6 +1986,18 @@
        "myTurns": 2,
        "theirTurns": 11,
        "faster": 0,
+       "theirMove": "branch-poke"
+      },
+      {
+       "mon": "cramorant",
+       "move": "belch",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
        "theirMove": "branch-poke"
       }
      ],
@@ -2242,18 +2242,6 @@
      "candidates": 258,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -2274,6 +2262,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "durant",
+       "move": "bug-bite",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "round"
       }
@@ -2355,18 +2355,6 @@
      "candidates": 258,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -2387,6 +2375,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "durant",
+       "move": "bug-bite",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "round"
       }
@@ -2468,18 +2468,6 @@
      "candidates": 258,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -2500,6 +2488,18 @@
        "win": true,
        "myTurns": 2,
        "theirTurns": 8,
+       "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "durant",
+       "move": "bug-bite",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 13,
        "faster": 1,
        "theirMove": "round"
       }
@@ -9845,18 +9845,6 @@
      "candidates": 414,
      "picks": [
       {
-       "mon": "coalossal",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
-       "faster": 0,
-       "theirMove": "pyro-ball"
-      },
-      {
        "mon": "gyarados",
        "move": "aqua-tail",
        "eff": 2,
@@ -9877,6 +9865,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "pyro-ball"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
        "faster": 0,
        "theirMove": "pyro-ball"
       }
@@ -11952,15 +11952,15 @@
        "theirMove": "drill-peck"
       },
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
+       "mon": "solrock",
+       "move": "flare-blitz",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
        "theirMove": "drill-peck"
       }
      ],
@@ -12221,15 +12221,15 @@
        "theirMove": "drill-peck"
       },
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
+       "mon": "solrock",
+       "move": "flare-blitz",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
        "theirMove": "drill-peck"
       }
      ],
@@ -12351,18 +12351,6 @@
      "candidates": 440,
      "picks": [
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "brick-break"
-      },
-      {
        "mon": "arcanine",
        "move": "burn-up",
        "eff": 2,
@@ -12384,6 +12372,18 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 1,
+       "theirMove": "brick-break"
+      },
+      {
+       "mon": "turtonator",
+       "move": "shell-trap",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
        "theirMove": "brick-break"
       }
      ],
@@ -12490,15 +12490,15 @@
        "theirMove": "drill-peck"
       },
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
+       "mon": "solrock",
+       "move": "flare-blitz",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 5,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
+       "myTurns": 2,
+       "theirTurns": 7,
+       "faster": 1,
        "theirMove": "drill-peck"
       }
      ],
@@ -14730,15 +14730,15 @@
        "theirMove": "drill-peck"
       },
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
+       "mon": "arcanine",
+       "move": "burn-up",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
+       "theirTurns": 3,
+       "faster": 1,
        "theirMove": "drill-peck"
       }
      ],
@@ -14947,15 +14947,15 @@
        "theirMove": "drill-peck"
       },
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
+       "mon": "arcanine",
+       "move": "burn-up",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
+       "theirTurns": 3,
+       "faster": 1,
        "theirMove": "drill-peck"
       }
      ],
@@ -15164,15 +15164,15 @@
        "theirMove": "drill-peck"
       },
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
+       "mon": "arcanine",
+       "move": "burn-up",
        "eff": 2,
        "via": "level-up",
-       "stageNeeded": 0,
+       "stageNeeded": 2,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 4,
-       "faster": 0,
+       "theirTurns": 3,
+       "faster": 1,
        "theirMove": "drill-peck"
       }
      ],
@@ -15433,16 +15433,16 @@
        "theirMove": "throat-chop"
       },
       {
-       "mon": "turtonator",
-       "move": "dragon-pulse",
+       "mon": "kommo-o",
+       "move": "outrage",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "drill-run"
+       "theirMove": "ice-fang"
       }
      ],
      "before": []
@@ -15704,16 +15704,16 @@
        "theirMove": "throat-chop"
       },
       {
-       "mon": "turtonator",
-       "move": "dragon-pulse",
+       "mon": "kommo-o",
+       "move": "outrage",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "drill-run"
+       "theirMove": "ice-fang"
       }
      ],
      "before": []
@@ -15975,16 +15975,16 @@
        "theirMove": "throat-chop"
       },
       {
-       "mon": "turtonator",
-       "move": "dragon-pulse",
+       "mon": "kommo-o",
+       "move": "outrage",
        "eff": 1,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 6,
+       "theirTurns": 7,
        "faster": 0,
-       "theirMove": "drill-run"
+       "theirMove": "ice-fang"
       }
      ],
      "before": []
@@ -20115,23 +20115,23 @@
        "theirMove": "slam"
       },
       {
-       "mon": "turtonator",
-       "move": "shell-trap",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 5,
-       "faster": 0,
-       "theirMove": "uproar"
-      },
-      {
        "mon": "darmanitan-standard",
        "move": "flare-blitz",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 3,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "knock-off"
+      },
+      {
+       "mon": "volcarona",
+       "move": "bug-buzz",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
@@ -29482,18 +29482,6 @@
      "candidates": 260,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -29515,6 +29503,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ferroseed",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 19,
+       "faster": 0,
        "theirMove": "round"
       }
      ],
@@ -29595,18 +29595,6 @@
      "candidates": 260,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -29628,6 +29616,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ferroseed",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 19,
+       "faster": 0,
        "theirMove": "round"
       }
      ],
@@ -29708,18 +29708,6 @@
      "candidates": 260,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -29741,6 +29729,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ferroseed",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 19,
+       "faster": 0,
        "theirMove": "round"
       }
      ],
@@ -31375,16 +31375,16 @@
        "theirMove": "scratch"
       },
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
+       "mon": "sandshrew-alola",
+       "move": "fury-cutter",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 2,
-       "theirTurns": 14,
+       "theirTurns": 11,
        "faster": 0,
-       "theirMove": "scratch"
+       "theirMove": "branch-poke"
       }
      ],
      "before": []
@@ -31628,18 +31628,6 @@
      "candidates": 260,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -31661,6 +31649,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ferroseed",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 19,
+       "faster": 0,
        "theirMove": "round"
       }
      ],
@@ -31741,18 +31741,6 @@
      "candidates": 260,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -31774,6 +31762,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ferroseed",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 19,
+       "faster": 0,
        "theirMove": "round"
       }
      ],
@@ -31854,18 +31854,6 @@
      "candidates": 260,
      "picks": [
       {
-       "mon": "ferroseed",
-       "move": "pin-missile",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": 19,
-       "faster": 0,
-       "theirMove": "round"
-      },
-      {
        "mon": "skarmory",
        "move": "wing-attack",
        "eff": 2,
@@ -31887,6 +31875,18 @@
        "myTurns": 2,
        "theirTurns": 13,
        "faster": 1,
+       "theirMove": "round"
+      },
+      {
+       "mon": "ferroseed",
+       "move": "pin-missile",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 3,
+       "theirTurns": 19,
+       "faster": 0,
        "theirMove": "round"
       }
      ],
@@ -39231,18 +39231,6 @@
      "candidates": 414,
      "picks": [
       {
-       "mon": "coalossal",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 2,
-       "theirTurns": 12,
-       "faster": 0,
-       "theirMove": "pyro-ball"
-      },
-      {
        "mon": "gyarados",
        "move": "aqua-tail",
        "eff": 2,
@@ -39263,6 +39251,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "pyro-ball"
+      },
+      {
+       "mon": "drednaw",
+       "move": "razor-shell",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
        "faster": 0,
        "theirMove": "pyro-ball"
       }
@@ -44167,14 +44167,14 @@
        "theirMove": "poison-jab"
       },
       {
-       "mon": "pupitar",
+       "mon": "flygon",
        "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 13,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "poison-jab"
       }
@@ -44384,14 +44384,14 @@
        "theirMove": "poison-jab"
       },
       {
-       "mon": "pupitar",
+       "mon": "flygon",
        "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 13,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "poison-jab"
       }
@@ -44601,14 +44601,14 @@
        "theirMove": "poison-jab"
       },
       {
-       "mon": "pupitar",
+       "mon": "flygon",
        "move": "earthquake",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
-       "theirTurns": 13,
+       "theirTurns": 8,
        "faster": 1,
        "theirMove": "poison-jab"
       }
@@ -47188,18 +47188,6 @@
        "theirMove": "surf"
       },
       {
-       "mon": "duraludon",
-       "move": "dragon-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
        "mon": "exeggutor-alola",
        "move": "dragon-hammer",
        "eff": 2,
@@ -47208,6 +47196,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "dragonair",
+       "move": "dragon-rush",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
        "faster": 0,
        "theirMove": "surf"
       }
@@ -47459,18 +47459,6 @@
        "theirMove": "surf"
       },
       {
-       "mon": "duraludon",
-       "move": "dragon-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
        "mon": "exeggutor-alola",
        "move": "dragon-hammer",
        "eff": 2,
@@ -47479,6 +47467,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "dragonair",
+       "move": "dragon-rush",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
        "faster": 0,
        "theirMove": "surf"
       }
@@ -47730,18 +47730,6 @@
        "theirMove": "surf"
       },
       {
-       "mon": "duraludon",
-       "move": "dragon-claw",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 3,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "surf"
-      },
-      {
        "mon": "exeggutor-alola",
        "move": "dragon-hammer",
        "eff": 2,
@@ -47750,6 +47738,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 14,
+       "faster": 0,
+       "theirMove": "surf"
+      },
+      {
+       "mon": "dragonair",
+       "move": "dragon-rush",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 8,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
        "faster": 0,
        "theirMove": "surf"
       }
