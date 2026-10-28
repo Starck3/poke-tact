@@ -4,8 +4,16 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { GAMES } from './games.mjs';
 import { READERS } from './lib/pkhex-enc.mjs';
+import { existsSync } from 'node:fs';
+import { DEPENDS, buildOrder } from './lib/build-order.mjs';
 
-const ids = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(GAMES);
+// --strict: etapa com fonte configurada mas ausente em data-sources/ falha (sem ele, avisa e mantém o arquivo anterior)
+const STRICT = process.argv.includes('--strict');
+const args = process.argv.slice(2).filter((a) => a !== '--strict');
+const ids = buildOrder(args.length ? args : Object.keys(GAMES));
+for (const id of ids) for (const d of DEPENDS[id] ?? []) {
+  if (!ids.includes(d) && !existsSync(new URL(`../public/data/${d}.json`, import.meta.url))) throw new Error(`${id} usa os dados de ${d}, que ainda não foi montado — monte ${d} antes`);
+}
 const cwd = fileURLToPath(new URL('..', import.meta.url));
 const STEPS = ['build-data', 'apply-decomp-overlay', 'build-trainers', 'build-acquisition', 'apply-bulbapedia-items', 'apply-breeding', 'build-walkthrough', 'validate-vs-decomp', 'validate-stats-vs-decomp', 'validate-vs-pokemythology', 'validate-tms-vs-pokemythology'];
 // Gen 1/2 (decomp em assembly, game.asmDecomp): a auditoria roda DEPOIS da correção e deve dar 0; o detonado (build-walkthrough-gen1) serve às duas
@@ -49,7 +57,7 @@ for (const id of ids) {
   for (const step of [...steps, ...IMAGE_STEPS]) {
     console.log(`--- ${step}`);
     try {
-      execFileSync(process.execPath, [`scripts/${step}.mjs`, id], { cwd, stdio: 'inherit' });
+      execFileSync(process.execPath, [`scripts/${step}.mjs`, id], { cwd, stdio: 'inherit', env: { ...process.env, ...(STRICT && { POKETACT_STRICT: '1' }) } });
     } catch (e) {
       // build-data sai com 3 quando a PokéAPI não tem o jogo (Legends: Z-A): pula o jogo e segue com os outros
       if (step === 'build-data' && e.status === 3) { console.log(`(${id} sem dados — pulado)`); break; }

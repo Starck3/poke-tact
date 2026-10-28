@@ -2,6 +2,19 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.61.0] — 2026-10-28
+
+> Por dentro: os jogos agora são montados na ordem certa (um remake depois do jogo original de onde tira dados), e uma fonte que falta não deixa mais um arquivo antigo no lugar sem avisar.
+
+### Corrigido
+- Montagem na ordem certa: Omega Ruby/Alpha Sapphire depois do Ruby/Sapphire, Brilliant Diamond/Shining Pearl depois do
+  Diamond/Pearl, Let's Go depois do Yellow, Ultra Sun/Ultra Moon depois do Sun/Moon e Z-A depois do Scarlet/Violet. Antes,
+  `build-game` sem argumentos montava o Omega Ruby/Alpha Sapphire com o Ruby/Sapphire da rodada anterior. Montando só o
+  dependente sem o outro pronto, para com erro.
+- O estágio pelo jogo original não vira mais "mapa vazio" em silêncio quando o arquivo dele falta (agora é erro).
+- Detonado configurado mas fora de `data-sources/`: o aviso diz que o arquivo anterior foi mantido; com
+  `node scripts/build-game.mjs --strict` a montagem falha.
+
 ## [0.60.0] — 2026-10-28
 
 > As sugestões agora dizem com que nível e progresso foram calculadas, com um atalho para mudar. No Sword/Shield o clima não aparece mais repetido em inglês. E o app ganhou um teste automático da tela num navegador.

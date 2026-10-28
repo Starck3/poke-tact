@@ -15,9 +15,9 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
   Brock pelo seletor e pelo link, Nemona, abas, celular, erros de JavaScript.
 - **S3 ⚠ Tela**: linha "calculado com o seu time no nv X e Y" acima das sugestões; inicial em linha compacta; clima repetido
   do PKHeX escondido quando há taxa por clima; 404 do favicon e do mapa de jogos sem mapa.
-- **S4 ⬜ Montagem na ordem certa**: jogos que usam dados de outro (ORAS ← Ruby/Sapphire, BDSP ← Diamond/Pearl, Let's Go ←
+- **S4 ✅ Montagem na ordem certa**: jogos que usam dados de outro (ORAS ← Ruby/Sapphire, BDSP ← Diamond/Pearl, Let's Go ←
   Yellow, USUM ← Sun/Moon, Z-A ← Scarlet/Violet) montados depois dele; arquivo de outro jogo faltando vira erro.
-- **S5 ⬜ Etapa sem fonte local avisa em vez de sair calada** (modo `--strict` no build-game: falha).
+- **S5 ✅ Etapa sem fonte local avisa em vez de sair calada** (modo `--strict` no build-game: falha).
 - **D1 ⬜** STATUS.md, memória, resumo final.
 
 ## Decisões pendentes (🚩 do plano 5, mantidas como estão até o usuário decidir)
@@ -36,3 +36,7 @@ S1 → S2 → S3 → S4 → S5 → D1.
   pelo protocolo DevTools, 15 verificações; pula sem navegador). Linha de contexto acima das sugestões; clima do PKHeX
   escondido quando há taxa por clima; favicon; jogo sem mapa não pede o arquivo. ⏸ Iniciais em linha compacta: o usuário
   pediu os sprites grandes nessa escolha (0.9.0) — não mudei sem ele.
+- **2026-10-28 — S4/S5 (0.61.0)**: scripts/lib/build-order.mjs (DEPENDS + buildOrder) usado pelo build-game; dependente sem o
+  outro montado → erro; twinStage sem o arquivo do original → erro (era mapa vazio). `--strict` (POKETACT_STRICT) faz o
+  detonado/evo-items ausente falhar; sem ele, o aviso diz que o arquivo anterior ficou. Não feitos (bloco 3 "aos poucos"):
+  idempotência das apply-*, lib/names.mjs (key() único), testes dos leitores de wikitext com trechos de exemplo.
