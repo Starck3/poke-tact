@@ -14,7 +14,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **R2 ✅ Exclusivos de versão no Scarlet/Violet**: o PKHeX não separa as versões; a tabela da Bulbapedia marca a versão de
   cada encontro. Tirar da versão errada só quando a página diz que é exclusivo da outra. Pronto quando: um exclusivo
   conhecido (ex.: Larvitar só no Scarlet, Bagon só no Violet) sai da outra versão; aviso da tela ajustado.
-- **R3 ⬜ Ponto da história no Sword/Shield** (4.648 encontros só estimados pelo nível, quase todos da Wild Area): tentar o
+- **R3 ⚠ Ponto da história no Sword/Shield** (4.648 encontros só estimados pelo nível, quase todos da Wild Area): tentar o
   índice do detonado da Bulbapedia e a página de cada área. Pronto quando: as estimativas caem ou ⏸ com o motivo medido.
 - **R4 ⬜ Encontros ainda sem ponto da história** (SV 72, BW 22, X/Y 18, SM 14, Z-A 7): caso a caso pela página do lugar.
 - **R5 ⬜ Taxa de aparição no Sword/Shield, Scarlet/Violet, Legends: Arceus e Z-A** (formato de tabela diferente: clima,
@@ -36,3 +36,8 @@ R1 → R2 → R3 → R4 → R5 → C1 → D1.
   resto é fenômeno, estação ou White Forest). SV: lista "Version-exclusive Pokémon" por bloco (Paldea/Kitakami/Blueberry;
   "Sudachi 1/2" do PKHeX = DLCs); raids ficam; evoluções recalculadas (Tyranitar no Violet). 74 espécies/versão deixam de ser
   obtíveis; 4 formas fundidas (Kyurem, Necrozma) sem par no app. Banco: vencem igual; folgadas BW +12, SV −19.
+- **2026-10-28 — R3 ⚠ (0.55.0)**: regra do jogo em vez de estimativa: limite de captura por insígnia (Bulbapedia "Badge",
+  "Catch level limit": 20/25/…/55/qualquer) nas 18 subáreas da Wild Area (página "Wild Area"; abre inteira no começo). 835
+  estimativas + 879 estágios da citação no detonado trocados. Banco sem mudança. Sobram estimadas: raids (outra regra) e
+  DLCs (nível acompanha as insígnias). 🚩 Depois do Darkest Day a Wild Area ganha Pokémon de nível mais alto; pela regra eles
+  ficam em "8 insígnias", um ponto antes do pós-jogo — o PKHeX não diz quais slots são só do pós-jogo.
