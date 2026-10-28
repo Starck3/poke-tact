@@ -2909,3 +2909,18 @@ test('S1 (0.59.0): banco de lutas mede sugestão com dado incerto (item sem luga
   }
   assert.deepEqual(tot, { item: 0, tm: 0, tutor: 0 });
 });
+
+test('S2/S3 (0.60.0): teste da tela no Chrome (npm run test:ui); linha de contexto; clima do PKHeX sem repetir; sem 404', async () => {
+  const { shownDetail, formatSources } = await import('../public/engine.mjs');
+  // com taxa por clima, o "clima: Overcast" do PKHeX não aparece de novo (o resto do detail fica)
+  assert.equal(shownDetail({ detail: 'clima: Overcast', pctWeather: { nublado: 40 } }), '');
+  assert.equal(shownDetail({ detail: 'clima: Normal; Max Raid 1★', pctWeather: { 'tempo limpo': 5 } }), 'Max Raid 1★');
+  assert.equal(shownDetail({ detail: 'clima: Overcast' }), 'clima: Overcast'); // sem taxa por clima, fica
+  assert.ok(!/clima:/.test(formatSources([{ type: 'wild', where: 'Rolling Fields', method: 'Grama (escondido)', min: 7, max: 9, detail: 'clima: Overcast', pct: 40, pctWeather: { nublado: 40 } }], 1)[0]));
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /function ctxLine\(\)/);
+  assert.match(app, /capture\?\.regionMap !== false/); // jogo sem mapa não pede o arquivo
+  assert.match(readFileSync(new URL('../public/index.html', import.meta.url), 'utf8'), /<link rel="icon"/);
+  const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+  assert.equal(pkg.scripts['test:ui'], 'node scripts/ui-test.mjs');
+});
