@@ -2882,3 +2882,19 @@ test('R5/C1 (0.57.0): clima no Sword/Shield; Detonado igual ao onde obter; item 
   // link da luta (?treinador=) também ajusta nível e progresso (antes só o seletor)
   assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /\$\('trainer'\)\.value = t\.key; setLevelFor\(t\);/);
 });
+
+test('0.58.0: card diz até onde treinar (capturado mais baixo que o time) e o Detonado traduz o ovo da creche', () => {
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  // Mankey no FireRed: Route 22 nv 2–5, Karate Chop no nv 11 → "Capture no nv 2–5 e treine até o nv 11"
+  const fn = app.slice(app.indexOf('function trainLine('), app.indexOf('\n}\n', app.indexOf('function trainLine(')) + 2);
+  const humanize = (s) => s.replace(/(^|-)(\w)/g, (m, a, b) => (a ? ' ' : '') + b.toUpperCase());
+  const $ = () => ({ value: '14' });
+  const trainLine = new Function('humanize', '$', fn + '\nreturn trainLine;')(humanize, $);
+  const mankey = { mon: { name: 'mankey', minLevel: 1 }, move: { name: 'karate-chop', via: { method: 'level-up', level: 11 } } };
+  assert.match(trainLine(mankey, { type: 'wild', min: 2, max: 5 }, null), /Capture no nv 2–5 e treine até o nv 11 — aprende Karate Chop no nv 11/);
+  // inicial é recebido; evolução (Butterfree nv 10) também conta; já no nível → sem linha
+  assert.match(trainLine({ mon: { name: 'butterfree', minLevel: 10 }, move: { name: 'confusion', via: { method: 'level-up', level: 1 } } }, { type: 'wild', min: 3, max: 5 }, 'caterpie'), /treine até o nv 10 — evolui para Butterfree no nv 10/);
+  assert.match(trainLine({ mon: { name: 'squirtle', minLevel: 1 }, move: { name: 'water-gun', via: { method: 'level-up', level: 13 } } }, { type: 'starter', level: 5 }, null), /^<br><span class="train">⬆ Receba no nv 5/);
+  assert.equal(trainLine({ mon: { name: 'onix', minLevel: 1 }, move: { name: 'tackle', via: { method: 'level-up', level: 1 } } }, { type: 'wild', min: 5, max: 7 }, null), '');
+  assert.match(app, /breed: 'ovo na creche'/);
+});

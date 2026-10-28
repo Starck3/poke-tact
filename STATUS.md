@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-26 · versão **0.57.0** (publicada no GitHub).
+Atualizado em 2026-10-26 · versão **0.58.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas) `PLANO-EXECUCAO-2.md`, `PLANO-EXECUCAO-3.md` e `PLANO-EXECUCAO-4.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
 Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
@@ -31,7 +31,7 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
 evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
 "(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
-Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (297 com `data-sources/`, 282 num clone limpo).
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (298 com `data-sources/`, 283 num clone limpo).
 Banco de lutas: 22 jogos (o USUM entra pelos treinadores com estágio), 39.978 sugestões — 39.793 vencem (99,5%), 37.960 com
 folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 878 de 960 lutas (USUM 102/102); onde achar
 itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no BW, X/Y, ORAS,
@@ -70,7 +70,7 @@ Sun/Moon, USUM, Let's Go, BDSP e Sword/Shield (dia/noite em Alola; manhã/dia/no
 - ⚠ Wild Area do SwSh pelo limite de captura por insígnia (0.55); trocas com lugar e estágio (0.56).
 - ✅ Revisão geral + teste no Chrome headless; Detonado remontado depois das etapas da Bulbapedia; link da luta ajusta o
   nível; item citado no detonado limita a evolução (0.57).
-- 🚩 A revisar: Darkest Day na Wild Area; item pela 1ª citação; backlog ("breed", aviso de treino no card).
+- 🚩 A revisar: Darkest Day na Wild Area; item pela 1ª citação. Backlog feito na 0.58 (aviso de treino, "breed").
 - Críticas (tela e pipeline) na seção "Críticas (C1)" do plano 5.
 
 ### Dá para fazer com as fontes que já temos

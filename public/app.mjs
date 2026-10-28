@@ -397,7 +397,7 @@ async function renderWalk() {
     for (const w of l.wild) (bySp[w.species] ??= []).push(w);
     const parts = [];
     if (l.wild.length) parts.push('<div class="walk-h">Pokémon selvagens</div><ul class="walk-list">' + Object.entries(bySp).map(([sp, ws]) => '<li>' + humanize(sp) + ' — ' + ws.map((w) => w.method + (w.times ? ' (' + w.times.join('/') + ')' : '') + (w.detail ? ' [' + w.detail + ']' : '') + (w.gate ? ' [exige ' + (w.gate.leader ? 'HM + insígnia de ' + humanize(w.gate.leader.toLowerCase()) : w.method) + ']' : '') + ' nv ' + (w.min === w.max ? w.min : w.min + '–' + w.max) + (w.pct != null || l.maps.length > 1 ? ' (' + [w.pct != null && pctText(w),l.maps.length > 1 && w.where].filter(Boolean).join(', ') + ')' : '')).join('; ') + '</li>').join('') + '</ul>');
-    if (l.others.length) parts.push('<div class="walk-h">Presentes, trocas e encontros</div><ul class="walk-list">' + l.others.map((o) => '<li>' + humanize(o.species) + ' — ' + ({ gift: 'presente', static: 'encontro único', egg: 'ovo', trade: 'troca', prize: 'prêmio', event: 'evento' }[o.type] ?? o.type) + (o.level ? ' nv ' + o.level : '') + ' (' + o.where + ')' + (o.detail ? ' — ' + o.detail : '') + '</li>').join('') + '</ul>');
+    if (l.others.length) parts.push('<div class="walk-h">Presentes, trocas e encontros</div><ul class="walk-list">' + l.others.map((o) => '<li>' + humanize(o.species) + ' — ' + ({ gift: 'presente', static: 'encontro único', egg: 'ovo de presente', breed: 'ovo na creche', trade: 'troca', prize: 'prêmio', event: 'evento', starter: 'inicial', roamer: 'errante' }[o.type] ?? o.type) + (o.level ? ' nv ' + o.level : '') + ' (' + o.where + ')' + (o.detail ? ' — ' + o.detail : '') + '</li>').join('') + '</ul>');
     if (l.items.length) parts.push('<div class="walk-h">Itens e TMs</div><ul class="walk-list">' + l.items.map((i) => '<li>' + (i.kind === 'TM/HM' ? 'TM/HM ' + humanize(i.move) : humanize(i.item.toLowerCase().replace(/_/g, '-'))) + ' — ' + ({ gym: 'prêmio do líder', gift: 'presente', mart: 'loja', ground: 'no chão', hidden: 'escondido' }[i.type] ?? i.type) + ' em ' + i.where + (i.x != null ? ' (' + i.x + ',' + i.y + ')' : '') + (i.by && i.type !== 'ground' && i.type !== 'hidden' ? ' — ' + i.by : '') + '</li>').join('') + '</ul>');
     if (l.tutors.length) parts.push('<div class="walk-h">Tutores</div><ul class="walk-list">' + l.tutors.map((t) => '<li>' + humanize(t.move) + ' — ' + t.where + (t.x != null ? ' (' + t.x + ',' + t.y + ')' : '') + (t.detail ? ' — ' + t.detail : '') + '</li>').join('') + '</ul>');
     if (trainers.length) parts.push('<div class="walk-h">Treinadores</div><ul class="walk-list">' + trainers.map((t) => '<li><strong>' + t.label + '</strong>' + (t.double ? ' (dupla)' : '') + ': ' + mons(t.party) + '</li>').join('') + '</ul>');
@@ -740,7 +740,23 @@ function howToGet(s) {
   if (alt) { best = pick(alt.direct); from = alt.from; }
   const first = formatSources([best], 1)[0] ?? '';
   const when = s.stageNeeded != null ? stageLabel(s.stageNeeded, acq.progress?.leaderOrder, acq.progress) : Number.isFinite(s.reach) && s.reach > 1 ? `a partir do nv ${s.reach}` : '';
-  return `<div class="kv"><b>Como conseguir${when ? ` · ${when}` : ''}</b>${from ? `evolua de ${humanize(from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
+  return `<div class="kv"><b>Como conseguir${when ? ` · ${when}` : ''}</b>${from ? `evolua de ${humanize(from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}${trainLine(s, best, from)}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
+}
+// o cálculo põe o Pokémon no nível do seu time: quando ele é capturado mais baixo, diz até onde treinar e por quê
+// ("Capture no nv 2–5 e treine até o nv 11 — aprende Karate Chop no nv 11")
+function trainLine(s, src, from) {
+  const lo = src?.min ?? src?.level;
+  if (!lo || !s.move) return '';
+  const why = [];
+  const evoLv = from ? s.mon.minLevel ?? 0 : 0; // nível em que a evolução sai (Butterfree: 10)
+  if (evoLv > lo) why.push(`evolui para ${humanize(s.mon.name)} no nv ${evoLv}`);
+  const mvLv = s.move.via?.method === 'level-up' ? s.move.via.level : 0;
+  if (mvLv > lo) why.push(`aprende ${humanize(s.move.name)} no nv ${mvLv}`);
+  const target = Math.max(evoLv, mvLv);
+  if (target <= lo) return '';
+  const range = src.max && src.max !== lo ? `${lo}–${src.max}` : lo;
+  const verb = { starter: 'Receba', gift: 'Receba', trade: 'Receba na troca', breed: 'Choque o ovo', egg: 'Choque o ovo' }[src.type] ?? 'Capture';
+  return `<br><span class="train">⬆ ${verb} no nv ${range} e treine até o nv ${target} — ${why.join('; ')}. A troca de golpes acima considera o seu time no nv ${$('level').value}.</span>`;
 }
 
 // modo "contra o time inteiro": as 3 que vencem mais Pokémon do time, com a troca contra cada um
