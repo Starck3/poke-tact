@@ -2,6 +2,22 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.54.0] — 2026-10-28
+
+> O Black/White agora mostra a frequência de cada Pokémon. No Scarlet/Violet, os exclusivos de versão saíram da versão errada: Larvitar só no Scarlet, Bagon só no Violet, Raikou só no Scarlet, e assim por diante.
+
+### Adicionado
+- **Taxa de aparição no Black/White** pela Bulbapedia: 562 de 1.016 encontros. Grama que mexe, poeira, sombra, água
+  agitada, aparição em massa e os moradores da White Forest ficam sem taxa (são fenômenos, sem uma taxa simples).
+- **Exclusivos de versão no Scarlet/Violet** pela página "Version-exclusive Pokémon" da Bulbapedia: o PKHeX não separa as
+  versões nos selvagens. A lista do jogo base vale em Paldea; a de cada DLC só nas áreas da DLC (Gligar é do Scarlet só em
+  Kitakami). Raid Tera já vinha separada e fica. 74 espécies/versão deixam de ser obtíveis (inclusive as evoluções, como
+  Tyranitar no Violet). O aviso "exclusivos aparecem nas duas versões" saiu da tela.
+
+### Alterado
+- Banco de lutas: vitórias iguais; folgadas no Black/White 2.344 → 2.356 e no Scarlet/Violet 5.536 → 5.517 (sem os
+  exclusivos da outra versão).
+
 ## [0.53.1] — 2026-10-26
 
 > Ao escolher um treinador, o nível do seu time e o progresso passam a ser os da luta (Brock: nível 14, nenhuma insígnia). Antes ficava o nível 30 e o app sugeria Pokémon e golpes que só se conseguem bem depois.
