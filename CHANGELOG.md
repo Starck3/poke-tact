@@ -2,6 +2,19 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.56.0] — 2026-10-28
+
+> As trocas com personagens do jogo agora dizem onde acontecem e em que ponto da história (Farfetch'd em Santalune City no X/Y, Machop na Route 2 no Sun/Moon, as trocas da League Club Room no Scarlet/Violet).
+
+### Adicionado
+- **Lugar e ponto da história das trocas dentro do jogo** pela página "In-game trade" da Bulbapedia (o PKHeX não diz onde
+  é a troca; aparecia "a Link Trade"): X/Y, Sun/Moon e Scarlet/Violet. No Scarlet/Violet, as 30 trocas sem nome são as da
+  League Club Room (The Indigo Disk). Encontros sem ponto da história: Scarlet/Violet 72 → 6, X/Y 18 → 12, Sun/Moon 14 → 4.
+- Lugar sem selvagem (cidade) pega o ponto da história dos treinadores que lutam lá.
+
+### Alterado
+- Banco de lutas: sem mudança.
+
 ## [0.55.0] — 2026-10-28
 
 > No Sword/Shield, os Pokémon da Wild Area agora aparecem no ponto certo da história pela regra do jogo: sem insígnia só dá para capturar até o nível 20, e cada insígnia sobe esse limite.

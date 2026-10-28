@@ -16,7 +16,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
   conhecido (ex.: Larvitar só no Scarlet, Bagon só no Violet) sai da outra versão; aviso da tela ajustado.
 - **R3 ⚠ Ponto da história no Sword/Shield** (4.648 encontros só estimados pelo nível, quase todos da Wild Area): tentar o
   índice do detonado da Bulbapedia e a página de cada área. Pronto quando: as estimativas caem ou ⏸ com o motivo medido.
-- **R4 ⬜ Encontros ainda sem ponto da história** (SV 72, BW 22, X/Y 18, SM 14, Z-A 7): caso a caso pela página do lugar.
+- **R4 ⚠ Encontros ainda sem ponto da história** (SV 72, BW 22, X/Y 18, SM 14, Z-A 7): caso a caso pela página do lugar.
 - **R5 ⬜ Taxa de aparição no Sword/Shield, Scarlet/Violet, Legends: Arceus e Z-A** (formato de tabela diferente: clima,
   bioma). Medir num jogo primeiro; estender só se o casamento for confiável.
 - **C1 ⬜ Revisão geral**: ler o sistema inteiro, testar as telas num Chrome headless e escrever as críticas do que melhorar.
@@ -41,3 +41,9 @@ R1 → R2 → R3 → R4 → R5 → C1 → D1.
   estimativas + 879 estágios da citação no detonado trocados. Banco sem mudança. Sobram estimadas: raids (outra regra) e
   DLCs (nível acompanha as insígnias). 🚩 Depois do Darkest Day a Wild Area ganha Pokémon de nível mais alto; pela regra eles
   ficam em "8 insígnias", um ponto antes do pós-jogo — o PKHeX não diz quais slots são só do pós-jogo.
+- **2026-10-28 — R4 ⚠ (0.56.0)**: trocas pela página "In-game trade" (lugar na 1ª coluna; {{rt|…}}; rowspan; "Any Pokémon";
+  SV "troca com NPC" = League Club Room da Indigo Disk, conferido espécie a espécie: 30/30). Sem estágio: SV 72 → 6, X/Y 18
+  → 12, SM 14 → 4. Ficam sem estágio (sem fonte do ponto da história do lugar): Vaniville Town e hotéis de Kalos (X/Y),
+  Malie City e Konikoni City (SM), Ralts (X/Y, sem linha na tabela); ovos de presente (Larvesta BW, Wynaut/Togepi ORAS,
+  Happiny BDSP, iniciais de Sinnoh do Jacq SV), Route 17 do BW (água), Virizion (BW), Giratina (LA) e os lendários da DLC
+  Mega Dimension do Z-A — todos de pós-jogo ou de NPC sem lugar no dado; ficam para uma rodada com a página de cada um.
