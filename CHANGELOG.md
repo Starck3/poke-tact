@@ -2,6 +2,18 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.58.0] — 2026-10-28
+
+> Cada sugestão agora diz até onde treinar o Pokémon: "Capture no nv 2–5 e treine até o nv 11 — aprende Karate Chop no nv 11". Na aba Detonado, o ovo aparece como "ovo na creche".
+
+### Adicionado
+- **Aviso de treino no card da sugestão**: quando o Pokémon é capturado (ou recebido) num nível mais baixo que o necessário,
+  o card diz o nível de captura, até onde treinar e por quê (evoluir e/ou aprender o golpe), e lembra o nível do time usado
+  na conta.
+
+### Corrigido
+- Aba Detonado: o tipo "breed" aparecia em inglês; agora "ovo na creche" (e "inicial", "errante", "ovo de presente").
+
 ## [0.57.0] — 2026-10-28
 
 > O Sword/Shield agora mostra a frequência de cada Pokémon por clima ("só com nublado 40%"). A aba Detonado passou a bater com o Onde capturar, e o link de uma luta já ajusta o nível do seu time.
