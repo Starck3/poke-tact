@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.59.0] — 2026-10-28
+
+> O banco de lutas agora também mede as sugestões que dependem de algo que o app não sabe quando fica disponível. Item de evolução e TM sem lugar: zero em todos os jogos. Ainda há Pokémon só com estágio estimado (DLCs do Sword/Shield).
+
+### Adicionado
+- Banco de lutas: cada sugestão marca o que usa sem fonte certa (item de evolução sem lugar, Pokémon só em fonte de estágio
+  estimado, TM ou tutor sem lugar) e o resumo de cada jogo conta essas sugestões. Resultado: 0 por item, TM ou tutor; 655
+  por estágio estimado — Sword/Shield 551 (áreas das DLCs, onde o nível acompanha as insígnias), Ultra Sun/Ultra Moon 83
+  (Ultra Space, no pós-jogo) e Scarlet/Violet 21.
+
 ## [0.58.0] — 2026-10-28
 
 > Cada sugestão agora diz até onde treinar o Pokémon: "Capture no nv 2–5 e treine até o nv 11 — aprende Karate Chop no nv 11". Na aba Detonado, o ovo aparece como "ovo na creche".

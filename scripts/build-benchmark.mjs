@@ -59,7 +59,7 @@ for (const gameId of ids) {
               opp: p.species, level: p.level, moves: p.moves,
               superEffectiveAvailable: r.candidates.filter((c) => c.move.eff >= 2).length,
               winnersAvailable: r.candidates.filter((c) => c.duel.win).length, candidates: r.candidates.length,
-              picks: r.picks.map((k) => ({ mon: k.mon.name, move: k.move.name, eff: k.move.eff, via: k.move.via?.method, stageNeeded: k.stageNeeded, ...pickOut(k.duel) })),
+              picks: r.picks.map((k) => ({ mon: k.mon.name, move: k.move.name, eff: k.move.eff, via: k.move.via?.method, stageNeeded: k.stageNeeded, ...pickOut(k.duel), ...((u) => (u.length ? { uncertain: u } : {}))(uncertainty(data, acq, k, version, stage)) })),
               before: oldPicks,
             };
           });
@@ -75,7 +75,10 @@ for (const gameId of ids) {
     return { mons: rows.length, covered: rows.filter((m) => sel(m).some((p) => p.win)).length, wins: ps.filter((p) => p.win).length, picks: ps.length,
       comfy: ps.filter((p) => p.win && (p.theirTurns == null || p.theirTurns >= p.myTurns + 2)).length, turnsSum: fin.reduce((a, p) => a + p.myTurns, 0), turnsN: fin.length };
   };
-  const s = { fights: fights.length, depois: sum((m) => m.picks), antes: sum((m) => m.before), semVencedorPossivel: rows.filter((m) => !m.winnersAvailable).length };
+  const unc = {};
+  for (const p of rows.flatMap((m) => m.picks)) for (const r of p.uncertain ?? []) unc[r] = (unc[r] ?? 0) + 1;
+  const s = { fights: fights.length, depois: sum((m) => m.picks), antes: sum((m) => m.before), semVencedorPossivel: rows.filter((m) => !m.winnersAvailable).length,
+    incertas: rows.flatMap((m) => m.picks).filter((p) => p.uncertain).length, incertasPor: unc };
   // jogo sem linha de base (antes/) não entra em nenhum dos dois totais — a comparação fica justa
   if (before) for (const k of ['antes', 'depois']) for (const f of Object.keys(total[k])) total[k][f] += s[k][f];
   for (const f of Object.keys(zero())) total.atual[f] += s.depois[f];
@@ -83,13 +86,43 @@ for (const gameId of ids) {
   writeFileSync(new URL(`../reports/benchmark/${gameId}.json`, import.meta.url), JSON.stringify({ game: gameId, summary: s, fights }, null, 1));
   const pct = (a, b) => (b ? `${Math.round((a / b) * 100)}%` : '—');
   const avg = (x) => (x.turnsN ? (x.turnsSum / x.turnsN).toFixed(2) : '—');
-  console.log(`[${gameId}] ${s.fights} lutas | 1+ vence: ${pct(s.antes.covered, s.antes.mons)} → ${pct(s.depois.covered, s.depois.mons)} | vencem: ${pct(s.antes.wins, s.antes.picks)} → ${pct(s.depois.wins, s.depois.picks)} | folgadas: ${pct(s.antes.comfy, s.antes.picks)} → ${pct(s.depois.comfy, s.depois.picks)} | turnos p/ nocautear: ${avg(s.antes)} → ${avg(s.depois)} | sem vencedor possível: ${s.semVencedorPossivel}`);
+  console.log(`[${gameId}] ${s.fights} lutas | 1+ vence: ${pct(s.antes.covered, s.antes.mons)} → ${pct(s.depois.covered, s.depois.mons)} | vencem: ${pct(s.antes.wins, s.antes.picks)} → ${pct(s.depois.wins, s.depois.picks)} | folgadas: ${pct(s.antes.comfy, s.antes.picks)} → ${pct(s.depois.comfy, s.depois.picks)} | turnos p/ nocautear: ${avg(s.antes)} → ${avg(s.depois)} | sem vencedor possível: ${s.semVencedorPossivel} | dado incerto: ${s.incertas} ${JSON.stringify(unc)}`);
 }
 const pct = (a, b) => (b ? `${Math.round((a / b) * 100)}%` : '—');
 const avgT = (x) => (x.turnsN ? (x.turnsSum / x.turnsN).toFixed(2) : '—');
 console.log(`ATUAL (${total.atual.games.length} jogos) | 1+ vence: ${pct(total.atual.covered, total.atual.mons)} | vencem: ${pct(total.atual.wins, total.atual.picks)} (${total.atual.picks} sugestões) | folgadas: ${pct(total.atual.comfy, total.atual.picks)}`);
 console.log(`TOTAL com linha de base (time ${DELTA} nv abaixo) | 1+ vence: ${pct(total.antes.covered, total.antes.mons)} → ${pct(total.depois.covered, total.depois.mons)} | vencem: ${pct(total.antes.wins, total.antes.picks)} → ${pct(total.depois.wins, total.depois.picks)} | folgadas: ${pct(total.antes.comfy, total.antes.picks)} → ${pct(total.depois.comfy, total.depois.picks)} | turnos: ${avgT(total.antes)} → ${avgT(total.depois)}`);
 writeFileSync(new URL(`../reports/benchmark/_total${DELTA ? '-' + DELTA : ''}.json`, import.meta.url), JSON.stringify(total, null, 1));
+
+/**
+ * S1 (PLANO-EXECUCAO-6): o que a sugestão usa sem o app saber quando fica disponível — o banco "vence" mesmo assim, então
+ * isso mede o risco de sugerir algo que ainda não existe naquele ponto (como o Armarouge na 1ª luta da Nemona):
+ *   • item: a espécie só chega por evolução com item que não tem lugar/estágio nos dados
+ *   • estimado: até esse estágio a espécie só aparece em fonte de estágio estimado pelo nível
+ *   • tm / tutor: o golpe vem de TM ou tutor sem lugar conhecido
+ */
+export function uncertainty(data, acq, k, version, stage) {
+  const out = [];
+  const byId = new Map(data.pokemon.map((p) => [p.id, p]));
+  const srcs = (m) => (acq.versions?.[version]?.[m.name] ?? []).filter((s) => s.type !== 'breed');
+  const ok = (s) => stage == null || (s.stage ?? 0) <= stage;
+  // a espécie (ou a pré-evolução de onde ela sai) tem fonte certa até aqui?
+  let m = k.mon, chainItem = false, certain = false, estimated = false;
+  for (let i = 0; m && i < 4; i++) {
+    const here = srcs(m).filter(ok);
+    if (here.some((s) => !s.stageEstimated)) { certain = true; break; }
+    if (here.length) estimated = true;
+    if (/ITEM/.test(m.evo?.kind ?? '') && typeof m.evo.param === 'string' && !(acq.items?.[m.evo.param]?.length)) chainItem = true;
+    const p = byId.get(m.evolvesFrom);
+    m = p && p.id !== m.id ? p : null;
+  }
+  if (!certain && chainItem) out.push('item');
+  if (!certain && estimated) out.push('estimado');
+  const via = k.move.via;
+  if (via?.method === 'machine' && !via.source) out.push('tm');
+  if (via?.method === 'tutor' && !via.source) out.push('tutor');
+  return out;
+}
 
 function pickOut(d) {
   return { win: d.win, myTurns: Number.isFinite(d.myTurns) ? d.myTurns : null, theirTurns: Number.isFinite(d.theirTurns) ? d.theirTurns : null, faster: d.faster, theirMove: d.theirMove };
