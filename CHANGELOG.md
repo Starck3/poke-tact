@@ -2,6 +2,18 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.55.0] — 2026-10-28
+
+> No Sword/Shield, os Pokémon da Wild Area agora aparecem no ponto certo da história pela regra do jogo: sem insígnia só dá para capturar até o nível 20, e cada insígnia sobe esse limite.
+
+### Alterado
+- **Wild Area do Sword/Shield** pelo limite de captura por insígnia (Bulbapedia, página "Badge"): até nv 20 sem insígnia,
+  25 com 1 … 55 com 7, qualquer nível com 8. A Wild Area abre inteira no começo, então o ponto da história de cada encontro
+  é o nº de insígnias que deixa capturar o nível mínimo dele. Troca 835 estimativas pelo nível e 879 estágios que vinham da
+  citação no detonado (Watchtower Ruins, Lake of Outrage, Giant's Cap… estavam todos no pós-jogo).
+- Raids e as áreas das DLCs (Isle of Armor, Crown Tundra) continuam estimadas: lá o nível acompanha as insígnias.
+- Banco de lutas: sem mudança.
+
 ## [0.54.0] — 2026-10-28
 
 > O Black/White agora mostra a frequência de cada Pokémon. No Scarlet/Violet, os exclusivos de versão saíram da versão errada: Larvitar só no Scarlet, Bagon só no Violet, Raikou só no Scarlet, e assim por diante.

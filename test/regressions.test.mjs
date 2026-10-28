@@ -2819,3 +2819,19 @@ test('R1/R2 (0.54.0): taxa no Black/White; exclusivos de versão do Scarlet/Viol
   assert.ok(sv.versions.violet.salamence.some((s) => /★/.test(s.detail ?? '')));
   assert.ok(sv.notes.some((n) => /Version-exclusive/.test(n)) && !sv.notes.some((n) => /não separa as versões —/.test(n)));
 });
+
+test('R3 (0.55.0): Wild Area do Sword/Shield pelo limite de captura por insígnia (Bulbapedia), não pela estimativa', () => {
+  const a = load('sword-shield-acquisition.json');
+  assert.match(a.catchLimitSource, /Catch level limit/);
+  const ws = Object.values(a.versions.sword).flat();
+  // sem insígnia: até nv 20; 1 insígnia: 25 … 7: 55; 8: qualquer nível
+  const need = (lv) => [20, 25, 30, 35, 40, 45, 50, 55, 100].findIndex((c) => c >= lv);
+  const area = ws.filter((s) => s.stageBy === 'limite de captura por insígnia (Bulbapedia)');
+  assert.ok(area.length > 800); // só o Sword (o relatório soma as duas versões)
+  assert.ok(area.every((s) => s.stage === need(s.min) && !s.stageEstimated));
+  // Watchtower Ruins vinha inteiro no pós-jogo (citado lá no detonado); os de nível baixo abrem no começo
+  assert.ok(ws.some((s) => s.where === 'Watchtower Ruins' && s.stage === 0));
+  // raid e DLC continuam como estavam (outra regra)
+  assert.ok(ws.filter((s) => /Raid/.test(s.detail ?? '')).every((s) => s.stageBy !== 'limite de captura por insígnia (Bulbapedia)'));
+  assert.ok(ws.filter((s) => s.where === 'Fields of Honor').every((s) => s.stageBy !== 'limite de captura por insígnia (Bulbapedia)'));
+});
