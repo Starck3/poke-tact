@@ -19,7 +19,9 @@ import { likelyMoveset } from '../public/engine.mjs';
 const gameId = process.argv[2];
 const game = GAMES[gameId];
 const wtFile = new URL(`../data-sources/pokemythology/${game?.walkthrough}.html`, import.meta.url);
-if (!game?.walkthrough || !existsSync(wtFile)) { console.log(`[${gameId}] sem detonado local — nada a fazer`); process.exit(0); }
+if (!game?.walkthrough) { console.log(`[${gameId}] sem detonado configurado — nada a fazer`); process.exit(0); }
+// S5: detonado configurado mas o HTML não está em data-sources/ (clone limpo) — com --strict é erro (o arquivo antigo ficaria)
+if (!existsSync(wtFile)) { console.log(`[${gameId}] detonado ${game.walkthrough} não está em data-sources/pokemythology/ — ${process.env.POKETACT_STRICT ? 'parado (--strict)' : 'mantido o arquivo anterior'}`); process.exit(process.env.POKETACT_STRICT ? 1 : 0); }
 const load = (f) => JSON.parse(readFileSync(new URL(`../public/data/${f}`, import.meta.url), 'utf8'));
 const data = load(`${gameId}.json`);
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
@@ -300,7 +302,7 @@ function twinStage(where) {
       const byLabel = new Map();
       for (const m of Object.values(a.progress?.maps ?? {})) if (m.stage != null && (!byLabel.has(m.label) || m.stage < byLabel.get(m.label))) byLabel.set(m.label, m.stage);
       twin = { byLabel, order: a.progress?.leaderOrder ?? [] };
-    } catch { twin = { byLabel: new Map(), order: [] }; }
+    } catch (e) { throw new Error(`${gameId}: o estágio vem do jogo original ${TWIN_STAGE[gameId]}, mas ${TWIN_STAGE[gameId]}-acquisition.json não pôde ser lido — monte ${TWIN_STAGE[gameId]} antes (${e.message})`); } // antes: mapa vazio sem aviso
   }
   // o original pode dividir o lugar ("Route 204 South" / "Route 204 North"): vale o menor estágio das partes
   const parts = [...twin.byLabel].filter(([l]) => l.startsWith(where + ' ')).map(([, st]) => st);

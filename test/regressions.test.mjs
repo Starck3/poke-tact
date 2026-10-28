@@ -2924,3 +2924,22 @@ test('S2/S3 (0.60.0): teste da tela no Chrome (npm run test:ui); linha de contex
   const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
   assert.equal(pkg.scripts['test:ui'], 'node scripts/ui-test.mjs');
 });
+
+test('S4 (0.61.0): montagem na ordem certa — jogo que usa os dados de outro vem depois dele', async () => {
+  const { buildOrder, DEPENDS } = await import('../scripts/lib/build-order.mjs');
+  const { GAMES } = await import('../scripts/games.mjs');
+  const all = buildOrder(Object.keys(GAMES));
+  assert.equal(all.length, Object.keys(GAMES).length);
+  for (const [id, deps] of Object.entries(DEPENDS)) for (const d of deps) assert.ok(all.indexOf(d) < all.indexOf(id), `${d} antes de ${id}`);
+  // ORAS vinha antes do Ruby/Sapphire na ordem do games.mjs
+  assert.deepEqual(buildOrder(['omega-ruby-alpha-sapphire', 'ruby-sapphire']), ['ruby-sapphire', 'omega-ruby-alpha-sapphire']);
+  assert.deepEqual(DEPENDS['legends-za'], ['scarlet-violet']);
+  // o estágio pelo jogo original não vira mais "mapa vazio" em silêncio
+  assert.match(readFileSync(new URL('../scripts/build-detonado-modern.mjs', import.meta.url), 'utf8'), /monte \$\{TWIN_STAGE\[gameId\]\} antes/);
+});
+
+test('S5 (0.61.0): fonte configurada mas ausente — avisa e, com build-game --strict, falha', () => {
+  const src = (f) => readFileSync(new URL(`../scripts/${f}`, import.meta.url), 'utf8');
+  for (const f of ['build-detonado-modern.mjs', 'build-evo-items.mjs']) assert.match(src(f), /process\.exit\(process\.env\.POKETACT_STRICT \? 1 : 0\)/, f);
+  assert.match(src('build-game.mjs'), /POKETACT_STRICT: '1'/);
+});

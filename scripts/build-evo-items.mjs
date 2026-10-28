@@ -14,7 +14,8 @@ const game = GAMES[gameId];
 const wt = new URL(`../data-sources/pokemythology/${game?.walkthrough}.html`, import.meta.url);
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
 const out = new URL(`../public/data/${gameId}-evoitems.json`, import.meta.url);
-if (!game?.walkthrough || !existsSync(wt) || !existsSync(acqFile)) { console.log(`[${gameId}] sem detonado local ou sem onde obter — nada a fazer`); process.exit(0); }
+if (!game?.walkthrough || !existsSync(acqFile)) { console.log(`[${gameId}] sem detonado configurado ou sem onde obter — nada a fazer`); process.exit(0); }
+if (!existsSync(wt)) { console.log(`[${gameId}] detonado ${game.walkthrough} não está em data-sources/pokemythology/ — ${process.env.POKETACT_STRICT ? 'parado (--strict)' : 'mantido o arquivo anterior'}`); process.exit(process.env.POKETACT_STRICT ? 1 : 0); }
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
 // itemsPartial: a lista veio da Bulbapedia (0.39.0), não do decomp — continua gerando as citações do detonado
 if (acq.items && !acq.itemsPartial && Object.keys(acq.items).length) { console.log(`[${gameId}] itens já vêm do decomp (acquisition.items) — nada a fazer`); process.exit(0); }
