@@ -140,14 +140,14 @@ async function load(gameId) {
   // Gens 6–9: onde obter pelas tabelas de encontro do PKHeX — local e nível, sem taxa e sem linha do tempo de insígnias
   else if (acq.encountersOnly) $('disclaimer').textContent =
     `Sugestões usam os dados de ${g.label} com as regras da Geração ${roman(data.game.generation)}: atributos, tipos, habilidades e golpes por nível conferidos com as tabelas do jogo (PKHeX). ` +
-    'Disponibilidade = aparece nas tabelas de encontro do jogo nesta versão (selvagem, presente, encontro único, troca no jogo) ou evolui de algo assim; eventos, transferências e criação (breeding) não contam. ' +
+    'Disponibilidade = aparece nas tabelas de encontro do jogo nesta versão (selvagem, presente, encontro único, troca no jogo) ou evolui de algo assim, ou nasce de um ovo na creche; eventos e transferências não contam. ' +
     (acq.progress ? `As tabelas trazem local e faixa de nível${acq.ratesSource ? '; a taxa de aparição vem da tabela de cada lugar na Bulbapedia (quando casa)' : ', sem taxa de aparição'}; o ponto da história de cada local vem do detonado. ` : 'As tabelas trazem local e faixa de nível, mas não a taxa de aparição nem em que ponto da história a área abre; o nível estimado é o menor nível de encontro. ') +
     (acq.notes ?? []).map((n) => n + ' ').join('') +
     (trainersFromWalk ? 'Treinadores: times do detonado (espécie e nível); os golpes são os que o Pokémon teria no nível (moveset padrão), não necessariamente os reais. ' : trainers.length ? 'Ao escolher um treinador do jogo, usamos o nível e os golpes reais do time dele. ' : 'Ainda sem treinadores do jogo. ') +
     'Com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
   else $('disclaimer').textContent =
     `Sugestões usam apenas dados da Geração ${roman(data.game.generation)} (tipos, stats base, golpes${data.game.generation >= 3 ? ' e habilidades' : ''} daquela geração). ` +
-    'Disponibilidade = pode ser obtido nesta versão (selvagem, presente, troca dentro do jogo, prêmio…) ou evolui de algo assim; trocas com outros jogos, eventos e criação (breeding) não contam. ' +
+    'Disponibilidade = pode ser obtido nesta versão (selvagem, presente, troca dentro do jogo, prêmio…) ou evolui de algo assim, ou nasce de um ovo na creche; trocas com outros jogos e eventos não contam. ' +
     `Ao escolher um treinador do jogo, usamos o nível e os golpes reais do time dele (dados do próprio ${g.label})` +
     (data.game.generation >= 3 ? '; a habilidade do Pokémon dele não é determinada, então só imunidades de habilidade única entram na conta. ' : '. ') +
     'Sem treinador: com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
@@ -1048,7 +1048,15 @@ function applyGameParams(p) {
   if (p.capturar) { $('dexQ').value = p.capturar; showTab('dex'); }
   if (p.insignias != null && [...$('stage').options].some((o) => o.value === p.insignias)) $('stage').value = p.insignias;
   const t = p.treinador && trainers.find((x) => x.key === p.treinador);
-  if (t) { $('trainer').value = t.key; pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1)); renderTrainerPicker(); return; }
+  // link da luta (atalhos da tela inicial, busca "ir para a luta"): nível e progresso da luta, como no seletor — salvo se o
+  // link já diz o nível (?meu=) ou o progresso (?insignias=)
+  if (t) {
+    const keep = { level: $('level').value, stage: $('stage').value };
+    $('trainer').value = t.key; setLevelFor(t);
+    if (p.meu) $('level').value = keep.level;
+    if (p.insignias != null) $('stage').value = keep.stage;
+    pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1)); renderTrainerPicker(); return;
+  }
   if (p.pokemon) { known = null; $('opp').value = p.pokemon; $('oppLevel').value = p.nivel ?? ''; }
   update();
 }

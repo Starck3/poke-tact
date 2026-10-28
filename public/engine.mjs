@@ -356,7 +356,15 @@ const SRC_LABEL = {
 /** Taxa de aparição para a tela: "6%", "~80%" (aproximada na tabela), "dia 20% / noite 10%", "só de noite 30%" (Alola),
  *  "manhã 50% / dia 50% / noite 40%" (BDSP). */
 export function pctText(s) {
-  const t = Object.entries(s.pctTimes ?? {}), a = s.pctApprox ? '~' : '';
+  const a0 = s.pctApprox ? '~' : '';
+  // clima (Sword/Shield): só aparece nesses climas — "só com nublado 40%", "com chuva/tempestade 5% · neblina 35%"
+  if (s.pctWeather && Object.keys(s.pctWeather).length) {
+    const by = new Map();
+    for (const [k, v] of Object.entries(s.pctWeather)) by.set(v, [...(by.get(v) ?? []), k]);
+    const parts = [...by].sort((x, y) => y[0] - x[0]).map(([v, ks]) => `${ks.join('/')} ${a0}${v}%`);
+    return `só com ${parts.join(' · ')}`;
+  }
+  const t = Object.entries(s.pctTimes ?? {}), a = a0;
   const on = t.filter(([, v]) => v);
   if (!t.length) return `${a}${s.pct}%`;
   if (on.length === 1) return `só de ${on[0][0]} ${a}${on[0][1]}%`;
@@ -549,7 +557,7 @@ export function typeIndex(data, { version = null, q = '', types = [], onlyObtain
   return { mons, groups, counts };
 }
 
-const ITEM_HOW = { other: 'loja, presente ou prêmio', ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 'presente', gym: 'prêmio do líder', prize: 'prêmio' };
+const ITEM_HOW = { cited: 'citado no detonado', other: 'loja, presente ou prêmio', ground: 'no chão', hidden: 'escondido', mart: 'loja', gift: 'presente', gym: 'prêmio do líder', prize: 'prêmio' };
 /**
  * Aba "Onde capturar" → evoluções: a família inteira da espécie (da forma base às finais, com ramos — Eevee), o método de
  * cada evolução e, quando ela pede item (pedra, Metal Coat…), onde achar o item no jogo:

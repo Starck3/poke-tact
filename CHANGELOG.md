@@ -2,6 +2,27 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.57.0] — 2026-10-28
+
+> O Sword/Shield agora mostra a frequência de cada Pokémon por clima ("só com nublado 40%"). A aba Detonado passou a bater com o Onde capturar, e o link de uma luta já ajusta o nível do seu time.
+
+### Adicionado
+- **Taxa de aparição no Sword/Shield** pela Bulbapedia, por clima: 2.417 de 3.490 encontros. A seção da página separa
+  encontro escondido na grama de encontro no mapa; curry, raid e Dynamax Adventure ficam sem taxa.
+- Item de evolução sem linha na Bulbapedia, mas citado no detonado, passa a valer a partir do trecho que o cita
+  (Auspicious Armor no Scarlet/Violet: Zapapico). Antes não limitava nada: o Armarouge era sugerido na 1ª luta contra a
+  Nemona.
+
+### Corrigido
+- A aba Detonado dos jogos sem decomp é montada depois de todas as etapas da Bulbapedia: o ponto da história de cada
+  Pokémon e o lugar das trocas batem com o Onde capturar (Sword/Shield tinha 440 encontros em pontos diferentes).
+- Abrir uma luta por link (atalhos da tela inicial, busca "ir para a luta") agora também ajusta o nível do time e o
+  progresso, como o seletor (0.53.1 só tratava o seletor).
+- O aviso "Disponibilidade" dizia que ovos não contam; contam desde a 0.23.
+
+### Alterado
+- Banco de lutas: vitórias iguais; folgadas no Scarlet/Violet 5.517 → 5.511 (sem o Armarouge antes da hora).
+
 ## [0.56.0] — 2026-10-28
 
 > As trocas com personagens do jogo agora dizem onde acontecem e em que ponto da história (Farfetch'd em Santalune City no X/Y, Machop na Route 2 no Sun/Moon, as trocas da League Club Room no Scarlet/Violet).

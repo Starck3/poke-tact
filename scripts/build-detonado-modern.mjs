@@ -403,7 +403,11 @@ const estimateOf = (where) => {
   return { stage: st, section: 'estimativa pelo nível', by: 'estimativa', name: `selvagens a partir do nv ${L}` };
 };
 let estimated = 0;
-for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
+// --walkthrough-only (última etapa do build-game, depois de todas as apply-*): só remonta a aba Detonado com o lugar e o
+// estágio que ficaram gravados em cada fonte (limite de captura, trocas, estimativas revistas…) e com os treinadores do
+// arquivo (golpes reais da Bulbapedia) — antes o Detonado ficava com o estágio desta etapa e divergia do onde obter
+const WALK_ONLY = process.argv.includes('--walkthrough-only');
+if (!WALK_ONLY) for (const v of Object.values(acq.versions)) for (const list of Object.values(v)) for (const s of list) {
   if (s.type === 'breed') continue; // ovo da creche (apply-breeding): o estágio é o da creche, não o de um local
   total++;
   let r = placeOf(s.where);
@@ -411,40 +415,48 @@ for (const v of Object.values(acq.versions)) for (const list of Object.values(v)
   if (!r && hasProgress) { r = estimateOf(s.where); if (r) { s.stageEstimated = true; estimated++; } }
   if (r && hasProgress) { s.stage = r.stage; withStage++; } else delete s.stage;
 }
-if (hasProgress) {
+if (WALK_ONLY) { /* o onde obter e o progresso já estão como as etapas seguintes deixaram */ } else if (hasProgress) {
   acq.progress = {
     leaderOrder, ...(stageNames && { stageNames, post: POST }), leadersFound: leaderOrder.length, eliteFound: battles.filter((b) => b.kind === 'elite').length,
     source: `PokeMythology ${game.walkthrough} (ordem dos líderes) + locais das tabelas do PKHeX`,
     trainerStage: Object.fromEntries(trainers.filter((t) => t.stage != null).map((t) => [t.key, t.stage])),
     placesWithStage: [...stageOfPlace.values()].filter(Boolean).length, placesTotal: stageOfPlace.size,
     keyItems: keyItems(),
+    // estágio de cada trecho do detonado (build-evo-items: item de evolução citado num trecho → o estágio desse trecho)
+    sectionStage: Object.fromEntries(tl.sections.filter((s) => s.title).map((s) => [s.title, s.stage])),
   };
 } else delete acq.progress;
-writeFileSync(acqFile, JSON.stringify(acq));
+if (!WALK_ONLY) writeFileSync(acqFile, JSON.stringify(acq));
 
 // ---- trainers.json
 const pub = trainers.map(({ at, ...t }) => t);
-writeFileSync(new URL(`../public/data/${gameId}-trainers.json`, import.meta.url), JSON.stringify({
+if (!WALK_ONLY) writeFileSync(new URL(`../public/data/${gameId}-trainers.json`, import.meta.url), JSON.stringify({
   source: `PokeMythology ${game.walkthrough} (times: espécie e nível; golpes = moveset padrão do jogo no nível)`, fromWalkthrough: true, trainers: pub, unplaced: [],
 }));
+// no modo --walkthrough-only, os treinadores do arquivo (golpes reais, estágio revisto) no lugar dos recém-lidos do detonado
+const wtTrainers = WALK_ONLY ? JSON.parse(readFileSync(new URL(`../public/data/${gameId}-trainers.json`, import.meta.url), 'utf8')).trainers.map((t) => ({ ...t, map: t.map ?? [] })) : trainers;
 
 // ---- walkthrough.json: locais por estágio, na ordem do detonado
 const versions = {};
 for (const [v, byMon] of Object.entries(acq.versions)) {
   const locs = new Map();
-  const locOf = (where, r) => {
-    if (!locs.has(where)) locs.set(where, { section: r?.section ?? where, name: where, stage: hasProgress ? (r?.stage ?? null) : 0, order: r ? (secIndex.get(r.section) ?? 1e6) : 1e6, maps: [where], wild: [], others: [], items: [], tutors: [], trainers: [] });
-    return locs.get(where);
+  // local = lugar + estágio da fonte: o mesmo lugar pode abrir por partes (Wild Area: cada nível pede mais insígnias)
+  const locOf = (where, r, st = r?.stage ?? null) => {
+    const k = `${where}|${st}`;
+    if (!locs.has(k)) locs.set(k, { section: r?.section ?? where, name: where, stage: hasProgress ? st : 0, order: r ? (secIndex.get(r.section) ?? 1e6) : 1e6, maps: [where], wild: [], others: [], items: [], tutors: [], trainers: [] });
+    return locs.get(k);
   };
   for (const [species, list] of Object.entries(byMon)) for (const s of list) {
-    const l = locOf(s.where, placeOf(s.where));
-    if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }), ...(s.pct != null && { pct: s.pct }), ...(s.pctApprox && { pctApprox: true }), ...(s.pctTimes && { pctTimes: s.pctTimes }) });
+    const r = placeOf(s.where);
+    const l = locOf(s.where, r, s.stage ?? r?.stage ?? null);
+    if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }), ...(s.pct != null && { pct: s.pct }), ...(s.pctApprox && { pctApprox: true }), ...(s.pctTimes && { pctTimes: s.pctTimes }), ...(s.pctWeather && { pctWeather: s.pctWeather }) });
     else l.others.push({ species, type: s.type, level: s.level, where: s.where, ...(s.detail && { detail: s.detail }) });
   }
   // treinadores: no local cujo nome está no título da seção da luta; senão um local com o nome da seção
-  for (const t of trainers) {
+  for (const t of wtTrainers) {
     const sec = t.map[0] ?? '';
-    const hit = [...locs.values()].find((l) => sec && words(sec).join(' ').includes(words(l.name.replace(/\(.*?\)/g, ' ')).join(' ')));
+    const near = [...locs.values()].filter((l) => sec && words(sec).join(' ').includes(words(l.name.replace(/\(.*?\)/g, ' ')).join(' ')));
+    const hit = near.find((l) => l.stage === t.stage) ?? near[0]; // o lugar no estágio da luta, quando ele abre por partes
     const l = hit ?? locOf(sec || 'Outros', { section: sec, stage: t.stage ?? (hasProgress ? null : 0) });
     if (l.order === 1e6) l.order = secIndex.get(tl.sections.find((s) => s.title && sec.toUpperCase().includes(s.title))?.title) ?? l.order;
     l.trainers.push({ key: t.key, label: t.label, group: t.group, party: t.party.map(({ species, level }) => ({ species, level })), ...(t.forStarter && { forStarter: t.forStarter }) });
@@ -452,7 +464,7 @@ for (const [v, byMon] of Object.entries(acq.versions)) {
   const placed = [...locs.values()].filter((l) => l.stage != null);
   const stages = (hasProgress ? [...Array(POST + 1).keys()] : [0]).map((st) => {
     const L = leaderOrder[st];
-    const lt = L ? trainers.find((t) => L.split('/').includes(t.name)) : null;
+    const lt = L ? wtTrainers.find((t) => L.split('/').includes(t.name)) : null;
     return {
       stage: st,
       leader: lt ? { key: lt.key, name: L, where: lt.map[0] ?? '', party: lt.party.map((p) => ({ species: p.species, level: p.level, item: null, moves: p.moves })), prize: [] } : null,
@@ -467,6 +479,7 @@ writeFileSync(new URL(`../public/data/${gameId}-walkthrough.json`, import.meta.u
   leaders: leaderOrder, versions,
 }));
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
+if (WALK_ONLY) { console.log(`[${gameId}] aba Detonado remontada com o lugar e o estágio do onde obter (depois das etapas da Bulbapedia)`); process.exit(0); }
 writeFileSync(new URL(`../reports/${gameId}/detonado-modern.json`, import.meta.url), JSON.stringify({ leaderOrder, badges: badges.map((b) => `${b.badge}←${b.leaderHint ?? '?'}`), unresolved, fuzzy, skippedPlaceholders, placeholderReport, withStage, total, placesWithoutStage: [...stageOfPlace].filter(([, r]) => !r).map(([w]) => w) }, null, 1));
 const g = trainers.reduce((a, t) => ((a[t.group] = (a[t.group] ?? 0) + 1), a), {});
 console.log(`[${gameId}] detonado: ${sections.length} seções, ${battles.length} lutas → ${trainers.length} treinadores ${JSON.stringify(g)}; líderes: ${leaderOrder.join(' > ') || '—'}${champ && hasProgress ? `; campeão ${champ.name}` : ''}`);

@@ -17,7 +17,7 @@ Legenda: ⬜ a fazer · 🔄 em andamento · ✅ feita · ⚠ parcial · ⏸ pul
 - **R3 ⚠ Ponto da história no Sword/Shield** (4.648 encontros só estimados pelo nível, quase todos da Wild Area): tentar o
   índice do detonado da Bulbapedia e a página de cada área. Pronto quando: as estimativas caem ou ⏸ com o motivo medido.
 - **R4 ⚠ Encontros ainda sem ponto da história** (SV 72, BW 22, X/Y 18, SM 14, Z-A 7): caso a caso pela página do lugar.
-- **R5 ⬜ Taxa de aparição no Sword/Shield, Scarlet/Violet, Legends: Arceus e Z-A** (formato de tabela diferente: clima,
+- **R5 ⚠ Taxa de aparição no Sword/Shield, Scarlet/Violet, Legends: Arceus e Z-A** (formato de tabela diferente: clima,
   bioma). Medir num jogo primeiro; estender só se o casamento for confiável.
 - **C1 ⬜ Revisão geral**: ler o sistema inteiro, testar as telas num Chrome headless e escrever as críticas do que melhorar.
 - **D1 ⬜** STATUS.md, memória, resumo final.
@@ -47,3 +47,10 @@ R1 → R2 → R3 → R4 → R5 → C1 → D1.
   Malie City e Konikoni City (SM), Ralts (X/Y, sem linha na tabela); ovos de presente (Larvesta BW, Wynaut/Togepi ORAS,
   Happiny BDSP, iniciais de Sinnoh do Jacq SV), Route 17 do BW (água), Virizion (BW), Giratina (LA) e os lendários da DLC
   Mega Dimension do Z-A — todos de pós-jogo ou de NPC sem lugar no dado; ficam para uma rodada com a página de cada um.
+- **2026-10-28 — R5 ⚠ (0.57.0)**: Sword/Shield com taxa por clima (2.417/3.490): seção da página (Hidden × Visible) casa com o
+  método do PKHeX (escondido × no mapa); o clima da linha cruza o do encontro. ⏸ Scarlet/Violet, Legends: Arceus e Z-A: a
+  página dos lugares não tem tabela de captura por lugar no mesmo formato (bioma/região) — fica para outra rodada.
+- **2026-10-28 — achados da revisão corrigidos já (0.57.0)**: Detonado remontado depois das etapas da Bulbapedia
+  (sync-walkthrough-modern; SwSh tinha 440 estágios divergentes); link ?treinador= ajusta nível/progresso; item citado no
+  detonado limita a evolução (Armarouge na 1ª luta da Nemona); aviso de disponibilidade sobre ovos. 🚩 O item citado usa
+  a 1ª citação do detonado — pode ser mais tarde que a 1ª chance real (Water Stone do Z-A ficou no pós-jogo).

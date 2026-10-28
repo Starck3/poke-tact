@@ -51,7 +51,7 @@ for (const param of [...evoItems(data.pokemon), ...megaStones]) {
       const key = (s.full ?? s.title) + '|' + sentence;
       if (seen.has(key)) continue;
       seen.add(key);
-      (items[param] ??= []).push({ section: s.full ?? s.title, text: sentence });
+      (items[param] ??= []).push({ section: s.full ?? s.title, text: sentence, stage: acq.progress?.sectionStage?.[s.title] ?? null });
     }
   }
 }
@@ -62,6 +62,18 @@ writeFileSync(out, JSON.stringify({
   note: 'Trechos do detonado que citam onde achar o item — não é posição verificada no jogo.', items,
   ...(prev.bulbapedia && { bulbapedia: prev.bulbapedia, bulbapediaSource: prev.bulbapediaSource }),
 }));
+// item sem fonte da Bulbapedia (acq.itemsPartial: não bloqueava a evolução) mas citado no detonado → entra em acq.items com o
+// estágio do trecho que o cita (Auspicious Armor no Scarlet/Violet: trecho de Zapapico — antes o Armarouge saía no começo)
+if (acq.itemsPartial) {
+  acq.items ??= {};
+  for (const [p, list] of Object.entries(acq.items)) { const keep = list.filter((x) => x.type !== 'cited'); if (keep.length) acq.items[p] = keep; else delete acq.items[p]; } // idempotente
+  for (const [param, cites] of Object.entries(items)) {
+    if (acq.items[param]?.length) continue;
+    const staged = cites.filter((c) => Number.isInteger(c.stage));
+    if (staged.length) acq.items[param] = staged.map((c) => ({ type: 'cited', where: c.section.toLowerCase().replace(/(^|\s)(\S)/g, (m, x, y) => x + y.toUpperCase()), stage: c.stage }));
+  }
+  writeFileSync(acqFile, JSON.stringify(acq));
+}
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 const all = [...evoItems(data.pokemon), ...megaStones]; // itens de evolução + Mega Stones (a conta "x/y" usa os dois)
 writeFileSync(new URL(`../reports/${gameId}/evo-items.json`, import.meta.url), JSON.stringify({ withMentions: Object.keys(items).length, total: all.length, without: all.filter((p) => !items[p]) }, null, 1));
