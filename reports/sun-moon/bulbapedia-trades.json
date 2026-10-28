@@ -1,0 +1,22 @@
+{
+ "rows": 7,
+ "placed": [
+  "machop ← Route 2 (estágio 0)",
+  "bounsweet ← Route 5 (estágio 2)",
+  "graveler-alola ← Tapu Village (estágio 7)",
+  "steenee ← Seafolk Village (estágio 9)",
+  "talonflame ← Poni Gauntlet (estágio 12)",
+  "machop ← Route 2 (estágio 0)",
+  "bounsweet ← Route 5 (estágio 2)",
+  "graveler-alola ← Tapu Village (estágio 7)",
+  "steenee ← Seafolk Village (estágio 9)",
+  "talonflame ← Poni Gauntlet (estágio 12)"
+ ],
+ "noStage": [
+  "happiny ← Malie City",
+  "poliwhirl ← Konikoni City",
+  "happiny ← Malie City",
+  "poliwhirl ← Konikoni City"
+ ],
+ "unmatched": []
+}

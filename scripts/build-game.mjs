@@ -33,7 +33,7 @@ const PKHEX_STEPS = ['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-for
 // apply-bulbapedia-items: onde achar itens de evolução/Mega Stones (sem decomp) e os incensos que faltam (com decomp) —
 // antes do apply-breeding (bebê de incenso); apply-bulbapedia-trainers: golpes reais, item e golpe Z dos chefes pela Bulbapedia (o time vem do detonado)
 // build-trainers-bulbapedia: jogo sem detonado (USUM) ganha os treinadores pela Bulbapedia
-const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'apply-bulbapedia-rates', 'apply-bulbapedia-exclusives', 'build-detonado-modern', 'build-trainers-bulbapedia', 'apply-bulbapedia-trainers', 'apply-bulbapedia-walkthrough', 'apply-bulbapedia-catchlimit', 'apply-bulbapedia-items', 'apply-breeding']; // a ordem da história (walkthrough) antes dos itens: no USUM ela dá os estágios
+const PKHEX_ACQ_STEPS = ['build-acquisition-pkhex', 'apply-bulbapedia-rates', 'apply-bulbapedia-exclusives', 'build-detonado-modern', 'build-trainers-bulbapedia', 'apply-bulbapedia-trainers', 'apply-bulbapedia-walkthrough', 'apply-bulbapedia-catchlimit', 'apply-bulbapedia-trades', 'apply-bulbapedia-items', 'apply-breeding']; // a ordem da história (walkthrough) antes dos itens: no USUM ela dá os estágios
 // jogo que a PokéAPI não tem (Legends: Z-A): dataset inteiro das tabelas do PKHeX
 // (o detonado e as etapas da Bulbapedia também: sem elas a reconstrução perdia a ordem da história e os golpes reais)
 const PKHEX_ONLY_STEPS = ['build-data-pkhex', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-evos', 'validate-pkhex', ...PKHEX_ACQ_STEPS];

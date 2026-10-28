@@ -2835,3 +2835,19 @@ test('R3 (0.55.0): Wild Area do Sword/Shield pelo limite de captura por insígni
   assert.ok(ws.filter((s) => /Raid/.test(s.detail ?? '')).every((s) => s.stageBy !== 'limite de captura por insígnia (Bulbapedia)'));
   assert.ok(ws.filter((s) => s.where === 'Fields of Honor').every((s) => s.stageBy !== 'limite de captura por insígnia (Bulbapedia)'));
 });
+
+test('R4 (0.56.0): trocas dentro do jogo com lugar e ponto da história pela Bulbapedia ("In-game trade")', () => {
+  const at = (g, v, sp) => load(`${g}-acquisition.json`).versions[v][sp].find((s) => s.type === 'trade');
+  // X/Y: Farfetch'd em Santalune City; Sun/Moon: Machop na Route 2 ({{rt|2|Alola}}) e Bounsweet na Route 5
+  assert.deepEqual([at('x-y', 'x', 'farfetchd').where, at('x-y', 'x', 'farfetchd').stage], ['Santalune City', 1]);
+  assert.deepEqual([at('sun-moon', 'sun', 'machop').where, at('sun-moon', 'sun', 'machop').stage], ['Route 2', 0]);
+  // linha de "Any Pokémon" com rowspan: os iniciais de Vaniville Town (lugar sem ponto da história conhecido → sem estágio)
+  assert.equal(at('x-y', 'x', 'chespin').where, 'Vaniville Town');
+  // Scarlet/Violet: as 30 trocas sem nome são as da League Club Room (The Indigo Disk), no estágio das áreas da DLC
+  const sv = load('scarlet-violet-acquisition.json');
+  const club = Object.values(sv.versions.scarlet).flat().filter((s) => s.type === 'trade' && /League Club Room/.test(s.where));
+  assert.ok(club.length >= 29); // 30 na página; uma delas só aparece na outra versão
+  assert.ok(club.every((s) => Number.isInteger(s.stage)));
+  assert.equal(at('scarlet-violet', 'scarlet', 'haunter').where, 'Levincia');
+  assert.ok(!Object.values(sv.versions.scarlet).flat().some((s) => s.where === 'a Link Trade'));
+});

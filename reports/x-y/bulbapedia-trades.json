@@ -1,0 +1,27 @@
+{
+ "rows": 8,
+ "placed": [
+  "farfetchd ← Santalune City (estágio 1)",
+  "steelix ← Cyllage City (estágio 1)",
+  "bisharp ← Snowbelle City (estágio 8)",
+  "farfetchd ← Santalune City (estágio 1)",
+  "steelix ← Cyllage City (estágio 1)",
+  "bisharp ← Snowbelle City (estágio 8)"
+ ],
+ "noStage": [
+  "magikarp ← Kalos hotels",
+  "eevee ← Kalos hotels",
+  "chespin ← Vaniville Town",
+  "fennekin ← Vaniville Town",
+  "froakie ← Vaniville Town",
+  "magikarp ← Kalos hotels",
+  "eevee ← Kalos hotels",
+  "chespin ← Vaniville Town",
+  "fennekin ← Vaniville Town",
+  "froakie ← Vaniville Town"
+ ],
+ "unmatched": [
+  "ralts",
+  "ralts"
+ ]
+}
