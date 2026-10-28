@@ -2898,3 +2898,14 @@ test('0.58.0: card diz até onde treinar (capturado mais baixo que o time) e o D
   assert.equal(trainLine({ mon: { name: 'onix', minLevel: 1 }, move: { name: 'tackle', via: { method: 'level-up', level: 1 } } }, { type: 'wild', min: 5, max: 7 }, null), '');
   assert.match(app, /breed: 'ovo na creche'/);
 });
+
+test('S1 (0.59.0): banco de lutas mede sugestão com dado incerto (item sem lugar, estágio estimado, TM/tutor sem lugar)', async () => {
+  // o banco grava "incertas" por jogo; item de evolução e TM sem lugar não passam mais (0 em todos os jogos)
+  const tot = { item: 0, tm: 0, tutor: 0 };
+  for (const g of ['scarlet-violet', 'sword-shield', 'x-y', 'firered-leafgreen']) {
+    const b = JSON.parse(readFileSync(new URL(`../reports/benchmark/${g}.json`, import.meta.url), 'utf8'));
+    assert.ok(Number.isInteger(b.summary.incertas), g);
+    for (const k of Object.keys(tot)) tot[k] += b.summary.incertasPor?.[k] ?? 0;
+  }
+  assert.deepEqual(tot, { item: 0, tm: 0, tutor: 0 });
+});

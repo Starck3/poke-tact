@@ -20,7 +20,9 @@
    "turnsSum": 0,
    "turnsN": 0
   },
-  "semVencedorPossivel": 0
+  "semVencedorPossivel": 0,
+  "incertas": 0,
+  "incertasPor": {}
  },
  "fights": [
   {

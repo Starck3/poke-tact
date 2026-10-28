@@ -20,7 +20,11 @@
    "turnsSum": 0,
    "turnsN": 0
   },
-  "semVencedorPossivel": 0
+  "semVencedorPossivel": 0,
+  "incertas": 83,
+  "incertasPor": {
+   "estimado": 83
+  }
  },
  "fights": [
   {
@@ -11314,7 +11318,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "close-combat"
+       "theirMove": "close-combat",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "venusaur",
@@ -11418,7 +11425,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dragon-claw"
+       "theirMove": "dragon-claw",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "venusaur",
@@ -11534,7 +11544,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "ice-hammer"
+       "theirMove": "ice-hammer",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "heracross",
@@ -11585,7 +11598,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "close-combat"
+       "theirMove": "close-combat",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "venusaur",
@@ -11689,7 +11705,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dragon-claw"
+       "theirMove": "dragon-claw",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "venusaur",
@@ -11805,7 +11824,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "ice-hammer"
+       "theirMove": "ice-hammer",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "heracross",
@@ -11856,7 +11878,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "close-combat"
+       "theirMove": "close-combat",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "venusaur",
@@ -11960,7 +11985,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "dragon-claw"
+       "theirMove": "dragon-claw",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "venusaur",
@@ -12076,7 +12104,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "ice-hammer"
+       "theirMove": "ice-hammer",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "heracross",
@@ -12952,7 +12983,10 @@
        "myTurns": 1,
        "theirTurns": 7,
        "faster": 1,
-       "theirMove": "stone-edge"
+       "theirMove": "stone-edge",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "heracross",
@@ -13096,7 +13130,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "dragon-rush"
+       "theirMove": "dragon-rush",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "slowbro",
@@ -13223,7 +13260,10 @@
        "myTurns": 1,
        "theirTurns": 7,
        "faster": 1,
-       "theirMove": "stone-edge"
+       "theirMove": "stone-edge",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "heracross",
@@ -13367,7 +13407,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "dragon-rush"
+       "theirMove": "dragon-rush",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "slowbro",
@@ -13494,7 +13537,10 @@
        "myTurns": 1,
        "theirTurns": 7,
        "faster": 1,
-       "theirMove": "stone-edge"
+       "theirMove": "stone-edge",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "heracross",
@@ -13638,7 +13684,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "dragon-rush"
+       "theirMove": "dragon-rush",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "slowbro",
@@ -14682,7 +14731,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "tri-attack"
+       "theirMove": "tri-attack",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "charizard",
@@ -14953,7 +15005,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "tri-attack"
+       "theirMove": "tri-attack",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "charizard",
@@ -15224,7 +15279,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "tri-attack"
+       "theirMove": "tri-attack",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "charizard",
@@ -15455,7 +15513,10 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 0,
-       "theirMove": "poison-jab"
+       "theirMove": "poison-jab",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -15726,7 +15787,10 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 0,
-       "theirMove": "poison-jab"
+       "theirMove": "poison-jab",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -15997,7 +16061,10 @@
        "myTurns": 1,
        "theirTurns": 8,
        "faster": 0,
-       "theirMove": "poison-jab"
+       "theirMove": "poison-jab",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -16192,7 +16259,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunderbolt",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "florges",
@@ -16296,7 +16366,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "palossand",
@@ -16514,7 +16587,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunderbolt",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "florges",
@@ -16618,7 +16694,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "palossand",
@@ -16773,7 +16852,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "leaf-blade"
+       "theirMove": "leaf-blade",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "aggron",
@@ -16797,7 +16879,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "leaf-blade"
+       "theirMove": "leaf-blade",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -16836,7 +16921,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunderbolt",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "florges",
@@ -16940,7 +17028,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "palossand",
@@ -17234,7 +17325,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "hyper-voice"
+       "theirMove": "hyper-voice",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17262,7 +17356,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "ice-beam"
+       "theirMove": "ice-beam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "snorlax",
@@ -17366,7 +17463,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "aggron",
@@ -17418,7 +17518,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "crunch"
+       "theirMove": "crunch",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "rhydon",
@@ -17557,7 +17660,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "hyper-voice"
+       "theirMove": "hyper-voice",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17585,7 +17691,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "ice-beam"
+       "theirMove": "ice-beam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "snorlax",
@@ -17741,7 +17850,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "crunch"
+       "theirMove": "crunch",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "rhydon",
@@ -17880,7 +17992,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "hyper-voice"
+       "theirMove": "hyper-voice",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17908,7 +18023,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "ice-beam"
+       "theirMove": "ice-beam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "snorlax",
@@ -18024,7 +18142,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "outrage"
+       "theirMove": "outrage",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "gallade",
@@ -18064,7 +18185,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "crunch"
+       "theirMove": "crunch",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "rhydon",
@@ -18295,7 +18419,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "flash-cannon"
+       "theirMove": "flash-cannon",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "whiscash",
@@ -18335,7 +18462,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "body-slam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "kartana",
@@ -18347,7 +18477,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "high-horsepower",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "gyarados",
@@ -18618,7 +18751,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "flash-cannon"
+       "theirMove": "flash-cannon",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "whiscash",
@@ -18658,7 +18794,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "body-slam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "kartana",
@@ -18670,7 +18809,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "high-horsepower",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "gyarados",
@@ -18941,7 +19083,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "flash-cannon"
+       "theirMove": "flash-cannon",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "whiscash",
@@ -18981,7 +19126,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "body-slam"
+       "theirMove": "body-slam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "kartana",
@@ -18993,7 +19141,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "high-horsepower"
+       "theirMove": "high-horsepower",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "gyarados",
@@ -30379,7 +30530,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "knock-off"
+       "theirMove": "knock-off",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -30483,7 +30637,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "shadow-claw"
+       "theirMove": "shadow-claw",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -30650,7 +30807,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "knock-off"
+       "theirMove": "knock-off",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -30754,7 +30914,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "shadow-claw"
+       "theirMove": "shadow-claw",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -30921,7 +31084,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "knock-off"
+       "theirMove": "knock-off",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -31025,7 +31191,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "shadow-claw"
+       "theirMove": "shadow-claw",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -32109,7 +32278,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 0,
-       "theirMove": "crunch"
+       "theirMove": "crunch",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -32380,7 +32552,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 0,
-       "theirMove": "crunch"
+       "theirMove": "crunch",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -32651,7 +32826,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 0,
-       "theirMove": "crunch"
+       "theirMove": "crunch",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -33723,7 +33901,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "tri-attack"
+       "theirMove": "tri-attack",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "charizard",
@@ -33827,7 +34008,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "stone-edge"
+       "theirMove": "stone-edge",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "alomomola",
@@ -33994,7 +34178,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "tri-attack"
+       "theirMove": "tri-attack",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "charizard",
@@ -34098,7 +34285,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "stone-edge"
+       "theirMove": "stone-edge",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "alomomola",
@@ -34265,7 +34455,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "tri-attack"
+       "theirMove": "tri-attack",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "charizard",
@@ -34369,7 +34562,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "stone-edge"
+       "theirMove": "stone-edge",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "alomomola",
@@ -35245,7 +35441,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunderbolt",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "florges",
@@ -35361,7 +35560,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "double-edge"
+       "theirMove": "double-edge",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -35567,7 +35769,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunderbolt",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "florges",
@@ -35683,7 +35888,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "double-edge"
+       "theirMove": "double-edge",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -35814,7 +36022,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 1,
-       "theirMove": "leaf-blade"
+       "theirMove": "leaf-blade",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "aggron",
@@ -35838,7 +36049,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "leaf-blade"
+       "theirMove": "leaf-blade",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -35889,7 +36103,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "thunderbolt"
+       "theirMove": "thunderbolt",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "florges",
@@ -36005,7 +36222,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "double-edge"
+       "theirMove": "double-edge",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -36275,7 +36495,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "hyper-voice"
+       "theirMove": "hyper-voice",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -36303,7 +36526,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "ice-beam"
+       "theirMove": "ice-beam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "snorlax",
@@ -36407,7 +36633,10 @@
        "myTurns": 1,
        "theirTurns": 9,
        "faster": 0,
-       "theirMove": "outrage"
+       "theirMove": "outrage",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "aggron",
@@ -36598,7 +36827,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "hyper-voice"
+       "theirMove": "hyper-voice",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -36626,7 +36858,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "ice-beam"
+       "theirMove": "ice-beam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "snorlax",
@@ -36921,7 +37156,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "hyper-voice"
+       "theirMove": "hyper-voice",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -36949,7 +37187,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 1,
-       "theirMove": "ice-beam"
+       "theirMove": "ice-beam",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "snorlax",
@@ -37065,7 +37306,10 @@
        "myTurns": 1,
        "theirTurns": 5,
        "faster": 0,
-       "theirMove": "outrage"
+       "theirMove": "outrage",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "gallade",
@@ -37336,7 +37580,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "flash-cannon"
+       "theirMove": "flash-cannon",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "whiscash",
@@ -37659,7 +37906,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "flash-cannon"
+       "theirMove": "flash-cannon",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "whiscash",
@@ -37982,7 +38232,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "flash-cannon"
+       "theirMove": "flash-cannon",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "whiscash",

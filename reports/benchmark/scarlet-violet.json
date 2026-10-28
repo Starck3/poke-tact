@@ -20,7 +20,11 @@
    "turnsSum": 0,
    "turnsN": 0
   },
-  "semVencedorPossivel": 0
+  "semVencedorPossivel": 0,
+  "incertas": 21,
+  "incertasPor": {
+   "estimado": 21
+  }
  },
  "fights": [
   {
@@ -11953,7 +11957,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "skarmory",
@@ -12224,7 +12231,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "skarmory",
@@ -12495,7 +12505,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "skarmory",
@@ -16143,7 +16156,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "shadow-ball"
+       "theirMove": "shadow-ball",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -16466,7 +16482,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "shadow-ball"
+       "theirMove": "shadow-ball",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -16789,7 +16808,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "shadow-ball"
+       "theirMove": "shadow-ball",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17204,7 +17226,10 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 0,
-       "theirMove": "ice-punch"
+       "theirMove": "ice-punch",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "donphan",
@@ -17527,7 +17552,10 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 0,
-       "theirMove": "ice-punch"
+       "theirMove": "ice-punch",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "donphan",
@@ -17850,7 +17878,10 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 0,
-       "theirMove": "ice-punch"
+       "theirMove": "ice-punch",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "donphan",
@@ -62470,7 +62501,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "blizzard"
+       "theirMove": "blizzard",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -62602,7 +62636,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "skarmory",
@@ -62741,7 +62778,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "blizzard"
+       "theirMove": "blizzard",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -62873,7 +62913,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "skarmory",
@@ -63012,7 +63055,10 @@
        "myTurns": 1,
        "theirTurns": 4,
        "faster": 1,
-       "theirMove": "blizzard"
+       "theirMove": "blizzard",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -63144,7 +63190,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "earthquake"
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "skarmory",
@@ -66780,7 +66829,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "shadow-ball"
+       "theirMove": "shadow-ball",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "iron-jugulis",
@@ -67103,7 +67155,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "shadow-ball"
+       "theirMove": "shadow-ball",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "iron-jugulis",
@@ -67426,7 +67481,10 @@
        "myTurns": 1,
        "theirTurns": 6,
        "faster": 0,
-       "theirMove": "shadow-ball"
+       "theirMove": "shadow-ball",
+       "uncertain": [
+        "estimado"
+       ]
       },
       {
        "mon": "iron-jugulis",
@@ -67865,7 +67923,10 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 0,
-       "theirMove": "ice-punch"
+       "theirMove": "ice-punch",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -68188,7 +68249,10 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 0,
-       "theirMove": "ice-punch"
+       "theirMove": "ice-punch",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -68511,7 +68575,10 @@
        "myTurns": 1,
        "theirTurns": 3,
        "faster": 0,
-       "theirMove": "ice-punch"
+       "theirMove": "ice-punch",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []

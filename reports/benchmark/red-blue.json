@@ -20,7 +20,9 @@
    "turnsSum": 2341,
    "turnsN": 1440
   },
-  "semVencedorPossivel": 0
+  "semVencedorPossivel": 0,
+  "incertas": 0,
+  "incertasPor": {}
  },
  "fights": [
   {
