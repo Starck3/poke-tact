@@ -34,8 +34,8 @@ evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche,
 Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (297 com `data-sources/`, 282 num clone limpo).
 Banco de lutas: 22 jogos (o USUM entra pelos treinadores com estágio), 39.978 sugestões — 39.793 vencem (99,5%), 37.960 com
 folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 878 de 960 lutas (USUM 102/102); onde achar
-itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no X/Y, ORAS,
-Sun/Moon, USUM, Let's Go e BDSP (dia/noite em Alola; manhã/dia/noite no BDSP).
+itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no BW, X/Y, ORAS,
+Sun/Moon, USUM, Let's Go, BDSP e Sword/Shield (dia/noite em Alola; manhã/dia/noite no BDSP; clima no SwSh).
 
 ## O que falta (do mais importante para o menos)
 
@@ -64,6 +64,14 @@ Sun/Moon, USUM, Let's Go e BDSP (dia/noite em Alola; manhã/dia/noite no BDSP).
 - ✅ Golpes reais em mais lutas (0.53): 803 → 878 de 960 (forma no nome, time sem nível, luta em dupla, nível mais perto).
 - Sobra: 82 lutas com golpes estimados — Battle Maison/Subway (time sorteado), recrutas sem página, personagens do Legends:
   Arceus sem página (Coin, Charm, Wenton…), treinos diários do Ingo.
+
+### Plano de execução 5 (concluído em 2026-10-28 — detalhes e críticas em `PLANO-EXECUCAO-5.md`)
+- ✅ Taxa no Black/White (0.54) e no Sword/Shield por clima (0.57); exclusivos de versão do Scarlet/Violet (0.54).
+- ⚠ Wild Area do SwSh pelo limite de captura por insígnia (0.55); trocas com lugar e estágio (0.56).
+- ✅ Revisão geral + teste no Chrome headless; Detonado remontado depois das etapas da Bulbapedia; link da luta ajusta o
+  nível; item citado no detonado limita a evolução (0.57).
+- 🚩 A revisar: Darkest Day na Wild Area; item pela 1ª citação; backlog ("breed", aviso de treino no card).
+- Críticas (tela e pipeline) na seção "Críticas (C1)" do plano 5.
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
