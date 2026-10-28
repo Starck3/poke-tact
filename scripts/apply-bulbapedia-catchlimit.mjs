@@ -32,7 +32,10 @@ for (const v of Object.values(acq.versions)) for (const list of Object.values(v)
   const before = s.stage;
   // a Wild Area abre inteira no começo (página "Wild Area": só a entrada de Hammerlocke espera a Fire Badge) — vale a regra,
   // também sobre o estágio pela citação no detonado (Watchtower Ruins e Lake of Outrage vinham no pós-jogo por serem citados lá)
-  const st = need;
+  // decisão do usuário (2026-10-28, "2b"): depois do Darkest Day "all Pokémon in the Wild Area become level 60" (página de
+  // cada subárea na Bulbapedia) — encontro de nível 60+ conta como pós-jogo, não "8 insígnias"
+  const POST = acq.progress?.post ?? 9;
+  const st = (s.min ?? s.level ?? 0) >= 60 ? POST : need;
   if (s.stageEstimated) report.estimatedReplaced++;
   else if (st !== before) report.raised++;
   delete s.stageEstimated;

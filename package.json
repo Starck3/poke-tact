@@ -1,6 +1,6 @@
 {
   "name": "poke-tact",
-  "version": "0.61.0",
+  "version": "0.62.0",
   "description": "Sugestões de Pokémon para vencer cada luta, com os dados e as regras do jogo que você está jogando.",
   "private": true,
   "type": "module",

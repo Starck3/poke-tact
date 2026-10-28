@@ -371,6 +371,44 @@ export function pctText(s) {
   return t.map(([k, v]) => `${k} ${a}${v}%`).join(' / ');
 }
 /** Linhas de texto para exibir (até `maxWild` locais selvagens, mais todas as outras formas de obter). */
+/**
+ * Jogo sem as DLCs (decisão do usuário, 2026-10-28: filtro "Tenho as DLCs", desligado por padrão): tira as fontes marcadas
+ * "DLC …" (Isle of Armor, Crown Tundra, Kitakami, Blueberry, Mega Dimension…) e refaz quem dá para obter — a espécie sem
+ * fonte fora da DLC só fica se evolui de algo obtível. Devolve { data, acq } novos (os originais não mudam); em cache.
+ */
+const noDlcCache = new WeakMap();
+export const isDlc = (s) => /\bDLC\b|Sudachi/.test(s.detail ?? '');
+export const hasDlc = (acq) => !!acq && Object.values(acq.versions ?? {}).some((v) => Object.values(v).some((l) => l.some(isDlc)));
+export function withoutDlc(data, acq) {
+  if (!hasDlc(acq)) return { data, acq };
+  if (noDlcCache.has(acq)) return noDlcCache.get(acq);
+  const versions = {};
+  for (const [v, byMon] of Object.entries(acq.versions)) {
+    versions[v] = {};
+    for (const [sp, list] of Object.entries(byMon)) { const keep = list.filter((s) => !isDlc(s)); if (keep.length) versions[v][sp] = keep; }
+  }
+  const acq2 = { ...acq, versions };
+  const byId = new Map(data.pokemon.map((p) => [p.id, p]));
+  const depth = (m, n = 0) => { const p = byId.get(m.evolvesFrom); return p && p.id !== m.id && n < 6 ? depth(p, n + 1) : n; };
+  const ob = new Map();
+  for (const m of [...data.pokemon].sort((a, b) => depth(a) - depth(b))) {
+    const o = {};
+    for (const v of Object.keys(m.obtainable ?? {})) {
+      if (!m.obtainable[v]) { o[v] = false; continue; }
+      const had = (acq.versions[v]?.[m.name] ?? []).length, now = (versions[v]?.[m.name] ?? []).length;
+      const parent = byId.get(m.evolvesFrom);
+      // sem fonte (agora): só pela evolução de algo obtível; sem fonte nem pré-evolução (nunca teve fonte) — fica como o dado diz
+      const hasParent = !!parent && parent.id !== m.id;
+      o[v] = now > 0 || (hasParent ? !!ob.get(parent.id)?.[v] && m.evo?.possible !== false : !had);
+    }
+    ob.set(m.id, o);
+  }
+  const data2 = { ...data, pokemon: data.pokemon.map((m) => ({ ...m, obtainable: ob.get(m.id) })) };
+  const out = { data: data2, acq: acq2 };
+  noDlcCache.set(acq, out);
+  return out;
+}
+
 // com taxa por clima ("só com nublado 40%"), o "clima: Overcast" do PKHeX repete a informação em inglês — fica de fora
 export const shownDetail = (s) => (s.pctWeather ? (s.detail ?? '').split(/;\s*/).filter((x) => !/^clima:/.test(x)).join('; ') : s.detail ?? '');
 export function formatSources(sources, maxWild = 3) {

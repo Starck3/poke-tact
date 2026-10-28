@@ -52,3 +52,8 @@ leitores de wikitext com trechos de exemplo, `builtAt` que muda a cada montagem.
 🚩 Para o usuário decidir: (a) Pokémon de DLC — sugerir só para quem tem a DLC (filtro "tenho as DLCs")? No SwSh o estágio
 das áreas da DLC é estimado pelo nível, que lá acompanha as insígnias; (b) Wild Area depois do Darkest Day; (c) item só
 citado no detonado vale a partir da 1ª citação.
+
+## Decisões do usuário (2026-10-28) — aplicadas na 0.62.0
+- 1a: filtro "Tenho as DLCs", desmarcado por padrão (engine `withoutDlc`; lembrado por jogo no navegador).
+- 2b: Wild Area nv 60+ = pós-jogo (apply-bulbapedia-catchlimit).
+- 3a: item só citado no detonado vale a partir da 1ª citação (sem mudança).
