@@ -2828,7 +2828,7 @@ test('R3 (0.55.0): Wild Area do Sword/Shield pelo limite de captura por insígni
   const need = (lv) => [20, 25, 30, 35, 40, 45, 50, 55, 100].findIndex((c) => c >= lv);
   const area = ws.filter((s) => s.stageBy === 'limite de captura por insígnia (Bulbapedia)');
   assert.ok(area.length > 800); // só o Sword (o relatório soma as duas versões)
-  assert.ok(area.every((s) => s.stage === need(s.min) && !s.stageEstimated));
+  assert.ok(area.every((s) => s.stage === (s.min >= 60 ? (a.progress.post ?? 9) : need(s.min)) && !s.stageEstimated)); // 0.62.0: nv 60+ = pós-jogo
   // Watchtower Ruins vinha inteiro no pós-jogo (citado lá no detonado); os de nível baixo abrem no começo
   assert.ok(ws.some((s) => s.where === 'Watchtower Ruins' && s.stage === 0));
   // raid e DLC continuam como estavam (outra regra)
@@ -2942,4 +2942,23 @@ test('S5 (0.61.0): fonte configurada mas ausente — avisa e, com build-game --s
   const src = (f) => readFileSync(new URL(`../scripts/${f}`, import.meta.url), 'utf8');
   for (const f of ['build-detonado-modern.mjs', 'build-evo-items.mjs']) assert.match(src(f), /process\.exit\(process\.env\.POKETACT_STRICT \? 1 : 0\)/, f);
   assert.match(src('build-game.mjs'), /POKETACT_STRICT: '1'/);
+});
+
+test('0.62.0: filtro "Tenho as DLCs" (desmarcado = sem as expansões); Wild Area nv 60+ no pós-jogo (decisões do usuário)', async () => {
+  const { withoutDlc, hasDlc } = await import('../public/engine.mjs');
+  const sw = load('sword-shield.json'), swa = load('sword-shield-acquisition.json');
+  assert.ok(hasDlc(swa) && !hasDlc(load('firered-leafgreen-acquisition.json')));
+  const v = withoutDlc(sw, swa);
+  const ob = (n) => v.data.pokemon.find((p) => p.name === n).obtainable.sword;
+  // só DLC (Isle of Armor / Crown Tundra) → fora; inclusive pela evolução (Sandslash de Alola vem do Sandshrew de Alola)
+  assert.deepEqual([ob('kubfu'), ob('sandshrew-alola'), ob('sandslash-alola'), ob('charizard'), ob('wooloo')], [false, false, false, true, true]);
+  assert.ok(Object.values(v.acq.versions.sword).flat().every((s) => !/DLC/.test(s.detail ?? '')));
+  assert.equal(sw.pokemon.find((p) => p.name === 'kubfu').obtainable.sword, true); // o dado original não muda
+  // Wild Area: "depois do Darkest Day, todos ficam no nv 60" → encontro de nv 60+ é pós-jogo
+  const post = swa.progress.post ?? 9;
+  const wa = Object.values(swa.versions.sword).flat().filter((s) => s.stageBy === 'limite de captura por insígnia (Bulbapedia)');
+  assert.ok(wa.filter((s) => s.min >= 60).length > 0 && wa.filter((s) => s.min >= 60).every((s) => s.stage === post));
+  assert.ok(wa.filter((s) => s.min < 60).every((s) => s.stage < post));
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /recommend\(vData\(\), opp,/);
 });

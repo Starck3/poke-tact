@@ -105,6 +105,14 @@ try {
   const odd = await run(() => [...document.querySelectorAll('#dexOut .walk-list li')].map((l) => l.textContent).join(' | '));
   check('Sword, Oddish: "só com nublado 40%" sem o clima repetido em inglês', /só com nublado 40%/.test(odd) && !/clima: Overcast/.test(odd), odd.slice(0, 200));
 
+  // 5b. Sword: "Tenho as DLCs" desmarcado por padrão — a luta contra o Hop (Toxel) não sugere o Sandslash de Alola (só DLC);
+  // marcando, ele pode voltar
+  await go('#/jogo/sword-shield?treinador=DETONADO_10_0&i=1&inicial=grookey', 4500);
+  const noDlc = await run(() => ({ shown: !document.querySelector('#dlcWrap').hidden, on: document.querySelector('#dlc').checked, picks: [...document.querySelectorAll('#results .pick h3')].map((h) => h.textContent) }));
+  check('Sword: filtro "Tenho as DLCs" aparece desmarcado e não sugere só-DLC', noDlc.shown && !noDlc.on && !noDlc.picks.some((p) => /Sandslash/.test(p)), noDlc);
+  const withDlc = await run(async () => { const c = document.querySelector('#dlc'); c.checked = true; c.dispatchEvent(new Event('input')); await new Promise((r) => setTimeout(r, 1200)); const p = [...document.querySelectorAll('#results .pick h3')].map((h) => h.textContent); c.checked = false; c.dispatchEvent(new Event('input')); return p; });
+  check('Sword: com as DLCs, a lista muda (Sandslash de Alola volta)', withDlc.some((p) => /Sandslash/.test(p)), withDlc);
+
   // 6. celular: sem rolagem lateral na tela do jogo
   await viewport(true);
   await go('#/jogo/red-blue', 3000);

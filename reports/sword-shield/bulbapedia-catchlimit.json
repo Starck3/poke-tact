@@ -30,95 +30,95 @@
   "lake of outrage",
   "hammerlocke hills"
  ],
- "changed": 1274,
+ "changed": 1217,
  "estimatedReplaced": 835,
- "raised": 879,
+ "raised": 822,
  "places": {
   "Rolling Fields": {
    "0": 76,
-   "8": 4
+   "9": 4
   },
   "Dappled Grove": {
    "0": 60,
-   "8": 8
+   "9": 8
   },
   "Watchtower Ruins": {
    "0": 34,
    "2": 24,
-   "8": 4
+   "9": 4
   },
   "North Lake Miloch": {
    "0": 43,
    "2": 24,
    "5": 12,
-   "8": 8
+   "9": 8
   },
   "Motostoke Riverbank": {
    "2": 96,
    "4": 8,
-   "8": 10
+   "9": 10
   },
   "Giant’s Mirror": {
    "2": 102,
    "3": 6,
-   "8": 12
+   "9": 12
   },
   "Dusty Bowl": {
    "4": 56,
    "5": 46,
    "7": 2,
-   "8": 12
+   "9": 12
   },
   "Stony Wilderness": {
    "2": 99,
-   "8": 12
+   "9": 12
   },
   "Giant’s Cap": {
    "2": 106,
    "3": 6,
    "5": 2,
-   "8": 11
+   "9": 11
   },
   "Bridge Field": {
    "2": 101,
    "4": 8,
-   "8": 6
+   "9": 6
   },
   "West Lake Axewell": {
    "0": 72,
    "4": 14,
-   "8": 6
+   "9": 6
   },
   "East Lake Axewell": {
    "0": 72,
    "4": 12,
-   "8": 6
+   "9": 6
   },
   "South Lake Miloch": {
    "0": 89,
    "5": 10,
-   "8": 10
+   "9": 10
   },
   "Giant’s Seat": {
    "2": 42,
    "3": 31,
-   "8": 10
+   "9": 10
   },
   "Axew’s Eye": {
    "3": 48,
    "4": 28,
-   "8": 6
+   "9": 6
   },
   "Hammerlocke Hills": {
    "2": 74,
    "4": 4,
-   "8": 10
+   "9": 10
   },
   "Lake of Outrage": {
    "4": 8,
    "6": 84,
    "7": 66,
-   "8": 14
+   "9": 14
   }
  }
 }

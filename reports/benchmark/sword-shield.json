@@ -7,8 +7,8 @@
    "covered": 1080,
    "wins": 3240,
    "picks": 3240,
-   "comfy": 3231,
-   "turnsSum": 4257,
+   "comfy": 3225,
+   "turnsSum": 4261,
    "turnsN": 3240
   },
   "antes": {
@@ -21,9 +21,9 @@
    "turnsN": 0
   },
   "semVencedorPossivel": 0,
-  "incertas": 551,
+  "incertas": 576,
   "incertasPor": {
-   "estimado": 551
+   "estimado": 576
   }
  },
  "fights": [
@@ -16102,18 +16102,6 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "air-slash"
-      },
-      {
        "mon": "dracozolt",
        "move": "thunder-shock",
        "eff": 4,
@@ -16124,6 +16112,21 @@
        "theirTurns": 7,
        "faster": 1,
        "theirMove": "air-slash"
+      },
+      {
+       "mon": "primarina",
+       "move": "moonblast",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -16373,18 +16376,6 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "air-slash"
-      },
-      {
        "mon": "dracozolt",
        "move": "thunder-shock",
        "eff": 4,
@@ -16395,6 +16386,21 @@
        "theirTurns": 7,
        "faster": 1,
        "theirMove": "air-slash"
+      },
+      {
+       "mon": "primarina",
+       "move": "moonblast",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -16644,18 +16650,6 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "air-slash"
-      },
-      {
        "mon": "dracozolt",
        "move": "thunder-shock",
        "eff": 4,
@@ -16666,6 +16660,21 @@
        "theirTurns": 7,
        "faster": 1,
        "theirMove": "air-slash"
+      },
+      {
+       "mon": "primarina",
+       "move": "moonblast",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -16969,18 +16978,6 @@
        "theirMove": "brutal-swing"
       },
       {
-       "mon": "togekiss",
-       "move": "air-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
        "mon": "weezing-galar",
        "move": "strange-steam",
        "eff": 2,
@@ -16991,6 +16988,18 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "slam"
+      },
+      {
+       "mon": "vespiquen",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "brutal-swing"
       }
      ],
      "before": []
@@ -17021,18 +17030,6 @@
        "theirMove": "rock-tomb"
       },
       {
-       "mon": "mimikyu-disguised",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-tomb"
-      },
-      {
        "mon": "kommo-o",
        "move": "clanging-scales",
        "eff": 1,
@@ -17043,6 +17040,21 @@
        "theirTurns": 6,
        "faster": 1,
        "theirMove": "close-combat"
+      },
+      {
+       "mon": "slowbro",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "close-combat",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17085,16 +17097,19 @@
        "theirMove": "cross-chop"
       },
       {
-       "mon": "hatterene",
+       "mon": "slowbro",
        "move": "psychic",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
-       "theirMove": "strength"
+       "theirMove": "strength",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17242,18 +17257,6 @@
        "theirMove": "brutal-swing"
       },
       {
-       "mon": "togekiss",
-       "move": "air-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
        "mon": "weezing-galar",
        "move": "strange-steam",
        "eff": 2,
@@ -17264,6 +17267,18 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "slam"
+      },
+      {
+       "mon": "vespiquen",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "brutal-swing"
       }
      ],
      "before": []
@@ -17294,18 +17309,6 @@
        "theirMove": "rock-tomb"
       },
       {
-       "mon": "mimikyu-disguised",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-tomb"
-      },
-      {
        "mon": "kommo-o",
        "move": "clanging-scales",
        "eff": 1,
@@ -17316,6 +17319,21 @@
        "theirTurns": 6,
        "faster": 1,
        "theirMove": "close-combat"
+      },
+      {
+       "mon": "slowbro",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "close-combat",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17358,16 +17376,19 @@
        "theirMove": "cross-chop"
       },
       {
-       "mon": "hatterene",
+       "mon": "slowbro",
        "move": "psychic",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
-       "theirMove": "strength"
+       "theirMove": "strength",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17515,18 +17536,6 @@
        "theirMove": "brutal-swing"
       },
       {
-       "mon": "togekiss",
-       "move": "air-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
        "mon": "weezing-galar",
        "move": "strange-steam",
        "eff": 2,
@@ -17537,6 +17546,18 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "slam"
+      },
+      {
+       "mon": "vespiquen",
+       "move": "air-slash",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "brutal-swing"
       }
      ],
      "before": []
@@ -17567,18 +17588,6 @@
        "theirMove": "rock-tomb"
       },
       {
-       "mon": "mimikyu-disguised",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-tomb"
-      },
-      {
        "mon": "kommo-o",
        "move": "clanging-scales",
        "eff": 1,
@@ -17589,6 +17598,21 @@
        "theirTurns": 6,
        "faster": 1,
        "theirMove": "close-combat"
+      },
+      {
+       "mon": "slowbro",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "close-combat",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -17631,16 +17655,19 @@
        "theirMove": "cross-chop"
       },
       {
-       "mon": "hatterene",
+       "mon": "slowbro",
        "move": "psychic",
        "eff": 2,
        "via": "level-up",
        "stageNeeded": 0,
        "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
+       "myTurns": 2,
+       "theirTurns": 5,
        "faster": 0,
-       "theirMove": "strength"
+       "theirMove": "strength",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -18657,18 +18684,6 @@
      "candidates": 488,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "fairy-wind",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
        "mon": "cloyster",
        "move": "icicle-spear",
        "eff": 4,
@@ -18691,6 +18706,21 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "earthquake"
+      },
+      {
+       "mon": "clawitzer",
+       "move": "dragon-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -18934,18 +18964,6 @@
      "candidates": 488,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "fairy-wind",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
        "mon": "cloyster",
        "move": "icicle-spear",
        "eff": 4,
@@ -18968,6 +18986,21 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "earthquake"
+      },
+      {
+       "mon": "clawitzer",
+       "move": "dragon-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -19211,18 +19244,6 @@
      "candidates": 488,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "fairy-wind",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
        "mon": "cloyster",
        "move": "icicle-spear",
        "eff": 4,
@@ -19245,6 +19266,21 @@
        "theirTurns": 5,
        "faster": 0,
        "theirMove": "earthquake"
+      },
+      {
+       "mon": "clawitzer",
+       "move": "dragon-pulse",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "earthquake",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -19616,18 +19652,6 @@
        "theirMove": "ancient-power"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "fire-blast"
-      },
-      {
        "mon": "coalossal",
        "move": "rock-blast",
        "eff": 4,
@@ -19638,6 +19662,21 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "ancient-power"
+      },
+      {
+       "mon": "starmie",
+       "move": "power-gem",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -19954,18 +19993,6 @@
        "theirMove": "ancient-power"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "fire-blast"
-      },
-      {
        "mon": "coalossal",
        "move": "rock-blast",
        "eff": 4,
@@ -19976,6 +20003,21 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "ancient-power"
+      },
+      {
+       "mon": "starmie",
+       "move": "power-gem",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -20286,18 +20328,6 @@
        "theirMove": "ancient-power"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "fire-blast"
-      },
-      {
        "mon": "coalossal",
        "move": "rock-blast",
        "eff": 4,
@@ -20308,6 +20338,21 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "ancient-power"
+      },
+      {
+       "mon": "starmie",
+       "move": "power-gem",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -45541,18 +45586,6 @@
      "candidates": 474,
      "picks": [
       {
-       "mon": "sableye",
-       "move": "foul-play",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": null,
-       "faster": 0,
-       "theirMove": "body-slam"
-      },
-      {
        "mon": "doublade",
        "move": "iron-head",
        "eff": 1,
@@ -45573,6 +45606,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "zen-headbutt"
+      },
+      {
+       "mon": "rhydon",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
        "faster": 0,
        "theirMove": "zen-headbutt"
       }
@@ -45764,18 +45809,6 @@
      "candidates": 474,
      "picks": [
       {
-       "mon": "sableye",
-       "move": "foul-play",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": null,
-       "faster": 0,
-       "theirMove": "body-slam"
-      },
-      {
        "mon": "doublade",
        "move": "iron-head",
        "eff": 1,
@@ -45796,6 +45829,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "zen-headbutt"
+      },
+      {
+       "mon": "rhydon",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
        "faster": 0,
        "theirMove": "zen-headbutt"
       }
@@ -45987,18 +46032,6 @@
      "candidates": 474,
      "picks": [
       {
-       "mon": "sableye",
-       "move": "foul-play",
-       "eff": 1,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 3,
-       "theirTurns": null,
-       "faster": 0,
-       "theirMove": "body-slam"
-      },
-      {
        "mon": "doublade",
        "move": "iron-head",
        "eff": 1,
@@ -46019,6 +46052,18 @@
        "win": true,
        "myTurns": 1,
        "theirTurns": 4,
+       "faster": 0,
+       "theirMove": "zen-headbutt"
+      },
+      {
+       "mon": "rhydon",
+       "move": "hammer-arm",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 8,
        "faster": 0,
        "theirMove": "zen-headbutt"
       }
@@ -46274,18 +46319,6 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "air-slash"
-      },
-      {
        "mon": "dracozolt",
        "move": "thunder-shock",
        "eff": 4,
@@ -46296,6 +46329,21 @@
        "theirTurns": 7,
        "faster": 1,
        "theirMove": "air-slash"
+      },
+      {
+       "mon": "primarina",
+       "move": "moonblast",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -46548,18 +46596,6 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "air-slash"
-      },
-      {
        "mon": "dracozolt",
        "move": "thunder-shock",
        "eff": 4,
@@ -46570,6 +46606,21 @@
        "theirTurns": 7,
        "faster": 1,
        "theirMove": "air-slash"
+      },
+      {
+       "mon": "primarina",
+       "move": "moonblast",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -46822,18 +46873,6 @@
        "theirMove": "air-slash"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "air-slash"
-      },
-      {
        "mon": "dracozolt",
        "move": "thunder-shock",
        "eff": 4,
@@ -46844,6 +46883,21 @@
        "theirTurns": 7,
        "faster": 1,
        "theirMove": "air-slash"
+      },
+      {
+       "mon": "primarina",
+       "move": "moonblast",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 6,
+       "faster": 0,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -47138,18 +47192,6 @@
      "candidates": 488,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "air-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
        "mon": "weezing-galar",
        "move": "strange-steam",
        "eff": 2,
@@ -47172,6 +47214,21 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "brutal-swing"
+      },
+      {
+       "mon": "skarmory",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "brick-break",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -47202,18 +47259,6 @@
        "theirMove": "rock-tomb"
       },
       {
-       "mon": "mimikyu-disguised",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-tomb"
-      },
-      {
        "mon": "slowbro",
        "move": "psychic",
        "eff": 2,
@@ -47227,6 +47272,18 @@
        "uncertain": [
         "estimado"
        ]
+      },
+      {
+       "mon": "slowbro-galar",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "rock-tomb"
       }
      ],
      "before": []
@@ -47244,18 +47301,6 @@
      "winnersAvailable": 127,
      "candidates": 487,
      "picks": [
-      {
-       "mon": "hatterene",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "strength"
-      },
       {
        "mon": "slowbro",
        "move": "psychic",
@@ -47285,6 +47330,18 @@
        "uncertain": [
         "estimado"
        ]
+      },
+      {
+       "mon": "garchomp",
+       "move": "dragon-claw",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "cross-chop"
       }
      ],
      "before": []
@@ -47420,18 +47477,6 @@
      "candidates": 488,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "air-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
        "mon": "weezing-galar",
        "move": "strange-steam",
        "eff": 2,
@@ -47454,6 +47499,21 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "brutal-swing"
+      },
+      {
+       "mon": "skarmory",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "brick-break",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -47484,18 +47544,6 @@
        "theirMove": "rock-tomb"
       },
       {
-       "mon": "mimikyu-disguised",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-tomb"
-      },
-      {
        "mon": "slowbro",
        "move": "psychic",
        "eff": 2,
@@ -47509,6 +47557,18 @@
        "uncertain": [
         "estimado"
        ]
+      },
+      {
+       "mon": "slowbro-galar",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "rock-tomb"
       }
      ],
      "before": []
@@ -47526,18 +47586,6 @@
      "winnersAvailable": 127,
      "candidates": 487,
      "picks": [
-      {
-       "mon": "hatterene",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "strength"
-      },
       {
        "mon": "slowbro",
        "move": "psychic",
@@ -47567,6 +47615,18 @@
        "uncertain": [
         "estimado"
        ]
+      },
+      {
+       "mon": "garchomp",
+       "move": "dragon-claw",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "cross-chop"
       }
      ],
      "before": []
@@ -47702,18 +47762,6 @@
      "candidates": 488,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "air-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "slam"
-      },
-      {
        "mon": "weezing-galar",
        "move": "strange-steam",
        "eff": 2,
@@ -47736,6 +47784,21 @@
        "theirTurns": 6,
        "faster": 0,
        "theirMove": "brutal-swing"
+      },
+      {
+       "mon": "skarmory",
+       "move": "brave-bird",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 1,
+       "theirMove": "brick-break",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -47766,18 +47829,6 @@
        "theirMove": "rock-tomb"
       },
       {
-       "mon": "mimikyu-disguised",
-       "move": "play-rough",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 6,
-       "faster": 1,
-       "theirMove": "rock-tomb"
-      },
-      {
        "mon": "slowbro",
        "move": "psychic",
        "eff": 2,
@@ -47791,6 +47842,18 @@
        "uncertain": [
         "estimado"
        ]
+      },
+      {
+       "mon": "slowbro-galar",
+       "move": "psychic",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 7,
+       "faster": 0,
+       "theirMove": "rock-tomb"
       }
      ],
      "before": []
@@ -47808,18 +47871,6 @@
      "winnersAvailable": 127,
      "candidates": 487,
      "picks": [
-      {
-       "mon": "hatterene",
-       "move": "psychic",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "strength"
-      },
       {
        "mon": "slowbro",
        "move": "psychic",
@@ -47849,6 +47900,18 @@
        "uncertain": [
         "estimado"
        ]
+      },
+      {
+       "mon": "garchomp",
+       "move": "dragon-claw",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 6,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 4,
+       "faster": 1,
+       "theirMove": "cross-chop"
       }
      ],
      "before": []
@@ -48871,18 +48934,6 @@
      "candidates": 489,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "fairy-wind",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
        "mon": "cloyster",
        "move": "icicle-spear",
        "eff": 4,
@@ -48900,6 +48951,18 @@
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "earthquake"
+      },
+      {
+       "mon": "shiinotic",
+       "move": "moonblast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -49154,18 +49217,6 @@
      "candidates": 489,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "fairy-wind",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
        "mon": "cloyster",
        "move": "icicle-spear",
        "eff": 4,
@@ -49183,6 +49234,18 @@
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "earthquake"
+      },
+      {
+       "mon": "shiinotic",
+       "move": "moonblast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -49437,18 +49500,6 @@
      "candidates": 489,
      "picks": [
       {
-       "mon": "togekiss",
-       "move": "fairy-wind",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 10,
-       "faster": 0,
-       "theirMove": "crunch"
-      },
-      {
        "mon": "cloyster",
        "move": "icicle-spear",
        "eff": 4,
@@ -49466,6 +49517,18 @@
        "eff": 4,
        "via": "level-up",
        "stageNeeded": 2,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 5,
+       "faster": 0,
+       "theirMove": "earthquake"
+      },
+      {
+       "mon": "shiinotic",
+       "move": "moonblast",
+       "eff": 2,
+       "via": "level-up",
+       "stageNeeded": 0,
        "win": true,
        "myTurns": 1,
        "theirTurns": 5,
@@ -49842,18 +49905,6 @@
        "theirMove": "ancient-power"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "fire-blast"
-      },
-      {
        "mon": "coalossal",
        "move": "rock-blast",
        "eff": 4,
@@ -49864,6 +49915,21 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "ancient-power"
+      },
+      {
+       "mon": "starmie",
+       "move": "power-gem",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -50180,18 +50246,6 @@
        "theirMove": "ancient-power"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "fire-blast"
-      },
-      {
        "mon": "coalossal",
        "move": "rock-blast",
        "eff": 4,
@@ -50202,6 +50256,21 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "ancient-power"
+      },
+      {
+       "mon": "starmie",
+       "move": "power-gem",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -50457,18 +50526,6 @@
        "theirMove": "knock-off"
       },
       {
-       "mon": "togekiss",
-       "move": "air-slash",
-       "eff": 2,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 7,
-       "faster": 0,
-       "theirMove": "drum-beating"
-      },
-      {
        "mon": "corviknight",
        "move": "brave-bird",
        "eff": 2,
@@ -50479,6 +50536,21 @@
        "theirTurns": 7,
        "faster": 0,
        "theirMove": "knock-off"
+      },
+      {
+       "mon": "exeggutor-alola",
+       "move": "dragon-hammer",
+       "eff": 1,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 2,
+       "theirTurns": 11,
+       "faster": 0,
+       "theirMove": "knock-off",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []
@@ -50509,18 +50581,6 @@
        "theirMove": "ancient-power"
       },
       {
-       "mon": "togekiss",
-       "move": "ancient-power",
-       "eff": 4,
-       "via": "level-up",
-       "stageNeeded": 0,
-       "win": true,
-       "myTurns": 1,
-       "theirTurns": 3,
-       "faster": 0,
-       "theirMove": "fire-blast"
-      },
-      {
        "mon": "coalossal",
        "move": "rock-blast",
        "eff": 4,
@@ -50531,6 +50591,21 @@
        "theirTurns": 3,
        "faster": 0,
        "theirMove": "ancient-power"
+      },
+      {
+       "mon": "starmie",
+       "move": "power-gem",
+       "eff": 4,
+       "via": "level-up",
+       "stageNeeded": 0,
+       "win": true,
+       "myTurns": 1,
+       "theirTurns": 2,
+       "faster": 1,
+       "theirMove": "air-slash",
+       "uncertain": [
+        "estimado"
+       ]
       }
      ],
      "before": []

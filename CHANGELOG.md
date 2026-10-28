@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.62.0] — 2026-10-28
+
+> Nova opção "Tenho as DLCs": sem marcar, o app não sugere Pokémon que só existem nas expansões pagas (Sword/Shield, Scarlet/Violet, Z-A). E os Pokémon nível 60 da Wild Area agora contam só depois de zerar o jogo.
+
+### Adicionado
+- **Filtro "Tenho as DLCs"** (em Filtros, só nos jogos com expansão; desmarcado por padrão e lembrado por jogo): sem ele, o
+  cálculo ignora as fontes das DLCs (Isle of Armor, Crown Tundra, Kitakami, Blueberry, Mega Dimension) e o que só se
+  consegue evoluindo algo delas. Sword/Shield: 642 → 396 Pokémon obtíveis; Scarlet/Violet: 676 → 404; Z-A: 380 → 242.
+
+### Alterado
+- Wild Area do Sword/Shield: encontro de nível 60 ou mais conta como pós-jogo ("depois do Darkest Day, todos os Pokémon da
+  Wild Area ficam no nível 60" — Bulbapedia), não mais "8 insígnias".
+- Item de evolução só citado no detonado continua valendo a partir da 1ª citação (cauteloso).
+- Banco de lutas (calculado com as DLCs): vitórias iguais; folgadas no Sword/Shield 3.231 → 3.225.
+
 ## [0.61.0] — 2026-10-28
 
 > Por dentro: os jogos agora são montados na ordem certa (um remake depois do jogo original de onde tira dados), e uma fonte que falta não deixa mais um arquivo antigo no lugar sem avisar.

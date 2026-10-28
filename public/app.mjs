@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm, pctText, shownDetail } from './engine.mjs';
+import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 
@@ -56,6 +56,10 @@ let evoItems = null; // <jogo>-evoitems.json: onde o detonado diz que acha os it
 let walk = null; // detonado gerado (carregado ao abrir a aba)
 let known = null; // { moves, item } do Pokémon de treinador selecionado; null quando o usuário digita manualmente
 let teamMode = null; // treinador quando o modo "contra o time inteiro" está ativo
+// dados vistos pelo cálculo: sem as DLCs quando o filtro "Tenho as DLCs" está desmarcado (decisão do usuário, 2026-10-28)
+const view = () => (acq && !$('dlcWrap').hidden && !$('dlc').checked ? withoutDlc(data, acq) : { data, acq });
+const vData = () => view().data;
+const vAcq = () => view().acq;
 let pokedex = null; // Pokédex nacional [[número, nome]]: só para avisar que um Pokémon é de outra geração
 fetch('data/pokedex.json').then((r) => r.json()).then((d) => { pokedex = d; }).catch(() => {});
 
@@ -124,6 +128,9 @@ async function load(gameId) {
   $('zWrap').hidden = !Object.values(data.moves).some((m) => m.zPower); // jogos com golpe Z
   $('teraWrap').hidden = !acq?.progress?.keyItems?.tera; // Scarlet/Violet (Tera Orb no detonado)
   $('dynWrap').hidden = !acq?.progress?.keyItems?.dynamax; // Sword/Shield (Dynamax Band no detonado)
+  // DLCs (Sword/Shield, Scarlet/Violet, Z-A): filtro "Tenho as DLCs", desmarcado por padrão; a escolha fica guardada por jogo
+  $('dlcWrap').hidden = !hasDlc(acq);
+  try { $('dlc').checked = localStorage.getItem(`poketact:dlc:${gameId}`) === '1'; } catch { $('dlc').checked = false; }
   $('gameInfo').textContent = `${data.game.label} · ${data.pokemon.length} Pokémon · ${Object.keys(data.moves).length} golpes · ${data.types.length} tipos · fonte: ${data.game.source}` +
     (data.corrections ? ` + correções ${/PKHeX/.test(data.corrections.source) ? 'das tabelas do jogo extraídas pelo' : 'do decomp'} ${data.corrections.source} (${data.corrections.list.length})` : '') +
     (data.moveCrosscheck ? ` + golpes conferidos com ${data.moveCrosscheck.source}: ${data.moveCrosscheck.corrected} corrigidos, ${data.moveCrosscheck.flagged} divergências só sinalizadas` : '');
@@ -184,12 +191,12 @@ $('starterPick').addEventListener('click', (e) => {
 function renderWhere(mon, reach, stageNeeded) {
   if (!acq) return '';
   const version = $('version').value;
-  const w = whereToGet(data, acq, mon, version);
+  const w = whereToGet(vData(), vAcq(), mon, version);
   if (!w.direct.length) return '<li class="meta">Onde obter: sem forma direta nesta versão</li>';
   const when = stageNeeded != null ? ' <span class="meta">(disponível: ' + stageLabel(stageNeeded, acq.progress?.leaderOrder, acq.progress) + ')</span>' : Number.isFinite(reach) && reach > 1 ? ' <span class="meta">(estimado: a partir do nv ' + reach + ')</span>' : '';
   let html = '<li><strong>Onde obter</strong>' + when + ': ' + routeHtml(w);
   // os dois caminhos: com fonte direta, mostra também capturar a pré-evolução e evoluir (sem troca: exige outro cartucho)
-  const alt = !w.from && !/^TRADE/.test(mon.evo?.kind ?? '') && preEvolutionRoute(data, acq, mon, version);
+  const alt = !w.from && !/^TRADE/.test(mon.evo?.kind ?? '') && preEvolutionRoute(vData(), vAcq(), mon, version);
   if (alt) html += '<span class="meta">ou </span>' + routeHtml(alt);
   return html + '</li>';
 }
@@ -657,10 +664,10 @@ function update() {
     dynamax: $('dynamax').checked,
     // luta em que o jogo deixa dinamaxizar: a do treinador escolhido, quando um Pokémon dele dinamaxiza (detonado)
     dynamaxBattle: !!trainers.find((x) => x.key === $('trainer').value)?.party.some((p) => p.dynamax),
-    acq,
+    acq: vAcq(),
   };
   if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
-  const { picks, threats, threatSource } = recommend(data, opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
+  const { picks, threats, threatSource } = recommend(vData(), opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
 
   // a ameaça é o que ELE usa contra você (não as fraquezas dele, que ficam no quadro do oponente)
   const threatLine = threatSource.kind === 'known'
@@ -740,7 +747,7 @@ function verdictChips(d, m, unreliable) {
 // uma linha de "como conseguir" (a 1ª fonte, já ordenada por estágio) + quando fica disponível
 function howToGet(s) {
   if (!acq) return '';
-  const w = whereToGet(data, acq, s.mon, $('version').value);
+  const w = whereToGet(vData(), vAcq(), s.mon, $('version').value);
   if (!w.direct.length) return '';
   // a fonte que libera mais cedo (estágio/nível), não a 1ª selvagem: o Machop no HGSS saía "Mt. Mortar" (estágio 6) com a
   // troca da Goldenrod (estágio 2) disponível
@@ -751,7 +758,7 @@ function howToGet(s) {
   let best = pick(w.direct), from = w.from;
   // a captura direta sai depois do que o motor achou (s.stageNeeded / s.reach)? então é pela pré-evolução: mostra essa
   const need = s.stageNeeded ?? s.reach;
-  const alt = !w.from && at(best) > need && !/^TRADE/.test(s.mon.evo?.kind ?? '') && preEvolutionRoute(data, acq, s.mon, $('version').value);
+  const alt = !w.from && at(best) > need && !/^TRADE/.test(s.mon.evo?.kind ?? '') && preEvolutionRoute(vData(), vAcq(), s.mon, $('version').value);
   if (alt) { best = pick(alt.direct); from = alt.from; }
   const first = formatSources([best], 1)[0] ?? '';
   const when = s.stageNeeded != null ? stageLabel(s.stageNeeded, acq.progress?.leaderOrder, acq.progress) : Number.isFinite(s.reach) && s.reach > 1 ? `a partir do nv ${s.reach}` : '';
@@ -776,7 +783,7 @@ function trainLine(s, src, from) {
 
 // modo "contra o time inteiro": as 3 que vencem mais Pokémon do time, com a troca contra cada um
 function renderTeamResults(t, opts, out) {
-  const { picks } = recommendTeam(data, t.party, opts);
+  const { picks } = recommendTeam(vData(), t.party, opts);
   out.innerHTML = ctxLine() + `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` +
     (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
       <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
@@ -792,7 +799,8 @@ function unreliableLine(s) {
   return s.unreliable ? `<li class="bad">⚠ Até aqui só por origem aleatória ou condicionada: ${s.unreliable}.</li>` : '';
 }
 
-for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'zMoves', 'terastal', 'dynamax', 'stage']) $(id).addEventListener('input', update);
+for (const id of ['level', 'version', 'onlyObtainable', 'fullEvo', 'legend', 'machines', 'tradeEvos', 'megaEvo', 'zMoves', 'terastal', 'dynamax', 'stage', 'dlc']) $(id).addEventListener('input', update);
+$('dlc').addEventListener('input', () => { try { localStorage.setItem(`poketact:dlc:${currentGame}`, $('dlc').checked ? '1' : '0'); } catch {} });
 $('stage').addEventListener('input', () => renderTrainerPicker()); // selo "próximo" acompanha o progresso
 for (const id of CTX_FIELDS) $(id).addEventListener('input', saveCtx);
 // atalho "/" (como no Linear/GitHub): vai para a busca do oponente, fora de campos de texto
