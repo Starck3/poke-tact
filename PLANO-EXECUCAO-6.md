@@ -18,7 +18,7 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
 - **S4 ✅ Montagem na ordem certa**: jogos que usam dados de outro (ORAS ← Ruby/Sapphire, BDSP ← Diamond/Pearl, Let's Go ←
   Yellow, USUM ← Sun/Moon, Z-A ← Scarlet/Violet) montados depois dele; arquivo de outro jogo faltando vira erro.
 - **S5 ✅ Etapa sem fonte local avisa em vez de sair calada** (modo `--strict` no build-game: falha).
-- **D1 ⬜** STATUS.md, memória, resumo final.
+- **D1 ✅** STATUS.md, memória, resumo final.
 
 ## Decisões pendentes (🚩 do plano 5, mantidas como estão até o usuário decidir)
 - Wild Area depois do Darkest Day: níveis altos ficam em "8 insígnias".
@@ -40,3 +40,15 @@ S1 → S2 → S3 → S4 → S5 → D1.
   outro montado → erro; twinStage sem o arquivo do original → erro (era mapa vazio). `--strict` (POKETACT_STRICT) faz o
   detonado/evo-items ausente falhar; sem ele, o aviso diz que o arquivo anterior ficou. Não feitos (bloco 3 "aos poucos"):
   idempotência das apply-*, lib/names.mjs (key() único), testes dos leitores de wikitext com trechos de exemplo.
+
+## Resumo final
+Versões 0.59.0 → 0.61.0:
+- S1 ✅ banco de lutas mede "dado incerto": 0 por item/TM/tutor sem lugar; 655 por estágio estimado (SwSh 551 nas DLCs).
+- S2 ✅ `npm run test:ui`: tela testada num Chrome headless (15 verificações, sem dependências).
+- S3 ⚠ linha de contexto, clima sem repetir, favicon, sem 404; ⏸ iniciais compactos (o usuário pediu sprites grandes).
+- S4 ✅ montagem na ordem certa entre jogos; S5 ✅ fonte ausente avisa / falha com --strict.
+Fica para depois (bloco 3, "aos poucos"): idempotência das etapas apply-*, um `key()` único em scripts/lib, testes dos
+leitores de wikitext com trechos de exemplo, `builtAt` que muda a cada montagem.
+🚩 Para o usuário decidir: (a) Pokémon de DLC — sugerir só para quem tem a DLC (filtro "tenho as DLCs")? No SwSh o estágio
+das áreas da DLC é estimado pelo nível, que lá acompanha as insígnias; (b) Wild Area depois do Darkest Day; (c) item só
+citado no detonado vale a partir da 1ª citação.

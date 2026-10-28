@@ -73,6 +73,11 @@ Sun/Moon, USUM, Let's Go, BDSP e Sword/Shield (dia/noite em Alola; manhã/dia/no
 - 🚩 A revisar: Darkest Day na Wild Area; item pela 1ª citação. Backlog feito na 0.58 (aviso de treino, "breed").
 - Críticas (tela e pipeline) na seção "Críticas (C1)" do plano 5.
 
+### Plano de execução 6 (concluído em 2026-10-28 — detalhes em `PLANO-EXECUCAO-6.md`)
+- ✅ Banco de lutas mede sugestão com dado incerto (0.59); teste da tela `npm run test:ui` (0.60); linha de contexto e
+  clima sem repetir (0.60); montagem na ordem certa e `--strict` (0.61).
+- 🚩 A decidir: filtro de DLC; Darkest Day na Wild Area; item só citado no detonado.
+
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
    pós-jogo; a regra atual ("título vence") marca como pós-jogo lugares que abrem antes: Safari Zone de Hoenn (RSE, citada em
