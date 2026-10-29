@@ -3070,3 +3070,25 @@ test('F1 (0.69.0): Scarlet/Violet — chance estimada pelo peso no bioma (Bulbap
   const walk = load('scarlet-violet-walkthrough.json').versions.scarlet.stages.flatMap((s) => s.locations).flatMap((l) => l.wild);
   assert.ok(walk.some((w) => w.pctBiome));
 });
+
+test('0.70.0: Battle Subway (Black/White) — treinadores comuns com a lista de conjuntos da Smogon, sem time fixo', () => {
+  const sw = load('black-white-subway.json');
+  const bw = load('black-white.json');
+  // 110 do Subway normal + 190 das listas 1–5 do Super + 6 especiais (Hilbert/Hilda); os 8 chefes ficam nos treinadores
+  assert.equal(sw.trainers.length, 306);
+  assert.ok(!sw.trainers.some((t) => /Subway Boss/.test(t.label)));
+  // Youngster Joshua, 1º do Subway normal: conjuntos 1–66 da Smogon
+  const joshua = sw.trainers.find((t) => t.key === 'SUBWAY_NORMAL_0');
+  assert.deepEqual([joshua.label, joshua.pool.length, joshua.pool[0], joshua.pool.at(-1)], ['Youngster Joshua', 66, 1, 66]);
+  // todo conjunto aponta para espécie e golpes do jogo (Darmanitan → forma padrão; "Faint Attack" → feint-attack)
+  const names = new Set(bw.pokemon.map((p) => p.name));
+  for (const t of sw.trainers) for (const n of t.pool) {
+    const s = sw.sets[n];
+    assert.ok(s && names.has(s.species) && s.moves.length && s.moves.every((m) => bw.moves[m]), `${t.key} #${n}`);
+  }
+  assert.equal(sw.sets[158].species, 'garbodor');
+  // a tela abre o treinador do Subway direto "contra todos os conjuntos" e diz que ele sorteia 3 (4 na dupla)
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /if \(t\.pool\) \{ known = null; teamMode = t;/);
+  assert.match(app, /sorteia 3 Pokémon \(4 na dupla\)/);
+});

@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-28 · versão **0.69.0** (publicada no GitHub).
+Atualizado em 2026-10-28 · versão **0.70.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas) `PLANO-EXECUCAO-2.md`, `PLANO-EXECUCAO-3.md` e `PLANO-EXECUCAO-4.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
 Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
@@ -85,7 +85,8 @@ Sun/Moon, USUM, Let's Go, BDSP e Sword/Shield (dia/noite em Alola; manhã/dia/no
 
 ### Plano de execução 8 (concluído em 2026-10-28 — fontes da pesquisa; detalhes em `PLANO-EXECUCAO-8.md`)
 - ✅ Ultra Sun com taxa pelas tabelas do jogo (CPokemon/usum-data, 0.67); ⚠ chefes do Battle Subway (BW) com golpes reais pela
-  Smogon (0.68); ✅ Scarlet/Violet com chance estimada pelo peso no bioma (0.69). 🚩 Tela de "times possíveis" do Subway? Regra de ROM?
+  Smogon (0.68); ✅ Scarlet/Violet com chance estimada pelo peso no bioma (0.69); ✅ treinadores comuns do Subway com os
+  conjuntos possíveis da Smogon (0.70, aba "Battle Subway"). 🚩 Regra de ROM: decisão do usuário (só com o próprio jogo).
 
 ### Backlog — depende de fonte nova (grupo 2; o usuário ainda não tem fonte para testar, 2026-10-28)
 - Taxa de aparição no Legends: Arceus e Z-A (sem tabela simples). Scarlet/Violet: estimativa por bioma desde a 0.69 (metade dos encontros).

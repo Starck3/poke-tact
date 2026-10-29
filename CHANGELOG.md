@@ -2,6 +2,24 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.70.0] — 2026-10-29
+
+> Black/White: os 306 treinadores comuns do Battle Subway entram numa aba própria. Como eles sorteiam o time, o app calcula contra todos os Pokémon que cada um pode usar (lista da Smogon) e sugere quem vence mais deles.
+
+### Adicionado
+- `apply-smogon-subway.mjs` também lê as seções Normal, Set 1–5 e Special da página "Battle Subway Trainers" da Smogon:
+  306 treinadores (110 do Subway normal, 190 das listas do Super Subway, 6 especiais), 18.857 referências a 988 conjuntos,
+  todos no nível 50. Vai para `public/data/black-white-subway.json` (cada conjunto uma vez; 230 KB). Nomes da Smogon sem
+  forma → forma padrão (Darmanitan, Basculin, Frillish…); golpes com nome antigo (Faint Attack, Hi Jump Kick, SmellingSalt).
+- Tela: aba "Battle Subway" no oponente (seletor por classe). Ao escolher um treinador, a conta é feita contra todos os
+  conjuntos da lista dele — "vence N de 66 conjuntos" e "perde para…" —; dá para ver um conjunto só pelo seletor.
+- Teste de regressão e verificação na tela (20 no `npm run test:ui`).
+
+### Limites
+- A Smogon não diz em que vagão do Super Subway cada lista aparece: o rótulo fica "lista N da Smogon".
+- A lista da Smogon vale para o Black/White e o Black 2/White 2; só o Black/White usa por enquanto.
+- Banco de lutas: igual (os treinadores do Subway não estão na ordem da história).
+
 ## [0.69.0] — 2026-10-28
 
 > Scarlet/Violet: cerca de metade dos encontros selvagens ganha a chance de aparição estimada, por bioma (ex.: Lechonk ≈ planície 25% · floresta 21%), pela tabela de pesos da Bulbapedia.

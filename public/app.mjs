@@ -99,7 +99,9 @@ async function load(gameId) {
   showTab('rec');
   data = await (await fetch(`data/${gameId}.json`)).json();
   // trainersFromWalk: times transcritos do detonado (jogos sem decomp) — espécie e nível; golpes estimados
-  try { const td = await (await fetch(`data/${gameId}-trainers.json`)).json(); trainers = td.trainers; trainersFromWalk = !!td.fromWalkthrough; } catch { trainers = []; trainersFromWalk = false; }
+  try { const td = await (await fetch(`data/${gameId}-trainers.json`)).json(); trainers = td.trainers; trainersFromWalk = !!td.fromWalkthrough;
+    if (td.subwaySource) try { trainers = trainers.concat(subwayTrainers(await (await fetch(`data/${gameId}-subway.json`)).json(), trainers)); } catch {}
+  } catch { trainers = []; trainersFromWalk = false; }
   try { acq = await (await fetch(`data/${gameId}-acquisition.json`)).json(); } catch { acq = null; }
   if (g.validation === 'pkhex') $('validationNote').textContent += acq?.encountersOnly
     ? (rateCredit(acq) ? ` Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível; ${rateCredit(acq)}.` : ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível, sem taxa de aparição.') +
@@ -457,6 +459,14 @@ function fillStages() {
   sel.title = p ? 'Estimado pela ordem do detonado (' + p.source + ')' : 'Sem linha do tempo para este jogo';
 }
 
+// treinadores comuns do Battle Subway (Smogon, 0.70.0): sem time fixo — o "time" é a lista de conjuntos de onde ele sorteia
+// 3 (simples) ou 4 (dupla); progresso = o dos chefes do Subway
+function subwayTrainers(sw, list) {
+  const stage = list.find((t) => /^Subway Boss/.test(t.label))?.stage ?? null;
+  return sw.trainers.map((t) => ({ key: t.key, label: t.label, name: t.label, class: t.class, group: 'Battle Subway', map: [t.section], stage, pool: true,
+    party: t.pool.map((n) => ({ ...sw.sets[n], set: n, level: sw.level, defaultMoves: false, movesSource: 'Smogon' })) }));
+}
+
 function fillTrainers() {
   const sel = $('trainer');
   sel.innerHTML = '<option value="">— escolher o Pokémon manualmente —</option>';
@@ -474,7 +484,7 @@ function fillTrainers() {
     for (const t of list) {
       const o = document.createElement('option');
       o.value = t.key;
-      o.textContent = `${t.label} (${t.party.length} Pokémon${t.double ? ', dupla' : ''})`;
+      o.textContent = t.pool ? `${t.label} (sorteia de ${t.party.length} conjuntos)` : `${t.label} (${t.party.length} Pokémon${t.double ? ', dupla' : ''})`;
       og.append(o);
     }
     sel.append(og);
@@ -557,7 +567,8 @@ function selectTrainer(key) {
   const t = trainers.find((x) => x.key === key);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; renderTrainerPicker(); update(); return; }
   setLevelFor(t);
-  pickTrainerMon(t, 0);
+  if (t.pool) { known = null; teamMode = t; renderTeam(t, -1); update(); } // Subway: abre direto contra todos os conjuntos possíveis
+  else pickTrainerMon(t, 0);
   renderTrainerPicker();
 }
 // nível do seu time = o do Pokémon mais forte do treinador (como no banco de lutas): com o padrão 30, o Brock (nv 12–14)
@@ -592,6 +603,14 @@ function pickTrainerMon(t, i) {
 function renderTeam(t, active) {
   const box = $('team');
   box.innerHTML = '';
+  // Subway: até 96 conjuntos — um botão "contra todos" e a lista num seletor (espécie, item e golpes)
+  if (t.pool) {
+    box.innerHTML = `<button type="button" aria-pressed="${!!teamMode}">Contra todos os ${t.party.length} possíveis</button>` +
+      `<select aria-label="Um conjunto da lista"><option value="">— ou ver um conjunto da lista —</option>${t.party.map((p, i) => `<option value="${i}"${!teamMode && i === active ? ' selected' : ''}>${humanize(p.species)}${p.item ? ' @ ' + p.item : ''} — ${p.moves.map(humanize).join(', ')}</option>`).join('')}</select>`;
+    box.querySelector('button').addEventListener('click', () => { teamMode = t; known = null; renderTeam(t, -1); update(); });
+    box.querySelector('select').addEventListener('change', (e) => { if (e.target.value !== '') pickTrainerMon(t, Number(e.target.value)); });
+    return;
+  }
   t.party.forEach((p, i) => {
     const b = document.createElement('button');
     b.type = 'button';
@@ -642,6 +661,7 @@ function update() {
   renderOppWarn();
   const opp = currentOpp();
   const out = $('results');
+  if (teamMode?.pool) { $('oppInfo').innerHTML = ''; renderTeamResults(teamMode, baseOptions(), out); return; }
   if (!opp) {
     $('oppInfo').innerHTML = '';
     // estado vazio com o próximo passo (em vez de tela em branco)
@@ -660,7 +680,15 @@ function update() {
     <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.teraType ? opp.baseTypes.map(typeBadge).join('') + ' → Tera ' + typeBadge(opp.teraType) + ' <span class="lozenge warn">terastaliza (detonado)</span>' : opp.types.map(typeBadge).join('')}${opp.dynamax ? ` <span class="lozenge warn">${opp.dynamax === 'gigantamax' ? 'Gigantamax' : 'Dynamax'} (detonado): vida 1,5× e golpes Max nos 3 primeiros turnos</span>` : ''}
     <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : known.movesSource === 'Bulbapedia' ? '(do time na Bulbapedia)' : known.movesSource === 'Smogon' ? '(do time na Smogon)' : '(definidos pelo jogo)'}${known.zMove ? ` — usa golpe Z a partir de ${humanize(known.zMove)} no 1º turno` : ''}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
-  const baseOpts = {
+  const baseOpts = baseOptions();
+  if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
+  const { picks, threats, threatSource } = recommend(vData(), opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
+  renderPicks(out, picks, threats, threatSource);
+}
+
+// filtros da tela → opções do cálculo
+function baseOptions() {
+  return {
     level: Number($('level').value) || 1,
     version: $('version').value,
     onlyObtainable: $('onlyObtainable').checked,
@@ -678,9 +706,9 @@ function update() {
     dynamaxBattle: !!trainers.find((x) => x.key === $('trainer').value)?.party.some((p) => p.dynamax),
     acq: vAcq(),
   };
-  if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
-  const { picks, threats, threatSource } = recommend(vData(), opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
+}
 
+function renderPicks(out, picks, threats, threatSource) {
   // a ameaça é o que ELE usa contra você (não as fraquezas dele, que ficam no quadro do oponente)
   const threatLine = threatSource.kind === 'known'
     ? `Ele ataca com (${known?.movesSource === 'Bulbapedia' ? 'golpes do time na Bulbapedia' : known?.movesSource === 'Smogon' ? 'golpes do time na Smogon' : trainersFromWalk ? 'golpes estimados pelo nível — time do detonado' : 'golpes reais do time'}): ${threats.map(typeBadge).join('')}`
@@ -794,7 +822,15 @@ function trainLine(s, src, from) {
 }
 
 // modo "contra o time inteiro": as 3 que vencem mais Pokémon do time, com a troca contra cada um
+let poolTok = 0;
 function renderTeamResults(t, opts, out) {
+  // Subway: a conta contra até 96 conjuntos leva ~0,6 s — mostra "calculando" antes; resultado velho (outra escolha no meio) é descartado
+  if (t.pool) {
+    const tok = ++poolTok;
+    out.innerHTML = ctxLine() + `<p class="note">Calculando contra os ${t.party.length} conjuntos possíveis de ${t.label}…</p>` + skeleton();
+    setTimeout(() => { if (tok === poolTok && teamMode === t) renderPoolResults(t, opts, out); }, 30);
+    return;
+  }
   const { picks } = recommendTeam(vData(), t.party, opts);
   out.innerHTML = ctxLine() + `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` +
     (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
@@ -803,6 +839,21 @@ function renderTeamResults(t, opts, out) {
       <div class="kv"><b>Contra cada um</b>${s.vs.map((x) => `${x.duel?.win ? '<span class="good">✓</span>' : '<span class="bad">✗</span>'} ${humanize(x.opp)} nv ${x.level}`).join('<br>')}</div>
       ${howToGet(s)}
       <details class="more"><summary>Detalhes</summary><ul class="why">${s.vs.map((x) => `<li><strong>${humanize(x.opp)} nv ${x.level}</strong>: ${duelLine(x.duel)}</li>`).join('')}
+        ${renderWhere(s.mon, s.reach, s.stageNeeded)}${unreliableLine(s)}</ul></details></div>`).join('') + '</div>' : '<div class="card empty">Nenhuma sugestão com esses filtros.</div>');
+}
+
+// Subway (0.70.0): o treinador sorteia 3 (simples) ou 4 (dupla) da lista — a sugestão boa é a que vence mais conjuntos dela;
+// "perde para" diz quais espécies da lista ganham dela (o resto é a mesma conta do time inteiro)
+function renderPoolResults(t, opts, out) {
+  const { picks } = recommendTeam(vData(), t.party, opts);
+  const loses = (s) => [...new Set(s.vs.filter((x) => !x.duel?.win).map((x) => humanize(x.opp)))];
+  out.innerHTML = ctxLine() + `<p class="note">${t.label} (${t.map[0]}) não tem time fixo: sorteia 3 Pokémon (4 na dupla) entre estes ${t.party.length} conjuntos da lista da Smogon, todos no nível 50. As sugestões são as que vencem a troca de golpes contra mais conjuntos da lista (cálculo de dano da Geração ${roman(data.game.generation)}, com os golpes e itens de cada conjunto). A lista da Smogon vale para o Black/White e o Black 2/White 2.</p>` +
+    (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
+      <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
+      <div class="verdict">${lozenge(s.wins === s.total ? 'ok' : s.wins * 2 >= s.total ? 'warn' : 'bad', `vence ${s.wins} de ${s.total} conjuntos`)}${s.unreliable ? lozenge('warn', '⚠ origem aleatória', s.unreliable) : ''}</div>
+      <div class="kv"><b>Perde para</b>${loses(s).join(', ') || 'nenhum conjunto da lista'}</div>
+      ${howToGet(s)}
+      <details class="more"><summary>Contra cada conjunto</summary><ul class="why">${s.vs.map((x, j) => `<li><strong>${humanize(x.opp)}${t.party[j].item ? ' @ ' + t.party[j].item : ''}</strong>: ${duelLine(x.duel)}</li>`).join('')}
         ${renderWhere(s.mon, s.reach, s.stageNeeded)}${unreliableLine(s)}</ul></details></div>`).join('') + '</div>' : '<div class="card empty">Nenhuma sugestão com esses filtros.</div>');
 }
 
@@ -1106,7 +1157,9 @@ function applyGameParams(p) {
     $('trainer').value = t.key; setLevelFor(t);
     if (p.meu) $('level').value = keep.level;
     if (p.insignias != null) $('stage').value = keep.stage;
-    pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1)); renderTrainerPicker(); return;
+    if (t.pool && p.i == null) { known = null; teamMode = t; renderTeam(t, -1); update(); } // Subway: contra todos os conjuntos
+    else pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1));
+    renderTrainerPicker(); return;
   }
   if (p.pokemon) { known = null; $('opp').value = p.pokemon; $('oppLevel').value = p.nivel ?? ''; }
   update();
