@@ -1,7 +1,8 @@
+import { nameKey } from './names.mjs';
 // Parsers do PokeMythology (sem rede). Usados pelo coletor, pelo catálogo e pelos testes.
 
 const ORIGIN = 'https://www.pokemythology.net';
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const norm = nameKey;
 // páginas antigas (.htm) cujo nome não segue o padrão "detonado-<jogo>"
 const LEGACY = { usum: 'ultra-sun-ultra-moon' };
 

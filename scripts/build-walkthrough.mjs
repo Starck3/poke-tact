@@ -66,7 +66,11 @@ function build(version) {
     const l = loc(s.mapId);
     if (!l) continue;
     if (s.type === 'wild') { l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, pct: s.pct, ...(s.gate && { gate: { stage: s.gate.stage ?? null, badge: s.gate.badge ?? null, leader: s.gate.leader ?? null } }) }); l.minLevel = Math.min(l.minLevel, s.min); }
-    else l.others.push({ species, type: s.type, where: s.where, level: s.level ?? null, detail: s.detail ?? null });
+    else {
+      // ovo da creche: uma fonte por pai (Pichu pelo Pikachu e pelo Raichu) — no Detonado aparece uma vez só
+      const o = { species, type: s.type, where: s.where, level: s.level ?? null, detail: s.detail ?? null };
+      if (s.type !== 'breed' || !l.others.some((x) => JSON.stringify(x) === JSON.stringify(o))) l.others.push(o);
+    }
   }
   for (const [move, list] of Object.entries(acq.machines ?? {})) for (const s of list) {
     const l = loc(folderToId[s.map]);

@@ -3,6 +3,7 @@
 // Uso: node scripts/validate-vs-pokemythology.mjs <jogo>  → reports/<jogo>/pokemythology-audit.json
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { parseTrainerBlocks } from './lib/pokemythology.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2] ?? 'firered-leafgreen';
 import { GAMES } from './games.mjs';
@@ -12,7 +13,7 @@ const file = new URL(`../data-sources/pokemythology/${SLUG[gameId]}.html`, impor
 if (!existsSync(file)) { console.log(`[${gameId}] sem detonado em cache — rode scripts/fetch-pokemythology.mjs`); process.exit(0); }
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 
-const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, ''); // Érika = ERIKA
+const norm = nameKey; // Érika = ERIKA
 const { trainers } = JSON.parse(readFileSync(new URL(`../public/data/${gameId}-trainers.json`, import.meta.url), 'utf8'));
 const named = trainers.filter((t) => t.name && norm(t.name).length >= 3);
 const blocks = parseTrainerBlocks(readFileSync(file, 'utf8'));

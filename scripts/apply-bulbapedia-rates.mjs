@@ -5,6 +5,7 @@
 // Uso: node scripts/apply-bulbapedia-rates.mjs <jogo>   (≥ 5 s por página nova; para no 1º erro HTTP)
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { page, plain } from './lib/bulbapedia.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 // predefinição de cada jogo e região no título das rotas ("Kalos Route 2"); as colunas de versão seguem a ordem das versões
@@ -34,7 +35,7 @@ if (!cfg) { console.log(`[${gameId}] taxa de aparição pela Bulbapedia não con
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
 const versions = Object.keys(acq.versions);
-const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
+const key = nameKey;
 const placeOf = (where) => where.replace(/\s*\(.*$/, '').trim();
 const METHOD_PT = { grass: 'Grama', 'tall grass': 'Grama alta', 'yellow flowers': 'Flores amarelas', 'purple flowers': 'Flores roxas', 'red flowers': 'Flores vermelhas', cave: 'Caverna',
   surf: 'Surf', 'fish old': 'Vara velha', 'fish good': 'Vara boa', 'fish super': 'Super vara', 'rock smash': 'Rock Smash', swamp: 'Pântano', ceiling: 'Teto da caverna',

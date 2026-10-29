@@ -2985,3 +2985,35 @@ test('I4 (0.64.0): builtAt estável — a data de montagem só muda quando o dad
   assert.match(src('build-game.mjs'), /keepBuiltAtFromGit\(/);
   assert.match(src('build-catalog.mjs'), /keepBuiltAt\(catalogOut/);
 });
+
+test('I2 (0.65.0): uma regra só para comparar nomes — ♀/♂ não viram o mesmo nome', async () => {
+  const { nameKey, wordsKey } = await import('../scripts/lib/names.mjs');
+  assert.equal(nameKey('Érika'), nameKey('ERIKA'));
+  assert.equal(nameKey('Nidoran♀'), nameKey('NIDORAN_F'));
+  assert.notEqual(nameKey('Nidoran♀'), nameKey('Nidoran♂'));
+  assert.equal(wordsKey('Route 1 (Hau’oli Outskirts)'), 'route 1 hauoli outskirts');
+  // Sword: antes os dois Nidoran do Giant's Bed batiam com as duas linhas da Bulbapedia (ambíguo, sem taxa)
+  const sw = load('sword-shield-acquisition.json').versions.sword;
+  const at = (n) => sw[n].find((s) => /Giant/.test(s.where) && s.method === 'No mapa');
+  assert.equal(at('nidoran-f').pct, 21);
+  assert.equal(at('nidoran-m').pctWeather['tempestade de areia'], 100); // só o ♂ aparece na tempestade de areia
+  // nenhum script volta a ter a própria função de nome
+  for (const f of ['apply-bulbapedia-rates.mjs', 'apply-bulbapedia-trainers.mjs', 'build-detonado-modern.mjs', 'apply-breeding.mjs']) {
+    assert.match(readFileSync(new URL(`../scripts/${f}`, import.meta.url), 'utf8'), /from '\.\/lib\/names\.mjs'/, f);
+  }
+});
+
+test('0.65.0: Detonado — ovo na creche uma vez por espécie (era uma por pai) e dados remontados nos jogos com decomp', () => {
+  for (const f of readdirSync(new URL('../public/data/', import.meta.url)).filter((x) => x.endsWith('-walkthrough.json'))) {
+    const w = load(f);
+    for (const v of Object.values(w.versions ?? {})) for (const st of v.stages ?? []) for (const l of st.locations ?? []) {
+      const eggs = (l.others ?? []).filter((o) => o.type === 'breed').map((o) => JSON.stringify(o));
+      assert.equal(new Set(eggs).size, eggs.length, `${f} ${l.name}`);
+    }
+  }
+  // Gold/Silver: o Detonado salvo era o da 0.1.0, sem os ovos da creche
+  const gs = load('gold-silver-walkthrough.json').versions.gold.stages.flatMap((s) => s.locations).flatMap((l) => l.others);
+  assert.ok(gs.some((o) => o.type === 'breed' && o.species === 'pichu'));
+  // encontros iguais de verdade (Power Plant: 6 Voltorb) aparecem com "×N"
+  assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /' ×' \+ n/);
+});

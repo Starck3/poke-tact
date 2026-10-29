@@ -8,6 +8,7 @@
 // Uso: node scripts/apply-bulbapedia-trainers.mjs <jogo>   (rede: ≥ 5 s por página nova; o cache fica em data-sources/)
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { page, parties } from './lib/bulbapedia.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 // campo "game" do {{Party}} que vale para cada jogo do app
@@ -21,7 +22,7 @@ const dataFile = new URL(`../public/data/${gameId}.json`, import.meta.url);
 const trFile = new URL(`../public/data/${gameId}-trainers.json`, import.meta.url);
 const data = JSON.parse(readFileSync(dataFile, 'utf8'));
 const tr = JSON.parse(readFileSync(trFile, 'utf8'));
-const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
+const key = nameKey;
 const base = (n) => n.replace(/-(alola|galar|hisui|paldea)(-.*)?$/, '').replace(/-(male|female|midday|midnight|dusk|.*-breed)$/, '');
 const moveKey = new Map(Object.keys(data.moves).map((n) => [key(n), n]));
 // nomes que não são pessoa ou que a Bulbapedia escreve de outro jeito

@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { decompPaths } from './lib/decomp.mjs';
 import { loadDecomp } from './lib/decomp.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2] ?? 'firered-leafgreen';
 const { game, commit, read, mapsDir: decompMapsDir } = decompPaths(gameId);
@@ -36,7 +37,7 @@ for (const b of read('src/data/battle_moves.h').split(/\n\s*\[(?=MOVE_)/).slice(
 // Ordem do learnset por level-up = ordem do arquivo do jogo (a PokéAPI não a preserva; em empates de nível ela define
 // quais golpes entram no moveset padrão de treinadores/selvagens).
 const decomp = loadDecomp(gameId);
-const norm = (x) => x.toLowerCase().replace(/[^a-z0-9]/g, '');
+const norm = nameKey;
 const decompOrder = Object.fromEntries(Object.entries(decomp.levelUpOrdered).map(([n, v]) => [norm(n), v]));
 let reordered = 0;
 for (const mon of data.pokemon) {

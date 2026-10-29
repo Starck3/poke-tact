@@ -94,6 +94,12 @@ try {
   const tipos = await run(() => document.querySelectorAll('#typesOut .mon-card').length);
   check('Pokémon por tipo (fogo): cartões', tipos > 5, tipos);
 
+  // 3b. Detonado do Red/Blue: encontros iguais numa linha com "×N" (Power Plant: 6 Voltorb), ovos sem repetição (0.65.0)
+  await go('#/jogo/red-blue', 3000);
+  await run(async () => { document.querySelector('#tabWalk').click(); await new Promise((r) => setTimeout(r, 1500)); });
+  const pp = await run(() => [...document.querySelectorAll('#walk .walk-list li')].map((l) => l.textContent).filter((t) => /Power Plant/.test(t) && /Voltorb/.test(t)));
+  check('Detonado (Red/Blue): "Voltorb … ×6" numa linha só', pp.length === 1 && / ×6$/.test(pp[0]), pp);
+
   // 4. Scarlet: 1ª luta da Nemona (nv 5) — sem Armarouge (item citado no detonado limita a evolução)
   await go('#/jogo/scarlet-violet', 4000);
   await run(async () => { [...document.querySelectorAll('#trainerCats button')].find((b) => /Rival/.test(b.textContent)).click(); await new Promise((r) => setTimeout(r, 300)); document.querySelector('.tchip').click(); await new Promise((r) => setTimeout(r, 1500)); });

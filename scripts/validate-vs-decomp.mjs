@@ -4,12 +4,13 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { loadDecomp } from './lib/decomp.mjs';
 import { decompPaths } from './lib/decomp.mjs';
 import { mkdirSync } from 'node:fs';
+import { nameKey } from './lib/names.mjs';
 const gameId = process.argv[2] ?? 'firered-leafgreen';
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 
 const data = JSON.parse(readFileSync(new URL(`../public/data/${gameId}.json`, import.meta.url), 'utf8'));
 const d = loadDecomp(gameId);
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const norm = nameKey;
 const decompByName = Object.fromEntries(Object.entries(d.species).map(([n, v]) => [norm(n), v]));
 const moveIdOf = (name) => JSON.parse(readFileSync(new URL(`../.cache/move_${name}.json`, import.meta.url), 'utf8')).id;
 const idCache = new Map();
