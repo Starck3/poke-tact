@@ -59,14 +59,15 @@ export function biomeRows(text) {
 
 /**
  * Fatia de cada linha no bioma: peso ÷ soma dos pesos das espécies que podem aparecer no mesmo bioma, versão, terreno e
- * horário. Para cada linha, a maior fatia entre os terrenos e horários em que ela aparece (o que dá para ver no jogo procurando
- * na hora e no terreno certos). ESTIMATIVA: o jogo sorteia por ponto de aparição e também filtra pelo nível da área.
+ * horário. O terreno é o PRINCIPAL da espécie (terra se ela aparece em terra; senão superfície da água, embaixo d'água, voo
+ * baixo, céu) — o maior entre os terrenos dava "lago 100%" ao Magikarp (o único embaixo d'água); o horário é o melhor em que
+ * ela aparece. ESTIMATIVA: o jogo sorteia por ponto de aparição e também filtra pelo nível da área.
  */
 export function biomeShares(rows, vIndex) {
   const mine = rows.filter((r) => r.versions[vIndex]);
   return mine.map((r) => {
     let best = 0;
-    for (const t of r.terrains.length ? r.terrains : ['land']) for (const h of TIMES) {
+    for (const t of [r.terrains[0] ?? 'land']) for (const h of TIMES) {
       if (!r.times[h]) continue;
       const pool = mine.filter((x) => x.biome === r.biome && x.times[h] && (x.terrains.length ? x.terrains : ['land']).includes(t));
       const sum = pool.reduce((a, x) => a + x.weight, 0);

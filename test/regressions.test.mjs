@@ -1882,9 +1882,10 @@ test('aba Onde capturar: todos os locais da versão, rota por evolução, evento
   // exclusivo de versão: aparece nas outras versões
   const ekans = r('firered-leafgreen', 'leafgreen', 'ekans');
   assert.equal(ekans.lines.length, 0); assert.ok(ekans.others.some((o) => o.version === 'firered'));
-  // jogos sem decomp também (PKHeX): sem taxa (Scarlet/Violet); 0.50.0: X/Y com a taxa da Bulbapedia (0.57.0: SwSh também tem)
+  // jogos sem decomp também (PKHeX); 0.50.0: X/Y com a taxa da Bulbapedia (0.57.0: SwSh também tem); 0.69.0: Scarlet/Violet
+  // com a fatia por bioma, sempre como estimativa ("≈ … pelo peso no bioma"), nunca uma taxa seca
   const sm = r('scarlet-violet', 'scarlet', 'pikachu');
-  assert.ok(sm.lines.length && sm.lines.every((l) => !/%/.test(l.text)));
+  assert.ok(sm.lines.length && sm.lines.every((l) => !/%/.test(l.text) || /≈ .*pelo peso no bioma/.test(l.text)));
   const xy = r('x-y', 'x', 'pikachu');
   assert.ok(xy.lines.some((l) => /Santalune Forest — Grama, nv \d+(–\d+)? \(\d+%\)/.test(l.text)));
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
@@ -3051,4 +3052,21 @@ test('F2 (0.68.0): chefes do Battle Subway (Black/White) com golpes e item reais
   assert.deepEqual([ex.item, ex.moves], ['Life Orb', ['earthquake', 'aerial-ace', 'poison-jab', 'rock-slide']]);
   // a tela não chama os golpes da Smogon de "estimados pelo nível"
   assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /movesSource === 'Smogon' \? 'golpes do time na Smogon'/);
+});
+
+test('F1 (0.69.0): Scarlet/Violet — chance estimada pelo peso no bioma (Bulbapedia), marcada como estimativa', async () => {
+  const { pctText } = await import('../public/engine.mjs');
+  const sv = load('scarlet-violet-acquisition.json');
+  assert.match(sv.spawnWeightsSource, /estimativa/);
+  const at = (sp, w) => sv.versions.scarlet[sp].find((s) => s.where === w && s.pctBiome);
+  // South Province (Area One), planície: Lechonk 80 de 326 (Hoppip 60, Happiny 1, Fletchling 60, Scatterbug 60, Lechonk 80,
+  // Tarountula 50, Pawmi 5, Pachirisu 10) = 25%
+  assert.deepEqual(at('lechonk', 'South Province (Area One)').pctBiome, { 'planície': 25, floresta: 21 });
+  // terreno principal: o Magikarp não fica "lago 100%" por ser o único embaixo d'água
+  assert.ok(at('magikarp', 'South Province (Area One)').pctBiome['lago'] < 50);
+  for (const s of Object.values(sv.versions).flat(2).filter((x) => x.pctBiome)) assert.ok(s.pctApprox && s.pctSource === 'Bulbapedia (peso no bioma)');
+  assert.equal(pctText(at('lechonk', 'South Province (Area One)')), '≈ planície 25% · floresta 21%, pelo peso no bioma');
+  // o Detonado também mostra
+  const walk = load('scarlet-violet-walkthrough.json').versions.scarlet.stages.flatMap((s) => s.locations).flatMap((l) => l.wild);
+  assert.ok(walk.some((w) => w.pctBiome));
 });
