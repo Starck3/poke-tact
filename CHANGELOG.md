@@ -2,6 +2,20 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.66.0] — 2026-10-28
+
+> Manutenção por dentro: a leitura das páginas da Bulbapedia ganhou testes com exemplos — se o formato de lá mudar, o teste avisa antes de um dado sair errado. Nada muda na tela.
+
+### Adicionado
+- `test/bulbapedia-readers.test.mjs`: 8 testes dos leitores de wikitext (texto simples, lugares pelo link, times de
+  treinador com golpe Z/Dynamax/Tera/luta em dupla, tabela de itens, tabelas de captura com período do dia, clima, forma
+  regional e as 3 colunas do Black/White). Trechos escritos à mão no formato da Bulbapedia (nada copiado); rodam sem rede e
+  num clone limpo.
+
+### Alterado
+- O leitor das tabelas de captura saiu do `apply-bulbapedia-rates` para `scripts/lib/bulbapedia-catch.mjs` (testável).
+  Remontagem dos 8 jogos com taxa: zero arquivos alterados.
+
 ## [0.65.0] — 2026-10-28
 
 > Detonado mais limpo: cada ovo da creche aparece uma vez (antes, uma por pai) e encontros repetidos viram "×2", "×6". Gold/Silver, DP, Platinum e HGSS ganham os ovos no Detonado. Sword: taxa dos dois Nidoran no Giant's Bed.

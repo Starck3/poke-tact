@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { page, plain } from './lib/bulbapedia.mjs';
 import { nameKey } from './lib/names.mjs';
+import { WEATHER, catchRows } from './lib/bulbapedia-catch.mjs';
 
 const gameId = process.argv[2];
 // predefinição de cada jogo e região no título das rotas ("Kalos Route 2"); as colunas de versão seguem a ordem das versões
@@ -25,8 +26,7 @@ const CFG = {
   'sword-shield': { entry: 'entry8', region: 'Galar', weather: true,
     sections: { 'Grama (escondido)': /Hidden/i, Surf: /Hidden/i, Pesca: /Hidden/i, 'No mapa': /Visible|Symbol/i }, skipSection: /Curry|Raid|Dynamax|Berry/i },
 };
-// clima da tabela da Bulbapedia → rótulo; e o nome do clima no PKHeX ("clima: Overcast, Raining") → chave da tabela
-const WEATHER = { clear: 'tempo limpo', cloudy: 'nublado', rain: 'chuva', thunderstorm: 'tempestade', snow: 'neve', blizzard: 'nevasca', sun: 'sol forte', sandstorm: 'tempestade de areia', fog: 'neblina' };
+// nome do clima no PKHeX ("clima: Overcast, Raining") → chave da tabela da Bulbapedia (WEATHER em lib/bulbapedia-catch)
 const PKHEX_WEATHER = { Normal: 'clear', Overcast: 'cloudy', Raining: 'rain', Thunderstorm: 'thunderstorm', 'Intense Sun': 'sun', Snowing: 'snow', Snowstorm: 'blizzard', Sandstorm: 'sandstorm', 'Heavy Fog': 'fog' };
 // método já específico no PKHeX → só as linhas desse método na tabela (BDSP)
 const METHOD_ROWS = { Surf: /^Surf/i, 'Old Rod': /^Fish Old/i, 'Good Rod': /^Fish Good/i, 'Super Rod': /^(Fish Super|Fishing)$/i, Pesca: /^Fish/i }; // "Fishing": Black/White (uma vara só); Pesca: Sword/Shield
@@ -41,46 +41,8 @@ const METHOD_PT = { grass: 'Grama', 'tall grass': 'Grama alta', 'yellow flowers'
   surf: 'Surf', 'fish old': 'Vara velha', 'fish good': 'Vara boa', 'fish super': 'Super vara', 'rock smash': 'Rock Smash', swamp: 'Pântano', ceiling: 'Teto da caverna',
   dark: 'Grama escura', snow: 'Neve', terrain: 'Terreno', dirt: 'Terra', sky: 'Céu', 'rustling bush': 'Arbusto que mexe', 'shaking trash cans': 'Lixeira que mexe', 'horde encounter': 'Horda' };
 
-// forma da tabela → sufixo do nome no app ("Alolan Form" → alola, "Average&nbsp;Size" → average)
-const formKey = (f) => key(f.replace(/&nbsp;/g, ' ').replace(/\s+(Size|Form)$/i, '').replace(/^Alolan$/i, 'alola').replace(/^Galarian$/i, 'galar').replace(/^Hisuian$/i, 'hisui').replace(/^Paldean$/i, 'paldea'));
 const REGIONAL = new Set(['alola', 'galar', 'hisui', 'paldea']);
-const pctOf = (t) => { const m = String(t ?? '').trim().match(/^(~?)(\d+(?:\.\d+)?)%$/); return m ? { rate: Number(m[2]), approx: !!m[1] } : null; };
 
-/** Linhas de captura da página: [{ species, versions: [true, false], method, min, max, rate, approx, times?, form? }]. */
-function catchRows(text) {
-  const out = [];
-  // seção atual ({{catch/div|land|Swarm}}): linhas de uma seção pulada (cfg.skipDiv) ficam fora
-  // e a seção da página (===[[Hidden encounter]]s===): tipo de encontro no Sword/Shield (cfg.sections)
-  let div = '', section = '';
-  for (const m of text.matchAll(new RegExp(`^={2,4}([^=\\n]+)={2,4}\\s*$|\\{\\{catch/div\\|[^|}]*\\|([^|}]*)\\}\\}|\\{\\{catch/header|\\{\\{Catch/${cfg.entry}\\|([^\\n]*)\\}\\}`, 'gim'))) {
-    if (m[1] != null) { section = plain(m[1]); div = ''; continue; }
-    if (m[3] == null) { div = m[2] ?? ''; continue; }
-    if (cfg.skipDiv?.test(div) || cfg.skipSection?.test(section)) continue;
-    const parts = m[3].split('|');
-    const named = Object.fromEntries(parts.filter((x) => /^\w+=/.test(x)).map((x) => [x.slice(0, x.indexOf('=')), x.slice(x.indexOf('=') + 1)]));
-    const [, species, ...rest] = parts.filter((x) => !/^\w+=/.test(x));
-    const flags = rest.slice(0, versions.length), [method, levels, ...rates] = rest.slice(cfg.flags ?? versions.length);
-    if (cfg.skipRows?.test(String(method ?? '').trim())) continue;
-    const lv = String(levels ?? '').match(/(\d+)(?:\s*[-–]\s*(\d+))?/);
-    // taxa: uma coluna; ou uma por período ("-"/"0%" = não aparece nesse período); ou all=
-    let r = named.all ? pctOf(named.all) : pctOf(rates[0]), times = null;
-    if (cfg.times && !named.all) {
-      const ps = cfg.times.map((_, i) => pctOf(rates[i]));
-      const nums = ps.map((p) => p?.rate ?? 0);
-      r = ps.some(Boolean) ? { rate: Math.max(...nums), approx: ps.some((p) => p?.approx) } : null;
-      if (r && new Set(nums).size > 1) times = Object.fromEntries(cfg.times.map((t, i) => [t, nums[i]])); // { dia: 0, noite: 30 }
-    }
-    // clima (Sword/Shield): "cloudy=40%|rain=5%" — a taxa de cada clima em que aparece (os outros: não aparece)
-    let weather = null;
-    if (cfg.weather) {
-      const ws = Object.keys(WEATHER).filter((w) => pctOf(named[w]));
-      if (ws.length) { weather = Object.fromEntries(ws.map((w) => [w, pctOf(named[w]).rate])); r = { rate: Math.max(...Object.values(weather)), approx: ws.some((w) => pctOf(named[w]).approx) }; }
-    }
-    if (!lv || !r || !method) continue;
-    out.push({ species: key(species), versions: flags.map((x) => x === 'yes'), method: method.trim(), min: Number(lv[1]), max: Number(lv[2] ?? lv[1]), rate: r.rate, approx: r.approx, section, ...(times && { times }), ...(weather && { weather }), ...(named.form && { form: formKey(named.form) }) });
-  }
-  return out;
-}
 
 const report = { pages: {}, matched: 0, wild: 0, ambiguous: [], unmatched: [] };
 const rowsOf = new Map();
@@ -94,7 +56,7 @@ for (const place of places) {
     let text;
     try { text = await page(title); } catch (e) { console.log(e.message); process.exit(2); }
     if (text && /\{\{disambig/i.test(text)) continue;
-    rows = catchRows(text ?? '');
+    rows = catchRows(text ?? '', cfg, versions.length);
     report.pages[place] = `${title}: ${rows.length} linhas`;
     if (rows.length) break;
   }
