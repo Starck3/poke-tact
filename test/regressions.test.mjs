@@ -2962,3 +2962,12 @@ test('0.62.0: filtro "Tenho as DLCs" (desmarcado = sem as expansões); Wild Area
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.match(app, /recommend\(vData\(\), opp,/);
 });
+
+test('I1 (0.63.0): etapas idempotentes — rodar de novo não repete a nota dos exclusivos do Scarlet/Violet', () => {
+  // check-idempotent (rodar cada etapa 2× e o ciclo sobre a montagem) achou a nota duplicada a cada execução
+  const notes = load('scarlet-violet-acquisition.json').notes ?? [];
+  assert.equal(notes.filter((n) => /^Exclusivos de versão pela lista/.test(n)).length, 1);
+  const src = readFileSync(new URL('../scripts/apply-bulbapedia-exclusives.mjs', import.meta.url), 'utf8');
+  assert.match(src, /\^Exclusivos de versão pela lista/);
+  assert.ok(existsSync(new URL('../scripts/check-idempotent.mjs', import.meta.url)));
+});

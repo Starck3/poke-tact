@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-26 · versão **0.62.0** (publicada no GitHub).
+Atualizado em 2026-10-28 · versão **0.63.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas) `PLANO-EXECUCAO-2.md`, `PLANO-EXECUCAO-3.md` e `PLANO-EXECUCAO-4.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
 Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
@@ -70,13 +70,24 @@ Sun/Moon, USUM, Let's Go, BDSP e Sword/Shield (dia/noite em Alola; manhã/dia/no
 - ⚠ Wild Area do SwSh pelo limite de captura por insígnia (0.55); trocas com lugar e estágio (0.56).
 - ✅ Revisão geral + teste no Chrome headless; Detonado remontado depois das etapas da Bulbapedia; link da luta ajusta o
   nível; item citado no detonado limita a evolução (0.57).
-- 🚩 A revisar: Darkest Day na Wild Area; item pela 1ª citação. Backlog feito na 0.58 (aviso de treino, "breed").
+- ✅ Revisado com o usuário (decidido na 0.62): Darkest Day na Wild Area = pós-jogo (nv 60+); item pela 1ª citação. Backlog feito na 0.58 (aviso de treino, "breed").
 - Críticas (tela e pipeline) na seção "Críticas (C1)" do plano 5.
 
 ### Plano de execução 6 (concluído em 2026-10-28 — detalhes em `PLANO-EXECUCAO-6.md`)
 - ✅ Banco de lutas mede sugestão com dado incerto (0.59); teste da tela `npm run test:ui` (0.60); linha de contexto e
   clima sem repetir (0.60); montagem na ordem certa e `--strict` (0.61).
 - ✅ Decisões do usuário (0.62): filtro "Tenho as DLCs" (desmarcado); Wild Area nv 60+ = pós-jogo; item citado: 1ª citação.
+
+### Plano de execução 7 (grupo 1 — melhorias internas; detalhes em `PLANO-EXECUCAO-7.md`)
+- Idempotência das etapas (`node scripts/check-idempotent.mjs <jogo>`), um `key()` único, testes dos leitores de wikitext,
+  `builtAt` estável.
+
+### Backlog — depende de fonte nova (grupo 2; o usuário ainda não tem fonte para testar, 2026-10-28)
+- Taxa de aparição no Scarlet/Violet, Legends: Arceus e Z-A (horário, clima e bando — sem tabela simples).
+- Itens de evolução e Mega Stones do Sword/Shield e do Z-A que o detonado não cita.
+- Legends: Arceus e Z-A: estilos de luta, ordem de ação do Z-A e tempo real (só no aviso).
+- 82 de 960 lutas com golpes estimados (Battle Maison/Subway, recrutas sem página, personagens do Legends: Arceus, Ingo).
+- Golpe Z e nível de Dynamax dos chefes por luta.
 
 ### Dá para fazer com as fontes que já temos
 1. ✅ (0.16.0) **Estágio pela citação anterior no detonado (jogos com decomp).** O detonado descreve áreas opcionais numa seção do
