@@ -2971,3 +2971,17 @@ test('I1 (0.63.0): etapas idempotentes — rodar de novo não repete a nota dos 
   assert.match(src, /\^Exclusivos de versão pela lista/);
   assert.ok(existsSync(new URL('../scripts/check-idempotent.mjs', import.meta.url)));
 });
+
+test('I4 (0.64.0): builtAt estável — a data de montagem só muda quando o dado muda', async () => {
+  const { keepBuiltAt } = await import('../scripts/lib/built-at.mjs');
+  const prev = { game: { id: 'x', builtAt: '2026-01-01T00:00:00.000Z' }, pokemon: [1, 2] };
+  const same = { game: { id: 'x', builtAt: '2026-10-28T10:00:00.000Z' }, pokemon: [1, 2] };
+  assert.equal(keepBuiltAt(same, prev, ['game', 'builtAt']), '2026-01-01T00:00:00.000Z');
+  assert.equal(same.game.builtAt, '2026-01-01T00:00:00.000Z');
+  const changed = { game: { id: 'x', builtAt: '2026-10-28T10:00:00.000Z' }, pokemon: [1, 2, 3] };
+  assert.equal(keepBuiltAt(changed, prev, ['game', 'builtAt']), null);
+  assert.equal(changed.game.builtAt, '2026-10-28T10:00:00.000Z');
+  const src = (f) => readFileSync(new URL(`../scripts/${f}`, import.meta.url), 'utf8');
+  assert.match(src('build-game.mjs'), /keepBuiltAtFromGit\(/);
+  assert.match(src('build-catalog.mjs'), /keepBuiltAt\(catalogOut/);
+});

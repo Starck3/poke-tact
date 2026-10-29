@@ -6,6 +6,7 @@ import { GAMES } from './games.mjs';
 import { READERS } from './lib/pkhex-enc.mjs';
 import { existsSync } from 'node:fs';
 import { DEPENDS, buildOrder } from './lib/build-order.mjs';
+import { keepBuiltAtFromGit } from './lib/built-at.mjs';
 
 // --strict: etapa com fonte configurada mas ausente em data-sources/ falha (sem ele, avisa e mantém o arquivo anterior)
 const STRICT = process.argv.includes('--strict');
@@ -64,4 +65,6 @@ for (const id of ids) {
       throw e;
     }
   }
+  // builtAt estável (0.64.0): dado igual ao do git → a data do git volta (o arquivo não aparece como alterado)
+  if (existsSync(new URL(`../public/data/${id}.json`, import.meta.url)) && keepBuiltAtFromGit(`public/data/${id}.json`)) console.log('(dado igual ao do git — data de montagem mantida)');
 }

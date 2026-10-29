@@ -13,7 +13,7 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
 | I1 | Idempotência: rodar uma etapa de novo não muda o resultado | ✅ 0.63.0 |
 | I2 | Um `key()` único para comparar nomes (scripts/lib) | ⬜ |
 | I3 | Testes dos leitores de wikitext com trechos de exemplo (sem rede, sem data-sources) | ⬜ |
-| I4 | `builtAt` estável: só muda quando o dado muda | ⬜ |
+| I4 | `builtAt` estável: só muda quando o dado muda | ✅ 0.64.0 |
 
 ## Registro
 
@@ -21,3 +21,5 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
 - I1 ✅ 0.63.0 — `scripts/check-idempotent.mjs` (cada etapa 2× + ciclo sobre a montagem, ordem das chaves ignorada). Achado:
   nota dos exclusivos do SV duplicada a cada execução. Os 22 jogos passam (11 com PKHeX pelo ciclo completo; os outros pelas
   etapas da própria montagem: breeding, TMs/itens da Bulbapedia, imagens, mapa, itens de evolução).
+- I4 ✅ 0.64.0 — `scripts/lib/built-at.mjs`: build-game volta a data do git quando o dado é igual; build-catalog idem com
+  games.json. Remontar Red/Blue e X/Y: zero arquivos alterados.
