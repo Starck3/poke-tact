@@ -104,3 +104,4 @@ Versões 0.54.0 → 0.57.0 (mais a 0.53.1 do início):
 🚩 Para revisar com o usuário: (a) Pokémon de nível alto da Wild Area depois do Darkest Day ficam em "8 insígnias", um ponto
 antes do pós-jogo; (b) item citado no detonado vale a partir da 1ª citação — pode ser tarde demais (Water Stone do Z-A no
 pós-jogo); (c) backlog: "breed" no Detonado e o aviso de treino no card.
+✅ Decidido pelo usuário em 2026-10-28 e aplicado na 0.62.0: (a) Wild Area nv 60+ = pós-jogo; (b) item vale a partir da 1ª citação; (c) feito na 0.58.0.

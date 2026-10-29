@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.63.0] — 2026-10-28
+
+> Manutenção por dentro: remontar os dados duas vezes agora dá sempre o mesmo resultado (um verificador confere isso). Nada muda na tela. O Darkest Day saiu da lista "a revisar" — já foi decidido.
+
+### Adicionado
+- `node scripts/check-idempotent.mjs <jogo> [etapa …]`: roda cada etapa duas vezes seguidas e compara `public/data`; sem
+  etapas, também roda o ciclo inteiro sobre a montagem salva no git (tem que devolver o mesmo dado). Restaura pelo git no fim.
+
+### Corrigido
+- Scarlet/Violet: a nota dos exclusivos de versão era acrescentada de novo a cada vez que a etapa rodava. Os 22 jogos
+  passam no verificador.
+
+### Documentação
+- STATUS.md e plano 5: Darkest Day e item pela 1ª citação marcados como decididos (0.62.0); grupo 2 (fonte nova) no backlog.
+
 ## [0.62.0] — 2026-10-28
 
 > Nova opção "Tenho as DLCs": sem marcar, o app não sugere Pokémon que só existem nas expansões pagas (Sword/Shield, Scarlet/Violet, Z-A). E os Pokémon nível 60 da Wild Area agora contam só depois de zerar o jogo.

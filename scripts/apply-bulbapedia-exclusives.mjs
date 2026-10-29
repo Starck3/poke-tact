@@ -77,7 +77,7 @@ for (const v of versions) for (const mon of [...data.pokemon].sort((a, b) => dep
   const ok = !!parent?.obtainable?.[v] && mon.evo?.possible !== false;
   if (mon.obtainable[v] && !ok) { mon.obtainable[v] = false; report.unobtainable.push(`${v} ${mon.name}`); }
 }
-acq.notes = (acq.notes ?? []).filter((n) => !/não separa as versões/.test(n));
+acq.notes = (acq.notes ?? []).filter((n) => !/não separa as versões|^Exclusivos de versão pela lista/.test(n)); // idempotente: não repete a nota ao rodar de novo
 acq.notes.push('Exclusivos de versão pela lista da Bulbapedia ("Version-exclusive Pokémon"): o PKHeX não separa Scarlet × Violet nos selvagens.');
 acq.exclusivesSource = 'Bulbapedia (Version-exclusive Pokémon) — CC BY-NC-SA, fatos extraídos';
 writeFileSync(acqFile, JSON.stringify(acq));
