@@ -11,7 +11,7 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
 |---|---|---|
 | I0 | Darkest Day no backlog: STATUS.md e plano 5 dizem que já foi decidido (0.62) | ✅ |
 | I1 | Idempotência: rodar uma etapa de novo não muda o resultado | ✅ 0.63.0 |
-| I2 | Um `key()` único para comparar nomes (scripts/lib) | ⬜ |
+| I2 | Um `key()` único para comparar nomes (scripts/lib) | ✅ 0.65.0 |
 | I3 | Testes dos leitores de wikitext com trechos de exemplo (sem rede, sem data-sources) | ⬜ |
 | I4 | `builtAt` estável: só muda quando o dado muda | ✅ 0.64.0 |
 
@@ -23,3 +23,8 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
   etapas da própria montagem: breeding, TMs/itens da Bulbapedia, imagens, mapa, itens de evolução).
 - I4 ✅ 0.64.0 — `scripts/lib/built-at.mjs`: build-game volta a data do git quando o dado é igual; build-catalog idem com
   games.json. Remontar Red/Blue e X/Y: zero arquivos alterados.
+- I2 ✅ 0.65.0 — `scripts/lib/names.mjs` em 19 scripts. Remontagem dos 22 jogos comparada com uma base montada pelos scripts
+  antigos: só o Sword/Shield mudou pela regra nova (Nidoran♀/♂ do Giant's Bed com taxa — conferido na página da Bulbapedia).
+  Achados de passagem: (1) Detonado salvo velho em GS (0.1.0), DP, Pt e HGSS — sem ovos da creche; remontado. (2) Ovo da
+  creche repetido uma vez por pai em 14 jogos — deduplicado nos 3 montadores e no apply-breeding. (3) Encontros iguais reais
+  (Voltorb ×6 no Power Plant) agora com "×N" na tela.

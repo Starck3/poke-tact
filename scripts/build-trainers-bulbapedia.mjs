@@ -8,6 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { page, parties } from './lib/bulbapedia.mjs';
 import { likelyMoveset } from '../public/engine.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 const CFG = {
@@ -20,7 +21,7 @@ const CFG = {
 const cfg = CFG[gameId];
 if (!cfg) { console.log(`[${gameId}] sem treinadores da Bulbapedia configurados — nada a fazer`); process.exit(0); }
 const data = JSON.parse(readFileSync(new URL(`../public/data/${gameId}.json`, import.meta.url), 'utf8'));
-const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
+const key = nameKey;
 const moveKey = new Map(Object.keys(data.moves).map((n) => [key(n), n]));
 const monOf = (sp, form) => {
   const k = key(sp), f = key(String(form ?? '').replace(/form$/i, ''));

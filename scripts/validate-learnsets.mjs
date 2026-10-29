@@ -3,6 +3,7 @@
 // Divergência NÃO significa que um lado está errado: é uma lista para conferência manual (ex.: Bulbapedia).
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { nameKey } from './lib/names.mjs';
 
 const SRC = 'https://raw.githubusercontent.com/smogon/pokemon-showdown/master/data/mods/gen3frlg/learnsets.ts';
 const cache = new URL('../.cache/showdown-gen3frlg-learnsets.ts', import.meta.url);
@@ -12,7 +13,7 @@ const body = text.slice(text.indexOf('= {') + 2).replace(/;\s*$/, '');
 const showdown = new Function(`return (${body})`)();
 
 const data = JSON.parse(await readFile(new URL('../public/data/firered-leafgreen.json', import.meta.url), 'utf8'));
-const norm = (s) => s.replace(/[^a-z0-9]/g, '');
+const norm = nameKey;
 
 // Fonte → conjuntos comparáveis: level-up como "golpe@nível"; demais métodos como "golpe".
 const METHOD = { machine: 'M', tutor: 'T', egg: 'E' };

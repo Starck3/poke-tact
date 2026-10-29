@@ -6,6 +6,7 @@
 // Uso: node scripts/apply-bulbapedia-items.mjs <jogo>   (≥ 5 s por página nova)
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { page, acquisition, GAME_CODES } from './lib/bulbapedia.mjs';
+import { wordsKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
@@ -38,7 +39,7 @@ for (const v of Object.values(acq.versions)) for (const list of Object.values(v)
 }
 // + mapas do decomp (progress.maps: "Mt Pyre 1F", "Lost Cave Room 1") — o nome da Bulbapedia é o do lugar inteiro ("Mt. Pyre")
 for (const m of Object.values(acq.progress?.maps ?? {})) if (m.label && m.stage != null) { const k = m.label.toLowerCase(); placeStage.set(k, Math.min(placeStage.get(k) ?? 99, m.stage)); }
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const norm = wordsKey;
 // destino de link (Q2): só nome igual ao do app ou que começa o dele ("Driftveil City" → "Driftveil City Market") — sem o
 // "contido no nome", que fazia link genérico ("Poké Mart", "National Pokédex") casar com qualquer lugar
 const stageOfPlaces = (places) => {

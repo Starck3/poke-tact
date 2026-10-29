@@ -8,13 +8,14 @@ import { starterByIndex, trainersByStarter } from './lib/starters.mjs';
 import { parseBlocks } from './lib/script-graph.mjs';
 import { readdirSync as lsDir } from 'node:fs';
 import { likelyMoveset } from '../public/engine.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2] ?? 'firered-leafgreen';
 const { game, commit, read, mapsDir: decompMapsDir } = decompPaths(gameId);
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 const data = JSON.parse(readFileSync(new URL(`../public/data/${gameId}.json`, import.meta.url), 'utf8'));
 const decomp = loadDecomp(gameId);
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const norm = nameKey;
 const human = (s) => s.toLowerCase().split('_').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 
 const monByName = Object.fromEntries(data.pokemon.map((p) => [norm(p.name), p]));

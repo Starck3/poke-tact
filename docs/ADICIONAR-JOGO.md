@@ -373,6 +373,9 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Taxa de aparição (Bulbapedia)**: `scripts/apply-bulbapedia-rates.mjs <jogo>` (logo depois do build-acquisition-pkhex,
   antes do detonado, para o walkthrough levar a taxa). Para um jogo novo: em `CFG`, a predefinição (`entry6`…), o nome da
   região no título das rotas ("Kalos Route 2") e as colunas de versão. Linha ambígua fica sem taxa; nunca escolher no chute.
+- **Comparar nomes**: use `nameKey`/`wordsKey` de `scripts/lib/names.mjs` (tira acento, ♀→f, ♂→m); função local de nome
+  separava ou juntava nomes diferente de script para script (os dois Nidoran do Giant's Bed ficaram sem taxa). Depois de mudar
+  uma etapa, rode `node scripts/check-idempotent.mjs <jogo>` e remonte todos os jogos: um Detonado salvo pode estar velho.
 - **Mecânicas fora do cálculo** (`mechanics` em `games.mjs` → `games.json` → aviso na tela): Mega, golpes Z, Dynamax, Terastal,
   estilos do LA, tempo real do Z-A.
 

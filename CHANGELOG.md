@@ -2,6 +2,23 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.65.0] — 2026-10-28
+
+> Detonado mais limpo: cada ovo da creche aparece uma vez (antes, uma por pai) e encontros repetidos viram "×2", "×6". Gold/Silver, DP, Platinum e HGSS ganham os ovos no Detonado. Sword: taxa dos dois Nidoran no Giant's Bed.
+
+### Alterado
+- Uma regra só para comparar nomes de lugar, treinador e Pokémon (`scripts/lib/names.mjs`: `nameKey` e `wordsKey`) em 19
+  scripts. Antes cada um tinha a sua: uns tiravam acento e outros não, e só o detonado separava ♀ de ♂.
+- Detonado: linhas iguais em "Presentes, trocas e encontros" viram uma com "×N" (Power Plant do Red/Blue: Voltorb ×6).
+
+### Corrigido
+- Sword/Shield: Nidoran♀ e Nidoran♂ do Giant's Bed batiam com as duas linhas da Bulbapedia (ambíguo) e ficavam sem taxa.
+  Agora: ♀ 21%; ♂ 21% e 100% na tempestade de areia (só ele aparece nesse clima).
+- Detonado: o ovo da creche saía uma vez por pai (Pichu pelo Pikachu e de novo pelo Raichu) em 14 jogos.
+- Os dados salvos do Detonado de Gold/Silver, Diamond/Pearl, Platinum e HeartGold/SoulSilver estavam desatualizados (Gold/
+  Silver ainda era o da 0.1.0): remontados, ganham os ovos da creche; DP ganha as fotos da creche de Solaceon.
+- Teste da tela: 18 verificações (+ "×6" no Detonado do Red/Blue).
+
 ## [0.64.0] — 2026-10-28
 
 > Manutenção por dentro: remontar um jogo sem mudança real não altera mais nenhum arquivo (antes a data de montagem mudava sempre e sujava o histórico). Nada muda na tela.

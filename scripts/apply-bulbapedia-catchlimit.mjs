@@ -6,6 +6,7 @@
 // insígnias). Uso: node scripts/apply-bulbapedia-catchlimit.mjs <jogo>   (≥ 5 s por página nova)
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { page, plain } from './lib/bulbapedia.mjs';
+import { wordsKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 if (gameId !== 'sword-shield') { console.log(`[${gameId}] limite de captura por insígnia não se aplica — nada a fazer`); process.exit(0); }
@@ -20,7 +21,7 @@ const caps = [...sec.slice(0, sec.indexOf('\n|}\n|}')).matchAll(/! Up to Lv\. (\
 if (/! All Pokémon/.test(sec.slice(0, sec.indexOf('\n|}\n|}')))) caps.push(100);
 if (caps.length !== 9 || caps[0] !== 20) { console.log(`[${gameId}] tabela "Catch level limit" diferente do esperado (${caps}) — parado`); process.exit(2); }
 // subáreas: 1ª coluna das tabelas de subárea (a do sul e a do norte): `| style="…; text-align: center" | {{color2|000|Rolling Fields}}`
-const key = (s) => plain(s).toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+const key = (s) => wordsKey(plain(s));
 const subareas = new Set([...wild.matchAll(/text-align: center" \| \{\{color2\|[^|}]*\|([^|}]+)\}\}/g)].map((m) => key(m[1])));
 if (subareas.size < 15) { console.log(`[${gameId}] subáreas da Wild Area não encontradas (${subareas.size}) — parado`); process.exit(2); }
 

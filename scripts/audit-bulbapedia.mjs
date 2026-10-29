@@ -3,10 +3,11 @@
 // Uso: node scripts/audit-bulbapedia.mjs   (requer reports/learnset-audit.json; rode validate-learnsets antes)
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { nameKey } from './lib/names.mjs';
 
 const DIR = new URL('../data-sources/bulbapedia/gen3/', import.meta.url);
 const ALIAS = { feintattack: 'faintattack', smellingsalt: 'smellingsalts', highjumpkick: 'hijumpkick' }; // mesmo golpe, grafia diferente entre fontes
-const norm = (s) => { const n = s.toLowerCase().replace(/[^a-z0-9]/g, ''); return ALIAS[n] ?? n; };
+const norm = (s) => { const n = nameKey(s); return ALIAS[n] ?? n; };
 
 const data = JSON.parse(await readFile(new URL('../public/data/firered-leafgreen.json', import.meta.url), 'utf8'));
 const audit = JSON.parse(await readFile(new URL('../reports/learnset-audit.json', import.meta.url), 'utf8'));

@@ -15,6 +15,7 @@ import { GAMES } from './games.mjs';
 import { parseModernSections, parseModernBattles, parseBadgeEvents } from './lib/pokemythology-modern.mjs';
 import { words, placeStage, POSTGAME } from './lib/progress.mjs';
 import { likelyMoveset } from '../public/engine.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 const game = GAMES[gameId];
@@ -32,7 +33,7 @@ const battles = parseModernBattles(html);
 const badges = parseBadgeEvents(html, battles);
 
 // ---- espécie do detonado → entrada do dataset
-const key = (s) => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/♀/g, 'f').replace(/♂/g, 'm').replace(/[^a-z0-9]/g, '');
+const key = nameKey;
 const baseByKey = new Map(data.pokemon.filter((p) => !p.regionalForm).map((p) => [key(p.name.replace(/-(incarnate|altered|male|female|red-striped|ordinary|aria|land|plant|normal|average|50|midday|solo|amped|full-belly|single-strike|baile|shield|disguised|ice|zero|family-of-four|green-plumage|two-segment|curly|chest|standard|overcast|west|east)$/, '')), p]));
 const regionalOf = (sid, region) => data.pokemon.find((p) => p.regionalForm && p.speciesId === sid && p.name.includes(`-${region}`));
 const REGION = { hisuian: 'hisui', alolan: 'alola', galarian: 'galar', paldean: 'paldea', hisui: 'hisui', alola: 'alola', galar: 'galar', paldea: 'paldea' };
@@ -452,7 +453,11 @@ for (const [v, byMon] of Object.entries(acq.versions)) {
     const r = placeOf(s.where);
     const l = locOf(s.where, r, s.stage ?? r?.stage ?? null);
     if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }), ...(s.pct != null && { pct: s.pct }), ...(s.pctApprox && { pctApprox: true }), ...(s.pctTimes && { pctTimes: s.pctTimes }), ...(s.pctWeather && { pctWeather: s.pctWeather }) });
-    else l.others.push({ species, type: s.type, level: s.level, where: s.where, ...(s.detail && { detail: s.detail }) });
+    else {
+      // ovo da creche: uma fonte por pai (Pichu pelo Pikachu e pelo Raichu) — no Detonado aparece uma vez só
+      const o = { species, type: s.type, level: s.level, where: s.where, ...(s.detail && { detail: s.detail }) };
+      if (s.type !== 'breed' || !l.others.some((x) => JSON.stringify(x) === JSON.stringify(o))) l.others.push(o);
+    }
   }
   // treinadores: no local cujo nome está no título da seção da luta; senão um local com o nome da seção
   for (const t of wtTrainers) {

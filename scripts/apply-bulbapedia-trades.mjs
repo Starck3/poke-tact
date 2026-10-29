@@ -6,6 +6,7 @@
 // Uso: node scripts/apply-bulbapedia-trades.mjs <jogo>   (≥ 5 s por página nova)
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { page, plain } from './lib/bulbapedia.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 const SECTION = { 'x-y': 'Pokémon X and Y', 'sun-moon': 'Pokémon Sun and Moon', 'scarlet-violet': 'Pokémon Scarlet and Violet' };
@@ -14,7 +15,7 @@ const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
 let text;
 try { text = await page('In-game trade'); } catch (e) { console.log(e.message); process.exit(2); }
-const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
+const key = nameKey;
 
 // linhas da tabela da seção do jogo: { place, species }
 const start = text.indexOf(`====${SECTION[gameId]}====`);

@@ -2,12 +2,13 @@
 // do dataset (PokeAPI) com o decomp pret/pokefirered. Grava reports/decomp-stats-audit.json.
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { decompPaths } from './lib/decomp.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2] ?? 'firered-leafgreen';
 const { game, commit, read, mapsDir: decompMapsDir } = decompPaths(gameId);
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 const data = JSON.parse(readFileSync(new URL(`../public/data/${gameId}.json`, import.meta.url), 'utf8'));
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const norm = nameKey;
 const lower = (s) => s.toLowerCase().replace(/_/g, '-');
 // decimal (FRLG/Emerald) ou hexadecimal (Ruby/Sapphire: #define TYPE_FIRE 0x0a) — ler só o "0" de "0x0a" punha todos os tipos iguais
 const typeId = Object.fromEntries([...read('include/constants/pokemon.h').matchAll(/#define TYPE_(\w+)\s+(0x[0-9a-fA-F]+|\d+)\b/g)].map((m) => [m[1], Number(m[2])]));

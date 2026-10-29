@@ -9,6 +9,7 @@
 // Uso: node scripts/apply-bulbapedia-walkthrough.mjs <jogo>   (≥ 5 s por página nova)
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { page, plain } from './lib/bulbapedia.mjs';
+import { wordsKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 const TITLE = { 'ultra-sun-ultra-moon': 'Appendix:Ultra Sun and Ultra Moon walkthrough', 'sun-moon': 'Appendix:Sun and Moon walkthrough', 'black-white': 'Appendix:Black and White walkthrough',
@@ -46,7 +47,7 @@ for (const l of text.split('\n')) {
 }
 // "ultra-sun" → "US", "scarlet" → "S" (a sigla do {{sup/N|…}})
 const verCode = (v) => v.split('-').map((w) => w[0]).join('').toUpperCase();
-const norm = (s) => s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+const norm = wordsKey;
 const isPost = (h) => /post-?game/i.test(h);
 // marco = provação / grande provação (USUM); stage do lugar = marcos antes da 1ª menção
 const milestones = [];

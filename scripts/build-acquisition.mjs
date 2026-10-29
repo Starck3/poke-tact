@@ -10,6 +10,7 @@ import { parseBlocks, labelAt, eventsReaching, reachable, describeGfx } from './
 import { buildTimeline, placeStage, propagateStages, applyEarlierMentions, POSTGAME } from './lib/progress.mjs';
 import { roamerByStarter } from './lib/starters.mjs';
 import { parseVersionAliases, resolveFor } from './lib/version-aliases.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2] ?? 'firered-leafgreen';
 const { game, commit, read, mapsDir } = decompPaths(gameId);
@@ -17,7 +18,7 @@ const cfg = game.decomp;
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 const dataFile = new URL(`../public/data/${gameId}.json`, import.meta.url);
 const data = JSON.parse(readFileSync(dataFile, 'utf8'));
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const norm = nameKey;
 const monByName = Object.fromEntries(data.pokemon.map((p) => [norm(p.name), p]));
 const nameOf = (c) => { const n = norm(c.replace(/^SPECIES_/, '')); return (monByName[n] ?? monByName[n + 'normal'])?.name; };
 

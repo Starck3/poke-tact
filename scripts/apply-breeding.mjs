@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { GAMES } from './games.mjs';
 import { decompPaths } from './lib/decomp.mjs';
 import { loadPkhex } from './lib/pkhex.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 const ds = (p) => new URL(`../data-sources/${p}`, import.meta.url);
@@ -47,7 +48,7 @@ const dataFile = new URL(`../public/data/${gameId}.json`, import.meta.url);
 const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta.url);
 const data = JSON.parse(readFileSync(dataFile, 'utf8'));
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
-const key = (s) => String(s).toLowerCase().replace(/[^a-z0-9]/g, ''); // "NIDORAN_F" = "nidoran-f"; "MR__MIME" = "mr-mime"
+const key = nameKey; // "NIDORAN_F" = "nidoran-f"; "MR__MIME" = "mr-mime"
 
 // ---- grupos de ovo e sexo: key(espécie) → { groups: [..], gender: 'mixed' | 'male' | 'female' | 'none' }
 const info = new Map();
@@ -282,7 +283,9 @@ if (cfg.gen === 'pkhex' && existsSync(wtFile)) {
     if (!vw) continue;
     for (const st of vw.stages) st.locations = st.locations.filter((l) => l.name !== where); // idempotente
     vw.stages = vw.stages.filter((st) => st.locations.length || st.leader);
-    const others = Object.entries(byMon).flatMap(([species, list]) => list.filter((s) => s.type === 'breed').map((s) => ({ species, type: 'breed', level: s.level, where: s.where })));
+    // uma linha por espécie (a fonte é uma por pai: Pichu pelo Pikachu e pelo Raichu)
+    const others = Object.entries(byMon).flatMap(([species, list]) => list.filter((s) => s.type === 'breed').map((s) => ({ species, type: 'breed', level: s.level, where: s.where })))
+      .filter((o, i, all) => all.findIndex((x) => JSON.stringify(x) === JSON.stringify(o)) === i);
     if (!others.length || place.stage == null) continue;
     let st = vw.stages.find((s) => s.stage === place.stage);
     if (!st) { st = { stage: place.stage, leader: null, locations: [] }; vw.stages.push(st); vw.stages.sort((a, b) => a.stage - b.stage); }

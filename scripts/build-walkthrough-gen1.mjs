@@ -88,7 +88,11 @@ for (const v of VERSIONS) {
     const l = locOf(s.mapId);
     if (!l) continue;
     if (s.type === 'wild') l.wild.push({ species: sp, where: s.where, method: s.method, min: s.min, max: s.max, pct: s.pct, ...(s.gate && { gate: s.gate }), ...(s.times && { times: s.times }), ...(s.detail && { detail: s.detail }) });
-    else l.others.push({ species: sp, type: s.type, level: s.level ?? null, where: s.where, ...(s.detail && { detail: s.detail }) });
+    else {
+      // ovo da creche: uma fonte por pai (Pichu pelo Pikachu e pelo Raichu) — no Detonado aparece uma vez só
+      const o = { species: sp, type: s.type, level: s.level ?? null, where: s.where, ...(s.detail && { detail: s.detail }) };
+      if (s.type !== 'breed' || !l.others.some((x) => JSON.stringify(x) === JSON.stringify(o))) l.others.push(o);
+    }
   }
   for (const [move, list] of Object.entries(acq.machines)) for (const s of list) { const l = locOf(s.map); if (l) l.items.push({ kind: 'TM/HM', move, type: s.leader ? 'gym' : s.type, where: s.where, ...(s.x != null && { x: s.x, y: s.y }), by: s.by }); }
   for (const [item, list] of Object.entries(acq.items)) for (const s of list) { const l = locOf(s.map); if (l) l.items.push({ kind: 'item', item, type: s.type, where: s.where, ...(s.x != null && { x: s.x, y: s.y }), by: s.by }); }

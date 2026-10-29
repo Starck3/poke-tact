@@ -8,6 +8,7 @@
 // Uso: node scripts/apply-bulbapedia-exclusives.mjs <jogo>   (roda depois do build-acquisition-pkhex; ≥ 5 s por página nova)
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { page } from './lib/bulbapedia.mjs';
+import { nameKey } from './lib/names.mjs';
 
 const gameId = process.argv[2];
 // cabeçalho da lista → fontes a que ela se aplica (pelo detail "DLC …" do build-acquisition-pkhex)
@@ -21,7 +22,7 @@ const acqFile = new URL(`../public/data/${gameId}-acquisition.json`, import.meta
 const data = JSON.parse(readFileSync(dataFile, 'utf8'));
 const acq = JSON.parse(readFileSync(acqFile, 'utf8'));
 const versions = Object.keys(acq.versions);
-const key = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
+const key = nameKey;
 
 let text;
 try { text = await page('Version-exclusive Pokémon'); } catch (e) { console.log(e.message); process.exit(2); }
