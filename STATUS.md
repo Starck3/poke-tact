@@ -31,7 +31,7 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
 evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
 "(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
-Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (315 com `data-sources/`, 288 num clone limpo); tela: `npm run test:ui` (Chrome headless, 18 verificações).
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (315 com `data-sources/`, 300 num clone limpo); tela: `npm run test:ui` (Chrome headless, 18 verificações).
 Banco de lutas: 22 jogos (o USUM entra pelos treinadores com estágio), 39.978 sugestões — 39.793 vencem (99,5%), 37.960 com
 folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 878 de 960 lutas (USUM 102/102); onde achar
 itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no BW, X/Y, ORAS,
