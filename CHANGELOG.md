@@ -2,6 +2,24 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.68.0] — 2026-10-28
+
+> Black/White: as 6 lutas contra os chefes do Battle Subway (Ingo e Emmet) agora usam os golpes e itens reais (fonte nova: Smogon), não mais golpes estimados. As lutas do Emmet e as em dupla com o Ingo contam como dupla.
+
+### Adicionado
+- Fonte nova (aprovada pelo usuário em 2026-10-28): **Smogon**, páginas "Battle Subway Trainers" e "Battle Subway
+  Pokemon" (conjuntos com natureza, item e golpes). Cópia só em `data-sources/smogon/` (fora do git).
+- `scripts/apply-smogon-subway.mjs` (na montagem, depois dos golpes da Bulbapedia): os 6 times de chefe do detonado batem
+  espécie por espécie com os conjuntos da seção "Special" da Smogon → golpes e item reais. Emmet (4 Pokémon) e Ingo & Emmet
+  (multi) marcados como luta em dupla (detonado: os chefes aparecem "no modo Double Battle e Multi Battle"; Bulbapedia: 4
+  Pokémon na dupla).
+- Tela: "golpes do time na Smogon".
+
+### Fica de fora
+- Treinadores comuns do Battle Subway: sorteiam 3 ou 4 de uma lista de até 66 conjuntos — sem time fixo para o cálculo.
+- Black 2/White 2: os times dos chefes no Subway não estão nos dados (só a luta da história, pelo decomp).
+- Banco de lutas: igual (as sugestões continuam vencendo com os golpes reais).
+
 ## [0.67.0] — 2026-10-28
 
 > Ultra Sun: 25 lugares ganham taxa de aparição pelas tabelas do próprio jogo (fonte nova: CPokemon/usum-data). Elas confirmaram 96% das taxas que já vinham da Bulbapedia.

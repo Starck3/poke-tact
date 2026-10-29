@@ -1849,7 +1849,7 @@ test('Gens 5–9 sem decomp: times do detonado (espécie e nível) com golpes es
     const td = load(`${g}-trainers.json`), d = load(`${g}.json`);
     assert.equal(td.fromWalkthrough, true, g);
     const names = new Set(d.pokemon.map((p) => p.name));
-    for (const t of td.trainers) for (const p of t.party) { assert.ok(names.has(p.species), `${g}: ${t.label} ${p.species}`); assert.ok(p.defaultMoves === true || p.movesSource === 'Bulbapedia'); } // 0.38.0: golpes reais da Bulbapedia quando casam
+    for (const t of td.trainers) for (const p of t.party) { assert.ok(names.has(p.species), `${g}: ${t.label} ${p.species}`); assert.ok(p.defaultMoves === true || p.movesSource === 'Bulbapedia' || p.movesSource === 'Smogon'); } // 0.38.0: golpes reais da Bulbapedia quando casam; 0.68.0: chefes do Subway pela Smogon
     assert.ok(load(`${g}-walkthrough.json`).versions);
   }
   const xy = load('x-y-trainers.json').trainers;
@@ -3034,4 +3034,21 @@ test('F3 (0.67.0): Ultra Sun — taxas pelas tabelas do jogo (CPokemon/usum-data
     const r = JSON.parse(readFileSync(new URL('../reports/ultra-sun-ultra-moon/usum-dump-rates.json', import.meta.url), 'utf8'));
     assert.ok(r.agree / r.checked > 0.9, `Bulbapedia × tabelas do jogo: ${r.agree}/${r.checked}`);
   }
+});
+
+test('F2 (0.68.0): chefes do Battle Subway (Black/White) com golpes e item reais pela Smogon; Emmet e a multi em dupla', () => {
+  const tr = load('black-white-trainers.json');
+  assert.match(tr.subwaySource, /Smogon/);
+  const boss = tr.trainers.filter((t) => /^Subway Boss/.test(t.label));
+  assert.equal(boss.length, 6);
+  for (const t of boss) {
+    assert.equal(t.movesSource, 'Smogon', t.key);
+    for (const p of t.party) assert.ok(p.defaultMoves === false && p.moves.length === 4 && p.item, `${t.key} ${p.species}`);
+    assert.equal(!!t.double, t.party.length === 4, t.key);
+  }
+  // Ingo, 49ª luta: Excadrill com Life Orb e Earthquake/Aerial Ace/Poison Jab/Rock Slide (conjunto 845 da Smogon)
+  const ex = boss.find((t) => t.key === 'DETONADO_33_0').party.find((p) => p.species === 'excadrill');
+  assert.deepEqual([ex.item, ex.moves], ['Life Orb', ['earthquake', 'aerial-ace', 'poison-jab', 'rock-slide']]);
+  // a tela não chama os golpes da Smogon de "estimados pelo nível"
+  assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /movesSource === 'Smogon' \? 'golpes do time na Smogon'/);
 });

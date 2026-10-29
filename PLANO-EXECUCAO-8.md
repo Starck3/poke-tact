@@ -10,7 +10,7 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
 | # | Item | Estado |
 |---|---|---|
 | F1 | Scarlet/Violet: chance de aparição pelo peso por bioma das páginas da Bulbapedia (fonte já liberada) | ⬜ |
-| F2 | Battle Subway (Black/White e Black 2/White 2): times possíveis pela Smogon (fonte nova, aprovada) | ⬜ |
+| F2 | Battle Subway (Black/White e Black 2/White 2): times possíveis pela Smogon (fonte nova, aprovada) | ⚠ 0.68.0 |
 | F3 | Ultra Sun/Ultra Moon: abrir o arquivo de encontros do CPokemon/usum-data e ver se traz taxas (fonte nova, aprovada) | ✅ 0.67.0 |
 
 ## Registro
@@ -21,3 +21,7 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
   48 ambíguas (o lugar tem duas tabelas com a espécie e taxas diferentes). Ultra Moon fica sem essa fonte.
 - F1 em andamento: leitor `biomeRows`/`biomeShares` e `scripts/apply-bulbapedia-spawn-weights.mjs` prontos; a Bulbapedia
   respondeu HTTP 503 na 2ª página — parado pela regra; nova tentativa depois de 30 min.
+- F2 ⚠ 0.68.0 — chefes do Subway no Black/White: os 6 times do detonado batem com os conjuntos "Special" da Smogon → golpes
+  e item reais; Emmet e multi em dupla. Banco de lutas igual. ⏸ Treinadores comuns do Subway (time sorteado de até 66
+  conjuntos — o cálculo precisa de time fixo; uma tela de "times possíveis" seria função nova). ⏸ Black 2/White 2: os chefes
+  do Subway de lá não estão nos dados (o decomp pokebw2 que usamos traz só a luta da história).
