@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.69.0] — 2026-10-28
+
+> Scarlet/Violet: cerca de metade dos encontros selvagens ganha a chance de aparição estimada, por bioma (ex.: Lechonk ≈ planície 25% · floresta 21%), pela tabela de pesos da Bulbapedia.
+
+### Adicionado
+- `scripts/apply-bulbapedia-spawn-weights.mjs` e o leitor `biomeRows`/`biomeShares` (`scripts/lib/bulbapedia-catch.mjs`): no
+  Scarlet/Violet cada ponto de aparição sorteia uma espécie do bioma pelo peso ({{Catch/entry9}} da Bulbapedia). A fatia é o
+  peso ÷ a soma do bioma, no terreno principal da espécie (terra, superfície da água…) e no melhor horário — **estimativa**
+  (o jogo também filtra pelo nível da área; há grupos e surtos), e a tela diz isso: "≈ planície 25% · floresta 21%, pelo peso
+  no bioma". 3.760 de 7.636 encontros; o resto a Bulbapedia não lista naquele lugar (fica sem taxa).
+- Detonado e Onde capturar mostram a fatia por bioma; teste da tela: 19 verificações.
+
+### Observação
+- A Bulbapedia respondeu HTTP 503 na 1ª tentativa; a coleta parou (regra) e foi refeita 30 minutos depois, sem erro.
+
 ## [0.68.0] — 2026-10-28
 
 > Black/White: as 6 lutas contra os chefes do Battle Subway (Ingo e Emmet) agora usam os golpes e itens reais (fonte nova: Smogon), não mais golpes estimados. As lutas do Emmet e as em dupla com o Ingo contam como dupla.

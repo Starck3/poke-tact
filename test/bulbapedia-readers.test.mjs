@@ -106,7 +106,7 @@ test('catchRows: Sword/Shield — taxa por clima e seção da página; curry/rai
   assert.equal(rows[1].species, 'nidoranm'); assert.match(rows[1].section, /Visible/); assert.equal(rows[1].weather.sandstorm, 100);
 });
 
-test('biomeRows/biomeShares: Scarlet/Violet — peso por bioma, terreno e horário (0 = não aparece) (F1, 0.68.0)', async () => {
+test('biomeRows/biomeShares: Scarlet/Violet — peso por bioma, terreno e horário (0 = não aparece) (F1, 0.69.0)', async () => {
   const { biomeRows, biomeShares } = await import('../scripts/lib/bulbapedia-catch.mjs');
   const txt = [
     '{{Catch/div/9|P}}',

@@ -111,6 +111,11 @@ try {
   const odd = await run(() => [...document.querySelectorAll('#dexOut .walk-list li')].map((l) => l.textContent).join(' | '));
   check('Sword, Oddish: "só com nublado 40%" sem o clima repetido em inglês', /só com nublado 40%/.test(odd) && !/clima: Overcast/.test(odd), odd.slice(0, 200));
 
+  // 5a. Scarlet: chance estimada pelo peso no bioma (0.69.0)
+  await go('#/jogo/scarlet-violet?capturar=lechonk', 4000);
+  const lech = await run(() => [...document.querySelectorAll('#dexOut .walk-list li, #dexOut li')].map((l) => l.textContent).join(' | '));
+  check('Scarlet, Lechonk: "≈ planície 25% · floresta 21%, pelo peso no bioma"', /≈ planície 25% · floresta 21%, pelo peso no bioma/.test(lech), lech.slice(0, 300));
+
   // 5b. Sword: "Tenho as DLCs" desmarcado por padrão — a luta contra o Hop (Toxel) não sugere o Sandslash de Alola (só DLC);
   // marcando, ele pode voltar
   await go('#/jogo/sword-shield?treinador=DETONADO_10_0&i=1&inicial=grookey', 4500);
