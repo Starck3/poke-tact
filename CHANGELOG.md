@@ -2,6 +2,15 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.64.0] — 2026-10-28
+
+> Manutenção por dentro: remontar um jogo sem mudança real não altera mais nenhum arquivo (antes a data de montagem mudava sempre e sujava o histórico). Nada muda na tela.
+
+### Alterado
+- `builtAt` estável (`scripts/lib/built-at.mjs`): `build-game` compara `public/data/<jogo>.json` com o git e, se só a data
+  mudou, mantém a do git; `build-catalog` faz o mesmo com `games.json`. Conferido: remontar Red/Blue e X/Y inteiros deixa
+  zero arquivos alterados (também mostra que a montagem é determinística).
+
 ## [0.63.0] — 2026-10-28
 
 > Manutenção por dentro: remontar os dados duas vezes agora dá sempre o mesmo resultado (um verificador confere isso). Nada muda na tela. O Darkest Day saiu da lista "a revisar" — já foi decidido.

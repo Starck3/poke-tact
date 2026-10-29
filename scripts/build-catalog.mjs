@@ -9,6 +9,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { GAMES } from './games.mjs';
 import { parseDetonadoIndex, matchDetonados } from './lib/pokemythology.mjs';
 import { parseChangelog } from './build-changelog.mjs';
+import { keepBuiltAt } from './lib/built-at.mjs';
 
 const CACHE = new URL('../.cache/catalog/', import.meta.url);
 await mkdir(CACHE, { recursive: true });
@@ -129,13 +130,16 @@ for (const c of CATALOG) {
 }
 if (problems.length) { console.error('PROBLEMAS:\n' + problems.join('\n')); process.exitCode = 1; }
 else {
-  await writeFile(new URL('../public/data/games.json', import.meta.url), JSON.stringify({
+  const catalogOut = {
     sources: ['PokeAPI (geração/versões)', 'Wikipedia List of Pokémon video games (plataforma/ano)', 'github.com/pret (decomps)', 'PokeMythology (detonados)'],
     builtAt: new Date().toISOString(), games,
     // números reais do banco de lutas (reports/benchmark/_total.json) para a faixa da tela inicial — nada fixo no código;
     // "atual" = todos os jogos do banco
     benchmark: (() => { try { const all = JSON.parse(readFileSync(new URL('../reports/benchmark/_total.json', import.meta.url), 'utf8')); const t = all.atual ?? all.depois; return { games: t.games?.length ?? null, picks: t.picks, winPct: Math.round((100 * t.wins) / t.picks), comfyPct: Math.round((100 * t.comfy) / t.picks) }; } catch { return null; } })(),
-  }));
+  };
+  // builtAt estável (0.64.0): catálogo igual ao anterior → mantém a data anterior
+  try { keepBuiltAt(catalogOut, JSON.parse(readFileSync(new URL('../public/data/games.json', import.meta.url), 'utf8'))); } catch {}
+  await writeFile(new URL('../public/data/games.json', import.meta.url), JSON.stringify(catalogOut));
   // novidades do app (sino no canto da tela): CHANGELOG.md → public/data/changelog.json
   const versions = parseChangelog(readFileSync(new URL('../CHANGELOG.md', import.meta.url), 'utf8'));
   await writeFile(new URL('../public/data/changelog.json', import.meta.url), JSON.stringify(versions));
