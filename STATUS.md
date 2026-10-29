@@ -83,11 +83,15 @@ Sun/Moon, USUM, Let's Go, BDSP e Sword/Shield (dia/noite em Alola; manhã/dia/no
   de nomes em `scripts/lib/names.mjs` + ovo uma vez por espécie no Detonado + GS/DP/Pt/HGSS remontados (0.65); testes dos
   leitores da Bulbapedia com trechos de exemplo (0.66).
 
+### Plano de execução 8 (concluído em 2026-10-28 — fontes da pesquisa; detalhes em `PLANO-EXECUCAO-8.md`)
+- ✅ Ultra Sun com taxa pelas tabelas do jogo (CPokemon/usum-data, 0.67); ⚠ chefes do Battle Subway (BW) com golpes reais pela
+  Smogon (0.68); ✅ Scarlet/Violet com chance estimada pelo peso no bioma (0.69). 🚩 Tela de "times possíveis" do Subway? Regra de ROM?
+
 ### Backlog — depende de fonte nova (grupo 2; o usuário ainda não tem fonte para testar, 2026-10-28)
-- Taxa de aparição no Scarlet/Violet, Legends: Arceus e Z-A (horário, clima e bando — sem tabela simples).
+- Taxa de aparição no Legends: Arceus e Z-A (sem tabela simples). Scarlet/Violet: estimativa por bioma desde a 0.69 (metade dos encontros).
 - Itens de evolução e Mega Stones do Sword/Shield e do Z-A que o detonado não cita.
 - Legends: Arceus e Z-A: estilos de luta, ordem de ação do Z-A e tempo real (só no aviso).
-- 82 de 960 lutas com golpes estimados (Battle Maison/Subway, recrutas sem página, personagens do Legends: Arceus, Ingo).
+- 76 de 960 lutas com golpes estimados (Battle Maison, recrutas sem página, personagens do Legends: Arceus, treinos do Ingo). Chefes do Subway no BW: golpes reais pela Smogon (0.68).
 - Golpe Z e nível de Dynamax dos chefes por luta.
 
 ### Dá para fazer com as fontes que já temos
