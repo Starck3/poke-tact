@@ -102,7 +102,7 @@ async function load(gameId) {
   try { const td = await (await fetch(`data/${gameId}-trainers.json`)).json(); trainers = td.trainers; trainersFromWalk = !!td.fromWalkthrough; } catch { trainers = []; trainersFromWalk = false; }
   try { acq = await (await fetch(`data/${gameId}-acquisition.json`)).json(); } catch { acq = null; }
   if (g.validation === 'pkhex') $('validationNote').textContent += acq?.encountersOnly
-    ? (acq.ratesSource ? ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível; taxa de aparição da Bulbapedia.' : ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível, sem taxa de aparição.') +
+    ? (rateCredit(acq) ? ` Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível; ${rateCredit(acq)}.` : ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível, sem taxa de aparição.') +
       (trainersFromWalk ? ' Treinadores: times transcritos do detonado do PokeMythology (espécie e nível); golpes estimados pelo moveset padrão do jogo.' : ' Treinadores ainda não disponíveis.') +
       (acq.progress ? ' Progresso por insígnia pela ordem dos líderes no detonado.' : ' Sem progresso por insígnia.')
     : ' Treinadores, onde obter e progresso ainda não estão disponíveis.';
@@ -148,7 +148,7 @@ async function load(gameId) {
   else if (acq.encountersOnly) $('disclaimer').textContent =
     `Sugestões usam os dados de ${g.label} com as regras da Geração ${roman(data.game.generation)}: atributos, tipos, habilidades e golpes por nível conferidos com as tabelas do jogo (PKHeX). ` +
     'Disponibilidade = aparece nas tabelas de encontro do jogo nesta versão (selvagem, presente, encontro único, troca no jogo) ou evolui de algo assim, ou nasce de um ovo na creche; eventos e transferências não contam. ' +
-    (acq.progress ? `As tabelas trazem local e faixa de nível${acq.ratesSource ? '; a taxa de aparição vem da tabela de cada lugar na Bulbapedia (quando casa)' : ', sem taxa de aparição'}; o ponto da história de cada local vem do detonado. ` : 'As tabelas trazem local e faixa de nível, mas não a taxa de aparição nem em que ponto da história a área abre; o nível estimado é o menor nível de encontro. ') +
+    (acq.progress ? `As tabelas trazem local e faixa de nível${rateCredit(acq) ? '; ' + rateCredit(acq) : ', sem taxa de aparição'};o ponto da história de cada local vem do detonado. ` : 'As tabelas trazem local e faixa de nível, mas não a taxa de aparição nem em que ponto da história a área abre; o nível estimado é o menor nível de encontro. ') +
     (acq.notes ?? []).map((n) => n + ' ').join('') +
     (trainersFromWalk ? 'Treinadores: times do detonado (espécie e nível); os golpes são os que o Pokémon teria no nível (moveset padrão), não necessariamente os reais. ' : trainers.length ? 'Ao escolher um treinador do jogo, usamos o nível e os golpes reais do time dele. ' : 'Ainda sem treinadores do jogo. ') +
     'Com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
@@ -243,6 +243,14 @@ function showTab(which) {
 }
 
 // ---------------------------------------------------------------- aba Onde capturar
+/** De onde vem a taxa de aparição do jogo (crédito na tela): Bulbapedia por lugar, peso no bioma (SV), tabelas do Ultra Sun. */
+function rateCredit(acq) {
+  const parts = [];
+  if (acq?.ratesSource) parts.push('taxa de aparição da Bulbapedia (quando o lugar casa)');
+  if (acq?.usumDumpSource) parts.push('no Ultra Sun também pelas tabelas do jogo publicadas no CPokemon/usum-data');
+  if (acq?.spawnWeightsSource) parts.push('chance estimada pelo peso de cada espécie no bioma (Bulbapedia)');
+  return parts.join('; ');
+}
 const currentGameLabel = () => catalog?.games.find((g) => g.id === currentGame)?.label ?? data.game.label;
 function renderDex() {
   const out = $('dexOut');
@@ -272,7 +280,7 @@ function renderDex() {
       '<ul class="walk-list">' + r.alt.lines.map((l) => '<li>' + l.text + (l.random ? ' <span class="meta">(aleatório)</span>' : '') + stageTxt(l.stage, l.estimated) + '</li>').join('') + (r.alt.more ? '<li class="meta">+' + r.alt.more + ' outras formas de obter ' + humanize(r.alt.from) + '</li>' : '') + '</ul>';
   } else html += '<p><strong>Não dá para obter em ' + vLabel + '</strong> — nem capturando, nem evoluindo algo que se captura' + (r.events.length ? '; só por evento: ' + r.events.join('; ') : ' (só trocando com outro jogo)') + '.</p>';
   if (r.others.length) html += '<p class="meta">Nas outras versões: ' + r.others.map((o) => ($('version').querySelector('option[value="' + o.version + '"]')?.textContent ?? o.version) + ' (' + o.count + (o.count > 1 ? ' formas de obter' : ' forma de obter') + ')').join(', ') + '.</p>';
-  if (acq.encountersOnly) html += acq.ratesSource ? '<p class="note">Locais e níveis das tabelas do jogo (PKHeX); taxa de aparição da Bulbapedia (quando o lugar casa).</p>' : '<p class="note">Locais e níveis das tabelas do jogo (PKHeX), sem taxa de aparição.</p>';
+  if (acq.encountersOnly) html += rateCredit(acq) ? `<p class="note">Locais e níveis das tabelas do jogo (PKHeX); ${rateCredit(acq)}.</p>` : '<p class="note">Locais e níveis das tabelas do jogo (PKHeX), sem taxa de aparição.</p>';
   out.innerHTML = html + '<div id="dexEvo"></div><div id="dexMap"></div><div id="dexPlaces"></div>';
   renderEvolutions(mon, stageTxt);
   renderRegionMap(r.lines.map((l) => l.where));

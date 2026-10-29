@@ -1624,8 +1624,9 @@ test('onde obter nas Gens 6–9 (PKHeX): versões separadas, sem taxa, eventos f
     const a = load(`${g}-acquisition.json`);
     assert.equal(a.encountersOnly, true, g); assert.match(a.source, /PKHeX/, g);
     for (const v of Object.values(a.versions)) for (const list of Object.values(v)) for (const s of list) {
-      // o PKHeX não tem taxa — nada inventado; Q4 (0.50.0): taxa só da Bulbapedia, com a fonte marcada
-      if (s.pct !== undefined) assert.equal(s.pctSource, 'Bulbapedia', g);
+      // o PKHeX não tem taxa — nada inventado; Q4 (0.50.0): taxa só da Bulbapedia, com a fonte marcada; 0.67/0.68: também as
+      // tabelas do Ultra Sun (CPokemon/usum-data) e o peso no bioma do Scarlet/Violet (Bulbapedia)
+      if (s.pct !== undefined) assert.match(s.pctSource, /^(Bulbapedia|Bulbapedia \(peso no bioma\)|CPokemon\/usum-data \(tabelas do Ultra Sun\))$/, g);
       assert.ok(s.where && s.where !== '?', `${g}: ${JSON.stringify(s)}`);
       assert.ok(!/PKHeX/.test(s.detail ?? ''), `${g}: nota técnica na tela: ${s.detail}`);
     }
@@ -3016,4 +3017,21 @@ test('0.65.0: Detonado — ovo na creche uma vez por espécie (era uma por pai) 
   assert.ok(gs.some((o) => o.type === 'breed' && o.species === 'pichu'));
   // encontros iguais de verdade (Power Plant: 6 Voltorb) aparecem com "×N"
   assert.match(readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8'), /' ×' \+ n/);
+});
+
+test('F3 (0.67.0): Ultra Sun — taxas pelas tabelas do jogo (CPokemon/usum-data), conferidas com a Bulbapedia', () => {
+  const us = load('ultra-sun-ultra-moon-acquisition.json');
+  assert.match(us.usumDumpSource, /CPokemon\/usum-data/);
+  const src = (sp, where) => us.versions['ultra-sun'][sp].find((s) => s.where === where && s.type === 'wild' && s.pctSource?.startsWith('CPokemon'));
+  // Poni Grove: Buneary 20% de dia e 30% à noite (a Bulbapedia não casava)
+  assert.deepEqual([src('buneary', 'Poni Grove').pct, src('buneary', 'Poni Grove').pctTimes], [30, { dia: 20, noite: 30 }]);
+  assert.equal(src('meowth-alola', 'Route 1 (Trainers’ School)').pct, 50);
+  // só o Ultra Sun (o despejo tem Passimian/Turtonator, exclusivos dele) — o Ultra Moon não ganha taxa dessa fonte
+  assert.ok(Object.values(us.versions['ultra-moon']).flat().every((s) => !s.pctSource?.startsWith('CPokemon')));
+  // tabela de uma espécie só a 100% (árvore de frutas) não vira taxa de grama
+  assert.equal(us.versions['ultra-sun'].crabrawler.find((s) => s.where === 'Berry Fields' && s.pctSource?.startsWith('CPokemon')), undefined);
+  if (existsSync(new URL('../reports/ultra-sun-ultra-moon/usum-dump-rates.json', import.meta.url))) {
+    const r = JSON.parse(readFileSync(new URL('../reports/ultra-sun-ultra-moon/usum-dump-rates.json', import.meta.url), 'utf8'));
+    assert.ok(r.agree / r.checked > 0.9, `Bulbapedia × tabelas do jogo: ${r.agree}/${r.checked}`);
+  }
 });

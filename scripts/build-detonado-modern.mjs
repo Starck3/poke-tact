@@ -452,7 +452,7 @@ for (const [v, byMon] of Object.entries(acq.versions)) {
   for (const [species, list] of Object.entries(byMon)) for (const s of list) {
     const r = placeOf(s.where);
     const l = locOf(s.where, r, s.stage ?? r?.stage ?? null);
-    if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }), ...(s.pct != null && { pct: s.pct }), ...(s.pctApprox && { pctApprox: true }), ...(s.pctTimes && { pctTimes: s.pctTimes }), ...(s.pctWeather && { pctWeather: s.pctWeather }) });
+    if (s.type === 'wild') l.wild.push({ species, where: s.where, method: s.method, min: s.min, max: s.max, ...(s.detail && { detail: s.detail }), ...(s.pct != null && { pct: s.pct }), ...(s.pctApprox && { pctApprox: true }), ...(s.pctTimes && { pctTimes: s.pctTimes }), ...(s.pctWeather && { pctWeather: s.pctWeather }), ...(s.pctBiome && { pctBiome: s.pctBiome }) });
     else {
       // ovo da creche: uma fonte por pai (Pichu pelo Pikachu e pelo Raichu) — no Detonado aparece uma vez só
       const o = { species, type: s.type, level: s.level, where: s.where, ...(s.detail && { detail: s.detail }) };

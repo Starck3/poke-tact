@@ -2,6 +2,20 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.67.0] — 2026-10-28
+
+> Ultra Sun: 25 lugares ganham taxa de aparição pelas tabelas do próprio jogo (fonte nova: CPokemon/usum-data). Elas confirmaram 96% das taxas que já vinham da Bulbapedia.
+
+### Adicionado
+- Fonte nova (aprovada pelo usuário em 2026-10-28): **CPokemon/usum-data** (`encounter_es.txt`), as tabelas de encontro do
+  Ultra Sun com a taxa de cada espécie de dia e à noite. Cópia só em `data-sources/cpokemon-usum/` (fora do git). Os nomes
+  dos mapas, em espanhol, são traduzidos pelas listas de lugares do PKHeX (espanhol × inglês, linha a linha).
+- `scripts/apply-usum-dump-rates.mjs` (na montagem, logo depois das taxas da Bulbapedia): confere as taxas da Bulbapedia —
+  346 de 360 batem; as 14 diferentes ficam como estavam e vão para `reports/ultra-sun-ultra-moon/usum-dump-rates.json` — e
+  preenche 25 sem taxa (ex.: Buneary no Poni Grove, 20% de dia e 30% à noite). Só o Ultra Sun: o despejo é dessa versão
+  (tem Passimian, Turtonator e Rufflet). Tabela de uma espécie só a 100% (árvore de frutas) não vira taxa.
+- Créditos na tela citam a fonte da taxa de cada jogo.
+
 ## [0.66.0] — 2026-10-28
 
 > Manutenção por dentro: a leitura das páginas da Bulbapedia ganhou testes com exemplos — se o formato de lá mudar, o teste avisa antes de um dado sair errado. Nada muda na tela.

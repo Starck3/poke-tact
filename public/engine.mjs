@@ -357,6 +357,8 @@ const SRC_LABEL = {
  *  "manhã 50% / dia 50% / noite 40%" (BDSP). */
 export function pctText(s) {
   const a0 = s.pctApprox ? '~' : '';
+  // bioma (Scarlet/Violet): fatia do peso no bioma — estimativa ("≈ floresta 15% · planície 9%, pelo peso no bioma")
+  if (s.pctBiome && Object.keys(s.pctBiome).length) return '≈ ' + Object.entries(s.pctBiome).map(([b, v]) => `${b} ${v}%`).join(' · ') + ', pelo peso no bioma';
   // clima (Sword/Shield): só aparece nesses climas — "só com nublado 40%", "com chuva/tempestade 5% · neblina 35%"
   if (s.pctWeather && Object.keys(s.pctWeather).length) {
     const by = new Map();

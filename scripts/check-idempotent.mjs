@@ -12,7 +12,7 @@ const [gameId, ...only] = process.argv.slice(2);
 if (!gameId) { console.log('uso: node scripts/check-idempotent.mjs <jogo> [etapa ...]'); process.exit(2); }
 const dirty = execFileSync('git', ['status', '--porcelain', 'public/data', 'reports'], { cwd, encoding: 'utf8' }).trim();
 if (dirty) { console.log('public/data ou reports têm mudanças por salvar — salve ou descarte antes (o verificador restaura pelo git)'); process.exit(2); }
-const DEFAULT = ['apply-bulbapedia-rates', 'apply-bulbapedia-exclusives', 'apply-bulbapedia-trainers', 'apply-bulbapedia-walkthrough', 'apply-bulbapedia-catchlimit',
+const DEFAULT = ['apply-bulbapedia-rates', 'apply-bulbapedia-spawn-weights', 'apply-usum-dump-rates', 'apply-bulbapedia-exclusives', 'apply-bulbapedia-trainers', 'apply-bulbapedia-walkthrough', 'apply-bulbapedia-catchlimit',
   'apply-bulbapedia-trades', 'apply-bulbapedia-items', 'sync-walkthrough-modern', 'apply-breeding', 'build-evo-items'];
 const steps = only.length ? only : DEFAULT;
 const dataDir = new URL('../public/data/', import.meta.url);

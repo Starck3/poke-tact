@@ -105,3 +105,29 @@ test('catchRows: Sword/Shield — taxa por clima e seção da página; curry/rai
   // ♀/♂ pela regra única de nomes (0.65.0): "Nidoran♂" = nidoranm
   assert.equal(rows[1].species, 'nidoranm'); assert.match(rows[1].section, /Visible/); assert.equal(rows[1].weather.sandstorm, 100);
 });
+
+test('biomeRows/biomeShares: Scarlet/Violet — peso por bioma, terreno e horário (0 = não aparece) (F1, 0.68.0)', async () => {
+  const { biomeRows, biomeShares } = await import('../scripts/lib/bulbapedia-catch.mjs');
+  const txt = [
+    '{{Catch/div/9|P}}',
+    '{{Catch/entry9|0001|Exemplomon|type1=grass|yes|yes|land=yes|2-8|60|all=60|group=40}}',
+    '{{Catch/entry9|0002|Noturnomon|type1=dark|yes|no|land=yes|5-8|20|morning=0|day=0|evening=0|note={{tt|só à noite|nota}}}}',
+    '{{Catch/entry9|0003|Aguamon|type1=water|yes|yes|watersurface=yes|4|40|all=40}}',
+    '{{Catch/entry9|0194-Paldea|Wooper|form=Paldean Form|type1=poison|yes|yes|land=yes|6-8|20|all=20}}',
+    '{{Catch/div/9|Fo}}',
+    '{{Catch/entry9|0001|Exemplomon|type1=grass|yes|yes|land=yes|5-8|10|all=10}}',
+  ].join('\n');
+  const rows = biomeRows(txt);
+  assert.equal(rows.length, 5);
+  assert.deepEqual([rows[0].biome, rows[0].weight, rows[0].min, rows[0].max, rows[0].terrains], ['planície', 60, 2, 8, ['land']]);
+  assert.deepEqual(rows[1].times, { morning: false, day: false, evening: false, night: true });
+  assert.equal(rows[3].form, 'paldea');
+  const sc = biomeShares(rows, 0);
+  // planície, terra: de dia Exemplomon 60 + Wooper 20 → 75%; à noite entra o Noturnomon (20) → 60/100; fica a maior: 75
+  assert.equal(sc[0].share, 75);
+  assert.equal(sc[1].share, 20); // Noturnomon só à noite: 20/100
+  assert.equal(sc[2].share, 100); // Aguamon: único na água
+  assert.equal(sc[4].share, 100); // floresta: só ele
+  // Violet não tem o Noturnomon: à noite a planície fica 60/80
+  assert.equal(biomeShares(rows, 1).find((r) => r.species === 'exemplomon' && r.biome === 'planície').share, 75);
+});
