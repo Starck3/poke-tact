@@ -1,6 +1,6 @@
 # Poke Tact — status e pendências
 
-Atualizado em 2026-10-28 · versão **0.65.0** (publicada no GitHub).
+Atualizado em 2026-10-28 · versão **0.66.0** (publicada no GitHub).
 Leia junto com `CHANGELOG.md` (o que mudou em cada versão), `docs/ADICIONAR-JOGO.md` (como cada dado é obtido e as armadilhas
 já encontradas) `PLANO-EXECUCAO-2.md`, `PLANO-EXECUCAO-3.md` e `PLANO-EXECUCAO-4.md` (planos autônomos, com o registro de cada etapa). Fontes: decomp > PKHeX >
 Bulbapedia (liberada em 2026-10-25) ≈ detonado do PokeMythology > PokéAPI.
@@ -31,7 +31,7 @@ extraídas pelo PKHeX; treinadores e progresso vêm do detonado do PokeMythology
 A tela do jogo tem as abas **Recomendação**, **Detonado**, **Onde capturar** (todos os locais, evoluções e onde achar o item de
 evolução, os dois caminhos — capturar direto ou evoluir —, ovos da creche, fotos e mapa da região) e **Pokémon por tipo**.
 "(+ estimativa)": locais que o detonado não cita ganham o ponto da história estimado pelo nível dos selvagens (marcado).
-Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (307 com `data-sources/`, 288 num clone limpo); tela: `npm run test:ui` (Chrome headless, 18 verificações).
+Novidades (🔔) com resumo em linguagem simples por versão. Testes: `npm test` (315 com `data-sources/`, 288 num clone limpo); tela: `npm run test:ui` (Chrome headless, 18 verificações).
 Banco de lutas: 22 jogos (o USUM entra pelos treinadores com estágio), 39.978 sugestões — 39.793 vencem (99,5%), 37.960 com
 folga; ≈ 6 minutos. Chefes dos jogos sem decomp com golpes reais da Bulbapedia em 878 de 960 lutas (USUM 102/102); onde achar
 itens de evolução/Mega Stones/incensos pela Bulbapedia nos jogos sem decomp; taxa de aparição pela Bulbapedia no BW, X/Y, ORAS,
@@ -78,9 +78,10 @@ Sun/Moon, USUM, Let's Go, BDSP e Sword/Shield (dia/noite em Alola; manhã/dia/no
   clima sem repetir (0.60); montagem na ordem certa e `--strict` (0.61).
 - ✅ Decisões do usuário (0.62): filtro "Tenho as DLCs" (desmarcado); Wild Area nv 60+ = pós-jogo; item citado: 1ª citação.
 
-### Plano de execução 7 (grupo 1 — melhorias internas; detalhes em `PLANO-EXECUCAO-7.md`)
-- Idempotência das etapas (`node scripts/check-idempotent.mjs <jogo>`), um `key()` único, testes dos leitores de wikitext,
-  `builtAt` estável.
+### Plano de execução 7 (concluído em 2026-10-28 — grupo 1, melhorias internas; detalhes em `PLANO-EXECUCAO-7.md`)
+- ✅ Etapas idempotentes, verificadas por `node scripts/check-idempotent.mjs <jogo>` (0.63); `builtAt` estável (0.64); regra única
+  de nomes em `scripts/lib/names.mjs` + ovo uma vez por espécie no Detonado + GS/DP/Pt/HGSS remontados (0.65); testes dos
+  leitores da Bulbapedia com trechos de exemplo (0.66).
 
 ### Backlog — depende de fonte nova (grupo 2; o usuário ainda não tem fonte para testar, 2026-10-28)
 - Taxa de aparição no Scarlet/Violet, Legends: Arceus e Z-A (horário, clima e bando — sem tabela simples).
