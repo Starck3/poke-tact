@@ -124,6 +124,12 @@ try {
   const withDlc = await run(async () => { const c = document.querySelector('#dlc'); c.checked = true; c.dispatchEvent(new Event('input')); await new Promise((r) => setTimeout(r, 1200)); const p = [...document.querySelectorAll('#results .pick h3')].map((h) => h.textContent); c.checked = false; c.dispatchEvent(new Event('input')); return p; });
   check('Sword: com as DLCs, a lista muda (Sandslash de Alola volta)', withDlc.some((p) => /Sandslash/.test(p)), withDlc);
 
+  // 5c. Black/White: treinador comum do Battle Subway (0.70.0) — sem time fixo, a conta é contra a lista de conjuntos da Smogon
+  await go('#/jogo/black-white?treinador=SUBWAY_NORMAL_0', 4000);
+  const sub = await run(async () => { await new Promise((r) => setTimeout(r, 3000)); return { cat: [...document.querySelectorAll('#trainerCats button')].some((b) => /Battle Subway/.test(b.textContent)), note: document.querySelector('#results .note:not(.ctx)')?.textContent ?? '', verdict: [...document.querySelectorAll('#results .pick .verdict')].map((v) => v.textContent), level: document.querySelector('#level').value }; });
+  check('Black/White, Subway (Youngster Joshua): aba, nível 50 e "vence N de 66 conjuntos"', sub.cat && sub.level === '50' && /sorteia 3 Pokémon/.test(sub.note) && sub.verdict.length === 3 && sub.verdict.every((v) => /vence \d+ de 66 conjuntos/.test(v)), sub);
+  await shot('subway');
+
   // 6. celular: sem rolagem lateral na tela do jogo
   await viewport(true);
   await go('#/jogo/red-blue', 3000);

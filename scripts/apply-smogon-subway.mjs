@@ -5,7 +5,8 @@
 // conjunto de espécies da luta é o mesmo. Cópias só em data-sources/smogon/ (fora do git). As lutas do Emmet (4 Pokémon) e
 // do Ingo & Emmet (multi) são em dupla: o detonado diz que os chefes aparecem "no modo Double Battle e Multi Battle" e a
 // Bulbapedia, que no Subway são 3 Pokémon na simples e 4 na dupla.
-// Os treinadores comuns do Subway sorteiam 3 ou 4 de uma lista de até 66 conjuntos — sem time fixo, ficam fora.
+// Os treinadores comuns do Subway sorteiam 3 ou 4 de uma lista de conjuntos — sem time fixo: vão para <jogo>-subway.json
+// (veja no fim), não para os treinadores.
 // Uso: node scripts/apply-smogon-subway.mjs <jogo>
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { nameKey } from './lib/names.mjs';
@@ -53,6 +54,44 @@ for (const t of tr.trainers.filter((x) => /^Subway Boss/.test(x.label))) {
 }
 tr.subwaySource = 'Smogon (Battle Subway Trainers / Battle Subway Pokemon: conjuntos dos chefes) — fatos extraídos, com crédito';
 writeFileSync(trFile, JSON.stringify(tr));
+
+// Treinadores comuns (0.70.0): cada um sorteia o time de uma lista de conjuntos — vai para <jogo>-subway.json (o app junta
+// numa categoria "Battle Subway" e calcula contra todos os conjuntos possíveis). Seções da página: Normal (trens comuns),
+// Set 1–5 (Super trens; a Smogon não diz em que vagão cada lista entra, então o rótulo fica "lista N da Smogon") e Special
+// (fora os chefes, que já estão nos treinadores). Todos no nível 50, como no Subway. Cada conjunto fica uma vez em `sets`
+// (nº da Smogon → espécie, item, natureza, golpes) e o treinador guarda só os números — repetido por treinador eram 2,6 MB.
+const MOVE_ALIAS = { faintattack: 'feint-attack', hijumpkick: 'high-jump-kick', smellingsalt: 'smelling-salts' };
+const speciesKey = new Map(data.pokemon.map((p) => [nameKey(p.name), p.name]));
+// forma padrão quando a Smogon dá só a espécie ("Darmanitan" → darmanitan-standard, "Frillish" → frillish-male)
+const speciesOf = (s) => speciesKey.get(nameKey(s)) ?? data.pokemon.find((p) => p.name.startsWith(s.toLowerCase() + '-'))?.name;
+const SECTIONS = [['normal', 'Subway normal'], ...[1, 2, 3, 4, 5].map((n) => [`set${n}`, `Super Subway — lista ${n} da Smogon`]), ['special', 'Especiais']];
+const anchors = SECTIONS.map(([id]) => html.indexOf(`name="${id}"`));
+const pools = { source: 'Smogon (Battle Subway Trainers / Battle Subway Pokemon)', credit: 'Smogon', level: 50, sets: {}, trainers: [] };
+const poolReport = { trainers: 0, sets: 0, missingSpecies: new Set(), missingMoves: new Set() };
+SECTIONS.forEach(([id, label], si) => {
+  const chunk = html.slice(anchors[si], si + 1 < anchors.length ? anchors[si + 1] : undefined);
+  [...chunk.matchAll(/<dt>([^<]+)<\/dt>\s*<dd>(.*?)<\/dd>/g)].forEach((m, i) => {
+    const name = m[1].trim();
+    if (/^Subway Boss/.test(name)) return;
+    const pool = [];
+    for (const n of new Set([...m[2].matchAll(/(\d+)/g)].map((x) => Number(x[1])))) {
+      const s = sets.get(n);
+      const species = s && speciesOf(s.species);
+      if (!species) { poolReport.missingSpecies.add(s?.species ?? `#${n}`); continue; }
+      const moves = s.moves.filter(Boolean).map((mv) => moveKey.get(nameKey(mv)) ?? MOVE_ALIAS[nameKey(mv)]);
+      if (moves.some((x) => !x || !data.moves[x])) { poolReport.missingMoves.add(`${s.species}: ${s.moves.join(', ')}`); continue; }
+      pools.sets[n] ??= { species, item: s.item || null, nature: s.nature, moves };
+      pool.push(n);
+    }
+    if (!pool.length) return;
+    // classe = o rótulo sem o nome próprio ("Ace Trainer Carter" → "Ace Trainer"; "PKMN Trainer Hilbert (Attack)" → "PKMN Trainer")
+    const cls = name.replace(/\s*\(.*\)$/, '').split(' ').slice(0, -1).join(' ') || name;
+    pools.trainers.push({ key: `SUBWAY_${id.toUpperCase()}_${i}`, label: name, class: cls, section: label, pool });
+    poolReport.trainers++; poolReport.sets += pool.length;
+  });
+});
+writeFileSync(new URL(`../public/data/${gameId}-subway.json`, import.meta.url), JSON.stringify(pools));
+Object.assign(report, { pools: { trainers: poolReport.trainers, sets: poolReport.sets, missingSpecies: [...poolReport.missingSpecies], missingMoves: [...poolReport.missingMoves] } });
 mkdirSync(new URL(`../reports/${gameId}/`, import.meta.url), { recursive: true });
 writeFileSync(new URL(`../reports/${gameId}/smogon-subway.json`, import.meta.url), JSON.stringify(report, null, 1));
-console.log(`[${gameId}] Smogon (Battle Subway): ${report.matched.length}/${fights.length} lutas de chefe com golpes reais; sem casar ${report.unmatched.length}; golpe fora do dataset ${report.missingMoves.length}`);
+console.log(`[${gameId}] Smogon (Battle Subway): ${report.matched.length}/${fights.length} lutas de chefe com golpes reais; sem casar ${report.unmatched.length}; golpe fora do dataset ${report.missingMoves.length}; treinadores comuns: ${poolReport.trainers} com ${poolReport.sets} conjuntos (espécie fora ${poolReport.missingSpecies.size}, golpe fora ${poolReport.missingMoves.size})`);
