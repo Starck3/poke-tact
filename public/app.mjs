@@ -658,7 +658,7 @@ function update() {
     row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
   $('oppInfo').innerHTML = `<div class="opp">${img(opp.megaSprite ?? opp.id)}
     <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.teraType ? opp.baseTypes.map(typeBadge).join('') + ' → Tera ' + typeBadge(opp.teraType) + ' <span class="lozenge warn">terastaliza (detonado)</span>' : opp.types.map(typeBadge).join('')}${opp.dynamax ? ` <span class="lozenge warn">${opp.dynamax === 'gigantamax' ? 'Gigantamax' : 'Dynamax'} (detonado): vida 1,5× e golpes Max nos 3 primeiros turnos</span>` : ''}
-    <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : known.movesSource === 'Bulbapedia' ? '(do time na Bulbapedia)' : '(definidos pelo jogo)'}${known.zMove ? ` — usa golpe Z a partir de ${humanize(known.zMove)} no 1º turno` : ''}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
+    <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : known.movesSource === 'Bulbapedia' ? '(do time na Bulbapedia)' : known.movesSource === 'Smogon' ? '(do time na Smogon)' : '(definidos pelo jogo)'}${known.zMove ? ` — usa golpe Z a partir de ${humanize(known.zMove)} no 1º turno` : ''}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
 
   const baseOpts = {
     level: Number($('level').value) || 1,
@@ -683,7 +683,7 @@ function update() {
 
   // a ameaça é o que ELE usa contra você (não as fraquezas dele, que ficam no quadro do oponente)
   const threatLine = threatSource.kind === 'known'
-    ? `Ele ataca com (${known?.movesSource === 'Bulbapedia' ? 'golpes do time na Bulbapedia' : trainersFromWalk ? 'golpes estimados pelo nível — time do detonado' : 'golpes reais do time'}): ${threats.map(typeBadge).join('')}`
+    ? `Ele ataca com (${known?.movesSource === 'Bulbapedia' ? 'golpes do time na Bulbapedia' : known?.movesSource === 'Smogon' ? 'golpes do time na Smogon' : trainersFromWalk ? 'golpes estimados pelo nível — time do detonado' : 'golpes reais do time'}): ${threats.map(typeBadge).join('')}`
     : threatSource.kind === 'moveset'
       ? `Ele deve atacar com (golpes prováveis no nível): ${threats.map(typeBadge).join('')}`
       : `Ele deve atacar com golpes dos próprios tipos (sem nível informado): ${threats.map(typeBadge).join('')}`;

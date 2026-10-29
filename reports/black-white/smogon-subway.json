@@ -1,0 +1,13 @@
+{
+ "fights": 6,
+ "matched": [
+  "DETONADO_32_0 Subway Boss Ingo: crustle, klinklang, garbodor",
+  "DETONADO_33_0 Subway Boss Ingo: excadrill, haxorus, chandelure",
+  "DETONADO_34_0 Subway Boss Emmet: crustle, klinklang, garbodor, durant (dupla)",
+  "DETONADO_35_0 Subway Boss Emmet: excadrill, haxorus, chandelure, eelektross (dupla)",
+  "DETONADO_36_0 Subway Boss Ingo & Subway Boss Emmet: klinklang, garbodor, durant, galvantula (dupla)",
+  "DETONADO_37_0 Subway Boss Ingo & Subway Boss Emmet: excadrill, haxorus, eelektross, archeops (dupla)"
+ ],
+ "unmatched": [],
+ "missingMoves": []
+}
