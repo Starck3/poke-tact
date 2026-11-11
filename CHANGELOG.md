@@ -2,6 +2,35 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.71.0] — 2026-11-10
+
+> Na tela inicial, a busca agora tem o modo "Tipo": diga o tipo (ou o Pokémon) que vai enfrentar ou usar, escolha a geração e o jogo, e o app mostra o melhor tipo e os Pokémon do jogo para isso. Depois de 3 horas sem usar, a tela inicial volta ao começo.
+
+### Adicionado
+- Busca por tipo na tela inicial (terceiro modo do seletor: Pokémon | Líder ou jogo | **Tipo**). Aceita 1 ou 2 tipos (em
+  inglês ou português: "água", "fire") ou o nome de um Pokémon ("Gyarados" → os tipos dele naquela geração ou jogo).
+  - Botão **Vou enfrentar / Vou usar**. Enfrentar: o melhor tipo contra ele (acerta ×2+ sem levar ×2), os golpes contra ele
+    (×4 … ×0) e como cada tipo aguenta os golpes dele. Usar: os melhores alvos, contra quem o seu tipo é forte e o que te acerta.
+  - Filtros **Geração** e **Jogo**. A tabela é a do próprio jogo: `public/data/typecharts.json`, gerado por `build-pokedex.mjs`
+    das tabelas dos 22 jogos (3 diferentes: Gen 1, Gen 2–5, Gen 6+). Sem filtro, vale a mais nova, com aviso do que muda nas
+    outras (ex.: na Gen 1 Fantasma não afeta Psíquico).
+  - Com um jogo escolhido, os **Pokémon desse jogo** com os melhores tipos (só os que dá para obter; "só Red" quando é de uma
+    versão; habilidade como Levitate conta), com "só a evolução final" e "incluir lendários". Cada um abre o Onde capturar.
+  - Link direto: `#/?tipo=water,flying&lado=usar&ger=3&jogo=emerald` ou `#/?tipo=gyarados`.
+- Tela inicial recomeça depois de **3 horas** parada ou fechada (decisão do usuário): some o "Continuar de onde parou" e a
+  busca anterior. A hora do último uso fica no navegador (`poketact:lastAt`). O contexto de cada jogo (versão, progresso,
+  nível) continua guardado.
+- Teste da tela: 26 verificações (busca por tipo, nome de Pokémon, Enfrentar/Usar, aviso da Gen 1, as 3 horas ao abrir e
+  com o app aberto, celular).
+
+### Corrigido
+- Legends: Z-A: o leitor do PKHeX lia a tabela até o nº 1025, mas ela só tem espécies até o Gholdengo (1000,
+  `Legal.MaxSpeciesID_9a`); as Megas guardadas depois disso viravam "Dipplin", "Poltchageist"… com tipos errados (não
+  obtíveis — as sugestões não mudam). Agora são 364 espécies (232 de Lumiose + 132 da Hyperspace).
+- `pokemon-games.json` (busca de Pokémon da tela inicial) estava desatualizado desde a 0.48: exclusivos de versão e
+  encontros novos não chegavam lá (ex.: dizia que o Larvitar sai no Violet). Regerado, e um teste agora o compara com os
+  dados dos jogos.
+
 ## [0.70.0] — 2026-10-29
 
 > Black/White: os 306 treinadores comuns do Battle Subway entram numa aba própria. Como eles sorteiam o time, o app calcula contra todos os Pokémon que cada um pode usar (lista da Smogon) e sugere quem vence mais deles.
