@@ -130,12 +130,54 @@ try {
   check('Black/White, Subway (Youngster Joshua): aba, nível 50 e "vence N de 66 conjuntos"', sub.cat && sub.level === '50' && /sorteia 3 Pokémon/.test(sub.note) && sub.verdict.length === 3 && sub.verdict.every((v) => /vence \d+ de 66 conjuntos/.test(v)), sub);
   await shot('subway');
 
-  // 6. celular: sem rolagem lateral na tela do jogo
+  // 5d. busca por tipo na tela inicial (0.71.0): link, Pokémon do jogo, nome de Pokémon, enfrentar/usar, aviso da Gen 1
+  await go('#/?tipo=water,flying&jogo=firered-leafgreen', 4500);
+  const tw = await run(() => ({ mode: document.querySelector('#searchMode [aria-checked=true]')?.dataset.mode, best: document.querySelector('.tq-best')?.textContent ?? '', mons: [...document.querySelectorAll('#tqMons .mon-card .nm')].map((x) => x.textContent), hash: location.hash }));
+  check('tipo Água/Voador no FireRed: modo Tipo, melhor tipo electric ×4 e Jolteon na lista', tw.mode === 'tipo' && /electric.*acerta ×4/.test(tw.best) && tw.mons.includes('Jolteon'), tw);
+  await shot('tipo-firered');
+  await go('#/', 2500);
+  const typed = await run(async () => {
+    const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+    document.querySelector('#searchMode [data-mode=tipo]').click(); await pause(800);
+    const input = document.querySelector('#homeSearch'); input.value = 'gyara'; input.dispatchEvent(new Event('input')); await pause(800);
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await pause(600);
+    const head = document.querySelector('.tq-head')?.textContent ?? '';
+    document.querySelector('#tqSide [data-side=usar]').click(); await pause(400);
+    return { head, hash: location.hash, best: document.querySelector('.tq-best')?.textContent ?? '' };
+  });
+  check('busca "gyara" no modo Tipo → Gyarados water/flying; "Vou usar" fica no link', /Gyarados.*water.*flying/.test(typed.head) && /tipo=gyarados/.test(typed.hash) && /lado=usar/.test(typed.hash) && /Bons alvos/.test(typed.best), typed);
+  await go('#/?tipo=psychic&ger=1', 3500);
+  const g1 = await run(() => document.querySelector('.home-type')?.textContent ?? '');
+  check('Psíquico na Geração I: aviso "ghost contra psychic é ×0 aqui"', /ghost contra psychic é ×0 aqui e ×2/.test(g1), g1.slice(0, 300));
+
+  // 5e. 3 horas sem usar (decisão do usuário, 0.71.0): ao abrir, sem "Continuar de onde parou"; com menos de 3 h, aparece;
+  // parado com o app aberto, a busca volta ao começo
+  const resumeAfter = async (hoursAgo) => {
+    await go('#/', 1500);
+    await run((h) => { localStorage.setItem('poketact:last', 'emerald'); localStorage.setItem('poketact:lastAt', String(Date.now() - h * 3600e3)); }, hoursAgo);
+    await send('Page.reload'); await sleep(2500);
+    return run(() => ({ card: !!document.querySelector('#resume .resume'), last: localStorage.getItem('poketact:last') }));
+  };
+  const fresh = await resumeAfter(1), stale = await resumeAfter(4);
+  check('ao abrir: com 1 h mostra "Continuar de onde parou"; com 4 h não mostra', fresh.card && !stale.card && stale.last === null, { fresh, stale });
+  await go('#/?tipo=fire', 3000);
+  const idle = await run(async () => {
+    const real = Date.now; Date.now = () => real() + 4 * 3600e3;
+    window.dispatchEvent(new Event('focus')); await new Promise((r) => setTimeout(r, 800)); Date.now = real;
+    return { hash: location.hash, mode: document.querySelector('#searchMode [aria-checked=true]')?.dataset.mode, panel: document.querySelector('#homeType').hidden };
+  });
+  check('parado 4 h com o app aberto: busca por tipo volta ao começo', idle.hash === '#/' && idle.mode === 'pokemon' && idle.panel, idle);
+
+  // 6. celular: sem rolagem lateral na tela do jogo (e na busca por tipo)
   await viewport(true);
   await go('#/jogo/red-blue', 3000);
   const w = await run(() => ({ scroll: document.documentElement.scrollWidth, inner: innerWidth }));
   check('celular (390 px): sem rolagem lateral', w.scroll <= w.inner + 1, w);
   await shot('red-celular');
+  await go('#/?tipo=dragon&jogo=emerald', 4000);
+  const wt = await run(() => ({ scroll: document.documentElement.scrollWidth, inner: innerWidth }));
+  check('celular (390 px): busca por tipo sem rolagem lateral', wt.scroll <= wt.inner + 1, wt);
+  await shot('tipo-celular');
   await viewport(false);
 
   // 7. novidades

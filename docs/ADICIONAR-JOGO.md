@@ -206,6 +206,12 @@ e o código que as lê. `scripts/lib/pkhex.mjs`, `apply-pkhex-overlay.mjs`, `val
 - Fora: valores dos golpes (o PKHeX só tem PP e tipo → PokéAPI + Showdown), treinadores e itens no mapa (nenhuma fonte em texto),
   encontros (o PKHeX tem, mas para legalidade: sem taxas, com "crossover" e eventos — ver `docs/FONTES-GEN5-9.md`). Selo:
   `validation: 'pkhex'` = "Parcialmente verificado".
+- 🧪 **Até onde vão as espécies**: depois da última espécie do jogo, a tabela `personal_<jogo>` guarda as FORMAS. Use o
+  `MaxSpecies` do `PersonalTable*.cs` (`maxSpecies` em `PKHEX_GAMES`). No Z-A ele é o Gholdengo (1000); lida até 1025, a tabela
+  dava 6 Megas com nome de espécie ("Poltchageist" Fogo/Dragão) — 0.71.0.
+- 🧪 Depois de remontar qualquer jogo, rode `node scripts/build-pokedex.mjs`: ele gera `pokemon-games.json` (busca de Pokémon
+  da tela inicial) e `typecharts.json` (busca por tipo) a partir dos datasets. Um teste falha se eles ficarem desatualizados
+  (ficaram da 0.48 à 0.70).
 
 ### Gens 6–9 — onde obter pelos encontros do PKHeX; Legends: Z-A inteiro pelo PKHeX — 2026-10-20 🧪
 `scripts/lib/pkhex-enc-{gen67,gg-swsh,bdsp-la,sv-za}.mjs` (um leitor por família; o cabeçalho de cada um cita os `.cs` seguidos),

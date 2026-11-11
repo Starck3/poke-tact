@@ -1606,7 +1606,9 @@ test('regressão: learnset do PKHeX com byte de preenchimento (Z-A) — divisão
 
 test('Legends: Z-A — dataset das tabelas do PKHeX (espécies presentes, TMs, evoluções) e golpes da Gen 9', () => {
   const za = load('legends-za.json');
-  assert.equal(za.pokemon.filter((p) => !p.regionalForm).length, 370); // flag "presente no jogo" do personal_za (base + Mega Dimension)
+  // flag "presente no jogo" do personal_za (base + Mega Dimension): 232 da Pokédex de Lumiose + 132 da Hyperspace = 364.
+  // Era 370 até 0.70.0: contava 6 Megas lidas como as espécies 1011–1016 (ver o teste de 0.71.0)
+  assert.equal(za.pokemon.filter((p) => !p.regionalForm).length, 364);
   assert.match(za.game.source, /PKHeX/);
   assert.deepEqual(za.starters.species, ['chikorita', 'tepig', 'totodile']);
   assert.ok(mon(za, 'chikorita').learnset.some((x) => x.method === 'machine'));
@@ -3091,4 +3093,75 @@ test('0.70.0: Battle Subway (Black/White) — treinadores comuns com a lista de 
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.match(app, /if \(t\.pool\) \{ known = null; teamMode = t;/);
   assert.match(app, /sorteia 3 Pokémon \(4 na dupla\)/);
+});
+
+test('0.71.0: Legends: Z-A — a tabela do PKHeX tem espécies só até o Gholdengo (1000); depois são formas (Megas)', () => {
+  // Erro: o leitor lia até o nº 1025 e as entradas de forma 1011–1016 (stats de Mega Venusaur, Mega Charizard X/Y…) viravam
+  // "Dipplin" Grass/Poison, "Poltchageist" Fire/Dragon… Confirmado em PKHeX: PersonalTable9ZA.MaxSpecies = Legal.MaxSpeciesID_9a
+  // = Species.Gholdengo. Não afetava as sugestões (marcadas não obtíveis), mas a busca por tipo mostraria tipos errados.
+  const za = load('legends-za.json');
+  assert.ok(!za.pokemon.some((p) => !p.regionalForm && !p.mega && p.id > 1000 && p.id < 10000), za.pokemon.filter((p) => p.id > 1000 && p.id < 10000).map((p) => p.name).join());
+  for (const n of ['dipplin', 'poltchageist', 'sinistcha', 'okidogi', 'munkidori', 'fezandipiti']) assert.ok(!mon(za, n), n);
+});
+
+test('0.71.0: typecharts.json (busca por tipo) = as tabelas de tipo dos próprios jogos; pokemon-games.json em dia', async () => {
+  const tc = load('typecharts.json');
+  const games = load('games.json').games.filter((g) => g.status === 'supported');
+  // 3 tabelas diferentes nos 22 jogos: Gen 1, Gen 2–5 (sem Fada), Gen 6+
+  assert.deepEqual(tc.charts.map((c) => c.gens), [[1], [2, 3, 4, 5], [6, 7, 8, 9]]);
+  assert.deepEqual(tc.charts.map((c) => c.types.length), [15, 17, 18]);
+  const where = {};
+  for (const g of games) {
+    const d = load(g.id + '.json');
+    // cada jogo aponta para a própria tabela, igual à do <jogo>.json
+    assert.deepEqual(tc.charts[tc.games[g.id]].chart, d.chart, g.id);
+    for (const p of d.pokemon) { const vs = Object.entries(p.obtainable ?? {}).filter(([, ok]) => ok).map(([v]) => v); if (vs.length) (where[p.name] ??= {})[d.game.id] = vs; }
+  }
+  // Gen 1: Fantasma não afeta Psíquico (×0 no código do Red/Blue)
+  assert.equal(tc.charts[0].chart.ghost.psychic, 0);
+  assert.equal(tc.charts[2].chart.ghost.psychic, 2);
+  // tipos por época: Clefairy vira Fada na Gen 6; Magnemite ganha Aço na Gen 2; o Growlithe "de Hisui" do Legends: Arceus
+  // não vale para a Gen 6+ inteira (vale o 1º jogo onde dá para obter)
+  assert.deepEqual(tc.mons.clefairy, ['normal', 'normal', 'fairy']);
+  assert.deepEqual(tc.mons.magnemite, ['electric', 'electric/steel', 'electric/steel']);
+  assert.equal(tc.mons.growlithe[2], 'fire');
+  assert.equal(tc.mons.lucario[0], '');
+  // Erro: pokemon-games.json (busca de Pokémon da tela inicial) não era regerado desde 0.48 — no Violet o Larvitar não sai, e a
+  // tela dizia que sim. O arquivo tem que ser igual ao que build-pokedex calcula dos datasets.
+  assert.deepEqual(load('pokemon-games.json').where, where);
+  assert.deepEqual(where.larvitar['scarlet-violet'], ['scarlet']);
+});
+
+test('0.71.0: busca por tipo — melhor tipo nos dois sentidos, diferenças entre gerações e Pokémon do jogo', async () => {
+  const { matchup, monsFor, chartDiffs, mult } = await import('../public/typechart.mjs');
+  const tc = load('typecharts.json');
+  const [g1, g2, g6] = tc.charts;
+  // enfrentar Água/Voador (Gyarados): Elétrico ×4 é o melhor; Terra não afeta; Pedra ×2
+  const gy = matchup(g6, ['water', 'flying'], 'enfrentar');
+  assert.deepEqual(gy.best.map((b) => [b.type, b.atk, b.def]), [['electric', 4, 1]]);
+  assert.deepEqual(gy.attack.find((g) => g.mult === 0).types, ['ground']);
+  // Rock acerta ×2 mas leva ×2 de Água → fora do "melhor"
+  assert.ok(gy.attack.find((g) => g.mult === 2).types.includes('rock') && !gy.best.some((b) => b.type === 'rock'));
+  // usar Fogo: alvos Bug/Steel/Grass/Ice; leva ×2 de Ground/Rock/Water
+  const fire = matchup(g6, ['fire'], 'usar');
+  assert.deepEqual(fire.best.map((b) => b.type).sort(), ['bug', 'grass', 'ice', 'steel']);
+  assert.deepEqual(fire.defense.find((g) => g.mult === 2).types.sort(), ['ground', 'rock', 'water']);
+  // Dragão na Gen 2–5: Aço resiste; Fada não existe
+  assert.equal(mult(g2.chart, 'dragon', ['steel']), 0.5);
+  assert.ok(!g2.types.includes('fairy'));
+  // aviso de geração: Fantasma contra Psíquico é ×0 na Gen 1
+  assert.deepEqual(chartDiffs(g6, g1, ['psychic'], 'enfrentar'), [{ atk: 'ghost', def: 'psychic', from: 0, to: 2 }]);
+  // Pokémon do FireRed contra Água/Voador: Jolteon (Elétrico ×4) e nenhum que leve ×2
+  const fr = monsFor(FR, ['water', 'flying'], 'enfrentar');
+  assert.equal(fr[0].atk, 4);
+  assert.ok(fr.some((x) => x.p.name === 'jolteon') && fr.every((x) => x.def < 2 && x.versions.length));
+  // habilidade conta: Gengar (Levitate) não é alvo de Terra mesmo sendo Venenoso
+  assert.ok(!monsFor(FR, ['ground'], 'usar', { finalOnly: false }).some((x) => x.p.name === 'gengar'));
+  assert.ok(monsFor(FR, ['ground'], 'usar', { finalOnly: false }).some((x) => x.p.name === 'arbok'));
+  // tela: modo "Tipo" na busca, Enfrentar/Usar, filtros, link #/?tipo= e o reset de 3 h (decisões do usuário, 2026-11-10)
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.match(html, /data-mode="tipo"/);
+  assert.match(app, /const IDLE_RESET_MS = 3 \* 60 \* 60 \* 1000;/);
+  assert.match(app, /if \(r\.params\.tipo\) openTypeSearch\(r\.params\);/);
 });

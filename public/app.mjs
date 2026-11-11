@@ -1,6 +1,7 @@
 import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
+import { matchup, monsFor, chartDiffs, TYPE_PT } from './typechart.mjs';
 
 const COLORS = {
   normal: '#8a8a59', fire: '#e8742c', water: '#5a7fe8', electric: '#d9ad12', grass: '#5ca83c', ice: '#6bb8b8',
@@ -1002,9 +1003,10 @@ function renderHero() {
   startTypingPlaceholder();
 }
 // placeholder que "digita" exemplos (Mobbin); para ao focar ou com movimento reduzido — exemplos do modo de busca
-let searchMode = 'pokemon'; // 'pokemon' (padrão) | 'lider' (líder ou jogo)
-const PLACEHOLDER = { pokemon: 'Busque um Pokémon…', lider: 'Busque um jogo ou um líder…' };
-const EXAMPLES = { pokemon: ['Pikachu', 'Eevee', 'Lucario', 'Rattata de Alola', 'Gible', 'Dratini', 'Riolu'], lider: ['Whitney', 'HeartGold', 'Cynthia', 'Game Boy Advance', 'Misty', 'Geração 3', 'Lance'] };
+let setSearchMode = () => {}, clearHomeSearch = () => {}; // definidas no bloco da busca
+let searchMode = 'pokemon'; // 'pokemon' (padrão) | 'lider' (líder ou jogo) | 'tipo' (busca por tipo, 0.71.0)
+const PLACEHOLDER = { pokemon: 'Busque um Pokémon…', lider: 'Busque um jogo ou um líder…', tipo: 'Busque um tipo ou um Pokémon…' };
+const EXAMPLES = { pokemon: ['Pikachu', 'Eevee', 'Lucario', 'Rattata de Alola', 'Gible', 'Dratini', 'Riolu'], lider: ['Whitney', 'HeartGold', 'Cynthia', 'Game Boy Advance', 'Misty', 'Geração 3', 'Lance'], tipo: ['Água', 'Gyarados', 'Dragão', 'Fantasma', 'Charizard', 'Fada', 'Steel'] };
 function startTypingPlaceholder() {
   const el = $('homeSearch');
   clearTimeout(typeTimer);
@@ -1067,30 +1069,32 @@ function renderHomeDex(name) {
 {
   const input = $('homeSearch'), box = $('homeResults');
   let items = [], sel = 0;
-  const results = () => (searchMode === 'pokemon' ? pokemonResults(input.value) : searchResults(input.value));
-  const kindTag = (it) => (it.kind === 'pokemon' ? '<span class="r-kind lozenge info">onde capturar</span>' : `<span class="r-kind lozenge ${it.kind === 'jogo' ? 'neutral' : 'info'}">${it.kind === 'jogo' ? 'jogo' : 'ir para a luta'}</span>`);
+  const results = () => (searchMode === 'pokemon' ? pokemonResults(input.value) : searchMode === 'tipo' ? typeResults(input.value) : searchResults(input.value));
+  const kindTag = (it) => (it.kind === 'tipo' ? '<span class="r-kind lozenge neutral">tipo</span>' : it.kind === 'tipomon' ? '<span class="r-kind lozenge info">tipos dele</span>' : it.kind === 'pokemon' ? '<span class="r-kind lozenge info">onde capturar</span>' : `<span class="r-kind lozenge ${it.kind === 'jogo' ? 'neutral' : 'info'}">${it.kind === 'jogo' ? 'jogo' : 'ir para a luta'}</span>`);
   const paint = () => {
     box.hidden = !input.value.trim();
     $('searchBox').setAttribute('aria-expanded', String(!box.hidden));
-    box.innerHTML = items.length ? items.map((it, i) => `<li role="option" id="hr${i}" aria-selected="${i === sel}" ${it.href ? `data-href="${it.href}"` : `data-name="${it.name}"`}>${pic(it.img)}<div><strong>${it.title}</strong><div class="meta">${it.sub}</div></div>${kindTag(it)}</li>`).join('')
-      : `<li class="meta" style="cursor:default">${searchMode === 'pokemon' ? 'Nenhum Pokémon com esse nome.' : 'Nada encontrado — tente o nome de um jogo (ex.: Emerald) ou de um líder (ex.: Brock).'}</li>`;
+    box.innerHTML = items.length ? items.map((it, i) => `<li role="option" id="hr${i}" aria-selected="${i === sel}" ${it.href ? `data-href="${it.href}"` : `data-name="${it.name}"`}>${it.kind === 'tipo' ? typeBadge(it.name) : pic(it.img)}<div><strong>${it.title}</strong><div class="meta">${it.sub}</div></div>${kindTag(it)}</li>`).join('')
+      : `<li class="meta" style="cursor:default">${searchMode === 'tipo' ? 'Nenhum tipo nem Pokémon com esse nome.' : searchMode === 'pokemon' ? 'Nenhum Pokémon com esse nome.' : 'Nada encontrado — tente o nome de um jogo (ex.: Emerald) ou de um líder (ex.: Brock).'}</li>`;
     input.setAttribute('aria-activedescendant', items.length ? 'hr' + sel : '');
   };
   const refresh = () => { items = results(); sel = 0; paint(); };
   const choose = (it) => {
     if (!it) return;
     if (it.href) { location.hash = it.href; input.value = ''; items = []; paint(); return; }
+    if (it.kind === 'tipo' || it.kind === 'tipomon') { input.value = ''; items = []; box.hidden = true; chooseType(it); return; }
     input.value = it.title; items = []; box.hidden = true; renderHomeDex(it.name);
   };
   input.addEventListener('input', () => {
     renderHomeDex(null);
     if (searchMode === 'pokemon' && !pokeGames) loadPokeGames().then(() => { if (input.value.trim()) refresh(); });
+    if (searchMode === 'tipo' && !typecharts) loadTypecharts().then(() => { if (input.value.trim()) refresh(); });
     refresh();
   });
   input.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (items.length) { sel = (sel + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length; paint(); } }
     else if (e.key === 'Enter' && items[sel]) { e.preventDefault(); choose(items[sel]); }
-    else if (e.key === 'Escape') { input.value = ''; items = []; paint(); renderHomeDex(null); }
+    else if (e.key === 'Escape') { input.value = ''; items = []; paint(); if (searchMode !== 'tipo') renderHomeDex(null); }
   });
   box.addEventListener('mousedown', (e) => {
     const li = e.target.closest('li[data-href], li[data-name]');
@@ -1100,20 +1104,212 @@ function renderHomeDex(name) {
   });
   input.addEventListener('blur', () => setTimeout(() => { box.hidden = true; }, 120));
   input.addEventListener('focus', () => { if (input.value.trim() && $('homeDex').hidden) paint(); });
-  // seletor ao lado da busca: Pokémon | Líder ou jogo
+  // seletor ao lado da busca: Pokémon | Líder ou jogo | Tipo
+  setSearchMode = (mode, focus = true) => {
+    searchMode = mode;
+    for (const x of $('searchMode').querySelectorAll('button')) x.setAttribute('aria-checked', String(x.dataset.mode === mode));
+    input.value = ''; items = []; box.hidden = true; renderHomeDex(null);
+    $('homeType').hidden = mode !== 'tipo';
+    if (mode === 'tipo') loadTypecharts().then(renderTypeSearch); else syncTypeHash(false);
+    startTypingPlaceholder();
+    if (focus) input.focus();
+    if (mode === 'pokemon' || mode === 'tipo') loadPokeGames(); // tipo: sprite das formas regionais na lista
+  };
   $('searchMode').addEventListener('click', (e) => {
     const b = e.target.closest('button[data-mode]');
-    if (!b || b.dataset.mode === searchMode) return;
-    searchMode = b.dataset.mode;
-    for (const x of $('searchMode').querySelectorAll('button')) x.setAttribute('aria-checked', String(x === b));
-    input.value = ''; items = []; box.hidden = true; renderHomeDex(null);
-    startTypingPlaceholder();
-    input.focus();
-    if (searchMode === 'pokemon') loadPokeGames();
+    if (b && b.dataset.mode !== searchMode) setSearchMode(b.dataset.mode);
   });
+  // 3 h parado ou fechado: a busca da tela inicial volta ao começo (resetHome)
+  clearHomeSearch = () => { tq.types = []; tq.from = null; tq.gen = null; tq.game = null; tq.all = false; setSearchMode('pokemon', false); };
   document.addEventListener('keydown', (e) => {
     if (e.key === '/' && !$('home').hidden && document.activeElement !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName ?? '')) { e.preventDefault(); input.focus(); }
   });
+}
+
+// ---- busca por tipo na tela inicial (0.71.0): "vou enfrentar" ou "vou usar" um tipo (ou os tipos de um Pokémon) →
+// melhor tipo, a tabela nos dois sentidos e, com um jogo escolhido, os Pokémon do jogo. A tabela é a do próprio jogo
+// (data/typecharts.json: Gen 1, Gen 2–5, Gen 6+); sem filtro, a mais nova. Link: #/?tipo=water,flying&lado=usar&ger=3&jogo=emerald
+// (tipo= também aceita o nome de um Pokémon: #/?tipo=gyarados)
+let typecharts = null, typechartsLoading = null;
+const loadTypecharts = () => (typechartsLoading ??= fetch('data/typecharts.json').then((r) => r.json()).then((d) => { typecharts = d; return d; }).catch(() => null));
+const gameJson = new Map(); // jogo → <jogo>.json (Pokémon do jogo; baixado só ao escolher o jogo)
+const loadGameJson = (id) => { if (!gameJson.has(id)) gameJson.set(id, fetch('data/' + id + '.json').then((r) => r.json()).catch(() => null)); return gameJson.get(id); };
+const tq = { types: [], from: null, side: 'enfrentar', gen: null, game: null, finalOnly: true, legendary: false, all: false };
+const typeName = (t) => t + (TYPE_PT[t] && TYPE_PT[t] !== t ? ' (' + TYPE_PT[t] + ')' : '');
+const MULT = { 4: '×4', 2: '×2', 1: '×1', 0.5: '×½', 0.25: '×¼', 0: '×0' };
+/** Tabela em uso: a do jogo escolhido, a da geração escolhida ou a mais nova. */
+const tqChartIndex = () => (tq.game ? typecharts.games[tq.game] : tq.gen ? typecharts.charts.findIndex((c) => c.gens.includes(tq.gen)) : typecharts.charts.length - 1);
+function typeResults(q) {
+  const t = plain(q);
+  if (!t || !typecharts) return [];
+  const all = typecharts.charts.at(-1).types;
+  const types = all.filter((ty) => [plain(ty), plain(TYPE_PT[ty] ?? ty)].some((k) => k.startsWith(t)))
+    .map((ty) => ({ kind: 'tipo', name: ty, title: typeName(ty), sub: 'tipo' }));
+  const dexOf = (n) => pokeGames?.forms?.[n]?.[1] ?? pokedex?.find(([, x]) => x === n)?.[0];
+  const mons = Object.keys(typecharts.mons).filter((n) => [plain(n), plain(humanize(n))].some((k) => k.startsWith(t)))
+    .slice(0, 8 - types.length).map((n) => ({ kind: 'tipomon', name: n, title: humanize(n), sub: typecharts.mons[n].at(-1) || typecharts.mons[n].find(Boolean), img: dexOf(n) }));
+  return [...types, ...mons];
+}
+function chooseType(it) {
+  if (it.kind === 'tipomon') { tq.from = it.name; tq.types = []; }
+  else { tq.from = null; tq.types = tq.types.includes(it.name) ? tq.types : [...tq.types, it.name].slice(-2); }
+  tq.all = false;
+  renderTypeSearch();
+}
+/** Mantém o link (#/?tipo=…) em dia sem recarregar a tela (replaceState não dispara hashchange). */
+function syncTypeHash(on = true) {
+  if (parseRoute(location.hash).view !== 'home') return;
+  const q = new URLSearchParams();
+  if (on && (tq.from || tq.types.length)) {
+    q.set('tipo', tq.from ?? tq.types.join(','));
+    if (tq.side !== 'enfrentar') q.set('lado', tq.side);
+    if (tq.gen) q.set('ger', String(tq.gen));
+    if (tq.game) q.set('jogo', tq.game);
+  }
+  // só mexe no link que é da busca por tipo (não apaga ?capturar=, ?geracao=…)
+  const cur = parseRoute(location.hash).params;
+  if (!q.toString() && cur.tipo == null) return;
+  const want = '#/' + (q.toString() ? '?' + q : '');
+  if (location.hash !== want) history.replaceState(null, '', want);
+}
+const rangeLabel = (c) => 'Geração ' + (c.gens.length > 1 ? roman(c.gens[0]) + '–' + roman(c.gens.at(-1)) : roman(c.gens[0]));
+async function renderTypeSearch() {
+  const box = $('homeType');
+  if (searchMode !== 'tipo' || !typecharts) { box.hidden = searchMode !== 'tipo'; return; }
+  box.hidden = false;
+  const ci = tqChartIndex(), table = typecharts.charts[ci];
+  const on = catalog.games.filter((g) => g.status === 'supported');
+  const gens = [...new Set(on.map((g) => g.generation))].sort((a, b) => a - b);
+  const gameOpts = on.filter((g) => !tq.gen || g.generation === tq.gen);
+  const scope = tq.game ? 'Pokémon ' + on.find((g) => g.id === tq.game)?.label : tq.gen ? 'Geração ' + roman(tq.gen) : rangeLabel(table) + ' (a tabela mais nova)';
+  const inScope = (tq.game ? 'em ' : 'na ') + scope;
+  // tipos: os escolhidos, ou os do Pokémon no jogo (ou na época da tabela)
+  let types = tq.types, note = '';
+  if (tq.from) {
+    const d = tq.game ? await loadGameJson(tq.game) : null;
+    const own = d?.pokemon.find((p) => p.name === tq.from)?.types;
+    types = own ?? (typecharts.mons[tq.from]?.[ci] || '').split('/').filter(Boolean);
+    if (!types.length) note = humanize(tq.from) + ' não existe ' + inScope + '.';
+  }
+  const missing = types.filter((t) => !table.types.includes(t));
+  if (missing.length) { note = 'O tipo ' + missing.map(typeName).join(' e ') + ' não existe ' + inScope + '.'; types = types.filter((t) => table.types.includes(t)); }
+  const sel = (id, label, opts, val) => '<label>' + label + ' <select id="' + id + '">' + opts.map(([v, t]) => '<option value="' + v + '"' + (String(val ?? '') === String(v) ? ' selected' : '') + '>' + t + '</option>').join('') + '</select></label>';
+  const head = '<div class="tq-bar"><div class="search-mode" role="radiogroup" aria-label="Vou enfrentar ou vou usar" id="tqSide">' +
+    [['enfrentar', 'Vou enfrentar'], ['usar', 'Vou usar']].map(([v, t]) => '<button type="button" role="radio" data-side="' + v + '" aria-checked="' + (tq.side === v) + '">' + t + '</button>').join('') + '</div>' +
+    sel('tqGen', 'Geração', [['', 'Todas (tabela mais nova)'], ...gens.map((g) => [g, 'Geração ' + roman(g)])], tq.gen) +
+    sel('tqGame', 'Jogo', [['', tq.gen ? 'Qualquer jogo da geração' : 'Qualquer jogo'], ...gameOpts.map((g) => [g.id, g.label])], tq.game) + '</div>' +
+    '<div class="type-chips" id="tqChips">' + table.types.map((t) => '<button type="button" data-type="' + t + '" aria-pressed="' + (!tq.from && tq.types.includes(t)) + '" title="' + typeName(t) + '" style="background:' + COLORS[t] + '">' + t + '</button>').join('') +
+    (tq.from || tq.types.length ? '<button type="button" class="clear" data-clear>limpar</button>' : '') + '</div>';
+  const fromLine = tq.from && types.length ? '<div class="tq-head">' + pic(pokeGames?.forms?.[tq.from]?.[1] ?? pokedex?.find(([, n]) => n === tq.from)?.[0]) + '<div><strong>' + humanize(tq.from) + '</strong> ' + types.map(typeBadge).join('') + '<div class="meta">tipos ' + inScope + '</div></div></div>' : '';
+  if (!types.length) {
+    box.innerHTML = '<div class="card">' + head + '<p class="meta" style="margin:0">' + (note || 'Escolha 1 ou 2 tipos acima, ou digite um tipo (Água, Fire…) ou um Pokémon (Gyarados) na busca.') + '</p></div>';
+    bindTypeSearch(); syncTypeHash(); return;
+  }
+  const r = matchup(table, types, tq.side);
+  const them = types.map(typeBadge).join('');
+  const link = (t) => (tq.game ? '<a href="#/jogo/' + tq.game + '?aba=tipos&tipo=' + t + '" title="Ver os Pokémon ' + t + ' do jogo">' + typeBadge(t) + '</a>' : typeBadge(t));
+  const bestList = r.best.map((b) => link(b.type) + '<span class="meta">acerta ' + MULT[b.atk] + ', leva ' + MULT[b.def] + '</span>').join(' ');
+  const best = tq.side === 'enfrentar'
+    ? (r.best.length ? '<strong>Melhor tipo contra</strong> ' + them + ': ' + bestList : 'Nenhum tipo acerta ' + them + ' com ×2 sem levar ×2 de volta — veja a tabela abaixo.')
+    : (r.best.length ? '<strong>Bons alvos para o seu</strong> ' + them + ': ' + bestList : 'Nenhum tipo leva ×2 do seu ' + them + ' sem acertar ×2 de volta — veja a tabela abaixo.');
+  const rows = (groups, label) => groups.map((g) => '<div class="tq-row"><b>' + label(g.mult) + '</b>' + g.types.map(typeBadge).join('') + '</div>').join('');
+  const atkLabel = (m) => (m === 0 ? 'sem efeito ' : m < 1 ? 'pouco efetivo ' : m > 1 ? 'super efetivo ' : 'normal ') + MULT[m];
+  const takeLabel = (m) => (m === 0 ? 'imune ' : m < 1 ? 'resiste ' : m > 1 ? 'leva ' : 'normal ') + MULT[m];
+  const groupsHtml = tq.side === 'enfrentar'
+    ? '<div><h3>Seus golpes contra ' + them + '</h3>' + rows(r.attack, atkLabel) + '</div><div><h3>Seu Pokémon contra os golpes ' + them + '</h3>' + rows(r.defense, takeLabel) + '</div>'
+    : '<div><h3>Golpe ' + them + ' contra cada tipo</h3>' + rows(r.attack, atkLabel) + '</div><div><h3>Golpes contra o seu ' + them + '</h3>' + rows(r.defense, takeLabel) + '</div>';
+  // o que muda nas outras tabelas (ex.: Gen 1, Fantasma não afeta Psíquico)
+  const diffs = typecharts.charts.flatMap((c, i) => (i === ci ? [] : chartDiffs(table, c, types, tq.side).map((d) => d.atk + ' contra ' + d.def + ' é ' + MULT[d.to] + ' aqui e ' + MULT[d.from] + ' na ' + rangeLabel(c))));
+  const diffHtml = diffs.length ? '<p class="meta" style="margin:0">⚠ Muda com a geração: ' + diffs.join('; ') + '.</p>' : '';
+  const credit = '<p class="meta" style="margin:0">Tabela de tipos do próprio jogo (' + scope + '). Habilidade que anula um tipo (Levitate…) só conta na lista de Pokémon do jogo.</p>';
+  box.innerHTML = '<div class="card">' + head + (note ? '<p class="meta" style="margin:0">' + note + '</p>' : '') + fromLine + '<div class="tq-best">' + best + '</div><div class="tq-groups">' + groupsHtml + '</div>' + diffHtml +
+    '<div id="tqMons">' + (tq.game ? '<p class="meta">Carregando os Pokémon do jogo…</p>' : '<p class="meta" style="margin:0">Escolha um jogo para ver os Pokémon dele com esses tipos.</p>') + '</div>' + credit + '</div>';
+  bindTypeSearch(); syncTypeHash();
+  if (tq.game) renderTypeMons(types);
+}
+async function renderTypeMons(types) {
+  const game = tq.game, d = await loadGameJson(game), out = $('tqMons');
+  if (!out || game !== tq.game) return;
+  if (!d) { out.innerHTML = '<p class="meta">Não deu para carregar os Pokémon do jogo.</p>'; return; }
+  const g = catalog.games.find((x) => x.id === game);
+  const list = monsFor(d, types, tq.side, { finalOnly: tq.finalOnly, legendary: tq.legendary });
+  const shown = tq.all ? list : list.slice(0, 12);
+  const only = (vs) => (vs.length < g.versions.length ? ' · só ' + vs.map((v) => g.versions.find((x) => x.id === v)?.label ?? v).join(', ') : '');
+  const card = ({ p, atk, def, versions }) => '<a class="mon-card" href="#/jogo/' + game + '?capturar=' + p.name + '" title="Onde capturar ' + humanize(p.name) + ' no ' + g.label + '">' + pic(p.spriteId ?? p.id) +
+    '<span><span class="nm">' + humanize(p.name) + '</span><br>' + p.types.map(typeBadge).join('') + '<br><span class="sub">acerta ' + MULT[atk] + ' · leva ' + MULT[def] + only(versions) + '</span></span></a>';
+  const title = tq.side === 'enfrentar' ? 'Pokémon do ' + g.label + ' para usar contra ' + types.map(typeBadge).join('') : 'Alvos no ' + g.label + ' para o seu ' + types.map(typeBadge).join('');
+  out.innerHTML = '<h3 style="margin:0 0 6px;font-size:var(--fs-sm)">' + title + ' <span class="meta">' + list.length + '</span></h3>' +
+    '<div class="tq-bar" style="margin-bottom:6px"><label><input type="checkbox" id="tqFinal"' + (tq.finalOnly ? ' checked' : '') + '> só a evolução final</label><label><input type="checkbox" id="tqLeg"' + (tq.legendary ? ' checked' : '') + '> incluir lendários</label></div>' +
+    (list.length ? '<div class="mon-grid">' + shown.map(card).join('') + '</div>' + (list.length > shown.length ? '<button type="button" class="btn" id="tqAll" style="margin-top:6px">ver todos (' + list.length + ')</button>' : '')
+      : '<p class="meta">Nenhum Pokémon que dá para obter no jogo ' + (tq.side === 'enfrentar' ? 'acerta ×2 sem levar ×2' : 'é alvo assim') + ' com esses filtros.</p>') +
+    '<p class="meta" style="margin:6px 0 0">' + (tq.side === 'enfrentar' ? 'Acerta = o melhor golpe do tipo do próprio Pokémon; leva = o pior golpe dos tipos do adversário.' : 'Acerta = o seu golpe contra ele; leva = o golpe do tipo dele contra você.') + ' Ordem: mais dano, menos risco, mais atributos. Clique para ver onde capturar.</p>';
+  $('tqFinal').addEventListener('input', (e) => { tq.finalOnly = e.target.checked; renderTypeMons(types); });
+  $('tqLeg').addEventListener('input', (e) => { tq.legendary = e.target.checked; renderTypeMons(types); });
+  $('tqAll')?.addEventListener('click', () => { tq.all = true; renderTypeMons(types); });
+}
+function bindTypeSearch() {
+  $('tqSide').addEventListener('click', (e) => { const b = e.target.closest('[data-side]'); if (b && b.dataset.side !== tq.side) { tq.side = b.dataset.side; tq.all = false; renderTypeSearch(); } });
+  $('tqGen').addEventListener('input', (e) => { tq.gen = e.target.value ? Number(e.target.value) : null; if (tq.game && catalog.games.find((g) => g.id === tq.game)?.generation !== tq.gen) tq.game = null; tq.all = false; renderTypeSearch(); });
+  $('tqGame').addEventListener('input', (e) => { tq.game = e.target.value || null; if (tq.game) tq.gen = catalog.games.find((g) => g.id === tq.game).generation; tq.all = false; renderTypeSearch(); });
+  $('tqChips').addEventListener('click', (e) => {
+    if (e.target.closest('[data-clear]')) { tq.types = []; tq.from = null; renderTypeSearch(); return; }
+    const b = e.target.closest('[data-type]');
+    if (!b) return;
+    const t = b.dataset.type;
+    tq.from = null; tq.all = false;
+    tq.types = tq.types.includes(t) ? tq.types.filter((x) => x !== t) : [...tq.types, t].slice(-2);
+    renderTypeSearch();
+  });
+}
+/** #/?tipo=water,flying&lado=usar&ger=3&jogo=emerald (ou tipo=gyarados) → busca por tipo já respondida. */
+function openTypeSearch(p) {
+  const on = catalog.games.filter((g) => g.status === 'supported');
+  tq.side = p.lado === 'usar' ? 'usar' : 'enfrentar';
+  tq.game = on.some((g) => g.id === p.jogo) ? p.jogo : null;
+  tq.gen = tq.game ? on.find((g) => g.id === tq.game).generation : Number(p.ger) || null;
+  tq.all = false;
+  if (searchMode !== 'tipo') setSearchMode('tipo', false);
+  loadTypecharts().then((d) => {
+    if (!d) return;
+    const parts = String(p.tipo).toLowerCase().split(',').filter(Boolean);
+    const all = d.charts.at(-1).types;
+    if (parts.length && parts.every((t) => all.includes(t))) { tq.types = parts.slice(0, 2); tq.from = null; } else if (d.mons[parts[0]]) { tq.from = parts[0]; tq.types = []; }
+    renderTypeSearch();
+  });
+}
+
+// ---- 3 horas parado ou fechado → a tela inicial volta ao começo (decisão do usuário, 2026-11-10): sem "Continuar de onde
+// parou" e sem a busca anterior. A hora do último uso fica no navegador (poketact:lastAt), gravada no máximo a cada 30 s.
+// O contexto de cada jogo (versão, progresso, nível) continua guardado — só a tela inicial recomeça.
+const IDLE_RESET_MS = 3 * 60 * 60 * 1000;
+const LAST_AT = 'poketact:lastAt';
+let lastAtMem = 0;
+try { lastAtMem = Number(localStorage.getItem(LAST_AT)) || 0; } catch {}
+function resetHome(atLoad) {
+  try { localStorage.removeItem('poketact:last'); } catch {}
+  if (atLoad) {
+    // aba restaurada ou recarregada com a busca antiga no link (#/?capturar=…, #/?tipo=…) → tela inicial limpa; um link
+    // aberto agora (compartilhado) continua valendo
+    const nav = performance.getEntriesByType?.('navigation')?.[0]?.type;
+    if ((nav === 'reload' || nav === 'back_forward') && parseRoute(location.hash).view === 'home' && location.hash.includes('?')) history.replaceState(null, '', '#/');
+    return;
+  }
+  clearHomeSearch();
+  if (parseRoute(location.hash).view === 'home') { if (location.hash.includes('?')) location.hash = '#/'; else route(); }
+}
+function touch() {
+  const now = Date.now();
+  if (now - lastAtMem > IDLE_RESET_MS) resetHome(false);
+  if (now - lastAtMem > 30000) { lastAtMem = now; try { localStorage.setItem(LAST_AT, String(now)); } catch {} }
+}
+{
+  // ao abrir: sem hora guardada (versão anterior do app) ou mais de 3 h → recomeça
+  if (Date.now() - lastAtMem > IDLE_RESET_MS) resetHome(true);
+  lastAtMem = Date.now();
+  try { localStorage.setItem(LAST_AT, String(lastAtMem)); } catch {}
+  for (const ev of ['pointerdown', 'keydown']) document.addEventListener(ev, touch, { capture: true, passive: true });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') touch(); });
+  window.addEventListener('focus', touch);
 }
 
 async function route() {
@@ -1131,6 +1327,8 @@ async function route() {
     if (r.params.novidades != null) openNews(true);
     // #/?capturar=pikachu → busca de Pokémon já respondida (em que jogos dá para obter)
     if (r.params.capturar) loadPokeGames().then(() => { if (!pokedex) return; $('homeSearch').value = humanize(r.params.capturar); renderHomeDex(r.params.capturar); });
+    // #/?tipo=water,flying&lado=usar&jogo=emerald → busca por tipo já respondida (0.71.0)
+    if (r.params.tipo) openTypeSearch(r.params);
     // ao escolher uma geração, leva até os jogos dela
     if (filters.generation) $('genGames')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     return;

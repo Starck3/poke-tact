@@ -23,7 +23,9 @@ export const PKHEX_GAMES = {
   'legends-arceus': { personal: 'la', size: 0xb0, abil: [0x18, 0x1a, 0x1c], wide: true, lvl: 'lvlmove_la.pkl', present: (d) => ((d[0x21] >> 6) & 1) === 1, maxSpecies: 905, forms: { index: 0x1e, count: 0x20 }, moveShop: { offset: 0xa8, cs: 'PersonalInfo8LA.cs' } },
   'scarlet-violet': { personal: 'sv', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_sv.pkl', present: (d) => d[0x1c] !== 0 },
   // Legends: Z-A (PersonalInfo9ZA.cs): mesmo layout do SV; sem PokéAPI → também TMs (bits em 0x2C) e evoluções (evos_za)
-  'legends-za': { personal: 'za', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_za.pkl', present: (d) => d[0x1c] !== 0, tm: { offset: 0x2c, cs: 'PersonalInfo9ZA.cs' }, evos: 'za' },
+  // maxSpecies: Legal.MaxSpeciesID_9a = Gholdengo (1000); depois dele a tabela já são as formas — lidas até 1025, as Megas
+  // (Venusaur, Charizard X/Y…) viravam "Dipplin"…"Fezandipiti" com tipos errados (0.71.0)
+  'legends-za': { personal: 'za', size: 0x50, abil: [0x12, 0x14, 0x16], wide: true, lvl: 'lvlmove_za.pkl', present: (d) => d[0x1c] !== 0, maxSpecies: 1000, tm: { offset: 0x2c, cs: 'PersonalInfo9ZA.cs' }, evos: 'za' },
 };
 // índice das formas no personal (PersonalInfo*.cs): FormStatsIndex u16 e FormCount u8 — forma f ≥ 1 = FormStatsIndex + f − 1
 const FORM_AT = { bw: [0x1c, 0x20], b2w2: [0x1c, 0x20], xy: [0x1c, 0x20], ao: [0x1c, 0x20], sm: [0x1c, 0x20], uu: [0x1c, 0x20], gg: [0x1c, 0x20], swsh: [0x1e, 0x20], bdsp: [0x1e, 0x20], la: [0x1e, 0x20], sv: [0x18, 0x1a], za: [0x18, 0x1a] };
