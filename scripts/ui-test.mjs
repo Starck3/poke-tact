@@ -146,6 +146,25 @@ try {
     return { head, hash: location.hash, best: document.querySelector('.tq-best')?.textContent ?? '' };
   });
   check('busca "gyara" no modo Tipo → Gyarados water/flying; "Vou usar" fica no link', /Gyarados.*water.*flying/.test(typed.head) && /tipo=gyarados/.test(typed.hash) && /lado=usar/.test(typed.hash) && /Bons alvos/.test(typed.best), typed);
+  // busca de Pokémon na tela inicial → jogo: abre o Onde capturar E deixa o Pokémon de oponente na Recomendação (0.71.1)
+  await go('#/', 2500);
+  const homeLink = await run(async () => {
+    const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+    document.querySelector('#searchMode [data-mode=pokemon]').click(); await pause(800); // a página ainda está no modo Tipo
+    const input = document.querySelector('#homeSearch'); input.value = 'gyarados'; input.dispatchEvent(new Event('input')); await pause(1200);
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await pause(400);
+    return [...document.querySelectorAll('#homeDex a')].find((a) => /Emerald/.test(a.textContent))?.getAttribute('href') ?? '';
+  });
+  await go(homeLink, 4000);
+  const both = await run(async () => {
+    const dex = document.querySelector('#dexOut').textContent, onDex = !document.querySelector('#dex').hidden;
+    document.querySelector('#tabRec').click(); await new Promise((r) => setTimeout(r, 1200));
+    return { onDex, dex: dex.slice(0, 80), opp: document.querySelector('#opp').value, picks: document.querySelectorAll('#results .pick').length };
+  });
+  check('busca "gyarados" → Emerald: Onde capturar aberto e Gyarados já de oponente na Recomendação', /pokemon=gyarados/.test(homeLink) && both.onDex && /gyarados/i.test(both.opp) && both.picks > 0, { homeLink, both });
+  await go('#/?tipo=gyarados&jogo=emerald', 4000);
+  const fight = await run(() => document.querySelector('.tq-head a')?.getAttribute('href') ?? '');
+  check('tipo: "vou enfrentar Gyarados" no Emerald tem link para a recomendação contra ele', fight === '#/jogo/emerald?pokemon=gyarados', fight);
   await go('#/?tipo=psychic&ger=1', 3500);
   const g1 = await run(() => document.querySelector('.home-type')?.textContent ?? '');
   check('Psíquico na Geração I: aviso "ghost contra psychic é ×0 aqui"', /ghost contra psychic é ×0 aqui e ×2/.test(g1), g1.slice(0, 300));

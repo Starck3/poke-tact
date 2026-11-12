@@ -2,6 +2,15 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.71.1] — 2026-11-12
+
+> Ao escolher na tela inicial o Pokémon que você vai enfrentar, o jogo agora abre no Onde capturar e a aba Recomendação já vem com ele como oponente.
+
+### Corrigido
+- Busca de Pokémon da tela inicial: o link de cada jogo só abria o Onde capturar; a aba **Recomendação** ficava sem
+  oponente. Agora o link leva `?capturar=` e `?pokemon=` juntos (ex.: `#/jogo/emerald?capturar=gyarados&pokemon=gyarados`).
+- Busca por tipo, "Vou enfrentar" um Pokémon com um jogo escolhido: link "ver a recomendação contra … no jogo".
+
 ## [0.71.0] — 2026-11-10
 
 > Na tela inicial, a busca agora tem o modo "Tipo": diga o tipo (ou o Pokémon) que vai enfrentar ou usar, escolha a geração e o jogo, e o app mostra o melhor tipo e os Pokémon do jogo para isso. Depois de 3 horas sem usar, a tela inicial volta ao começo.
