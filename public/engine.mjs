@@ -109,6 +109,38 @@ export function bestMoveVs(data, mon, opp, level, { machines = true, machineSour
 }
 
 /**
+ * Aba Golpes: os golpes de dano mais fortes do Pokémon, nível a nível — uma linha a cada nível em que a lista muda.
+ * Força = poder × STAB × precisão × (Ataque ou Atq. Esp. do próprio Pokémon, pela categoria do golpe) / 100, sem
+ * olhar o adversário. Golpe de dois turnos/recarga (Hyper Beam, Solar Beam…) conta metade, como na recomendação;
+ * os outros "enganosos" (Explosion, Dream Eater, Fake Out…) ficam de fora; poder variável (Low Kick, Return) não entra.
+ * TM/tutor só com origem no jogo até o progresso (stage) ou, sem progresso, até o nível estimado (machineSources/tutorSources);
+ * sem as origens (jogo sem dados de onde obter), todo TM/tutor da lista conta.
+ * → { start, rows: [{ level, moves: [{ name, type, power, accuracy, category, stab, half, score, via }] }] }
+ */
+export function strongestMovesByLevel(data, mon, { machineSources = null, tutorSources = null, stage = null, top = 4, maxLevel = 100 } = {}) {
+  const start = Math.max(1, mon.minLevel ?? 1);
+  const rows = [];
+  let prev = '';
+  for (let level = start; level <= maxLevel; level++) {
+    const ranked = [];
+    for (const name of availableMoves(data, mon, level, { machineSources, tutorSources, stage })) {
+      const mv = data.moves[name];
+      if (!mv?.power || mv.category === 'status') continue;
+      const half = TWO_TURN_OK.has(name);
+      if (UNRELIABLE_MOVES.has(name) && !half) continue;
+      const atk = mon.stats[mv.category === 'physical' ? 'attack' : 'special-attack'] * (mv.category === 'physical' && only(mon, 'huge-power', 'pure-power') ? 2 : 1);
+      const stab = mon.types.includes(mv.type) ? 1.5 : 1;
+      const score = mv.power * (half ? 0.5 : 1) * stab * ((mv.accuracy ?? 100) / 100) * (atk / 100);
+      ranked.push({ name, type: mv.type, power: mv.power, accuracy: mv.accuracy ?? null, category: mv.category, stab, half, score, via: moveVia(mon, name, level, machineSources, stage, tutorSources) });
+    }
+    const best = ranked.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)).slice(0, top);
+    const key = best.map((m) => m.name).join(',');
+    if (key !== prev) { rows.push({ level, moves: best }); prev = key; }
+  }
+  return { start, rows };
+}
+
+/**
  * opts: { level, oppMoves?, oppLevel?, version, onlyObtainable, fullyEvolvedOnly, includeLegendary, machines?, acq?, tradeEvolutions?, stage? }
  * starter: inicial escolhido (ex.: 'charmander') — os outros dois iniciais e o vagante errado saem.
  * stage: insígnias (0–8) ou 9 = pós-jogo; com ele, a disponibilidade usa o estágio do detonado em vez do nível.

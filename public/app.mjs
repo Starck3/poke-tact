@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
+import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, strongestMovesByLevel, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 import { matchup, monsFor, chartDiffs, TYPE_PT } from './typechart.mjs';
@@ -53,6 +53,11 @@ let trainersFromWalk = false;
 let regionMap = null; // <jogo>-regionmap.json: posições dos lugares no mapa da região (decomp) — Gens 1–3
 let places = null; // <jogo>-places.json: fotos dos lugares de captura (referências ao detonado do PokeMythology)
 let typeSel = []; // aba Pokémon por tipo: tipos escolhidos (até 2)
+// Pokémon selecionado (oponente, Onde capturar ou Golpes): as outras abas abrem já com ele — Detonado (busca), Pokémon por
+// tipo (bons contra ele), Golpes e Onde capturar. applied: o que cada aba já recebeu (limpar a busca não o traz de volta).
+let selMon = null, typesVs = null, walkQ = '', dexFromCounter = null, lastOppSel = null;
+const applied = {};
+function selectMon(name, from) { if (!name) return; selMon = name; if (from) applied[from] = name; }
 let evoItems = null; // <jogo>-evoitems.json: onde o detonado diz que acha os itens de evolução (jogos sem itens do decomp)
 let walk = null; // detonado gerado (carregado ao abrir a aba)
 let known = null; // { moves, item } do Pokémon de treinador selecionado; null quando o usuário digita manualmente
@@ -95,6 +100,7 @@ async function load(gameId) {
   walk = null;
   places = null; // fotos dos lugares (aba Onde capturar) — do jogo novo
   typeSel = []; // filtro de tipo da aba Pokémon por tipo
+  selMon = null; typesVs = null; walkQ = ''; lastOppSel = null; for (const k in applied) delete applied[k];
   evoItems = null;
   regionMap = null;
   showTab('rec');
@@ -218,16 +224,31 @@ function renderTypes() {
   const card = (p) => '<button type="button" class="mon-card' + (p.obtainable?.[version] ? '' : ' off') + '" data-mon="' + p.name + '" title="' + (p.obtainable?.[version] ? 'Ver onde capturar' : 'Não dá para obter em ' + vLabel) + '">' + img(p.id) +
     '<span><span class="nm">' + humanize(p.name) + '</span><br><span class="sub">#' + (p.speciesId ?? p.id) + '</span> ' + p.types.map(typeBadge).join('') + '</span></button>';
   const grid = (list) => '<div class="mon-grid">' + list.map(card).join('') + '</div>';
+  // Pokémon selecionado em outra aba → os Pokémon do jogo bons contra ele (acertam ×2+ sem levar ×2 dos tipos dele),
+  // na ordem da busca por tipo da tela inicial (monsFor); os filtros de nome, versão e forma final continuam valendo
+  const foe = typesVs && data.pokemon.find((p) => p.name === typesVs);
+  if (foe) {
+    const nameQ = fold($('typesQ').value.trim());
+    const vs = monsFor(data, foe.types, 'enfrentar', { finalOnly: $('typesFinal').checked, legendary: true })
+      .filter(({ p }) => (!$('typesObt').checked || p.obtainable?.[version]) && (!nameQ || fold(humanize(p.name)).includes(nameQ)));
+    const vsCard = ({ p, atk, def }) => card(p).replace('</span></button>', '<br><span class="sub">acerta ' + MULT[atk] + ' · leva ' + MULT[def] + '</span></span></button>');
+    $('typesOut').innerHTML = '<div class="vs-head">' + img(foe.id) + '<strong>Bons contra ' + humanize(foe.name) + '</strong> ' + foe.types.map(typeBadge).join('') +
+      '<span class="meta">' + vs.length + '</span><button type="button" class="btn" data-vs-clear>ver todos por tipo</button></div>' +
+      (vs.length ? '<div class="mon-grid">' + vs.map(vsCard).join('') + '</div>' : '<p class="meta">Nenhum Pokémon do jogo acerta ×2 sem levar ×2 com esses filtros.</p>') +
+      '<p class="meta">Acerta = o melhor tipo do próprio Pokémon contra ' + humanize(foe.name) + '; leva = o pior golpe dos tipos dele. Clique para ver onde capturar; para a luta com golpes e nível, a aba Recomendação.</p>';
+  }
   const head = '<p class="meta">' + r.mons.length + ' Pokémon' + (typeSel.length ? ' com o tipo ' + typeSel.map(typeBadge).join(' + ') : '') + (typeSel.length ? '' : ' — quem tem dois tipos aparece nos dois grupos') + '. Clique num Pokémon para ver onde capturar.</p>';
-  $('typesOut').innerHTML = !r.mons.length ? '<p class="meta">Nenhum Pokémon com esses filtros.</p>'
+  if (!foe) $('typesOut').innerHTML = !r.mons.length ? '<p class="meta">Nenhum Pokémon com esses filtros.</p>'
     : head + (typeSel.length ? grid(r.mons) : r.groups.map((g) => '<section class="types-group"><h3>' + typeBadge(g.type) + '<span class="meta">' + g.mons.length + '</span></h3>' + grid(g.mons) + '</section>').join(''));
   $('typesChips').querySelectorAll('[data-type]').forEach((b) => b.addEventListener('click', () => {
     const t = b.dataset.type;
     typeSel = typeSel.includes(t) ? typeSel.filter((x) => x !== t) : [...typeSel, t].slice(-2);
+    typesVs = null;
     renderTypes();
   }));
   $('typesChips').querySelector('[data-clear]')?.addEventListener('click', () => { typeSel = []; renderTypes(); });
-  $('typesOut').querySelectorAll('[data-mon]').forEach((b) => b.addEventListener('click', () => { $('dexQ').value = humanize(b.dataset.mon); showTab('dex'); }));
+  $('typesOut').querySelectorAll('[data-mon]').forEach((b) => b.addEventListener('click', () => { dexFromCounter = typesVs ? b.dataset.mon : null; applied.dex = selMon; $('dexQ').value = humanize(b.dataset.mon); showTab('dex'); }));
+  $('typesOut').querySelector('[data-vs-clear]')?.addEventListener('click', () => { typesVs = null; renderTypes(); });
 }
 
 // ---------------------------------------------------------------- aba Detonado (gerado a partir dos dados do jogo)
@@ -236,13 +257,64 @@ function showTab(which) {
   $('tabWalk').setAttribute('aria-selected', String(which === 'walk'));
   $('tabDex').setAttribute('aria-selected', String(which === 'dex'));
   $('tabTypes').setAttribute('aria-selected', String(which === 'types'));
+  $('tabMoves').setAttribute('aria-selected', String(which === 'moves'));
   $('recView').hidden = which !== 'rec';
   $('walk').hidden = which !== 'walk';
   $('dex').hidden = which !== 'dex';
   $('types').hidden = which !== 'types';
+  $('moves').hidden = which !== 'moves';
+  // a aba abre com o Pokémon selecionado em outra aba (só uma vez por seleção: limpar a busca não o traz de volta)
+  if (selMon && which !== 'rec' && applied[which] !== selMon) {
+    applied[which] = selMon;
+    if (which === 'walk') walkQ = selMon;
+    if (which === 'types') { typesVs = selMon; typeSel = []; $('typesQ').value = ''; }
+    if (which === 'dex') $('dexQ').value = humanize(selMon);
+    if (which === 'moves') $('movesQ').value = humanize(selMon);
+  }
   if (which === 'walk') renderWalk();
   if (which === 'dex') renderDex();
   if (which === 'types') renderTypes();
+  if (which === 'moves') renderMoves();
+}
+
+// ---------------------------------------------------------------- aba Golpes
+// os golpes de dano mais fortes do Pokémon, nível a nível (engine strongestMovesByLevel): level-up + TMs/tutores que já dá
+// para pegar no progresso escolhido (ou pelo nível estimado de cada TM, sem progresso)
+function renderMoves() {
+  const out = $('movesOut');
+  if (!data) return;
+  const q = $('movesQ').value.trim();
+  const mon = findOpponent(data.pokemon, q);
+  if (!mon) {
+    const w = q && opponentWarning({ pokemon: data.pokemon, pokedex, generation: data.game.generation, gameLabel: currentGameLabel() }, q);
+    out.innerHTML = w ? '<p class="warn">⚠ ' + w.text + '</p>' : '<p class="meta">Digite um Pokémon para ver os golpes mais fortes dele em cada nível em ' + currentGameLabel() + '.</p>';
+    return;
+  }
+  selectMon(mon.name, 'moves');
+  const a = vAcq();
+  const cur = $('stage').value === '' ? null : Number($('stage').value);
+  const useStage = !!a?.progress && cur != null;
+  // jogo sem a origem das TMs (lista vazia, ex.: Scarlet/Violet) → todas as TMs da lista do Pokémon contam
+  const has = (o) => (o && Object.keys(o).length ? o : null);
+  const ms = has(a?.machines), ts = has(a?.tutors);
+  const r = strongestMovesByLevel(vData(), mon, { machineSources: ms, tutorSources: ts, stage: useStage ? cur : null });
+  const src = (m) => {
+    if (m.via.method === 'level-up') return 'nv ' + m.via.level;
+    const s = m.via.source;
+    return (m.via.method === 'machine' ? 'TM/HM' : 'tutor') + (s?.where ? ' · ' + (s.type === 'gym' && s.leader ? 'ginásio de ' + s.leader : s.where) : '');
+  };
+  const cat = { physical: 'físico', special: 'especial' };
+  const mv = (m) => '<span class="mv" title="' + (cat[m.category] ?? m.category) + ', precisão ' + (m.accuracy ?? '—') + (m.half ? ', 2 turnos ou recarga: conta metade' : '') + '">' + typeBadge(m.type) + '<strong>' + humanize(m.name) + '</strong> ' + m.power + (m.stab > 1 ? ' ★' : '') + (m.half ? ' ½' : '') + ' <span class="src">(' + src(m) + ')</span></span>';
+  const ctx = useStage ? 'TMs e tutores que dá para pegar até: ' + stageLabel(cur, a.progress?.leaderOrder, a.progress) + ' (mude o progresso lá em cima).'
+    : ms || ts ? 'TMs e tutores pelo nível estimado em que cada um aparece no jogo' + (a?.progress ? ' — escolha o progresso lá em cima para contar pelas insígnias.' : '.')
+      : 'Todas as TMs e tutores da lista do Pokémon (o app ainda não sabe onde achar cada TM neste jogo).';
+  const head = '<div class="opp">' + img(mon.id) + '<div><strong>#' + (mon.speciesId ?? mon.id) + ' ' + humanize(mon.name) + '</strong><br>' + mon.types.map(typeBadge).join('') +
+    '<div class="meta">Ataque ' + mon.stats.attack + ' · Atq. Esp. ' + mon.stats['special-attack'] + '</div></div></div>';
+  const rows = r.rows.map((row, i) => '<tr><td class="lv">nv ' + row.level + (i === 0 && r.start > 1 ? '+' : '') + '</td><td>' + (row.moves.length ? row.moves.map(mv).join('') : '<span class="meta">nenhum golpe de dano</span>') + '</td></tr>').join('');
+  out.innerHTML = head + '<p class="meta" style="margin:0">' + ctx + (r.start > 1 ? ' Começa no nv ' + r.start + ', o menor nível em que dá para tê-lo.' : '') + '</p>' +
+    '<table class="moves-table"><thead><tr><th>Nível</th><th>Os 4 golpes mais fortes (uma linha a cada mudança)</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<p class="meta" style="margin:0">★ mesmo tipo dele (×1,5). Ordem pela força: poder × ★ × precisão × o Ataque ou Atq. Esp. dele, conforme o golpe. ½ = dois turnos ou recarga (conta metade). ' +
+    'Ficam de fora golpes de poder variável e os que custam caro (Explosion, Dream Eater…). Não olha o adversário — para isso, a aba Recomendação.</p>';
 }
 
 // ---------------------------------------------------------------- aba Onde capturar
@@ -265,6 +337,7 @@ function renderDex() {
     out.innerHTML = w ? '<p class="warn">⚠ ' + w.text + '</p>' : '<p class="meta">Digite um Pokémon para ver onde capturar em ' + currentGameLabel() + ' — todos os locais da versão escolhida, com método e nível.</p>';
     return;
   }
+  if (dexFromCounter === mon.name) applied.dex = mon.name; else selectMon(mon.name, 'dex');
   const version = $('version').value;
   const vLabel = $('version').selectedOptions[0]?.textContent ?? version;
   const head = '<div class="opp">' + img(mon.id) + '<div><strong>#' + (mon.speciesId ?? mon.id) + ' ' + humanize(mon.name) + '</strong><br>' + mon.types.map(typeBadge).join('') + '</div></div>';
@@ -406,7 +479,7 @@ async function renderWalk() {
   const v = walk.versions[$('version').value] ?? Object.values(walk.versions)[0];
   // mapa da região de cada etapa: os locais dela destacados (onde a história passa nesse trecho); recolhível
   const stageMap = (s) => { const svg = q ? '' : regionSvg(s.locations.flatMap((l) => [l.name, ...(l.maps ?? [])]), 'locais desta etapa'); return svg ? '<details class="stage-map"><summary class="meta">🗺 Ver no mapa da região</summary><div class="region-maps">' + svg + '</div></details>' : ''; };
-  const q = ($('walkSearch')?.value ?? '').trim().toLowerCase();
+  const q = walkQ.trim().toLowerCase();
   const mine = $('starter').value;
   const cur = $('stage').value === '' ? null : Number($('stage').value);
   const lead = walk.leaders;
@@ -430,10 +503,10 @@ async function renderWalk() {
     const photos = ph ? '<div class="loc-photos">' + ph.images.slice(0, 2).map((src) => '<a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + l.name + '" loading="lazy" referrerpolicy="no-referrer"></a>').join('') + (ph.credit ? '<span class="meta">imagem: <a href="' + ph.page + '" target="_blank" rel="noopener">' + ph.credit + '</a></span>' : '') + '</div>' : '';
     return '<details class="loc"' + (q ? ' open' : '') + '><summary>' + l.name + (l.minLevel ? ' <span class="meta">nv ' + l.minLevel + '+</span>' : '') + (ph ? ' <span class="meta" title="tem fotos do lugar">📷</span>' : '') + '</summary>' + photos + parts.join('') + '</details>';
   };
-  const match = (l) => !q || l.name.toLowerCase().includes(q) || l.wild.some((w) => w.species.includes(q)) || l.others.some((o) => o.species.includes(q)) || l.trainers.some((t) => t.label.toLowerCase().includes(q));
+  const match = (l) => !q || l.name.toLowerCase().includes(q) || l.wild.some((w) => w.species.includes(q)) || l.others.some((o) => o.species.includes(q)) || l.trainers.some((t) => t.label.toLowerCase().includes(q) || t.party.some((p) => p.species.includes(q)));
   const stagesHtml = v.stages.map((s) => {
     const locs = s.locations.filter(match);
-    if (q && !locs.length) return '';
+    if (q && !locs.length && !s.leader?.party.some((p) => p.species.includes(q))) return '';
     const L = s.leader;
     const leaderHtml = L && L.party.length ? '<div class="walk-h">' + (walk.leaderTitle ?? 'Próximo líder') + '</div><p><strong>' + humanize(L.name.toLowerCase()) + '</strong> — ' + (L.where ?? '') + '<br>' + L.party.map((p) => humanize(p.species) + ' nv ' + p.level + (p.item ? ' (' + p.item + ')' : '') + ': ' + p.moves.map(humanize).join(', ')).join('<br>') + (L.prize.length ? '<br><span class="meta">Prêmio: TM ' + L.prize.map(humanize).join(', ') + '</span>' : '') + '</p>' : '';
     const open = q || cur === s.stage || (cur == null && s.stage === 0);
@@ -443,7 +516,7 @@ async function renderWalk() {
     ((v.undetermined ?? []).filter(match).length ? '<details class="stage"' + (q ? ' open' : '') + '><summary>Fora do detonado <span class="meta">— ' + v.undetermined.filter(match).length + ' locais sem posição na história</span></summary>' + v.undetermined.filter(match).map(locHtml).join('') + '</details>' : '');
   box.innerHTML = '<div class="card"><input type="text" id="walkSearch" placeholder="Buscar local, Pokémon ou treinador" value="' + q.replace(/"/g, '') + '"><p class="note">' + walk.credit + ' Os estágios são estimados pela ordem do detonado e pelas conexões do mapa.</p></div>' + (stagesHtml || '<div class="card">Nada encontrado.</div>');
   const input = $('walkSearch');
-  input.addEventListener('input', () => { const pos = input.selectionStart; renderWalk().then(() => { const i = $('walkSearch'); i.focus(); i.setSelectionRange(pos, pos); }); });
+  input.addEventListener('input', () => { walkQ = input.value; const pos = input.selectionStart; renderWalk().then(() => { const i = $('walkSearch'); i.focus(); i.setSelectionRange(pos, pos); }); });
 }
 
 function fillStarters() {
@@ -660,6 +733,9 @@ function currentOpp() {
 
 function update() {
   renderOppWarn();
+  // só quando o oponente muda (update roda a cada filtro; não pode desfazer um Pokémon escolhido em outra aba)
+  const oppName = findOpponent(data.pokemon, $('opp').value)?.name;
+  if (oppName !== lastOppSel) { lastOppSel = oppName; selectMon(oppName); }
   const opp = currentOpp();
   const out = $('results');
   if (teamMode?.pool) { $('oppInfo').innerHTML = ''; renderTeamResults(teamMode, baseOptions(), out); return; }
@@ -912,6 +988,7 @@ function bindPokemonAc(inputId, listId, prefix) {
 }
 bindPokemonAc('opp', 'oppList', 'oa');
 bindPokemonAc('dexQ', 'dexList', 'da');
+bindPokemonAc('movesQ', 'movesList', 'ma');
 $('trainer').addEventListener('change', () => {
   const t = trainers.find((x) => x.key === $('trainer').value);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; update(); return; }
@@ -1346,10 +1423,15 @@ function applyGameParams(p) {
   if (p.meu) $('level').value = p.meu;
   if (p.inicial && [...$('starter').options].some((o) => o.value === p.inicial)) { $('starter').value = p.inicial; fillTrainers(); renderStarters(); }
   if (p.aba === 'detonado') showTab('walk');
+  // o Pokémon do link vale mais que o selecionado antes (selectMon antes de abrir a aba)
+  const linkMon = (q) => findOpponent(data.pokemon, q)?.name;
+  if (p.aba === 'golpes' && p.pokemon) { selectMon(linkMon(p.pokemon), 'moves'); $('movesQ').value = humanize(p.pokemon); }
+  if (p.aba === 'golpes') showTab('moves');
   if (p.aba === 'tipos') { if (p.tipo && data.types.includes(p.tipo)) typeSel = [p.tipo]; showTab('types'); }
   // ?capturar=pikachu → aba Onde capturar já preenchida
-  if (p.capturar) { $('dexQ').value = p.capturar; showTab('dex'); }
+  if (p.capturar) { selectMon(linkMon(p.capturar), 'dex'); $('dexQ').value = p.capturar; showTab('dex'); }
   if (p.insignias != null && [...$('stage').options].some((o) => o.value === p.insignias)) $('stage').value = p.insignias;
+  if (p.insignias != null && !$('moves').hidden) renderMoves(); // a aba Golpes conta as TMs pelo progresso do link
   const t = p.treinador && trainers.find((x) => x.key === p.treinador);
   // link da luta (atalhos da tela inicial, busca "ir para a luta"): nível e progresso da luta, como no seletor — salvo se o
   // link já diz o nível (?meu=) ou o progresso (?insignias=)
@@ -1375,9 +1457,12 @@ $('tabRec').addEventListener('click', () => showTab('rec'));
 $('tabWalk').addEventListener('click', () => showTab('walk'));
 $('tabDex').addEventListener('click', () => showTab('dex'));
 $('tabTypes').addEventListener('click', () => showTab('types'));
+$('tabMoves').addEventListener('click', () => showTab('moves'));
+$('movesQ').addEventListener('input', renderMoves);
+for (const id of ['version', 'stage', 'dlc']) $(id).addEventListener('input', () => { if (!$('moves').hidden) renderMoves(); });
 for (const id of ['typesQ', 'typesObt', 'typesFinal']) $(id).addEventListener('input', () => renderTypes());
 $('version').addEventListener('input', () => { if (!$('types').hidden) renderTypes(); });
-$('dexQ').addEventListener('input', renderDex);
+$('dexQ').addEventListener('input', () => { dexFromCounter = null; renderDex(); });
 $('version').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });
 $('stage').addEventListener('input', () => { if (!$('dex').hidden) renderDex(); });
 for (const id of ['version', 'stage', 'starter']) $(id).addEventListener('input', () => { if (!$('walk').hidden) renderWalk(); });

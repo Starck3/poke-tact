@@ -87,7 +87,9 @@ try {
   await go('#/jogo/firered-leafgreen?capturar=pichu', 3500);
   const dex = await run(() => document.querySelector('#dexOut').textContent);
   check('Onde capturar Pichu (FireRed): ovo na creche', /Ovo na creche/.test(dex), dex.slice(0, 200));
-  await run(async () => { document.querySelector('#tabWalk').click(); await new Promise((r) => setTimeout(r, 1500)); });
+  // o Detonado abre filtrado pelo Pokémon selecionado (Pichu, 0.72.0); limpa a busca para ver o detonado inteiro
+  const walkQ0 = await run(async () => { document.querySelector('#tabWalk').click(); await new Promise((r) => setTimeout(r, 1500)); const i = document.querySelector('#walkSearch'); const v = i.value; i.value = ''; i.dispatchEvent(new Event('input')); await new Promise((r) => setTimeout(r, 1000)); return v; });
+  check('Detonado (FireRed): abre com a busca "pichu" do Onde capturar', walkQ0 === 'pichu', walkQ0);
   const walk = await run(() => ({ stages: document.querySelectorAll('#walk details.stage').length, breed: / breed /.test(document.querySelector('#walk').textContent), creche: /ovo na creche/.test(document.querySelector('#walk').textContent) }));
   check('Detonado (FireRed): etapas, "ovo na creche" e nada de "breed"', walk.stages >= 9 && walk.creche && !walk.breed, walk);
   await go('#/jogo/firered-leafgreen?aba=tipos&tipo=fire', 3500);
@@ -162,6 +164,29 @@ try {
     return { onDex, dex: dex.slice(0, 80), opp: document.querySelector('#opp').value, picks: document.querySelectorAll('#results .pick').length };
   });
   check('busca "gyarados" → Emerald: Onde capturar aberto e Gyarados já de oponente na Recomendação', /pokemon=gyarados/.test(homeLink) && both.onDex && /gyarados/i.test(both.opp) && both.picks > 0, { homeLink, both });
+  // Pokémon selecionado (oponente Gyarados) leva às abas Golpes, Pokémon por tipo e Detonado (0.72.0)
+  const tabs = await run(async () => {
+    const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+    const click = async (id, ms = 1200) => { document.querySelector(id).click(); await pause(ms); };
+    await click('#tabMoves');
+    const moves = { q: document.querySelector('#movesQ').value, rows: document.querySelectorAll('#movesOut .moves-table tbody tr').length, first: document.querySelector('#movesOut .moves-table td.lv')?.textContent ?? '', txt: document.querySelector('#movesOut').textContent.slice(0, 400) };
+    await click('#tabTypes');
+    const types = { head: document.querySelector('#typesOut .vs-head')?.textContent ?? '', mons: [...document.querySelectorAll('#typesOut .mon-card .nm')].map((x) => x.textContent) };
+    await click('#tabWalk', 2500);
+    const walk = { q: document.querySelector('#walkSearch')?.value, hasGyarados: /Gyarados/.test(document.querySelector('#walk').textContent) };
+    // limpar a busca do Detonado e voltar: continua limpa (o Pokémon só entra uma vez por seleção)
+    const ws = document.querySelector('#walkSearch'); ws.value = ''; ws.dispatchEvent(new Event('input')); await pause(800);
+    await click('#tabRec', 300); await click('#tabWalk', 1200);
+    walk.after = document.querySelector('#walkSearch')?.value;
+    return { moves, types, walk };
+  });
+  check('Golpes: Gyarados já carregado, tabela por nível a partir do nv 20', tabs.moves.q === 'Gyarados' && tabs.moves.rows >= 2 && /^nv 20\+/.test(tabs.moves.first), tabs.moves);
+  check('Pokémon por tipo: "Bons contra Gyarados" com Manectric', /Bons contra Gyarados/.test(tabs.types.head) && tabs.types.mons.includes('Manectric'), tabs.types);
+  check('Detonado: busca já com gyarados; limpar não traz de volta', tabs.walk.q === 'gyarados' && tabs.walk.hasGyarados && tabs.walk.after === '', tabs.walk);
+  await go('#/jogo/emerald?aba=golpes&pokemon=pikachu&insignias=2', 2500);
+  const gl = await run(() => ({ on: !document.querySelector('#moves').hidden, q: document.querySelector('#movesQ').value, txt: document.querySelector('#movesOut').textContent }));
+  check('link ?aba=golpes&pokemon=pikachu&insignias=2: Thunderbolt (TM de Mauville) já no nv 1', gl.on && gl.q === 'Pikachu' && /nv 1electricThunderbolt 95 ★ \(TM\/HM · Mauville/.test(gl.txt) && /até: 2 insígnias/.test(gl.txt), { ...gl, txt: gl.txt.slice(0, 300) });
+  await shot('emerald-golpes');
   await go('#/?tipo=gyarados&jogo=emerald', 4000);
   const fight = await run(() => document.querySelector('.tq-head a')?.getAttribute('href') ?? '');
   check('tipo: "vou enfrentar Gyarados" no Emerald tem link para a recomendação contra ele', fight === '#/jogo/emerald?pokemon=gyarados', fight);

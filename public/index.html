@@ -200,8 +200,17 @@
   details.about .card { margin-top:var(--s2); font-size:var(--fs-sm); }
 
   /* ---- abas */
-  .tabs { display:flex; gap:6px; margin:0 0 var(--s3); }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 var(--s3); }
   .tabs button[aria-selected=true] { border-color:var(--accent); color:var(--accent); font-weight:600; }
+
+  /* ---- aba Golpes: os mais fortes nível a nível */
+  .moves-table { width:100%; border-collapse:collapse; font-size:var(--fs-sm); }
+  .moves-table th, .moves-table td { text-align:left; vertical-align:top; padding:5px 6px; border-top:1px solid var(--line); }
+  .moves-table th { font-weight:600; color:var(--muted); border-top:0; }
+  .moves-table td.lv { white-space:nowrap; font-weight:600; width:1%; }
+  .mv { display:inline-flex; align-items:center; gap:4px; margin:0 10px 3px 0; white-space:nowrap; }
+  .mv .src { color:var(--muted); }
+  .vs-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 var(--s2); }
 
   /* ---- oponente */
   .opp { display:flex; gap:var(--s3); align-items:center; }
@@ -390,6 +399,20 @@
     <button type="button" role="tab" id="tabWalk" aria-selected="false" aria-controls="walk">Detonado</button>
     <button type="button" role="tab" id="tabDex" aria-selected="false" aria-controls="dex">Onde capturar</button>
     <button type="button" role="tab" id="tabTypes" aria-selected="false" aria-controls="types">Pokémon por tipo</button>
+    <button type="button" role="tab" id="tabMoves" aria-selected="false" aria-controls="moves">Golpes</button>
+  </div>
+  <!-- os golpes de dano mais fortes do Pokémon, nível a nível (level-up + TMs/tutores do progresso) -->
+  <div id="moves" role="tabpanel" hidden>
+    <div class="card stack">
+      <div>
+        <label for="movesQ">Golpes mais fortes do Pokémon, por nível</label>
+        <div class="ac">
+          <input type="search" id="movesQ" placeholder="Digite o nome — ex.: gyarados" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="movesList" aria-expanded="false">
+          <ul id="movesList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
+        </div>
+      </div>
+      <div id="movesOut" aria-live="polite"></div>
+    </div>
   </div>
   <!-- todos os Pokémon do jogo separados por tipo, com filtros (tipo, nome, obtível na versão, forma final) -->
   <div id="types" role="tabpanel" hidden>

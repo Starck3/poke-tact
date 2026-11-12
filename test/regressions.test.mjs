@@ -1899,7 +1899,7 @@ test('busca de Pokémon da tela inicial leva o Pokémon também para a Recomenda
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.ok(app.includes('href="#/jogo/${g.id}?capturar=${name}&pokemon=${name}"'));
   // e o jogo aplica os dois: ?capturar= abre a aba e ?pokemon= preenche o oponente
-  assert.ok(app.includes("if (p.capturar) { $('dexQ').value = p.capturar; showTab('dex'); }"));
+  assert.ok(app.includes("if (p.capturar) { selectMon(linkMon(p.capturar), 'dex'); $('dexQ').value = p.capturar; showTab('dex'); }"));
   assert.ok(app.includes("if (p.pokemon) { known = null; $('opp').value = p.pokemon;"));
   // busca por tipo, "vou enfrentar <Pokémon>" com jogo: atalho para a recomendação contra ele
   assert.ok(app.includes(`?pokemon=' + tq.from + '">ver a recomendação contra`));
@@ -3175,4 +3175,32 @@ test('0.71.0: busca por tipo — melhor tipo nos dois sentidos, diferenças entr
   assert.match(html, /data-mode="tipo"/);
   assert.match(app, /const IDLE_RESET_MS = 3 \* 60 \* 60 \* 1000;/);
   assert.match(app, /if \(r\.params\.tipo\) openTypeSearch\(r\.params\);/);
+});
+
+test('aba Golpes (0.72.0): golpes mais fortes por nível, com TMs pelo progresso', async () => {
+  const { strongestMovesByLevel } = await import('../public/engine.mjs');
+  const d = load('emerald.json'), a = load('emerald-acquisition.json');
+  const mon = (n) => d.pokemon.find((p) => p.name === n);
+  const names = (row) => row.moves.map((m) => m.name);
+  // Gyarados só existe do nv 20 (evolui do Magikarp): a tabela começa ali; com 3 insígnias, Hydro Pump chega no nv 40
+  const g = strongestMovesByLevel(d, mon('gyarados'), { machineSources: a.machines, tutorSources: a.tutors, stage: 3 });
+  assert.equal(g.start, 20); assert.equal(g.rows[0].level, 20);
+  assert.ok(g.rows.every((r) => r.moves.length <= 4));
+  const r40 = g.rows.find((r) => r.level === 40);
+  assert.ok(r40 && names(r40).includes('hydro-pump'));
+  assert.equal(r40.moves.find((m) => m.name === 'hydro-pump').stab, 1.5);
+  // linhas só quando a lista muda; nada de golpe de status, nem Explosion/Dream Eater; Hyper Beam conta metade
+  for (let i = 1; i < g.rows.length; i++) assert.notDeepEqual(names(g.rows[i]), names(g.rows[i - 1]));
+  assert.ok(g.rows.every((r) => r.moves.every((m) => m.power > 0 && m.category !== 'status')));
+  const p = strongestMovesByLevel(d, mon('pikachu'), { machineSources: a.machines, tutorSources: a.tutors, stage: 2 });
+  // 2 insígnias: Thunderbolt de Mauville já no nv 1; com 0 insígnias ainda não
+  assert.equal(p.rows[0].moves[0].name, 'thunderbolt');
+  assert.equal(p.rows[0].moves[0].via.method, 'machine');
+  const p0 = strongestMovesByLevel(d, mon('pikachu'), { machineSources: a.machines, tutorSources: a.tutors, stage: 0 });
+  assert.ok(!p0.rows.some((r) => names(r).includes('thunderbolt') && r.moves.find((m) => m.name === 'thunderbolt').via.method === 'machine'));
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  // Pokémon selecionado leva às outras abas; a origem vazia das TMs (Scarlet/Violet) não corta todas as TMs
+  assert.ok(app.includes("if (which === 'walk') walkQ = selMon;"));
+  assert.ok(app.includes('typesVs = selMon;'));
+  assert.ok(app.includes('Object.keys(o).length ? o : null'));
 });
