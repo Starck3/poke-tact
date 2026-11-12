@@ -2,6 +2,27 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.72.0] — 2026-11-12
+
+> Nova aba "Golpes": os golpes mais fortes do Pokémon em cada nível, com as TMs que você já pega. O Pokémon escolhido agora segue para as outras abas: Detonado, Pokémon por tipo (quem é bom contra ele) e Onde capturar.
+
+### Adicionado
+- Aba **Golpes**: os 4 golpes de dano mais fortes do Pokémon, nível a nível (uma linha a cada vez que a lista muda), a partir
+  do menor nível em que dá para tê-lo. Conta level-up + TMs/tutores que já dá para pegar no **progresso** escolhido (insígnias)
+  ou, sem progresso, pelo nível estimado de cada TM; mostra de onde vem cada golpe (nv, TM e onde, tutor e onde). Força =
+  poder × mesmo tipo (★ ×1,5) × precisão × Ataque ou Atq. Esp. do próprio Pokémon; dois turnos/recarga contam metade; poder
+  variável e golpes enganosos (Explosion, Dream Eater…) ficam de fora. Jogo sem a origem das TMs (Scarlet/Violet): todas contam,
+  com aviso. Link: `#/jogo/emerald?aba=golpes&pokemon=gyarados`. Função `strongestMovesByLevel` no motor.
+- **Pokémon selecionado** passa entre as abas: o oponente da Recomendação, o Pokémon do Onde capturar ou o da aba Golpes.
+  Ao abrir outra aba, ela já vem com ele, uma vez por seleção (limpar a busca não o traz de volta):
+  - **Detonado**: busca preenchida; a busca agora também acha o Pokémon nos times dos treinadores e do líder.
+  - **Pokémon por tipo**: "Bons contra <Pokémon>": os Pokémon do jogo que acertam ×2 sem levar ×2 dos tipos dele
+    (mesma ordem da busca por tipo da tela inicial), com os filtros de nome, versão e forma final; "ver todos por tipo" volta.
+  - **Onde capturar** e **Golpes**: campo já preenchido.
+
+### Corrigido
+- O Pokémon do link (`?capturar=`, `?aba=golpes&pokemon=`) vale mais que o selecionado antes na mesma página.
+
 ## [0.71.1] — 2026-11-12
 
 > Ao escolher na tela inicial o Pokémon que você vai enfrentar, o jogo agora abre no Onde capturar e a aba Recomendação já vem com ele como oponente.
