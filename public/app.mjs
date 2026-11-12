@@ -1058,9 +1058,10 @@ function renderHomeDex(name) {
   const chip = (g) => {
     const vs = where[g.id];
     const only = vs.length < g.versions.length ? ` (só ${vs.map((v) => g.versions.find((x) => x.id === v)?.label ?? v).join(', ')})` : '';
-    return `<a href="#/jogo/${g.id}?capturar=${name}">${g.label}${only}</a>`;
+    // &pokemon= também deixa o Pokémon como oponente na aba Recomendação (antes só abria o Onde capturar)
+    return `<a href="#/jogo/${g.id}?capturar=${name}&pokemon=${name}">${g.label}${only}</a>`;
   };
-  box.innerHTML = `<div class="card"><div class="dex-head">${pic(sprite)}<div><strong>Onde capturar ${humanize(name)}</strong><div class="meta">${on.length ? 'Escolha o jogo para ver os locais, o método, o nível e em que ponto da história.' : 'Não dá para obter em nenhum jogo do app sem troca ou evento.'}</div></div></div>` +
+  box.innerHTML = `<div class="card"><div class="dex-head">${pic(sprite)}<div><strong>Onde capturar ${humanize(name)}</strong><div class="meta">${on.length ? 'Escolha o jogo para ver os locais, o método, o nível e em que ponto da história. A aba Recomendação já abre com ' + humanize(name) + ' como oponente.' :'Não dá para obter em nenhum jogo do app sem troca ou evento.'}</div></div></div>` +
     [...byGen].map(([gen, gs]) => `<div class="gen-row"><b>Geração ${roman(gen)}</b>${gs.map(chip).join('')}</div>`).join('') + '</div>';
   box.hidden = false;
 }
@@ -1184,10 +1185,12 @@ async function renderTypeSearch() {
   const scope = tq.game ? 'Pokémon ' + on.find((g) => g.id === tq.game)?.label : tq.gen ? 'Geração ' + roman(tq.gen) : rangeLabel(table) + ' (a tabela mais nova)';
   const inScope = (tq.game ? 'em ' : 'na ') + scope;
   // tipos: os escolhidos, ou os do Pokémon no jogo (ou na época da tabela)
-  let types = tq.types, note = '';
+  let types = tq.types, note = '', fightLink = '';
   if (tq.from) {
     const d = tq.game ? await loadGameJson(tq.game) : null;
     const own = d?.pokemon.find((p) => p.name === tq.from)?.types;
+    // vou enfrentar um Pokémon do jogo → atalho para a aba Recomendação já com ele de oponente
+    if (own && tq.side === 'enfrentar') fightLink = ' · <a href="#/jogo/' + tq.game + '?pokemon=' + tq.from + '">ver a recomendação contra ' + humanize(tq.from) + ' no jogo</a>';
     types = own ?? (typecharts.mons[tq.from]?.[ci] || '').split('/').filter(Boolean);
     if (!types.length) note = humanize(tq.from) + ' não existe ' + inScope + '.';
   }
@@ -1200,7 +1203,7 @@ async function renderTypeSearch() {
     sel('tqGame', 'Jogo', [['', tq.gen ? 'Qualquer jogo da geração' : 'Qualquer jogo'], ...gameOpts.map((g) => [g.id, g.label])], tq.game) + '</div>' +
     '<div class="type-chips" id="tqChips">' + table.types.map((t) => '<button type="button" data-type="' + t + '" aria-pressed="' + (!tq.from && tq.types.includes(t)) + '" title="' + typeName(t) + '" style="background:' + COLORS[t] + '">' + t + '</button>').join('') +
     (tq.from || tq.types.length ? '<button type="button" class="clear" data-clear>limpar</button>' : '') + '</div>';
-  const fromLine = tq.from && types.length ? '<div class="tq-head">' + pic(pokeGames?.forms?.[tq.from]?.[1] ?? pokedex?.find(([, n]) => n === tq.from)?.[0]) + '<div><strong>' + humanize(tq.from) + '</strong> ' + types.map(typeBadge).join('') + '<div class="meta">tipos ' + inScope + '</div></div></div>' : '';
+  const fromLine = tq.from && types.length ? '<div class="tq-head">' + pic(pokeGames?.forms?.[tq.from]?.[1] ?? pokedex?.find(([, n]) => n === tq.from)?.[0]) + '<div><strong>' + humanize(tq.from) + '</strong> ' + types.map(typeBadge).join('') + '<div class="meta">tipos ' + inScope + fightLink + '</div></div></div>' : '';
   if (!types.length) {
     box.innerHTML = '<div class="card">' + head + '<p class="meta" style="margin:0">' + (note || 'Escolha 1 ou 2 tipos acima, ou digite um tipo (Água, Fire…) ou um Pokémon (Gyarados) na busca.') + '</p></div>';
     bindTypeSearch(); syncTypeHash(); return;

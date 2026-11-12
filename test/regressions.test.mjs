@@ -1894,6 +1894,17 @@ test('aba Onde capturar: todos os locais da versão, rota por evolução, evento
   assert.match(html, /id="tabDex"/); assert.match(html, /id="dexQ"/);
 });
 
+test('busca de Pokémon da tela inicial leva o Pokémon também para a Recomendação (0.71.1)', () => {
+  // achado do usuário: escolher o Pokémon que vai enfrentar abria o Onde capturar, mas a aba Recomendação vinha vazia
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.ok(app.includes('href="#/jogo/${g.id}?capturar=${name}&pokemon=${name}"'));
+  // e o jogo aplica os dois: ?capturar= abre a aba e ?pokemon= preenche o oponente
+  assert.ok(app.includes("if (p.capturar) { $('dexQ').value = p.capturar; showTab('dex'); }"));
+  assert.ok(app.includes("if (p.pokemon) { known = null; $('opp').value = p.pokemon;"));
+  // busca por tipo, "vou enfrentar <Pokémon>" com jogo: atalho para a recomendação contra ele
+  assert.ok(app.includes(`?pokemon=' + tq.from + '">ver a recomendação contra`));
+});
+
 test('tela inicial: busca de Pokémon (padrão) com seletor para líder/jogo; índice de jogos onde obter', () => {
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
   assert.match(html, /data-mode="pokemon" aria-checked="true"/); // Pokémon é o padrão
