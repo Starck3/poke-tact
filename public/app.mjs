@@ -79,7 +79,7 @@ async function load(gameId) {
   $('results').innerHTML = skeleton();
   $('oppInfo').innerHTML = '';
   $('gameTitle').textContent = 'Pokémon ' + g.label;
-  $('qualityBadge').innerHTML = qualityBadge(g) + featureTags(g);
+  $('qualityBadge').innerHTML = $('aboutBadges').innerHTML = qualityBadge(g) + featureTags(g); // no celular, só em "Sobre os dados"
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
   // Mega Evolução já entra no cálculo (0.26.0); o aviso fica para as outras mecânicas
   const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução' && m !== 'golpes Z' && m !== 'Terastal' && m !== 'Dynamax e Gigantamax');
@@ -128,6 +128,8 @@ async function load(gameId) {
   fillStages();
   $('trainerBox').hidden = !trainers.length;
   $('trainerHint').textContent = trainersFromWalk ? '— time do detonado (espécie e nível); golpes estimados pelo nível' : '— usa o time e os golpes reais';
+  // com treinadores, digitar o Pokémon é o caminho alternativo; sem eles, é o único
+  $('oppLabel').firstChild.textContent = trainers.length ? 'Ou digite o Pokémon do oponente ' : 'Pokémon que você está enfrentando ';
   // inicial só faz sentido com 2+ opções (Yellow: só Pikachu); progresso só com linha do tempo
   const choosable = (data.starters?.species?.length ?? 0) > 1;
   $('starterWrap').style.display = choosable ? '' : 'none';
@@ -168,7 +170,7 @@ async function load(gameId) {
     (data.game.generation >= 3 ? '; a habilidade do Pokémon dele não é determinada, então só imunidades de habilidade única entram na conta. ' : '. ') +
     'Sem treinador: com o nível do oponente, a ameaça vem do moveset padrão do jogo; sem nível, dos tipos dele.';
   restoreCtx();
-  trainerCat = null;
+  trainerCat = null; pickerOpen = false;
   fillTrainers();
   renderStarters();
   update();
@@ -318,8 +320,8 @@ function renderMoves() {
   const rows = r.rows.map((row, i) => '<tr><td class="lv">nv ' + row.level + (i === 0 && r.start > 1 ? '+' : '') + '</td><td>' + (row.moves.length ? row.moves.map(mv).join('') : '<span class="meta">nenhum golpe de dano</span>') + '</td></tr>').join('');
   out.innerHTML = head + '<div id="learnBox" class="learn"></div>' + '<p class="meta" style="margin:0">' + ctx + (r.start > 1 ? ' Começa no nv ' + r.start + ', o menor nível em que dá para tê-lo.' : '') + '</p>' +
     '<table class="moves-table"><thead><tr><th>Nível</th><th>Os 4 golpes mais fortes (uma linha a cada mudança)</th></tr></thead><tbody>' + rows + '</tbody></table>' +
-    '<p class="meta" style="margin:0">★ mesmo tipo dele (×1,5). Ordem pela força: poder × ★ × precisão × o Ataque ou Atq. Esp. dele, conforme o golpe. ½ = dois turnos ou recarga (conta metade). ' +
-    'Ficam de fora golpes de poder variável e os que custam caro (Explosion, Dream Eater…). Não olha o adversário — para isso, a aba Recomendação.</p>';
+    '<details class="how"><summary>Como ler a tabela</summary><p class="meta">★ mesmo tipo dele (×1,5). Ordem pela força: poder × ★ × precisão × o Ataque ou Atq. Esp. dele, conforme o golpe. ½ = dois turnos ou recarga (conta metade). ' +
+    'Ficam de fora golpes de poder variável e os que custam caro (Explosion, Dream Eater…). Não olha o adversário — para isso, a aba Recomendação.</p></details>';
   renderLearn(mon);
 }
 
@@ -360,11 +362,14 @@ function savedFor(mon) {
 }
 const moveByLabel = () => new Map(Object.keys(data.moves).flatMap((k) => [[humanize(k).toLowerCase(), k], [k, k]]));
 async function renderLearn(mon) {
-  const box = $('learnBox');
+  let box = $('learnBox');
   if (!box) return;
   if (!moveEffects) {
     try { moveEffects = await (await fetch('data/move-effects.json')).json(); } catch { moveEffects = { moves: {} }; }
-    if (!$('learnBox')) return;
+    // 0.77.0: a aba pode ter sido refeita enquanto o arquivo carregava (link com ?insignias= desenha a aba 2 vezes) — o
+    // `box` antigo ficava fora da página e o formulário saía nele: "Cannot read properties of null (reading 'value')"
+    if (!box.isConnected) return;
+    box = $('learnBox');
   }
   const d = vData();
   const opts = [];
@@ -480,8 +485,8 @@ async function renderLearnResult(mon) {
   res.innerHTML = '<p class="learn-verdict ' + verdict[0] + '">' + verdict[1] + '</p>' +
     '<table class="learn-table"><thead><tr><th>Golpe</th><th>Nota</th><th>Por quê</th></tr></thead><tbody>' + rows + '</tbody></table>' + fightsHtml +
     '<div class="learn-actions">' + learnBtn + '</div>' +
-    '<p class="note">Nota de 0 a 3 = estimativa do app, não regra do jogo. Dano: força como na tabela abaixo (3 = o mais forte dele). Status: sono e congelamento 3, paralisia 2,5, veneno forte e queimadura 2, veneno 1,5, confusão 1,5, vezes a precisão' +
-    (mon.abilities?.length && mon.abilities.every((x) => x === 'compound-eyes') ? ' (Compound Eyes: ×1,3)' : '') + '; o alvo só tem um problema de status por vez. Subir Ataque só conta com golpe físico (Atq. Esp. com especial). Efeito dos golpes: ' + (moveEffects.source ?? 'Pokémon Showdown') + '.</p>';
+    '<details class="how"><summary>Como a nota é calculada</summary><p class="note">Nota de 0 a 3 = estimativa do app, não regra do jogo. Dano: força como na tabela abaixo (3 = o mais forte dele). Status: sono e congelamento 3, paralisia 2,5, veneno forte e queimadura 2, veneno 1,5, confusão 1,5, vezes a precisão' +
+    (mon.abilities?.length && mon.abilities.every((x) => x === 'compound-eyes') ? ' (Compound Eyes: ×1,3)' : '') + '; o alvo só tem um problema de status por vez. Subir Ataque só conta com golpe físico (Atq. Esp. com especial). Efeito dos golpes: ' + (moveEffects.source ?? 'Pokémon Showdown') + '.</p></details>';
   $('learnDone').addEventListener('click', () => {
     const forget = $('learnForget')?.value;
     const moves = current.length < 4 ? [...current, newMove] : current.map((m) => (m === forget ? newMove : m));
@@ -523,7 +528,7 @@ function openTeamMoves(i) {
 function renderMyTeam() {
   if (!data) return;
   teamEditor($('teamOut'), { gameId: currentGame, d: data, label: currentGameLabel(), level: Number($('level').value) || 5, onLearn: openTeamMoves,
-    intro: 'Na aba <strong>Golpes</strong>, "Vale a pena aprender?" usa o nível e os golpes daqui, e o botão "Aprendi" atualiza o time.' });
+    intro: 'A Recomendação e o "Vale a pena aprender?" (aba Golpes) usam o nível e os golpes daqui.' });
 }
 /**
  * Editor do time (aba Meu time e tela inicial — 0.75.0): até 6 Pokémon, nível e 4 golpes, guardados por jogo.
@@ -546,9 +551,10 @@ function teamEditor(box, ctx) {
       (m.estimated ? '<p class="meta" style="margin:0">Golpes estimados pelo nível — corrija se for diferente.</p>' : '') +
       '<div class="learn-actions"><button type="button" class="btn teamLearn">Vale a pena aprender?</button><button type="button" class="linkish teamDel">tirar do time</button></div></div></div>';
   };
-  box.innerHTML = '<p class="meta" style="margin:0">Seu time em ' + ctx.label + ': Pokémon, nível e os golpes de cada um. Fica guardado neste navegador. Ao escolher o Pokémon, os golpes vêm estimados pelo nível — corrija o que for diferente. ' + (ctx.intro ?? '') + '</p>' +
-    (team.length ? '<div class="team-list">' + team.map(card).join('') + '</div>' : '<p style="margin:0">Nenhum Pokémon ainda.</p>') +
-    (team.length < 6 ? '<div class="team-add"><label>Adicionar <input type="text" class="teamNew" list="' + L('teamMonList') + '" placeholder="ex.: butterfree" spellcheck="false" autocomplete="off"></label><label>Nível <input type="number" class="teamNewLevel" min="1" max="100" value="' + ctx.level + '"></label><button type="button" class="btn teamAddBtn">Adicionar</button></div><p class="warn teamWarn" hidden></p>' : '<p class="meta">Time completo (6).</p>') +
+  // 0.77.0: o campo de adicionar vem primeiro quando o time está vazio; a explicação ficou curta
+  box.innerHTML = '<p class="meta" style="margin:0">Seu time em ' + ctx.label + ' (até 6), guardado neste navegador. Os golpes vêm estimados pelo nível — corrija o que for diferente. ' + (ctx.intro ?? '') + '</p>' +
+    (team.length ? '<div class="team-list">' + team.map(card).join('') + '</div>' : '') +
+    (team.length < 6 ? '<div class="team-add"><label>Adicionar Pokémon <input type="text" class="teamNew" list="' + L('teamMonList') + '" placeholder="ex.: butterfree" spellcheck="false" autocomplete="off"></label><label>Nível <input type="number" class="teamNewLevel" min="1" max="100" value="' + ctx.level + '"></label><button type="button" class="btn teamAddBtn">Adicionar</button></div><p class="warn teamWarn" hidden></p>' : '<p class="meta">Time completo (6).</p>') +
     '<datalist id="' + L('teamMonList') + '">' + d.pokemon.map((p) => '<option value="' + humanize(p.name) + '">').join('') + '</datalist>' +
     '<datalist id="' + L('teamMoveList') + '">' + Object.keys(d.moves).map((k) => '<option value="' + humanize(k) + '">').join('') + '</datalist>';
   const again = () => teamEditor(box, ctx);
@@ -590,7 +596,7 @@ function teamEditor(box, ctx) {
 
 // tela inicial (0.75.0): o time de qualquer jogo, sem abrir o jogo — escolhe o jogo (padrão: o último aberto) e edita;
 // "Vale a pena aprender?" abre o jogo na aba Golpes com esse Pokémon
-let homeTeamGame = null;
+let homeTeamGame = null, homeTeamOpen = null;
 const homeTeamCache = {};
 async function renderHomeTeam() {
   const box = $('homeTeam');
@@ -601,10 +607,17 @@ async function renderHomeTeam() {
   // jogo inicial: o último aberto; senão, o 1º que já tem time guardado
   const withTeam = on.find((g) => { try { return JSON.parse(localStorage.getItem(`poketact:time:${g.id}`) ?? '[]').length; } catch { return false; } });
   homeTeamGame ??= (on.find((g) => g.id === last) ?? withTeam)?.id ?? '';
-  box.innerHTML = '<div class="home-team-head"><h2 style="margin:0">Meu time</h2><label class="meta">Jogo <select id="homeTeamGame"><option value="">— escolher —</option>' +
+  // 0.77.0: recolhido numa linha ("Meu time — 3 Pokémon no FireRed") — aberto quando já tem time; o jogo vem antes de tudo
+  let count = 0;
+  try { count = homeTeamGame ? JSON.parse(localStorage.getItem(`poketact:time:${homeTeamGame}`) ?? '[]').length : 0; } catch {}
+  const gl = on.find((g) => g.id === homeTeamGame)?.label;
+  homeTeamOpen ??= count > 0;
+  box.innerHTML = '<details' + (homeTeamOpen ? ' open' : '') + '><summary><h2 style="margin:0">Meu time</h2><span class="meta">' + (count ? count + ' Pokémon' + (gl ? ' no ' + gl : '') : 'opcional — escreva o seu time para as sugestões usarem') + '</span></summary>' +
+    '<div class="stack"><div class="home-team-head"><label class="meta">Jogo <select id="homeTeamGame"><option value="">— escolher —</option>' +
     groupByGeneration(on).map(([gen, gs]) => '<optgroup label="Geração ' + roman(gen) + '">' + gs.map((g) => '<option value="' + g.id + '"' + (g.id === homeTeamGame ? ' selected' : '') + '>' + g.label + '</option>').join('') + '</optgroup>').join('') +
-    '</select></label></div><div id="homeTeamBody" class="stack"></div>';
-  $('homeTeamGame').addEventListener('change', (e) => { homeTeamGame = e.target.value; renderHomeTeam(); });
+    '</select></label></div><div id="homeTeamBody" class="stack"></div></div></details>';
+  box.querySelector('details').addEventListener('toggle', (e) => { homeTeamOpen = e.target.open; });
+  $('homeTeamGame').addEventListener('change', (e) => { homeTeamGame = e.target.value; homeTeamOpen = true; renderHomeTeam(); });
   const body = $('homeTeamBody');
   if (!homeTeamGame) { body.innerHTML = '<p class="meta" style="margin:0">Escolha o jogo para escrever o seu time: Pokémon, nível e golpes. Depois, veja se vale a pena aprender cada golpe novo.</p>'; return; }
   const gid = homeTeamGame;
@@ -875,7 +888,11 @@ function fillTrainers() {
 const CAT_ORDER = ['Líderes de ginásio', 'Partidas de promoção', 'Líderes de Kanto', 'Elite dos Quatro', 'Campeão', 'Rival'];
 const CAT_LABEL = { 'Líderes de ginásio': 'Líderes', 'Treinadores comuns': 'Outros treinadores' };
 let trainerCat = null;
+let pickerOpen = false; // 0.77.0: com um oponente escolhido, a lista fica recolhida até tocar em "Trocar oponente"
 const topLevel = (t) => Math.max(...t.party.map((p) => p.level));
+const capName = (s) => (s && s === s.toUpperCase() ? s.toLowerCase().replace(/(^|[\s.])(\S)/g, (m, a, b) => a + b.toUpperCase()) : s); // Gen 3: "BRENDAN" → "Brendan"
+/** Nome curto do treinador como os botões mostram ("Leader Brock" → "Brock"; rival com o inicial que ele leva). */
+const trainerName = (t) => capName(t.group === 'Rival' ? (t.carries ? `${t.name} (com ${humanize(t.carries)})` : t.name) : t.label.replace(/^(Leader|Elite Four|Champion|Gym Leader|Líder)\s+/i, ''));
 function trainerCategories() {
   const mine = $('starter').value;
   const visible = trainers.filter((t) => !(mine && t.forStarter && !t.forStarter.includes(mine)));
@@ -899,15 +916,23 @@ function renderTrainerPicker() {
   if (!cats.length) return;
   const current = trainers.find((x) => x.key === $('trainer').value);
   if (current && cats.some((c) => c.g === current.group)) trainerCat = current.group;
-  if (!cats.some((c) => c.g === trainerCat)) trainerCat = null;
+  // 0.77.0: a 1ª categoria (Líderes) já vem aberta — antes era preciso tocar numa aba para ver qualquer oponente
+  if (!cats.some((c) => c.g === trainerCat)) trainerCat = cats[0].g;
   $('trainerCats').innerHTML = cats.map((c) => `<button type="button" role="tab" data-cat="${c.g}" aria-selected="${c.g === trainerCat}">${CAT_LABEL[c.g] ?? c.g}<span class="count">${c.list.length}</span></button>`).join('');
-  for (const b of $('trainerCats').querySelectorAll('button')) b.addEventListener('click', () => { trainerCat = trainerCat === b.dataset.cat ? null : b.dataset.cat; renderTrainerPicker(); });
+  // aba já aberta continua aberta (antes, tocar de novo fechava a lista — aba que some ao tocar confunde)
+  for (const b of $('trainerCats').querySelectorAll('button')) b.addEventListener('click', () => { trainerCat = b.dataset.cat; pickerOpen = true; renderTrainerPicker(); });
   const cat = cats.find((c) => c.g === trainerCat);
   const box = $('trainerPick');
-  // sem categoria aberta, a lista de oponentes não aparece: só a orientação do que dá para escolher
-  if (!cat) {
-    const names = cats.map((c) => CAT_LABEL[c.g] ?? c.g);
-    box.innerHTML = `<div class="hint">👆 Toque em <strong>${names.length > 1 ? names.slice(0, -1).join(', ') + ' ou ' + names.at(-1) : names[0]}</strong> para ver quem você pode enfrentar — com o time e os golpes reais. Se preferir, digite o Pokémon do oponente logo abaixo.</div>`;
+  // oponente escolhido: a lista recolhe numa linha ("Brock · nv 14 · 2 Pokémon" + Trocar) e as sugestões sobem
+  // (no celular ficavam ~2.000 px abaixo, depois dos 8 líderes, dos iniciais e dos campos)
+  const collapsed = current && !pickerOpen;
+  $('trainerCats').hidden = !!collapsed;
+  if (collapsed) {
+    const ace = data.pokemon.find((p) => p.name === current.party.at(-1)?.species);
+    const sub = [current.pool ? `sorteia de ${current.party.length} conjuntos` : `${current.party.length} Pokémon`, `nv ${topLevel(current)}`, current.double && 'dupla', current.rematch && 'revanche'].filter(Boolean).join(' · ');
+    box.innerHTML = `<div class="picked"><div class="tchip" aria-current="true">${ace ? img(ace.id) : ''}<span><span class="t-name">${trainerName(current)}</span><span class="t-sub">${CAT_LABEL[current.group] ?? current.group} · ${sub}</span></span></div>` +
+      '<button type="button" class="btn" data-reopen>Trocar oponente</button></div>';
+    box.querySelector('[data-reopen]').addEventListener('click', () => { pickerOpen = true; renderTrainerPicker(); box.querySelector('.tchip, select')?.focus(); });
     return;
   }
   if (cat.g === 'Treinadores comuns' || cat.list.length > 60) {
@@ -929,8 +954,7 @@ function renderTrainerPicker() {
     const starterWords = new RegExp(`\\b(${(data.starters?.species ?? []).join('|') || '_'})\\b`, 'ig');
     const place = t.map?.[0] ?? (t.label.toLowerCase().startsWith(String(t.name).toLowerCase()) ? t.label.slice(String(t.name).length).replace(starterWords, '').replace(/\bVr\b/, 'Victory Road').trim() : '');
     const sub = [cat.g === 'Rival' && place, `nv ${topLevel(t)}`, `${t.party.length} Pokémon`, t.double && 'dupla'].filter(Boolean).join(' · ');
-    const cap = (s) => (s && s === s.toUpperCase() ? s.toLowerCase().replace(/(^|[\s.])(\S)/g, (m, a, b) => a + b.toUpperCase()) : s); // Gen 3: "BRENDAN" → "Brendan"
-    const name = cap(cat.g === 'Rival' ? (t.carries ? `${t.name} (com ${humanize(t.carries)})` : t.name) : t.label.replace(/^(Leader|Elite Four|Champion|Gym Leader|Líder)\s+/i, ''));
+    const name = trainerName(t);
     const isNext = !rematch && nextLeader && fold(t.name ?? '').replace(/[^a-z]/g, '') === nextLeader;
     return `<button type="button" class="tchip" data-key="${t.key}" aria-pressed="${t.key === current?.key}">${ace ? img(ace.id) : ''}<span><span class="t-name">${name}${isNext ? ' ' + lozenge('info', 'próximo') : ''}</span><span class="t-sub">${sub}</span></span></button>`;
   };
@@ -942,6 +966,7 @@ function renderTrainerPicker() {
 }
 function selectTrainer(key) {
   $('trainer').value = key;
+  pickerOpen = false;
   const t = trainers.find((x) => x.key === key);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; renderTrainerPicker(); update(); return; }
   setLevelFor(t);
@@ -989,6 +1014,8 @@ function renderTeam(t, active) {
     box.querySelector('select').addEventListener('change', (e) => { if (e.target.value !== '') pickTrainerMon(t, Number(e.target.value)); });
     return;
   }
+  // rótulo: os botões abaixo são o time do treinador (antes apareciam soltos, sem dizer o que eram)
+  box.insertAdjacentHTML('beforeend', `<span class="team-label">${t.party.length > 1 ? 'Qual Pokémon de ' + trainerName(t) + '?' : 'Pokémon de ' + trainerName(t) + ':'}</span>`);
   t.party.forEach((p, i) => {
     const b = document.createElement('button');
     b.type = 'button';
@@ -1027,6 +1054,7 @@ function ctxLine() {
 document.addEventListener('click', (e) => {
   if (!e.target.closest('[data-ctx-edit]')) return;
   e.preventDefault();
+  $('filters').open = true; // nível e filtros ficam recolhidos (0.77.0)
   $('level').scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   $('level').focus(); $('level').select();
 });
@@ -1048,6 +1076,8 @@ function currentOpp() {
 
 function update() {
   renderOppWarn();
+  // resumo do que está recolhido em "Nível e filtros"
+  $('tuneSum').textContent = '— seu time nv ' + ($('level').value || '—') + ($('oppLevel').value ? ' · oponente nv ' + $('oppLevel').value : '');
   // só quando o oponente muda (update roda a cada filtro; não pode desfazer um Pokémon escolhido em outra aba)
   const oppName = findOpponent(data.pokemon, $('opp').value)?.name;
   if (oppName !== lastOppSel) { lastOppSel = oppName; selectMon(oppName); }
@@ -1103,7 +1133,8 @@ function baseOptions() {
 
 
 // Meu time (0.76.0) na Recomendação: quem do time que você montou usar contra este Pokémon — com o nível e os golpes de cada um
-const teamHint = () => '<div class="card my-team-card"><strong>Seu time</strong><p class="meta" style="margin:4px 0 0">Monte o seu time (Pokémon, nível e golpes) na <a href="#/">tela inicial</a> ou na aba <button type="button" class="linkish" data-go-team>Meu time</button> — aqui aparece quem dele usar nesta luta.</p></div>';
+// sem time: uma linha só (era um cartão inteiro entre a ameaça e as sugestões — 0.77.0)
+const teamHint = () => '<p class="note my-team-card">💡 Monte o seu time na aba <button type="button" class="linkish" data-go-team>Meu time</button> — aqui aparece quem dele usar nesta luta.</p>';
 document.addEventListener('click', (e) => { if (e.target.closest('[data-go-team]')) { e.preventDefault(); showTab('team'); } });
 function myTeamCard(team) {
   if (!team.length) return teamHint();
@@ -1155,7 +1186,7 @@ function renderPicks(out, picks, threats, threatSource, team = []) {
         ${data.game.generation >= 3 ? '<li class="meta">Habilidades: ' + (s.mon.abilities.map(humanize).join(' / ') || '—') + '</li>' : ''}
         <li class="meta">Stats base: HP ${s.mon.stats.hp} · Atq ${s.mon.stats.attack} · Def ${s.mon.stats.defense} · AtqE ${s.mon.stats['special-attack']} · DefE ${s.mon.stats['special-defense']} · Vel ${s.mon.stats.speed}</li>
       </ul></details></div>`;
-  }).join('') + '</div>' : '<div class="card empty">Nenhuma sugestão com esses filtros — tente desmarcar algum em <strong>Filtros</strong> ou subir o nível do seu time.</div>');
+  }).join('') + '</div>' : '<div class="card empty">Nenhuma sugestão com esses filtros — tente desmarcar algum em <strong>Nível e filtros</strong> ou subir o nível do seu time.</div>');
 }
 
 // Mega Evolução na sugestão: nome da Mega, a pedra e quando se ganha o Mega Ring (detonado)
@@ -1167,7 +1198,7 @@ function megaLine(mg) {
   const cited = evoItems?.items?.[mg.stone] ?? [], bulba = evoItems?.bulbapedia?.[mg.stone] ?? [];
   // Bulbapedia (tabela Acquisition da pedra) vem antes da frase do detonado
   const where = bulba.length ? `Onde achar (Bulbapedia): ${bulba.map((b) => b.text).join('; ')}` : cited.length ? `Onde achar (detonado): “${cited[0].text}” <span class="meta">— trecho ${cited[0].section.toLowerCase().replace(/(^|\s)(\S)/g, (x, a, b) => a + b.toUpperCase())}</span>`
-    : `<span class="meta">Onde achar a ${mg.stone}: o detonado não diz — a sugestão vale se você tiver a pedra (desligue em Filtros → Usar Mega Evolução).</span>`;
+    : `<span class="meta">Onde achar a ${mg.stone}: o detonado não diz — a sugestão vale se você tiver a pedra (desligue em Nível e filtros → Usar Mega Evolução).</span>`;
   return `<div class="kv"><b>${mg.primal ? 'Reversão Primal' : 'Mega Evolução'}</b>segurando ${mg.stone}${ring}<br>${where}</div>`;
 }
 

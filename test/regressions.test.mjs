@@ -3295,3 +3295,23 @@ test('0.76.0: Recomendação com o time montado — nível e golpes de cada um (
   assert.ok(app.includes("myTeam: loadTeam()") && app.includes("$('starter').value || teamStarter()"));
   assert.ok(app.includes("'Não nocauteia com '")); // não sai mais "Nocauteia em não nocauteia"
 });
+
+test('regressão (0.77.0): "Vale a pena aprender?" não escreve no quadro velho quando a aba Golpes é refeita durante o carregamento', () => {
+  // Erro: o link #/jogo/firered-leafgreen?aba=golpes&pokemon=butterfree&insignias=2 aberto do zero desenhava a aba 2 vezes
+  // (showTab + renderMoves pelo ?insignias=). A 1ª renderLearn guardava o #learnBox antes de esperar o move-effects.json,
+  // e ao voltar escrevia o formulário nesse quadro que já tinha saído da página → TypeError "reading 'value'" em
+  // fillLearnCurrent. Confirmado com scripts/screenshot.mjs (erro no console); o teste da tela recarrega esse link.
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  const fn = app.slice(app.indexOf('async function renderLearn('), app.indexOf('function readLearnCurrent('));
+  assert.match(fn, /await \(await fetch\('data\/move-effects\.json'\)\)\.json\(\)[\s\S]*?if \(!box\.isConnected\) return;/);
+  const ui = readFileSync(new URL('../scripts/ui-test.mjs', import.meta.url), 'utf8');
+  assert.ok(ui.includes("Golpes aberto do zero com ?insignias="));
+});
+
+test('regressão (0.77.0): aba de categoria de oponente não fecha ao tocar de novo e a 1ª já vem aberta', () => {
+  // Erro de usabilidade: tocar na aba aberta (Líderes) fechava a lista e, ao abrir o jogo, nenhum oponente aparecia sem
+  // tocar numa aba. Agora a 1ª categoria vem aberta e o toque só troca de categoria.
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.ok(app.includes('trainerCat = cats[0].g'));
+  assert.ok(!app.includes('trainerCat = trainerCat === b.dataset.cat ? null'));
+});

@@ -2,6 +2,32 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.77.0] — 2026-11-17
+
+> Telas mais simples: a escolha do jogo aparece logo no começo, os líderes já aparecem ao abrir o jogo, e depois de escolher o oponente a lista some e as sugestões ficam logo abaixo. Nível e filtros ficam guardados num botão.
+
+### Mudado
+- **Tela inicial** (pedido do usuário: "interações muito complexas"): a escolha do jogo vem logo depois da busca; "Como
+  funciona" e os números foram para baixo. **Meu time** fica numa linha que abre ao tocar (já aberto quando o jogo tem time).
+  Texto do topo mais curto.
+- **Recomendação**: na ordem em que se decide — **Seu inicial** (sprites menores), **Quem você vai enfrentar?** com a aba
+  **Líderes já aberta** (antes era preciso tocar numa aba para ver algum oponente; tocar de novo na aba aberta fechava a
+  lista) e "Ou digite o Pokémon do oponente". Escolhido o treinador, a lista **recolhe numa linha** ("Brock · Líderes · 2
+  Pokémon · nv 14" + **Trocar oponente**) e o time dele ganha o rótulo "Qual Pokémon de Brock?". No celular, a 1ª
+  sugestão subiu de ~2.000 px para ~1.250 px da tela.
+- **Nível e filtros** recolhidos num só botão, com o resumo ao lado ("seu time nv 14 · oponente nv 14"); o "mudar" da linha
+  "Calculado com…" abre esse botão. Sem time montado, a dica do Meu time virou uma linha (era um cartão).
+- **Abas** na ordem de uso: Recomendação, Meu time, Onde capturar, Golpes, Detonado, Pokémon por tipo. No celular ficam
+  numa linha que rola de lado; os selos do jogo (verificado, detonado, capturas) saem da barra do topo e ficam em "Sobre os
+  dados" — a barra fixa ocupava ~190 px.
+- **Golpes**: as explicações longas ("Como a nota é calculada", "Como ler a tabela") ficam recolhidas.
+- **Meu time**: texto curto e "Adicionar Pokémon".
+
+### Corrigido
+- Link da aba Golpes com progresso (`?aba=golpes&pokemon=butterfree&insignias=2`) aberto do zero: dava erro de JavaScript e
+  o "Vale a pena aprender?" podia ficar pela metade (a aba era desenhada 2 vezes enquanto carregava).
+- Teste da tela: 3 verificações novas (Líderes já aberta, lista recolhida + Trocar oponente, Golpes aberto do zero).
+
 ## [0.76.0] — 2026-11-17
 
 > A Recomendação agora olha o seu time: diz quem do time que você montou usar contra o oponente, com o nível e os golpes de cada um. As sugestões para capturar continuam embaixo.

@@ -77,6 +77,13 @@ try {
   const ctx = await run(() => document.querySelector('#results .ctx')?.textContent ?? '');
   check('linha "Calculado com o seu time no nv 14"', /nv 14 · antes da 1/.test(ctx), ctx);
   check('FireRed, Brock: nada de Beedrill nem golpe de TM tardio', !s.picks.some((p) => /Beedrill/.test(p.mon)), s.picks);
+  // 0.77.0: com o Brock escolhido, a lista de líderes recolhe numa linha; "Trocar oponente" abre de novo (Líderes já aberta)
+  const pk = await run(async () => {
+    const before = { tchips: document.querySelectorAll('#trainerPick .tchip').length, cats: document.querySelector('#trainerCats').hidden, name: document.querySelector('#trainerPick .t-name')?.textContent, label: document.querySelector('#team .team-label')?.textContent };
+    document.querySelector('#trainerPick [data-reopen]').click(); await new Promise((r) => setTimeout(r, 300));
+    return { before, after: document.querySelectorAll('#trainerPick .tchip').length, cats: document.querySelector('#trainerCats').hidden };
+  });
+  check('Brock escolhido: lista recolhida ("Brock" + Trocar oponente) e reaberta com os 8 líderes', pk.before.tchips === 1 && pk.before.cats && pk.before.name === 'Brock' && /Qual Pokémon de Brock/.test(pk.before.label) && pk.after === 8 && !pk.cats, pk);
   await run(async () => { [...document.querySelectorAll('#team button')].find((b) => /Onix/.test(b.textContent)).click(); await new Promise((r) => setTimeout(r, 1200)); });
   s = await state();
   const mankey = s.picks.find((p) => /Mankey/.test(p.mon));
@@ -98,6 +105,9 @@ try {
 
   // 3b. Detonado do Red/Blue: encontros iguais numa linha com "×N" (Power Plant: 6 Voltorb), ovos sem repetição (0.65.0)
   await go('#/jogo/red-blue', 3000);
+  // 0.77.0: jogo recém-aberto — a aba Líderes já vem aberta (antes, nenhum oponente aparecia sem tocar numa aba)
+  const leadersOpen = await run(() => ({ sel: document.querySelector('#trainerCats [aria-selected=true]')?.dataset.cat, n: document.querySelectorAll('#trainerPick .tchip').length }));
+  check('Red/Blue: aba Líderes já aberta com os 8 líderes', leadersOpen.sel === 'Líderes de ginásio' && leadersOpen.n === 8, leadersOpen);
   await run(async () => { document.querySelector('#tabWalk').click(); await new Promise((r) => setTimeout(r, 1500)); });
   const pp = await run(() => [...document.querySelectorAll('#walk .walk-list li')].map((l) => l.textContent).filter((t) => /Power Plant/.test(t) && /Voltorb/.test(t)));
   check('Detonado (Red/Blue): "Voltorb … ×6" numa linha só', pp.length === 1 && / ×6$/.test(pp[0]), pp);
@@ -187,6 +197,12 @@ try {
   const gl = await run(() => ({ on: !document.querySelector('#moves').hidden, q: document.querySelector('#movesQ').value, txt: document.querySelector('#movesOut').textContent }));
   check('link ?aba=golpes&pokemon=pikachu&insignias=2: Thunderbolt (TM de Mauville) já no nv 1', gl.on && gl.q === 'Pikachu' && /nv 1electricThunderbolt 95 ★ \(TM\/HM · Mauville/.test(gl.txt) && /até: 2 insígnias/.test(gl.txt), { ...gl, txt: gl.txt.slice(0, 300) });
   await shot('emerald-golpes');
+  // 0.77.0: link de Golpes com ?insignias= aberto do zero (página recarregada): a aba era desenhada 2 vezes enquanto o
+  // move-effects.json carregava e saía "Cannot read properties of null (reading 'value')" (o "sem erro de JavaScript" pega)
+  await go('#/jogo/firered-leafgreen?aba=golpes&pokemon=butterfree&insignias=2', 500);
+  await send('Page.reload'); await sleep(3500);
+  const fresh0 = await run(() => ({ form: !!document.querySelector('#learnMove'), verdict: document.querySelector('.learn-verdict')?.textContent ?? '' }));
+  check('Golpes aberto do zero com ?insignias=: "Vale a pena aprender?" completo', fresh0.form && fresh0.verdict.length > 0, fresh0);
   // 0.73.0 "Vale a pena aprender?": Butterfree nv 15 no FireRed querendo o Sleep Powder (pedido do usuário)
   await run(() => { localStorage.removeItem('poketact:golpes:firered-leafgreen'); localStorage.removeItem('poketact:firered-leafgreen'); });
   await go('#/jogo/firered-leafgreen?aba=golpes&pokemon=butterfree&aprender=sleep-powder&insignias=4&meu=15', 3500);
