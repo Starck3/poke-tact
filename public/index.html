@@ -204,10 +204,20 @@
   .tabs button[aria-selected=true] { border-color:var(--accent); color:var(--accent); font-weight:600; }
 
   /* ---- aba Golpes: os mais fortes nível a nível */
-  .moves-table { width:100%; border-collapse:collapse; font-size:var(--fs-sm); }
-  .moves-table th, .moves-table td { text-align:left; vertical-align:top; padding:5px 6px; border-top:1px solid var(--line); }
-  .moves-table th { font-weight:600; color:var(--muted); border-top:0; }
-  .moves-table td.lv { white-space:nowrap; font-weight:600; width:1%; }
+  .moves-table, .learn-table { width:100%; border-collapse:collapse; font-size:var(--fs-sm); }
+  .moves-table th, .moves-table td, .learn-table th, .learn-table td { text-align:left; vertical-align:top; padding:5px 6px; border-top:1px solid var(--line); }
+  .moves-table th, .learn-table th { font-weight:600; color:var(--muted); border-top:0; }
+  .moves-table td.lv, .learn-table td.lv { white-space:nowrap; font-weight:600; width:1%; }
+  .learn { display:grid; gap:var(--s2); padding:var(--s3); border:1px solid var(--line); border-radius:var(--r2); background:var(--surface-2); }
+  .learn .walk-h { margin:0; }
+  .learn-form { display:flex; flex-wrap:wrap; gap:var(--s3); } .learn-form label, .learn-done { display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); }
+  .learn-form input { width:6em; } .learn-form select { max-width:100%; }
+  .learn-moves { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:6px; margin-top:4px; } .learn-moves input { min-width:0; width:100%; }
+  @media (max-width: 640px) { .learn-moves { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+  .learn-verdict { margin:0; padding:var(--s2) var(--s3); border-radius:var(--r2); font-weight:600; }
+  .learn-verdict.ok { color:var(--ok); background:var(--ok-bg); } .learn-verdict.bad { color:var(--bad); background:var(--bad-bg); } .learn-verdict.neutral { background:var(--surface); border:1px solid var(--line); }
+  .learn-actions { display:flex; flex-wrap:wrap; gap:var(--s2); align-items:flex-end; }
+  .linkish { border:0; background:none; padding:0; color:var(--info); text-decoration:underline; font:inherit; cursor:pointer; }
   .mv { display:inline-flex; align-items:center; gap:4px; margin:0 10px 3px 0; white-space:nowrap; }
   .mv .src { color:var(--muted); }
   .vs-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 var(--s2); }

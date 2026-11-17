@@ -2,6 +2,32 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.73.0] — 2026-11-17
+
+> Aba Golpes: "Vale a pena aprender?" compara o golpe novo (ex.: Sleep Powder no Butterfree) com os 4 que ele tem, diz qual esquecer e em quantos Pokémon das próximas lutas funciona. Corrigiu os golpes? O app guarda.
+
+### Adicionado
+- Aba **Golpes → Vale a pena aprender?** (decisões do usuário: comparar com os golpes dele **e** com as próximas lutas; golpes
+  atuais estimados pelo nível, com opção de digitar e guardar; dentro da aba Golpes).
+  - **Golpe novo**: lista com os golpes por nível e as TMs/tutores do Pokémon; vem escolhido o próximo que ele aprende.
+  - **Golpes que ele tem agora**: estimados pela linha evolutiva (o Butterfree nv 15 tem Harden do Metapod, Confusion,
+    Poison Powder e Stun Spore). Corrigiu? O app guarda no navegador, por jogo e Pokémon, e continua valendo depois de
+    evoluir. Botão **Aprendi** troca o golpe esquecido e já mostra o próximo golpe por nível.
+  - **Veredito**: vale a pena (e qual esquecer), tanto faz, não vale, ou "tem espaço". Cada golpe tem uma nota de 0 a 3 com o
+    motivo — estimativa do app, escrita na tela: dano pela força (como na tabela da aba); status pelo efeito × precisão
+    (Compound Eyes ×1,3): sono 3, paralisia 2,5, veneno forte/queimadura 2, veneno e confusão 1,5. O alvo só fica com **um
+    problema de status por vez**, então o 2º golpe desse tipo vale pouco. Subir Ataque só conta se ele tem golpe físico.
+  - **Próximas lutas** (com o progresso escolhido): em quantos Pokémon dos times da etapa (líder + treinadores do detonado)
+    o golpe funciona, o time do líder um a um e quem não pega e por quê. Regras do jogo: Grama não pega pó (Sleep Powder,
+    Stun Spore) e Elétrico não paralisa só **da Gen 6 em diante**; Thunder Wave não pega em Terra; Fogo não queima; Veneno e
+    Aço não envenenam; habilidades (Insomnia, Vital Spirit, Limber, Own Tempo, Clear Body, Soundproof…) — se só uma das
+    habilidades possíveis bloqueia, "talvez".
+  - Link: `#/jogo/firered-leafgreen?aba=golpes&pokemon=butterfree&aprender=sleep-powder&insignias=4&meu=15`.
+- `public/data/move-effects.json`: o que faz cada golpe de status (271), por geração, lido do Pokémon Showdown
+  (`scripts/build-move-effects.mjs`; `fetch-showdown-moves.mjs` agora baixa também os ajustes das Gens 1–3). Funções
+  `estimatedMoveset`, `moveWorth`, `statusWorksOn`, `moveEffect` no motor.
+- Teste da tela: 3 verificações novas (Butterfree + Sleep Powder, próximas lutas da Sabrina, "Aprendi" guardado).
+
 ## [0.72.0] — 2026-11-12
 
 > Nova aba "Golpes": os golpes mais fortes do Pokémon em cada nível, com as TMs que você já pega. O Pokémon escolhido agora segue para as outras abas: Detonado, Pokémon por tipo (quem é bom contra ele) e Onde capturar.

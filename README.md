@@ -34,7 +34,8 @@ Os dados já gerados estão em `public/data/` — o app funciona logo após clon
 ```bash
 npm run fetch:decomp -- <jogo>       # clone esparso do decomp pret fixado em scripts/games.mjs
 node scripts/fetch-pokemythology.mjs <detonado>   # detonados (≥5 s entre requisições)
-node scripts/fetch-showdown-moves.mjs              # golpes por geração (Gens 5–8)
+node scripts/fetch-showdown-moves.mjs              # golpes por geração (Gens 1–8)
+node scripts/build-move-effects.mjs                # efeito dos golpes de status (sono, paralisia…) → move-effects.json
 npm run build:data -- <jogo>         # pipeline completo do jogo (sem argumento: todos)
 npm run build:catalog
 node scripts/build-benchmark.mjs     # banco de lutas: mede a qualidade das sugestões
