@@ -3255,6 +3255,9 @@ test('0.74.0: app.mjs sem duas funções com o mesmo nome (a aba Meu time criou 
   const dup = names.filter((n, i) => names.indexOf(n) !== i);
   assert.deepEqual(dup, []);
   // Meu time: guardado por jogo e usado pelo "Vale a pena aprender?" (nível e golpes do membro; "Aprendi" grava nele)
-  assert.ok(app.includes('poketact:time:${currentGame}'));
+  assert.ok(app.includes('poketact:time:${gameId}'));
+  // 0.75.0: o editor do time é o mesmo na aba e na tela inicial (sem ids repetidos: as duas telas ficam na página)
+  assert.ok(app.includes('function teamEditor(box, ctx)') && app.includes('renderHomeTeam();'));
+  assert.ok(!/id="teamNew"|id="teamAddBtn"/.test(app));
   assert.ok(app.includes('function writeSaved(mon, entry)'));
 });

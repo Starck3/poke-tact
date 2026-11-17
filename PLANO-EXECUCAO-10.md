@@ -45,3 +45,13 @@ a essa etapa de golpes que vale a pena aprender".
 
 Escolhas minhas (sem pergunta, fáceis de mudar): aba própria "Meu time" (e não um bloco na Recomendação); o time ainda **não**
 alimenta a aba Recomendação (o "Nível do seu time" continua separado) — 🚩 próximo passo possível, se o usuário quiser.
+
+## Continuação — Meu time na tela inicial (0.75.0, 2026-11-17)
+
+Pedido do usuário: "Queria que a opção de montar o time ficasse na tela inicial".
+
+| # | Item | Estado |
+|---|---|---|
+| V8 | Bloco **Meu time** na tela inicial (escolhe o jogo; mesmo editor e dados da aba) + `?aba=golpes&time=<n>` | ✅ 0.75.0 |
+
+Escolha minha: a aba Meu time dentro do jogo **continua** (mesmos dados); se o usuário quiser só na tela inicial, é tirar a aba.

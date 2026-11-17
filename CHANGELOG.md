@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.75.0] — 2026-11-17
+
+> Agora dá para montar o seu time direto na tela inicial: escolha o jogo e escreva os Pokémon, o nível e os golpes. "Vale a pena aprender?" abre o jogo na aba Golpes com aquele Pokémon.
+
+### Adicionado
+- **Meu time na tela inicial** (pedido do usuário), logo abaixo do "Continuar de onde parou": escolha o jogo (vem o último
+  aberto) e monte o time — mesmo editor e mesmos dados da aba Meu time do jogo. O botão **Vale a pena aprender?** abre o jogo
+  na aba Golpes com o nível e os golpes daquele Pokémon (link `#/jogo/<jogo>?aba=golpes&time=<n>`).
+- Teste da tela: 2 verificações novas (montar o time na tela inicial e ir dali ao Vale a pena aprender).
+
 ## [0.74.0] — 2026-11-17
 
 > Nova aba "Meu time": escreva os Pokémon do seu time, o nível e os golpes de cada um. Na aba Golpes, o "Vale a pena aprender?" já usa esses dados, e o botão "Aprendi" atualiza o time.

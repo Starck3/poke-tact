@@ -261,6 +261,8 @@
   .team-chips { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
   .tchip.mini { padding:2px 10px 2px 2px; } .tchip.mini img { width:36px; height:36px; }
   .team-list { display:grid; gap:var(--s2); }
+  .home-team { margin-top:var(--s3); } .home-team-head { display:flex; flex-wrap:wrap; gap:var(--s3); align-items:center; justify-content:space-between; }
+  .home-team-head label { display:flex; gap:6px; align-items:center; } .home-team-head select { max-width:100%; }
   .team-card { display:flex; gap:var(--s3); align-items:flex-start; padding:var(--s2) var(--s3); border:1px solid var(--line); border-radius:var(--r2); background:var(--surface-2); }
   .team-card > img { width:64px; height:64px; image-rendering:pixelated; flex:none; }
   .team-fields { display:grid; gap:6px; flex:1; min-width:0; }
@@ -372,6 +374,8 @@
   </header>
 
   <div id="resume"></div>
+  <!-- Meu time (0.75.0): o time de qualquer jogo, direto da tela inicial -->
+  <section id="homeTeam" class="card home-team stack" aria-label="Meu time"></section>
   <div class="stats" id="stats"></div>
 
   <div class="steps">
