@@ -266,6 +266,7 @@ function showTab(which) {
   $('tabTeam').setAttribute('aria-selected', String(which === 'team'));
   $('teamView').hidden = which !== 'team';
   if (which === 'team') renderMyTeam();
+  if (which === 'rec' && data) update(); // o time pode ter mudado em Meu time
   // a aba abre com o Pokémon selecionado em outra aba (só uma vez por seleção: limpar a busca não o traz de volta)
   if (selMon && which !== 'rec' && which !== 'team' && applied[which] !== selMon) {
     applied[which] = selMon;
@@ -1008,8 +1009,19 @@ function renderTeam(t, active) {
 
 // S3 (0.60.0): com que nível e progresso a conta foi feita — o app ajusta os dois ao escolher a luta e o campo fica longe
 // ("Calculado com o seu time no nv 14 · antes da 1ª insígnia — mudar")
+// inicial pelo time montado: um Pokémon do time da família de um dos iniciais do jogo (Charmeleon → Charmander)
+function teamStarter() {
+  const starters = data?.starters?.species ?? [];
+  if (!starters.length) return null;
+  for (const t of loadTeam()) {
+    let m = data.pokemon.find((p) => p.name === t.species);
+    for (let i = 0; m && i < 4; i++) { if (starters.includes(m.name)) return m.name; m = data.pokemon.find((p) => p.id === m.evolvesFrom); }
+  }
+  return null;
+}
 function ctxLine() {
-  const st = $('stage').value === '' ? '' : ' · ' + ($('stage').selectedOptions[0]?.textContent ?? '');
+  const ts = !$('starter').value && teamStarter();
+  const st = ($('stage').value === '' ? '' : ' · ' + ($('stage').selectedOptions[0]?.textContent ?? '')) + (ts ? ' · inicial: ' + humanize(ts) + ' (do seu time)' : '');
   return `<p class="note ctx">Calculado com o seu time no <strong>nv ${$('level').value || '—'}</strong>${st} — <a href="#" data-ctx-edit>mudar</a></p>`;
 }
 document.addEventListener('click', (e) => {
@@ -1025,7 +1037,7 @@ function duelLine(d) {
   const n = (x) => (Number.isFinite(x) ? `${x} golpe${x > 1 ? 's' : ''}` : 'não nocauteia');
   const order = d.faster === 1 ? 'age primeiro' : d.faster === 0.5 ? 'velocidade igual' : 'age depois';
   const theirs = Number.isFinite(d.theirTurns) ? `ele precisa de ${n(d.theirTurns)} (${humanize(d.theirMove)})` : 'os golpes dele não o nocauteiam';
-  return `${d.move ? 'Nocauteia em ' + n(d.myTurns) + ' com ' + humanize(d.move) : 'Sem golpe útil'}; ${theirs}; ${order} → <strong class="${d.win ? 'good' : 'bad'}">${d.win ? 'vence a troca' : 'perde a troca'}</strong>`;
+  return `${!d.move ? 'Sem golpe útil' : Number.isFinite(d.myTurns) ? 'Nocauteia em ' + n(d.myTurns) + ' com ' + humanize(d.move) : 'Não nocauteia com ' + humanize(d.move)}; ${theirs}; ${order} → <strong class="${d.win ? 'good' : 'bad'}">${d.win ? 'vence a troca' : 'perde a troca'}</strong>`;
 }
 
 function currentOpp() {
@@ -1062,8 +1074,8 @@ function update() {
 
   const baseOpts = baseOptions();
   if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
-  const { picks, threats, threatSource } = recommend(vData(), opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
-  renderPicks(out, picks, threats, threatSource);
+  const { picks, threats, threatSource, team } = recommend(vData(), opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
+  renderPicks(out, picks, threats, threatSource, team);
 }
 
 // filtros da tela → opções do cálculo
@@ -1076,7 +1088,7 @@ function baseOptions() {
     includeLegendary: $('legend').checked,
     machines: $('machines').checked,
     stage: $('stage').value === '' ? null : Number($('stage').value),
-    starter: $('starter').value || null,
+    starter: $('starter').value || teamStarter(), // sem inicial escolhido: o do seu time (0.76.0)
     tradeEvolutions: $('tradeEvos').checked,
     megaEvolution: $('megaEvo').checked,
     zMoves: $('zMoves').checked,
@@ -1085,10 +1097,35 @@ function baseOptions() {
     // luta em que o jogo deixa dinamaxizar: a do treinador escolhido, quando um Pokémon dele dinamaxiza (detonado)
     dynamaxBattle: !!trainers.find((x) => x.key === $('trainer').value)?.party.some((p) => p.dynamax),
     acq: vAcq(),
+    myTeam: loadTeam(), // Meu time (0.76.0): nível e golpes de cada um
   };
 }
 
-function renderPicks(out, picks, threats, threatSource) {
+
+// Meu time (0.76.0) na Recomendação: quem do time que você montou usar contra este Pokémon — com o nível e os golpes de cada um
+const teamHint = () => '<div class="card my-team-card"><strong>Seu time</strong><p class="meta" style="margin:4px 0 0">Monte o seu time (Pokémon, nível e golpes) na <a href="#/">tela inicial</a> ou na aba <button type="button" class="linkish" data-go-team>Meu time</button> — aqui aparece quem dele usar nesta luta.</p></div>';
+document.addEventListener('click', (e) => { if (e.target.closest('[data-go-team]')) { e.preventDefault(); showTab('team'); } });
+function myTeamCard(team) {
+  if (!team.length) return teamHint();
+  const best = team[0];
+  const head = best.duel?.win
+    ? '✅ Use o <strong>' + humanize(best.mon.name) + '</strong> do seu time' + (best.move ? ' com ' + humanize(best.move.name) : '') + '.'
+    : '⚠ Ninguém do seu time vence a troca de golpes contra ele' + (best.duel ? ' — o que vai melhor é o ' + humanize(best.mon.name) : '') + '. Veja abaixo quem capturar ou treinar.';
+  const row = (t) => '<li class="my-team-row">' + img(t.mon.id) + '<div><strong>' + humanize(t.mon.name) + ' nv ' + t.level + '</strong> ' +
+    (t.duel ? verdictChips(t.duel, t.move) : lozenge('bad', t.moves.length ? 'sem golpe de dano' : 'sem golpes no time')) +
+    '<div class="meta">' + (t.move ? humanize(t.move.name) + ' ' + typeBadge(t.move.type) + ' ' + fmtMult(t.move.eff) + ' · ' : '') + (t.duel ? duelLine(t.duel) : 'Escreva os golpes dele em Meu time.') +
+    ' · recebe ' + t.incoming.map((x) => typeBadge(x.type) + '<span class="' + (x.mult < 1 ? 'good' : x.mult > 1 ? 'bad' : '') + '">' + fmtMult(x.mult) + '</span>').join(' ') + '</div></div></li>';
+  return '<div class="card my-team-card"><strong>Seu time</strong> <span class="meta">(nível e golpes de Meu time)</span><p class="my-team-verdict ' + (best.duel?.win ? 'ok' : 'bad') + '">' + head + '</p><ul class="my-team-list">' + team.map(row).join('') + '</ul></div>';
+}
+function myTeamPartyCard(team, t) {
+  if (!team.length) return teamHint();
+  const best = team[0];
+  const head = best.wins ? '✅ Do seu time, quem vai melhor contra ' + t.label + ': <strong>' + humanize(best.mon.name) + '</strong> (vence ' + best.wins + ' de ' + best.total + ').' : '⚠ Ninguém do seu time vence a troca contra nenhum Pokémon de ' + t.label + '. Veja abaixo quem capturar ou treinar.';
+  const row = (m) => '<li class="my-team-row">' + img(m.mon.id) + '<div><strong>' + humanize(m.mon.name) + ' nv ' + m.level + '</strong> ' + lozenge(m.wins === m.total ? 'ok' : m.wins ? 'warn' : 'bad', 'vence ' + m.wins + ' de ' + m.total) +
+    '<div class="meta">' + m.vs.map((x) => (x.duel?.win ? '<span class="good">✓</span>' : '<span class="bad">✗</span>') + ' ' + humanize(x.opp) + (x.move ? ' (' + humanize(x.move.name) + ')' : '')).join(' · ') + '</div></div></li>';
+  return '<div class="card my-team-card"><strong>Seu time</strong> <span class="meta">(nível e golpes de Meu time)</span><p class="my-team-verdict ' + (best.wins ? 'ok' : 'bad') + '">' + head + '</p><ul class="my-team-list">' + team.map(row).join('') + '</ul></div>';
+}
+function renderPicks(out, picks, threats, threatSource, team = []) {
   // a ameaça é o que ELE usa contra você (não as fraquezas dele, que ficam no quadro do oponente)
   const threatLine = threatSource.kind === 'known'
     ? `Ele ataca com (${known?.movesSource === 'Bulbapedia' ? 'golpes do time na Bulbapedia' : known?.movesSource === 'Smogon' ? 'golpes do time na Smogon' : trainersFromWalk ? 'golpes estimados pelo nível — time do detonado' : 'golpes reais do time'}): ${threats.map(typeBadge).join('')}`
@@ -1096,7 +1133,7 @@ function renderPicks(out, picks, threats, threatSource) {
       ? `Ele deve atacar com (golpes prováveis no nível): ${threats.map(typeBadge).join('')}`
       : `Ele deve atacar com golpes dos próprios tipos (sem nível informado): ${threats.map(typeBadge).join('')}`;
 
-  out.innerHTML = ctxLine() + `<p class="note threat">${threatLine}</p>` + (picks.length ? '<div class="picks">' + picks.map((s, i) => {
+  out.innerHTML = ctxLine() + `<p class="note threat">${threatLine}</p>` + myTeamCard(team) + (picks.length ? (team.length ? '<h3 class="picks-title">Para capturar ou treinar</h3>' : '') + '<div class="picks">' + picks.map((s, i) => {
     const m = s.move;
     const src = m.via.source;
     const via = m.via.method === 'level-up' ? `aprende no nv ${m.via.level}`
@@ -1105,7 +1142,7 @@ function renderPicks(out, picks, threats, threatSource) {
     const inc = s.incoming.map((x) => `${typeBadge(x.type)}<span class="${x.mult < 1 ? 'good' : x.mult > 1 ? 'bad' : ''}">${fmtMult(x.mult)}</span>`).join(' ');
     const mg = s.mega;
     return `<div class="card pick">
-      <div class="pick-head">${img(mg ? mg.spriteId : s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${mg ? megaTitle(mg, s.mon) : humanize(s.mon.name)}</h3><div>${(mg ? mg.types : s.mon.types).map(typeBadge).join('')}</div></div></div>
+      <div class="pick-head">${img(mg ? mg.spriteId : s.mon.id)}<div><div class="rank">#${i + 1} sugestão${team.some((x) => x.mon.name === s.mon.name) ? ' ' + lozenge('info', 'já está no seu time') : ''}</div><h3>${mg ? megaTitle(mg, s.mon) : humanize(s.mon.name)}</h3><div>${(mg ? mg.types : s.mon.types).map(typeBadge).join('')}</div></div></div>
       <div class="verdict">${verdictChips(s.duel, m, s.unreliable)}</div>${mg ? megaLine(mg) : ''}${s.zMove ? zLine(s.zMove, m) : ''}${s.tera ? teraLine(s.tera) : ''}${s.dynamax ? dynLine(s.dynamax) : ''}
       <div class="kv"><b>Golpe</b>${humanize(m.name)} ${typeBadge(m.type)} <strong class="${m.eff > 1 ? 'good' : ''}">${fmtMult(m.eff)}</strong>${m.stab > 1 ? ' <span class="meta">STAB</span>' : ''}<br><span class="meta">${via}</span></div>
       ${howToGet(s)}
@@ -1159,7 +1196,7 @@ function verdictChips(d, m, unreliable) {
   if (!d) return lozenge('bad', 'sem golpe útil');
   const n = (x) => (Number.isFinite(x) ? `${x} golpe${x > 1 ? 's' : ''}` : '—');
   return [d.win ? lozenge('ok', '✓ Vence a troca') : lozenge('bad', '✗ Perde a troca'),
-    lozenge('neutral', `nocauteia em ${n(d.myTurns)}`),
+    lozenge('neutral', Number.isFinite(d.myTurns) ? `nocauteia em ${n(d.myTurns)}` : 'não nocauteia'),
     d.faster === 1 ? lozenge('info', 'age primeiro') : lozenge('neutral', d.faster === 0.5 ? 'velocidade igual' : 'age depois'),
     unreliable ? lozenge('warn', '⚠ origem aleatória', unreliable) : ''].join('');
 }
@@ -1211,8 +1248,8 @@ function renderTeamResults(t, opts, out) {
     setTimeout(() => { if (tok === poolTok && teamMode === t) renderPoolResults(t, opts, out); }, 30);
     return;
   }
-  const { picks } = recommendTeam(vData(), t.party, opts);
-  out.innerHTML = ctxLine() + `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` +
+  const { picks, team } = recommendTeam(vData(), t.party, opts);
+  out.innerHTML = ctxLine() + `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` + myTeamPartyCard(team, t) + (team.length && picks.length ? '<h3 class="picks-title">Para capturar ou treinar</h3>' : '') +
     (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
       <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
       <div class="verdict">${lozenge(s.wins === s.total ? 'ok' : s.wins ? 'warn' : 'bad', `vence ${s.wins} de ${s.total}`)}${s.unreliable ? lozenge('warn', '⚠ origem aleatória', s.unreliable) : ''}</div>
