@@ -97,7 +97,7 @@ async function load(gameId) {
   document.title = g.label + ' — Poke Tact';
   $('version').innerHTML = g.versions.map((v) => '<option value="' + v.id + '">' + v.label + '</option>').join('');
   $('gameInfo').textContent = 'Carregando dados…';
-  walk = null; learnFor = null; learnMove = null; // aba Golpes: "Vale a pena aprender?" do jogo novo
+  walk = null; learnFor = null; learnMove = null; learnSlot = -1; // aba Golpes: "Vale a pena aprender?" do jogo novo
   places = null; // fotos dos lugares (aba Onde capturar) — do jogo novo
   typeSel = []; // filtro de tipo da aba Pokémon por tipo
   selMon = null; typesVs = null; walkQ = ''; lastOppSel = null; for (const k in applied) delete applied[k];
@@ -263,8 +263,11 @@ function showTab(which) {
   $('dex').hidden = which !== 'dex';
   $('types').hidden = which !== 'types';
   $('moves').hidden = which !== 'moves';
+  $('tabTeam').setAttribute('aria-selected', String(which === 'team'));
+  $('teamView').hidden = which !== 'team';
+  if (which === 'team') renderMyTeam();
   // a aba abre com o Pokémon selecionado em outra aba (só uma vez por seleção: limpar a busca não o traz de volta)
-  if (selMon && which !== 'rec' && applied[which] !== selMon) {
+  if (selMon && which !== 'rec' && which !== 'team' && applied[which] !== selMon) {
     applied[which] = selMon;
     if (which === 'walk') walkQ = selMon;
     if (which === 'types') { typesVs = selMon; typeSel = []; $('typesQ').value = ''; }
@@ -283,6 +286,7 @@ function showTab(which) {
 function renderMoves() {
   const out = $('movesOut');
   if (!data) return;
+  renderMovesTeam();
   const q = $('movesQ').value.trim();
   const mon = findOpponent(data.pokemon, q);
   if (!mon) {
@@ -327,8 +331,26 @@ let learnFor = null, learnLevel = 1; // Pokémon do formulário atual (troca de 
 const LEARN_KEY = () => `poketact:golpes:${currentGame}`;
 const savedSets = () => { try { return JSON.parse(localStorage.getItem(LEARN_KEY()) ?? '{}') ?? {}; } catch { return {}; } };
 const saveSet = (name, entry) => { try { const all = savedSets(); if (entry) all[name] = entry; else delete all[name]; localStorage.setItem(LEARN_KEY(), JSON.stringify(all)); } catch {} };
-// golpes guardados deste Pokémon ou, se ele evoluiu, os da forma anterior (os golpes continuam depois de evoluir)
+// Meu time (0.74.0): até 6 Pokémon com nível e golpes, guardados no navegador por jogo — [{ species, level, moves, estimated }]
+let learnSlot = -1; // membro do time aberto na aba Golpes (dois do mesmo Pokémon: o chip escolhido)
+const TEAM_KEY = () => `poketact:time:${currentGame}`;
+const loadTeam = () => { try { const t = JSON.parse(localStorage.getItem(TEAM_KEY()) ?? '[]'); return Array.isArray(t) ? t.filter((m) => m && data.pokemon.some((p) => p.name === m.species)) : []; } catch { return []; } };
+const saveTeam = (team) => { try { localStorage.setItem(TEAM_KEY(), JSON.stringify(team.slice(0, 6))); } catch {} };
+const teamSlotOf = (mon, team = loadTeam()) => (team[learnSlot]?.species === mon.name ? learnSlot : team.findIndex((t) => t.species === mon.name));
+// grava golpes/nível: no membro do time quando ele está no time; senão, no guardado por Pokémon (0.73.0)
+function writeSaved(mon, entry) {
+  const team = loadTeam();
+  const slot = teamSlotOf(mon, team);
+  if (slot >= 0) { team[slot] = { ...team[slot], ...(entry.moves && { moves: entry.moves, estimated: false }), ...(entry.level && { level: entry.level }) }; saveTeam(team); return; }
+  const s = savedFor(mon);
+  if (s && s.from !== mon.name) saveSet(s.from, null);
+  saveSet(mon.name, { moves: entry.moves ?? s?.moves, level: entry.level ?? s?.level ?? null });
+}
+// golpes do membro do time; senão os guardados deste Pokémon ou, se ele evoluiu, os da forma anterior (os golpes continuam)
 function savedFor(mon) {
+  const team = loadTeam();
+  const slot = teamSlotOf(mon, team);
+  if (slot >= 0) return { moves: team[slot].moves ?? [], level: team[slot].level, from: mon.name, slot, estimated: !!team[slot].estimated };
   const all = savedSets();
   for (let m = mon, i = 0; m && i < 4; m = data.pokemon.find((p) => p.id === m.evolvesFrom), i++) if (all[m.name]) return { ...all[m.name], from: m.name };
   return null;
@@ -348,7 +370,7 @@ async function renderLearn(mon) {
   for (const l of mon.learnset.filter((x) => ['machine', 'tutor'].includes(x.method)).sort((a, b) => a.move.localeCompare(b.move))) if (!seen.has(l.move) && data.moves[l.move]) { seen.add(l.move); opts.push({ move: l.move, label: (l.method === 'machine' ? 'TM/HM' : 'tutor') + ' · ' + humanize(l.move) }); }
   const saved = savedFor(mon);
   // a aba refaz a área a cada mudança (progresso, versão): o formulário volta com o golpe e o nível já escolhidos
-  if (learnFor !== mon.name) { learnFor = mon.name; learnLevel = saved?.level ?? (Number($('level').value) || mon.minLevel || 1); }
+  if (learnFor !== mon.name || saved?.slot != null) { learnFor = mon.name; learnLevel = saved?.level ?? (Number($('level').value) || mon.minLevel || 1); }
   {
     const lv = learnLevel;
     const pick = (learnMove && opts.find((o) => o.move === learnMove)) ?? opts.find((o) => o.level >= lv && !(saved?.moves ?? []).includes(o.move)) ?? opts[0];
@@ -360,11 +382,11 @@ async function renderLearn(mon) {
       '<div id="learnRes"></div>';
     fillLearnCurrent(mon, saved);
     $('learnMove').addEventListener('change', () => { learnMove = $('learnMove').value; if (!savedFor(mon)) fillLearnCurrent(mon, null); renderLearnResult(mon); });
-    $('learnLevel').addEventListener('change', () => { learnLevel = Number($('learnLevel').value) || learnLevel; const s = savedFor(mon); if (s) saveSet(s.from, { ...s, from: undefined, level: Number($('learnLevel').value) || s.level }); else fillLearnCurrent(mon, null); renderLearnResult(mon); });
+    $('learnLevel').addEventListener('change', () => { learnLevel = Number($('learnLevel').value) || learnLevel; if (savedFor(mon)) writeSaved(mon, { level: learnLevel }); else fillLearnCurrent(mon, null); renderLearnResult(mon); });
     for (const el of box.querySelectorAll('.learnCur')) el.addEventListener('change', () => {
-      // o usuário corrigiu: guarda os 4 golpes (e o nível) para a próxima vez — vale também depois de evoluir
+      // o usuário corrigiu: guarda os 4 golpes (e o nível) para a próxima vez — no time, se ele está no time
       const moves = readLearnCurrent();
-      saveSet(mon.name, { moves, level: Number($('learnLevel').value) || null });
+      writeSaved(mon, { moves, level: Number($('learnLevel').value) || null });
       fillLearnCurrent(mon, savedFor(mon));
       renderLearnResult(mon);
     });
@@ -379,10 +401,23 @@ function fillLearnCurrent(mon, saved) {
   const lv = Number($('learnLevel').value) || 1;
   const moves = saved?.moves ?? estimatedMoveset(data, mon, lv, { skip: $('learnMove').value });
   [...document.querySelectorAll('.learnCur')].forEach((el, i) => { el.value = moves[i] ? humanize(moves[i]) : ''; });
-  $('learnCurLabel').innerHTML = saved
-    ? 'Golpes que ele tem agora (guardados por você' + (saved.from !== mon.name ? ' quando era ' + humanize(saved.from) : '') + ') · <button type="button" class="linkish" id="learnReset">voltar à estimativa</button>'
-    : 'Golpes que ele tem agora — <strong>estimados pelo nível</strong> (o que ele e as formas anteriores aprendem subindo de nível). Se for diferente, corrija: o app guarda para a próxima vez.';
+  const canAdd = !saved?.slot && saved?.slot !== 0 && loadTeam().length < 6;
+  $('learnCurLabel').innerHTML = saved?.slot != null
+    ? 'Golpes dele no <strong>seu time</strong> (aba Meu time)' + (saved.estimated ? ' — ainda estimados pelo nível; corrija se for diferente' : '') + '. O que você mudar aqui muda lá também.'
+    : (saved
+      ? 'Golpes que ele tem agora (guardados por você' + (saved.from !== mon.name ? ' quando era ' + humanize(saved.from) : '') + ') · <button type="button" class="linkish" id="learnReset">voltar à estimativa</button>'
+      : 'Golpes que ele tem agora — <strong>estimados pelo nível</strong> (o que ele e as formas anteriores aprendem subindo de nível). Se for diferente, corrija: o app guarda para a próxima vez.') +
+      (canAdd ? ' · <button type="button" class="linkish" id="learnAddTeam">pôr no meu time</button>' : '');
   $('learnReset')?.addEventListener('click', () => { saveSet(saved.from, null); fillLearnCurrent(mon, null); renderLearnResult(mon); });
+  $('learnAddTeam')?.addEventListener('click', () => {
+    const team = loadTeam();
+    team.push({ species: mon.name, level: Number($('learnLevel').value) || 1, moves: readLearnCurrent(), estimated: !saved });
+    saveTeam(team);
+    learnSlot = team.length - 1;
+    if (saved) saveSet(saved.from, null); // passa a valer o do time
+    renderMovesTeam();
+    fillLearnCurrent(mon, savedFor(mon));
+  });
 }
 // Pokémon das próximas lutas: as do progresso escolhido no detonado (líder + treinadores dos lugares dessa etapa)
 async function nextFights() {
@@ -447,15 +482,93 @@ async function renderLearnResult(mon) {
   $('learnDone').addEventListener('click', () => {
     const forget = $('learnForget')?.value;
     const moves = current.length < 4 ? [...current, newMove] : current.map((m) => (m === forget ? newMove : m));
-    const s = savedFor(mon);
-    if (s && s.from !== mon.name) saveSet(s.from, null);
-    saveSet(mon.name, { moves, level: Number($('learnLevel').value) || null });
+    writeSaved(mon, { moves, level: Number($('learnLevel').value) || null });
     // próximo golpe por nível que ele ainda não tem
     const lv = Number($('learnLevel').value) || 1;
     const next = [...$('learnMove').options].find((o) => { const m = /^nv (\d+)/.exec(o.textContent); return m && Number(m[1]) >= lv && !moves.includes(o.value); });
     if (next) { $('learnMove').value = next.value; learnMove = next.value; }
     fillLearnCurrent(mon, savedFor(mon));
     renderLearnResult(mon);
+  });
+}
+
+// ---------------------------------------------------------------- aba Meu time (0.74.0)
+// o time atual (até 6): Pokémon, nível e golpes — guardado no navegador por jogo; a aba Golpes usa nível e golpes no
+// "Vale a pena aprender?" e o botão "Aprendi" atualiza o membro do time
+const teamMonLabel = (m) => humanize(m.species) + ' nv ' + m.level;
+// atalhos na aba Golpes: um chip por membro do time
+function renderMovesTeam() {
+  const box = $('movesTeam');
+  if (!box || !data) return;
+  const team = loadTeam();
+  const q = findOpponent(data.pokemon, $('movesQ').value.trim())?.name;
+  box.innerHTML = team.length
+    ? '<span class="meta">Seu time:</span> ' + team.map((m, i) => '<button type="button" class="tchip mini" data-slot="' + i + '" aria-pressed="' + (q === m.species && (teamSlotOf({ name: q }, team) === i)) + '">' + img(data.pokemon.find((p) => p.name === m.species)?.id) + '<span>' + teamMonLabel(m) + '</span></button>').join('')
+    : '<span class="meta">Dica: escreva seu time na aba <button type="button" class="linkish" id="movesGoTeam">Meu time</button> — aqui ele já vem com o nível e os golpes de cada um.</span>';
+  for (const b of box.querySelectorAll('[data-slot]')) b.addEventListener('click', () => openTeamMoves(Number(b.dataset.slot)));
+  $('movesGoTeam')?.addEventListener('click', () => showTab('team'));
+}
+function openTeamMoves(i) {
+  const m = loadTeam()[i];
+  if (!m) return;
+  learnSlot = i; learnFor = null; learnMove = null;
+  selectMon(m.species, 'moves');
+  $('movesQ').value = humanize(m.species);
+  if ($('moves').hidden) showTab('moves'); else renderMoves();
+}
+function renderMyTeam() {
+  const box = $('teamOut');
+  if (!box || !data) return;
+  const team = loadTeam();
+  const map = moveByLabel();
+  const card = (m, i) => {
+    const mon = data.pokemon.find((p) => p.name === m.species);
+    return '<div class="team-card" data-i="' + i + '">' + img(mon.id) +
+      '<div class="team-fields"><div class="team-row"><label>Pokémon <input type="text" class="teamSpecies" list="teamMonList" value="' + humanize(m.species) + '" spellcheck="false" autocomplete="off"></label>' +
+      '<label>Nível <input type="number" class="teamLevel" min="1" max="100" value="' + m.level + '"></label></div>' +
+      '<div class="learn-moves">' + [0, 1, 2, 3].map((k) => '<input type="text" class="teamMove" list="teamMoveList" aria-label="Golpe ' + (k + 1) + ' de ' + humanize(m.species) + '" value="' + (m.moves?.[k] ? humanize(m.moves[k]) : '') + '" spellcheck="false" autocomplete="off">').join('') + '</div>' +
+      (m.estimated ? '<p class="meta" style="margin:0">Golpes estimados pelo nível — corrija se for diferente.</p>' : '') +
+      '<div class="learn-actions"><button type="button" class="btn teamLearn">Vale a pena aprender?</button><button type="button" class="linkish teamDel">tirar do time</button></div></div></div>';
+  };
+  box.innerHTML = '<p class="meta" style="margin:0">Seu time em ' + currentGameLabel() + ': Pokémon, nível e os golpes de cada um. Fica guardado neste navegador. Ao escolher o Pokémon, os golpes vêm estimados pelo nível — corrija o que for diferente. ' +
+    'Na aba <strong>Golpes</strong>, "Vale a pena aprender?" usa o nível e os golpes daqui, e o botão "Aprendi" atualiza o time.</p>' +
+    (team.length ? '<div class="team-list">' + team.map(card).join('') + '</div>' : '<p>Nenhum Pokémon ainda.</p>') +
+    (team.length < 6 ? '<div class="team-add"><label>Adicionar <input type="text" id="teamNew" list="teamMonList" placeholder="ex.: butterfree" spellcheck="false" autocomplete="off"></label><label>Nível <input type="number" id="teamNewLevel" min="1" max="100" value="' + (Number($('level').value) || 5) + '"></label><button type="button" class="btn" id="teamAddBtn">Adicionar</button></div><p class="warn" id="teamWarn" hidden></p>' : '<p class="meta">Time completo (6).</p>') +
+    '<datalist id="teamMonList">' + data.pokemon.map((p) => '<option value="' + humanize(p.name) + '">').join('') + '</datalist>' +
+    '<datalist id="teamMoveList">' + Object.keys(data.moves).map((k) => '<option value="' + humanize(k) + '">').join('') + '</datalist>';
+  const upd = (i, f) => { const t = loadTeam(); if (!t[i]) return; f(t[i], t); saveTeam(t); };
+  for (const c of box.querySelectorAll('.team-card')) {
+    const i = Number(c.dataset.i);
+    c.querySelector('.teamSpecies').addEventListener('change', (e) => {
+      const mon = findOpponent(data.pokemon, e.target.value.trim());
+      if (!mon) { e.target.value = humanize(loadTeam()[i].species); return; }
+      // evoluiu: troca a espécie e os golpes continuam (só estima se ainda não tinha golpes)
+      upd(i, (m) => { m.species = mon.name; if (!m.moves?.length) { m.moves = estimatedMoveset(data, mon, m.level); m.estimated = true; } });
+      renderMyTeam();
+    });
+    c.querySelector('.teamLevel').addEventListener('change', (e) => { const lv = Number(e.target.value); if (lv >= 1 && lv <= 100) upd(i, (m) => { m.level = lv; }); });
+    for (const el of c.querySelectorAll('.teamMove')) el.addEventListener('change', () => {
+      const moves = [...c.querySelectorAll('.teamMove')].map((x) => map.get(x.value.trim().toLowerCase()) ?? null).filter(Boolean);
+      upd(i, (m) => { m.moves = moves; m.estimated = false; });
+      renderMyTeam();
+    });
+    c.querySelector('.teamLearn').addEventListener('click', () => openTeamMoves(i));
+    c.querySelector('.teamDel').addEventListener('click', () => { const t = loadTeam(); t.splice(i, 1); saveTeam(t); learnSlot = -1; renderMyTeam(); });
+  }
+  $('teamNew')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); $('teamAddBtn').click(); } });
+  $('teamAddBtn')?.addEventListener('click', () => {
+    const mon = findOpponent(data.pokemon, $('teamNew').value.trim());
+    if (!mon) {
+      const q = $('teamNew').value.trim();
+      const w = q && opponentWarning({ pokemon: data.pokemon, pokedex, generation: data.game.generation, gameLabel: currentGameLabel() }, q);
+      $('teamWarn').hidden = false; $('teamWarn').innerHTML = '⚠ ' + (w ? w.text : 'Escreva o nome de um Pokémon deste jogo.');
+      return;
+    }
+    const level = Math.min(100, Math.max(1, Number($('teamNewLevel').value) || 1));
+    const t = loadTeam();
+    t.push({ species: mon.name, level, moves: estimatedMoveset(data, mon, level), estimated: true });
+    saveTeam(t);
+    renderMyTeam();
   });
 }
 
@@ -1569,6 +1682,7 @@ function applyGameParams(p) {
   const linkMon = (q) => findOpponent(data.pokemon, q)?.name;
   if (p.aba === 'golpes' && p.pokemon) { selectMon(linkMon(p.pokemon), 'moves'); $('movesQ').value = humanize(p.pokemon); learnFor = null; learnMove = p.aprender ?? null; }
   if (p.aba === 'golpes') showTab('moves');
+  if (p.aba === 'time') showTab('team');
   if (p.aba === 'tipos') { if (p.tipo && data.types.includes(p.tipo)) typeSel = [p.tipo]; showTab('types'); }
   // ?capturar=pikachu → aba Onde capturar já preenchida
   if (p.capturar) { selectMon(linkMon(p.capturar), 'dex'); $('dexQ').value = p.capturar; showTab('dex'); }
@@ -1600,6 +1714,7 @@ $('tabWalk').addEventListener('click', () => showTab('walk'));
 $('tabDex').addEventListener('click', () => showTab('dex'));
 $('tabTypes').addEventListener('click', () => showTab('types'));
 $('tabMoves').addEventListener('click', () => showTab('moves'));
+$('tabTeam').addEventListener('click', () => showTab('team'));
 $('movesQ').addEventListener('input', renderMoves);
 for (const id of ['version', 'stage', 'dlc']) $(id).addEventListener('input', () => { if (!$('moves').hidden) renderMoves(); });
 for (const id of ['typesQ', 'typesObt', 'typesFinal']) $(id).addEventListener('input', () => renderTypes());
