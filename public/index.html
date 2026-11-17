@@ -370,6 +370,26 @@
   .home-team > details[open] > summary { margin-bottom:var(--s3); }
   .home-team .stack > * + * { margin-top:var(--s3); }
   .about-badges .lozenge { margin-right:4px; }
+  /* ---- 0.78.0 */
+  .hero-links { margin:var(--s3) 0 0; font-size:var(--fs-sm); color:var(--muted); }
+  .how-dialog { width:min(720px, calc(100vw - 24px)); max-height:calc(100vh - 32px); border:1px solid var(--line-strong); border-radius:var(--r3); background:var(--surface); color:var(--fg); padding:0; box-shadow:0 10px 40px rgba(0,0,0,.35); }
+  .how-body { padding:var(--s4); }
+  .home-type .type-chips .clear { opacity:1; }
+  .how-dialog::backdrop { background:rgba(0,0,0,.5); }
+  .how-dialog .steps { margin:var(--s3) 0; }
+  .how-dialog .stats { grid-template-columns:repeat(2, 1fr); margin:0 0 var(--s3); }
+  .how-dialog .stat b { font-size:1.4rem; }
+  .how-actions { display:flex; justify-content:flex-end; position:sticky; bottom:0; background:var(--surface); padding:var(--s2) 0 0; }
+  .how-dialog .step { padding:var(--s3); display:grid; grid-template-columns:auto 1fr; column-gap:var(--s2); align-items:start; }
+  .how-dialog .step .step-n { margin:0; grid-row:span 2; }
+  .how-dialog .steps { gap:var(--s2); }
+  .how-dialog .stat { padding:var(--s2); }
+  .how-dialog .stat .meta { font-size:var(--fs-xs); }
+  .btn-primary { background:var(--accent); border-color:var(--accent); color:var(--accent-fg); font-weight:600; padding:9px 18px; }
+  .type-close { margin-left:auto; }
+  .spick.compact { display:block; } .starter-line { margin:0; font-size:var(--fs-sm); color:var(--muted); } .starter-line strong { color:var(--fg); }
+  .team-row { flex-wrap:nowrap; } .team-row label:first-child { flex:1; min-width:0; } .team-row input[type=text] { min-width:0; }
+  .news-older > summary { cursor:pointer; font-size:var(--fs-sm); color:var(--link); padding:8px 0; border-top:1px solid var(--line); }
   details.how > summary { cursor:pointer; font-size:var(--fs-sm); color:var(--link); }
   details.how p { margin:6px 0 0; }
   @media (max-width:640px) {
@@ -389,17 +409,12 @@
   <header class="hero">
     <div class="brand">Poke Tact</div>
     <h1 class="hero-title">Qual Pokémon <span class="ink" id="heroA"></span> vence a sua próxima luta <span class="ink" id="heroB"></span>?</h1>
-    <p class="hero-sub">Escolha o seu jogo e o oponente: o app diz quais Pokémon vencem a luta, com as regras daquele jogo. Ou busque um Pokémon para saber onde capturá-lo.</p>
+    <p class="hero-sub">Escolha o seu jogo e o oponente: o app diz quais Pokémon vencem a luta, com as regras daquele jogo. Ou busque um Pokémon (onde capturar), um líder ou um tipo.</p>
     <div class="search-row">
-    <!-- o que buscar: Pokémon (padrão: em que jogos e onde capturar), líder/jogo (vai direto para a luta) ou tipo (o que vence o quê) -->
-    <div class="search-mode" id="searchMode" role="radiogroup" aria-label="O que buscar">
-      <button type="button" role="radio" data-mode="pokemon" aria-checked="true">Pokémon</button>
-      <button type="button" role="radio" data-mode="lider" aria-checked="false">Líder ou jogo</button>
-      <button type="button" role="radio" data-mode="tipo" aria-checked="false">Tipo</button>
-    </div>
+    <!-- 0.78.0: uma busca só (antes: seletor Pokémon | Líder ou jogo | Tipo) — Pokémon, jogos, líderes e tipos na mesma lista -->
     <div class="search" role="combobox" aria-expanded="false" aria-owns="homeResults" aria-haspopup="listbox" id="searchBox">
       <span class="search-icon" aria-hidden="true">⌕</span>
-      <input type="search" id="homeSearch" aria-label="Buscar" aria-autocomplete="list" aria-controls="homeResults" autocomplete="off" spellcheck="false" placeholder="Busque um Pokémon…">
+      <input type="search" id="homeSearch" aria-label="Buscar Pokémon, jogo, líder ou tipo" aria-autocomplete="list" aria-controls="homeResults" autocomplete="off" spellcheck="false" placeholder="Busque um Pokémon, jogo, líder ou tipo…">
       <kbd class="search-kbd">/</kbd>
       <ul id="homeResults" role="listbox" hidden></ul>
     </div>
@@ -407,6 +422,7 @@
     <div id="homeDex" class="home-dex" aria-live="polite" hidden></div>
     <div id="homeType" class="home-type" hidden></div>
     <div class="quick" id="quickPicks"></div>
+    <p class="hero-links"><button type="button" class="linkish" id="openTypes">Tabela de tipos: o que vence o quê</button> · <button type="button" class="linkish" id="openHow">Como funciona?</button></p>
   </header>
 
   <div id="resume"></div>
@@ -422,13 +438,6 @@
   <nav class="gens" id="genList" aria-label="Gerações"></nav>
   <div id="gameList"></div>
 
-  <h2>Como funciona</h2>
-  <div class="steps">
-    <div class="step"><span class="step-n">1</span><strong>Escolha o jogo</strong><span class="meta">Cada jogo usa só a própria geração: tipos, golpes, habilidades e o que dá para obter na versão.</span></div>
-    <div class="step"><span class="step-n">2</span><strong>Escolha o oponente</strong><span class="meta">Um líder, rival ou treinador do jogo (com o time real) — ou digite o Pokémon.</span></div>
-    <div class="step"><span class="step-n">3</span><strong>Receba 3 sugestões</strong><span class="meta">Com o veredito da troca de golpes, o melhor golpe e onde conseguir no seu ponto da história.</span></div>
-  </div>
-  <div class="stats" id="stats"></div>
   <div class="legend card" id="qualityLegend"></div>
   <p class="note" id="catalogSources"></p>
  </section>
@@ -563,6 +572,18 @@
   </div>
  </section>
 </main>
+<!-- 0.78.0: "Como funciona" num aviso que abre na 1ª visita à tela inicial; "Entendi" guarda no navegador (poketact:como-funciona) -->
+<dialog id="howDialog" class="how-dialog" aria-labelledby="howTitle"><div class="how-body">
+  <div class="news-head"><h2 id="howTitle">Como funciona</h2><button type="button" class="news-close" id="howClose" aria-label="Fechar">✕</button></div>
+  <div class="steps">
+    <div class="step"><span class="step-n">1</span><strong>Escolha o jogo</strong><span class="meta">Cada jogo usa só a própria geração: tipos, golpes, habilidades e o que dá para obter na versão.</span></div>
+    <div class="step"><span class="step-n">2</span><strong>Escolha o oponente</strong><span class="meta">Um líder, rival ou treinador do jogo (com o time real) — ou digite o Pokémon.</span></div>
+    <div class="step"><span class="step-n">3</span><strong>Receba 3 sugestões</strong><span class="meta">Com o veredito da troca de golpes, o melhor golpe e onde conseguir no seu ponto da história.</span></div>
+  </div>
+  <p class="meta">Dica: monte o seu time em <strong>Meu time</strong> — as sugestões passam a dizer quem dele usar. Na busca do topo, escreva um Pokémon (onde capturar), um jogo, um líder ou um tipo.</p>
+  <div class="stats" id="stats"></div>
+  <div class="how-actions"><button type="button" class="btn btn-primary" id="howOk">Entendi</button></div>
+</div></dialog>
 <!-- novidades do app (CHANGELOG): botão fixo no canto com o nº de versões não vistas e o painel com as mudanças -->
 <button type="button" id="newsBtn" class="news-btn" aria-haspopup="dialog" aria-controls="newsPanel" aria-expanded="false" title="Novidades do app">
   <span aria-hidden="true">🔔</span><span class="news-label">Novidades</span><span class="news-count" id="newsCount" hidden></span>

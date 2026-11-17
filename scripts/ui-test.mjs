@@ -60,6 +60,14 @@ const state = () => run(() => ({
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 try {
+  // 0. "Como funciona" (0.78.0, pedido do usuário): abre na 1ª visita; "Entendi" guarda e não abre mais; o link reabre
+  await go('#/');
+  const how1 = await run(() => document.querySelector('#howDialog').open);
+  await run(() => document.querySelector('#howOk').click());
+  await send('Page.reload'); await sleep(2000);
+  const how2 = await run(async () => { const closed = !document.querySelector('#howDialog').open; document.querySelector('#openHow').click(); await new Promise((r) => setTimeout(r, 200)); const re = document.querySelector('#howDialog').open; document.querySelector('#howClose').click(); return { closed, re, stats: document.querySelectorAll('#stats .stat').length }; });
+  check('Como funciona: abre na 1ª visita, "Entendi" lembra, o link reabre', how1 && how2.closed && how2.re && how2.stats >= 3, { how1, how2 });
+
   // 1. link da luta num navegador limpo (atalho da tela inicial): nível e progresso da luta
   await go('#/');
   const brockHref = await run(() => [...document.querySelectorAll('#quickPicks a')].find((a) => /Brock/.test(a.textContent))?.getAttribute('href') ?? '');
@@ -83,6 +91,9 @@ try {
     document.querySelector('#trainerPick [data-reopen]').click(); await new Promise((r) => setTimeout(r, 300));
     return { before, after: document.querySelectorAll('#trainerPick .tchip').length, cats: document.querySelector('#trainerCats').hidden };
   });
+  // 0.78.0: com o Brock (não é o rival), o inicial vira uma linha com "trocar"
+  const st0 = await run(() => ({ line: document.querySelector('#starterPick .starter-line')?.textContent ?? '', btns: document.querySelectorAll('#starterPick button[data-v]').length }));
+  check('Brock escolhido: inicial recolhido em "Seu inicial: não informado · trocar"', /Seu inicial: não informado/.test(st0.line) && st0.btns === 0, st0);
   check('Brock escolhido: lista recolhida ("Brock" + Trocar oponente) e reaberta com os 8 líderes', pk.before.tchips === 1 && pk.before.cats && pk.before.name === 'Brock' && /Qual Pokémon de Brock/.test(pk.before.label) && pk.after === 8 && !pk.cats, pk);
   await run(async () => { [...document.querySelectorAll('#team button')].find((b) => /Onix/.test(b.textContent)).click(); await new Promise((r) => setTimeout(r, 1200)); });
   s = await state();
@@ -111,6 +122,20 @@ try {
   await run(async () => { document.querySelector('#tabWalk').click(); await new Promise((r) => setTimeout(r, 1500)); });
   const pp = await run(() => [...document.querySelectorAll('#walk .walk-list li')].map((l) => l.textContent).filter((t) => /Power Plant/.test(t) && /Voltorb/.test(t)));
   check('Detonado (Red/Blue): "Voltorb … ×6" numa linha só', pp.length === 1 && / ×6$/.test(pp[0]), pp);
+
+  // 3c. Emerald (0.78.0): "Roxanne 1" … "Roxanne 5" — só a 1ª de cada líder em Líderes, as outras em Revanches;
+  // aba Pokémon por tipo sem filtro mostra só a orientação (não os 380 Pokémon)
+  await go('#/jogo/emerald', 3500);
+  const em = await run(async () => {
+    const main = document.querySelectorAll('#trainerPick > .tgrid .tchip').length, again = document.querySelectorAll('#trainerPick details .tchip').length;
+    document.querySelector('#tabTypes').click(); await new Promise((r) => setTimeout(r, 800));
+    const cards = document.querySelectorAll('#typesOut .mon-card').length, all = !!document.querySelector('#typesOut [data-types-all]');
+    document.querySelector('#typesOut [data-types-all]')?.click(); await new Promise((r) => setTimeout(r, 800));
+    const after = document.querySelectorAll('#typesOut .mon-card').length;
+    document.querySelector('#tabRec').click();
+    return { main, again, cards, all, after };
+  });
+  check('Emerald: 8 líderes em Líderes e 32 revanches; Pokémon por tipo só lista ao pedir', em.main === 8 && em.again === 32 && em.cards === 0 && em.all && em.after > 100, em);
 
   // 4. Scarlet: 1ª luta da Nemona (nv 5) — sem Armarouge (item citado no detonado limita a evolução)
   await go('#/jogo/scarlet-violet', 4000);
@@ -144,25 +169,25 @@ try {
 
   // 5d. busca por tipo na tela inicial (0.71.0): link, Pokémon do jogo, nome de Pokémon, enfrentar/usar, aviso da Gen 1
   await go('#/?tipo=water,flying&jogo=firered-leafgreen', 4500);
-  const tw = await run(() => ({ mode: document.querySelector('#searchMode [aria-checked=true]')?.dataset.mode, best: document.querySelector('.tq-best')?.textContent ?? '', mons: [...document.querySelectorAll('#tqMons .mon-card .nm')].map((x) => x.textContent), hash: location.hash }));
-  check('tipo Água/Voador no FireRed: modo Tipo, melhor tipo electric ×4 e Jolteon na lista', tw.mode === 'tipo' && /electric.*acerta ×4/.test(tw.best) && tw.mons.includes('Jolteon'), tw);
+  const tw = await run(() => ({ open: !document.querySelector('#homeType').hidden, best: document.querySelector('.tq-best')?.textContent ?? '', mons: [...document.querySelectorAll('#tqMons .mon-card .nm')].map((x) => x.textContent), hash: location.hash }));
+  check('tipo Água/Voador no FireRed: painel de tipos aberto, melhor tipo electric ×4 e Jolteon na lista', tw.open && /electric.*acerta ×4/.test(tw.best) && tw.mons.includes('Jolteon'), tw);
   await shot('tipo-firered');
   await go('#/', 2500);
   const typed = await run(async () => {
     const pause = (ms) => new Promise((r) => setTimeout(r, ms));
-    document.querySelector('#searchMode [data-mode=tipo]').click(); await pause(800);
-    const input = document.querySelector('#homeSearch'); input.value = 'gyara'; input.dispatchEvent(new Event('input')); await pause(800);
+    // 0.78.0: busca única — "gyara" → Gyarados (onde capturar) → "O que vence Gyarados? (tipos)" abre o painel de tipos
+    const input = document.querySelector('#homeSearch'); input.value = 'gyara'; input.dispatchEvent(new Event('input')); await pause(1200);
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await pause(600);
+    document.querySelector('#homeDex [data-types-of]').click(); await pause(800);
     const head = document.querySelector('.tq-head')?.textContent ?? '';
     document.querySelector('#tqSide [data-side=usar]').click(); await pause(400);
     return { head, hash: location.hash, best: document.querySelector('.tq-best')?.textContent ?? '' };
   });
-  check('busca "gyara" no modo Tipo → Gyarados water/flying; "Vou usar" fica no link', /Gyarados.*water.*flying/.test(typed.head) && /tipo=gyarados/.test(typed.hash) && /lado=usar/.test(typed.hash) && /Bons alvos/.test(typed.best), typed);
+  check('busca "gyara" → Gyarados → tipos dele: water/flying water/flying; "Vou usar" fica no link', /Gyarados.*water.*flying/.test(typed.head) && /tipo=gyarados/.test(typed.hash) && /lado=usar/.test(typed.hash) && /Bons alvos/.test(typed.best), typed);
   // busca de Pokémon na tela inicial → jogo: abre o Onde capturar E deixa o Pokémon de oponente na Recomendação (0.71.1)
   await go('#/', 2500);
   const homeLink = await run(async () => {
     const pause = (ms) => new Promise((r) => setTimeout(r, ms));
-    document.querySelector('#searchMode [data-mode=pokemon]').click(); await pause(800); // a página ainda está no modo Tipo
     const input = document.querySelector('#homeSearch'); input.value = 'gyarados'; input.dispatchEvent(new Event('input')); await pause(1200);
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await pause(400);
     return [...document.querySelectorAll('#homeDex a')].find((a) => /Emerald/.test(a.textContent))?.getAttribute('href') ?? '';
@@ -296,9 +321,9 @@ try {
   const idle = await run(async () => {
     const real = Date.now; Date.now = () => real() + 4 * 3600e3;
     window.dispatchEvent(new Event('focus')); await new Promise((r) => setTimeout(r, 800)); Date.now = real;
-    return { hash: location.hash, mode: document.querySelector('#searchMode [aria-checked=true]')?.dataset.mode, panel: document.querySelector('#homeType').hidden };
+    return { hash: location.hash, panel: document.querySelector('#homeType').hidden };
   });
-  check('parado 4 h com o app aberto: busca por tipo volta ao começo', idle.hash === '#/' && idle.mode === 'pokemon' && idle.panel, idle);
+  check('parado 4 h com o app aberto: busca por tipo volta ao começo', idle.hash === '#/' && idle.panel, idle);
 
   // 6. celular: sem rolagem lateral na tela do jogo (e na busca por tipo)
   await viewport(true);

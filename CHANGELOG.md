@@ -2,6 +2,36 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.78.0] — 2026-11-17
+
+> Uma busca só na tela inicial (Pokémon, jogo, líder ou tipo). "Como funciona" aparece na 1ª visita. O inicial e o Meu time ficam recolhidos, e no Emerald cada líder aparece uma vez só.
+
+### Mudado (decisões do usuário)
+- **Busca única** na tela inicial: o seletor Pokémon | Líder ou jogo | Tipo saiu — os resultados misturam tipos, jogos,
+  lutas e Pokémon. Escolher um tipo abre a busca por tipo; escolher um Pokémon mostra onde capturar, com o link "O que vence
+  … ? (tipos)". O link **Tabela de tipos** abre a busca por tipo vazia, e o painel ganhou "fechar". Os links antigos
+  (`#/?capturar=`, `#/?tipo=`) continuam funcionando.
+- **Como funciona** virou um aviso que abre na 1ª visita à tela inicial, com os 3 passos e os números do app. **Entendi**
+  guarda neste navegador; o ✕ só fecha. O link "Como funciona?" abaixo da busca abre de novo. Saiu o bloco do fim da tela.
+- **Meu time** na tela inicial: sempre recolhido; a linha diz quais jogos têm time guardado ("FireRed / LeafGreen (2) ·
+  Emerald (3)").
+- **Seu inicial** recolhe numa linha ("Seu inicial: não informado · trocar") quando o oponente escolhido não é o rival.
+
+### Mudado (revisão das outras telas)
+- **Pokémon por tipo**: sem tipo nem nome, mostra só a orientação e "ver todos" (antes listava todos os Pokémon do jogo —
+  ~6.000 px no celular).
+- **Novidades**: as 5 versões mais novas; as outras em "Versões anteriores".
+- **Detonado**: só a busca no topo; o crédito do detonado foi para o fim.
+- **Meu time**: Pokémon e nível na mesma linha (o cartão ficou mais baixo no celular).
+- **Battle Subway**: "Calcular contra: Todos os N conjuntos"; a explicação longa ficou em "Como é calculado".
+- **Progresso**: a opção vazia virou "não sei (usa o nível)" (o texto antigo era cortado no celular).
+
+### Corrigido
+- **Emerald**: a aba Líderes mostrava 40 lutas ("Roxanne 1" … "Roxanne 5" de cada líder). Agora são 8, e as outras 32 ficam
+  em Revanches; a contagem da aba também não soma as revanches.
+- Teste da tela: verificações novas (Como funciona, inicial recolhido, Líderes do Emerald, Pokémon por tipo); as que usavam o
+  seletor de modo da busca passaram a usar a busca única.
+
 ## [0.77.0] — 2026-11-17
 
 > Telas mais simples: a escolha do jogo aparece logo no começo, os líderes já aparecem ao abrir o jogo, e depois de escolher o oponente a lista some e as sugestões ficam logo abaixo. Nível e filtros ficam guardados num botão.

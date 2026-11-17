@@ -1905,10 +1905,12 @@ test('busca de Pokémon da tela inicial leva o Pokémon também para a Recomenda
   assert.ok(app.includes(`?pokemon=' + tq.from + '">ver a recomendação contra`));
 });
 
-test('tela inicial: busca de Pokémon (padrão) com seletor para líder/jogo; índice de jogos onde obter', () => {
+test('tela inicial: uma busca só (Pokémon, jogo, líder e tipo); índice de jogos onde obter', () => {
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
-  assert.match(html, /data-mode="pokemon" aria-checked="true"/); // Pokémon é o padrão
-  assert.match(html, /data-mode="lider" aria-checked="false"/); // líderes continuam buscáveis
+  // 0.78.0 (decisão do usuário): o seletor Pokémon | Líder ou jogo | Tipo saiu — os 3 continuam na mesma lista de resultados
+  assert.doesNotMatch(html, /id="searchMode"/);
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.match(app, /typeResults\(q\)\.filter\(\(x\) => x\.kind === 'tipo'\)[\s\S]{0,80}pokemonResults\(q\)[\s\S]{0,80}games\.filter/);
   assert.match(html, /id="homeDex"/);
   const idx = load('pokemon-games.json');
   // Pikachu: Gen 3 no Emerald e no FRLG; não aparece na Gen 5 (BW/B2W2)
@@ -3172,7 +3174,7 @@ test('0.71.0: busca por tipo — melhor tipo nos dois sentidos, diferenças entr
   // tela: modo "Tipo" na busca, Enfrentar/Usar, filtros, link #/?tipo= e o reset de 3 h (decisões do usuário, 2026-11-10)
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
-  assert.match(html, /data-mode="tipo"/);
+  assert.match(html, /id="openTypes"/); // 0.78.0: sem o modo "Tipo"; o painel abre pelo link "Tabela de tipos" ou ao buscar um tipo
   assert.match(app, /const IDLE_RESET_MS = 3 \* 60 \* 60 \* 1000;/);
   assert.match(app, /if \(r\.params\.tipo\) openTypeSearch\(r\.params\);/);
 });
@@ -3314,4 +3316,23 @@ test('regressão (0.77.0): aba de categoria de oponente não fecha ao tocar de n
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.ok(app.includes('trainerCat = cats[0].g'));
   assert.ok(!app.includes('trainerCat = trainerCat === b.dataset.cat ? null'));
+});
+
+test('regressão (0.78.0): Emerald — "Roxanne 1" … "Roxanne 5" não são 5 lutas principais em Líderes', () => {
+  // Erro: o Emerald (decomp) rotula os líderes "Roxanne 1" … "Roxanne 5" sem marcar revanche; a chave que separa as
+  // revanches usava o rótulo inteiro, então as 40 lutas apareciam juntas em Líderes. Agora o número final sai da chave:
+  // a de menor nível é a luta, as outras vão para "Revanches". Confirmado no teste da tela (8 + 32).
+  const em = load('emerald-trainers.json').trainers.filter((t) => t.group === 'Líderes de ginásio');
+  assert.equal(em.length, 40);
+  assert.ok(em.some((t) => t.label === 'Roxanne 2' && !t.rematch)); // o dado continua sem a marca: quem resolve é a tela
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.ok(app.includes(String.raw`const k = t.label.replace(/\s+\d+$/, '') + '|'`));
+});
+
+test('0.78.0: decisões do usuário — Meu time sempre recolhido, inicial recolhido fora do rival, "Como funciona" na 1ª visita', () => {
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.ok(app.includes('homeTeamOpen = false; // sempre recolhido'));
+  assert.ok(app.includes("t && t.group !== 'Rival' && !t.forStarter && !starterOpen"));
+  assert.ok(app.includes("const HOW_KEY = 'poketact:como-funciona';"));
+  assert.match(app, /try \{ localStorage\.setItem\(HOW_KEY, '1'\); \} catch \{\}/);
 });
