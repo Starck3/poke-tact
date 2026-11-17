@@ -333,9 +333,11 @@ const savedSets = () => { try { return JSON.parse(localStorage.getItem(LEARN_KEY
 const saveSet = (name, entry) => { try { const all = savedSets(); if (entry) all[name] = entry; else delete all[name]; localStorage.setItem(LEARN_KEY(), JSON.stringify(all)); } catch {} };
 // Meu time (0.74.0): até 6 Pokémon com nível e golpes, guardados no navegador por jogo — [{ species, level, moves, estimated }]
 let learnSlot = -1; // membro do time aberto na aba Golpes (dois do mesmo Pokémon: o chip escolhido)
-const TEAM_KEY = () => `poketact:time:${currentGame}`;
-const loadTeam = () => { try { const t = JSON.parse(localStorage.getItem(TEAM_KEY()) ?? '[]'); return Array.isArray(t) ? t.filter((m) => m && data.pokemon.some((p) => p.name === m.species)) : []; } catch { return []; } };
-const saveTeam = (team) => { try { localStorage.setItem(TEAM_KEY(), JSON.stringify(team.slice(0, 6))); } catch {} };
+// readTeam/writeTeam valem para qualquer jogo (a tela inicial edita o time sem abrir o jogo — 0.75.0)
+const readTeam = (gameId, d) => { try { const t = JSON.parse(localStorage.getItem(`poketact:time:${gameId}`) ?? '[]'); return Array.isArray(t) ? t.filter((m) => m && d.pokemon.some((p) => p.name === m.species)) : []; } catch { return []; } };
+const writeTeam = (gameId, team) => { try { localStorage.setItem(`poketact:time:${gameId}`, JSON.stringify(team.slice(0, 6))); } catch {} };
+const loadTeam = () => readTeam(currentGame, data);
+const saveTeam = (team) => writeTeam(currentGame, team);
 const teamSlotOf = (mon, team = loadTeam()) => (team[learnSlot]?.species === mon.name ? learnSlot : team.findIndex((t) => t.species === mon.name));
 // grava golpes/nível: no membro do time quando ele está no time; senão, no guardado por Pokémon (0.73.0)
 function writeSaved(mon, entry) {
@@ -516,60 +518,106 @@ function openTeamMoves(i) {
   $('movesQ').value = humanize(m.species);
   if ($('moves').hidden) showTab('moves'); else renderMoves();
 }
+// aba Meu time do jogo aberto
 function renderMyTeam() {
-  const box = $('teamOut');
-  if (!box || !data) return;
-  const team = loadTeam();
-  const map = moveByLabel();
+  if (!data) return;
+  teamEditor($('teamOut'), { gameId: currentGame, d: data, label: currentGameLabel(), level: Number($('level').value) || 5, onLearn: openTeamMoves,
+    intro: 'Na aba <strong>Golpes</strong>, "Vale a pena aprender?" usa o nível e os golpes daqui, e o botão "Aprendi" atualiza o time.' });
+}
+/**
+ * Editor do time (aba Meu time e tela inicial — 0.75.0): até 6 Pokémon, nível e 4 golpes, guardados por jogo.
+ * ctx: { gameId, d (dados do jogo), label, level (nível sugerido ao adicionar), onLearn(i), intro }
+ * Sem ids dentro (as duas telas podem estar na página ao mesmo tempo): tudo por classe dentro de `box`.
+ */
+function teamEditor(box, ctx) {
+  if (!box) return;
+  const { gameId, d } = ctx;
+  const team = readTeam(gameId, d);
+  const map = new Map(Object.keys(d.moves).flatMap((k) => [[humanize(k).toLowerCase(), k], [k, k]]));
+  const sprite = (mon) => { const id = mon?.spriteId ?? mon?.id; return id ? `<img src="${SPRITES}${id}.png" alt="">` : ''; };
+  const L = (s) => gameId + '-' + s; // datalists com id por jogo
   const card = (m, i) => {
-    const mon = data.pokemon.find((p) => p.name === m.species);
-    return '<div class="team-card" data-i="' + i + '">' + img(mon.id) +
-      '<div class="team-fields"><div class="team-row"><label>Pokémon <input type="text" class="teamSpecies" list="teamMonList" value="' + humanize(m.species) + '" spellcheck="false" autocomplete="off"></label>' +
+    const mon = d.pokemon.find((p) => p.name === m.species);
+    return '<div class="team-card" data-i="' + i + '">' + sprite(mon) +
+      '<div class="team-fields"><div class="team-row"><label>Pokémon <input type="text" class="teamSpecies" list="' + L('teamMonList') + '" value="' + humanize(m.species) + '" spellcheck="false" autocomplete="off"></label>' +
       '<label>Nível <input type="number" class="teamLevel" min="1" max="100" value="' + m.level + '"></label></div>' +
-      '<div class="learn-moves">' + [0, 1, 2, 3].map((k) => '<input type="text" class="teamMove" list="teamMoveList" aria-label="Golpe ' + (k + 1) + ' de ' + humanize(m.species) + '" value="' + (m.moves?.[k] ? humanize(m.moves[k]) : '') + '" spellcheck="false" autocomplete="off">').join('') + '</div>' +
+      '<div class="learn-moves">' + [0, 1, 2, 3].map((k) => '<input type="text" class="teamMove" list="' + L('teamMoveList') + '" aria-label="Golpe ' + (k + 1) + ' de ' + humanize(m.species) + '" value="' + (m.moves?.[k] ? humanize(m.moves[k]) : '') + '" spellcheck="false" autocomplete="off">').join('') + '</div>' +
       (m.estimated ? '<p class="meta" style="margin:0">Golpes estimados pelo nível — corrija se for diferente.</p>' : '') +
       '<div class="learn-actions"><button type="button" class="btn teamLearn">Vale a pena aprender?</button><button type="button" class="linkish teamDel">tirar do time</button></div></div></div>';
   };
-  box.innerHTML = '<p class="meta" style="margin:0">Seu time em ' + currentGameLabel() + ': Pokémon, nível e os golpes de cada um. Fica guardado neste navegador. Ao escolher o Pokémon, os golpes vêm estimados pelo nível — corrija o que for diferente. ' +
-    'Na aba <strong>Golpes</strong>, "Vale a pena aprender?" usa o nível e os golpes daqui, e o botão "Aprendi" atualiza o time.</p>' +
-    (team.length ? '<div class="team-list">' + team.map(card).join('') + '</div>' : '<p>Nenhum Pokémon ainda.</p>') +
-    (team.length < 6 ? '<div class="team-add"><label>Adicionar <input type="text" id="teamNew" list="teamMonList" placeholder="ex.: butterfree" spellcheck="false" autocomplete="off"></label><label>Nível <input type="number" id="teamNewLevel" min="1" max="100" value="' + (Number($('level').value) || 5) + '"></label><button type="button" class="btn" id="teamAddBtn">Adicionar</button></div><p class="warn" id="teamWarn" hidden></p>' : '<p class="meta">Time completo (6).</p>') +
-    '<datalist id="teamMonList">' + data.pokemon.map((p) => '<option value="' + humanize(p.name) + '">').join('') + '</datalist>' +
-    '<datalist id="teamMoveList">' + Object.keys(data.moves).map((k) => '<option value="' + humanize(k) + '">').join('') + '</datalist>';
-  const upd = (i, f) => { const t = loadTeam(); if (!t[i]) return; f(t[i], t); saveTeam(t); };
+  box.innerHTML = '<p class="meta" style="margin:0">Seu time em ' + ctx.label + ': Pokémon, nível e os golpes de cada um. Fica guardado neste navegador. Ao escolher o Pokémon, os golpes vêm estimados pelo nível — corrija o que for diferente. ' + (ctx.intro ?? '') + '</p>' +
+    (team.length ? '<div class="team-list">' + team.map(card).join('') + '</div>' : '<p style="margin:0">Nenhum Pokémon ainda.</p>') +
+    (team.length < 6 ? '<div class="team-add"><label>Adicionar <input type="text" class="teamNew" list="' + L('teamMonList') + '" placeholder="ex.: butterfree" spellcheck="false" autocomplete="off"></label><label>Nível <input type="number" class="teamNewLevel" min="1" max="100" value="' + ctx.level + '"></label><button type="button" class="btn teamAddBtn">Adicionar</button></div><p class="warn teamWarn" hidden></p>' : '<p class="meta">Time completo (6).</p>') +
+    '<datalist id="' + L('teamMonList') + '">' + d.pokemon.map((p) => '<option value="' + humanize(p.name) + '">').join('') + '</datalist>' +
+    '<datalist id="' + L('teamMoveList') + '">' + Object.keys(d.moves).map((k) => '<option value="' + humanize(k) + '">').join('') + '</datalist>';
+  const again = () => teamEditor(box, ctx);
+  const upd = (i, f) => { const t = readTeam(gameId, d); if (!t[i]) return; f(t[i], t); writeTeam(gameId, t); };
   for (const c of box.querySelectorAll('.team-card')) {
     const i = Number(c.dataset.i);
     c.querySelector('.teamSpecies').addEventListener('change', (e) => {
-      const mon = findOpponent(data.pokemon, e.target.value.trim());
-      if (!mon) { e.target.value = humanize(loadTeam()[i].species); return; }
+      const mon = findOpponent(d.pokemon, e.target.value.trim());
+      if (!mon) { e.target.value = humanize(readTeam(gameId, d)[i].species); return; }
       // evoluiu: troca a espécie e os golpes continuam (só estima se ainda não tinha golpes)
-      upd(i, (m) => { m.species = mon.name; if (!m.moves?.length) { m.moves = estimatedMoveset(data, mon, m.level); m.estimated = true; } });
-      renderMyTeam();
+      upd(i, (m) => { m.species = mon.name; if (!m.moves?.length) { m.moves = estimatedMoveset(d, mon, m.level); m.estimated = true; } });
+      again();
     });
     c.querySelector('.teamLevel').addEventListener('change', (e) => { const lv = Number(e.target.value); if (lv >= 1 && lv <= 100) upd(i, (m) => { m.level = lv; }); });
     for (const el of c.querySelectorAll('.teamMove')) el.addEventListener('change', () => {
       const moves = [...c.querySelectorAll('.teamMove')].map((x) => map.get(x.value.trim().toLowerCase()) ?? null).filter(Boolean);
       upd(i, (m) => { m.moves = moves; m.estimated = false; });
-      renderMyTeam();
+      again();
     });
-    c.querySelector('.teamLearn').addEventListener('click', () => openTeamMoves(i));
-    c.querySelector('.teamDel').addEventListener('click', () => { const t = loadTeam(); t.splice(i, 1); saveTeam(t); learnSlot = -1; renderMyTeam(); });
+    c.querySelector('.teamLearn').addEventListener('click', () => ctx.onLearn(i));
+    c.querySelector('.teamDel').addEventListener('click', () => { const t = readTeam(gameId, d); t.splice(i, 1); writeTeam(gameId, t); learnSlot = -1; again(); });
   }
-  $('teamNew')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); $('teamAddBtn').click(); } });
-  $('teamAddBtn')?.addEventListener('click', () => {
-    const mon = findOpponent(data.pokemon, $('teamNew').value.trim());
+  const q = box.querySelector('.teamNew'), btn = box.querySelector('.teamAddBtn'), warn = box.querySelector('.teamWarn');
+  q?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); btn.click(); } });
+  btn?.addEventListener('click', () => {
+    const mon = findOpponent(d.pokemon, q.value.trim());
     if (!mon) {
-      const q = $('teamNew').value.trim();
-      const w = q && opponentWarning({ pokemon: data.pokemon, pokedex, generation: data.game.generation, gameLabel: currentGameLabel() }, q);
-      $('teamWarn').hidden = false; $('teamWarn').innerHTML = '⚠ ' + (w ? w.text : 'Escreva o nome de um Pokémon deste jogo.');
+      const w = q.value.trim() && opponentWarning({ pokemon: d.pokemon, pokedex, generation: d.game.generation, gameLabel: ctx.label }, q.value.trim());
+      warn.hidden = false; warn.innerHTML = '⚠ ' + (w ? w.text : 'Escreva o nome de um Pokémon deste jogo.');
       return;
     }
-    const level = Math.min(100, Math.max(1, Number($('teamNewLevel').value) || 1));
-    const t = loadTeam();
-    t.push({ species: mon.name, level, moves: estimatedMoveset(data, mon, level), estimated: true });
-    saveTeam(t);
-    renderMyTeam();
+    const level = Math.min(100, Math.max(1, Number(box.querySelector('.teamNewLevel').value) || 1));
+    const t = readTeam(gameId, d);
+    t.push({ species: mon.name, level, moves: estimatedMoveset(d, mon, level), estimated: true });
+    writeTeam(gameId, t);
+    again();
   });
+}
+
+// tela inicial (0.75.0): o time de qualquer jogo, sem abrir o jogo — escolhe o jogo (padrão: o último aberto) e edita;
+// "Vale a pena aprender?" abre o jogo na aba Golpes com esse Pokémon
+let homeTeamGame = null;
+const homeTeamCache = {};
+async function renderHomeTeam() {
+  const box = $('homeTeam');
+  if (!box || !catalog) return;
+  const on = catalog.games.filter((g) => g.status === 'supported');
+  let last = null;
+  try { last = localStorage.getItem('poketact:last'); } catch {}
+  // jogo inicial: o último aberto; senão, o 1º que já tem time guardado
+  const withTeam = on.find((g) => { try { return JSON.parse(localStorage.getItem(`poketact:time:${g.id}`) ?? '[]').length; } catch { return false; } });
+  homeTeamGame ??= (on.find((g) => g.id === last) ?? withTeam)?.id ?? '';
+  box.innerHTML = '<div class="home-team-head"><h2 style="margin:0">Meu time</h2><label class="meta">Jogo <select id="homeTeamGame"><option value="">— escolher —</option>' +
+    groupByGeneration(on).map(([gen, gs]) => '<optgroup label="Geração ' + roman(gen) + '">' + gs.map((g) => '<option value="' + g.id + '"' + (g.id === homeTeamGame ? ' selected' : '') + '>' + g.label + '</option>').join('') + '</optgroup>').join('') +
+    '</select></label></div><div id="homeTeamBody" class="stack"></div>';
+  $('homeTeamGame').addEventListener('change', (e) => { homeTeamGame = e.target.value; renderHomeTeam(); });
+  const body = $('homeTeamBody');
+  if (!homeTeamGame) { body.innerHTML = '<p class="meta" style="margin:0">Escolha o jogo para escrever o seu time: Pokémon, nível e golpes. Depois, veja se vale a pena aprender cada golpe novo.</p>'; return; }
+  const gid = homeTeamGame;
+  if (!homeTeamCache[gid]) {
+    body.innerHTML = '<div class="skel" style="width:60%"></div><div class="skel"></div>';
+    try { homeTeamCache[gid] = await (await fetch(`data/${gid}.json`)).json(); } catch { body.innerHTML = '<p class="warn">Não deu para carregar os dados do jogo.</p>'; return; }
+    if (homeTeamGame !== gid || !$('homeTeamBody')) return;
+  }
+  const g = on.find((x) => x.id === gid);
+  let lv = 5;
+  try { lv = Number(JSON.parse(localStorage.getItem(`poketact:${gid}`) ?? 'null')?.level) || 5; } catch {}
+  teamEditor($('homeTeamBody'), { gameId: gid, d: homeTeamCache[gid], label: g.label, level: lv,
+    intro: '"Vale a pena aprender?" abre o jogo na aba Golpes com o nível e os golpes daqui.',
+    onLearn: (i) => { location.hash = `#/jogo/${gid}?aba=golpes&time=${i}`; } });
 }
 
 // ---------------------------------------------------------------- aba Onde capturar
@@ -1282,6 +1330,7 @@ function renderHome() {
   const used = new Set(games.filter((g) => g.status === 'supported').map(qualityOf));
   $('qualityLegend').innerHTML = Object.entries(QUALITY).filter(([q]) => used.has(q)).map(([, [k, t, tip]]) => `<span>${lozenge(k, t)} <span class="meta">${tip}</span></span>`).join('');
   renderHero();
+  renderHomeTeam();
 }
 
 // ---------------------------------------------------------------- tela inicial: herói, busca, continuar, números
@@ -1681,7 +1730,8 @@ function applyGameParams(p) {
   // o Pokémon do link vale mais que o selecionado antes (selectMon antes de abrir a aba)
   const linkMon = (q) => findOpponent(data.pokemon, q)?.name;
   if (p.aba === 'golpes' && p.pokemon) { selectMon(linkMon(p.pokemon), 'moves'); $('movesQ').value = humanize(p.pokemon); learnFor = null; learnMove = p.aprender ?? null; }
-  if (p.aba === 'golpes') showTab('moves');
+  if (p.aba === 'golpes' && p.time != null && loadTeam()[Number(p.time)]) openTeamMoves(Number(p.time)); // membro do time (tela inicial)
+  else if (p.aba === 'golpes') showTab('moves');
   if (p.aba === 'time') showTab('team');
   if (p.aba === 'tipos') { if (p.tipo && data.types.includes(p.tipo)) typeSel = [p.tipo]; showTab('types'); }
   // ?capturar=pikachu → aba Onde capturar já preenchida
