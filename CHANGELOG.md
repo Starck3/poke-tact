@@ -2,6 +2,24 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.76.0] — 2026-11-17
+
+> A Recomendação agora olha o seu time: diz quem do time que você montou usar contra o oponente, com o nível e os golpes de cada um. As sugestões para capturar continuam embaixo.
+
+### Adicionado
+- **Recomendação com o seu time** (pedido do usuário): card **Seu time** acima das sugestões. Cada Pokémon do time que você
+  montou (tela inicial ou aba Meu time) faz a troca de golpes contra o oponente com o **nível e os golpes dele** — não os
+  que poderia aprender —, com a mesma conta e a mesma ordem das sugestões. No topo: "Use o … do seu time com …" ou "Ninguém
+  do seu time vence", e aí as sugestões viram "Para capturar ou treinar". Sugestão que já está no time ganha o selo.
+- **Contra o time inteiro** de um treinador: quantos Pokémon dele cada membro do seu time vence.
+- **Inicial pelo time**: sem inicial escolhido, se o time tem um inicial do jogo (ou a evolução dele), o app usa esse e não
+  sugere os outros dois (aparece na linha "Calculado com…: inicial: Charmander (do seu time)").
+- Sem time montado: dica para montar.
+
+### Corrigido
+- Troca de golpes com golpe que não faz efeito (Thunder Shock no Onix): dizia "Nocauteia em não nocauteia"; agora "Não
+  nocauteia com Thunder Shock" (e o selo "não nocauteia").
+
 ## [0.75.0] — 2026-11-17
 
 > Agora dá para montar o seu time direto na tela inicial: escolha o jogo e escreva os Pokémon, o nível e os golpes. "Vale a pena aprender?" abre o jogo na aba Golpes com aquele Pokémon.

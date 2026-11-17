@@ -55,3 +55,18 @@ Pedido do usuário: "Queria que a opção de montar o time ficasse na tela inici
 | V8 | Bloco **Meu time** na tela inicial (escolhe o jogo; mesmo editor e dados da aba) + `?aba=golpes&time=<n>` | ✅ 0.75.0 |
 
 Escolha minha: a aba Meu time dentro do jogo **continua** (mesmos dados); se o usuário quiser só na tela inicial, é tirar a aba.
+
+## Continuação — Recomendação com o time montado (0.76.0, 2026-11-17)
+
+Pedido do usuário: "Na aba de recomendação de qual Pokémon devo utilizar, devemos levar em consideração o time montado".
+
+| # | Item | Estado |
+|---|---|---|
+| V9 | Motor: `recommend` devolve `team` (cada membro com nível e golpes dele, mesma troca e pontuação); `recommendTeam` também | ✅ 0.76.0 |
+| V10 | Tela: card "Seu time" acima das sugestões (e no "contra o time inteiro"); selo "já está no seu time"; dica sem time | ✅ 0.76.0 |
+| V11 | Inicial pelo time quando o usuário não escolhe (tira os outros dois iniciais das sugestões) | ✅ 0.76.0 |
+| V12 | Correção: "Nocauteia em não nocauteia" → "Não nocauteia com …" | ✅ 0.76.0 |
+
+Escolhas minhas: o time não usa Mega/Tera/Dynamax/golpe Z além dos cristais (o app não sabe se você usaria); as 3 sugestões
+continuam iguais (só o selo e o título mudam) — o "Nível do seu time" das sugestões continua o campo de cima. Battle Subway
+(conjuntos sorteados) não mostra o card do time.

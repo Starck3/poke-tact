@@ -243,6 +243,22 @@ try {
   const hl = await learnState();
   check('Tela inicial → Vale a pena aprender: abre o FireRed na aba Golpes com o Butterfree do time', /firered-leafgreen/.test(await run(() => location.hash)) && hl.move === 'sleep-powder' && /seu time/.test(hl.label) && hl.cur.join() === 'Harden,Confusion,Poison Powder,Stun Spore', hl);
   await run(() => localStorage.removeItem('poketact:time:firered-leafgreen'));
+  // 0.76.0 Recomendação leva em conta o time montado (pedido do usuário): Onix do Brock e o time inteiro do Brock
+  await run(() => localStorage.setItem('poketact:time:firered-leafgreen', JSON.stringify([
+    { species: 'charmander', level: 14, moves: ['scratch', 'growl', 'ember', 'metal-claw'] },
+    { species: 'butterfree', level: 13, moves: ['harden', 'confusion', 'poison-powder', 'tackle'] },
+    { species: 'pikachu', level: 12, moves: ['thunder-shock', 'growl', 'tail-whip'] }])));
+  await go('#/jogo/firered-leafgreen?treinador=TRAINER_LEADER_BROCK&i=1', 3500);
+  const rt = await run(() => ({ ctx: document.querySelector('#results .ctx')?.textContent ?? '', picks: [...document.querySelectorAll('#results .pick h3')].map((e) => e.textContent), card: document.querySelector('#results .my-team-card')?.textContent ?? '', rows: [...document.querySelectorAll('#results .my-team-row > div > strong:first-child')].map((e) => e.textContent), picksTitle: document.querySelector('#results .picks-title')?.textContent ?? '' }));
+  check('Recomendação (Onix do Brock): card "Seu time" com os 3, nível de cada um, Pikachu por último (Thunder Shock não pega)', rt.rows.length === 3 && rt.rows.at(-1) === 'Pikachu nv 12' && /Seu time/.test(rt.card) && /Não nocauteia com Thunder Shock/.test(rt.card) && !/Nocauteia em não/.test(rt.card) && /Para capturar ou treinar/.test(rt.picksTitle), rt);
+  check('Recomendação: inicial pelo time (Charmander) — sem Bulbasaur nem Squirtle', /inicial: Charmander \(do seu time\)/.test(rt.ctx) && !rt.picks.some((p) => /Bulbasaur|Squirtle/.test(p)), rt);
+  await run(() => { document.querySelector('#tabRec').click(); document.querySelector('#results .my-team-card')?.scrollIntoView(); }); await sleep(500);
+  await shot('firered-recomendacao-time');
+  await run(() => localStorage.removeItem('poketact:time:firered-leafgreen'));
+  await go('#/', 1500);
+  await go('#/jogo/firered-leafgreen?treinador=TRAINER_LEADER_BROCK&i=1', 3500);
+  const rt0 = await run(() => document.querySelector('#results .my-team-card')?.textContent ?? '');
+  check('Recomendação sem time: dica para montar o time', /Monte o seu time/.test(rt0), rt0);
   await go('#/?tipo=gyarados&jogo=emerald', 4000);
   const fight = await run(() => document.querySelector('.tq-head a')?.getAttribute('href') ?? '');
   check('tipo: "vou enfrentar Gyarados" no Emerald tem link para a recomendação contra ele', fight === '#/jogo/emerald?pokemon=gyarados', fight);

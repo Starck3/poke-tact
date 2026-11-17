@@ -3261,3 +3261,37 @@ test('0.74.0: app.mjs sem duas funções com o mesmo nome (a aba Meu time criou 
   assert.ok(!/id="teamNew"|id="teamAddBtn"/.test(app));
   assert.ok(app.includes('function writeSaved(mon, entry)'));
 });
+
+test('0.76.0: Recomendação com o time montado — nível e golpes de cada um (pedido do usuário)', async () => {
+  const { recommend, recommendTeam } = await import('../public/engine.mjs');
+  const d = load('firered-leafgreen.json'), acq = load('firered-leafgreen-acquisition.json');
+  const brock = load('firered-leafgreen-trainers.json').trainers.find((t) => t.key === 'TRAINER_LEADER_BROCK');
+  const myTeam = [
+    { species: 'charmander', level: 14, moves: ['scratch', 'growl', 'ember', 'metal-claw'] },
+    { species: 'butterfree', level: 13, moves: ['harden', 'confusion', 'poison-powder', 'tackle'] },
+    { species: 'pikachu', level: 12, moves: ['thunder-shock', 'growl', 'tail-whip'] },
+    { species: 'squirtle', level: 10, moves: [] },
+  ];
+  const opts = { level: 14, version: 'firered', onlyObtainable: true, fullyEvolvedOnly: false, includeLegendary: false, acq, stage: 0, myTeam };
+  const onix = d.pokemon.find((p) => p.name === 'onix');
+  const r = recommend(d, onix, { ...opts, oppMoves: brock.party[1].moves, oppLevel: brock.party[1].level });
+  // usa os golpes DELE: o Charmander com Metal Claw (não o que poderia aprender); o Pikachu só tem Thunder Shock (×0 no Onix)
+  assert.equal(r.team.length, 4);
+  assert.equal(r.team.find((t) => t.mon.name === 'charmander').move.name, 'metal-claw');
+  assert.equal(r.team.find((t) => t.mon.name === 'charmander').level, 14);
+  const pk = r.team.find((t) => t.mon.name === 'pikachu');
+  assert.equal(pk.duel.myTurns, Infinity); assert.equal(pk.duel.win, false);
+  assert.equal(r.team.at(-1).mon.name, 'squirtle'); // sem golpes no time: último, sem troca
+  assert.equal(r.team.at(-1).duel, null);
+  // sem time: lista vazia (e as sugestões não mudam)
+  const r0 = recommend(d, onix, { ...opts, myTeam: undefined, oppMoves: brock.party[1].moves, oppLevel: brock.party[1].level });
+  assert.deepEqual(r0.team, []);
+  assert.deepEqual(r0.picks.map((p) => p.mon.name), r.picks.map((p) => p.mon.name));
+  // contra o time inteiro: vitórias de cada membro
+  const rt = recommendTeam(d, brock.party, opts);
+  assert.equal(rt.team.length, 4);
+  assert.ok(rt.team.every((t) => t.total === brock.party.length && t.vs.length === brock.party.length));
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  assert.ok(app.includes("myTeam: loadTeam()") && app.includes("$('starter').value || teamStarter()"));
+  assert.ok(app.includes("'Não nocauteia com '")); // não sai mais "Nocauteia em não nocauteia"
+});

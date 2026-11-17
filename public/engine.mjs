@@ -474,7 +474,23 @@ export function recommend(data, opp, opts) {
     picks.push(s);
     if (picks.length === 3) break;
   }
-  return { picks, threats, threatSource, candidates: scored }; // candidates: todos os que passaram nos filtros (R0 mede o motor)
+  // Meu time (0.76.0): cada Pokémon do time que o usuário montou, com o NÍVEL e os GOLPES dele (não os que poderia ter) —
+  // mesma troca de golpes e mesma pontuação das sugestões (sem Mega/Tera/Dynamax: o app não sabe se ele usaria)
+  const team = (opts.myTeam ?? []).map((t, slot) => {
+    const mon = data.pokemon.find((p) => p.name === t.species);
+    if (!mon) return null;
+    const level = Math.max(1, Math.min(100, Number(t.level) || opts.level || 1));
+    const moves = (t.moves ?? []).filter((n) => data.moves[n]);
+    const me = { mon, level, stats: badgeBoost(gen, statsAt(gen, mon, level), opts.acq?.progress, useStage ? opts.stage : null), ...(zTypes && { zTypes }), ...(data.game.id === 'legends-arceus' && { actionOrder: true }) };
+    const d = duel(data, gen, me, oppSide, moves, oppMoveNames);
+    const incoming = threats.map((ty) => ({ type: ty, mult: effectiveness(data, ty, mon) }));
+    if (!d.move) return { slot, mon, level, moves, duel: null, move: null, incoming, score: -1000 };
+    const mv = data.moves[d.move];
+    const move = { name: d.move, ...mv, eff: d.myDmg.typeMul, stab: mon.types.includes(mv.type) ? 1.5 : 1, turns: d.myTurns };
+    const score = ((d.win ? 100 : 0) + Math.min(d.margin, 6) * 10 - Math.min(d.myTurns, 20) + (d.faster === 1 ? 2 : 0)) * abilityFactor(mon);
+    return { slot, mon, level, moves, duel: d, move, incoming, score };
+  }).filter(Boolean).sort((a, b) => b.score - a.score || a.slot - b.slot);
+  return { picks, threats, threatSource, candidates: scored, team }; // candidates: todos os que passaram nos filtros (R0 mede o motor)
 }
 
 /**
@@ -500,9 +516,14 @@ export const battleForm = (mon, p) => { const m = teraForm(megaForm(mon, p?.mega
 
 export function recommendTeam(data, party, opts) {
   const byMon = new Map();
+  const mine = new Map(); // Meu time (0.76.0): cada membro contra cada Pokémon do time do treinador
   party.forEach((p, i) => {
     const opp = battleForm(data.pokemon.find((x) => x.name === p.species), p);
     const r = recommend(data, opp, { ...opts, oppMoves: p.moves, oppLevel: p.level, oppDvs: p.dvs, oppIv: p.iv });
+    for (const t of r.team) {
+      const e = mine.get(t.slot) ?? mine.set(t.slot, { slot: t.slot, mon: t.mon, level: t.level, vs: [] }).get(t.slot);
+      e.vs[i] = { opp: p.species, level: p.level, duel: t.duel, move: t.move };
+    }
     for (const c of r.candidates) {
       const e = byMon.get(c.mon.name) ?? byMon.set(c.mon.name, { mon: c.mon, reach: c.reach, stageNeeded: c.stageNeeded, unreliable: c.unreliable, vs: [] }).get(c.mon.name);
       e.vs[i] = { opp: p.species, level: p.level, duel: c.duel, move: c.move };
@@ -516,7 +537,12 @@ export function recommendTeam(data, party, opts) {
   }).sort((a, b) => b.score - a.score);
   const picks = [], fams = new Set();
   for (const s of scored) { const f = family(data, s.mon); if (fams.has(f)) continue; fams.add(f); picks.push(s); if (picks.length === 3) break; }
-  return { picks };
+  const team = [...mine.values()].map((e) => {
+    const vs = party.map((p, i) => e.vs[i] ?? { opp: p.species, level: p.level, duel: null, move: null });
+    const wins = vs.filter((x) => x.duel?.win).length;
+    return { ...e, vs, wins, total: party.length, score: wins * 100 + vs.reduce((a, x) => a + Math.min(x.duel?.margin ?? 0, 6), 0) };
+  }).sort((a, b) => b.score - a.score || a.slot - b.slot);
+  return { picks, team };
 }
 
 /**
