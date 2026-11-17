@@ -3204,3 +3204,47 @@ test('aba Golpes (0.72.0): golpes mais fortes por nível, com TMs pelo progresso
   assert.ok(app.includes('typesVs = selMon;'));
   assert.ok(app.includes('Object.keys(o).length ? o : null'));
 });
+
+test('0.73.0: "Vale a pena aprender?" — Butterfree nv 15 no FireRed e o Sleep Powder (pedido do usuário)', async () => {
+  const { estimatedMoveset, moveWorth, moveEffect, statusWorksOn } = await import('../public/engine.mjs');
+  const E = load('move-effects.json');
+  const d = load('firered-leafgreen.json');
+  const m = (data, n) => data.pokemon.find((p) => p.name === n);
+  // efeitos por geração, do Showdown: Growth na Gen 1 sobe Especial; da Gen 5 em diante, Ataque e Atq. Esp.
+  assert.deepEqual(moveEffect(E, 3, 'sleep-powder'), { kind: 'status', status: 'slp', powder: true });
+  assert.deepEqual(moveEffect(E, 1, 'growth').boosts, { spa: 1, spd: 1 });
+  assert.deepEqual(moveEffect(E, 9, 'growth').boosts, { atk: 1, spa: 1 });
+  assert.equal(moveEffect(E, 3, 'tackle'), null);
+  // todo golpe de status de todos os jogos tem efeito no arquivo
+  for (const f of readdirSync(new URL('../public/data/', import.meta.url)).filter((x) => /^[a-z0-9-]+\.json$/.test(x))) {
+    const j = load(f);
+    if (!j.moves || !j.game) continue;
+    for (const [n, mv] of Object.entries(j.moves)) if (mv.category === 'status') assert.ok(moveEffect(E, j.game.generation, n), `${f}: ${n} sem efeito`);
+  }
+  // golpes de agora pela linha evolutiva: Caterpie (Tackle, String Shot) → Metapod nv 7 (Harden) → Butterfree nv 10…
+  const bf = m(d, 'butterfree');
+  const cur = estimatedMoveset(d, bf, 15, { skip: 'sleep-powder' });
+  assert.deepEqual(cur, ['harden', 'confusion', 'poison-powder', 'stun-spore']);
+  // vale: sono é o melhor problema de status; os outros dois repetem (um por vez no alvo); esquece um golpe de nota baixa
+  const r = moveWorth(d, E, bf, 'sleep-powder', { current: cur });
+  assert.equal(r.verdict, 'learn');
+  assert.ok(['poison-powder', 'harden'].includes(r.forget), r.forget);
+  assert.ok(r.rows.find((x) => x.name === 'sleep-powder').note > 2.5); // 75% × Compound Eyes 1,3
+  assert.match(r.rows.find((x) => x.name === 'stun-spore').why, /um problema de status por vez/);
+  // com espaço: aprende sem esquecer
+  assert.equal(moveWorth(d, E, bf, 'sleep-powder', { current: ['confusion'] }).verdict, 'room');
+  // golpe pior que os 4: não vale (String Shot contra 4 golpes bons)
+  assert.equal(moveWorth(d, E, bf, 'string-shot', { current: ['psychic', 'sleep-powder', 'giga-drain', 'silver-wind'] }).verdict, 'skip');
+  // regras do jogo de quem não pega: Grama e pó só da Gen 6; Elétrico e paralisia só da Gen 6; Terra e Thunder Wave sempre
+  const sv = load('scarlet-violet.json');
+  assert.equal(statusWorksOn(d, 3, 'sleep-powder', moveEffect(E, 3, 'sleep-powder'), m(d, 'oddish')).ok, true);
+  assert.equal(statusWorksOn(sv, 9, 'sleep-powder', moveEffect(E, 9, 'sleep-powder'), m(sv, 'oddish')).ok, false);
+  assert.equal(statusWorksOn(d, 3, 'thunder-wave', moveEffect(E, 3, 'thunder-wave'), m(d, 'geodude')).ok, false);
+  assert.equal(statusWorksOn(d, 3, 'stun-spore', moveEffect(E, 3, 'stun-spore'), m(d, 'pikachu')).ok, true);
+  assert.equal(statusWorksOn(sv, 9, 'stun-spore', moveEffect(E, 9, 'stun-spore'), m(sv, 'pikachu')).ok, false);
+  assert.equal(statusWorksOn(d, 3, 'hypnosis', moveEffect(E, 3, 'hypnosis'), m(d, 'hypno')).ok, false); // Gen 3: Hypno só tem Insomnia
+  assert.equal(statusWorksOn(d, 3, 'hypnosis', moveEffect(E, 3, 'hypnosis'), m(d, 'delibird')).ok, 'maybe'); // Vital Spirit ou Hustle
+  // próximas lutas: Sabrina (FireRed, 4 insígnias) — conta em quem funciona
+  const cov = moveWorth(d, E, bf, 'sleep-powder', { current: cur, opponents: [{ species: 'kadabra' }, { species: 'mr-mime' }, { species: 'venomoth' }, { species: 'alakazam' }] }).coverage;
+  assert.deepEqual([cov.total, cov.ok], [4, 4]);
+});

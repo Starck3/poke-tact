@@ -9,6 +9,8 @@ import { existsSync } from 'node:fs';
 
 export const SHOWDOWN_COMMIT = '7244fe8e28fa8bc4d0809ae30d183c608b62bb2b';
 export const SHOWDOWN_FILES = ['data/moves.ts', ...[8, 7, 6, 5, 4].map((g) => `data/mods/gen${g}/moves.ts`), 'sim/dex-moves.ts', 'sim/battle-actions.ts', 'data/conditions.ts']; // dex-moves: poder dos golpes Z e Max; battle-actions: STAB do Terastal; conditions: vida do Dynamax
+// efeito dos golpes de status nas Gens 1–3 (build-move-effects.mjs, 0.73.0); fora de SHOWDOWN_FILES para o crosscheck não mudar
+export const SHOWDOWN_OLD_GEN_FILES = [3, 2, 1].map((g) => `data/mods/gen${g}/moves.ts`);
 const DIR = new URL(`../data-sources/showdown/${SHOWDOWN_COMMIT}/`, import.meta.url);
 const UA = 'poke-tact-validation/0.1 (personal project; slow, cached)';
 
@@ -17,7 +19,7 @@ if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}` || proc
   const manifestFile = new URL('manifest.json', DIR);
   const manifest = existsSync(manifestFile) ? JSON.parse(await readFile(manifestFile, 'utf8')) : {};
   let last = 0;
-  for (const f of SHOWDOWN_FILES) {
+  for (const f of [...SHOWDOWN_FILES, ...SHOWDOWN_OLD_GEN_FILES]) {
     const file = new URL(f.replace(/\//g, '__'), DIR);
     if (existsSync(file)) { console.log(`já em cache: ${f}`); continue; }
     const wait = last + 5000 - Date.now();

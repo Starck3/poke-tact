@@ -140,6 +140,213 @@ export function strongestMovesByLevel(data, mon, { machineSources = null, tutorS
   return { start, rows };
 }
 
+// ---------------------------------------------------------------- "Vale a pena aprender?" (aba Golpes, 0.73.0)
+export const moveId = (name) => String(name).replace(/[^a-z0-9]/g, '');
+/** Efeito do golpe de status na geração (public/data/move-effects.json, do Showdown) ou null (golpe de dano / sem dado). */
+export function moveEffect(effects, gen, name) {
+  const r = effects?.moves?.[moveId(name)];
+  if (!r) return null;
+  let fx = null;
+  for (const [g, f] of r) if (g <= gen) fx = f;
+  return fx;
+}
+
+// nível em que a espécie evoluiu (só evolução por nível; pedra/troca/amizade: não dá para saber → null)
+const evoLevel = (m) => (m?.evo && /^LEVEL/.test(m.evo.kind) && typeof m.evo.param === 'number' ? m.evo.param : null);
+/**
+ * Os 4 golpes que o Pokémon provavelmente tem no nível dado, contando a linha evolutiva: o que a forma anterior aprendeu
+ * até evoluir + o que esta forma aprende do nível da evolução em diante (a regra do jogo ao subir de nível: golpe já
+ * conhecido é ignorado; com 4, o mais antigo sai). Só level-up — TM e tutor o app não tem como saber (o usuário corrige).
+ * skip: golpe a ignorar (o golpe novo que ele está querendo aprender agora).
+ */
+export function estimatedMoveset(data, mon, level, { skip = null } = {}) {
+  const byId = new Map(data.pokemon.map((p) => [p.id, p]));
+  const chain = [mon];
+  while (chain[0].evolvesFrom && byId.has(chain[0].evolvesFrom) && chain.length < 4) chain.unshift(byId.get(chain[0].evolvesFrom));
+  const moves = [];
+  for (let i = 0; i < chain.length; i++) {
+    const m = chain[i];
+    // de quando esta forma passou a existir (nível da evolução) até evoluir de novo (ou até o nível atual)
+    const lo = i === 0 ? -Infinity : evoLevel(m) ?? level;
+    const hi = i === chain.length - 1 ? level : Math.min(level, evoLevel(chain[i + 1]) ?? level);
+    const all = m.learnset.filter((l) => l.method === 'level-up');
+    const stop = m.levelUpInGameOrder ? all.findIndex((l) => l.level > hi) : -1;
+    const ups = m.levelUpInGameOrder ? all.slice(0, stop < 0 ? all.length : stop) : all.filter((l) => l.level <= hi).sort((a, b) => a.level - b.level);
+    for (const l of ups) {
+      if (i > 0 && l.level !== 0 && l.level < lo) continue; // nível 0 = golpe aprendido ao evoluir (Gen 7+)
+      if (l.move === skip || moves.includes(l.move)) continue;
+      if (moves.length === 4) moves.shift();
+      moves.push(l.move);
+    }
+  }
+  return moves;
+}
+
+// regras do jogo de quem não pega cada problema de status (tipo e habilidade); Gen = a partir de quando vale
+const STATUS_TYPE_IMMUNE = { par: [['electric', 6]], psn: [['poison', 1], ['steel', 2]], tox: [['poison', 1], ['steel', 2]], brn: [['fire', 1]], frz: [['ice', 1]] };
+const STATUS_ABILITY = {
+  slp: ['insomnia', 'vital-spirit', 'sweet-veil', 'comatose', 'purifying-salt'], par: ['limber', 'comatose', 'purifying-salt'],
+  psn: ['immunity', 'pastel-veil', 'comatose', 'purifying-salt'], tox: ['immunity', 'pastel-veil', 'comatose', 'purifying-salt'],
+  brn: ['water-veil', 'water-bubble', 'thermal-exchange', 'comatose', 'purifying-salt'], frz: ['magma-armor', 'comatose', 'purifying-salt'],
+};
+const VOLATILE_ABILITY = { confusion: ['own-tempo'], attract: ['oblivious'] };
+const DROP_ABILITY = { all: ['clear-body', 'white-smoke', 'full-metal-body'], atk: ['hyper-cutter'], accuracy: ['keen-eye'], def: ['big-pecks'] };
+export const STATUS_PT = { slp: 'sono', par: 'paralisia', psn: 'veneno', tox: 'veneno forte', brn: 'queimadura', frz: 'congelamento' };
+const STAT_PT = { atk: 'Ataque', def: 'Defesa', spa: 'Atq. Esp.', spd: 'Def. Esp.', spe: 'Velocidade', accuracy: 'precisão', evasion: 'evasão' };
+const VOLATILE_PT = { confusion: 'confusão', attract: 'paixão', leechseed: 'drena HP todo turno', reflect: 'barreira (Reflect)', lightscreen: 'barreira (Light Screen)', focusenergy: 'mais golpes críticos' };
+const tPt = (t) => t[0].toUpperCase() + t.slice(1);
+
+/** O que o golpe de status faz, em português (ex.: "causa sono", "sobe Ataque +2"). */
+export function effectText(fx) {
+  if (!fx) return '';
+  const b = (o) => Object.entries(o).map(([k, n]) => `${STAT_PT[k] ?? k} ${n > 0 ? '+' : ''}${n}`).join(', ');
+  if (fx.kind === 'status') return 'causa ' + (STATUS_PT[fx.status] ?? fx.status);
+  if (fx.kind === 'volatile') return VOLATILE_PT[fx.volatile] ?? fx.volatile;
+  if (fx.kind === 'boost') return 'sobe ' + b(fx.boosts);
+  if (fx.kind === 'drop') return 'baixa do alvo ' + b(fx.boosts);
+  if (fx.kind === 'heal') return 'recupera HP';
+  if (fx.kind === 'side') return VOLATILE_PT[fx.side] ?? fx.side;
+  if (fx.kind === 'weather') return 'muda o clima';
+  return 'efeito especial';
+}
+
+/**
+ * O golpe de status pega neste adversário? Regras do jogo: tipo (Elétrico não paralisa da Gen 6 em diante; Grama não pega
+ * pó — Sleep Powder, Stun Spore — da Gen 6 em diante; Thunder Wave não pega em Terra) e habilidade (Insomnia…).
+ * Habilidade: se todas as possíveis da espécie bloqueiam → não pega; se só alguma → "talvez".
+ * → { ok: true | false | 'maybe', why }
+ */
+export function statusWorksOn(data, gen, moveName, fx, opp) {
+  if (!fx || ['boost', 'heal', 'side', 'weather'].includes(fx.kind)) return { ok: true, why: 'golpe no próprio Pokémon' };
+  const mv = data.moves[moveName];
+  if (fx.typeImmune && mv && effectiveness(data, mv.type, opp) === 0) return { ok: false, why: `${opp.types.map(tPt).join('/')} não é afetado por golpe ${tPt(mv.type)}` };
+  if (fx.powder && gen >= 6 && opp.types.includes('grass')) return { ok: false, why: 'Grama não é afetado por pó (Gen 6 em diante)' };
+  const ab = opp.abilities ?? [];
+  const blocks = [...(fx.powder && gen >= 6 ? ['overcoat'] : []), ...(fx.sound ? ['soundproof'] : []), 'good-as-gold', 'magic-bounce'];
+  if (fx.kind === 'status') {
+    const t = (STATUS_TYPE_IMMUNE[fx.status] ?? []).find(([type, g]) => gen >= g && opp.types.includes(type));
+    if (t) return { ok: false, why: `${tPt(t[0])} não pega ${STATUS_PT[fx.status]}` };
+    blocks.push(...(STATUS_ABILITY[fx.status] ?? []));
+  }
+  if (fx.kind === 'volatile') {
+    if (fx.volatile === 'leechseed' && opp.types.includes('grass')) return { ok: false, why: 'Grama não pega Leech Seed' };
+    blocks.push(...(VOLATILE_ABILITY[fx.volatile] ?? []));
+  }
+  if (fx.kind === 'drop') blocks.push(...DROP_ABILITY.all, ...Object.keys(fx.boosts).flatMap((k) => DROP_ABILITY[k] ?? []));
+  const hit = ab.filter((a) => blocks.includes(a));
+  if (hit.length && hit.length === ab.length) return { ok: false, why: `habilidade ${hit.map(humanize).join('/')}` };
+  if (hit.length) return { ok: 'maybe', why: `falha se tiver a habilidade ${hit.map(humanize).join('/')}` };
+  if (fx.volatile === 'attract') return { ok: 'maybe', why: 'só pega no gênero oposto' };
+  return { ok: true, why: '' };
+}
+
+// nota de cada golpe de status (estimativa do app, 0–3): o quanto ajuda numa luta do jogo. Problemas de status que
+// tiram turnos do adversário valem mais; subir status só vale se ele tem golpe de dano da categoria (Ataque → físico).
+const STATUS_VALUE = { slp: 3, frz: 3, par: 2.5, tox: 2, brn: 2, psn: 1.5 };
+const VOLATILE_VALUE = { confusion: 1.5, attract: 1, leechseed: 2, reflect: 1.5, lightscreen: 1.5 };
+const MAJOR = new Set(Object.keys(STATUS_VALUE));
+function statusNote(fx, { physical, special }) {
+  if (!fx) return null;
+  if (fx.kind === 'status') return STATUS_VALUE[fx.status] ?? null;
+  if (fx.kind === 'volatile') return VOLATILE_VALUE[fx.volatile] ?? null;
+  if (fx.kind === 'side') return VOLATILE_VALUE[fx.side] ?? null;
+  if (fx.kind === 'heal') return 2;
+  if (fx.kind === 'boost') {
+    const w = { atk: physical ? 1 : 0, spa: special ? 1 : 0, spe: 0.5, def: 0.5, spd: 0.5, evasion: 1, accuracy: 0.5 };
+    return Math.min(3, Object.entries(fx.boosts).reduce((s, [k, n]) => s + Math.max(0, n) * (w[k] ?? 0), 0));
+  }
+  if (fx.kind === 'drop') {
+    const w = { atk: 0.5, def: 0.5, spa: 0.5, spd: 0.5, spe: 0.5, accuracy: 1, evasion: 0.25 };
+    return Math.min(2, Object.entries(fx.boosts).reduce((s, [k, n]) => s + Math.max(0, -n) * (w[k] ?? 0), 0));
+  }
+  return null;
+}
+
+/**
+ * Vale a pena o Pokémon aprender `newMove`? Compara com os golpes que ele tem (`current`, até 4) e, com `opponents`
+ * (Pokémon das próximas lutas), diz em quantos o golpe novo funciona.
+ * Nota de cada golpe (0–3, estimativa do app — mostrada na tela com o motivo):
+ *   • dano: força como na aba Golpes (poder × ★ × precisão × Ataque/Atq. Esp.), 3 = o mais forte do conjunto; metade se
+ *     outro golpe do mesmo tipo é mais forte; sem golpe de dano nenhum, o conjunto perde 3;
+ *   • status: STATUS_VALUE/VOLATILE_VALUE × precisão (Compound Eyes ×1,3); o alvo só tem um problema de status por vez
+ *     (sono, paralisia, veneno…), então o 2º golpe desse tipo vale 30%; efeito que o app não conhece → sem nota.
+ * Sugestão: dos 5 golpes (4 + o novo), esquecer o que deixa a maior soma de notas; empate → não aprende.
+ * → { full, rows: [{ name, isNew, note, why, ... }], forget, verdict: 'learn'|'skip'|'same'|'room'|'unknown', gain, vs }
+ */
+export function moveWorth(data, effects, mon, newMove, { current = [], opponents = null } = {}) {
+  const gen = data.game.generation;
+  const cur = [...new Set(current.filter((m) => m && m !== newMove && data.moves[m]))].slice(0, 4);
+  const set = [...cur, newMove];
+  const compound = (mon.abilities ?? []).length > 0 && mon.abilities.every((a) => a === 'compound-eyes');
+  const acc = (mv) => (mv.accuracy == null || mv.accuracy === true ? 1 : Math.min(1, (mv.accuracy / 100) * (compound ? 1.3 : 1)));
+  const info = Object.fromEntries(set.map((name) => {
+    const mv = data.moves[name];
+    if (mv.power && mv.category !== 'status') {
+      const half = TWO_TURN_OK.has(name);
+      const atk = mon.stats[mv.category === 'physical' ? 'attack' : 'special-attack'] * (mv.category === 'physical' && only(mon, 'huge-power', 'pure-power') ? 2 : 1);
+      const stab = mon.types.includes(mv.type) ? 1.5 : 1;
+      const tricky = UNRELIABLE_MOVES.has(name) && !half;
+      return [name, { name, damage: true, type: mv.type, category: mv.category, stab, half, tricky, score: tricky ? 0 : mv.power * (half ? 0.5 : 1) * stab * acc(mv) * (atk / 100) }];
+    }
+    const fx = mv.category === 'status' ? moveEffect(effects, gen, name) : null;
+    return [name, { name, damage: false, fx, acc: acc(mv), text: effectText(fx) || (mv.power ? 'poder variável' : '') }];
+  }));
+  const best = Math.max(0, ...set.map((n) => info[n].score ?? 0));
+  // notas dentro de um conjunto (o "repetido" depende de quem fica)
+  const notes = (sub) => {
+    const physical = sub.some((n) => info[n].damage && info[n].category === 'physical' && info[n].score > 0);
+    const special = sub.some((n) => info[n].damage && info[n].category === 'special' && info[n].score > 0);
+    const r = {};
+    for (const n of sub) {
+      const x = info[n];
+      if (x.damage) {
+        if (x.tricky) { r[n] = { note: null, why: 'golpe com custo ou condição (o app não avalia)' }; continue; }
+        const base = best ? (3 * x.score) / best : 0;
+        const stronger = sub.find((o) => o !== n && info[o].damage && info[o].type === x.type && info[o].score > x.score);
+        r[n] = stronger ? { note: base / 2, why: `repete o tipo ${tPt(x.type)} de ${humanize(stronger)}, que é mais forte` } : { note: base, why: `dano ${tPt(x.type)}${x.stab > 1 ? ' ★' : ''}${x.half ? ' (2 turnos ou recarga)' : ''}` };
+      } else {
+        const v = statusNote(x.fx, { physical, special });
+        r[n] = v == null ? { note: null, why: x.fx ? `${x.text} — o app não sabe dar nota a este efeito` : 'o app não sabe dar nota a este golpe' } : { note: v * x.acc, why: x.text + (x.acc < 1 ? ` (acerta ${Math.round(x.acc * 100)}%)` : '') + (x.fx?.kind === 'boost' && v === 0 ? ' — não ajuda: ele não tem golpe de dano dessa categoria' : '') };
+      }
+    }
+    // um problema de status por vez no alvo: fica o de maior nota, os outros valem 30%
+    const major = sub.filter((n) => info[n].fx?.kind === 'status' && MAJOR.has(info[n].fx.status) && r[n].note != null).sort((a, b) => r[b].note - r[a].note || (a === newMove) - (b === newMove));
+    for (const n of major.slice(1)) r[n] = { note: r[n].note * 0.3, why: `${r[n].why} — repetido: o alvo só fica com um problema de status por vez (${humanize(major[0])} já faz isso)` };
+    const vol = {};
+    for (const n of sub.filter((m) => info[m].fx?.kind === 'volatile' && r[m].note != null).sort((a, b) => r[b].note - r[a].note)) {
+      if (vol[info[n].fx.volatile]) r[n] = { note: r[n].note * 0.3, why: `${r[n].why} — repetido: ${humanize(vol[info[n].fx.volatile])} já faz isso` }; else vol[info[n].fx.volatile] = n;
+    }
+    return r;
+  };
+  const total = (sub) => { const r = notes(sub); return sub.reduce((s, n) => s + (r[n].note ?? 0), 0) - (best > 0 && !sub.some((n) => info[n].damage && info[n].score > 0) ? 3 : 0); };
+  const full = notes(set);
+  const rows = set.map((n) => ({ ...info[n], isNew: n === newMove, note: full[n].note, why: full[n].why }));
+  const coverage = opponents ? opponentCoverage(data, gen, newMove, info[newMove], opponents) : null;
+  if (cur.length < 4) return { rows, room: true, verdict: 'room', forget: null, coverage, gen };
+  if (full[newMove].note == null) return { rows, verdict: 'unknown', forget: null, coverage, gen };
+  // esquecer: só golpes com nota (o que o app não sabe avaliar fica); compara a soma do que sobra
+  const options = set.filter((n) => full[n].note != null).map((n) => ({ n, sum: total(set.filter((m) => m !== n)) }));
+  const keep = options.find((o) => o.n === newMove).sum;
+  const top = options.filter((o) => o.n !== newMove).sort((a, b) => b.sum - a.sum || (full[a.n].note ?? 0) - (full[b.n].note ?? 0))[0];
+  const gain = top ? top.sum - keep : 0;
+  const verdict = !top || gain < 0.05 ? 'skip' : gain < 0.5 ? 'same' : 'learn';
+  return { rows, verdict, forget: top?.n ?? null, gain, coverage, gen };
+}
+
+/** Em quantos Pokémon das próximas lutas o golpe funciona. Status: regras de statusWorksOn; dano: a efetividade. */
+export function opponentCoverage(data, gen, name, x, opponents) {
+  const list = [];
+  for (const o of opponents) {
+    const opp = data.pokemon.find((p) => p.name === o.species);
+    if (!opp) continue;
+    if (x.damage) {
+      const eff = effectiveness(data, x.type, opp);
+      list.push({ ...o, ok: eff > 0, eff, why: eff === 0 ? 'imune' : '' });
+    } else list.push({ ...o, ...statusWorksOn(data, gen, name, x.fx, opp) });
+  }
+  return { total: list.length, ok: list.filter((l) => l.ok === true).length, maybe: list.filter((l) => l.ok === 'maybe').length, list };
+}
+
 /**
  * opts: { level, oppMoves?, oppLevel?, version, onlyObtainable, fullyEvolvedOnly, includeLegendary, machines?, acq?, tradeEvolutions?, stage? }
  * starter: inicial escolhido (ex.: 'charmander') — os outros dois iniciais e o vagante errado saem.

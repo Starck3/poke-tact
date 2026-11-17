@@ -347,6 +347,11 @@ Passos novos (`build-game`): `add-pkhex-forms`, `apply-pkhex-machines`, `apply-p
 - **Chefe Mega/Tera (0.27.0)**: `parseModernBattles` já devolve `tags` (mega…) e `notes.tera`; o build-detonado-modern
   precisa levar isso ao time (`mega`, `tera`). Mega X/Y pelo sufixo do nome no detonado. Edição pelo shell trocou `\b` por
   backspace de novo — o teste de caractere de controle pegou; use Edit para regex.
+- **Efeito dos golpes de status (0.73.0, `build-move-effects`)**: os datasets só têm o texto em inglês; `public/data/move-effects.json`
+  (um arquivo para os 22 jogos) vem do `data/moves.ts` do Showdown ← mods gen8…gen1 (os da Gen 1–3 baixados à parte,
+  `SHOWDOWN_OLD_GEN_FILES`). Campos: status, volatileStatus, boosts/self.boosts (alvo pelo `target`), heal, sideCondition,
+  flags powder/sound, `ignoreImmunity: false`. Imunidade a pó (Grama, Overcoat) e Elétrico sem paralisia só da Gen 6 — está no
+  motor (`statusWorksOn`), não no arquivo. Golpe novo de status num jogo novo: o teste exige efeito para todos.
 - **Golpes Z/Max (0.28.0, `apply-zmax-powers`)**: regra do `sim/dex-moves.ts` do Showdown (o script para se a tabela mudar)
   aplicada ao poder do golpe NO JOGO; exceções de `data/moves.ts`. Z-Crystals por frase do detonado com verbo de pegar
   ("pedestal com", "ficar com" também contam). O banco de lutas ficou mais lento (≈ 11 min) com o Z.

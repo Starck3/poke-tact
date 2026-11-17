@@ -1,4 +1,4 @@
-import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, strongestMovesByLevel, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
+import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, strongestMovesByLevel, estimatedMoveset, moveWorth, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 import { matchup, monsFor, chartDiffs, TYPE_PT } from './typechart.mjs';
@@ -97,7 +97,7 @@ async function load(gameId) {
   document.title = g.label + ' — Poke Tact';
   $('version').innerHTML = g.versions.map((v) => '<option value="' + v.id + '">' + v.label + '</option>').join('');
   $('gameInfo').textContent = 'Carregando dados…';
-  walk = null;
+  walk = null; learnFor = null; learnMove = null; // aba Golpes: "Vale a pena aprender?" do jogo novo
   places = null; // fotos dos lugares (aba Onde capturar) — do jogo novo
   typeSel = []; // filtro de tipo da aba Pokémon por tipo
   selMon = null; typesVs = null; walkQ = ''; lastOppSel = null; for (const k in applied) delete applied[k];
@@ -311,10 +311,152 @@ function renderMoves() {
   const head = '<div class="opp">' + img(mon.id) + '<div><strong>#' + (mon.speciesId ?? mon.id) + ' ' + humanize(mon.name) + '</strong><br>' + mon.types.map(typeBadge).join('') +
     '<div class="meta">Ataque ' + mon.stats.attack + ' · Atq. Esp. ' + mon.stats['special-attack'] + '</div></div></div>';
   const rows = r.rows.map((row, i) => '<tr><td class="lv">nv ' + row.level + (i === 0 && r.start > 1 ? '+' : '') + '</td><td>' + (row.moves.length ? row.moves.map(mv).join('') : '<span class="meta">nenhum golpe de dano</span>') + '</td></tr>').join('');
-  out.innerHTML = head + '<p class="meta" style="margin:0">' + ctx + (r.start > 1 ? ' Começa no nv ' + r.start + ', o menor nível em que dá para tê-lo.' : '') + '</p>' +
+  out.innerHTML = head + '<div id="learnBox" class="learn"></div>' + '<p class="meta" style="margin:0">' + ctx + (r.start > 1 ? ' Começa no nv ' + r.start + ', o menor nível em que dá para tê-lo.' : '') + '</p>' +
     '<table class="moves-table"><thead><tr><th>Nível</th><th>Os 4 golpes mais fortes (uma linha a cada mudança)</th></tr></thead><tbody>' + rows + '</tbody></table>' +
     '<p class="meta" style="margin:0">★ mesmo tipo dele (×1,5). Ordem pela força: poder × ★ × precisão × o Ataque ou Atq. Esp. dele, conforme o golpe. ½ = dois turnos ou recarga (conta metade). ' +
     'Ficam de fora golpes de poder variável e os que custam caro (Explosion, Dream Eater…). Não olha o adversário — para isso, a aba Recomendação.</p>';
+  renderLearn(mon);
+}
+
+// ---------------------------------------------------------------- aba Golpes: "Vale a pena aprender?" (0.73.0)
+// compara o golpe novo com os 4 que ele tem (estimados pelo nível ou digitados — guardados no navegador por jogo e Pokémon)
+// e diz em quantos Pokémon das próximas lutas (progresso escolhido, times do detonado) o golpe funciona
+let moveEffects = null; // public/data/move-effects.json (efeito de cada golpe de status, por geração — Showdown)
+let learnMove = null; // golpe novo pedido pelo link (?aprender=sleep-powder) ou escolhido
+let learnFor = null, learnLevel = 1; // Pokémon do formulário atual (troca de Pokémon → nível novo) e o nível dele
+const LEARN_KEY = () => `poketact:golpes:${currentGame}`;
+const savedSets = () => { try { return JSON.parse(localStorage.getItem(LEARN_KEY()) ?? '{}') ?? {}; } catch { return {}; } };
+const saveSet = (name, entry) => { try { const all = savedSets(); if (entry) all[name] = entry; else delete all[name]; localStorage.setItem(LEARN_KEY(), JSON.stringify(all)); } catch {} };
+// golpes guardados deste Pokémon ou, se ele evoluiu, os da forma anterior (os golpes continuam depois de evoluir)
+function savedFor(mon) {
+  const all = savedSets();
+  for (let m = mon, i = 0; m && i < 4; m = data.pokemon.find((p) => p.id === m.evolvesFrom), i++) if (all[m.name]) return { ...all[m.name], from: m.name };
+  return null;
+}
+const moveByLabel = () => new Map(Object.keys(data.moves).flatMap((k) => [[humanize(k).toLowerCase(), k], [k, k]]));
+async function renderLearn(mon) {
+  const box = $('learnBox');
+  if (!box) return;
+  if (!moveEffects) {
+    try { moveEffects = await (await fetch('data/move-effects.json')).json(); } catch { moveEffects = { moves: {} }; }
+    if (!$('learnBox')) return;
+  }
+  const d = vData();
+  const opts = [];
+  const seen = new Set();
+  for (const l of mon.learnset.filter((x) => x.method === 'level-up').sort((a, b) => a.level - b.level)) if (!seen.has(l.move) && data.moves[l.move]) { seen.add(l.move); opts.push({ move: l.move, label: (l.level > 1 ? 'nv ' + l.level : 'nv 1') + ' · ' + humanize(l.move), level: l.level }); }
+  for (const l of mon.learnset.filter((x) => ['machine', 'tutor'].includes(x.method)).sort((a, b) => a.move.localeCompare(b.move))) if (!seen.has(l.move) && data.moves[l.move]) { seen.add(l.move); opts.push({ move: l.move, label: (l.method === 'machine' ? 'TM/HM' : 'tutor') + ' · ' + humanize(l.move) }); }
+  const saved = savedFor(mon);
+  // a aba refaz a área a cada mudança (progresso, versão): o formulário volta com o golpe e o nível já escolhidos
+  if (learnFor !== mon.name) { learnFor = mon.name; learnLevel = saved?.level ?? (Number($('level').value) || mon.minLevel || 1); }
+  {
+    const lv = learnLevel;
+    const pick = (learnMove && opts.find((o) => o.move === learnMove)) ?? opts.find((o) => o.level >= lv && !(saved?.moves ?? []).includes(o.move)) ?? opts[0];
+    box.innerHTML = '<div class="walk-h">Vale a pena aprender?</div>' +
+      '<div class="learn-form"><label>Golpe novo <select id="learnMove">' + opts.map((o) => '<option value="' + o.move + '"' + (o === pick ? ' selected' : '') + '>' + o.label + '</option>').join('') + '</select></label>' +
+      '<label>Nível dele <input type="number" id="learnLevel" min="1" max="100" value="' + lv + '"></label></div>' +
+      '<div class="learn-cur"><span class="meta" id="learnCurLabel"></span><div class="learn-moves">' + [0, 1, 2, 3].map((i) => '<input type="text" class="learnCur" list="learnMoveList" aria-label="Golpe ' + (i + 1) + ' que ele tem" spellcheck="false" autocomplete="off">').join('') + '</div>' +
+      '<datalist id="learnMoveList">' + Object.keys(data.moves).map((k) => '<option value="' + humanize(k) + '">').join('') + '</datalist></div>' +
+      '<div id="learnRes"></div>';
+    fillLearnCurrent(mon, saved);
+    $('learnMove').addEventListener('change', () => { learnMove = $('learnMove').value; if (!savedFor(mon)) fillLearnCurrent(mon, null); renderLearnResult(mon); });
+    $('learnLevel').addEventListener('change', () => { learnLevel = Number($('learnLevel').value) || learnLevel; const s = savedFor(mon); if (s) saveSet(s.from, { ...s, from: undefined, level: Number($('learnLevel').value) || s.level }); else fillLearnCurrent(mon, null); renderLearnResult(mon); });
+    for (const el of box.querySelectorAll('.learnCur')) el.addEventListener('change', () => {
+      // o usuário corrigiu: guarda os 4 golpes (e o nível) para a próxima vez — vale também depois de evoluir
+      const moves = readLearnCurrent();
+      saveSet(mon.name, { moves, level: Number($('learnLevel').value) || null });
+      fillLearnCurrent(mon, savedFor(mon));
+      renderLearnResult(mon);
+    });
+  }
+  renderLearnResult(mon, d);
+}
+function readLearnCurrent() {
+  const map = moveByLabel();
+  return [...document.querySelectorAll('.learnCur')].map((el) => map.get(el.value.trim().toLowerCase()) ?? null).filter(Boolean);
+}
+function fillLearnCurrent(mon, saved) {
+  const lv = Number($('learnLevel').value) || 1;
+  const moves = saved?.moves ?? estimatedMoveset(data, mon, lv, { skip: $('learnMove').value });
+  [...document.querySelectorAll('.learnCur')].forEach((el, i) => { el.value = moves[i] ? humanize(moves[i]) : ''; });
+  $('learnCurLabel').innerHTML = saved
+    ? 'Golpes que ele tem agora (guardados por você' + (saved.from !== mon.name ? ' quando era ' + humanize(saved.from) : '') + ') · <button type="button" class="linkish" id="learnReset">voltar à estimativa</button>'
+    : 'Golpes que ele tem agora — <strong>estimados pelo nível</strong> (o que ele e as formas anteriores aprendem subindo de nível). Se for diferente, corrija: o app guarda para a próxima vez.';
+  $('learnReset')?.addEventListener('click', () => { saveSet(saved.from, null); fillLearnCurrent(mon, null); renderLearnResult(mon); });
+}
+// Pokémon das próximas lutas: as do progresso escolhido no detonado (líder + treinadores dos lugares dessa etapa)
+async function nextFights() {
+  const a = vAcq();
+  const cur = $('stage').value === '' ? null : Number($('stage').value);
+  if (!a?.progress || cur == null) return { why: 'Escolha o <strong>progresso</strong> lá em cima para ver em quantos Pokémon das próximas lutas o golpe funciona.' };
+  if (!walk) { try { walk = await (await fetch(`data/${currentGame}-walkthrough.json`)).json(); } catch { return { why: 'Este jogo ainda não tem as lutas da história no app.' }; } }
+  const v = walk.versions[$('version').value] ?? Object.values(walk.versions)[0];
+  const st = v?.stages.find((s) => s.stage === cur);
+  if (!st) return { why: 'O detonado não tem lutas nessa etapa.' };
+  const mine = $('starter').value;
+  const fights = [];
+  if (st.leader?.party?.length) fights.push({ label: humanize(String(st.leader.name).toLowerCase()), leader: true, party: st.leader.party });
+  for (const l of st.locations) for (const t of l.trainers ?? []) if (t.party?.length && !(mine && t.forStarter && !t.forStarter.includes(mine)) && t.key !== st.leader?.key) fights.push({ label: t.label, party: t.party });
+  return { stage: stageLabel(cur, a.progress.leaderOrder, a.progress), fights };
+}
+async function renderLearnResult(mon) {
+  if (!$('learnRes')) return;
+  const d = vData();
+  const newMove = $('learnMove').value;
+  const current = readLearnCurrent();
+  const nf = await nextFights();
+  const res = $('learnRes'); // a aba pode ter sido refeita enquanto carregava
+  if (!res || $('learnMove').value !== newMove) return;
+  const opponents = nf.fights?.flatMap((f) => f.party.map((p) => ({ species: p.species, level: p.level, fight: f.label, leader: !!f.leader })));
+  const r = moveWorth(d, moveEffects, mon, newMove, { current, opponents });
+  const N = '<strong>' + humanize(newMove) + '</strong>';
+  const verdict = {
+    room: ['ok', '✅ Pode aprender: ele tem só ' + current.length + (current.length === 1 ? ' golpe' : ' golpes') + ', não precisa esquecer nenhum.'],
+    learn: ['ok', '✅ Vale a pena: aprenda ' + N + ' e esqueça <strong>' + humanize(r.forget ?? '') + '</strong>.'],
+    same: ['neutral', '🤏 Tanto faz: aprender ' + N + ' no lugar de <strong>' + humanize(r.forget ?? '') + '</strong> muda pouco.'],
+    skip: ['bad', '❌ Não vale a pena: os golpes que ele tem já são melhores que ' + N + '.'],
+    unknown: ['neutral', '❔ O app não sabe dar nota a ' + N + ' — veja abaixo o que ele faz e em quem funciona.'],
+  }[r.verdict];
+  const fmt = (n) => (n == null ? '—' : n.toFixed(1).replace('.', ','));
+  const rows = r.rows.map((x) => '<tr><td>' + typeBadge(d.moves[x.name].type) + '<strong>' + humanize(x.name) + '</strong>' + (x.isNew ? ' ' + lozenge('info', 'novo') : '') + (x.name === r.forget ? ' ' + lozenge('warn', 'esquecer') : '') + '</td><td class="lv">' + fmt(x.note) + '</td><td>' + x.why + '</td></tr>').join('');
+  // próximas lutas: em quantos Pokémon o golpe novo funciona
+  let fightsHtml;
+  const c = r.coverage;
+  if (!c) fightsHtml = '<p class="meta">' + nf.why + '</p>';
+  else if (!c.total) fightsHtml = '<p class="meta">Nenhuma luta com time conhecido nessa etapa (' + nf.stage + ').</p>';
+  else {
+    const isDmg = r.rows.find((x) => x.isNew).damage;
+    const fail = c.list.filter((l) => l.ok !== true);
+    const uniq = (l) => [...new Map(l.map((x) => [x.species + '|' + x.why, x])).values()];
+    const leader = c.list.filter((l) => l.leader);
+    const effTxt = (e) => (e === 0 ? '×0' : e >= 2 ? '×' + e : e < 1 ? '×' + String(e).replace('.', ',') : '×1');
+    fightsHtml = '<p><strong>Próximas lutas</strong> (' + nf.stage + ', ' + nf.fights.length + (nf.fights.length > 1 ? ' lutas' : ' luta') + '): ' + N + ' funciona em <strong>' + c.ok + ' de ' + c.total + '</strong> Pokémon' + (c.maybe ? ' (+' + c.maybe + ' talvez)' : '') + '.' +
+      (isDmg ? ' Super efetivo em ' + c.list.filter((l) => l.eff >= 2).length + ', pouco efetivo em ' + c.list.filter((l) => l.eff > 0 && l.eff < 1).length + '.' : '') + '</p>' +
+      (leader.length ? '<p class="meta">Líder ' + leader[0].fight + ': ' + leader.map((l) => humanize(l.species) + ' nv ' + l.level + ' ' + (isDmg ? effTxt(l.eff) : l.ok === true ? '✔' : l.ok === 'maybe' ? '❔' : '✖')).join(' · ') + '</p>' : '') +
+      (fail.length ? '<p class="meta">Não funciona ou pode falhar: ' + uniq(fail).map((l) => humanize(l.species) + (l.why ? ' (' + l.why + ')' : '')).join('; ') + '.</p>' : '');
+    if (!isDmg && c.ok < c.total / 2) verdict[1] += ' Mas atenção: não funciona em boa parte das próximas lutas.';
+  }
+  const learnBtn = r.verdict === 'room' || current.length < 4
+    ? '<button type="button" class="btn" id="learnDone">Aprendi ' + humanize(newMove) + '</button>'
+    : '<label class="learn-done">Esquecendo <select id="learnForget">' + current.map((m) => '<option value="' + m + '"' + (m === r.forget ? ' selected' : '') + '>' + humanize(m) + '</option>').join('') + '</select></label> <button type="button" class="btn" id="learnDone">Aprendi ' + humanize(newMove) + '</button>';
+  res.innerHTML = '<p class="learn-verdict ' + verdict[0] + '">' + verdict[1] + '</p>' +
+    '<table class="learn-table"><thead><tr><th>Golpe</th><th>Nota</th><th>Por quê</th></tr></thead><tbody>' + rows + '</tbody></table>' + fightsHtml +
+    '<div class="learn-actions">' + learnBtn + '</div>' +
+    '<p class="note">Nota de 0 a 3 = estimativa do app, não regra do jogo. Dano: força como na tabela abaixo (3 = o mais forte dele). Status: sono e congelamento 3, paralisia 2,5, veneno forte e queimadura 2, veneno 1,5, confusão 1,5, vezes a precisão' +
+    (mon.abilities?.length && mon.abilities.every((x) => x === 'compound-eyes') ? ' (Compound Eyes: ×1,3)' : '') + '; o alvo só tem um problema de status por vez. Subir Ataque só conta com golpe físico (Atq. Esp. com especial). Efeito dos golpes: ' + (moveEffects.source ?? 'Pokémon Showdown') + '.</p>';
+  $('learnDone').addEventListener('click', () => {
+    const forget = $('learnForget')?.value;
+    const moves = current.length < 4 ? [...current, newMove] : current.map((m) => (m === forget ? newMove : m));
+    const s = savedFor(mon);
+    if (s && s.from !== mon.name) saveSet(s.from, null);
+    saveSet(mon.name, { moves, level: Number($('learnLevel').value) || null });
+    // próximo golpe por nível que ele ainda não tem
+    const lv = Number($('learnLevel').value) || 1;
+    const next = [...$('learnMove').options].find((o) => { const m = /^nv (\d+)/.exec(o.textContent); return m && Number(m[1]) >= lv && !moves.includes(o.value); });
+    if (next) { $('learnMove').value = next.value; learnMove = next.value; }
+    fillLearnCurrent(mon, savedFor(mon));
+    renderLearnResult(mon);
+  });
 }
 
 // ---------------------------------------------------------------- aba Onde capturar
@@ -1425,7 +1567,7 @@ function applyGameParams(p) {
   if (p.aba === 'detonado') showTab('walk');
   // o Pokémon do link vale mais que o selecionado antes (selectMon antes de abrir a aba)
   const linkMon = (q) => findOpponent(data.pokemon, q)?.name;
-  if (p.aba === 'golpes' && p.pokemon) { selectMon(linkMon(p.pokemon), 'moves'); $('movesQ').value = humanize(p.pokemon); }
+  if (p.aba === 'golpes' && p.pokemon) { selectMon(linkMon(p.pokemon), 'moves'); $('movesQ').value = humanize(p.pokemon); learnFor = null; learnMove = p.aprender ?? null; }
   if (p.aba === 'golpes') showTab('moves');
   if (p.aba === 'tipos') { if (p.tipo && data.types.includes(p.tipo)) typeSel = [p.tipo]; showTab('types'); }
   // ?capturar=pikachu → aba Onde capturar já preenchida

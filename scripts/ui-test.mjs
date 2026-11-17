@@ -187,6 +187,21 @@ try {
   const gl = await run(() => ({ on: !document.querySelector('#moves').hidden, q: document.querySelector('#movesQ').value, txt: document.querySelector('#movesOut').textContent }));
   check('link ?aba=golpes&pokemon=pikachu&insignias=2: Thunderbolt (TM de Mauville) já no nv 1', gl.on && gl.q === 'Pikachu' && /nv 1electricThunderbolt 95 ★ \(TM\/HM · Mauville/.test(gl.txt) && /até: 2 insígnias/.test(gl.txt), { ...gl, txt: gl.txt.slice(0, 300) });
   await shot('emerald-golpes');
+  // 0.73.0 "Vale a pena aprender?": Butterfree nv 15 no FireRed querendo o Sleep Powder (pedido do usuário)
+  await run(() => { localStorage.removeItem('poketact:golpes:firered-leafgreen'); localStorage.removeItem('poketact:firered-leafgreen'); });
+  await go('#/jogo/firered-leafgreen?aba=golpes&pokemon=butterfree&aprender=sleep-powder&insignias=4&meu=15', 3500);
+  const learnState = () => run(() => ({ move: document.querySelector('#learnMove')?.value, cur: [...document.querySelectorAll('.learnCur')].map((e) => e.value),
+    verdict: document.querySelector('.learn-verdict')?.textContent ?? '', txt: document.querySelector('#learnRes')?.textContent ?? '', label: document.querySelector('#learnCurLabel')?.textContent ?? '' }));
+  const ln = await learnState();
+  check('Vale a pena aprender: Butterfree nv 15 + Sleep Powder → vale, golpes estimados pela linha evolutiva', ln.move === 'sleep-powder' && ln.cur.join() === 'Harden,Confusion,Poison Powder,Stun Spore' && /Vale a pena: aprenda Sleep Powder e esqueça/.test(ln.verdict) && /estimados pelo nível/.test(ln.label), ln);
+  check('Vale a pena aprender: próximas lutas (Sabrina) com a conta de Pokémon', /Próximas lutas/.test(ln.txt) && /funciona em \d+ de \d+/.test(ln.txt) && /Líder Sabrina/.test(ln.txt), ln.txt.slice(0, 400));
+  await shot('firered-vale-aprender');
+  await run(() => { const sel = document.querySelector('#learnForget'); sel.value = 'harden'; document.querySelector('#learnDone').click(); });
+  await sleep(800);
+  await go('#/jogo/firered-leafgreen?aba=golpes&pokemon=butterfree&insignias=4', 3500);
+  const ln2 = await learnState();
+  check('Aprendi: golpes guardados (Sleep Powder no lugar de Harden) e usados na próxima vez', ln2.cur.join() === 'Sleep Powder,Confusion,Poison Powder,Stun Spore' && /guardados por você/.test(ln2.label), ln2);
+  await run(() => localStorage.removeItem('poketact:golpes:firered-leafgreen'));
   await go('#/?tipo=gyarados&jogo=emerald', 4000);
   const fight = await run(() => document.querySelector('.tq-head a')?.getAttribute('href') ?? '');
   check('tipo: "vou enfrentar Gyarados" no Emerald tem link para a recomendação contra ele', fight === '#/jogo/emerald?pokemon=gyarados', fight);
