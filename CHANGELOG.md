@@ -2,6 +2,21 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.74.0] — 2026-11-17
+
+> Nova aba "Meu time": escreva os Pokémon do seu time, o nível e os golpes de cada um. Na aba Golpes, o "Vale a pena aprender?" já usa esses dados, e o botão "Aprendi" atualiza o time.
+
+### Adicionado
+- Aba **Meu time**: até 6 Pokémon com nível e os 4 golpes, guardados neste navegador, por jogo (`poketact:time:<jogo>`).
+  Ao adicionar, os golpes vêm estimados pelo nível (linha evolutiva, como na 0.73.0), com aviso, e você corrige. Evoluiu? Troque
+  o Pokémon e os golpes continuam. Botões **Vale a pena aprender?** e **tirar do time**. Link: `#/jogo/firered-leafgreen?aba=time`.
+- Aba **Golpes**: atalhos com o seu time no topo (um toque abre o Pokémon com o nível e os golpes dele). No "Vale a pena
+  aprender?" de um Pokémon do time, o que você muda (nível, golpes, **Aprendi**) muda no time também; Pokémon fora do time
+  tem o link "pôr no meu time".
+- Teste da tela: 4 verificações novas (escrever o time, ir ao Vale a pena aprender, Aprendi atualiza o time, atalhos).
+- Teste de regressão: o `app.mjs` não pode ter duas funções com o mesmo nome (na construção desta aba, um 2º `renderTeam`
+  impedia o app de abrir).
+
 ## [0.73.0] — 2026-11-17
 
 > Aba Golpes: "Vale a pena aprender?" compara o golpe novo (ex.: Sleep Powder no Butterfree) com os 4 que ele tem, diz qual esquecer e em quantos Pokémon das próximas lutas funciona. Corrigiu os golpes? O app guarda.

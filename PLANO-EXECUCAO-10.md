@@ -31,3 +31,17 @@ Legenda: ⬜ a fazer · ✅ feita · ⚠ parcial · ⏸ pulada (motivo) · 🚩 
 
 ## Resumo final (2026-11-17)
 V1–V4 ✅ em 0.73.0. 🚩 Para o usuário: as notas dos golpes de status são estimativa (V2).
+
+## Continuação — Meu time (0.74.0, 2026-11-17)
+
+Pedido do usuário: "quero entrar no app e escrever qual o meu time atual, nível de cada Pokémon e golpes e com isso conectar
+a essa etapa de golpes que vale a pena aprender".
+
+| # | Item | Estado |
+|---|---|---|
+| V5 | Aba **Meu time**: até 6 Pokémon, nível e golpes (estimados ao adicionar, corrigíveis), guardado por jogo | ✅ 0.74.0 |
+| V6 | Aba Golpes: atalhos do time; "Vale a pena aprender?" usa e atualiza o membro do time; "pôr no meu time" | ✅ 0.74.0 |
+| V7 | Teste da tela (4 verificações) + teste de regressão (nomes de função repetidos no app.mjs) + CHANGELOG | ✅ 0.74.0 |
+
+Escolhas minhas (sem pergunta, fáceis de mudar): aba própria "Meu time" (e não um bloco na Recomendação); o time ainda **não**
+alimenta a aba Recomendação (o "Nível do seu time" continua separado) — 🚩 próximo passo possível, se o usuário quiser.

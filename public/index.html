@@ -258,6 +258,16 @@
   .tgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:6px; }
   .tchip { display:flex; align-items:center; gap:8px; text-align:left; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:var(--r2); padding:4px 10px 4px 4px; font:inherit; font-size:var(--fs-sm); cursor:pointer; transition:border-color .15s; }
   .tchip:hover { border-color:var(--line-strong); }
+  .team-chips { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .tchip.mini { padding:2px 10px 2px 2px; } .tchip.mini img { width:36px; height:36px; }
+  .team-list { display:grid; gap:var(--s2); }
+  .team-card { display:flex; gap:var(--s3); align-items:flex-start; padding:var(--s2) var(--s3); border:1px solid var(--line); border-radius:var(--r2); background:var(--surface-2); }
+  .team-card > img { width:64px; height:64px; image-rendering:pixelated; flex:none; }
+  .team-fields { display:grid; gap:6px; flex:1; min-width:0; }
+  .team-row, .team-add { display:flex; flex-wrap:wrap; gap:var(--s3); align-items:flex-end; }
+  .team-row label, .team-add label { display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); }
+  .team-row input[type=number], .team-add input[type=number] { width:5em; }
+  @media (max-width: 640px) { .team-card > img { width:44px; height:44px; } }
   .tchip[aria-pressed=true] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; }
   .tchip img { width:50px; height:50px; image-rendering:pixelated; flex:none; }
   .tchip .t-name { display:block; font-weight:600; line-height:1.2; }
@@ -410,6 +420,11 @@
     <button type="button" role="tab" id="tabDex" aria-selected="false" aria-controls="dex">Onde capturar</button>
     <button type="button" role="tab" id="tabTypes" aria-selected="false" aria-controls="types">Pokémon por tipo</button>
     <button type="button" role="tab" id="tabMoves" aria-selected="false" aria-controls="moves">Golpes</button>
+    <button type="button" role="tab" id="tabTeam" aria-selected="false" aria-controls="teamView">Meu time</button>
+  </div>
+  <!-- o time atual: até 6 Pokémon com nível e golpes (guardado no navegador por jogo) — a aba Golpes usa -->
+  <div id="teamView" role="tabpanel" hidden>
+    <div class="card stack" id="teamOut"></div>
   </div>
   <!-- os golpes de dano mais fortes do Pokémon, nível a nível (level-up + TMs/tutores do progresso) -->
   <div id="moves" role="tabpanel" hidden>
@@ -421,6 +436,7 @@
           <ul id="movesList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
         </div>
       </div>
+      <div id="movesTeam" class="team-chips"></div>
       <div id="movesOut" aria-live="polite"></div>
     </div>
   </div>

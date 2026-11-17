@@ -202,6 +202,32 @@ try {
   const ln2 = await learnState();
   check('Aprendi: golpes guardados (Sleep Powder no lugar de Harden) e usados na próxima vez', ln2.cur.join() === 'Sleep Powder,Confusion,Poison Powder,Stun Spore' && /guardados por você/.test(ln2.label), ln2);
   await run(() => localStorage.removeItem('poketact:golpes:firered-leafgreen'));
+  // 0.74.0 Meu time: escreve o time (Butterfree nv 15 + Pidgeotto nv 18), corrige um golpe e leva ao "Vale a pena aprender?"
+  await run(() => localStorage.removeItem('poketact:time:firered-leafgreen'));
+  await go('#/jogo/firered-leafgreen?aba=time&insignias=4', 3000);
+  await run(async () => {
+    const add = (n, lv) => { document.querySelector('#teamNew').value = n; document.querySelector('#teamNewLevel').value = lv; document.querySelector('#teamAddBtn').click(); };
+    add('butterfree', 14); add('Pidgeotto', 18);
+    const mv = document.querySelectorAll('.team-card')[0].querySelectorAll('.teamMove');
+    mv[0].value = 'Tackle'; mv[0].dispatchEvent(new Event('change'));
+  });
+  await sleep(300);
+  const tm = await run(() => ({ on: !document.querySelector('#teamView').hidden, cards: [...document.querySelectorAll('.team-card')].map((c) => [c.querySelector('.teamSpecies').value, c.querySelector('.teamLevel').value, [...c.querySelectorAll('.teamMove')].map((e) => e.value).join()]) }));
+  check('Meu time: 2 Pokémon com nível e golpes (estimados; Harden do Butterfree nv 14 corrigido para Tackle)', tm.on && tm.cards.length === 2 && tm.cards[0].join('|') === 'Butterfree|14|Tackle,Confusion,Poison Powder,Stun Spore' && tm.cards[1][0] === 'Pidgeotto', tm);
+  await shot('firered-meu-time');
+  await run(() => document.querySelector('.team-card .teamLearn').click());
+  await sleep(1500);
+  const tl = await learnState();
+  check('Meu time → Golpes: Butterfree do time (nv 14, Tackle…) e o Sleep Powder como golpe novo', tl.move === 'sleep-powder' && tl.cur.join() === 'Tackle,Confusion,Poison Powder,Stun Spore' && /seu time/.test(tl.label) && /Vale a pena/.test(tl.verdict), tl);
+  await run(() => { document.querySelector('#learnForget').value = 'tackle'; document.querySelector('#learnDone').click(); });
+  await sleep(800);
+  await go('#/jogo/firered-leafgreen?aba=time', 2500);
+  const tm2 = await run(() => [...document.querySelectorAll('.team-card')[0].querySelectorAll('.teamMove')].map((e) => e.value).join());
+  check('Aprendi na aba Golpes atualiza o time (Sleep Powder no lugar de Tackle)', tm2 === 'Sleep Powder,Confusion,Poison Powder,Stun Spore', tm2);
+  await go('#/jogo/firered-leafgreen?aba=golpes', 2500);
+  const chips = await run(() => [...document.querySelectorAll('#movesTeam .tchip')].map((b) => b.textContent));
+  check('Golpes: atalhos do time (Butterfree nv 14, Pidgeotto nv 18)', chips.join('|') === 'Butterfree nv 14|Pidgeotto nv 18', chips);
+  await run(() => localStorage.removeItem('poketact:time:firered-leafgreen'));
   await go('#/?tipo=gyarados&jogo=emerald', 4000);
   const fight = await run(() => document.querySelector('.tq-head a')?.getAttribute('href') ?? '');
   check('tipo: "vou enfrentar Gyarados" no Emerald tem link para a recomendação contra ele', fight === '#/jogo/emerald?pokemon=gyarados', fight);

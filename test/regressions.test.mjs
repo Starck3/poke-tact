@@ -3248,3 +3248,13 @@ test('0.73.0: "Vale a pena aprender?" — Butterfree nv 15 no FireRed e o Sleep 
   const cov = moveWorth(d, E, bf, 'sleep-powder', { current: cur, opponents: [{ species: 'kadabra' }, { species: 'mr-mime' }, { species: 'venomoth' }, { species: 'alakazam' }] }).coverage;
   assert.deepEqual([cov.total, cov.ok], [4, 4]);
 });
+
+test('0.74.0: app.mjs sem duas funções com o mesmo nome (a aba Meu time criou um 2º renderTeam e o app inteiro parou)', () => {
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  const names = [...app.matchAll(/^(?:async )?function (\w+)\s*\(/gm)].map((m) => m[1]);
+  const dup = names.filter((n, i) => names.indexOf(n) !== i);
+  assert.deepEqual(dup, []);
+  // Meu time: guardado por jogo e usado pelo "Vale a pena aprender?" (nível e golpes do membro; "Aprendi" grava nele)
+  assert.ok(app.includes('poketact:time:${currentGame}'));
+  assert.ok(app.includes('function writeSaved(mon, entry)'));
+});
