@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.80.0] — 2026-11-17
+
+> Na tela inicial, o card "Continuar de onde parou" ganhou um ✕ para tirar o último jogo dali.
+
+### Adicionado (pedido do usuário)
+- Botão **✕** no card "Continuar de onde parou": apaga só a lembrança do último jogo (`poketact:last`); o progresso, o nível
+  e o time de cada jogo continuam guardados.
+
 ## [0.79.0] — 2026-11-17
 
 > No Emerald, os líderes aparecem só pelo nome ("Roxanne", não "Roxanne 1").
