@@ -85,16 +85,20 @@ try {
   const ctx = await run(() => document.querySelector('#results .ctx')?.textContent ?? '');
   check('linha "Calculado com o seu time no nv 14"', /nv 14 · antes da 1/.test(ctx), ctx);
   check('FireRed, Brock: nada de Beedrill nem golpe de TM tardio', !s.picks.some((p) => /Beedrill/.test(p.mon)), s.picks);
-  // 0.77.0: com o Brock escolhido, a lista de líderes recolhe numa linha; "Trocar oponente" abre de novo (Líderes já aberta)
+  // 0.83.0 (mudou o layout; antes: resumo "Brock" + "Trocar oponente" dentro da lista): escolhido o Brock, a pergunta vira
+  // o chip "Geodude nv 12 · Brock ✕" + "Trocar treinador", a lista some, e a luta ganha o cartão "Contra o Geodude de Brock"
+  // com o time dele em segmentos; "Trocar treinador" mostra os 8 líderes de novo
   const pk = await run(async () => {
-    const before = { tchips: document.querySelectorAll('#trainerPick .tchip').length, cats: document.querySelector('#trainerCats').hidden, name: document.querySelector('#trainerPick .t-name')?.textContent, label: document.querySelector('#team .team-label')?.textContent };
-    document.querySelector('#trainerPick [data-reopen]').click(); await new Promise((r) => setTimeout(r, 300));
-    return { before, after: document.querySelectorAll('#trainerPick .tchip').length, cats: document.querySelector('#trainerCats').hidden };
+    const before = { field: document.querySelector('#oppField').hidden, chip: document.querySelector('#oppChip .chip-name')?.textContent, box: document.querySelector('#trainerBox').hidden,
+      title: document.querySelector('#resultsHead h2')?.textContent, seg: document.querySelectorAll('#team button img').length, all: [...document.querySelectorAll('#team button')].some((b) => b.textContent === 'Time inteiro') };
+    document.querySelector('#oppPickTrainer').click(); await new Promise((r) => setTimeout(r, 300));
+    return { before, after: document.querySelectorAll('#trainerPick .tchip').length, box: document.querySelector('#trainerBox').hidden };
   });
   // 0.78.0: com o Brock (não é o rival), o inicial vira uma linha com "trocar"
   const st0 = await run(() => ({ line: document.querySelector('#starterPick .starter-line')?.textContent ?? '', btns: document.querySelectorAll('#starterPick button[data-v]').length }));
   check('Brock escolhido: inicial recolhido em "Seu inicial: não informado · trocar"', /Seu inicial: não informado/.test(st0.line) && st0.btns === 0, st0);
-  check('Brock escolhido: lista recolhida ("Brock" + Trocar oponente) e reaberta com os 8 líderes', pk.before.tchips === 1 && pk.before.cats && pk.before.name === 'Brock' && /Qual Pokémon de Brock/.test(pk.before.label) && pk.after === 8 && !pk.cats, pk);
+  check('Brock escolhido: chip no lugar do campo, lista escondida, cartão "Contra … de Brock" com o time; "Trocar treinador" reabre os 8 líderes',
+    pk.before.field && /· Brock$/.test(pk.before.chip ?? '') && pk.before.box && /^Contra o \S+ de Brock/.test(pk.before.title ?? '') && pk.before.seg === 2 && pk.before.all && pk.after === 8 && !pk.box, pk);
   await run(async () => { [...document.querySelectorAll('#team button')].find((b) => /Onix/.test(b.textContent)).click(); await new Promise((r) => setTimeout(r, 1200)); });
   s = await state();
   const mankey = s.picks.find((p) => /Mankey/.test(p.mon));
@@ -139,6 +143,39 @@ try {
   });
   check('Emerald: 8 líderes em Líderes e 32 revanches; Pokémon por tipo só lista ao pedir', em.main === 8 && em.again === 32 && em.cards === 0 && em.all && em.after > 100, em);
   check('Emerald: líderes sem número no nome ("Roxanne", não "Roxanne 1")', em.names.some((n) => /^Roxanne\b/.test(n)) && !em.names.some((n) => /\s\d+\b/.test(n)), em.names);
+
+  // 3d. 0.83.0: Pokémon digitado vira chip; ✕ volta ao campo vazio com a lista de treinadores; o cartão da luta junta
+  // oponente, "Ele ataca com…", "Calculado com…" e os filtros; "Para capturar ou treinar" sempre aparece
+  await go('#/jogo/heartgold-soulsilver', 3500);
+  const typedChip = await run(async () => {
+    const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+    const i = document.querySelector('#opp'); i.focus(); i.value = 'miltan'; i.dispatchEvent(new Event('input')); await pause(400);
+    document.querySelector('#oppList li[data-name]').dispatchEvent(new MouseEvent('mousedown', { bubbles: true })); await pause(1200);
+    const head = document.querySelector('#resultsHead');
+    const r = { field: document.querySelector('#oppField').hidden, chip: document.querySelector('#oppChip .chip-name')?.textContent, box: document.querySelector('#trainerBox').hidden,
+      title: head.querySelector('h2').textContent, inHead: ['#oppInfo .opp', '#fightThreat', '#fightCtx .ctx', '#filters'].every((s) => head.querySelector(s) && !head.querySelector(s).closest('[hidden]')),
+      picksTitle: document.querySelector('#resultsBody .picks-title')?.textContent, loose: [...document.querySelector('#resultsBody').children].filter((c) => c.tagName === 'P').length,
+      starter: !!document.querySelector('#starterPick .starter-line') };
+    document.querySelector('#oppChip [data-chip-clear]').click(); await pause(600);
+    r.after = { field: !document.querySelector('#oppField').hidden, value: document.querySelector('#opp').value, box: !document.querySelector('#trainerBox').hidden, head: document.querySelector('#resultsHead').hidden };
+    return r;
+  });
+  check('HGSS: "miltank" escolhido vira chip, cartão "Contra Miltank" com tudo da luta; ✕ volta ao campo e aos treinadores',
+    typedChip.field && typedChip.chip === 'Miltank' && typedChip.box && typedChip.title === 'Contra Miltank' && typedChip.inHead && typedChip.picksTitle === 'Para capturar ou treinar' && typedChip.loose === 0 && typedChip.starter &&
+    typedChip.after.field && typedChip.after.value === '' && typedChip.after.box && typedChip.after.head, typedChip);
+  // 0.84.0 (decisão do usuário): sair do campo com um nome válido NÃO vira chip — só a lista ou o Enter
+  const blurNoChip = await run(async () => {
+    const i = document.querySelector('#opp'); i.focus(); i.value = 'miltank'; i.dispatchEvent(new Event('input'));
+    await new Promise((r) => setTimeout(r, 300)); i.blur(); await new Promise((r) => setTimeout(r, 700));
+    return { field: !document.querySelector('#oppField').hidden, chip: !document.querySelector('#oppChip')?.hidden && !!document.querySelector('#oppChip .chip-name')?.textContent };
+  });
+  check('HGSS: sair do campo com "miltank" não vira chip (só lista ou Enter)', blurNoChip.field && !blurNoChip.chip, blurNoChip);
+  // corrida ao abrir dois jogos em seguida (0.83.0): data de um + acq do outro dava TypeError em whereToGet ("sem erro de
+  // JavaScript" no fim pega); o 2º jogo tem que abrir inteiro
+  await run(() => { location.hash = '#/jogo/emerald'; setTimeout(() => { location.hash = '#/jogo/firered-leafgreen?pokemon=gyarados'; }, 30); });
+  await sleep(4500);
+  const race = await run(() => ({ title: document.querySelector('#gameTitle').textContent, starters: [...document.querySelectorAll('#starterPick button[data-v]')].map((b) => b.dataset.v).join(), chip: document.querySelector('#oppChip .chip-name')?.textContent, picks: document.querySelectorAll('#resultsBody .pick').length }));
+  check('abrir Emerald e logo FireRed: FireRed inteiro (título, iniciais, Gyarados e sugestões)', /FireRed/.test(race.title) && (race.starters === '' || /charmander/.test(race.starters)) && race.chip === 'Gyarados' && race.picks === 3, race);
 
   // 4. Scarlet: 1ª luta da Nemona (nv 5) — sem Armarouge (item citado no detonado limita a evolução)
   await go('#/jogo/scarlet-violet', 4000);

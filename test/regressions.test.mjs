@@ -1714,12 +1714,13 @@ test('leitor do PKHeX: forma regional só quando a forma 0 está ausente; loja d
   assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'apply-zmax-powers', 'validate-pkhex']/);
 });
 
-test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites logo acima do campo do oponente', () => {
+test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites; a busca do oponente fica no topo da Recomendação', () => {
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
   const top = html.slice(html.indexOf('id="context"'), html.indexOf('</div>', html.indexOf('id="stageWrap"')));
   assert.ok(!/id="starter"/.test(top), 'o seletor de inicial não pode ficar na barra do topo');
-  const pick = html.indexOf('id="starterPick"'), opp = html.indexOf('id="opp"');
-  assert.ok(pick > 0 && pick < opp && !html.slice(pick, opp).includes('id="oppInfo"'), 'escolha do inicial logo acima do campo do oponente');
+  // 0.82.0 (pedido do usuário): o campo do oponente veio para o começo da aba, antes do inicial e dos treinadores
+  const rec = html.indexOf('id="recView"'), opp = html.indexOf('id="opp"'), pick = html.indexOf('id="starterPick"'), tb = html.indexOf('id="trainerBox"');
+  assert.ok(rec > 0 && rec < opp && opp < pick && opp < tb, 'busca do oponente logo abaixo das abas, antes do inicial e dos treinadores');
   assert.match(html, /<select id="starter" hidden/); // o <select> continua guardando o valor (URL ?inicial=, rival)
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.match(app, /role="radio"/); assert.match(app, /não informar/);
@@ -3354,7 +3355,37 @@ test('0.79.0 (decisão do usuário): Emerald — a luta principal aparece "Roxan
 test('0.78.0: decisões do usuário — Meu time sempre recolhido, inicial recolhido fora do rival, "Como funciona" na 1ª visita', () => {
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.ok(app.includes('homeTeamOpen = false; // sempre recolhido'));
-  assert.ok(app.includes("t && t.group !== 'Rival' && !t.forStarter && !starterOpen"));
+  // 0.83.0: o inicial recolhe também com o Pokémon buscado (antes, só com treinador); o rival continua com os 3 iniciais
+  assert.ok(app.includes("(oppLocked || !!teamMode) && !(t && (t.group === 'Rival' || t.forStarter)) && !starterOpen"));
   assert.ok(app.includes("const HOW_KEY = 'poketact:como-funciona';"));
   assert.match(app, /try \{ localStorage\.setItem\(HOW_KEY, '1'\); \} catch \{\}/);
+});
+
+test('regressão (0.83.0): abrir um jogo e logo outro não mistura os dados dos dois (TypeError em whereToGet)', () => {
+  // Erro: load() gravava data, trainers e acq a cada await; abrir o Emerald e logo o FireRed (ou duas abas do Chrome na
+  // mesma sessão) deixava data de um jogo com acq e versão do outro → "Cannot read properties of undefined (reading
+  // 'bulbasaur')" em whereToGet ao abrir #/jogo/firered-leafgreen?pokemon=gyarados. Agora os arquivos chegam em variáveis
+  // locais e só valem se nenhum outro jogo começou a abrir no meio; a rota espera o carregamento do mesmo jogo.
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  const load = app.slice(app.indexOf('async function load(gameId)'), app.indexOf('function routeHtml('));
+  assert.match(load, /const tok = \+\+loadTok;/);
+  assert.match(load, /if \(tok !== loadTok \|\| currentGame !== gameId\) return false;[^\n]*\n\s*data = d; trainers = tr; trainersFromWalk = fromWalk; acq = a;/);
+  assert.ok(!/\n\s*data = await/.test(load) && !/\n\s*try \{ acq = await/.test(load)); // nada de gravar direto no meio
+  assert.ok(app.includes('if (await loadP === false) return;') && app.includes('else if (loadP && (await loadP) === false) return;'));
+  const ui = readFileSync(new URL('../scripts/ui-test.mjs', import.meta.url), 'utf8');
+  assert.ok(ui.includes('abrir Emerald e logo FireRed'));
+});
+
+test('0.83.0: tela do jogo "pergunta → a luta → respostas" (layout pedido pelo usuário)', () => {
+  const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  // a luta fica num cartão fixo com o time do treinador, o oponente, a ameaça, o contexto e os filtros; as respostas abaixo
+  const head = html.slice(html.indexOf('id="resultsHead"'), html.indexOf('id="resultsBody"'));
+  for (const id of ['fightTitle', 'team', 'oppInfo', 'oppWeak', 'fightThreat', 'fightCtx', 'filters', 'level', 'oppLevel']) assert.ok(head.includes(`id="${id}"`), id);
+  // ids de antes continuam (links e testes dependem deles)
+  for (const id of ['opp', 'oppList', 'starterPick', 'starter', 'trainerBox', 'trainerCats', 'trainerPick', 'trainer', 'results', 'about', 'version', 'stage']) assert.ok(html.includes(`id="${id}"`), id);
+  // escolhido o oponente: chip no lugar do campo; "Para capturar ou treinar" sempre aparece; abas sem o visual de botão
+  assert.ok(app.includes("$('oppField').hidden = locked;") && app.includes("$('oppChip').hidden = !locked;"));
+  assert.ok(!/\(team\.length \? '<h3 class="picks-title">/.test(app));
+  assert.doesNotMatch(html, /\.btn, \.chips button, \.tabs button/);
 });
