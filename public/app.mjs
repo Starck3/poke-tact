@@ -1443,9 +1443,8 @@ function bindPokemonAc(inputId, listId, prefix, onPick) {
   list.addEventListener('mousedown', (e) => { const li = e.target.closest('li[data-name]'); if (li) { e.preventDefault(); pick(li.dataset.name); } });
 }
 bindPokemonAc('opp', 'oppList', 'oa', lockOpp); // escolheu na lista → chip (0.83.0)
-// Enter com o nome inteiro, ou sair do campo com um Pokémon do jogo escrito → chip
+// Enter com o nome inteiro → chip. 0.84.0, decisão do usuário: sair do campo NÃO vira chip (só a lista ou o Enter)
 $('opp').addEventListener('keydown', (e) => { if (e.key === 'Enter' && $('oppList').hidden) lockOpp(); });
-$('opp').addEventListener('blur', () => setTimeout(() => { if (!oppLocked && document.activeElement !== $('opp') && !$('tool').hidden) lockOpp(); }, 200));
 bindPokemonAc('dexQ', 'dexList', 'da');
 bindPokemonAc('movesQ', 'movesList', 'ma');
 $('trainer').addEventListener('change', () => {

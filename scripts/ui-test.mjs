@@ -163,6 +163,13 @@ try {
   check('HGSS: "miltank" escolhido vira chip, cartão "Contra Miltank" com tudo da luta; ✕ volta ao campo e aos treinadores',
     typedChip.field && typedChip.chip === 'Miltank' && typedChip.box && typedChip.title === 'Contra Miltank' && typedChip.inHead && typedChip.picksTitle === 'Para capturar ou treinar' && typedChip.loose === 0 && typedChip.starter &&
     typedChip.after.field && typedChip.after.value === '' && typedChip.after.box && typedChip.after.head, typedChip);
+  // 0.84.0 (decisão do usuário): sair do campo com um nome válido NÃO vira chip — só a lista ou o Enter
+  const blurNoChip = await run(async () => {
+    const i = document.querySelector('#opp'); i.focus(); i.value = 'miltank'; i.dispatchEvent(new Event('input'));
+    await new Promise((r) => setTimeout(r, 300)); i.blur(); await new Promise((r) => setTimeout(r, 700));
+    return { field: !document.querySelector('#oppField').hidden, chip: !document.querySelector('#oppChip')?.hidden && !!document.querySelector('#oppChip .chip-name')?.textContent };
+  });
+  check('HGSS: sair do campo com "miltank" não vira chip (só lista ou Enter)', blurNoChip.field && !blurNoChip.chip, blurNoChip);
   // corrida ao abrir dois jogos em seguida (0.83.0): data de um + acq do outro dava TypeError em whereToGet ("sem erro de
   // JavaScript" no fim pega); o 2º jogo tem que abrir inteiro
   await run(() => { location.hash = '#/jogo/emerald'; setTimeout(() => { location.hash = '#/jogo/firered-leafgreen?pokemon=gyarados'; }, 30); });

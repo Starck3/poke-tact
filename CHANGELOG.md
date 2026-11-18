@@ -2,6 +2,15 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.84.0] — 2026-11-17
+
+> O oponente só vira etiqueta quando você escolhe na lista ou aperta Enter, e no celular os Pokémon do treinador rolam de lado.
+
+### Mudado (decisões do usuário)
+- Sair do campo do oponente com um nome válido não vira mais chip; só escolher na lista ou apertar Enter.
+- No celular (até 600 px), os segmentos do time do treinador (`#team`) rolam de lado em vez de quebrar — "Time inteiro"
+  caía sozinho na 2ª linha.
+
 ## [0.83.0] — 2026-11-17
 
 > Depois de escolher o oponente, a tela fica em ordem: a escolha vira uma etiqueta com ✕, a luta aparece num cartão só ("Contra o Miltank de Whitney") e logo abaixo vêm o seu time e as sugestões.
