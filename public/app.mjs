@@ -129,8 +129,8 @@ async function load(gameId) {
   fillStages();
   $('trainerBox').hidden = !trainers.length;
   $('trainerHint').textContent = trainersFromWalk ? '— time do detonado (espécie e nível); golpes estimados pelo nível' : '— usa o time e os golpes reais';
-  // com treinadores, digitar o Pokémon é o caminho alternativo; sem eles, é o único
-  $('oppLabel').firstChild.textContent = trainers.length ? 'Ou digite o Pokémon do oponente ' : 'Pokémon que você está enfrentando ';
+  // 0.82.0: a busca fica no topo (pedido do usuário) — o rótulo deixa claro que dá para escolher o treinador logo abaixo
+  $('oppLabel').firstChild.textContent = trainers.length ? 'Pokémon do oponente (ou escolha o treinador abaixo) ' : 'Pokémon que você está enfrentando ';
   // inicial só faz sentido com 2+ opções (Yellow: só Pikachu); progresso só com linha do tempo
   const choosable = (data.starters?.species?.length ?? 0) > 1;
   $('starterWrap').style.display = choosable ? '' : 'none';

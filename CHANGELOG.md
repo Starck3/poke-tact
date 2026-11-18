@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.82.0] — 2026-11-17
+
+> Na Recomendação, o campo para digitar o Pokémon do oponente agora fica no topo, logo abaixo das abas.
+
+### Mudado (pedido do usuário)
+- A busca do Pokémon do oponente (`#opp`) subiu para o começo da aba Recomendação, antes do inicial e dos treinadores;
+  rótulo "Pokémon do oponente (ou escolha o treinador abaixo)" quando o jogo tem treinadores.
+
 ## [0.81.0] — 2026-11-17
 
 > Nos jogos da 1ª e da 2ª geração, as imagens dos Pokémon não têm mais o fundo branco: usam as do FireRed.

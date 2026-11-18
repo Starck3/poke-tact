@@ -1714,12 +1714,13 @@ test('leitor do PKHeX: forma regional só quando a forma 0 está ausente; loja d
   assert.match(readFileSync(new URL('../scripts/build-game.mjs', import.meta.url), 'utf8'), /PKHEX_STEPS = \['apply-pkhex-overlay', 'fill-pkhex-species', 'add-pkhex-forms', 'add-pkhex-megas', 'apply-pkhex-machines', 'apply-pkhex-evos', 'apply-zmax-powers', 'validate-pkhex']/);
 });
 
-test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites logo acima do campo do oponente', () => {
+test('tela do jogo: o inicial sai da barra do topo e vira 3 sprites; a busca do oponente fica no topo da Recomendação', () => {
   const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
   const top = html.slice(html.indexOf('id="context"'), html.indexOf('</div>', html.indexOf('id="stageWrap"')));
   assert.ok(!/id="starter"/.test(top), 'o seletor de inicial não pode ficar na barra do topo');
-  const pick = html.indexOf('id="starterPick"'), opp = html.indexOf('id="opp"');
-  assert.ok(pick > 0 && pick < opp && !html.slice(pick, opp).includes('id="oppInfo"'), 'escolha do inicial logo acima do campo do oponente');
+  // 0.82.0 (pedido do usuário): o campo do oponente veio para o começo da aba, antes do inicial e dos treinadores
+  const rec = html.indexOf('id="recView"'), opp = html.indexOf('id="opp"'), pick = html.indexOf('id="starterPick"'), tb = html.indexOf('id="trainerBox"');
+  assert.ok(rec > 0 && rec < opp && opp < pick && opp < tb, 'busca do oponente logo abaixo das abas, antes do inicial e dos treinadores');
   assert.match(html, /<select id="starter" hidden/); // o <select> continua guardando o valor (URL ?inicial=, rival)
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.match(app, /role="radio"/); assert.match(app, /não informar/);

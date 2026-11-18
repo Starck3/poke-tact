@@ -527,6 +527,15 @@
   <div id="recView" role="tabpanel">
   <!-- 0.77.0: na ordem em que se decide — inicial (muda o time do rival), oponente, e só depois nível e filtros (recolhidos) -->
   <div class="card stack">
+    <!-- 0.82.0, pedido do usuário: a busca do Pokémon do oponente fica no topo, logo abaixo das abas -->
+    <div>
+      <label for="opp" id="oppLabel">Pokémon que você está enfrentando <span class="search-hint meta">atalho <kbd>/</kbd></span></label>
+      <div class="ac">
+        <input type="search" id="opp" placeholder="Digite o nome — ex.: gyarados" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="oppList" aria-expanded="false" aria-describedby="oppWarn">
+        <ul id="oppList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
+      </div>
+      <div id="oppWarn" class="warn" role="status" hidden></div>
+    </div>
     <div id="starterWrap">
       <div class="label step-label" id="starterLabel">Seu inicial <span class="meta" id="starterHint">— opcional</span></div>
       <div class="spick" id="starterPick" role="radiogroup" aria-labelledby="starterLabel"></div>
@@ -541,14 +550,6 @@
       <select id="trainer" hidden aria-hidden="true"><option value="">—</option></select>
     </div>
     <div id="team" class="team"></div>
-    <div>
-      <label for="opp" id="oppLabel">Pokémon que você está enfrentando <span class="search-hint meta">atalho <kbd>/</kbd></span></label>
-      <div class="ac">
-        <input type="search" id="opp" placeholder="Digite o nome — ex.: gyarados" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="oppList" aria-expanded="false" aria-describedby="oppWarn">
-        <ul id="oppList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
-      </div>
-      <div id="oppWarn" class="warn" role="status" hidden></div>
-    </div>
     <div id="oppInfo"></div>
     <!-- nível e filtros recolhidos: escolher o treinador já ajusta o nível e o progresso; a linha "Calculado com…" abre aqui -->
     <details class="filters tune" id="filters">
