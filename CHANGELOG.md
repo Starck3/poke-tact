@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.79.0] — 2026-11-17
+
+> No Emerald, os líderes aparecem só pelo nome ("Roxanne", não "Roxanne 1").
+
+### Mudado (decisão do usuário)
+- O nome do treinador mostrado tira o número final da luta ("Roxanne 1" → "Roxanne"); as revanches continuam na seção
+  **Revanches**, e a linha do oponente escolhido diz "revanche" também quando o dado não marca (Emerald).
+- Confirmado com o usuário: na busca única os jogos vêm antes dos Pokémon ("gold" → Gold/Silver antes de Goldeen), e fechar
+  "Como funciona" no ✕ não marca como lido (só "Entendi").
+
 ## [0.78.0] — 2026-11-17
 
 > Uma busca só na tela inicial (Pokémon, jogo, líder ou tipo). "Como funciona" aparece na 1ª visita. O inicial e o Meu time ficam recolhidos, e no Emerald cada líder aparece uma vez só.

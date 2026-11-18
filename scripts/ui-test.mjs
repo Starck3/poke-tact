@@ -128,14 +128,17 @@ try {
   await go('#/jogo/emerald', 3500);
   const em = await run(async () => {
     const main = document.querySelectorAll('#trainerPick > .tgrid .tchip').length, again = document.querySelectorAll('#trainerPick details .tchip').length;
+    // 0.79.0: a luta principal aparece "Roxanne", sem o número ("Roxanne 1")
+    const names = [...document.querySelectorAll('#trainerPick > .tgrid .t-name')].map((e) => e.textContent.trim());
     document.querySelector('#tabTypes').click(); await new Promise((r) => setTimeout(r, 800));
     const cards = document.querySelectorAll('#typesOut .mon-card').length, all = !!document.querySelector('#typesOut [data-types-all]');
     document.querySelector('#typesOut [data-types-all]')?.click(); await new Promise((r) => setTimeout(r, 800));
     const after = document.querySelectorAll('#typesOut .mon-card').length;
     document.querySelector('#tabRec').click();
-    return { main, again, cards, all, after };
+    return { main, again, cards, all, after, names };
   });
   check('Emerald: 8 líderes em Líderes e 32 revanches; Pokémon por tipo só lista ao pedir', em.main === 8 && em.again === 32 && em.cards === 0 && em.all && em.after > 100, em);
+  check('Emerald: líderes sem número no nome ("Roxanne", não "Roxanne 1")', em.names.some((n) => /^Roxanne\b/.test(n)) && !em.names.some((n) => /\s\d+\b/.test(n)), em.names);
 
   // 4. Scarlet: 1ª luta da Nemona (nv 5) — sem Armarouge (item citado no detonado limita a evolução)
   await go('#/jogo/scarlet-violet', 4000);

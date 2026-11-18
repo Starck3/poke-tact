@@ -3329,6 +3329,17 @@ test('regressão (0.78.0): Emerald — "Roxanne 1" … "Roxanne 5" não são 5 l
   assert.ok(app.includes(String.raw`const k = t.label.replace(/\s+\d+$/, '') + '|'`));
 });
 
+test('0.79.0 (decisão do usuário): Emerald — a luta principal aparece "Roxanne", sem o número "1"', () => {
+  // Antes: depois de separar as revanches, a luta principal ainda aparecia "Roxanne 1". O nome mostrado tira o número final.
+  const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
+  const src = app.match(/const trainerName = \(t\) => (.+);\n/)[1];
+  const capName = (s) => s, humanize = (s) => s;
+  const trainerName = eval(`(t) => ${src}`);
+  assert.equal(trainerName({ group: 'Líderes de ginásio', label: 'Leader Roxanne 1' }), 'Roxanne');
+  assert.equal(trainerName({ group: 'Líderes de ginásio', label: 'Roxanne 3' }), 'Roxanne');
+  assert.equal(trainerName({ group: 'Líderes de ginásio', label: 'Brock' }), 'Brock');
+});
+
 test('0.78.0: decisões do usuário — Meu time sempre recolhido, inicial recolhido fora do rival, "Como funciona" na 1ª visita', () => {
   const app = readFileSync(new URL('../public/app.mjs', import.meta.url), 'utf8');
   assert.ok(app.includes('homeTeamOpen = false; // sempre recolhido'));

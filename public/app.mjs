@@ -916,7 +916,9 @@ let pickerOpen = false; // 0.77.0: com um oponente escolhido, a lista fica recol
 const topLevel = (t) => Math.max(...t.party.map((p) => p.level));
 const capName = (s) => (s && s === s.toUpperCase() ? s.toLowerCase().replace(/(^|[\s.])(\S)/g, (m, a, b) => a + b.toUpperCase()) : s); // Gen 3: "BRENDAN" → "Brendan"
 /** Nome curto do treinador como os botões mostram ("Leader Brock" → "Brock"; rival com o inicial que ele leva). */
-const trainerName = (t) => capName(t.group === 'Rival' ? (t.carries ? `${t.name} (com ${humanize(t.carries)})` : t.name) : t.label.replace(/^(Leader|Elite Four|Champion|Gym Leader|Líder)\s+/i, ''));
+// sem o número da luta no fim: o Emerald rotula "Leader Roxanne 1" … "Roxanne 5" e a luta principal aparecia como "Roxanne 1"
+// (0.79.0, pedido do usuário); as revanches já ficam separadas e marcadas por orderTrainers
+const trainerName = (t) => capName(t.group === 'Rival' ? (t.carries ? `${t.name} (com ${humanize(t.carries)})` : t.name) : t.label.replace(/^(Leader|Elite Four|Champion|Gym Leader|Líder)\s+/i, '').replace(/\s+\d+$/, ''));
 function trainerCategories() {
   const mine = $('starter').value;
   const visible = trainers.filter((t) => !(mine && t.forStarter && !t.forStarter.includes(mine)));
@@ -956,7 +958,7 @@ function renderTrainerPicker() {
   $('trainerCats').hidden = !!collapsed;
   if (collapsed) {
     const ace = data.pokemon.find((p) => p.name === current.party.at(-1)?.species);
-    const sub = [current.pool ? `sorteia de ${current.party.length} conjuntos` : `${current.party.length} Pokémon`, `nv ${topLevel(current)}`, current.double && 'dupla', current.rematch && 'revanche'].filter(Boolean).join(' · ');
+    const sub = [current.pool ? `sorteia de ${current.party.length} conjuntos` : `${current.party.length} Pokémon`, `nv ${topLevel(current)}`, current.double && 'dupla', (current.rematch || orderTrainers(current.group, cats.find((c) => c.g === current.group)?.list ?? []).find((x) => x.t.key === current.key)?.rematch) && 'revanche'].filter(Boolean).join(' · ');
     box.innerHTML = `<div class="picked"><div class="tchip" aria-current="true">${ace ? img(ace.id) : ''}<span><span class="t-name">${trainerName(current)}</span><span class="t-sub">${CAT_LABEL[current.group] ?? current.group} · ${sub}</span></span></div>` +
       '<button type="button" class="btn" data-reopen>Trocar oponente</button></div>';
     box.querySelector('[data-reopen]').addEventListener('click', () => { pickerOpen = true; renderTrainerPicker(); box.querySelector('.tchip, select')?.focus(); });
