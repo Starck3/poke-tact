@@ -2,6 +2,33 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.83.0] — 2026-11-17
+
+> Depois de escolher o oponente, a tela fica em ordem: a escolha vira uma etiqueta com ✕, a luta aparece num cartão só ("Contra o Miltank de Whitney") e logo abaixo vêm o seu time e as sugestões.
+
+### Mudado (pedido do usuário: "depois de uma pesquisa a tela fica muito desconexa")
+- **Pergunta → a luta → respostas** na Recomendação:
+  - Escolhido o oponente (pela busca ou pelo treinador), o campo vira um **chip** "Miltank nv 19 · Whitney ✕" com
+    **Trocar treinador** ao lado; a lista de treinadores some. O ✕ tira o oponente; tocar no nome volta ao campo para
+    digitar. O inicial recolhe na linha "Seu inicial: X · trocar" também com o Pokémon buscado (o rival continua com os 3).
+  - **Cartão da luta** "Contra o Miltank de Whitney (nv 19)" / "Contra o time inteiro de Whitney": o time do treinador em
+    segmentos com mini sprites (com **Time inteiro**), o oponente, as fraquezas e "Ele ataca com…" lado a lado no
+    computador, "Calculado com… — mudar" e **Nível e filtros** — antes espalhados entre o cartão de entrada e linhas soltas.
+  - Embaixo: **Seu time** (veredito numa linha; o "por quê" de cada um recolhido) e o título **Para capturar ou treinar**
+    sempre visível; o mesmo espaço entre tudo e cartões de sugestão da mesma altura.
+- **Cabeçalho do jogo** numa linha no computador: um selo curto ("✓ Verificado") e o **ⓘ** ao lado do título abre "Sobre
+  os dados" (com os 3 selos), que deixou de ocupar uma linha. No celular, Versão e Progresso lado a lado.
+- **Abas** com sublinhado, diferentes dos botões de escolha.
+- No celular: lista de treinadores em 2 colunas e "Trocar" na mesma linha do chip.
+- "Como conseguir · 2 insígnias…": o progresso sai em letra normal (era tudo maiúscula). Selo "vence 1 de 2" sem a caixa
+  do aviso amarelo.
+
+### Corrigido
+- Abrir um jogo e logo outro (ou duas abas do mesmo navegador) misturava os dados dos dois e dava erro
+  ("Cannot read properties of undefined") ao calcular onde obter. Agora o jogo que chegou atrasado é descartado.
+- Teste da tela: verificações novas (chip do Pokémon buscado e ✕, cartão da luta, dois jogos abertos em seguida); a do
+  Brock foi reescrita para o layout novo.
+
 ## [0.82.0] — 2026-11-17
 
 > Na Recomendação, o campo para digitar o Pokémon do oponente agora fica no topo, logo abaixo das abas.

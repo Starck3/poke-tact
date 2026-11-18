@@ -29,7 +29,8 @@ const qualityOf = (g) => (g.validation === 'pokeapi' ? 'pokeapi' : g.partial || 
 // tags do que o jogo tem no app (ao lado do selo de verificação): detonado e onde capturar (com fotos/mapa no tooltip)
 const featureTags = (g) => (g.hasWalkthrough ? lozenge('info', '📖 detonado no app', 'Aba Detonado: a história em ordem, com os Pokémon, presentes e treinadores de cada lugar.') : '') +
   (g.capture ? lozenge('info', '📍 capturas disponíveis', 'Aba Onde capturar: todos os locais de cada Pokémon' + [g.capture.places && ` · fotos de ${g.capture.places} lugares (detonado)`, g.capture.regionMap && ' · mapa da região'].filter(Boolean).join('') + '.') : '');
-const qualityBadge = (g) => { const [k, t, tip] = QUALITY[qualityOf(g)]; return lozenge(k, t, tip); };
+const QUALITY_SHORT = { ok: '✓ Verificado', partial: '◐ Parcial', pokeapi: 'PokéAPI' }; // cabeçalho do jogo numa linha (0.83.0)
+const qualityBadge = (g, short = false) => { const q = qualityOf(g), [k, t, tip] = QUALITY[q]; return lozenge(k, short ? QUALITY_SHORT[q] : t, tip); };
 // contexto da partida (versão, progresso, nível) guardado por jogo no navegador — a URL tem prioridade
 // o inicial fica de fora: o jogo sempre abre em "não informar" (só a URL ?inicial= escolhe um)
 const CTX_FIELDS = ['version', 'stage', 'level'];
@@ -70,17 +71,21 @@ const vAcq = () => view().acq;
 let pokedex = null; // Pokédex nacional [[número, nome]]: só para avisar que um Pokémon é de outra geração
 fetch('data/pokedex.json').then((r) => r.json()).then((d) => { pokedex = d; }).catch(() => {});
 
+let loadTok = 0, loadP = null; // abertura de jogo em andamento (0.83.0: corrida entre dois jogos abertos em seguida)
 async function load(gameId) {
   const g = catalog.games.find((x) => x.id === gameId);
   currentGame = gameId;
   try { localStorage.setItem('poketact:last', gameId); } catch {} // "Continuar de onde parou" na tela inicial
-  known = null; teamMode = null;
+  known = null; teamMode = null; oppLocked = false; pickerOpen = false; starterOpen = false;
   for (const id of ['opp', 'oppLevel']) $(id).value = '';
   $('team').innerHTML = '';
-  $('results').innerHTML = skeleton();
+  $('resultsHead').hidden = true;
+  $('resultsBody').innerHTML = skeleton();
   $('oppInfo').innerHTML = '';
   $('gameTitle').textContent = 'Pokémon ' + g.label;
-  $('qualityBadge').innerHTML = $('aboutBadges').innerHTML = qualityBadge(g) + featureTags(g); // no celular, só em "Sobre os dados"
+  // 0.83.0: no cabeçalho, só o selo de qualidade (uma linha); os 3 selos ficam no ⓘ "Sobre os dados"
+  $('qualityBadge').innerHTML = qualityBadge(g, true);
+  $('aboutBadges').innerHTML = qualityBadge(g) + featureTags(g);
   // mecânicas do jogo que o cálculo não considera (Mega Evolução, golpes Z, Dynamax, Terastal, tempo real…)
   // Mega Evolução já entra no cálculo (0.26.0); o aviso fica para as outras mecânicas
   const outside = (g.mechanics ?? []).filter((m) => m !== 'Mega Evolução' && m !== 'golpes Z' && m !== 'Terastal' && m !== 'Dynamax e Gigantamax');
@@ -105,12 +110,19 @@ async function load(gameId) {
   evoItems = null;
   regionMap = null;
   showTab('rec');
-  data = await (await fetch(`data/${gameId}.json`)).json();
+  // 0.83.0: os arquivos chegam em variáveis locais e só viram o jogo aberto se nenhum outro jogo começou a abrir no meio.
+  // Antes, abrir um jogo e logo outro misturava `data` de um com `acq` do outro (e a versão do 2º) → TypeError em
+  // whereToGet ("reading 'bulbasaur'"), visto ao abrir #/jogo/firered-leafgreen?pokemon=gyarados com outra aba navegando
+  const tok = ++loadTok;
+  const d = await (await fetch(`data/${gameId}.json`)).json();
   // trainersFromWalk: times transcritos do detonado (jogos sem decomp) — espécie e nível; golpes estimados
-  try { const td = await (await fetch(`data/${gameId}-trainers.json`)).json(); trainers = td.trainers; trainersFromWalk = !!td.fromWalkthrough;
-    if (td.subwaySource) try { trainers = trainers.concat(subwayTrainers(await (await fetch(`data/${gameId}-subway.json`)).json(), trainers)); } catch {}
-  } catch { trainers = []; trainersFromWalk = false; }
-  try { acq = await (await fetch(`data/${gameId}-acquisition.json`)).json(); } catch { acq = null; }
+  let tr = [], fromWalk = false, a = null;
+  try { const td = await (await fetch(`data/${gameId}-trainers.json`)).json(); tr = td.trainers; fromWalk = !!td.fromWalkthrough;
+    if (td.subwaySource) try { tr = tr.concat(subwayTrainers(await (await fetch(`data/${gameId}-subway.json`)).json(), tr)); } catch {}
+  } catch { tr = []; fromWalk = false; }
+  try { a = await (await fetch(`data/${gameId}-acquisition.json`)).json(); } catch { a = null; }
+  if (tok !== loadTok || currentGame !== gameId) return false; // outro jogo foi aberto enquanto este carregava
+  data = d; trainers = tr; trainersFromWalk = fromWalk; acq = a;
   if (g.validation === 'pkhex') $('validationNote').textContent += acq?.encountersOnly
     ? (rateCredit(acq) ? ` Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível; ${rateCredit(acq)}.` : ' Onde obter: tabelas de encontro do jogo (PKHeX), com local e nível, sem taxa de aparição.') +
       (trainersFromWalk ? ' Treinadores: times transcritos do detonado do PokeMythology (espécie e nível); golpes estimados pelo moveset padrão do jogo.' : ' Treinadores ainda não disponíveis.') +
@@ -189,7 +201,8 @@ function renderStarters() {
   const cur = $('starter').value;
   // 0.78.0 (decisão do usuário): oponente escolhido que não é o rival → o inicial não muda a luta; vira uma linha com "trocar"
   const t = trainers.find((x) => x.key === $('trainer').value);
-  const compact = t && t.group !== 'Rival' && !t.forStarter && !starterOpen && data.starters?.species?.length > 1;
+  // 0.83.0: vale para os dois caminhos (Pokémon buscado ou treinador) — só o rival continua com os 3 iniciais à mostra
+  const compact = (oppLocked || !!teamMode) && !(t && (t.group === 'Rival' || t.forStarter)) && !starterOpen && data.starters?.species?.length > 1;
   $('starterLabel').hidden = !!compact;
   $('starterPick').classList.toggle('compact', !!compact);
   if (compact) {
@@ -952,18 +965,9 @@ function renderTrainerPicker() {
   for (const b of $('trainerCats').querySelectorAll('button')) b.addEventListener('click', () => { trainerCat = b.dataset.cat; pickerOpen = true; renderTrainerPicker(); });
   const cat = cats.find((c) => c.g === trainerCat);
   const box = $('trainerPick');
-  // oponente escolhido: a lista recolhe numa linha ("Brock · nv 14 · 2 Pokémon" + Trocar) e as sugestões sobem
-  // (no celular ficavam ~2.000 px abaixo, depois dos 8 líderes, dos iniciais e dos campos)
-  const collapsed = current && !pickerOpen;
-  $('trainerCats').hidden = !!collapsed;
-  if (collapsed) {
-    const ace = data.pokemon.find((p) => p.name === current.party.at(-1)?.species);
-    const sub = [current.pool ? `sorteia de ${current.party.length} conjuntos` : `${current.party.length} Pokémon`, `nv ${topLevel(current)}`, current.double && 'dupla', (current.rematch || orderTrainers(current.group, cats.find((c) => c.g === current.group)?.list ?? []).find((x) => x.t.key === current.key)?.rematch) && 'revanche'].filter(Boolean).join(' · ');
-    box.innerHTML = `<div class="picked"><div class="tchip" aria-current="true">${ace ? img(ace.id) : ''}<span><span class="t-name">${trainerName(current)}</span><span class="t-sub">${CAT_LABEL[current.group] ?? current.group} · ${sub}</span></span></div>` +
-      '<button type="button" class="btn" data-reopen>Trocar oponente</button></div>';
-    box.querySelector('[data-reopen]').addEventListener('click', () => { pickerOpen = true; renderTrainerPicker(); box.querySelector('.tchip, select')?.focus(); });
-    return;
-  }
+  // 0.83.0: com o oponente escolhido, a lista inteira fica escondida (renderAsk) e o chip mostra a escolha; o resumo
+  // "Brock · nv 14 + Trocar oponente" da 0.77.0 saiu (repetia o chip)
+  renderAsk();
   if (cat.g === 'Treinadores comuns' || cat.list.length > 60) {
     // muitos: seletor agrupado por classe, com o lugar (vários "Youngster Joey" em mapas diferentes)
     const byClass = Object.groupBy(cat.list, (t) => t.class ?? 'Outros');
@@ -995,7 +999,7 @@ function renderTrainerPicker() {
 }
 function selectTrainer(key) {
   $('trainer').value = key;
-  pickerOpen = false; starterOpen = false;
+  pickerOpen = false; starterOpen = false; oppLocked = true; // 0.83.0: escolheu → a pergunta recolhe no chip
   const t = trainers.find((x) => x.key === key);
   if (!t) { known = null; teamMode = null; $('team').innerHTML = ''; renderTrainerPicker(); update(); return; }
   setLevelFor(t);
@@ -1022,6 +1026,7 @@ function setLevelFor(t) {
 
 function pickTrainerMon(t, i) {
   const p = t.party[i];
+  oppLocked = true;
   $('opp').value = p.species;
   $('oppLevel').value = p.level;
   // dvs (Gen 1–2) / iv (Gen 3): atributos reais do Pokémon do treinador no cálculo de dano
@@ -1043,12 +1048,13 @@ function renderTeam(t, active) {
     box.querySelector('select').addEventListener('change', (e) => { if (e.target.value !== '') pickTrainerMon(t, Number(e.target.value)); });
     return;
   }
-  // rótulo: os botões abaixo são o time do treinador (antes apareciam soltos, sem dizer o que eram)
-  box.insertAdjacentHTML('beforeend', `<span class="team-label">${t.party.length > 1 ? 'Qual Pokémon de ' + trainerName(t) + '?' : 'Pokémon de ' + trainerName(t) + ':'}</span>`);
+  // 0.83.0: segmentos com mini sprite dentro do cartão da luta (o título "Contra o Onix de Brock" diz de quem é o time)
+  box.setAttribute('aria-label', 'Pokémon de ' + trainerName(t));
   t.party.forEach((p, i) => {
     const b = document.createElement('button');
     b.type = 'button';
-    b.textContent = `${humanize(p.species)} nv ${p.level}`;
+    const mon = data.pokemon.find((x) => x.name === p.species);
+    b.innerHTML = (mon ? img(mon.id) : '') + `<span>${humanize(p.species)} nv ${p.level}</span>`;
     b.setAttribute('aria-pressed', String(!teamMode && i === active));
     b.addEventListener('click', () => pickTrainerMon(t, i));
     box.append(b);
@@ -1056,7 +1062,8 @@ function renderTeam(t, active) {
   if (t.party.length > 1) {
     const b = document.createElement('button');
     b.type = 'button';
-    b.textContent = 'Contra o time inteiro';
+    b.className = 'all';
+    b.textContent = 'Time inteiro';
     b.setAttribute('aria-pressed', String(!!teamMode));
     b.addEventListener('click', () => { teamMode = t; renderTeam(t, -1); update(); });
     box.append(b);
@@ -1103,6 +1110,41 @@ function currentOpp() {
   return mon && (known?.mega || known?.tera || known?.dynamax || known?.zMove) && known.species === mon.name ? battleForm(mon, known) : mon;
 }
 
+// ---- 0.83.0 "pergunta": escolhido o oponente (busca ou treinador), o campo vira um chip [sprite Nome nv X ✕] e a lista de
+// treinadores fica atrás de "Trocar treinador" — antes os dois caminhos ficavam abertos juntos ("onix" no campo e o Brock
+// escolhido na lista). ✕ tira o oponente; tocar no nome volta ao campo para digitar
+let oppLocked = false, askWasLocked = null;
+function lockOpp() { if (findOpponent(data.pokemon, $('opp').value)) { oppLocked = true; pickerOpen = false; update(); } }
+function unlockOpp(clear) {
+  oppLocked = false; pickerOpen = false;
+  if (clear) { $('opp').value = ''; $('oppLevel').value = ''; known = null; teamMode = null; $('trainer').value = ''; $('team').innerHTML = ''; renderTrainerPicker(); }
+  update();
+  $('opp').focus(); $('opp').select();
+}
+function renderAsk() {
+  if (!data) return;
+  const t = trainers.find((x) => x.key === $('trainer').value);
+  const opp = findOpponent(data.pokemon, $('opp').value);
+  const locked = !!teamMode || (oppLocked && !!opp);
+  $('oppField').hidden = locked;
+  $('oppChip').hidden = !locked;
+  $('trainerBox').hidden = !trainers.length || (locked && !pickerOpen);
+  if (locked !== askWasLocked) { askWasLocked = locked; renderStarters(); } // o inicial recolhe junto
+  if (!locked) { $('oppChip').innerHTML = ''; return; }
+  const who = teamMode ? data.pokemon.find((p) => p.name === teamMode.party.at(-1)?.species) : currentOpp();
+  const lv = Number($('oppLevel').value);
+  const name = teamMode ? (teamMode.pool ? trainerName(teamMode) + ' · time sorteado' : trainerName(teamMode) + ' · time inteiro')
+    : humanize(opp.name) + (lv ? ' nv ' + lv : '') + (t ? ' · ' + trainerName(t) : '');
+  $('oppChip').innerHTML = `<span class="opp-chip">${who ? img(who.megaSprite ?? who.id) : ''}<button type="button" class="chip-name" data-chip-edit title="Digitar outro Pokémon">${name}</button>` +
+    '<button type="button" class="chip-x" data-chip-clear aria-label="Tirar o oponente" title="Tirar o oponente">✕</button></span>' +
+    (trainers.length ? `<button type="button" class="btn" id="oppPickTrainer" aria-expanded="${pickerOpen}" aria-controls="trainerBox">${pickerOpen ? 'Fechar a lista' : `<span class="long">${t || teamMode ? 'Trocar' : 'Escolher'} treinador</span><span class="short">${t || teamMode ? 'Trocar' : 'Treinador'}</span>`}</button>` : '');
+}
+$('oppChip').addEventListener('click', (e) => {
+  if (e.target.closest('[data-chip-clear]')) return unlockOpp(true);
+  if (e.target.closest('[data-chip-edit]')) { if (teamMode) return unlockOpp(true); return unlockOpp(false); }
+  if (e.target.closest('#oppPickTrainer')) { pickerOpen = !pickerOpen; renderTrainerPicker(); update(); }
+});
+
 function update() {
   renderOppWarn();
   // resumo do que está recolhido em "Nível e filtros"
@@ -1111,10 +1153,16 @@ function update() {
   const oppName = findOpponent(data.pokemon, $('opp').value)?.name;
   if (oppName !== lastOppSel) { lastOppSel = oppName; selectMon(oppName); }
   const opp = currentOpp();
-  const out = $('results');
-  if (teamMode?.pool) { $('oppInfo').innerHTML = ''; renderTeamResults(teamMode, baseOptions(), out); return; }
+  const out = $('resultsBody');
+  renderAsk();
+  // cartão da luta (#resultsHead): título, time do treinador, oponente, "Ele ataca com…", "Calculado com…" e os filtros
+  const t = trainers.find((x) => x.key === $('trainer').value);
+  $('oppInfo').innerHTML = ''; $('oppWeak').innerHTML = ''; $('fightThreat').hidden = true; $('fightCtx').innerHTML = '';
+  $('resultsHead').hidden = !opp && !teamMode;
+  if (teamMode) $('fightTitle').textContent = teamMode.pool ? `Contra ${trainerName(teamMode)} (time sorteado)` : `Contra o time inteiro de ${trainerName(teamMode)}`;
+  else if (opp) $('fightTitle').textContent = `Contra ${t ? 'o ' + humanize(opp.name) + ' de ' + trainerName(t) : humanize(opp.name)}${Number($('oppLevel').value) ? ' (nv ' + $('oppLevel').value + ')' : ''}`;
+  if (teamMode?.pool) { renderTeamResults(teamMode, baseOptions(), out); return; }
   if (!opp) {
-    $('oppInfo').innerHTML = '';
     // estado vazio com o próximo passo (em vez de tela em branco)
     out.innerHTML = data && !trainers.length ? '<div class="card empty"><strong>Quem você vai enfrentar?</strong><br>Digite o nome do Pokémon — atalho <kbd>/</kbd>.</div>' : '';
     return;
@@ -1129,10 +1177,11 @@ function update() {
     row('Imune', eff.filter((x) => x.m === 0), 'bad') + '</div>';
   $('oppInfo').innerHTML = `<div class="opp">${img(opp.megaSprite ?? opp.id)}
     <div><strong>#${opp.speciesId ?? opp.id} ${opp.megaName ? 'Mega ' + humanize(opp.name) + (/-mega-([xyz])$/.test(opp.megaName) ? ' ' + opp.megaName.slice(-1).toUpperCase() : '') + ' <span class="lozenge warn">luta Mega (detonado)</span>' : humanize(opp.name)}</strong><br>${opp.teraType ? opp.baseTypes.map(typeBadge).join('') + ' → Tera ' + typeBadge(opp.teraType) + ' <span class="lozenge warn">terastaliza (detonado)</span>' : opp.types.map(typeBadge).join('')}${opp.dynamax ? ` <span class="lozenge warn">${opp.dynamax === 'gigantamax' ? 'Gigantamax' : 'Dynamax'} (detonado): vida 1,5× e golpes Max nos 3 primeiros turnos</span>` : ''}
-    <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : known.movesSource === 'Bulbapedia' ? '(do time na Bulbapedia)' : known.movesSource === 'Smogon' ? '(do time na Smogon)' : '(definidos pelo jogo)'}${known.zMove ? ` — usa golpe Z a partir de ${humanize(known.zMove)} no 1º turno` : ''}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>` + weakHtml;
+    <div class="meta">${data.game.generation >= 3 ? 'Habilidades: ' + (opp.abilities.map(humanize).join(', ') || '—') : ''}${known ? `<br>Golpes ${known.default ? '(padrão do jogo para o nível)' : known.movesSource === 'Bulbapedia' ? '(do time na Bulbapedia)' : known.movesSource === 'Smogon' ? '(do time na Smogon)' : '(definidos pelo jogo)'}${known.zMove ? ` — usa golpe Z a partir de ${humanize(known.zMove)} no 1º turno` : ''}: ${known.moves.map(humanize).join(', ')}${known.item ? `<br>Item: ${known.item}` : ''}` : oppLevel ? `<br>Golpes prováveis nv ${oppLevel}: ${likelyMoveset(opp, oppLevel).map(humanize).join(', ')}` : ''}</div></div></div>`;
+  $('oppWeak').innerHTML = weakHtml; // ao lado do oponente no computador, embaixo no celular
 
   const baseOpts = baseOptions();
-  if (teamMode) { renderTeamResults(teamMode, baseOpts, out); return; }
+  if (teamMode) { $('oppInfo').innerHTML = ''; $('oppWeak').innerHTML = ''; renderTeamResults(teamMode, baseOpts, out); return; }
   const { picks, threats, threatSource, team } = recommend(vData(), opp, { ...baseOpts, oppLevel, oppMoves: known?.moves, oppDvs: known?.dvs, oppIv: known?.iv });
   renderPicks(out, picks, threats, threatSource, team);
 }
@@ -1163,7 +1212,7 @@ function baseOptions() {
 
 // Meu time (0.76.0) na Recomendação: quem do time que você montou usar contra este Pokémon — com o nível e os golpes de cada um
 // sem time: uma linha só (era um cartão inteiro entre a ameaça e as sugestões — 0.77.0)
-const teamHint = () => '<p class="note my-team-card">💡 Monte o seu time na aba <button type="button" class="linkish" data-go-team>Meu time</button> — aqui aparece quem dele usar nesta luta.</p>';
+const teamHint = () => '<div class="card my-team-card slim"><p class="note" style="margin:0">💡 Monte o seu time na aba <button type="button" class="linkish" data-go-team>Meu time</button> — aqui aparece quem dele usar nesta luta.</p></div>';
 document.addEventListener('click', (e) => { if (e.target.closest('[data-go-team]')) { e.preventDefault(); showTab('team'); } });
 function myTeamCard(team) {
   if (!team.length) return teamHint();
@@ -1173,8 +1222,9 @@ function myTeamCard(team) {
     : '⚠ Ninguém do seu time vence a troca de golpes contra ele' + (best.duel ? ' — o que vai melhor é o ' + humanize(best.mon.name) : '') + '. Veja abaixo quem capturar ou treinar.';
   const row = (t) => '<li class="my-team-row">' + img(t.mon.id) + '<div><strong>' + humanize(t.mon.name) + ' nv ' + t.level + '</strong> ' +
     (t.duel ? verdictChips(t.duel, t.move) : lozenge('bad', t.moves.length ? 'sem golpe de dano' : 'sem golpes no time')) +
-    '<div class="meta">' + (t.move ? humanize(t.move.name) + ' ' + typeBadge(t.move.type) + ' ' + fmtMult(t.move.eff) + ' · ' : '') + (t.duel ? duelLine(t.duel) : 'Escreva os golpes dele em Meu time.') +
-    ' · recebe ' + t.incoming.map((x) => typeBadge(x.type) + '<span class="' + (x.mult < 1 ? 'good' : x.mult > 1 ? 'bad' : '') + '">' + fmtMult(x.mult) + '</span>').join(' ') + '</div></div></li>';
+    (t.move ? '<div class="meta">' + humanize(t.move.name) + ' ' + typeBadge(t.move.type) + ' ' + fmtMult(t.move.eff) + '</div>' : '') +
+    '<details><summary>por quê</summary><div class="meta">' + (t.duel ? duelLine(t.duel) : 'Escreva os golpes dele em Meu time.') +
+    ' · recebe ' + t.incoming.map((x) => typeBadge(x.type) + '<span class="' + (x.mult < 1 ? 'good' : x.mult > 1 ? 'bad' : '') + '">' + fmtMult(x.mult) + '</span>').join(' ') + '</div></details></div></li>';
   return '<div class="card my-team-card"><strong>Seu time</strong> <span class="meta">(nível e golpes de Meu time)</span><p class="my-team-verdict ' + (best.duel?.win ? 'ok' : 'bad') + '">' + head + '</p><ul class="my-team-list">' + team.map(row).join('') + '</ul></div>';
 }
 function myTeamPartyCard(team, t) {
@@ -1193,7 +1243,9 @@ function renderPicks(out, picks, threats, threatSource, team = []) {
       ? `Ele deve atacar com (golpes prováveis no nível): ${threats.map(typeBadge).join('')}`
       : `Ele deve atacar com golpes dos próprios tipos (sem nível informado): ${threats.map(typeBadge).join('')}`;
 
-  out.innerHTML = ctxLine() + `<p class="note threat">${threatLine}</p>` + myTeamCard(team) + (picks.length ? (team.length ? '<h3 class="picks-title">Para capturar ou treinar</h3>' : '') + '<div class="picks">' + picks.map((s, i) => {
+  $('fightThreat').innerHTML = threatLine; $('fightThreat').hidden = false;
+  $('fightCtx').innerHTML = ctxLine();
+  out.innerHTML = myTeamCard(team) + '<h2 class="picks-title">Para capturar ou treinar</h2>' + (picks.length ? '<div class="picks">' + picks.map((s, i) => {
     const m = s.move;
     const src = m.via.source;
     const via = m.via.method === 'level-up' ? `aprende no nv ${m.via.level}`
@@ -1279,7 +1331,7 @@ function howToGet(s) {
   if (alt) { best = pick(alt.direct); from = alt.from; }
   const first = formatSources([best], 1)[0] ?? '';
   const when = s.stageNeeded != null ? stageLabel(s.stageNeeded, acq.progress?.leaderOrder, acq.progress) : Number.isFinite(s.reach) && s.reach > 1 ? `a partir do nv ${s.reach}` : '';
-  return `<div class="kv"><b>Como conseguir${when ? ` · ${when}` : ''}</b>${from ? `evolua de ${humanize(from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}${trainLine(s, best, from)}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
+  return `<div class="kv"><b>Como conseguir${when ? ` <span class="when">· ${when}</span>` : ''}</b>${from ? `evolua de ${humanize(from)} · ` : ''}${first.replace(/ — (exige|estimativa:) .*$/, '')}${trainLine(s, best, from)}</div>`; /* porta (HM/insígnia) e estimativa de área ficam em "Detalhes" */
 }
 // o cálculo põe o Pokémon no nível do seu time: quando ele é capturado mais baixo, diz até onde treinar e por quê
 // ("Capture no nv 2–5 e treine até o nv 11 — aprende Karate Chop no nv 11")
@@ -1304,12 +1356,14 @@ function renderTeamResults(t, opts, out) {
   // Subway: a conta contra até 96 conjuntos leva ~0,6 s — mostra "calculando" antes; resultado velho (outra escolha no meio) é descartado
   if (t.pool) {
     const tok = ++poolTok;
-    out.innerHTML = ctxLine() + `<p class="note">Calculando contra os ${t.party.length} conjuntos possíveis de ${t.label}…</p>` + skeleton();
+    $('fightCtx').innerHTML = ctxLine() + `<p class="note">Calculando contra os ${t.party.length} conjuntos possíveis de ${t.label}…</p>`;
+    out.innerHTML = skeleton();
     setTimeout(() => { if (tok === poolTok && teamMode === t) renderPoolResults(t, opts, out); }, 30);
     return;
   }
   const { picks, team } = recommendTeam(vData(), t.party, opts);
-  out.innerHTML = ctxLine() + `<p class="note">Contra o time inteiro de ${t.label}: as sugestões que vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>` + myTeamPartyCard(team, t) + (team.length && picks.length ? '<h3 class="picks-title">Para capturar ou treinar</h3>' : '') +
+  $('fightCtx').innerHTML = ctxLine() + `<p class="note">As sugestões vencem a troca de golpes contra mais Pokémon do time (cálculo de dano da Geração ${roman(data.game.generation)}, com o nível e os golpes reais de cada um).</p>`;
+  out.innerHTML = myTeamPartyCard(team, t) + '<h2 class="picks-title">Para capturar ou treinar</h2>' +
     (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
       <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
       <div class="verdict">${lozenge(s.wins === s.total ? 'ok' : s.wins ? 'warn' : 'bad', `vence ${s.wins} de ${s.total}`)}${s.unreliable ? lozenge('warn', '⚠ origem aleatória', s.unreliable) : ''}</div>
@@ -1325,9 +1379,9 @@ function renderPoolResults(t, opts, out) {
   const { picks } = recommendTeam(vData(), t.party, opts);
   const loses = (s) => [...new Set(s.vs.filter((x) => !x.duel?.win).map((x) => humanize(x.opp)))];
   // 0.78.0: a frase principal fica; o resto da explicação em "Como é calculado"
-  out.innerHTML = ctxLine() + `<p class="note">${t.label} (${t.map[0]}) não tem time fixo: sorteia 3 Pokémon (4 na dupla) entre ${t.party.length} conjuntos, no nível 50. As sugestões vencem o maior número deles.</p>` +
-    `<details class="how" style="margin-bottom:var(--s3)"><summary>Como é calculado</summary><p class="meta">Os conjuntos são os da lista da Smogon (vale para o Black/White e o Black 2/White 2). A conta é a troca de golpes da Geração ${roman(data.game.generation)}, com os golpes e itens de cada conjunto.</p></details>` +
-    (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
+  $('fightCtx').innerHTML = ctxLine() + `<p class="note">${t.label} (${t.map[0]}) não tem time fixo: sorteia 3 Pokémon (4 na dupla) entre ${t.party.length} conjuntos, no nível 50. As sugestões vencem o maior número deles.</p>` +
+    `<details class="how"><summary>Como é calculado</summary><p class="meta">Os conjuntos são os da lista da Smogon (vale para o Black/White e o Black 2/White 2). A conta é a troca de golpes da Geração ${roman(data.game.generation)}, com os golpes e itens de cada conjunto.</p></details>`;
+  out.innerHTML = '<h2 class="picks-title">Para capturar ou treinar</h2>' + (picks.length ? '<div class="picks">' + picks.map((s, i) => `<div class="card pick">
       <div class="pick-head">${img(s.mon.id)}<div><div class="rank">#${i + 1} sugestão</div><h3>${humanize(s.mon.name)}</h3><div>${s.mon.types.map(typeBadge).join('')}</div></div></div>
       <div class="verdict">${lozenge(s.wins === s.total ? 'ok' : s.wins * 2 >= s.total ? 'warn' : 'bad', `vence ${s.wins} de ${s.total} conjuntos`)}${s.unreliable ? lozenge('warn', '⚠ origem aleatória', s.unreliable) : ''}</div>
       <div class="kv"><b>Perde para</b>${loses(s).join(', ') || 'nenhum conjunto da lista'}</div>
@@ -1350,10 +1404,10 @@ document.addEventListener('keydown', (e) => {
   if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName ?? '') || $('tool').hidden) return;
   e.preventDefault();
   if ($('recView').hidden) showTab('rec');
-  $('opp').focus(); $('opp').select();
+  if (!$('oppField').hidden) { $('opp').focus(); $('opp').select(); } else unlockOpp(false); // com o chip: volta ao campo
 });
 // Digitar manualmente o Pokémon ou o nível do oponente sai do modo "treinador" (os golpes deixam de ser os do jogo)
-for (const id of ['opp', 'oppLevel']) $(id).addEventListener('input', () => { known = null; teamMode = null; $('trainer').value = ''; $('team').innerHTML = ''; renderTrainerPicker(); update(); });
+for (const id of ['opp', 'oppLevel']) $(id).addEventListener('input', () => { if (id === 'opp') { oppLocked = false; pickerOpen = false; } known = null; teamMode = null; $('trainer').value = ''; $('team').innerHTML = ''; renderTrainerPicker(); update(); });
 // autocompletar do oponente: só os Pokémon do jogo aberto (↑ ↓ escolhem, Enter confirma, Esc fecha)
 function renderOppWarn() {
   const w = data && opponentWarning({ pokemon: data.pokemon, pokedex, generation: data.game.generation, gameLabel: catalog.games.find((g) => g.id === currentGame)?.label ?? data.game.label }, $('opp').value);
@@ -1361,7 +1415,7 @@ function renderOppWarn() {
   $('oppWarn').textContent = w ? '⚠ ' + w.text : '';
 }
 // autocompletar com os Pokémon do jogo (campo do oponente e aba Onde capturar)
-function bindPokemonAc(inputId, listId, prefix) {
+function bindPokemonAc(inputId, listId, prefix, onPick) {
   const input = $(inputId), list = $(listId);
   let items = [], sel = 0;
   const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.setAttribute('aria-activedescendant', ''); };
@@ -1376,7 +1430,7 @@ function bindPokemonAc(inputId, listId, prefix) {
     input.setAttribute('aria-activedescendant', prefix + sel);
     list.querySelector('[aria-selected=true]')?.scrollIntoView({ block: 'nearest' });
   };
-  const pick = (name) => { input.value = name; close(); input.dispatchEvent(new Event('input')); };
+  const pick = (name) => { input.value = name; close(); input.dispatchEvent(new Event('input')); onPick?.(); };
   input.addEventListener('input', () => { sel = 0; paint(); });
   input.addEventListener('focus', paint);
   input.addEventListener('blur', () => setTimeout(close, 120));
@@ -1388,7 +1442,10 @@ function bindPokemonAc(inputId, listId, prefix) {
   });
   list.addEventListener('mousedown', (e) => { const li = e.target.closest('li[data-name]'); if (li) { e.preventDefault(); pick(li.dataset.name); } });
 }
-bindPokemonAc('opp', 'oppList', 'oa');
+bindPokemonAc('opp', 'oppList', 'oa', lockOpp); // escolheu na lista → chip (0.83.0)
+// Enter com o nome inteiro, ou sair do campo com um Pokémon do jogo escrito → chip
+$('opp').addEventListener('keydown', (e) => { if (e.key === 'Enter' && $('oppList').hidden) lockOpp(); });
+$('opp').addEventListener('blur', () => setTimeout(() => { if (!oppLocked && document.activeElement !== $('opp') && !$('tool').hidden) lockOpp(); }, 200));
 bindPokemonAc('dexQ', 'dexList', 'da');
 bindPokemonAc('movesQ', 'movesList', 'ma');
 $('trainer').addEventListener('change', () => {
@@ -1838,7 +1895,10 @@ async function route() {
     if (filters.generation) $('genGames')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     return;
   }
-  if (currentGame !== game.id) { await load(game.id); window.scrollTo(0, 0); }
+  // a mesma partida ainda carregando (2ª mudança de link no meio): espera o carregamento em vez de usar dados pela metade
+  if (currentGame !== game.id) { loadP = load(game.id); if (await loadP === false) return; window.scrollTo(0, 0); }
+  else if (loadP && (await loadP) === false) return;
+  if (currentGame !== game.id) return; // outro jogo foi aberto enquanto este carregava
   applyGameParams(r.params);
 }
 
@@ -1871,7 +1931,7 @@ function applyGameParams(p) {
     else pickTrainerMon(t, Math.min(Number(p.i) || 0, t.party.length - 1));
     renderTrainerPicker(); return;
   }
-  if (p.pokemon) { known = null; $('opp').value = p.pokemon; $('oppLevel').value = p.nivel ?? ''; }
+  if (p.pokemon) { known = null; $('opp').value = p.pokemon; $('oppLevel').value = p.nivel ?? ''; oppLocked = true; }
   update();
 }
 // ---- "Como funciona" (0.78.0): aviso com os 3 passos e os números; "Entendi" marca como lido neste navegador. Reabre pelo
@@ -1894,6 +1954,9 @@ route();
 $('starter').addEventListener('input', () => { const t = $('trainer').value; fillTrainers(); $('trainer').value = [...$('trainer').options].some((o) => o.value === t) ? t : ''; renderStarters(); update(); });
 
 $('version').addEventListener('input', renderStarters); // sprites da pasta da versão
+// ⓘ do cabeçalho abre/fecha "Sobre os dados" (0.83.0)
+$('aboutBtn').addEventListener('click', () => { const a = $('about'); a.open = !a.open; });
+$('about').addEventListener('toggle', () => $('aboutBtn').setAttribute('aria-expanded', String($('about').open)));
 $('tabRec').addEventListener('click', () => showTab('rec'));
 $('tabWalk').addEventListener('click', () => showTab('walk'));
 $('tabDex').addEventListener('click', () => showTab('dex'));
