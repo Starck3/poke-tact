@@ -1,33 +1,35 @@
 # Publica o app no GitHub Pages (https://starck3.github.io/poke-tact/) a cada push no main.
 # O site é só a pasta public/ (HTML, JS e JSON estáticos; caminhos relativos e rotas com #/, então funciona no subcaminho).
 # Os testes rodam antes: se falharem, a versão no ar continua a anterior.
+# Publica copiando public/ para o branch gh-pages (com .nojekyll): a opção "Source: GitHub Actions" do Settings → Pages não
+# ficou ativa (configure-pages dava 404); o branch gh-pages ativou o Pages sozinho em 2026-11-18.
 name: publicar
 on:
   push:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: npm test
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publicar public/ no branch gh-pages
+        run: |
+          site="$(mktemp -d)"
+          cp -r public/. "$site"/
+          touch "$site/.nojekyll"
+          cd "$site"
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Site de ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" gh-pages:gh-pages
