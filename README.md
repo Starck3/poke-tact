@@ -4,6 +4,9 @@ Escolha o jogo Pokémon que você está jogando e o oponente (ou um treinador do
 vencer a luta**, usando só os Pokémon, golpes e regras **daquele jogo** — com o que você já consegue ter no seu ponto da
 história.
 
+**No ar:** https://starck3.github.io/poke-tact/ — publicado pelo GitHub Pages a cada push no `main`
+(`.github/workflows/pages.yml`, só depois que os testes passam).
+
 - 22 jogos da série principal no catálogo, todos disponíveis.
 - 11 jogos conferidos com o código do jogo (decomps do [pret](https://github.com/pret) e o
   [pokebw2](https://github.com/fuddlesworth/pokebw2)), com treinadores, onde obter cada Pokémon, progresso por insígnia e
