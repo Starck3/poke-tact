@@ -320,6 +320,13 @@ try {
   };
   const fresh = await resumeAfter(1), stale = await resumeAfter(4);
   check('ao abrir: com 1 h mostra "Continuar de onde parou"; com 4 h não mostra', fresh.card && !stale.card && stale.last === null, { fresh, stale });
+  // 0.80.0 (pedido do usuário): ✕ no card tira o último jogo da tela inicial, e ele não volta ao recarregar
+  await resumeAfter(1);
+  await run(() => document.querySelector('#resume [data-forget-last]')?.click());
+  const forgot = await run(() => ({ card: !!document.querySelector('#resume .resume'), last: localStorage.getItem('poketact:last') }));
+  await send('Page.reload'); await sleep(2500);
+  const forgotReload = await run(() => !!document.querySelector('#resume .resume'));
+  check('✕ no "Continuar de onde parou" tira o jogo da tela inicial (e não volta ao recarregar)', !forgot.card && forgot.last === null && !forgotReload, { forgot, forgotReload });
   await go('#/?tipo=fire', 3000);
   const idle = await run(async () => {
     const real = Date.now; Date.now = () => real() + 4 * 3600e3;

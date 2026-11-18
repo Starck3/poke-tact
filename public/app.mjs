@@ -1,5 +1,5 @@
 import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, strongestMovesByLevel, estimatedMoveset, moveWorth, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
-import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spriteFolder } from './catalog.mjs';
+import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spritePath } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 import { matchup, monsFor, chartDiffs, TYPE_PT } from './typechart.mjs';
 
@@ -11,7 +11,7 @@ const COLORS = {
 const $ = (id) => document.getElementById(id);
 // sprites da própria versão do jogo (pasta do repositório PokeAPI/sprites)
 const SPRITES = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-const sprite = (id) => `${SPRITES}versions/generation-${roman(data.game.generation).toLowerCase()}/${spriteFolder(currentGame, $('version').value)}/${id}.png`;
+const sprite = (id) => `${SPRITES}versions/${spritePath(data.game.generation, currentGame, $('version').value)}/${id}.png`;
 // <img> com substituto: se a pasta da versão não existir (ex.: Gen 9), usa o sprite padrão
 // forma regional (Legends: Arceus: Typhlosion de Hisui = variedade 10233 da PokéAPI) → sprite da forma
 const img = (id0) => { const id = data?.pokemon.find((p) => p.id === id0)?.spriteId ?? id0; return `<img src="${sprite(id)}" alt="" onerror="this.onerror=null;this.src='${SPRITES}${id}.png'">`; };
@@ -1476,7 +1476,13 @@ function renderHero() {
   let last = null, ctx = null;
   try { last = localStorage.getItem('poketact:last'); ctx = JSON.parse(localStorage.getItem(`poketact:${last}`) ?? 'null'); } catch {}
   const lg = last && on.find((g) => g.id === last);
-  $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.stage !== '' && ctx?.stage != null && (ctx.stageText || (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)')), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` : '';
+  $('resume').innerHTML = lg ? `<a class="card resume" href="#/jogo/${lg.id}">${pic(lg.starters?.[0])}<div><div class="meta">Continuar de onde parou</div><strong>Pokémon ${lg.label}</strong><div class="meta">${[ctx?.stage !== '' && ctx?.stage != null && (ctx.stageText || (ctx.stage === '9' ? 'pós-jogo' : ctx.stage + ' insígnia(s)')), ctx?.level && 'time nv ' + ctx.level].filter(Boolean).join(' · ')}</div></div><span class="spacer"></span><span class="lozenge info">Abrir →</span></a>` +
+    // 0.80.0, pedido do usuário: ✕ para tirar o último jogo da tela inicial (o contexto do jogo continua guardado)
+    `<button type="button" class="resume-x" data-forget-last aria-label="Tirar ${lg.label} da tela inicial" title="Tirar da tela inicial">✕</button>` : '';
+  $('resume').querySelector('[data-forget-last]')?.addEventListener('click', () => {
+    try { localStorage.removeItem('poketact:last'); } catch {}
+    $('resume').innerHTML = '';
+  });
   // números (Vercel): tudo calculado dos dados
   const verified = on.filter((g) => qualityOf(g) === 'ok').length, trainersN = on.reduce((a, g) => a + (g.trainerCount ?? 0), 0), b = catalog.benchmark;
   $('stats').innerHTML = [[on.length, 'jogos no app'], [verified, 'conferidos no código do jogo'], [trainersN.toLocaleString('pt-BR'), 'treinadores com o time do jogo'], b && [b.winPct + '%', `das sugestões vencem a troca (${b.picks.toLocaleString('pt-BR')} testadas${b.games ? ` em ${b.games} jogos` : ''})`]]
