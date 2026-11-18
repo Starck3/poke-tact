@@ -250,6 +250,17 @@ test('regressão: sprites do Gold/Silver vêm das pastas gold/silver (não exist
   assert.equal(spriteFolder('heartgold-soulsilver', 'heartgold'), 'heartgold-soulsilver'); // essa pasta existe
 });
 
+test('0.81.0 (pedido do usuário): Gen 1 e Gen 2 usam os sprites do FireRed/LeafGreen — os delas têm fundo branco opaco', async () => {
+  // Erro: Chikorita, Totodile etc. no Gold/Silver/Crystal (e Red/Blue/Yellow) apareciam num quadrado branco — os PNGs
+  // generation-i/* e generation-ii/* da PokeAPI/sprites não têm transparência; os da Gen 3 em diante têm.
+  const { spritePath } = await import('../public/catalog.mjs');
+  for (const [gen, id, v] of [[1, 'red-blue', 'red'], [1, 'yellow', 'yellow'], [2, 'gold-silver', 'gold'], [2, 'crystal', 'crystal']]) {
+    assert.equal(spritePath(gen, id, v), 'generation-iii/firered-leafgreen');
+  }
+  assert.equal(spritePath(3, 'emerald', 'emerald'), 'generation-iii/emerald');
+  assert.equal(spritePath(4, 'heartgold-soulsilver', 'heartgold'), 'generation-iv/heartgold-soulsilver');
+});
+
 test('regressão: o número da tela inicial (banco de lutas) conta TODOS os jogos com detonado — o DP ficava de fora', () => {
   const b = load('games.json').benchmark;
   // 0.49.0: + jogos sem detonado com treinadores no ponto da história (Ultra Sun/Ultra Moon)

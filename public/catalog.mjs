@@ -62,3 +62,9 @@ export function generationSummaries(games) {
 // pasta "gold-silver", só "gold" e "silver" (sprites diferentes entre as duas). Sem pasta (Gens 5–9 em geral), a página usa o sprite padrão.
 const SPRITE_PER_VERSION = new Set(['gold-silver']);
 export const spriteFolder = (gameId, version) => (SPRITE_PER_VERSION.has(gameId) && version ? version : gameId);
+// Caminho do sprite dentro de sprites/pokemon/versions/. Gen 1 e Gen 2 (Red/Blue, Yellow, Gold/Silver, Crystal) têm PNGs
+// com fundo branco opaco (sem transparência); a pedido do usuário (0.81.0) esses jogos usam os sprites do FireRed/LeafGreen,
+// que são transparentes e cobrem os #1–386 — todas as espécies da Gen 1 e da Gen 2.
+export const spritePath = (generation, gameId, version) => (generation <= 2
+  ? 'generation-iii/firered-leafgreen'
+  : `generation-${['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix'][generation]}/${spriteFolder(gameId, version)}`);

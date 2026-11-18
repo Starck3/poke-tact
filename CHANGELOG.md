@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.81.0] — 2026-11-17
+
+> Nos jogos da 1ª e da 2ª geração, as imagens dos Pokémon não têm mais o fundo branco: usam as do FireRed.
+
+### Mudado (pedido do usuário)
+- Red/Blue, Yellow, Gold/Silver e Crystal passam a usar os sprites do FireRed/LeafGreen (`generation-iii/firered-leafgreen`):
+  os PNGs `generation-i` e `generation-ii` da PokeAPI/sprites têm fundo branco opaco. Função nova `spritePath` em catalog.mjs.
+
 ## [0.80.0] — 2026-11-17
 
 > Na tela inicial, o card "Continuar de onde parou" ganhou um ✕ para tirar o último jogo dali.
