@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poke Tact</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23fff%27 stroke=%27%23222%27 stroke-width=%272%27/%3E%3Cpath d=%27M2 16a14 14 0 0 1 28 0z%27 fill=%27%23d33b3b%27 stroke=%27%23222%27 stroke-width=%272%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%274%27 fill=%27%23fff%27 stroke=%27%23222%27 stroke-width=%272%27/%3E%3C/svg%3E">
+<style>
+  /* ---- tokens (cores, espaço, raio, tipografia) — um lugar só, como num design system */
+  :root {
+    --bg:#f6f6f8; --surface:#ffffff; --surface-2:#f0f0f4; --fg:#18181c; --muted:#5f5f6b; --line:#e3e3ea; --line-strong:#cfcfd9;
+    --accent:#d33b3b; --accent-fg:#ffffff; --link:#2f62cf;
+    --ok:#1f7a35; --ok-bg:#e5f4e8; --warn:#8a5a00; --warn-bg:#fdf1d8; --bad:#b3261e; --bad-bg:#fbe6e4; --info:#2f62cf; --info-bg:#e6eefc;
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+    --r1:6px; --r2:10px; --r3:14px; --pill:999px;
+    --fs-xs:.75rem; --fs-sm:.85rem; --fs-md:1rem; --fs-lg:1.15rem; --fs-xl:1.5rem;
+    --shadow:0 1px 2px rgba(0,0,0,.05), 0 2px 8px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) { :root {
+    --bg:#121216; --surface:#1c1c22; --surface-2:#24242c; --fg:#f1f1f4; --muted:#a3a3b0; --line:#2e2e37; --line-strong:#3d3d48;
+    --link:#8fb3ff; --ok:#6fd38a; --ok-bg:#16301e; --warn:#f0c060; --warn-bg:#33280f; --bad:#ff8a80; --bad-bg:#3a1a18; --info:#8fb3ff; --info-bg:#1a2540;
+    --shadow:none;
+  } }
+  * { box-sizing:border-box; }
+  [hidden] { display:none !important; }
+  .team:empty, #oppInfo:empty { display:none; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  main { max-width:1040px; margin:0 auto; padding:var(--s4); }
+  a { color:var(--link); }
+  :focus-visible { outline:2px solid var(--info); outline-offset:2px; border-radius:var(--r1); }
+  h1 { font-size:var(--fs-xl); margin:0 0 var(--s1); letter-spacing:-.01em; }
+  h2 { font-size:var(--fs-md); margin:var(--s5) 0 var(--s2); }
+  .sub { color:var(--muted); margin:0 0 var(--s4); }
+  .meta { color:var(--muted); font-size:var(--fs-sm); }
+  .note { font-size:var(--fs-sm); color:var(--muted); }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:var(--s4); margin-bottom:var(--s4); box-shadow:var(--shadow); }
+  label, .label { display:block; font-size:var(--fs-sm); color:var(--muted); margin-bottom:var(--s1); }
+  input[type=text], input[type=number], input[type=search], select { width:100%; padding:10px 12px; border:1px solid var(--line-strong); border-radius:var(--r2); background:var(--surface); color:var(--fg); font:inherit; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--s3); }
+  .stack > * + * { margin-top:var(--s3); }
+  kbd { font:var(--fs-xs) ui-monospace,monospace; border:1px solid var(--line-strong); border-bottom-width:2px; border-radius:4px; padding:0 5px; color:var(--muted); }
+
+  /* ---- selos (status), tipos e botões */
+  .type { display:inline-block; padding:1px 8px; border-radius:var(--pill); font-size:var(--fs-xs); color:#fff; margin-right:4px; text-transform:capitalize; font-weight:600; }
+  .lozenge { display:inline-flex; align-items:center; gap:4px; font-size:var(--fs-xs); font-weight:600; padding:2px 8px; border-radius:var(--pill); border:1px solid transparent; white-space:nowrap; }
+  .lozenge.ok { color:var(--ok); background:var(--ok-bg); } .lozenge.warn { color:var(--warn); background:var(--warn-bg); }
+  .lozenge.bad { color:var(--bad); background:var(--bad-bg); } .lozenge.info { color:var(--info); background:var(--info-bg); }
+  .lozenge.neutral { color:var(--muted); background:var(--surface-2); border-color:var(--line); }
+  .btn, .chips button, .team button { border:1px solid var(--line-strong); background:var(--surface); color:var(--fg); border-radius:var(--r2); padding:7px 12px; font:inherit; font-size:var(--fs-sm); cursor:pointer; }
+  .chips button { border-radius:var(--pill); }
+  .chips button[aria-pressed=true], .team button[aria-pressed=true] { background:var(--accent); border-color:var(--accent); color:var(--accent-fg); }
+  .good { color:var(--ok); } .bad { color:var(--bad); }
+
+  /* ---- catálogo */
+  .chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:var(--s3); }
+  .games { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:var(--s3); }
+  .game { display:flex; flex-direction:column; gap:2px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:var(--s3) var(--s4); color:inherit; text-decoration:none; box-shadow:var(--shadow); }
+  a.game:hover { border-color:var(--accent); }
+  .game.off { opacity:.55; }
+  .game .row { display:flex; gap:6px; flex-wrap:wrap; margin-top:var(--s2); }
+  .legend { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s4); align-items:center; font-size:var(--fs-sm); color:var(--muted); }
+
+  /* ---- tela inicial: herói com busca (Mobbin), números (Vercel), 3 passos (Linear), cartões com sprites */
+  .hero { position:relative; text-align:center; padding:var(--s6) var(--s4) var(--s5); margin:0 calc(-1 * var(--s4)) var(--s5); border-radius:0 0 var(--r3) var(--r3);
+    background:radial-gradient(1200px 380px at 50% -40px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); }
+  .brand { display:inline-block; font-weight:700; font-size:var(--fs-sm); letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s3); }
+  .hero-title { font-size:clamp(1.9rem, 4.6vw, 3.2rem); line-height:1.12; letter-spacing:-.025em; margin:0 auto var(--s3); max-width:880px; }
+  .ink { display:inline-flex; vertical-align:middle; width:1.6em; height:1.6em; overflow:hidden; border-radius:.32em; background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); align-items:center; justify-content:center; transform:translateY(-.06em); }
+  .ink img { width:135%; height:135%; flex:none; image-rendering:pixelated; transition:opacity .3s; }
+  .hero-sub { color:var(--muted); max-width:640px; margin:0 auto var(--s5); font-size:1.05rem; }
+  .search { position:relative; max-width:640px; margin:0 auto; }
+  /* seletor ao lado da busca: Pokémon | Líder ou jogo | Tipo */
+  .search-row { display:flex; gap:8px; align-items:center; justify-content:center; max-width:820px; margin:0 auto; }
+  .search-row .search { flex:1; margin:0; }
+  .search-mode { display:flex; flex:none; gap:3px; padding:3px; background:var(--surface-2); border:1px solid var(--line); border-radius:var(--pill); }
+  .search-mode button { border:0; background:transparent; color:var(--muted); border-radius:var(--pill); padding:8px 14px; font:inherit; font-size:var(--fs-sm); cursor:pointer; white-space:nowrap; }
+  .search-mode button[aria-checked=true] { background:var(--surface); color:var(--fg); font-weight:600; box-shadow:var(--shadow); }
+  @media (max-width:640px) { .search-row { flex-direction:column; align-items:stretch; } .search-mode { align-self:center; } }
+  /* resultado da busca de Pokémon: jogos onde obter, por geração */
+  .home-dex { max-width:820px; margin:var(--s3) auto 0; text-align:left; }
+  .home-dex .gen-row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:6px; }
+  .home-dex .gen-row > b { min-width:110px; font-size:var(--fs-xs); color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+  .home-dex a { text-decoration:none; color:var(--fg); font-size:var(--fs-sm); border:1px solid var(--line); background:var(--surface); border-radius:var(--pill); padding:5px 12px; }
+  .home-dex a:hover { border-color:var(--accent); }
+  .home-dex .dex-head { display:flex; align-items:center; gap:var(--s3); }
+  .home-dex .dex-head img { width:80px; height:80px; image-rendering:pixelated; }
+  /* busca por tipo (0.71.0): enfrentar/usar, tipos, geração e jogo, resultado e Pokémon do jogo */
+  .home-type { max-width:820px; margin:var(--s3) auto 0; text-align:left; }
+  .home-type .card { display:flex; flex-direction:column; gap:var(--s3); }
+  .home-type .tq-bar { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s3); align-items:center; }
+  .home-type .tq-bar .search-mode { flex:none; }
+  .home-type .tq-bar label { display:flex; align-items:center; gap:6px; font-size:var(--fs-sm); color:var(--muted); margin:0; }
+  .home-type .type-chips button { opacity:.45; }
+  .home-type .type-chips button[aria-pressed="true"] { opacity:1; }
+  .home-type .tq-best { font-size:1.05rem; }
+  .home-type .tq-best .type { font-size:var(--fs-sm); padding:2px 10px; }
+  .home-type .tq-best a { text-decoration:none; }
+  .home-type .tq-groups { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:var(--s3); }
+  .home-type .tq-groups h3 { margin:0 0 6px; font-size:var(--fs-sm); }
+  .home-type .tq-row { display:flex; flex-wrap:wrap; gap:4px; align-items:center; margin-bottom:4px; }
+  .home-type .tq-row > b { min-width:118px; font-size:var(--fs-xs); color:var(--muted); font-weight:600; }
+  .home-type .mon-card { text-decoration:none; }
+  .home-type .tq-head { display:flex; align-items:center; gap:var(--s2); }
+  .home-type .tq-head img { width:56px; height:56px; image-rendering:pixelated; }
+  /* aba Onde capturar: fotos dos lugares (detonado do PokeMythology) */
+  .places { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--s3); margin-top:6px; }
+  .place { margin:0; border:1px solid var(--line); border-radius:var(--r2); overflow:hidden; background:var(--surface-2); }
+  .place-imgs { display:flex; gap:2px; background:var(--line); }
+  .place-imgs a { flex:1; min-width:0; }
+  .place-imgs img { display:block; width:100%; height:180px; object-fit:cover; image-rendering:pixelated; }
+  .place figcaption { padding:6px 10px; font-size:var(--fs-sm); }
+  /* mapa esquemático da região (SVG gerado com as posições do decomp) */
+  .region-maps { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 460px), 1fr)); gap:var(--s3); margin-top:6px; }
+  .region-map { margin:0; }
+  .region-map svg { display:block; width:100%; height:auto; max-height:520px; }
+  .rm-town { opacity:.85; }
+  .rm-town-label { fill:var(--muted); }
+  /* aba Detonado: fotos de cada lugar e mapa da etapa */
+  .loc-photos { display:flex; gap:4px; margin:6px 0; }
+  .loc-photos a { flex:1; min-width:0; max-width:320px; }
+  .loc-photos img { display:block; width:100%; height:160px; object-fit:cover; border-radius:var(--r1); image-rendering:pixelated; }
+  details.stage-map { margin:6px 0 8px; }
+  details.stage-map > summary { cursor:pointer; }
+  details.stage-map .region-maps { max-width:560px; }
+  .rm-bg { fill:var(--surface-2); stroke:var(--line); }
+  .rm-dot { fill:var(--muted); opacity:.55; }
+  .rm-hit { fill:var(--accent); stroke:var(--surface); stroke-width:.15%; }
+  .rm-label { fill:var(--fg); font-weight:600; paint-order:stroke; stroke:var(--surface-2); stroke-width:.4%; }
+  .search input { padding:14px 48px 14px 46px; font-size:1.05rem; border-radius:var(--pill); border:1px solid var(--line-strong); background:var(--surface); box-shadow:0 2px 14px rgba(0,0,0,.08); }
+  .search input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); }
+  .search-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1.25rem; pointer-events:none; }
+  .search-kbd { position:absolute; right:16px; top:50%; transform:translateY(-50%); }
+  #homeResults { position:absolute; z-index:10; left:0; right:0; top:calc(100% + 6px); list-style:none; margin:0; padding:6px; text-align:left; background:var(--surface); border:1px solid var(--line-strong); border-radius:var(--r3); box-shadow:0 12px 32px rgba(0,0,0,.18); max-height:min(420px, 60vh); overflow:auto; }
+  #homeResults li { display:flex; align-items:center; gap:var(--s3); padding:8px 10px; border-radius:var(--r2); cursor:pointer; }
+  #homeResults li[aria-selected=true], #homeResults li:hover { background:var(--surface-2); }
+  #homeResults li img { width:60px; height:60px; margin:-8px -4px; image-rendering:pixelated; flex:none; }
+  #homeResults .r-kind { margin-left:auto; }
+  /* autocompletar do oponente: só os Pokémon do jogo aberto */
+  .ac { position:relative; }
+  .ac-list { position:absolute; z-index:10; left:0; right:0; top:calc(100% + 4px); list-style:none; margin:0; padding:6px; background:var(--surface); border:1px solid var(--line-strong); border-radius:var(--r3); box-shadow:0 12px 32px rgba(0,0,0,.18); max-height:min(380px, 55vh); overflow:auto; }
+  .ac-list li { display:flex; align-items:center; gap:var(--s3); padding:4px 10px; border-radius:var(--r2); cursor:pointer; }
+  .ac-list li[aria-selected=true], .ac-list li:hover { background:var(--surface-2); }
+  .ac-list li img { width:52px; height:52px; margin:-8px -4px; image-rendering:pixelated; flex:none; }
+  .ac-list .ac-num { color:var(--muted); font-size:var(--fs-sm); font-variant-numeric:tabular-nums; }
+  .ac-list .ac-types { margin-left:auto; display:flex; gap:4px; }
+  .warn { margin-top:6px; padding:var(--s2) var(--s3); border:1px solid color-mix(in srgb, #e0a000 45%, var(--line)); background:color-mix(in srgb, #e0a000 12%, var(--surface)); border-radius:var(--r2); font-size:var(--fs-sm); }
+  .quick { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-top:var(--s3); }
+  .quick a { text-decoration:none; color:var(--fg); font-size:var(--fs-sm); border:1px solid var(--line); background:var(--surface); border-radius:var(--pill); padding:4px 12px 4px 4px; display:inline-flex; align-items:center; gap:6px; transition:border-color .15s, transform .15s; }
+  .quick a:hover { border-color:var(--accent); transform:translateY(-1px); }
+  .quick img { width:44px; height:44px; margin:-8px -4px -8px -6px; image-rendering:pixelated; }
+  .resume { display:flex; align-items:center; gap:var(--s3); text-decoration:none; color:inherit; border-left:4px solid var(--accent); }
+  .resume:hover { border-color:var(--accent); }
+  #resume { position:relative; }
+  #resume .resume { padding-right:52px; }
+  .resume-x { position:absolute; top:6px; right:6px; width:40px; height:40px; border:0; border-radius:50%; background:transparent; color:var(--muted); font-size:18px; line-height:1; cursor:pointer; }
+  .resume-x:hover, .resume-x:focus-visible { background:var(--line); color:inherit; }
+  .resume img { width:168px; height:168px; margin:-40px -24px; flex:none; image-rendering:pixelated; }
+  .stats { display:grid; grid-template-columns:repeat(4, 1fr); gap:var(--s3); margin:0 0 var(--s5); }
+  .stat { text-align:center; padding:var(--s3) var(--s2); }
+  .stat b { display:block; font-size:clamp(1.5rem, 3.4vw, 2.2rem); letter-spacing:-.02em; line-height:1.1; }
+  .steps { display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--s3); margin:0 0 var(--s6); }
+  .step { display:flex; flex-direction:column; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:var(--s4); }
+  .step-n { width:28px; height:28px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:var(--fs-sm); background:var(--accent); color:var(--accent-fg); margin-bottom:4px; }
+  .catalog-head { display:flex; align-items:baseline; gap:var(--s3); margin-bottom:var(--s2); }
+  .filters-bar { display:flex; flex-direction:column; gap:0; }
+  .game-art { display:flex; justify-content:center; gap:0; height:112px; overflow:visible; margin:-4px -8px 6px; border-radius:var(--r2); background:linear-gradient(160deg, var(--surface-2), transparent); align-items:flex-end; }
+  .game-art img { width:120px; height:120px; margin:0 -22px -10px; image-rendering:pixelated; transition:transform .25s ease; }
+  a.game:hover .game-art img { transform:translateY(-6px); }
+  a.game:hover .game-art img:nth-child(2) { transition-delay:.05s; } a.game:hover .game-art img:nth-child(3) { transition-delay:.1s; }
+  a.game { transition:border-color .15s, transform .15s, box-shadow .15s; }
+  a.game:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,.12); }
+  .gens { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:var(--s3); margin-bottom:var(--s5); }
+  .gen { display:flex; flex-direction:column; gap:2px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:var(--s3); color:inherit; text-decoration:none; box-shadow:var(--shadow); transition:border-color .15s, transform .15s, box-shadow .15s; }
+  .gen:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,.12); }
+  .gen[aria-current=true] { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+  .gen-art { display:flex; justify-content:center; align-items:center; gap:var(--s2); overflow:hidden; height:96px; margin-bottom:6px; border-radius:var(--r2); background:linear-gradient(160deg, var(--surface-2), transparent); padding:6px; }
+  .gen-art img:only-child { max-width:60%; }
+  .gen-art img { flex:0 1 auto; min-width:0; max-height:100%; max-width:calc(50% - var(--s1)); object-fit:contain; filter:drop-shadow(0 4px 6px rgba(0,0,0,.18)); }
+  .hint { padding:var(--s3); border:1px dashed var(--line-strong); border-radius:var(--r2); background:var(--surface-2); font-size:var(--fs-sm); color:var(--muted); }
+  .hint strong { color:var(--fg); }
+  .gen-head .note { font-weight:400; margin-left:var(--s2); }
+  .pokeball { width:40px; height:40px; margin-bottom:12px; border-radius:50%; border:3px solid var(--line-strong); background:linear-gradient(var(--accent) 0 46%, var(--line-strong) 46% 54%, var(--surface) 54%); position:relative; }
+  .pokeball::after { content:""; position:absolute; inset:0; margin:auto; width:12px; height:12px; border-radius:50%; background:var(--surface); border:3px solid var(--line-strong); }
+  @media (prefers-reduced-motion: reduce) { .game-art img, a.game, .gen, .quick a, .ink img { transition:none !important; } a.game:hover, a.game:hover .game-art img { transform:none; } }
+  @media (max-width:520px) {
+    .games { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--s2); }
+    .game { padding:var(--s2) var(--s3); } .game .lozenge { white-space:normal; } .game-art { height:80px; } .game-art img { width:84px; height:84px; margin:0 -17px -7px; }
+    .gens { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--s2); } .gen-art { height:72px; }
+    .filters-bar .chips { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin-right:calc(-1 * var(--s3)); padding-right:var(--s3); }
+    .filters-bar .chips button { flex:none; }
+  }
+  @media (max-width:720px) { .stats { grid-template-columns:repeat(2, 1fr); } .steps { grid-template-columns:1fr; } .hero { padding:var(--s5) var(--s3) var(--s4); margin:0 calc(-1 * var(--s3)) var(--s4); } .search-kbd { display:none; } }
+
+  /* ---- barra de contexto (jogo · versão · inicial · progresso), fixa no topo */
+  .context { position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(8px); margin:0 calc(-1 * var(--s4)) var(--s4); padding:var(--s2) var(--s4); border-bottom:1px solid var(--line); }
+  .context-row { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s3); align-items:center; }
+  .context .back { color:var(--muted); text-decoration:none; font-size:var(--fs-sm); }
+  .context h1 { font-size:var(--fs-lg); margin:0; }
+  .context .field { display:flex; align-items:center; gap:6px; font-size:var(--fs-sm); color:var(--muted); }
+  .context .field select { width:auto; padding:5px 8px; font-size:var(--fs-sm); }
+  .spacer { flex:1; }
+  details.about { margin:0 0 var(--s4); }
+  details.about > summary { cursor:pointer; font-size:var(--fs-sm); color:var(--muted); }
+  details.about .card { margin-top:var(--s2); font-size:var(--fs-sm); }
+
+  /* ---- abas */
+  /* 0.83.0: abas com sublinhado (antes tinham o mesmo visual dos botões de escolha) */
+  .tabs { display:flex; flex-wrap:wrap; gap:0 var(--s1); margin:0 0 var(--s4); border-bottom:1px solid var(--line); }
+  .tabs button { border:0; border-bottom:2px solid transparent; margin-bottom:-1px; background:none; color:var(--muted); border-radius:0; padding:10px 12px; font:inherit; font-size:var(--fs-sm); cursor:pointer; }
+  .tabs button:hover { color:var(--fg); }
+  .tabs button[aria-selected=true] { border-bottom-color:var(--accent); color:var(--fg); font-weight:600; }
+
+  /* ---- aba Golpes: os mais fortes nível a nível */
+  .moves-table, .learn-table { width:100%; border-collapse:collapse; font-size:var(--fs-sm); }
+  .moves-table th, .moves-table td, .learn-table th, .learn-table td { text-align:left; vertical-align:top; padding:5px 6px; border-top:1px solid var(--line); }
+  .moves-table th, .learn-table th { font-weight:600; color:var(--muted); border-top:0; }
+  .moves-table td.lv, .learn-table td.lv { white-space:nowrap; font-weight:600; width:1%; }
+  .learn { display:grid; gap:var(--s2); padding:var(--s3); border:1px solid var(--line); border-radius:var(--r2); background:var(--surface-2); }
+  .learn .walk-h { margin:0; }
+  .learn-form { display:flex; flex-wrap:wrap; gap:var(--s3); } .learn-form label, .learn-done { display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); }
+  .learn-form input { width:6em; } .learn-form select { max-width:100%; }
+  .learn-moves { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:6px; margin-top:4px; } .learn-moves input { min-width:0; width:100%; }
+  @media (max-width: 640px) { .learn-moves { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+  .learn-verdict { margin:0; padding:var(--s2) var(--s3); border-radius:var(--r2); font-weight:600; }
+  .learn-verdict.ok { color:var(--ok); background:var(--ok-bg); } .learn-verdict.bad { color:var(--bad); background:var(--bad-bg); } .learn-verdict.neutral { background:var(--surface); border:1px solid var(--line); }
+  .learn-actions { display:flex; flex-wrap:wrap; gap:var(--s2); align-items:flex-end; }
+  .linkish { border:0; background:none; padding:0; color:var(--info); text-decoration:underline; font:inherit; cursor:pointer; }
+  .mv { display:inline-flex; align-items:center; gap:4px; margin:0 10px 3px 0; white-space:nowrap; }
+  .mv .src { color:var(--muted); }
+  .vs-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 var(--s2); }
+
+  /* ---- oponente */
+  .opp { display:flex; gap:var(--s3); align-items:center; }
+  .opp img, .pick img, .starter img { width:80px; height:80px; image-rendering:pixelated; }
+  .team { display:flex; flex-wrap:wrap; gap:6px; }
+  /* fraquezas do oponente: o que usar para vencer */
+  .weak { display:flex; flex-direction:column; gap:6px; margin-top:var(--s3); padding:var(--s2) var(--s3); background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r2); }
+  .weak-row { display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; font-size:var(--fs-sm); }
+  .weak-label { min-width:92px; font-weight:600; font-size:var(--fs-xs); text-transform:uppercase; letter-spacing:.04em; }
+  .weak-item { display:inline-flex; align-items:center; gap:2px; font-weight:600; }
+  .weak-item .type { margin-right:2px; }
+  /* aba Pokémon por tipo */
+  .types-bar { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s4); align-items:center; }
+  .types-bar input[type=search] { flex:1 1 220px; }
+  .types-bar .check { display:flex; align-items:center; gap:6px; font-size:var(--fs-sm); }
+  .type-chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .type-chips button { border:2px solid transparent; border-radius:var(--pill); padding:3px 10px; color:#fff; font-size:var(--fs-xs); font-weight:600; text-transform:capitalize; cursor:pointer; opacity:.55; }
+  .type-chips button[aria-pressed="true"] { opacity:1; border-color:var(--fg); }
+  .type-chips button .n { font-weight:400; opacity:.85; margin-left:4px; }
+  .type-chips .clear { background:transparent; color:var(--muted); border:1px solid var(--line); opacity:1; text-transform:none; }
+  .types-group h3 { display:flex; align-items:center; gap:8px; margin:var(--s4) 0 var(--s2); font-size:var(--fs-sm); }
+  .mon-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:6px; }
+  .mon-card { display:flex; align-items:center; gap:6px; padding:4px 6px; border:1px solid var(--line); border-radius:8px; background:transparent; color:inherit; text-align:left; cursor:pointer; font:inherit; }
+  .mon-card:hover, .mon-card:focus-visible { border-color:var(--accent); }
+  .mon-card img { width:40px; height:40px; image-rendering:pixelated; flex:none; }
+  .mon-card .nm { font-size:var(--fs-sm); font-weight:600; line-height:1.2; }
+  .mon-card .sub { font-size:var(--fs-xs); color:var(--muted); }
+  .mon-card .type { font-size:10px; padding:0 6px; margin-right:2px; }
+  .mon-card.off { opacity:.55; }
+  /* categorias de oponente (abas segmentadas) e a escolha dentro delas */
+  .seg { display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; padding:3px; background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r2); margin-bottom:var(--s3); }
+  .seg button { flex:none; border:0; background:transparent; color:var(--muted); border-radius:var(--r1); padding:6px 12px; font:inherit; font-size:var(--fs-sm); cursor:pointer; white-space:nowrap; }
+  .seg button[aria-selected=true] { background:var(--surface); color:var(--fg); font-weight:600; box-shadow:var(--shadow); }
+  .seg .count { color:var(--muted); font-weight:400; margin-left:4px; font-size:var(--fs-xs); }
+  .tgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:6px; }
+  .tchip { display:flex; align-items:center; gap:8px; text-align:left; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:var(--r2); padding:4px 10px 4px 4px; font:inherit; font-size:var(--fs-sm); cursor:pointer; transition:border-color .15s; }
+  .tchip:hover { border-color:var(--line-strong); }
+  .team-chips { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .tchip.mini { padding:2px 10px 2px 2px; } .tchip.mini img { width:36px; height:36px; }
+  .team-list { display:grid; gap:var(--s2); }
+  .my-team-card { margin-bottom:var(--s3); } .my-team-list { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+  .my-team-row { display:flex; gap:var(--s2); align-items:flex-start; padding-top:6px; border-top:1px solid var(--line); } .my-team-row img { width:44px; height:44px; image-rendering:pixelated; flex:none; }
+  .my-team-row .lozenge { margin:2px 4px 2px 0; }
+  .my-team-verdict { margin:6px 0; padding:var(--s2) var(--s3); border-radius:var(--r2); font-weight:600; } .my-team-verdict.ok { color:var(--ok); background:var(--ok-bg); } .my-team-verdict.bad { color:var(--warn); background:var(--warn-bg); }
+  .picks-title { margin:var(--s2) 0; font-size:var(--fs-md, 1rem); }
+  .home-team { margin-top:var(--s3); } .home-team-head { display:flex; flex-wrap:wrap; gap:var(--s3); align-items:center; justify-content:space-between; }
+  .home-team-head label { display:flex; gap:6px; align-items:center; } .home-team-head select { max-width:100%; }
+  .team-card { display:flex; gap:var(--s3); align-items:flex-start; padding:var(--s2) var(--s3); border:1px solid var(--line); border-radius:var(--r2); background:var(--surface-2); }
+  .team-card > img { width:64px; height:64px; image-rendering:pixelated; flex:none; }
+  .team-fields { display:grid; gap:6px; flex:1; min-width:0; }
+  .team-row, .team-add { display:flex; flex-wrap:wrap; gap:var(--s3); align-items:flex-end; }
+  .team-row label, .team-add label { display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); }
+  .team-row input[type=number], .team-add input[type=number] { width:5em; }
+  @media (max-width: 640px) { .team-card > img { width:44px; height:44px; } }
+  .tchip[aria-pressed=true] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; }
+  .tchip img { width:50px; height:50px; image-rendering:pixelated; flex:none; }
+  .tchip .t-name { display:block; font-weight:600; line-height:1.2; }
+  .tchip .t-sub { display:block; color:var(--muted); font-size:var(--fs-xs); line-height:1.3; }
+  .t-section { font-size:var(--fs-xs); color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin:var(--s3) 0 6px; }
+  .t-section:first-child { margin-top:0; }
+  details.filters > summary { cursor:pointer; font-size:var(--fs-sm); color:var(--muted); margin-top:var(--s3); }
+  .checks { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:var(--s2); font-size:var(--fs-sm); }
+  .checks label { display:flex; gap:6px; align-items:center; margin:0; color:var(--fg); font-size:var(--fs-sm); }
+  .search-hint { float:right; }
+
+  /* ---- resultados: cartões de comparação, veredito primeiro */
+  .threat { margin:0 0 var(--s3); }
+  .picks { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:var(--s3); align-items:stretch; }
+  .pick { margin:0; display:flex; flex-direction:column; gap:var(--s2); }
+  .pick-head { display:flex; gap:var(--s3); align-items:center; }
+  .pick-head h3 { margin:0; font-size:var(--fs-lg); }
+  .rank { font-size:var(--fs-xs); color:var(--muted); font-weight:600; }
+  .verdict { display:flex; flex-wrap:wrap; gap:6px; }
+  .kv { font-size:var(--fs-sm); }
+  .kv b { color:var(--muted); font-weight:600; font-size:var(--fs-xs); text-transform:uppercase; letter-spacing:.04em; display:block; }
+  .kv .train { display:inline-block; margin-top:4px; color:var(--warn); background:var(--warn-bg); padding:2px 6px; border-radius:6px; font-size:var(--fs-xs); }
+  details.more > summary { cursor:pointer; font-size:var(--fs-sm); color:var(--link); }
+  ul.why { margin:6px 0 0; padding-left:18px; font-size:var(--fs-sm); }
+
+  /* ---- iniciais */
+  .starters { display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--s2); margin-top:var(--s2); }
+  .starter { text-align:center; border:1px solid var(--line); border-radius:var(--r2); padding:var(--s2) 4px; background:var(--surface-2); }
+  /* escolha do inicial (acima do campo do oponente): 3 sprites + "não informar" */
+  .spick { display:grid; grid-template-columns:repeat(4, minmax(0, 112px)); gap:6px; }
+  .spick button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; min-width:0; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:var(--r2); padding:4px 4px 8px; font:inherit; font-size:var(--fs-sm); cursor:pointer; transition:border-color .15s; overflow:hidden; }
+  .spick button:hover { border-color:var(--line-strong); }
+  .spick button[aria-checked=true] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; font-weight:600; }
+  /* sprites: até 150px, sem cortar (alguns jogos têm margem transparente, outros não) */
+  .spick img { width:100%; max-width:80px; aspect-ratio:1; height:auto; object-fit:contain; image-rendering:pixelated; }
+  .spick .none { color:var(--muted); text-align:center; }
+
+  /* ---- detonado */
+  details.stage { background:var(--surface); border:1px solid var(--line); border-radius:var(--r3); padding:10px 14px; margin-bottom:10px; }
+  details.stage > summary { cursor:pointer; font-weight:600; }
+  details.stage.current { border-color:var(--accent); }
+  details.loc { border-top:1px solid var(--line); padding:6px 0; }
+  details.loc > summary { cursor:pointer; }
+  .walk-list { margin:4px 0 6px; padding-left:18px; font-size:var(--fs-sm); }
+  .evo-tree { list-style:none; margin:4px 0 6px; padding:0; font-size:var(--fs-sm); }
+  .evo-tree > li { padding:2px 0; } .evo-tree img { width:40px; height:40px; image-rendering:pixelated; vertical-align:middle; }
+  .evo-item { margin:0 0 4px 3.2em; } .evo-item .walk-list { margin-top:2px; }
+  .walk-h { font-size:var(--fs-xs); color:var(--muted); margin-top:6px; text-transform:uppercase; letter-spacing:.04em; }
+
+  /* ---- estados: esqueleto e vazio */
+  .skel { background:linear-gradient(90deg, var(--surface-2) 25%, var(--line) 50%, var(--surface-2) 75%); background-size:200% 100%; animation:sh 1.2s infinite; border-radius:var(--r1); height:14px; margin:8px 0; }
+  .skel.tall { height:120px; border-radius:var(--r3); }
+  @keyframes sh { to { background-position:-200% 0; } }
+  @media (prefers-reduced-motion: reduce) { .skel { animation:none; } }
+  .empty { text-align:center; color:var(--muted); padding:var(--s5) var(--s4); }
+
+  @media (max-width:820px) { .picks { grid-template-columns:1fr; } }
+  @media (max-width:520px) { .grid2 { grid-template-columns:1fr; } main { padding:var(--s3); } .context { margin:0 calc(-1 * var(--s3)) var(--s3); padding:var(--s2) var(--s3); } .search-hint { display:none; } }
+  /* novidades (CHANGELOG): botão fixo no canto inferior direito + painel */
+  .news-btn { position:fixed; right:16px; bottom:16px; z-index:30; display:flex; align-items:center; gap:6px; padding:10px 14px; border:1px solid var(--line-strong); border-radius:var(--pill); background:var(--surface); color:var(--fg); font:inherit; font-size:var(--fs-sm); cursor:pointer; box-shadow:0 4px 18px rgba(0,0,0,.25); }
+  .news-btn:hover { border-color:var(--accent); }
+  .news-count { min-width:20px; height:20px; padding:0 6px; border-radius:var(--pill); background:var(--accent); color:#fff; font-size:var(--fs-xs); font-weight:700; display:inline-flex; align-items:center; justify-content:center; }
+  .news-panel { position:fixed; right:16px; bottom:70px; z-index:31; width:min(440px, calc(100vw - 32px)); max-height:min(70vh, 640px); overflow:auto; margin:0; box-shadow:0 10px 40px rgba(0,0,0,.35); }
+  .news-head { display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; background:var(--surface); padding-bottom:6px; }
+  .news-head h2 { margin:0; font-size:var(--fs-lg); }
+  .news-close { border:0; background:transparent; color:var(--muted); font-size:1.1rem; cursor:pointer; padding:4px 8px; }
+  details.news-ver { border-top:1px solid var(--line); padding:8px 0; }
+  details.news-ver > summary { cursor:pointer; font-weight:600; }
+  .news-ver h3 { margin:8px 0 2px; font-size:var(--fs-xs); color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+  .news-ver ul { margin:0; padding-left:18px; font-size:var(--fs-sm); }
+  .news-ver li { margin:4px 0; }
+  .news-sum { margin:6px 0 4px; font-size:var(--fs-sm); line-height:1.45; }
+  details.news-more > summary { cursor:pointer; font-size:var(--fs-xs); }
+  .news-ver code { font-size:.85em; background:var(--surface-2); padding:0 4px; border-radius:4px; }
+  @media (max-width:520px) { .news-label { display:none; } .news-btn { padding:10px 12px; } }
+
+  /* ---- 0.77.0: telas mais simples */
+  .step-label { font-weight:600; color:var(--fg); font-size:var(--fs-sm); }
+  .step-label .meta { font-weight:400; }
+  details.tune > summary { color:var(--fg); font-size:var(--fs-sm); margin-top:0; padding:6px 0; }
+  details.tune > summary .meta { margin-left:6px; }
+  /* oponente escolhido: a lista recolhe numa linha com "Trocar" (a sugestão sobe para perto do topo) */
+  .picked { display:flex; flex-wrap:wrap; gap:var(--s2); align-items:center; }
+  .picked .tchip { flex:1 1 220px; cursor:default; }
+  .team-label { font-size:var(--fs-sm); color:var(--muted); align-self:center; margin-right:2px; }
+  .team button { min-height:40px; }
+  p.my-team-card { margin:0 0 var(--s3); }
+  .home-team > details > summary { display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; cursor:pointer; list-style:none; }
+  .home-team > details > summary::-webkit-details-marker { display:none; }
+  .home-team > details > summary .meta { flex:1 1 0; min-width:0; }
+  .home-team > details > summary::after { content:"▸"; margin-left:auto; color:var(--muted); }
+  .home-team > details[open] > summary::after { content:"▾"; }
+  .home-team > details[open] > summary { margin-bottom:var(--s3); }
+  .home-team .stack > * + * { margin-top:var(--s3); }
+  .about-badges .lozenge { margin-right:4px; }
+  /* ---- 0.78.0 */
+  .hero-links { margin:var(--s3) 0 0; font-size:var(--fs-sm); color:var(--muted); }
+  .how-dialog { width:min(720px, calc(100vw - 24px)); max-height:calc(100vh - 32px); border:1px solid var(--line-strong); border-radius:var(--r3); background:var(--surface); color:var(--fg); padding:0; box-shadow:0 10px 40px rgba(0,0,0,.35); }
+  .how-body { padding:var(--s4); }
+  .home-type .type-chips .clear { opacity:1; }
+  .how-dialog::backdrop { background:rgba(0,0,0,.5); }
+  .sync-steps { padding-left:20px; } .sync-steps li { margin:6px 0; }
+  .sync-form { display:flex; gap:var(--s2); flex-wrap:wrap; } .sync-form input { flex:1 1 220px; min-width:0; }
+  .sync-actions { display:flex; gap:var(--s2); flex-wrap:wrap; }
+  .how-dialog .steps { margin:var(--s3) 0; }
+  .how-dialog .stats { grid-template-columns:repeat(2, 1fr); margin:0 0 var(--s3); }
+  .how-dialog .stat b { font-size:1.4rem; }
+  .how-actions { display:flex; justify-content:flex-end; position:sticky; bottom:0; background:var(--surface); padding:var(--s2) 0 0; }
+  .how-dialog .step { padding:var(--s3); display:grid; grid-template-columns:auto 1fr; column-gap:var(--s2); align-items:start; }
+  .how-dialog .step .step-n { margin:0; grid-row:span 2; }
+  .how-dialog .steps { gap:var(--s2); }
+  .how-dialog .stat { padding:var(--s2); }
+  .how-dialog .stat .meta { font-size:var(--fs-xs); }
+  .btn-primary { background:var(--accent); border-color:var(--accent); color:var(--accent-fg); font-weight:600; padding:9px 18px; }
+  .type-close { margin-left:auto; }
+  .spick.compact { display:block; } .starter-line { margin:0; font-size:var(--fs-sm); color:var(--muted); } .starter-line strong { color:var(--fg); }
+  .team-row { flex-wrap:nowrap; } .team-row label:first-child { flex:1; min-width:0; } .team-row input[type=text] { min-width:0; }
+  .news-older > summary { cursor:pointer; font-size:var(--fs-sm); color:var(--link); padding:8px 0; border-top:1px solid var(--line); }
+  details.how > summary { cursor:pointer; font-size:var(--fs-sm); color:var(--link); }
+  details.how p { margin:6px 0 0; }
+  @media (max-width:640px) {
+    /* barra do jogo menor (era ~190 px fixos no topo do celular): selos vão para "Sobre os dados"; abas numa linha que rola */
+    .context #qualityBadge { display:none; }
+    .context h1 { font-size:var(--fs-md); }
+    .context .field select { max-width:52vw; }
+    .tabs { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin-right:calc(-1 * var(--s3)); padding-right:var(--s3); }
+    .tabs button { flex:none; padding:9px 12px; }
+    .spick button { padding:2px 2px 6px; }
+  }
+
+  /* ---- 0.83.0: tela do jogo — pergunta → a luta → respostas */
+  .about-btn { border:0; background:none; color:var(--muted); font-size:1.1rem; line-height:1; padding:4px 6px; cursor:pointer; border-radius:var(--pill); }
+  .about-btn:hover, .about-btn[aria-expanded=true] { color:var(--fg); background:var(--surface-2); }
+  details.about > summary { display:none; } /* abre pelo ⓘ do cabeçalho */
+  details.about:not([open]) { margin:0; }
+  .context .field select { max-width:220px; }
+  .context-row { flex-wrap:nowrap; } .context h1 { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+  .context .back, .context #qualityBadge, .context .about-btn { flex:none; }
+  .context .field { flex:none; }
+  @media (max-width:900px) { .context-row { flex-wrap:wrap; } }
+  /* pergunta: chip do oponente escolhido */
+  .opp-chip-row { display:flex; flex-wrap:wrap; gap:var(--s2); align-items:center; }
+  .opp-chip { display:inline-flex; align-items:center; gap:6px; min-width:0; max-width:100%; border:1px solid var(--accent); background:var(--surface); color:var(--fg); border-radius:var(--pill); padding:2px 4px 2px 2px; font:inherit; font-size:var(--fs-sm); }
+  .opp-chip img { width:36px; height:36px; image-rendering:pixelated; flex:none; }
+  .opp-chip .chip-name { border:0; background:none; color:inherit; font:inherit; padding:4px 2px; cursor:pointer; text-align:left; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .opp-chip .chip-x { border:0; background:var(--surface-2); color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:pointer; flex:none; font-size:.9rem; }
+  .opp-chip .chip-x:hover { color:var(--fg); }
+  .ask .opp-chip-row { flex-wrap:nowrap; }
+  .ask .opp-chip-row .btn { white-space:nowrap; flex:none; }
+  .ask .opp-chip-row .opp-chip { flex:0 1 auto; }
+  .btn .short { display:none; }
+  .spick.compact button { border:0; background:none; padding:0; display:inline; color:var(--info); text-decoration:underline; font-size:inherit; }
+  @media (max-width:520px) { .btn .long { display:none; } .btn .short { display:inline; } }
+  .spick.compact .starter-line { display:flex; align-items:baseline; gap:4px; white-space:nowrap; min-width:0; }
+  .starter-line strong { overflow:hidden; text-overflow:ellipsis; min-width:0; }
+  .starter-line .linkish { flex:none; white-space:nowrap; }
+  /* respostas: tudo em grade, espaço igual, sem margem própria nos cartões */
+  #results, #resultsBody { display:grid; gap:var(--s4); min-width:0; }
+  #results:has(> #resultsHead[hidden]) { gap:0; }
+  #resultsBody:empty { display:none; }
+  #results .card, #resultsBody > * { margin:0; }
+  .fight { display:grid; gap:var(--s3); border-left:4px solid var(--accent); }
+  .fight-title { margin:0; font-size:var(--fs-lg); }
+  .fight-grid { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:var(--s3); align-items:start; }
+  .fight-grid:has(#oppInfo:empty) { display:none; }
+  .fight-side { display:grid; gap:var(--s2); }
+  .fight-side .weak { margin:0; }
+  .threat { margin:0; font-size:var(--fs-sm); }
+  #fightCtx .ctx { margin:0; }
+  #fightCtx .note { margin:0; }
+  #fightCtx { display:grid; gap:var(--s1); }
+  #fightCtx:empty { display:none; }
+  /* time do treinador: segmentos com mini sprites (inclui "Time inteiro") */
+  #team.team { gap:4px; padding:3px; background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r2); }
+  #team.team button { display:inline-flex; align-items:center; gap:4px; border:1px solid transparent; background:transparent; color:var(--muted); min-height:38px; padding:2px 10px 2px 2px; }
+  #team.team button img { width:32px; height:32px; image-rendering:pixelated; }
+  /* 0.84.0, decisão do usuário: no celular os segmentos rolam de lado em vez de quebrar ("Time inteiro" caía na 2ª linha) */
+  @media (max-width:600px) {
+    #team.team { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+    #team.team::-webkit-scrollbar { display:none; }
+    #team.team button { flex:none; white-space:nowrap; }
+  }
+  #team.team button.all { padding-left:10px; }
+  #team.team button[aria-pressed=true] { background:var(--surface); color:var(--fg); border-color:var(--accent); font-weight:600; box-shadow:var(--shadow); }
+  #team.team select { flex:1 1 220px; width:auto; }
+  #team .team-label { padding-left:6px; }
+  .picks-title { margin:0; font-size:var(--fs-lg); }
+  .my-team-card .my-team-verdict { margin:6px 0 4px; padding:0; background:none !important; font-size:var(--fs-md); font-weight:600; }
+  .my-team-row details > summary { cursor:pointer; font-size:var(--fs-xs); color:var(--link); }
+  p.my-team-card { margin:0; }
+  .lozenge.warn { margin-top:0; padding:2px 8px; border:1px solid transparent; border-radius:var(--pill); font-size:var(--fs-xs); } /* não herda a caixa do aviso .warn */
+  .kv b .when { text-transform:none; letter-spacing:0; font-weight:400; }
+  @media (max-width:820px) { .fight-grid { grid-template-columns:1fr; } }
+  @media (max-width:640px) {
+    /* Versão e Progresso lado a lado numa linha (os rótulos ficam no aria-label) */
+    .context .spacer { flex-basis:100%; height:0; }
+    .context .field { flex:1 1 0; min-width:0; }
+    .context .field label { display:none; }
+    .context .field select { width:100%; max-width:none; }
+  }
+  @media (max-width:520px) {
+    .tgrid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .tchip img { width:40px; height:40px; }
+    .tchip { padding:2px 6px 2px 2px; }
+  }
+</style>
+</head>
+<body>
+<main>
+ <section id="home" hidden>
+  <header class="hero">
+    <div class="brand">Poke Tact</div>
+    <h1 class="hero-title">Qual Pokémon <span class="ink" id="heroA"></span> vence a sua próxima luta <span class="ink" id="heroB"></span>?</h1>
+    <p class="hero-sub">Escolha o seu jogo e o oponente: o app diz quais Pokémon vencem a luta, com as regras daquele jogo. Ou busque um Pokémon (onde capturar), um líder ou um tipo.</p>
+    <div class="search-row">
+    <!-- 0.78.0: uma busca só (antes: seletor Pokémon | Líder ou jogo | Tipo) — Pokémon, jogos, líderes e tipos na mesma lista -->
+    <div class="search" role="combobox" aria-expanded="false" aria-owns="homeResults" aria-haspopup="listbox" id="searchBox">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input type="search" id="homeSearch" aria-label="Buscar Pokémon, jogo, líder ou tipo" aria-autocomplete="list" aria-controls="homeResults" autocomplete="off" spellcheck="false" placeholder="Busque um Pokémon, jogo, líder ou tipo…">
+      <kbd class="search-kbd">/</kbd>
+      <ul id="homeResults" role="listbox" hidden></ul>
+    </div>
+    </div>
+    <div id="homeDex" class="home-dex" aria-live="polite" hidden></div>
+    <div id="homeType" class="home-type" hidden></div>
+    <div class="quick" id="quickPicks"></div>
+    <p class="hero-links"><button type="button" class="linkish" id="openTypes">Tabela de tipos: o que vence o quê</button> · <button type="button" class="linkish" id="openHow">Como funciona?</button> · <button type="button" class="linkish" id="syncLink">Sincronizar aparelhos</button></p>
+  </header>
+
+  <div id="resume"></div>
+  <!-- Meu time (0.75.0): o time de qualquer jogo, direto da tela inicial -->
+  <!-- Meu time (0.75.0): o time de qualquer jogo, direto da tela inicial — recolhido numa linha enquanto não tem time (0.77.0) -->
+  <section id="homeTeam" class="card home-team" aria-label="Meu time"></section>
+
+  <!-- 0.77.0: escolher o jogo (a ação principal) vem logo depois da busca; números e "como funciona" ficam para baixo -->
+  <div class="catalog-head">
+    <h2 style="margin:0">Escolha o seu jogo</h2>
+    <span class="note" id="gameCount"></span>
+  </div>
+  <nav class="gens" id="genList" aria-label="Gerações"></nav>
+  <div id="gameList"></div>
+
+  <div class="legend card" id="qualityLegend"></div>
+  <p class="note" id="catalogSources"></p>
+ </section>
+
+ <section id="tool" hidden>
+  <div class="context" id="context">
+    <div class="context-row">
+      <a href="#/" class="back">← Jogos</a>
+      <h1 id="gameTitle">Poke Tact</h1>
+      <span id="qualityBadge"></span>
+      <!-- 0.83.0: "Sobre os dados" virou o ⓘ ao lado do título (antes, uma linha inteira entre o cabeçalho e as abas) -->
+      <button type="button" class="about-btn" id="aboutBtn" aria-controls="about" aria-expanded="false" title="Sobre os dados deste jogo" aria-label="Sobre os dados deste jogo">ⓘ</button>
+      <span class="spacer"></span>
+      <span class="field"><label for="version" style="margin:0">Versão</label><select id="version" aria-label="Versão"></select></span>
+      <span class="field" id="stageWrap"><label for="stage" style="margin:0">Progresso</label><select id="stage" aria-label="Progresso"></select></span>
+    </div>
+  </div>
+
+  <details class="about" id="about">
+    <summary>Sobre os dados deste jogo</summary>
+    <div class="card">
+      <p id="aboutBadges" class="about-badges" style="margin-top:0"></p>
+      <p id="gameInfo">Carregando dados…</p>
+      <p id="validationNote" hidden></p>
+      <p id="walkthrough"></p>
+      <p id="disclaimer" style="margin-bottom:0"></p>
+    </div>
+  </details>
+
+  <p class="warn" id="mechNote" role="note" hidden></p>
+  <div class="card" id="starters" hidden></div>
+  <div class="tabs" role="tablist" aria-label="Seções">
+    <!-- 0.77.0: abas na ordem de uso (luta → time → capturar → golpes → história → consulta por tipo) -->
+    <button type="button" role="tab" id="tabRec" aria-selected="true" aria-controls="recView">Recomendação</button>
+    <button type="button" role="tab" id="tabTeam" aria-selected="false" aria-controls="teamView">Meu time</button>
+    <button type="button" role="tab" id="tabDex" aria-selected="false" aria-controls="dex">Onde capturar</button>
+    <button type="button" role="tab" id="tabMoves" aria-selected="false" aria-controls="moves">Golpes</button>
+    <button type="button" role="tab" id="tabWalk" aria-selected="false" aria-controls="walk">Detonado</button>
+    <button type="button" role="tab" id="tabTypes" aria-selected="false" aria-controls="types">Pokémon por tipo</button>
+  </div>
+  <!-- o time atual: até 6 Pokémon com nível e golpes (guardado no navegador por jogo) — a aba Golpes usa -->
+  <div id="teamView" role="tabpanel" hidden>
+    <div class="card stack" id="teamOut"></div>
+  </div>
+  <!-- os golpes de dano mais fortes do Pokémon, nível a nível (level-up + TMs/tutores do progresso) -->
+  <div id="moves" role="tabpanel" hidden>
+    <div class="card stack">
+      <div>
+        <label for="movesQ">Golpes mais fortes do Pokémon, por nível</label>
+        <div class="ac">
+          <input type="search" id="movesQ" placeholder="Digite o nome — ex.: gyarados" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="movesList" aria-expanded="false">
+          <ul id="movesList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
+        </div>
+      </div>
+      <div id="movesTeam" class="team-chips"></div>
+      <div id="movesOut" aria-live="polite"></div>
+    </div>
+  </div>
+  <!-- todos os Pokémon do jogo separados por tipo, com filtros (tipo, nome, obtível na versão, forma final) -->
+  <div id="types" role="tabpanel" hidden>
+    <div class="card stack">
+      <div class="types-bar">
+        <input type="search" id="typesQ" placeholder="Filtrar pelo nome — ex.: char" autocomplete="off" spellcheck="false" aria-label="Filtrar pelo nome">
+        <label class="check"><input type="checkbox" id="typesObt" checked> só os que dá para obter nesta versão</label>
+        <label class="check"><input type="checkbox" id="typesFinal"> só formas finais</label>
+      </div>
+      <div id="typesChips" class="type-chips" role="group" aria-label="Filtrar por tipo (escolha até 2)"></div>
+      <div id="typesOut" aria-live="polite"></div>
+    </div>
+  </div>
+  <div id="walk" role="tabpanel" hidden></div>
+  <!-- onde capturar qualquer Pokémon do jogo na versão escolhida (mesmos dados do "Onde obter" das sugestões) -->
+  <div id="dex" role="tabpanel" hidden>
+    <div class="card stack">
+      <div>
+        <label for="dexQ">Onde capturar o Pokémon</label>
+        <div class="ac">
+          <input type="search" id="dexQ" placeholder="Digite o nome — ex.: pikachu" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="dexList" aria-expanded="false">
+          <ul id="dexList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
+        </div>
+      </div>
+      <div id="dexOut" aria-live="polite"></div>
+    </div>
+  </div>
+  <div id="recView" role="tabpanel">
+  <!-- 0.77.0: na ordem em que se decide — inicial (muda o time do rival), oponente, e só depois nível e filtros (recolhidos) -->
+  <!-- 0.83.0 "pergunta → a luta → respostas": este cartão é a pergunta; escolhido o oponente (busca ou treinador), ele
+       recolhe num chip [sprite Nome nv X ✕] + "Trocar treinador" e a luta vai para o cartão #resultsHead -->
+  <div class="card stack ask" id="askCard">
+    <!-- 0.82.0, pedido do usuário: a busca do Pokémon do oponente fica no topo, logo abaixo das abas -->
+    <div>
+      <div id="oppField">
+        <label for="opp" id="oppLabel">Pokémon que você está enfrentando <span class="search-hint meta">atalho <kbd>/</kbd></span></label>
+        <div class="ac">
+          <input type="search" id="opp" placeholder="Digite o nome — ex.: gyarados" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="oppList" aria-expanded="false" aria-describedby="oppWarn">
+          <ul id="oppList" class="ac-list" role="listbox" aria-label="Pokémon deste jogo" hidden></ul>
+        </div>
+      </div>
+      <div id="oppChip" class="opp-chip-row" hidden></div>
+      <div id="oppWarn" class="warn" role="status" hidden></div>
+    </div>
+    <div id="starterWrap">
+      <div class="label step-label" id="starterLabel">Seu inicial <span class="meta" id="starterHint">— opcional</span></div>
+      <div class="spick" id="starterPick" role="radiogroup" aria-labelledby="starterLabel"></div>
+      <!-- guarda o inicial escolhido (URL e lista de treinadores dependem dele); os botões acima são a interface -->
+      <select id="starter" hidden aria-hidden="true"></select>
+    </div>
+    <div id="trainerBox">
+      <div class="label step-label">Quem você vai enfrentar? <span class="meta" id="trainerHint">— usa o time e os golpes reais</span></div>
+      <div class="seg" id="trainerCats" role="tablist" aria-label="Categoria de oponente"></div>
+      <div id="trainerPick"></div>
+      <!-- guarda o treinador escolhido (URL, inicial e digitação dependem dele); as abas acima são a interface -->
+      <select id="trainer" hidden aria-hidden="true"><option value="">—</option></select>
+    </div>
+  </div>
+
+  <!-- 0.83.0: #resultsHead = a luta (fixo; só o conteúdo muda) e #resultsBody = as respostas (refeito a cada conta) -->
+  <div id="results">
+  <section class="card fight" id="resultsHead" aria-labelledby="fightTitle" hidden>
+    <h2 class="fight-title" id="fightTitle">A luta</h2>
+    <div id="team" class="team" role="group" aria-label="Pokémon do treinador"></div>
+    <div class="fight-grid">
+      <div id="oppInfo"></div>
+      <div class="fight-side"><div id="oppWeak"></div><p class="threat" id="fightThreat" hidden></p></div>
+    </div>
+    <div id="fightCtx"></div>
+    <!-- nível e filtros recolhidos: escolher o treinador já ajusta o nível e o progresso; a linha "Calculado com…" abre aqui -->
+    <details class="filters tune" id="filters">
+      <summary>Nível e filtros <span class="meta" id="tuneSum"></span></summary>
+      <div class="grid2" style="margin-top:var(--s2)">
+        <div><label for="level">Nível do seu time</label><input type="number" id="level" min="1" max="100" value="30"></div>
+        <div><label for="oppLevel">Nível do oponente <span class="meta">(opcional)</span></label><input type="number" id="oppLevel" min="1" max="100" placeholder="sem nível: usa os tipos dele"></div>
+      </div>
+      <div class="checks">
+        <label><input type="checkbox" id="onlyObtainable" checked> Só o que dá para obter na versão</label>
+        <label><input type="checkbox" id="fullEvo"> Só evolução final</label>
+        <label><input type="checkbox" id="legend"> Incluir lendários</label>
+        <label><input type="checkbox" id="machines" checked> Usar golpes de TM/HM e tutor</label>
+        <label><input type="checkbox" id="tradeEvos"> Incluir evoluções por troca (precisa de outro jogo)</label>
+        <label id="dlcWrap" hidden><input type="checkbox" id="dlc"> Tenho as DLCs (expansões pagas: sem marcar, os Pokémon que só existem nelas ficam de fora)</label>
+        <label id="megaWrap" hidden><input type="checkbox" id="megaEvo" checked> Usar Mega Evolução (quando a Mega vence melhor; precisa do Mega Ring e da pedra)</label>
+        <label id="zWrap" hidden><input type="checkbox" id="zMoves" checked> Usar golpe Z (um por luta; precisa do Z-Ring e do Z-Crystal do tipo)</label>
+        <label id="teraWrap" hidden><input type="checkbox" id="terastal" checked> Usar Terastal (no tipo do próprio Pokémon; precisa da Tera Orb)</label>
+        <label id="dynWrap" hidden><input type="checkbox" id="dynamax" checked> Usar Dynamax (só nas lutas de ginásio e de campeonato; precisa da Dynamax Band)</label>
+      </div>
+    </details>
+  </section>
+  <div id="resultsBody"></div>
+  </div>
+  </div>
+ </section>
+</main>
+<!-- 0.78.0: "Como funciona" num aviso que abre na 1ª visita à tela inicial; "Entendi" guarda no navegador (poketact:como-funciona) -->
+<dialog id="howDialog" class="how-dialog" aria-labelledby="howTitle"><div class="how-body">
+  <div class="news-head"><h2 id="howTitle">Como funciona</h2><button type="button" class="news-close" id="howClose" aria-label="Fechar">✕</button></div>
+  <div class="steps">
+    <div class="step"><span class="step-n">1</span><strong>Escolha o jogo</strong><span class="meta">Cada jogo usa só a própria geração: tipos, golpes, habilidades e o que dá para obter na versão.</span></div>
+    <div class="step"><span class="step-n">2</span><strong>Escolha o oponente</strong><span class="meta">Um líder, rival ou treinador do jogo (com o time real) — ou digite o Pokémon.</span></div>
+    <div class="step"><span class="step-n">3</span><strong>Receba 3 sugestões</strong><span class="meta">Com o veredito da troca de golpes, o melhor golpe e onde conseguir no seu ponto da história.</span></div>
+  </div>
+  <p class="meta">Dica: monte o seu time em <strong>Meu time</strong> — as sugestões passam a dizer quem dele usar. Na busca do topo, escreva um Pokémon (onde capturar), um jogo, um líder ou um tipo.</p>
+  <div class="stats" id="stats"></div>
+  <div class="how-actions"><button type="button" class="btn btn-primary" id="howOk">Entendi</button></div>
+</div></dialog>
+<!-- 0.85.0: sincronizar o time entre aparelhos por um Gist secreto do GitHub (public/sync.mjs) -->
+<dialog id="syncDialog" class="how-dialog" aria-labelledby="syncTitle"><div class="how-body">
+  <div class="news-head"><h2 id="syncTitle">Sincronizar aparelhos</h2><button type="button" class="news-close" id="syncClose" aria-label="Fechar">✕</button></div>
+  <div id="syncOff">
+    <p>O seu time e os golpes guardados ficam no navegador de cada aparelho. Para vê-los no celular e no computador, o app
+      guarda uma cópia num <strong>Gist secreto</strong> da sua conta do GitHub e sincroniza sozinho.</p>
+    <ol class="sync-steps">
+      <li>No GitHub, <a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=Poke%20Tact" target="_blank" rel="noopener">crie um token</a> só com a permissão <code>gist</code> (escolha a validade) e copie.</li>
+      <li>Cole aqui e toque em Conectar. O time deste aparelho vai para o Gist.</li>
+      <li>No outro aparelho, faça o mesmo — ou use "Copiar link para outro aparelho", que aparece depois de conectar.</li>
+    </ol>
+    <form id="syncForm" class="sync-form">
+      <input type="password" id="syncToken" autocomplete="off" spellcheck="false" placeholder="Token do GitHub (ghp_…)" aria-label="Token do GitHub">
+      <button type="submit" class="btn btn-primary" id="syncConnect">Conectar</button>
+    </form>
+    <p class="meta">O token fica só neste navegador. Se o mesmo jogo tiver time nos dois aparelhos, vale o do primeiro conectado; depois disso, vale a última mudança.</p>
+  </div>
+  <div id="syncOn" hidden>
+    <p id="syncWho"></p>
+    <p class="meta" id="syncState"></p>
+    <div class="sync-actions">
+      <button type="button" class="btn" id="syncNowBtn">Sincronizar agora</button>
+      <button type="button" class="btn" id="syncCopy">Copiar link para outro aparelho</button>
+      <button type="button" class="btn" id="syncOut">Desconectar</button>
+    </div>
+  </div>
+  <p class="meta" id="syncMsg" aria-live="polite"></p>
+</div></dialog>
+<!-- novidades do app (CHANGELOG): botão fixo no canto com o nº de versões não vistas e o painel com as mudanças -->
+<button type="button" id="newsBtn" class="news-btn" aria-haspopup="dialog" aria-controls="newsPanel" aria-expanded="false" title="Novidades do app">
+  <span aria-hidden="true">🔔</span><span class="news-label">Novidades</span><span class="news-count" id="newsCount" hidden></span>
+</button>
+<section id="newsPanel" class="news-panel card" role="dialog" aria-labelledby="newsTitle" hidden>
+  <div class="news-head"><h2 id="newsTitle">Novidades</h2><button type="button" id="newsClose" class="news-close" aria-label="Fechar">✕</button></div>
+  <div id="newsList"></div>
+</section>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>
