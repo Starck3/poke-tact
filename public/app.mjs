@@ -1,5 +1,5 @@
 import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likelyMoveset, whereToGet, formatSources, describeEvolution, preEvolutionRoute, stageLabel, catchReport, evolutionReport, typeIndex, strongestMovesByLevel, estimatedMoveset, moveWorth, battleForm, pctText, shownDetail, withoutDlc, hasDlc } from './engine.mjs';
-import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spritePath } from './catalog.mjs';
+import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spritePath, rivalPlace, rivalCarries } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 import { matchup, monsFor, chartDiffs, TYPE_PT } from './typechart.mjs';
 import { initSync, noteWrite, syncNow, connect, disconnect, syncConfig, syncStatus, connectLink } from './sync.mjs';
@@ -932,7 +932,8 @@ const capName = (s) => (s && s === s.toUpperCase() ? s.toLowerCase().replace(/(^
 /** Nome curto do treinador como os botões mostram ("Leader Brock" → "Brock"; rival com o inicial que ele leva). */
 // sem o número da luta no fim: o Emerald rotula "Leader Roxanne 1" … "Roxanne 5" e a luta principal aparecia como "Roxanne 1"
 // (0.79.0, pedido do usuário); as revanches já ficam separadas e marcadas por orderTrainers
-const trainerName = (t) => capName(t.group === 'Rival' ? (t.carries ? `${t.name} (com ${humanize(t.carries)})` : t.name) : t.label.replace(/^(Leader|Elite Four|Champion|Gym Leader|Líder)\s+/i, '').replace(/\s+\d+$/, ''));
+const rivalTitle = (t, c = rivalCarries(t, data?.starters?.species)) => (c ? `${t.name} (com ${humanize(c)})` : t.name);
+const trainerName = (t) => capName(t.group === 'Rival' ? rivalTitle(t) : t.label.replace(/^(Leader|Elite Four|Champion|Gym Leader|Líder)\s+/i, '').replace(/\s+\d+$/, ''));
 function trainerCategories() {
   const mine = $('starter').value;
   const visible = trainers.filter((t) => !(mine && t.forStarter && !t.forStarter.includes(mine)));
@@ -984,9 +985,8 @@ function renderTrainerPicker() {
   const nextLeader = /Líderes/.test(cat.g) && stage != null && acq?.progress?.leaderOrder?.[stage] ? fold(acq.progress.leaderOrder[stage]).replace(/[^a-z]/g, '') : null;
   const chip = ({ t, rematch }) => {
     const ace = data.pokemon.find((p) => p.name === t.party.at(-1)?.species);
-    // lugar: mapa do decomp ou, na Gen 3, o que sobra do rótulo ("Brendan Route 103 Mudkip" → "Route 103"; "Vr" = Victory Road)
-    const starterWords = new RegExp(`\\b(${(data.starters?.species ?? []).join('|') || '_'})\\b`, 'ig');
-    const place = t.map?.[0] ?? (t.label.toLowerCase().startsWith(String(t.name).toLowerCase()) ? t.label.slice(String(t.name).length).replace(starterWords, '').replace(/\bVr\b/, 'Victory Road').trim() : '');
+    // lugar: mapa do decomp ou, na Gen 3, o que sobra do rótulo (catalog.rivalPlace — 0.85.2)
+    const place = rivalPlace(t, data.starters?.species ?? []);
     const sub = [cat.g === 'Rival' && place, `nv ${topLevel(t)}`, `${t.party.length} Pokémon`, t.double && 'dupla'].filter(Boolean).join(' · ');
     const name = trainerName(t);
     const isNext = !rematch && nextLeader && fold(t.name ?? '').replace(/[^a-z]/g, '') === nextLeader;

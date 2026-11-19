@@ -68,3 +68,25 @@ export const spriteFolder = (gameId, version) => (SPRITE_PER_VERSION.has(gameId)
 export const spritePath = (generation, gameId, version) => (generation <= 2
   ? 'generation-iii/firered-leafgreen'
   : `generation-${['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix'][generation]}/${spriteFolder(gameId, version)}`);
+
+// Lugar da luta de rival no chip (0.85.2). Mapa do decomp quando há; na Gen 3, o que sobra do rótulo sem o nome do
+// treinador e sem o inicial ("Brendan Route 103 Mudkip" → "Route 103"). No FireRed/LeafGreen o rótulo começa com "Rival",
+// não com o nome ("TERRY" | "Rival Cerulean Squirtle") — antes o lugar sumia e os 21 chips eram só "Terry".
+const PLACE_NAMES = [[/\bVr\b/, 'Victory Road'], [/\bOaks Lab\b/, "Oak's Lab"], [/\bRoute(\d+)/, 'Route $1'], [/\bSs Anne\b/, 'S.S. Anne'],
+  [/\bPokemon Tower\b/, 'Pokémon Tower'], [/^Silph$/, 'Silph Co.'], [/^Cerulean$/, 'Cerulean City'], [/\bEarly\b/, '(1ª luta)'], [/\bLate\b/, '(2ª luta)']];
+export function rivalPlace(t, starters = []) {
+  if (t.map?.[0]) return t.map[0];
+  const label = String(t.label ?? ''), name = String(t.name ?? '');
+  const lead = [name, 'Rival'].find((w) => w && label.toLowerCase().startsWith(w.toLowerCase() + ' '));
+  if (!lead) return '';
+  const starterWords = new RegExp(`\\b(${starters.join('|') || '_'})\\b`, 'ig');
+  let place = label.slice(lead.length).replace(starterWords, '').replace(/\s+/g, ' ').trim();
+  for (const [re, to] of PLACE_NAMES) place = place.replace(re, to);
+  return place;
+}
+/** Inicial que o rival carrega: `carries` do dado ou o inicial escrito no rótulo ("Rival Cerulean Squirtle" → squirtle). */
+export function rivalCarries(t, starters = []) {
+  if (t.carries) return t.carries;
+  const words = String(t.label ?? '').toLowerCase().split(/[^a-z0-9-]+/);
+  return starters.find((s) => words.includes(String(s).toLowerCase())) ?? null;
+}

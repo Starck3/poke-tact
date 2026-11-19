@@ -2,6 +2,16 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.85.2] — 2026-11-19
+
+> No FireRed/LeafGreen, cada luta do rival agora mostra onde acontece e com que inicial ele está — por exemplo "Terry (com Squirtle) · Cerulean City".
+
+### Corrigido (relato do usuário: "cliquei no rival mas não mostra Rival de Cerulean City")
+- Na categoria Rival do FireRed/LeafGreen, os 21 botões eram só "Terry" com nível: o rótulo do decomp começa com "Rival",
+  não com o nome, e o lugar se perdia. Agora o botão mostra o lugar (Oak's Lab, Route 22 (1ª/2ª luta), Cerulean City,
+  S.S. Anne, Pokémon Tower, Silph Co.) e o inicial do rival. Lógica em `catalog.mjs` (`rivalPlace`, `rivalCarries`).
+- Teste da tela: verificação do rival de Cerulean City no FireRed.
+
 ## [0.85.1] — 2026-11-18
 
 > O link para conectar o celular agora abre o site de verdade, e não mais "localhost".

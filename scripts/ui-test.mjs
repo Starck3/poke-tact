@@ -389,6 +389,15 @@ try {
   const news = await run(() => document.querySelector('#newsList summary')?.textContent ?? '');
   check('Novidades abre com a versão mais nova', /Versão \d+\.\d+\.\d+/.test(news), news);
 
+  // 7b. rival do FireRed/LeafGreen com lugar e inicial (0.85.2 — eram 21 chips só "Terry")
+  await go('#/jogo/firered-leafgreen', 3000);
+  const rivals = await run(async () => {
+    document.querySelector('#trainerCats button[data-cat="Rival"]')?.click();
+    await new Promise((r) => setTimeout(r, 300));
+    return [...document.querySelectorAll('#trainerPick .tchip')].map((b) => b.textContent.replace(/\s+/g, ' ').trim());
+  });
+  check('FireRed: rival de Cerulean City com o inicial dele', rivals.some((s) => /Terry \(com Squirtle\).*Cerulean City/i.test(s)), rivals.slice(0, 9));
+
   // 8. sincronizar aparelhos (0.85.0): o aviso abre pela tela inicial, desconectado, com o campo do token
   await go('#/', 2000);
   const sync = await run(() => { document.querySelector('#syncLink').click(); const d = document.querySelector('#syncDialog'); return { open: d.open, off: !document.querySelector('#syncOff').hidden, token: !!document.querySelector('#syncToken') }; });

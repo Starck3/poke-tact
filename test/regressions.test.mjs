@@ -3398,3 +3398,20 @@ test('0.85.1: link "conectar outro aparelho" aberto em localhost aponta para o s
   assert.equal(connectLink(at('http://192.168.0.10:5173/'), 'ghp_x'), 'http://192.168.0.10:5173/#/?conectar=ghp_x');
   assert.equal(connectLink(at('https://starck3.github.io/poke-tact/'), 'a b'), 'https://starck3.github.io/poke-tact/#/?conectar=a%20b');
 });
+
+test('0.85.2: rival do FireRed/LeafGreen mostra o lugar e o inicial dele (antes eram 21 chips só "Terry")', async () => {
+  const { rivalPlace, rivalCarries } = await import('../public/catalog.mjs');
+  const st = ['bulbasaur', 'charmander', 'squirtle'];
+  const frlg = JSON.parse(readFileSync(new URL('../public/data/firered-leafgreen-trainers.json', import.meta.url), 'utf8')).trainers.filter((t) => t.group === 'Rival');
+  const at = (k) => frlg.find((t) => t.key === k);
+  assert.equal(rivalPlace(at('TRAINER_RIVAL_CERULEAN_SQUIRTLE'), st), 'Cerulean City');
+  assert.equal(rivalCarries(at('TRAINER_RIVAL_CERULEAN_SQUIRTLE'), st), 'squirtle');
+  assert.equal(rivalPlace(at('TRAINER_RIVAL_OAKS_LAB_BULBASAUR'), st), "Oak's Lab");
+  assert.equal(rivalPlace(at('TRAINER_RIVAL_ROUTE22_EARLY_CHARMANDER'), st), 'Route 22 (1ª luta)');
+  assert.equal(rivalPlace(at('TRAINER_RIVAL_SS_ANNE_CHARMANDER'), st), 'S.S. Anne');
+  assert.ok(frlg.every((t) => rivalPlace(t, st) && rivalCarries(t, st)), 'todo rival do FRLG com lugar e inicial');
+  // Emerald (rótulo com o nome) e jogos com mapa continuam como antes
+  assert.equal(rivalPlace({ name: 'BRENDAN', label: 'Brendan Route 103 Mudkip' }, ['treecko', 'torchic', 'mudkip']), 'Route 103');
+  assert.equal(rivalPlace({ name: 'WALLY', label: 'Wally Vr 1' }, []), 'Victory Road 1');
+  assert.equal(rivalPlace({ name: 'Rival', label: 'x', map: ['Cerulean City'] }, st), 'Cerulean City');
+});
