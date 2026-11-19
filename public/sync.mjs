@@ -104,9 +104,16 @@ export function syncNow() {
     if (!cfg?.token || !cfg.gistId) { setStatus({ state: 'off' }); return; }
     setStatus({ state: 'syncing' });
     try {
-      const { merged, toLocal, push } = mergeStates(localState(), await readRemote(cfg));
+      const before = stamps();
+      let { merged, toLocal, push } = mergeStates(localState(), await readRemote(cfg));
       const at = stamps();
-      for (const k of toLocal) { const v = merged[k].value; if (v == null) ls.del(k); else ls.set(k, v); at[k] = merged[k].at; }
+      for (const k of toLocal) {
+        // editado neste aparelho durante a busca (o noteWrite já agendou outra sincronização): vale o do aparelho
+        if (at[k] !== before[k]) { merged[k] = { value: ls.get(k), at: at[k] }; push = true; continue; }
+        const v = merged[k].value;
+        if (v == null) ls.del(k); else ls.set(k, v);
+        at[k] = merged[k].at;
+      }
       ls.set(AT_KEY, JSON.stringify(at));
       if (push) await gh(`/gists/${cfg.gistId}`, cfg, { method: 'PATCH', body: JSON.stringify({ files: { [SYNC_FILE]: { content: JSON.stringify({ v: 1, items: merged }) } } }) });
       setStatus({ state: 'ok', at: Date.now(), error: null, login: cfg.login });
@@ -150,10 +157,18 @@ export function initSync(handlers = {}) {
   const cfg = syncConfig();
   setStatus(cfg ? { state: 'ok', login: cfg.login } : { state: 'off' });
   if (cfg) syncNow();
+  // 0.85.3: puxar só ao abrir e ao voltar de aba escondida não bastava — no computador a aba fica aberta e visível (trocar
+  // de janela não esconde a aba), e a mudança feita no celular nunca chegava. Agora puxa também ao focar a janela, ao
+  // voltar a internet e a cada 30 s com a página visível.
   let lastPull = Date.now();
+  const pull = (minGap) => { if (!syncConfig() || Date.now() - lastPull < minGap) return; lastPull = Date.now(); syncNow(); };
   document.addEventListener('visibilitychange', () => {
     if (!syncConfig()) return;
-    if (document.visibilityState === 'visible' && Date.now() - lastPull > 5000) { lastPull = Date.now(); syncNow(); }
+    if (document.visibilityState === 'visible') pull(3000);
     if (document.visibilityState === 'hidden' && timer) { clearTimeout(timer); timer = null; syncNow(); } // sai do app: grava já
   });
+  window.addEventListener('focus', () => pull(3000));
+  window.addEventListener('online', () => pull(0));
+  setInterval(() => { if (document.visibilityState === 'visible') pull(PULL_EVERY - 1000); }, PULL_EVERY);
 }
+export const PULL_EVERY = 30000;

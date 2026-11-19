@@ -72,3 +72,39 @@ test('dois aparelhos: o time do computador aparece no celular e a mudança no ce
   assert.equal(pc.getItem('poketact:sync'), null);
   assert.ok(SYNC_FILE.endsWith('.json'));
 });
+
+test('0.85.3: mudança feita no outro aparelho chega com a aba aberta (foco, internet de volta e a cada 30 s)', async () => {
+  const { initSync, PULL_EVERY } = await import('../public/sync.mjs');
+  const on = { doc: {}, win: {} }; const intervals = [];
+  const saved = { document: globalThis.document, window: globalThis.window, setInterval: globalThis.setInterval };
+  globalThis.document = { visibilityState: 'visible', addEventListener: (e, f) => { on.doc[e] = f; } };
+  globalThis.window = { addEventListener: (e, f) => { on.win[e] = f; } };
+  globalThis.setInterval = (f, ms) => { intervals.push(ms); return 0; };
+  globalThis.localStorage = fakeStorage();
+  try {
+    initSync({});
+    assert.ok(on.doc.visibilitychange && on.win.focus && on.win.online, 'ouve visibilidade, foco e internet');
+    assert.deepEqual(intervals, [PULL_EVERY]);
+    assert.ok(PULL_EVERY <= 30000);
+  } finally { Object.assign(globalThis, saved); }
+});
+
+test('0.85.3: o que o usuário muda durante a busca no Gist não é apagado pelo que vem de lá', async () => {
+  const base = fakeGitHub();
+  let during = null;
+  globalThis.fetch = async (url, init = {}) => { const r = await base(url, init); if (during && /\/gists\/g\d+$/.test(url) && !init.method) { const f = during; during = null; f(); } return r; };
+  const a = fakeStorage(), b = fakeStorage();
+  globalThis.localStorage = a; await connect('tok');
+  globalThis.localStorage = b; await connect('tok');
+  // aparelho A muda o time; o B, no meio da busca seguinte, muda o mesmo time
+  globalThis.localStorage = a; a.setItem('poketact:time:yellow', '["A"]'); noteWrite('poketact:time:yellow'); await syncNow();
+  globalThis.localStorage = b;
+  await new Promise((r) => setTimeout(r, 5)); // a edição do B é depois da do A (empate de milissegundo fica com o Gist)
+  during = () => { b.setItem('poketact:time:yellow', '["B"]'); noteWrite('poketact:time:yellow'); };
+  await syncNow();
+  assert.equal(b.getItem('poketact:time:yellow'), '["B"]');
+  await syncNow();
+  globalThis.localStorage = a; await syncNow();
+  assert.equal(a.getItem('poketact:time:yellow'), '["B"]');
+  disconnect(); globalThis.localStorage = b; disconnect();
+});

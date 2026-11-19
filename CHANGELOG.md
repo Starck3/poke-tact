@@ -2,6 +2,17 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.85.3] — 2026-11-19
+
+> Mudou o time num aparelho? O outro agora atualiza sozinho em até 30 segundos, mesmo com o site já aberto.
+
+### Corrigido (relato do usuário: "alterei o nível do meu Pikachu e troquei um ataque mas ainda não mudou aqui no site")
+- O aparelho só buscava o time no Gist ao abrir o site e ao voltar de uma aba escondida. No computador a aba costuma
+  ficar aberta e visível (trocar de janela não esconde a aba), então a mudança feita no celular não chegava. Agora busca
+  também ao focar a janela, quando a internet volta e a cada 30 s com a página visível.
+- Uma mudança feita no aparelho enquanto a busca no Gist estava em andamento podia ser trocada pelo que vinha de lá; agora
+  vale a do aparelho e ela é enviada em seguida.
+
 ## [0.85.2] — 2026-11-19
 
 > No FireRed/LeafGreen, cada luta do rival agora mostra onde acontece e com que inicial ele está — por exemplo "Terry (com Squirtle) · Cerulean City".
