@@ -3389,3 +3389,12 @@ test('0.83.0: tela do jogo "pergunta → a luta → respostas" (layout pedido pe
   assert.ok(!/\(team\.length \? '<h3 class="picks-title">/.test(app));
   assert.doesNotMatch(html, /\.btn, \.chips button, \.tabs button/);
 });
+
+test('0.85.1: link "conectar outro aparelho" aberto em localhost aponta para o site publicado', async () => {
+  const { connectLink, PUBLIC_URL } = await import('../public/sync.mjs');
+  const at = (u) => { const x = new URL(u); return { hostname: x.hostname, origin: x.origin, pathname: x.pathname }; };
+  assert.equal(connectLink(at('http://localhost:5173/'), 'ghp_x'), `${PUBLIC_URL}#/?conectar=ghp_x`);
+  assert.equal(connectLink(at('http://127.0.0.1:5173/'), 'ghp_x'), `${PUBLIC_URL}#/?conectar=ghp_x`);
+  assert.equal(connectLink(at('http://192.168.0.10:5173/'), 'ghp_x'), 'http://192.168.0.10:5173/#/?conectar=ghp_x');
+  assert.equal(connectLink(at('https://starck3.github.io/poke-tact/'), 'a b'), 'https://starck3.github.io/poke-tact/#/?conectar=a%20b');
+});

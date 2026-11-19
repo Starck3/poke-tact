@@ -2,7 +2,7 @@ import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likely
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spritePath } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 import { matchup, monsFor, chartDiffs, TYPE_PT } from './typechart.mjs';
-import { initSync, noteWrite, syncNow, connect, disconnect, syncConfig, syncStatus } from './sync.mjs';
+import { initSync, noteWrite, syncNow, connect, disconnect, syncConfig, syncStatus, connectLink } from './sync.mjs';
 
 const COLORS = {
   normal: '#8a8a59', fire: '#e8742c', water: '#5a7fe8', electric: '#d9ad12', grass: '#5ca83c', ice: '#6bb8b8',
@@ -1991,7 +1991,7 @@ $('syncForm').addEventListener('submit', (e) => { e.preventDefault(); doConnect(
 $('syncNowBtn').addEventListener('click', () => syncNow());
 $('syncOut').addEventListener('click', () => { disconnect(); $('syncMsg').textContent = 'Desconectado. O time continua salvo neste aparelho.'; renderSync(); });
 $('syncCopy').addEventListener('click', async () => {
-  const url = `${location.origin}${location.pathname}#/?conectar=${encodeURIComponent(syncConfig()?.token ?? '')}`;
+  const url = connectLink(location, syncConfig()?.token);
   try { await navigator.clipboard.writeText(url); $('syncMsg').textContent = 'Link copiado. Abra no outro aparelho — e apague a mensagem depois: quem tiver o link mexe no seu time.'; }
   catch { prompt('Copie o link e abra no outro aparelho:', url); }
 });

@@ -9,6 +9,16 @@ const CFG_KEY = 'poketact:sync';
 const AT_KEY = 'poketact:sync:at';
 const API = 'https://api.github.com';
 
+export const PUBLIC_URL = 'https://starck3.github.io/poke-tact/';
+/**
+ * Link "conectar outro aparelho" (0.85.1): aberto em localhost/127.x no computador, o link aponta para o site publicado —
+ * localhost no celular é o próprio celular. Pela rede local (192.168…) ou pelo site, o mesmo endereço aberto.
+ */
+export function connectLink(loc, token) {
+  const local = /^(localhost|127\.|\[?::1\]?$)/.test(loc.hostname);
+  return `${local ? PUBLIC_URL : loc.origin + loc.pathname}#/?conectar=${encodeURIComponent(token ?? '')}`;
+}
+
 /** Chaves do localStorage que vão para o Gist. */
 export const isSyncedKey = (k) => /^poketact:(time|golpes):[a-z0-9-]+$/.test(k);
 

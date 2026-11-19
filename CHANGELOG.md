@@ -2,6 +2,14 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.85.1] — 2026-11-18
+
+> O link para conectar o celular agora abre o site de verdade, e não mais "localhost".
+
+### Corrigido (relato do usuário: "o link ficou como http://localhost:5173")
+- "Copiar link para outro aparelho" usava o endereço aberto no computador; em `localhost`/`127.x` o link agora aponta para
+  o site publicado (https://starck3.github.io/poke-tact/). Pela rede local ou pelo site, continua o mesmo endereço.
+
 ## [0.85.0] — 2026-11-18
 
 > O seu time agora pode aparecer no celular e no computador: conecte os dois aparelhos à sua conta do GitHub em "Sincronizar aparelhos" e o time se atualiza sozinho.
