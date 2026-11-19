@@ -2,6 +2,19 @@
 
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.85.0] — 2026-11-18
+
+> O seu time agora pode aparecer no celular e no computador: conecte os dois aparelhos à sua conta do GitHub em "Sincronizar aparelhos" e o time se atualiza sozinho.
+
+### Adicionado (pedido do usuário: "a escolha do meu time que tenho aqui na máquina não aparece no celular")
+- **Sincronizar aparelhos** (link na tela inicial): o time (`poketact:time:<jogo>`) e os golpes guardados
+  (`poketact:golpes:<jogo>`) vão para um **Gist secreto** da conta do GitHub do usuário (o site é estático, sem servidor).
+  Cada aparelho cola uma vez um token só com a permissão `gist`; depois, o app sincroniza ao abrir, ao voltar para ele, ao
+  sair e 1,5 s depois de cada mudança. Por chave vale a gravação mais recente; time montado antes de conectar perde para o
+  que já está no Gist (o 1º aparelho conectado manda). "Copiar link para outro aparelho" leva o token no endereço
+  (`#/?conectar=…`, apagado do endereço ao abrir). Código em `public/sync.mjs`.
+- Testes: `test/sync.test.mjs` (junção e dois aparelhos com um GitHub de mentira) e verificação nova no teste da tela.
+
 ## [0.84.0] — 2026-11-17
 
 > O oponente só vira etiqueta quando você escolhe na lista ou aperta Enter, e no celular os Pokémon do treinador rolam de lado.

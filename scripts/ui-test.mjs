@@ -388,6 +388,11 @@ try {
   await go('#/?novidades', 2500);
   const news = await run(() => document.querySelector('#newsList summary')?.textContent ?? '');
   check('Novidades abre com a versão mais nova', /Versão \d+\.\d+\.\d+/.test(news), news);
+
+  // 8. sincronizar aparelhos (0.85.0): o aviso abre pela tela inicial, desconectado, com o campo do token
+  await go('#/', 2000);
+  const sync = await run(() => { document.querySelector('#syncLink').click(); const d = document.querySelector('#syncDialog'); return { open: d.open, off: !document.querySelector('#syncOff').hidden, token: !!document.querySelector('#syncToken') }; });
+  check('Sincronizar aparelhos abre desconectado com o campo do token', sync.open && sync.off && sync.token, sync);
 } catch (e) { check('execução sem exceção', false, String(e)); }
 
 drain();

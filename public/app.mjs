@@ -2,6 +2,7 @@ import { recommend, recommendTeam, LEVEL_MARGIN, effectiveness, humanize, likely
 import { filterGames, groupByGeneration, generationSummaries, roman, parseRoute, homeHash, spritePath } from './catalog.mjs';
 import { findOpponent, searchOpponents, opponentWarning } from './pokedex.mjs';
 import { matchup, monsFor, chartDiffs, TYPE_PT } from './typechart.mjs';
+import { initSync, noteWrite, syncNow, connect, disconnect, syncConfig, syncStatus } from './sync.mjs';
 
 const COLORS = {
   normal: '#8a8a59', fire: '#e8742c', water: '#5a7fe8', electric: '#d9ad12', grass: '#5ca83c', ice: '#6bb8b8',
@@ -364,12 +365,12 @@ let learnMove = null; // golpe novo pedido pelo link (?aprender=sleep-powder) ou
 let learnFor = null, learnLevel = 1; // Pokémon do formulário atual (troca de Pokémon → nível novo) e o nível dele
 const LEARN_KEY = () => `poketact:golpes:${currentGame}`;
 const savedSets = () => { try { return JSON.parse(localStorage.getItem(LEARN_KEY()) ?? '{}') ?? {}; } catch { return {}; } };
-const saveSet = (name, entry) => { try { const all = savedSets(); if (entry) all[name] = entry; else delete all[name]; localStorage.setItem(LEARN_KEY(), JSON.stringify(all)); } catch {} };
+const saveSet = (name, entry) => { try { const all = savedSets(); if (entry) all[name] = entry; else delete all[name]; localStorage.setItem(LEARN_KEY(), JSON.stringify(all)); noteWrite(LEARN_KEY()); } catch {} };
 // Meu time (0.74.0): até 6 Pokémon com nível e golpes, guardados no navegador por jogo — [{ species, level, moves, estimated }]
 let learnSlot = -1; // membro do time aberto na aba Golpes (dois do mesmo Pokémon: o chip escolhido)
 // readTeam/writeTeam valem para qualquer jogo (a tela inicial edita o time sem abrir o jogo — 0.75.0)
 const readTeam = (gameId, d) => { try { const t = JSON.parse(localStorage.getItem(`poketact:time:${gameId}`) ?? '[]'); return Array.isArray(t) ? t.filter((m) => m && d.pokemon.some((p) => p.name === m.species)) : []; } catch { return []; } };
-const writeTeam = (gameId, team) => { try { localStorage.setItem(`poketact:time:${gameId}`, JSON.stringify(team.slice(0, 6))); } catch {} };
+const writeTeam = (gameId, team) => { try { localStorage.setItem(`poketact:time:${gameId}`, JSON.stringify(team.slice(0, 6))); noteWrite(`poketact:time:${gameId}`); } catch {} };
 const loadTeam = () => readTeam(currentGame, data);
 const saveTeam = (team) => writeTeam(currentGame, team);
 const teamSlotOf = (mon, team = loadTeam()) => (team[learnSlot]?.species === mon.name ? learnSlot : team.findIndex((t) => t.species === mon.name));
@@ -1884,6 +1885,8 @@ async function route() {
     renderHome();
     // #/?novidades → abre o painel de novidades (link para compartilhar)
     if (r.params.novidades != null) openNews(true);
+    // #/?conectar=<token> → link "conectar outro aparelho" (0.85.0): conecta e tira o token do endereço
+    else if (r.params.conectar) { const tk = r.params.conectar; history.replaceState(null, '', homeHash({})); openSync(tk); }
     // 1ª visita à tela inicial (sem link com busca): "Como funciona" abre sozinho até tocar em "Entendi" (0.78.0)
     else if (!Object.keys(r.params).length && !howSeen()) openHow();
     // #/?capturar=pikachu → busca de Pokémon já respondida (em que jogos dá para obter)
@@ -1949,6 +1952,50 @@ $('howDialog').addEventListener('click', (e) => { if (e.target === $('howDialog'
 
 window.addEventListener('hashchange', route);
 route();
+
+// ---- Sincronizar aparelhos (0.85.0): time e golpes guardados num Gist secreto do GitHub do usuário (public/sync.mjs)
+const fmtTime = (t) => new Date(t).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+function renderSync() {
+  const st = syncStatus(), cfg = syncConfig();
+  $('syncLink').textContent = cfg ? (st.state === 'error' ? 'Sincronizar aparelhos ⚠' : 'Sincronizado ✓') : 'Sincronizar aparelhos';
+  $('syncOff').hidden = !!cfg; $('syncOn').hidden = !cfg;
+  if (cfg) {
+    $('syncWho').textContent = `Conectado ao GitHub como ${cfg.login ?? '?'}.`;
+    $('syncState').textContent = st.state === 'syncing' ? 'Sincronizando…' : st.state === 'error' ? `Erro: ${st.error}` : st.at ? `Última sincronização às ${fmtTime(st.at)}.` : '';
+  }
+}
+function openSync(token) {
+  const d = $('syncDialog'); if (!d.open) { if (d.showModal) d.showModal(); else d.setAttribute('open', ''); }
+  $('syncMsg').textContent = '';
+  renderSync();
+  if (token) { $('syncToken').value = token; doConnect(); }
+}
+async function doConnect() {
+  $('syncMsg').textContent = 'Conectando…'; $('syncConnect').disabled = true;
+  try { await connect($('syncToken').value); $('syncToken').value = ''; $('syncMsg').textContent = 'Pronto: o time deste aparelho agora sincroniza sozinho.'; }
+  catch (e) { $('syncMsg').textContent = `Não deu certo: ${e.message}.`; }
+  $('syncConnect').disabled = false; renderSync();
+}
+// o Gist trouxe time/golpes novos: redesenha o que estiver na tela
+function onRemoteSync(keys) {
+  if (!$('home').hidden) { renderHome(); return; }
+  if (!currentGame || !keys.some((k) => k.endsWith(`:${currentGame}`))) return;
+  if (!$('teamView').hidden) renderMyTeam();
+  if (!$('moves').hidden) renderMoves();
+  update();
+}
+$('syncLink').addEventListener('click', () => openSync());
+$('syncClose').addEventListener('click', () => { const d = $('syncDialog'); if (d.close) d.close(); else d.removeAttribute('open'); });
+$('syncDialog').addEventListener('click', (e) => { if (e.target === $('syncDialog')) $('syncClose').click(); });
+$('syncForm').addEventListener('submit', (e) => { e.preventDefault(); doConnect(); });
+$('syncNowBtn').addEventListener('click', () => syncNow());
+$('syncOut').addEventListener('click', () => { disconnect(); $('syncMsg').textContent = 'Desconectado. O time continua salvo neste aparelho.'; renderSync(); });
+$('syncCopy').addEventListener('click', async () => {
+  const url = `${location.origin}${location.pathname}#/?conectar=${encodeURIComponent(syncConfig()?.token ?? '')}`;
+  try { await navigator.clipboard.writeText(url); $('syncMsg').textContent = 'Link copiado. Abra no outro aparelho — e apague a mensagem depois: quem tiver o link mexe no seu time.'; }
+  catch { prompt('Copie o link e abra no outro aparelho:', url); }
+});
+initSync({ onStatus: renderSync, onRemote: onRemoteSync });
 
 $('starter').addEventListener('input', () => { const t = $('trainer').value; fillTrainers(); $('trainer').value = [...$('trainer').options].some((o) => o.value === t) ? t : ''; renderStarters(); update(); });
 

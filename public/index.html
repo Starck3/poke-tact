@@ -383,6 +383,9 @@
   .how-body { padding:var(--s4); }
   .home-type .type-chips .clear { opacity:1; }
   .how-dialog::backdrop { background:rgba(0,0,0,.5); }
+  .sync-steps { padding-left:20px; } .sync-steps li { margin:6px 0; }
+  .sync-form { display:flex; gap:var(--s2); flex-wrap:wrap; } .sync-form input { flex:1 1 220px; min-width:0; }
+  .sync-actions { display:flex; gap:var(--s2); flex-wrap:wrap; }
   .how-dialog .steps { margin:var(--s3) 0; }
   .how-dialog .stats { grid-template-columns:repeat(2, 1fr); margin:0 0 var(--s3); }
   .how-dialog .stat b { font-size:1.4rem; }
@@ -505,7 +508,7 @@
     <div id="homeDex" class="home-dex" aria-live="polite" hidden></div>
     <div id="homeType" class="home-type" hidden></div>
     <div class="quick" id="quickPicks"></div>
-    <p class="hero-links"><button type="button" class="linkish" id="openTypes">Tabela de tipos: o que vence o quê</button> · <button type="button" class="linkish" id="openHow">Como funciona?</button></p>
+    <p class="hero-links"><button type="button" class="linkish" id="openTypes">Tabela de tipos: o que vence o quê</button> · <button type="button" class="linkish" id="openHow">Como funciona?</button> · <button type="button" class="linkish" id="syncLink">Sincronizar aparelhos</button></p>
   </header>
 
   <div id="resume"></div>
@@ -684,6 +687,34 @@
   <p class="meta">Dica: monte o seu time em <strong>Meu time</strong> — as sugestões passam a dizer quem dele usar. Na busca do topo, escreva um Pokémon (onde capturar), um jogo, um líder ou um tipo.</p>
   <div class="stats" id="stats"></div>
   <div class="how-actions"><button type="button" class="btn btn-primary" id="howOk">Entendi</button></div>
+</div></dialog>
+<!-- 0.85.0: sincronizar o time entre aparelhos por um Gist secreto do GitHub (public/sync.mjs) -->
+<dialog id="syncDialog" class="how-dialog" aria-labelledby="syncTitle"><div class="how-body">
+  <div class="news-head"><h2 id="syncTitle">Sincronizar aparelhos</h2><button type="button" class="news-close" id="syncClose" aria-label="Fechar">✕</button></div>
+  <div id="syncOff">
+    <p>O seu time e os golpes guardados ficam no navegador de cada aparelho. Para vê-los no celular e no computador, o app
+      guarda uma cópia num <strong>Gist secreto</strong> da sua conta do GitHub e sincroniza sozinho.</p>
+    <ol class="sync-steps">
+      <li>No GitHub, <a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=Poke%20Tact" target="_blank" rel="noopener">crie um token</a> só com a permissão <code>gist</code> (escolha a validade) e copie.</li>
+      <li>Cole aqui e toque em Conectar. O time deste aparelho vai para o Gist.</li>
+      <li>No outro aparelho, faça o mesmo — ou use "Copiar link para outro aparelho", que aparece depois de conectar.</li>
+    </ol>
+    <form id="syncForm" class="sync-form">
+      <input type="password" id="syncToken" autocomplete="off" spellcheck="false" placeholder="Token do GitHub (ghp_…)" aria-label="Token do GitHub">
+      <button type="submit" class="btn btn-primary" id="syncConnect">Conectar</button>
+    </form>
+    <p class="meta">O token fica só neste navegador. Se o mesmo jogo tiver time nos dois aparelhos, vale o do primeiro conectado; depois disso, vale a última mudança.</p>
+  </div>
+  <div id="syncOn" hidden>
+    <p id="syncWho"></p>
+    <p class="meta" id="syncState"></p>
+    <div class="sync-actions">
+      <button type="button" class="btn" id="syncNowBtn">Sincronizar agora</button>
+      <button type="button" class="btn" id="syncCopy">Copiar link para outro aparelho</button>
+      <button type="button" class="btn" id="syncOut">Desconectar</button>
+    </div>
+  </div>
+  <p class="meta" id="syncMsg" aria-live="polite"></p>
 </div></dialog>
 <!-- novidades do app (CHANGELOG): botão fixo no canto com o nº de versões não vistas e o painel com as mudanças -->
 <button type="button" id="newsBtn" class="news-btn" aria-haspopup="dialog" aria-controls="newsPanel" aria-expanded="false" title="Novidades do app">
